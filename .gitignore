@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 !.env.example
+
+# python pipeline
+pipeline/.venv/
+pipeline/build/
+__pycache__/

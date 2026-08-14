@@ -1,0 +1,9 @@
+[project]
+name = "pathwise-pipeline"
+version = "0.1.0"
+description = "Offline data pipeline: catalog curation, annotation, embeddings, validation"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32",
+    "sentence-transformers>=3.0",
+]
