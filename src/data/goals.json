@@ -1,0 +1,293 @@
+[
+  {
+    "id": "frontend-developer",
+    "title": "Frontend Developer",
+    "description": "Build polished, accessible user interfaces for the web with modern JavaScript, React, and TypeScript.",
+    "requiredSkills": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "responsive-design", "level": 2 },
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "typescript", "level": 2 },
+      { "skillId": "react", "level": 3 },
+      { "skillId": "state-management", "level": 2 },
+      { "skillId": "api-integration", "level": 2 },
+      { "skillId": "version-control-git", "level": 2 },
+      { "skillId": "frontend-build-tools", "level": 1 },
+      { "skillId": "web-accessibility", "level": 1 },
+      { "skillId": "frontend-testing", "level": 1 }
+    ]
+  },
+  {
+    "id": "backend-developer",
+    "title": "Backend Developer",
+    "description": "Design and build the server side of web applications: APIs, databases, authentication, and the logic behind the product.",
+    "requiredSkills": [
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "nodejs", "level": 3 },
+      { "skillId": "express", "level": 2 },
+      { "skillId": "rest-api-design", "level": 3 },
+      { "skillId": "authentication", "level": 2 },
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "postgresql", "level": 2 },
+      { "skillId": "orm-data-access", "level": 2 },
+      { "skillId": "api-testing", "level": 1 },
+      { "skillId": "caching", "level": 1 },
+      { "skillId": "docker", "level": 1 },
+      { "skillId": "version-control-git", "level": 2 },
+      { "skillId": "system-design", "level": 1 }
+    ]
+  },
+  {
+    "id": "full-stack-developer",
+    "title": "Full-Stack Developer",
+    "description": "Ship complete web products end to end — frontend, backend, and database — with a React and Node toolkit.",
+    "requiredSkills": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "typescript", "level": 2 },
+      { "skillId": "react", "level": 2 },
+      { "skillId": "nextjs", "level": 2 },
+      { "skillId": "nodejs", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "authentication", "level": 2 },
+      { "skillId": "docker", "level": 1 },
+      { "skillId": "version-control-git", "level": 2 }
+    ]
+  },
+  {
+    "id": "data-analyst",
+    "title": "Data Analyst",
+    "description": "Turn raw data into decisions: query it with SQL, analyze it with Python and statistics, and communicate findings with clear visuals.",
+    "requiredSkills": [
+      { "skillId": "spreadsheets", "level": 2 },
+      { "skillId": "sql", "level": 3 },
+      { "skillId": "advanced-sql", "level": 2 },
+      { "skillId": "statistics-fundamentals", "level": 2 },
+      { "skillId": "inferential-statistics", "level": 2 },
+      { "skillId": "python-data-analysis", "level": 2 },
+      { "skillId": "data-cleaning", "level": 2 },
+      { "skillId": "exploratory-data-analysis", "level": 2 },
+      { "skillId": "data-visualization", "level": 2 },
+      { "skillId": "tableau", "level": 2 },
+      { "skillId": "data-storytelling", "level": 2 },
+      { "skillId": "ab-testing", "level": 1 }
+    ]
+  },
+  {
+    "id": "business-intelligence-analyst",
+    "title": "Business Intelligence Analyst",
+    "description": "Build the dashboards and data models a business runs on, from warehouse tables to executive-ready Power BI and Tableau reports.",
+    "requiredSkills": [
+      { "skillId": "spreadsheets", "level": 2 },
+      { "skillId": "sql", "level": 3 },
+      { "skillId": "advanced-sql", "level": 2 },
+      { "skillId": "data-modeling", "level": 2 },
+      { "skillId": "data-warehousing", "level": 2 },
+      { "skillId": "power-bi", "level": 3 },
+      { "skillId": "tableau", "level": 2 },
+      { "skillId": "data-visualization", "level": 2 },
+      { "skillId": "data-storytelling", "level": 2 },
+      { "skillId": "etl-pipelines", "level": 1 },
+      { "skillId": "dbt", "level": 1 }
+    ]
+  },
+  {
+    "id": "data-scientist",
+    "title": "Data Scientist",
+    "description": "Answer hard questions with data: statistical inference, machine learning models, and experiments that stand up to scrutiny.",
+    "requiredSkills": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "python-data-analysis", "level": 3 },
+      { "skillId": "statistics-fundamentals", "level": 3 },
+      { "skillId": "inferential-statistics", "level": 3 },
+      { "skillId": "exploratory-data-analysis", "level": 2 },
+      { "skillId": "data-visualization", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 3 },
+      { "skillId": "supervised-learning", "level": 3 },
+      { "skillId": "unsupervised-learning", "level": 2 },
+      { "skillId": "scikit-learn", "level": 3 },
+      { "skillId": "feature-engineering", "level": 2 },
+      { "skillId": "model-evaluation", "level": 3 },
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "data-storytelling", "level": 2 }
+    ]
+  },
+  {
+    "id": "data-engineer",
+    "title": "Data Engineer",
+    "description": "Build the pipelines and platforms that move data reliably at scale — from source systems into warehouses, lakes, and streams.",
+    "requiredSkills": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "sql", "level": 3 },
+      { "skillId": "advanced-sql", "level": 2 },
+      { "skillId": "data-modeling", "level": 3 },
+      { "skillId": "postgresql", "level": 2 },
+      { "skillId": "nosql-databases", "level": 2 },
+      { "skillId": "etl-pipelines", "level": 3 },
+      { "skillId": "big-data-fundamentals", "level": 2 },
+      { "skillId": "apache-spark", "level": 2 },
+      { "skillId": "apache-kafka", "level": 2 },
+      { "skillId": "apache-airflow", "level": 2 },
+      { "skillId": "data-warehousing", "level": 2 },
+      { "skillId": "cloud-data-platforms", "level": 2 },
+      { "skillId": "data-quality", "level": 2 },
+      { "skillId": "docker", "level": 1 }
+    ]
+  },
+  {
+    "id": "machine-learning-engineer",
+    "title": "Machine Learning Engineer",
+    "description": "Take models from notebook to production: deep learning with PyTorch, rigorous evaluation, and deployment with MLOps discipline.",
+    "requiredSkills": [
+      { "skillId": "python", "level": 3 },
+      { "skillId": "math-for-ml", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 3 },
+      { "skillId": "supervised-learning", "level": 3 },
+      { "skillId": "scikit-learn", "level": 2 },
+      { "skillId": "neural-networks", "level": 2 },
+      { "skillId": "deep-learning", "level": 3 },
+      { "skillId": "pytorch", "level": 3 },
+      { "skillId": "model-evaluation", "level": 2 },
+      { "skillId": "feature-engineering", "level": 2 },
+      { "skillId": "model-deployment", "level": 3 },
+      { "skillId": "mlops", "level": 2 },
+      { "skillId": "docker", "level": 2 },
+      { "skillId": "sql", "level": 2 }
+    ]
+  },
+  {
+    "id": "ai-engineer",
+    "title": "AI Engineer",
+    "description": "Build products on top of large language models: prompting, retrieval-augmented generation, agents, and production-grade AI applications.",
+    "requiredSkills": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "llm-fundamentals", "level": 3 },
+      { "skillId": "prompt-engineering", "level": 3 },
+      { "skillId": "llm-apis", "level": 3 },
+      { "skillId": "embeddings-vector-search", "level": 2 },
+      { "skillId": "vector-databases", "level": 2 },
+      { "skillId": "rag", "level": 3 },
+      { "skillId": "ai-agents", "level": 2 },
+      { "skillId": "llm-evaluation", "level": 2 },
+      { "skillId": "ai-app-development", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "responsible-ai", "level": 1 },
+      { "skillId": "docker", "level": 1 }
+    ]
+  },
+  {
+    "id": "cloud-engineer",
+    "title": "Cloud Engineer",
+    "description": "Design, build, and run infrastructure on AWS-class platforms: networking, storage, databases, serverless, and security done right.",
+    "requiredSkills": [
+      { "skillId": "networking-basics", "level": 2 },
+      { "skillId": "cloud-fundamentals", "level": 3 },
+      { "skillId": "aws-fundamentals", "level": 3 },
+      { "skillId": "cloud-networking", "level": 2 },
+      { "skillId": "cloud-storage", "level": 2 },
+      { "skillId": "cloud-databases", "level": 2 },
+      { "skillId": "serverless", "level": 2 },
+      { "skillId": "cloud-security", "level": 2 },
+      { "skillId": "cloud-architecture", "level": 2 },
+      { "skillId": "infrastructure-as-code", "level": 2 },
+      { "skillId": "linux-administration", "level": 2 },
+      { "skillId": "cloud-cost-optimization", "level": 1 }
+    ]
+  },
+  {
+    "id": "devops-engineer",
+    "title": "DevOps Engineer",
+    "description": "Automate the path from commit to production: containers, CI/CD pipelines, infrastructure as code, and observable systems.",
+    "requiredSkills": [
+      { "skillId": "linux-administration", "level": 2 },
+      { "skillId": "shell-scripting", "level": 2 },
+      { "skillId": "version-control-git", "level": 2 },
+      { "skillId": "devops-fundamentals", "level": 3 },
+      { "skillId": "docker", "level": 3 },
+      { "skillId": "ci-cd", "level": 3 },
+      { "skillId": "kubernetes", "level": 2 },
+      { "skillId": "infrastructure-as-code", "level": 2 },
+      { "skillId": "monitoring-observability", "level": 2 },
+      { "skillId": "cloud-fundamentals", "level": 2 },
+      { "skillId": "configuration-management", "level": 1 },
+      { "skillId": "gitops", "level": 1 }
+    ]
+  },
+  {
+    "id": "site-reliability-engineer",
+    "title": "Site Reliability Engineer",
+    "description": "Keep large systems fast and up: SLOs and error budgets, deep observability, incident response, and automation over toil.",
+    "requiredSkills": [
+      { "skillId": "linux-administration", "level": 3 },
+      { "skillId": "shell-scripting", "level": 2 },
+      { "skillId": "python", "level": 2 },
+      { "skillId": "monitoring-observability", "level": 3 },
+      { "skillId": "sre-fundamentals", "level": 3 },
+      { "skillId": "kubernetes", "level": 2 },
+      { "skillId": "ci-cd", "level": 2 },
+      { "skillId": "docker", "level": 2 },
+      { "skillId": "cloud-fundamentals", "level": 2 },
+      { "skillId": "infrastructure-as-code", "level": 2 },
+      { "skillId": "system-design", "level": 2 }
+    ]
+  },
+  {
+    "id": "security-analyst",
+    "title": "Security Analyst",
+    "description": "Defend organizations from attack: monitor and triage threats in a SOC, respond to incidents, and harden systems before they break.",
+    "requiredSkills": [
+      { "skillId": "networking-basics", "level": 2 },
+      { "skillId": "security-fundamentals", "level": 3 },
+      { "skillId": "network-security", "level": 2 },
+      { "skillId": "web-security", "level": 2 },
+      { "skillId": "identity-access-management", "level": 2 },
+      { "skillId": "cryptography-basics", "level": 1 },
+      { "skillId": "security-operations", "level": 3 },
+      { "skillId": "incident-response", "level": 2 },
+      { "skillId": "digital-forensics", "level": 1 },
+      { "skillId": "threat-modeling", "level": 1 },
+      { "skillId": "linux-administration", "level": 2 },
+      { "skillId": "compliance-privacy", "level": 1 }
+    ]
+  },
+  {
+    "id": "qa-automation-engineer",
+    "title": "QA Automation Engineer",
+    "description": "Guard product quality with automation: end-to-end test suites, API tests, and CI pipelines that catch regressions before users do.",
+    "requiredSkills": [
+      { "skillId": "programming-basics", "level": 2 },
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "debugging", "level": 2 },
+      { "skillId": "unit-testing", "level": 3 },
+      { "skillId": "test-automation", "level": 3 },
+      { "skillId": "api-testing", "level": 2 },
+      { "skillId": "frontend-testing", "level": 2 },
+      { "skillId": "ci-cd", "level": 2 },
+      { "skillId": "version-control-git", "level": 2 },
+      { "skillId": "agile-methodologies", "level": 1 }
+    ]
+  },
+  {
+    "id": "solutions-architect",
+    "title": "Solutions Architect",
+    "description": "Design whole systems that meet business goals: cloud architecture, integration patterns, trade-off analysis, and clear technical communication.",
+    "requiredSkills": [
+      { "skillId": "system-design", "level": 3 },
+      { "skillId": "cloud-architecture", "level": 3 },
+      { "skillId": "cloud-fundamentals", "level": 3 },
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "cloud-networking", "level": 2 },
+      { "skillId": "microservices", "level": 2 },
+      { "skillId": "event-driven-architecture", "level": 2 },
+      { "skillId": "data-modeling", "level": 2 },
+      { "skillId": "cloud-security", "level": 2 },
+      { "skillId": "cloud-cost-optimization", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "technical-writing", "level": 2 }
+    ]
+  }
+]

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { SkillSchema } from "@/schemas";
+import { GoalTemplateSchema, SkillSchema } from "@/schemas";
+import goalsJson from "@/data/goals.json";
 import skillsJson from "@/data/skills.json";
 
 describe("skills.json", () => {
@@ -25,6 +26,18 @@ describe("skills.json", () => {
   it("has no self-referential prereqs", () => {
     const selfRefs = skills.filter((s) => s.prereqs.includes(s.id));
     expect(selfRefs).toEqual([]);
+  });
+
+  it("goals.json parses and references only existing skills", () => {
+    const goals = z.array(GoalTemplateSchema).parse(goalsJson);
+    expect(goals.length).toBeGreaterThanOrEqual(15);
+    expect(new Set(goals.map((g) => g.id)).size).toBe(goals.length);
+    const dangling = goals.flatMap((g) =>
+      g.requiredSkills
+        .filter((r) => !ids.has(r.skillId))
+        .map((r) => `${g.id} -> ${r.skillId}`),
+    );
+    expect(dangling).toEqual([]);
   });
 
   it("prereq edges form a DAG", () => {
