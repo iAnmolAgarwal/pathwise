@@ -1,0 +1,357 @@
+[
+  {
+    "id": "google-cybersecurity-cert",
+    "kind": "course",
+    "title": "Google Cybersecurity Professional Certificate",
+    "provider": "Coursera (Google)",
+    "url": "https://www.coursera.org/professional-certificates/google-cybersecurity",
+    "description": "Google's entry-level security certificate: threats, networks, Linux and SQL for security, SIEM tools, and detection.",
+    "durationHours": 170,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "security-fundamentals", "level": 3 },
+      { "skillId": "network-security", "level": 2 },
+      { "skillId": "security-operations", "level": 2 },
+      { "skillId": "linux-administration", "level": 1 },
+      { "skillId": "identity-access-management", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "tryhackme",
+    "kind": "course",
+    "title": "TryHackMe",
+    "provider": "TryHackMe",
+    "url": "https://tryhackme.com/",
+    "description": "Gamified hands-on security training: guided rooms and structured paths from fundamentals to offensive security.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "security-fundamentals", "level": 2 },
+      { "skillId": "ethical-hacking-basics", "level": 2 },
+      { "skillId": "network-security", "level": 2 },
+      { "skillId": "digital-forensics", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+  },
+  {
+    "id": "htb-academy",
+    "kind": "course",
+    "title": "Hack The Box Academy",
+    "provider": "Hack The Box",
+    "url": "https://academy.hackthebox.com/",
+    "description": "Structured offensive-security modules with live targets: enumeration, exploitation, and web attacks.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "ethical-hacking-basics", "level": 3 },
+      { "skillId": "web-security", "level": 2 },
+      { "skillId": "network-security", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "security-fundamentals", "level": 2 },
+      { "skillId": "command-line", "level": 2 }
+    ]
+  },
+  {
+    "id": "portswigger",
+    "kind": "course",
+    "title": "PortSwigger Web Security Academy",
+    "provider": "PortSwigger",
+    "url": "https://portswigger.net/web-security",
+    "description": "The gold-standard free web security training: SQL injection, XSS, CSRF, and dozens of hands-on labs.",
+    "durationHours": 50,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [{ "skillId": "web-security", "level": 3 }],
+    "skillsRequired": [
+      { "skillId": "security-fundamentals", "level": 1 },
+      { "skillId": "javascript", "level": 1 }
+    ]
+  },
+  {
+    "id": "owasp-top-ten",
+    "kind": "course",
+    "title": "OWASP Top Ten",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-project-top-ten/",
+    "description": "The canonical list of the most critical web application security risks, with explanations and mitigations.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
+    "skillsRequired": [{ "skillId": "security-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "professor-messer",
+    "kind": "course",
+    "title": "Professor Messer Security+ Training",
+    "provider": "professormesser.com",
+    "url": "https://www.professormesser.com/",
+    "description": "Free complete video training for CompTIA Security+: threats, architecture, operations, and governance.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "security-fundamentals", "level": 2 },
+      { "skillId": "network-security", "level": 2 },
+      { "skillId": "cryptography-basics", "level": 1 },
+      { "skillId": "identity-access-management", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+  },
+  {
+    "id": "coursera-crypto",
+    "kind": "course",
+    "title": "Cryptography I",
+    "provider": "Coursera (Stanford University)",
+    "url": "https://www.coursera.org/learn/crypto",
+    "description": "Dan Boneh's rigorous introduction to cryptography: ciphers, integrity, authenticated encryption, and key exchange.",
+    "durationHours": 30,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [{ "skillId": "cryptography-basics", "level": 3 }],
+    "skillsRequired": [
+      { "skillId": "probability", "level": 1 },
+      { "skillId": "programming-basics", "level": 2 }
+    ]
+  },
+  {
+    "id": "owasp-cheatsheets",
+    "kind": "course",
+    "title": "OWASP Cheat Sheet Series",
+    "provider": "OWASP",
+    "url": "https://cheatsheetseries.owasp.org/",
+    "description": "Concise, actionable guidance for building secure software: validation, authentication, secrets, and more.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "secure-coding", "level": 2 },
+      { "skillId": "web-security", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "programming-basics", "level": 2 },
+      { "skillId": "web-security", "level": 1 }
+    ]
+  },
+  {
+    "id": "letsdefend",
+    "kind": "course",
+    "title": "LetsDefend",
+    "provider": "LetsDefend",
+    "url": "https://letsdefend.io/",
+    "description": "Blue-team training on a simulated SOC: triage real alerts, investigate incidents, and practice response.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "security-operations", "level": 2 },
+      { "skillId": "incident-response", "level": 2 },
+      { "skillId": "digital-forensics", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "security-fundamentals", "level": 2 },
+      { "skillId": "networking-basics", "level": 2 }
+    ]
+  },
+  {
+    "id": "tcm-security",
+    "kind": "course",
+    "title": "TCM Security Academy",
+    "provider": "TCM Security",
+    "url": "https://academy.tcm-sec.com/",
+    "description": "Practical ethical hacking courses: external pentests, Active Directory attacks, and report writing.",
+    "durationHours": 25,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "ethical-hacking-basics", "level": 3 }],
+    "skillsRequired": [
+      { "skillId": "networking-basics", "level": 2 },
+      { "skillId": "command-line", "level": 2 }
+    ]
+  },
+  {
+    "id": "gdpr-eu",
+    "kind": "course",
+    "title": "GDPR.eu Guide",
+    "provider": "gdpr.eu",
+    "url": "https://gdpr.eu/",
+    "description": "Plain-language guide to the GDPR: principles, rights, lawful bases, and compliance checklists.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "compliance-privacy", "level": 2 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "owasp-threat-modeling",
+    "kind": "course",
+    "title": "OWASP Threat Modeling",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-community/Threat_Modeling",
+    "description": "OWASP's introduction to threat modeling: decomposing systems, STRIDE, and prioritizing mitigations.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "threat-modeling", "level": 2 }],
+    "skillsRequired": [{ "skillId": "web-security", "level": 1 }]
+  },
+  {
+    "id": "juice-shop",
+    "kind": "project",
+    "title": "OWASP Juice Shop",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-project-juice-shop/",
+    "description": "Deploy and hack the most modern insecure web app: a full vulnerability scavenger hunt with scoreboard.",
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "web-security", "level": 1 },
+      { "skillId": "javascript", "level": 1 }
+    ]
+  },
+  {
+    "id": "dvwa",
+    "kind": "project",
+    "title": "Damn Vulnerable Web Application (DVWA)",
+    "provider": "GitHub (digininja)",
+    "url": "https://github.com/digininja/DVWA",
+    "description": "Set up the classic deliberately vulnerable PHP app and exploit it at increasing security levels.",
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "web-security", "level": 1 },
+      { "skillId": "command-line", "level": 1 }
+    ]
+  },
+  {
+    "id": "wazuh-homelab",
+    "kind": "project",
+    "title": "Build a Home SOC Lab with Wazuh",
+    "provider": "Wazuh",
+    "url": "https://wazuh.com/",
+    "description": "Deploy the open-source Wazuh SIEM in a home lab, ship logs from endpoints, and write detection rules.",
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "security-operations", "level": 2 },
+      { "skillId": "linux-administration", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "linux-administration", "level": 1 },
+      { "skillId": "networking-basics", "level": 2 }
+    ]
+  },
+  {
+    "id": "otw-bandit",
+    "kind": "assessment",
+    "title": "OverTheWire: Bandit",
+    "provider": "OverTheWire",
+    "url": "https://overthewire.org/wargames/bandit/",
+    "description": "The classic wargame testing Linux command-line and security basics level by level over SSH.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "command-line", "level": 2 },
+      { "skillId": "security-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "picoctf",
+    "kind": "assessment",
+    "title": "picoCTF",
+    "provider": "Carnegie Mellon University",
+    "url": "https://picoctf.org/",
+    "description": "CMU's free capture-the-flag platform testing security skills across crypto, web, forensics, and binary challenges.",
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "security-fundamentals", "level": 2 },
+      { "skillId": "cryptography-basics", "level": 1 },
+      { "skillId": "web-security", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+  },
+  {
+    "id": "cryptohack",
+    "kind": "assessment",
+    "title": "CryptoHack",
+    "provider": "cryptohack.org",
+    "url": "https://cryptohack.org/",
+    "description": "Progressive cryptography challenges that test your understanding by making you break weak crypto in Python.",
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "cryptography-basics", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "cryptography-basics", "level": 1 }
+    ]
+  },
+  {
+    "id": "cyberdefenders",
+    "kind": "assessment",
+    "title": "CyberDefenders",
+    "provider": "CyberDefenders",
+    "url": "https://cyberdefenders.org/",
+    "description": "Blue-team CTF challenges testing digital forensics and incident response on realistic case evidence.",
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "digital-forensics", "level": 2 },
+      { "skillId": "incident-response", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "security-operations", "level": 1 }]
+  }
+]

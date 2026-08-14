@@ -1,0 +1,325 @@
+[
+  {
+    "id": "aws-cp-essentials",
+    "kind": "course",
+    "title": "AWS Cloud Practitioner Essentials",
+    "provider": "Coursera (AWS)",
+    "url": "https://www.coursera.org/learn/aws-cloud-practitioner-essentials",
+    "description": "AWS's official introduction to the cloud: core services, pricing, security, and the shared responsibility model.",
+    "durationHours": 12,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "cloud-fundamentals", "level": 2 },
+      { "skillId": "aws-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+  },
+  {
+    "id": "fcc-clf-c02",
+    "kind": "course",
+    "title": "AWS Certified Cloud Practitioner Course (CLF-C02)",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=NhDYbskXRgc",
+    "description": "Full free video course preparing for the AWS Cloud Practitioner certification exam.",
+    "durationHours": 14,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "cloud-fundamentals", "level": 2 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "maarek-saa",
+    "kind": "course",
+    "title": "Ultimate AWS Certified Solutions Architect Associate (SAA-C03)",
+    "provider": "Udemy (Stephane Maarek)",
+    "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+    "description": "The best-selling SAA prep course: EC2, VPC, S3, RDS, serverless, and architecture patterns hands-on.",
+    "durationHours": 27,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 3 },
+      { "skillId": "cloud-architecture", "level": 2 },
+      { "skillId": "cloud-networking", "level": 2 },
+      { "skillId": "cloud-storage", "level": 2 },
+      { "skillId": "cloud-databases", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "cantrill-saa",
+    "kind": "course",
+    "title": "AWS Certified Solutions Architect – Associate (Adrian Cantrill)",
+    "provider": "learn.cantrill.io",
+    "url": "https://learn.cantrill.io/",
+    "description": "Deeply technical SAA course famous for its diagrams and hands-on demos that go beyond exam prep.",
+    "durationHours": 60,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 3 },
+      { "skillId": "cloud-architecture", "level": 3 },
+      { "skillId": "cloud-networking", "level": 3 }
+    ],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "az900-path",
+    "kind": "course",
+    "title": "Microsoft Azure Fundamentals: Describe Cloud Concepts",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+    "description": "Official AZ-900 learning path introducing cloud concepts and core Azure services with interactive modules.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "azure-fundamentals", "level": 1 },
+      { "skillId": "cloud-fundamentals", "level": 2 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "fcc-az900",
+    "kind": "course",
+    "title": "Azure Fundamentals Certification Course (AZ-900)",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=NKEFWyqJ5XA",
+    "description": "Full free video course preparing for the Microsoft Azure Fundamentals certification.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "azure-fundamentals", "level": 2 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "gcsb-cloud-engineer",
+    "kind": "course",
+    "title": "Google Cloud Skills Boost: Cloud Engineer Learning Path",
+    "provider": "Google Cloud",
+    "url": "https://www.cloudskillsboost.google/paths/11",
+    "description": "Hands-on Google Cloud path with labs: Compute Engine, networking, storage, and deploying workloads.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "gcp-fundamentals", "level": 2 },
+      { "skillId": "cloud-networking", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "coursera-gcp-core",
+    "kind": "course",
+    "title": "Google Cloud Fundamentals: Core Infrastructure",
+    "provider": "Coursera (Google Cloud)",
+    "url": "https://www.coursera.org/learn/gcp-fundamentals",
+    "description": "Official introduction to Google Cloud: projects, IAM, Compute Engine, storage options, and networking.",
+    "durationHours": 15,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "gcp-fundamentals", "level": 2 }],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "aws-skill-builder",
+    "kind": "course",
+    "title": "AWS Skill Builder",
+    "provider": "AWS",
+    "url": "https://skillbuilder.aws/",
+    "description": "AWS's official training platform with hundreds of free digital courses across services and roles.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "serverless", "level": 1 },
+      { "skillId": "cloud-security", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "serverless-land",
+    "kind": "course",
+    "title": "Serverless Land",
+    "provider": "AWS",
+    "url": "https://serverlessland.com/",
+    "description": "AWS's hub for serverless learning: patterns, workflows, and hands-on examples with Lambda and EventBridge.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "serverless", "level": 2 }],
+    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "aws-well-architected",
+    "kind": "course",
+    "title": "AWS Well-Architected Framework",
+    "provider": "AWS",
+    "url": "https://aws.amazon.com/architecture/well-architected/",
+    "description": "AWS's canonical guidance for designing cloud systems across reliability, security, cost, and performance pillars.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "cloud-architecture", "level": 2 },
+      { "skillId": "cloud-cost-optimization", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+  },
+  {
+    "id": "finops-intro",
+    "kind": "course",
+    "title": "What is FinOps?",
+    "provider": "FinOps Foundation",
+    "url": "https://www.finops.org/introduction/what-is-finops/",
+    "description": "The FinOps Foundation's introduction to cloud financial management: principles, phases, and practices.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "cloud-cost-optimization", "level": 2 }],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "aws-iam-guide",
+    "kind": "course",
+    "title": "AWS IAM User Guide",
+    "provider": "AWS (official docs)",
+    "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+    "description": "Official guide to AWS identity and access management: users, roles, policies, and least-privilege design.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "cloud-security", "level": 2 },
+      { "skillId": "identity-access-management", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "cloud-resume-challenge",
+    "kind": "project",
+    "title": "The Cloud Resume Challenge",
+    "provider": "cloudresumechallenge.dev",
+    "url": "https://cloudresumechallenge.dev/",
+    "description": "The famous multi-step project: host your resume with S3, CloudFront, Lambda, DynamoDB, and CI/CD.",
+    "durationHours": 30,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "serverless", "level": 2 },
+      { "skillId": "ci-cd", "level": 1 },
+      { "skillId": "infrastructure-as-code", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "cloud-fundamentals", "level": 1 },
+      { "skillId": "html", "level": 1 }
+    ]
+  },
+  {
+    "id": "aws-hands-on",
+    "kind": "project",
+    "title": "AWS Hands-On Tutorials",
+    "provider": "AWS",
+    "url": "https://aws.amazon.com/getting-started/hands-on/",
+    "description": "Official step-by-step tutorials: launch a VM, host a website, set up a database, and more on the free tier.",
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "cloud-storage", "level": 1 },
+      { "skillId": "cloud-databases", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "aws-workshops",
+    "kind": "project",
+    "title": "AWS Workshops",
+    "provider": "AWS",
+    "url": "https://workshops.aws/",
+    "description": "Guided multi-hour workshops built by AWS teams covering real architectures you deploy yourself.",
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "cloud-architecture", "level": 2 },
+      { "skillId": "serverless", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+  },
+  {
+    "id": "tutorials-dojo",
+    "kind": "assessment",
+    "title": "Tutorials Dojo Practice Exams",
+    "provider": "Tutorials Dojo",
+    "url": "https://tutorialsdojo.com/",
+    "description": "Highly-regarded AWS practice exams with detailed explanations for gauging certification readiness.",
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "aws-fundamentals", "level": 2 },
+      { "skillId": "cloud-architecture", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+  },
+  {
+    "id": "az900-practice",
+    "kind": "assessment",
+    "title": "Azure Fundamentals Practice Assessment",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    "description": "Microsoft's free official practice assessment for the AZ-900 Azure Fundamentals certification.",
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "azure-fundamentals", "level": 2 },
+      { "skillId": "cloud-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+  }
+]

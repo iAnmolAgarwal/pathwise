@@ -1,0 +1,397 @@
+[
+  {
+    "id": "docker-get-started",
+    "kind": "course",
+    "title": "Docker: Get Started (official docs)",
+    "provider": "Docker",
+    "url": "https://docs.docker.com/get-started/",
+    "description": "Official Docker introduction: containers, images, Dockerfiles, volumes, and multi-container apps with Compose.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "docker", "level": 2 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "nana-docker",
+    "kind": "course",
+    "title": "Docker Tutorial for Beginners",
+    "provider": "YouTube (TechWorld with Nana)",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "description": "Popular free video introduction to Docker: what containers are and how to build and run them.",
+    "durationHours": 3,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "docker", "level": 1 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "udemy-max-docker-k8s",
+    "kind": "course",
+    "title": "Docker & Kubernetes: The Practical Guide",
+    "provider": "Udemy (Maximilian Schwarzmüller)",
+    "url": "https://www.udemy.com/course/docker-kubernetes-the-practical-guide/",
+    "description": "Hands-on course from Docker basics through multi-container apps to deploying on Kubernetes.",
+    "durationHours": 23,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "docker", "level": 3 },
+      { "skillId": "kubernetes", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "nana-kubernetes",
+    "kind": "course",
+    "title": "Kubernetes Tutorial for Beginners",
+    "provider": "YouTube (TechWorld with Nana)",
+    "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+    "description": "The most-watched free Kubernetes course: architecture, pods, services, deployments, and a demo project.",
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "kubernetes", "level": 1 }],
+    "skillsRequired": [{ "skillId": "docker", "level": 1 }]
+  },
+  {
+    "id": "k8s-tutorials",
+    "kind": "course",
+    "title": "Kubernetes Official Tutorials",
+    "provider": "kubernetes.io",
+    "url": "https://kubernetes.io/docs/tutorials/",
+    "description": "Official Kubernetes tutorials: cluster basics, configuration, stateless and stateful application patterns.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "kubernetes", "level": 2 }],
+    "skillsRequired": [{ "skillId": "docker", "level": 2 }]
+  },
+  {
+    "id": "devops-with-docker",
+    "kind": "course",
+    "title": "DevOps with Docker",
+    "provider": "University of Helsinki",
+    "url": "https://devopswithdocker.com/",
+    "description": "Helsinki's free graded course on Docker, docker-compose, and container-based development workflows.",
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "docker", "level": 3 },
+      { "skillId": "devops-fundamentals", "level": 1 },
+      { "skillId": "ci-cd", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "devops-with-kubernetes",
+    "kind": "course",
+    "title": "DevOps with Kubernetes",
+    "provider": "University of Helsinki",
+    "url": "https://devopswithkubernetes.com/",
+    "description": "Free follow-up course deploying real applications to Kubernetes with GitOps, observability, and service meshes.",
+    "durationHours": 60,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "kubernetes", "level": 3 },
+      { "skillId": "gitops", "level": 1 },
+      { "skillId": "monitoring-observability", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "docker", "level": 2 }]
+  },
+  {
+    "id": "github-actions-docs",
+    "kind": "course",
+    "title": "GitHub Actions Documentation",
+    "provider": "GitHub",
+    "url": "https://docs.github.com/en/actions",
+    "description": "Official docs for GitHub Actions: workflows, runners, secrets, and building CI/CD pipelines.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "ci-cd", "level": 2 }],
+    "skillsRequired": [{ "skillId": "version-control-git", "level": 2 }]
+  },
+  {
+    "id": "terraform-tutorials",
+    "kind": "course",
+    "title": "Terraform Tutorials",
+    "provider": "HashiCorp Developer",
+    "url": "https://developer.hashicorp.com/terraform/tutorials",
+    "description": "Official hands-on Terraform tutorials: providers, state, modules, and provisioning real cloud infrastructure.",
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "infrastructure-as-code", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "cloud-fundamentals", "level": 1 },
+      { "skillId": "command-line", "level": 2 }
+    ]
+  },
+  {
+    "id": "ansible-getting-started",
+    "kind": "course",
+    "title": "Ansible: Getting Started (official docs)",
+    "provider": "Ansible (Red Hat)",
+    "url": "https://docs.ansible.com/ansible/latest/getting_started/index.html",
+    "description": "Official introduction to Ansible: inventories, playbooks, and automating server configuration idempotently.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "configuration-management", "level": 2 }],
+    "skillsRequired": [{ "skillId": "linux-administration", "level": 1 }]
+  },
+  {
+    "id": "google-sre-book",
+    "kind": "course",
+    "title": "Site Reliability Engineering (Google SRE Book)",
+    "provider": "Google",
+    "url": "https://sre.google/sre-book/table-of-contents/",
+    "description": "The book that defined SRE, free online: SLOs, error budgets, toil, monitoring, and incident management.",
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "sre-fundamentals", "level": 3 },
+      { "skillId": "monitoring-observability", "level": 2 },
+      { "skillId": "incident-response", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "linux-administration", "level": 1 }]
+  },
+  {
+    "id": "grafana-tutorials",
+    "kind": "course",
+    "title": "Grafana Tutorials",
+    "provider": "Grafana Labs",
+    "url": "https://grafana.com/tutorials/",
+    "description": "Official tutorials for building dashboards and alerts with Grafana, Prometheus, and Loki.",
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "monitoring-observability", "level": 2 }],
+    "skillsRequired": [{ "skillId": "devops-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "linux-upskill",
+    "kind": "course",
+    "title": "Linux Upskill Challenge",
+    "provider": "linuxupskillchallenge.org",
+    "url": "https://linuxupskillchallenge.org/",
+    "description": "A free month-long guided course administering your own Linux server, one hands-on lesson a day.",
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "linux-administration", "level": 2 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "kodekloud",
+    "kind": "course",
+    "title": "KodeKloud",
+    "provider": "KodeKloud",
+    "url": "https://kodekloud.com/",
+    "description": "DevOps learning platform with browser-based labs for Linux, Docker, Kubernetes, and certification prep.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "devops-fundamentals", "level": 2 },
+      { "skillId": "docker", "level": 2 },
+      { "skillId": "kubernetes", "level": 2 },
+      { "skillId": "linux-administration", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "tau",
+    "kind": "course",
+    "title": "Test Automation University",
+    "provider": "Applitools",
+    "url": "https://testautomationu.applitools.com/",
+    "description": "Free university of test automation courses: Selenium, Playwright, API testing, and test strategy.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "test-automation", "level": 2 },
+      { "skillId": "api-testing", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "unit-testing", "level": 1 },
+      { "skillId": "javascript", "level": 1 }
+    ]
+  },
+  {
+    "id": "argocd-docs",
+    "kind": "course",
+    "title": "Argo CD Documentation",
+    "provider": "Argo Project",
+    "url": "https://argo-cd.readthedocs.io/en/stable/",
+    "description": "Official docs for Argo CD: declarative GitOps delivery, application sync, and automated rollbacks on Kubernetes.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "gitops", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "kubernetes", "level": 2 },
+      { "skillId": "ci-cd", "level": 1 }
+    ]
+  },
+  {
+    "id": "roadmap-devops",
+    "kind": "course",
+    "title": "DevOps Roadmap",
+    "provider": "roadmap.sh",
+    "url": "https://roadmap.sh/devops",
+    "description": "Structured self-study roadmap through the DevOps toolchain with linked resources at every step.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "devops-fundamentals", "level": 2 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "kubernetes-the-hard-way",
+    "kind": "project",
+    "title": "Kubernetes the Hard Way",
+    "provider": "GitHub (Kelsey Hightower)",
+    "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way",
+    "description": "Bootstrap a Kubernetes cluster from scratch with no installers, learning every component along the way.",
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 5,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "kubernetes", "level": 3 },
+      { "skillId": "cloud-networking", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "kubernetes", "level": 1 },
+      { "skillId": "linux-administration", "level": 2 }
+    ]
+  },
+  {
+    "id": "kodekloud-engineer",
+    "kind": "project",
+    "title": "KodeKloud Engineer",
+    "provider": "KodeKloud",
+    "url": "https://engineer.kodekloud.com/",
+    "description": "Work real simulated sysadmin and DevOps tickets on live systems, progressing through job levels.",
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "linux-administration", "level": 2 },
+      { "skillId": "devops-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "actions-starter-workflows",
+    "kind": "project",
+    "title": "Set Up CI with GitHub Actions Starter Workflows",
+    "provider": "GitHub",
+    "url": "https://github.com/actions/starter-workflows",
+    "description": "Add automated build and test pipelines to your own repository starting from GitHub's official workflow templates.",
+    "durationHours": 4,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "ci-cd", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "version-control-git", "level": 2 },
+      { "skillId": "unit-testing", "level": 1 }
+    ]
+  },
+  {
+    "id": "sadservers",
+    "kind": "assessment",
+    "title": "SadServers",
+    "provider": "sadservers.com",
+    "url": "https://sadservers.com/",
+    "description": "Debug broken Linux servers against the clock — 'LeetCode for sysadmins' scenarios that test real troubleshooting.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "linux-administration", "level": 2 },
+      { "skillId": "debugging", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "killercoda",
+    "kind": "assessment",
+    "title": "Killercoda Interactive Scenarios",
+    "provider": "Killercoda",
+    "url": "https://killercoda.com/",
+    "description": "Browser-based interactive scenarios that test your Kubernetes and Linux skills on disposable live environments.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "kubernetes", "level": 2 },
+      { "skillId": "linux-administration", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "docker", "level": 1 }]
+  },
+  {
+    "id": "killer-sh",
+    "kind": "assessment",
+    "title": "Killer Shell (CKA/CKAD Simulator)",
+    "provider": "killer.sh",
+    "url": "https://killer.sh/",
+    "description": "The official Kubernetes certification exam simulator — harder than the real CKA, with full solutions.",
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "paid",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "kubernetes", "level": 3 }],
+    "skillsRequired": [{ "skillId": "kubernetes", "level": 2 }]
+  }
+]
