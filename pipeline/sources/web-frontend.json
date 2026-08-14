@@ -1,0 +1,542 @@
+[
+  {
+    "id": "fcc-responsive-web-design",
+    "kind": "course",
+    "title": "Responsive Web Design Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    "description": "freeCodeCamp's interactive certification teaching HTML and CSS by building projects, with flexbox, grid, and responsive layouts.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "responsive-design", "level": 2 },
+      { "skillId": "web-accessibility", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "fcc-javascript-algorithms",
+    "kind": "course",
+    "title": "JavaScript Algorithms and Data Structures Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
+    "description": "Interactive JavaScript certification covering the language, ES6, regular expressions, and algorithmic thinking.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 1 },
+      { "skillId": "regex", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+  },
+  {
+    "id": "odin-foundations",
+    "kind": "course",
+    "title": "The Odin Project — Foundations",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/foundations",
+    "description": "Project-driven open curriculum covering how the web works, HTML, CSS, JavaScript basics, and Git.",
+    "durationHours": 100,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "version-control-git", "level": 1 },
+      { "skillId": "command-line", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "odin-full-stack-js",
+    "kind": "course",
+    "title": "The Odin Project — Full Stack JavaScript",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+    "description": "The advanced Odin path: React, Node and Express, databases, and authentication, all through substantial projects.",
+    "durationHours": 150,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "react", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "nodejs", "level": 2 },
+      { "skillId": "express", "level": 2 },
+      { "skillId": "orm-data-access", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 }
+    ]
+  },
+  {
+    "id": "mdn-learn",
+    "kind": "course",
+    "title": "MDN Learn Web Development",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn",
+    "description": "Mozilla's structured curriculum for web development fundamentals: HTML, CSS, JavaScript, forms, and working with APIs.",
+    "durationHours": 80,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "api-integration", "level": 1 },
+      { "skillId": "web-accessibility", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "javascript-info",
+    "kind": "course",
+    "title": "The Modern JavaScript Tutorial",
+    "provider": "javascript.info",
+    "url": "https://javascript.info/",
+    "description": "Deep, well-structured JavaScript reference-tutorial from basics through closures, prototypes, promises, and the event loop.",
+    "durationHours": 60,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 3 }
+    ],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+  },
+  {
+    "id": "udemy-jonas-js",
+    "kind": "course",
+    "title": "The Complete JavaScript Course: From Zero to Expert",
+    "provider": "Udemy (Jonas Schmedtmann)",
+    "url": "https://www.udemy.com/course/the-complete-javascript-course/",
+    "description": "Highly-rated project-based JavaScript course covering modern JS, asynchronous code, and real application architecture.",
+    "durationHours": 69,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "api-integration", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "html", "level": 1 },
+      { "skillId": "css", "level": 1 }
+    ]
+  },
+  {
+    "id": "udemy-max-react",
+    "kind": "course",
+    "title": "React – The Complete Guide (incl. Next.js, Redux)",
+    "provider": "Udemy (Maximilian Schwarzmüller)",
+    "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+    "description": "The best-selling React course: components, hooks, Redux and modern state management, plus an introduction to Next.js.",
+    "durationHours": 68,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "react", "level": 3 },
+      { "skillId": "state-management", "level": 2 },
+      { "skillId": "nextjs", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+  },
+  {
+    "id": "react-dev-learn",
+    "kind": "course",
+    "title": "Learn React (official documentation)",
+    "provider": "react.dev",
+    "url": "https://react.dev/learn",
+    "description": "The official React docs course: thinking in React, state, effects, and modern component patterns.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [{ "skillId": "react", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+  },
+  {
+    "id": "nextjs-learn",
+    "kind": "course",
+    "title": "Next.js Learn",
+    "provider": "Vercel",
+    "url": "https://nextjs.org/learn",
+    "description": "Official interactive Next.js course: routing, data fetching, server rendering, and deploying a full dashboard app.",
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "nextjs", "level": 2 },
+      { "skillId": "react-advanced", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+  },
+  {
+    "id": "udemy-max-typescript",
+    "kind": "course",
+    "title": "Understanding TypeScript",
+    "provider": "Udemy (Maximilian Schwarzmüller)",
+    "url": "https://www.udemy.com/course/understanding-typescript/",
+    "description": "Practical TypeScript from basics to generics, decorators, and using TypeScript with React and Node.",
+    "durationHours": 15,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "typescript", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+  },
+  {
+    "id": "typescript-handbook",
+    "kind": "course",
+    "title": "The TypeScript Handbook",
+    "provider": "typescriptlang.org (official docs)",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "description": "The official TypeScript handbook: the type system, narrowing, generics, and configuring the compiler.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "typescript", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+  },
+  {
+    "id": "css-for-js",
+    "kind": "course",
+    "title": "CSS for JavaScript Developers",
+    "provider": "Josh W. Comeau",
+    "url": "https://css-for-js.dev/",
+    "description": "Interactive deep-dive into how CSS really works: layout algorithms, flexbox, grid, and polished component styling.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "css-advanced", "level": 3 },
+      { "skillId": "responsive-design", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "css", "level": 2 },
+      { "skillId": "javascript", "level": 1 }
+    ]
+  },
+  {
+    "id": "tailwind-docs",
+    "kind": "course",
+    "title": "Tailwind CSS Documentation",
+    "provider": "Tailwind Labs (official docs)",
+    "url": "https://tailwindcss.com/docs",
+    "description": "The official Tailwind CSS docs: utility-first workflow, responsive variants, dark mode, and theming.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "tailwind-css", "level": 2 }],
+    "skillsRequired": [{ "skillId": "css", "level": 2 }]
+  },
+  {
+    "id": "meta-frontend-cert",
+    "kind": "course",
+    "title": "Meta Front-End Developer Professional Certificate",
+    "provider": "Coursera (Meta)",
+    "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+    "description": "Meta's nine-course certificate taking you from web basics to React, UI principles, and a capstone project.",
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 },
+      { "skillId": "javascript", "level": 2 },
+      { "skillId": "react", "level": 2 },
+      { "skillId": "frontend-testing", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "fullstackopen",
+    "kind": "course",
+    "title": "Full Stack Open",
+    "provider": "University of Helsinki",
+    "url": "https://fullstackopen.com/en/",
+    "description": "Helsinki's acclaimed free course on modern web development: React, Redux, Node, GraphQL, TypeScript, and testing.",
+    "durationHours": 150,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "react", "level": 3 },
+      { "skillId": "state-management", "level": 2 },
+      { "skillId": "nodejs", "level": 2 },
+      { "skillId": "graphql", "level": 2 },
+      { "skillId": "typescript", "level": 1 },
+      { "skillId": "frontend-testing", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+  },
+  {
+    "id": "webdev-accessibility",
+    "kind": "course",
+    "title": "Learn Accessibility",
+    "provider": "web.dev (Google)",
+    "url": "https://web.dev/learn/accessibility",
+    "description": "Google's course on building accessible websites: semantics, ARIA, focus management, and testing with assistive technology.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "web-accessibility", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "css", "level": 2 }
+    ]
+  },
+  {
+    "id": "webdev-performance",
+    "kind": "course",
+    "title": "Learn Performance",
+    "provider": "web.dev (Google)",
+    "url": "https://web.dev/learn/performance",
+    "description": "Google's course on web performance: Core Web Vitals, the critical rendering path, lazy loading, and image optimization.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "web-performance", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+  },
+  {
+    "id": "motion-docs",
+    "kind": "course",
+    "title": "Motion Documentation",
+    "provider": "motion.dev",
+    "url": "https://motion.dev/docs",
+    "description": "Official docs for the Motion animation library: springs, gestures, layout animations, and scroll-driven effects for React.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "web-animations", "level": 2 }],
+    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+  },
+  {
+    "id": "react-native-docs",
+    "kind": "course",
+    "title": "React Native: Get Started (official docs)",
+    "provider": "reactnative.dev",
+    "url": "https://reactnative.dev/docs/getting-started",
+    "description": "Official React Native documentation: core components, native APIs, navigation, and shipping to iOS and Android.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "react-native", "level": 2 }],
+    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+  },
+  {
+    "id": "vuejs-tutorial",
+    "kind": "course",
+    "title": "Vue.js Official Tutorial",
+    "provider": "vuejs.org",
+    "url": "https://vuejs.org/tutorial/",
+    "description": "The official step-by-step interactive Vue tutorial: reactivity, components, props, and the composition API.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "vue", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+  },
+  {
+    "id": "vite-guide",
+    "kind": "course",
+    "title": "Vite Guide",
+    "provider": "vite.dev (official docs)",
+    "url": "https://vite.dev/guide/",
+    "description": "Official guide to the Vite build tool: dev server, bundling, environment variables, and framework integrations.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "frontend-build-tools", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+  },
+  {
+    "id": "chrome-devtools-docs",
+    "kind": "course",
+    "title": "Chrome DevTools Documentation",
+    "provider": "Chrome for Developers",
+    "url": "https://developer.chrome.com/docs/devtools",
+    "description": "Official guides to Chrome DevTools: inspecting elements, debugging JavaScript, and profiling network and performance.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "browser-devtools", "level": 2 }],
+    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+  },
+  {
+    "id": "frontend-mentor",
+    "kind": "project",
+    "title": "Frontend Mentor Challenges",
+    "provider": "Frontend Mentor",
+    "url": "https://www.frontendmentor.io/challenges",
+    "description": "Build real website components and pages from professional designs, then compare solutions with the community.",
+    "durationHours": 30,
+    "format": "project",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "css", "level": 2 },
+      { "skillId": "responsive-design", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "html", "level": 1 },
+      { "skillId": "css", "level": 1 },
+      { "skillId": "javascript", "level": 1 }
+    ]
+  },
+  {
+    "id": "javascript30",
+    "kind": "project",
+    "title": "JavaScript30",
+    "provider": "Wes Bos",
+    "url": "https://javascript30.com/",
+    "description": "Thirty small vanilla JavaScript projects in thirty days — no frameworks, no libraries, just the platform.",
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "browser-devtools", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+  },
+  {
+    "id": "realworld-app",
+    "kind": "project",
+    "title": "RealWorld Example App (Conduit)",
+    "provider": "GitHub (gothinkster)",
+    "url": "https://github.com/gothinkster/realworld",
+    "description": "Build a full Medium-style app against a real spec and API, in the frontend stack of your choice.",
+    "durationHours": 40,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "react", "level": 2 },
+      { "skillId": "state-management", "level": 2 },
+      { "skillId": "api-integration", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "react", "level": 1 }
+    ]
+  },
+  {
+    "id": "github-pages-site",
+    "kind": "project",
+    "title": "Publish a Personal Site with GitHub Pages",
+    "provider": "GitHub",
+    "url": "https://pages.github.com/",
+    "description": "Ship your first live website: build a simple personal page and host it for free straight from a Git repository.",
+    "durationHours": 4,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "html", "level": 2 },
+      { "skillId": "version-control-git", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "flexbox-froggy",
+    "kind": "assessment",
+    "title": "Flexbox Froggy",
+    "provider": "Codepip",
+    "url": "https://flexboxfroggy.com/",
+    "description": "A game that tests your CSS flexbox skills level by level as you guide frogs to their lily pads.",
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "css", "level": 1 }],
+    "skillsRequired": [{ "skillId": "css", "level": 1 }]
+  },
+  {
+    "id": "css-diner",
+    "kind": "assessment",
+    "title": "CSS Diner",
+    "provider": "flukeout.github.io",
+    "url": "https://flukeout.github.io/",
+    "description": "Interactive game testing your command of CSS selectors, from simple elements to advanced combinators.",
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.65,
+    "skillsTaught": [{ "skillId": "css", "level": 1 }],
+    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+  },
+  {
+    "id": "w3schools-js-quiz",
+    "kind": "assessment",
+    "title": "W3Schools JavaScript Quiz",
+    "provider": "W3Schools",
+    "url": "https://www.w3schools.com/js/js_quiz.asp",
+    "description": "Quick 25-question quiz to check your grasp of JavaScript fundamentals.",
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.6,
+    "skillsTaught": [{ "skillId": "javascript", "level": 1 }],
+    "skillsRequired": [{ "skillId": "javascript", "level": 1 }]
+  }
+]

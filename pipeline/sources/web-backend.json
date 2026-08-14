@@ -1,0 +1,448 @@
+[
+  {
+    "id": "nodejs-learn",
+    "kind": "course",
+    "title": "Node.js Official Learning Path",
+    "provider": "nodejs.org",
+    "url": "https://nodejs.org/en/learn",
+    "description": "The official Node.js guides: the runtime, asynchronous patterns, streams, and building command-line and server programs.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "nodejs", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+  },
+  {
+    "id": "udemy-max-node",
+    "kind": "course",
+    "title": "NodeJS – The Complete Guide (MVC, REST APIs, GraphQL)",
+    "provider": "Udemy (Maximilian Schwarzmüller)",
+    "url": "https://www.udemy.com/course/nodejs-the-complete-guide/",
+    "description": "Comprehensive Node course building real backends: Express, REST APIs, authentication, websockets, and deployment.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "nodejs", "level": 3 },
+      { "skillId": "express", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "authentication", "level": 2 },
+      { "skillId": "websockets", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+  },
+  {
+    "id": "fcc-backend-apis",
+    "kind": "course",
+    "title": "Back End Development and APIs Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "description": "freeCodeCamp certification on Node, Express, and MongoDB: build microservice APIs and pass automated tests.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "nodejs", "level": 2 },
+      { "skillId": "express", "level": 2 },
+      { "skillId": "rest-api-design", "level": 1 },
+      { "skillId": "nosql-databases", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+  },
+  {
+    "id": "meta-backend-cert",
+    "kind": "course",
+    "title": "Meta Back-End Developer Professional Certificate",
+    "provider": "Coursera (Meta)",
+    "url": "https://www.coursera.org/professional-certificates/meta-back-end-developer",
+    "description": "Meta's certificate covering Python, Django, MySQL, REST APIs, and a capstone backend project.",
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "django", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "mysql", "level": 1 },
+      { "skillId": "authentication", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "django-tutorial",
+    "kind": "course",
+    "title": "Django Official Tutorial (Writing your first Django app)",
+    "provider": "Django Project (official docs)",
+    "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
+    "description": "The official seven-part Django tutorial: models, the ORM, views, templates, forms, and the admin site.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "django", "level": 2 },
+      { "skillId": "orm-data-access", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+  },
+  {
+    "id": "fastapi-tutorial",
+    "kind": "course",
+    "title": "FastAPI Tutorial – User Guide",
+    "provider": "FastAPI (official docs)",
+    "url": "https://fastapi.tiangolo.com/tutorial/",
+    "description": "The official FastAPI tutorial: path operations, Pydantic validation, dependency injection, and auto-generated API docs.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "fastapi", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "api-documentation", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+  },
+  {
+    "id": "udemy-darby-spring",
+    "kind": "course",
+    "title": "Spring Boot 3, Spring 6 & Hibernate for Beginners",
+    "provider": "Udemy (Chad Darby)",
+    "url": "https://www.udemy.com/course/spring-hibernate-tutorial/",
+    "description": "Best-selling Spring Boot course: REST controllers, Spring Data JPA, Hibernate, security, and real CRUD apps.",
+    "durationHours": 34,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "spring-boot", "level": 3 },
+      { "skillId": "orm-data-access", "level": 2 },
+      { "skillId": "rest-api-design", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "java", "level": 2 },
+      { "skillId": "oop", "level": 2 }
+    ]
+  },
+  {
+    "id": "go-tour",
+    "kind": "course",
+    "title": "A Tour of Go",
+    "provider": "go.dev (official)",
+    "url": "https://go.dev/tour/",
+    "description": "The official interactive introduction to Go: syntax, methods, interfaces, and concurrency with goroutines and channels.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [{ "skillId": "go", "level": 2 }],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+  },
+  {
+    "id": "learn-go-with-tests",
+    "kind": "course",
+    "title": "Learn Go with Tests",
+    "provider": "GitHub (Chris James)",
+    "url": "https://github.com/quii/learn-go-with-tests",
+    "description": "Learn idiomatic Go through test-driven development, from hello world to concurrency and property-based tests.",
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "go", "level": 3 },
+      { "skillId": "unit-testing", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+  },
+  {
+    "id": "restfulapi-net",
+    "kind": "course",
+    "title": "REST API Tutorial",
+    "provider": "restfulapi.net",
+    "url": "https://restfulapi.net/",
+    "description": "Guide to REST principles: resources, HTTP methods, status codes, versioning, and API design best practices.",
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "rest-api-design", "level": 2 }],
+    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+  },
+  {
+    "id": "ms-api-design",
+    "kind": "course",
+    "title": "Web API Design Best Practices",
+    "provider": "Microsoft Learn (Azure Architecture Center)",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design",
+    "description": "Microsoft's guidance for designing RESTful web APIs: resource modeling, pagination, versioning, and error handling.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "rest-api-design", "level": 3 },
+      { "skillId": "api-documentation", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+  },
+  {
+    "id": "graphql-learn",
+    "kind": "course",
+    "title": "Introduction to GraphQL (official)",
+    "provider": "graphql.org",
+    "url": "https://graphql.org/learn/",
+    "description": "The official GraphQL introduction: schemas, types, queries, mutations, and execution.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "graphql", "level": 2 }],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+  },
+  {
+    "id": "copenhagen-book",
+    "kind": "course",
+    "title": "The Copenhagen Book",
+    "provider": "thecopenhagenbook.com",
+    "url": "https://thecopenhagenbook.com/",
+    "description": "Free practical guide to authentication for the web: sessions, tokens, OAuth, passkeys, and password security.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "authentication", "level": 3 }],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 2 }]
+  },
+  {
+    "id": "rabbitmq-tutorials",
+    "kind": "course",
+    "title": "RabbitMQ Tutorials",
+    "provider": "RabbitMQ (official docs)",
+    "url": "https://www.rabbitmq.com/tutorials",
+    "description": "Official hands-on tutorials for messaging patterns: work queues, publish/subscribe, routing, and RPC over RabbitMQ.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "message-queues", "level": 2 }],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+  },
+  {
+    "id": "redis-crash-course",
+    "kind": "course",
+    "title": "Redis Crash Course",
+    "provider": "YouTube (Web Dev Simplified)",
+    "url": "https://www.youtube.com/watch?v=jgpVdJB2sKQ",
+    "description": "Fast introduction to Redis and caching patterns for speeding up backend applications.",
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "caching", "level": 1 }],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+  },
+  {
+    "id": "system-design-primer",
+    "kind": "course",
+    "title": "The System Design Primer",
+    "provider": "GitHub (Donne Martin)",
+    "url": "https://github.com/donnemartin/system-design-primer",
+    "description": "The most-starred guide to designing large-scale systems: caching, load balancing, sharding, and interview-ready case studies.",
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "system-design", "level": 3 },
+      { "skillId": "caching", "level": 2 },
+      { "skillId": "message-queues", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "data-modeling", "level": 1 }
+    ]
+  },
+  {
+    "id": "fowler-microservices",
+    "kind": "course",
+    "title": "Microservices Guide",
+    "provider": "martinfowler.com",
+    "url": "https://martinfowler.com/microservices/",
+    "description": "Martin Fowler's curated guide to microservice architecture: when to use it, trade-offs, and core patterns.",
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "microservices", "level": 2 },
+      { "skillId": "event-driven-architecture", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 2 }]
+  },
+  {
+    "id": "nginx-beginners",
+    "kind": "course",
+    "title": "NGINX Beginner's Guide",
+    "provider": "nginx.org (official docs)",
+    "url": "https://nginx.org/en/docs/beginners_guide.html",
+    "description": "Official primer on nginx: serving static content, configuration structure, and setting up a simple reverse proxy.",
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "web-servers", "level": 2 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+  },
+  {
+    "id": "postman-academy",
+    "kind": "course",
+    "title": "Postman Academy",
+    "provider": "Postman",
+    "url": "https://academy.postman.com/",
+    "description": "Free structured courses on testing and documenting APIs with Postman, from first request to automated collections.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "api-testing", "level": 2 },
+      { "skillId": "api-documentation", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+  },
+  {
+    "id": "mdn-websockets",
+    "kind": "course",
+    "title": "The WebSocket API (MDN)",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
+    "description": "MDN's guide to the WebSocket API for two-way realtime communication between client and server.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "websockets", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "javascript-advanced", "level": 2 },
+      { "skillId": "nodejs", "level": 1 }
+    ]
+  },
+  {
+    "id": "coding-challenges",
+    "kind": "project",
+    "title": "Coding Challenges",
+    "provider": "codingchallenges.fyi (John Crickett)",
+    "url": "https://codingchallenges.fyi/",
+    "description": "Weekly build-it-yourself challenges recreating real tools — wc, load balancers, rate limiters — in any language.",
+    "durationHours": 40,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "data-structures", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+  },
+  {
+    "id": "codecrafters",
+    "kind": "project",
+    "title": "CodeCrafters: Build Your Own Redis, Git, HTTP Server",
+    "provider": "CodeCrafters",
+    "url": "https://codecrafters.io/",
+    "description": "Guided deep-dive projects rebuilding real systems software from scratch with stage-by-stage automated tests.",
+    "durationHours": 40,
+    "format": "project",
+    "cost": "freemium",
+    "difficulty": 5,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "concurrency", "level": 2 },
+      { "skillId": "system-design", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "programming-basics", "level": 2 },
+      { "skillId": "command-line", "level": 1 }
+    ]
+  },
+  {
+    "id": "app-ideas",
+    "kind": "project",
+    "title": "App Ideas Collection",
+    "provider": "GitHub (florinpop17)",
+    "url": "https://github.com/florinpop17/app-ideas",
+    "description": "A large collection of app ideas in three tiers with user stories — pick one and build it end to end.",
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "rest-api-design", "level": 1 },
+      { "skillId": "api-integration", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+  },
+  {
+    "id": "roadmap-url-shortener",
+    "kind": "project",
+    "title": "URL Shortening Service Project",
+    "provider": "roadmap.sh",
+    "url": "https://roadmap.sh/projects/url-shortening-service",
+    "description": "Design and build a URL shortener API with redirects and statistics — a classic backend portfolio project.",
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.6,
+    "skillsTaught": [
+      { "skillId": "rest-api-design", "level": 2 },
+      { "skillId": "orm-data-access", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "nodejs", "level": 1 },
+      { "skillId": "sql", "level": 1 }
+    ]
+  },
+  {
+    "id": "hackerrank-nodejs-basic",
+    "kind": "assessment",
+    "title": "HackerRank Node.js (Basic) Skills Certification",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification/nodejs_basic",
+    "description": "Timed certification verifying basic Node.js proficiency: modules, callbacks, and simple server tasks.",
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "nodejs", "level": 2 }],
+    "skillsRequired": [{ "skillId": "nodejs", "level": 1 }]
+  }
+]
