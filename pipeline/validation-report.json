@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "counts": {
+    "skills": 159,
+    "prereqEdges": 193,
+    "goals": 15,
+    "courses": 183,
+    "projects": 36,
+    "assessments": 27,
+    "embeddings": 405
+  },
+  "errors": [],
+  "warnings": [],
+  "dataHashes": {
+    "skills.json": "a6d3d2f4894f2e5cd5d47502dd79def203954270d90323eff0815baf7892c95d",
+    "goals.json": "d10a8a4a3eabcf7ed046e90b880917e70adb8a3da906eec91cab11852e08fd7e",
+    "catalog.json": "c3a50fe345ad30804e9d06c636a0fcfd3c992b2588acb88a41d21839254a6c21",
+    "embeddings.json": "5ab1bc6163cc9193e6d61a683e89288a6284bd4d9475cb3dfd37ac53ab5f799e"
+  }
+}

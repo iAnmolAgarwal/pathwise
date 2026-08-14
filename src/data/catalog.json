@@ -1,0 +1,7228 @@
+[
+  {
+    "id": "dlai-prompt-eng",
+    "kind": "course",
+    "title": "ChatGPT Prompt Engineering for Developers",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+    "description": "Short course on prompting LLMs from code: summarizing, inferring, transforming, and building a chatbot.",
+    "skillsTaught": [
+      {
+        "skillId": "prompt-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 2,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "prompting-guide",
+    "kind": "course",
+    "title": "Prompt Engineering Guide",
+    "provider": "promptingguide.ai (DAIR.AI)",
+    "url": "https://www.promptingguide.ai/",
+    "description": "Comprehensive open guide to prompting techniques: few-shot, chain-of-thought, RAG prompting, and evaluation.",
+    "skillsTaught": [
+      {
+        "skillId": "prompt-engineering",
+        "level": 3
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "anthropic-courses",
+    "kind": "course",
+    "title": "Anthropic Courses",
+    "provider": "GitHub (Anthropic)",
+    "url": "https://github.com/anthropics/courses",
+    "description": "Anthropic's official notebook courses: API fundamentals, an interactive prompt engineering tutorial, tool use, and evaluations.",
+    "skillsTaught": [
+      {
+        "skillId": "prompt-engineering",
+        "level": 3
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "anthropic-docs",
+    "kind": "course",
+    "title": "Claude Developer Documentation",
+    "provider": "Anthropic",
+    "url": "https://docs.anthropic.com/",
+    "description": "Official developer docs for building with Claude: messages, tool use, structured outputs, and prompt caching.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "prompt-engineering",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "karpathy-zero-hero",
+    "kind": "course",
+    "title": "Neural Networks: Zero to Hero",
+    "provider": "Andrej Karpathy",
+    "url": "https://karpathy.ai/zero-to-hero.html",
+    "description": "Build neural networks and a GPT from scratch in code, from backpropagation up to a working language model.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "pytorch",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 25,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "karpathy-intro-llms",
+    "kind": "course",
+    "title": "Intro to Large Language Models",
+    "provider": "YouTube (Andrej Karpathy)",
+    "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+    "description": "One-hour general-audience talk on what LLMs are, how they are trained, and where they are heading.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "gen-ai-for-everyone",
+    "kind": "course",
+    "title": "Generative AI for Everyone",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/learn/generative-ai-for-everyone",
+    "description": "Andrew Ng's non-technical introduction to generative AI: capabilities, use cases, and responsible adoption.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "responsible-ai",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 6,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "hf-agents-course",
+    "kind": "course",
+    "title": "Hugging Face Agents Course",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/agents-course",
+    "description": "Free course on building AI agents: tool use, planning, agent frameworks, and a final graded project.",
+    "skillsTaught": [
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "langchain-tutorials",
+    "kind": "course",
+    "title": "LangChain Documentation (Python)",
+    "provider": "LangChain (official docs)",
+    "url": "https://docs.langchain.com/oss/python/langchain/overview",
+    "description": "Official LangChain docs: the create_agent harness, quickstart, and guides for building agents and RAG pipelines.",
+    "skillsTaught": [
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "pinecone-learn",
+    "kind": "course",
+    "title": "Pinecone Learning Center",
+    "provider": "Pinecone",
+    "url": "https://www.pinecone.io/learn/",
+    "description": "In-depth guides on embeddings, vector search, and retrieval architecture from a leading vector database team.",
+    "skillsTaught": [
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 3
+      },
+      {
+        "skillId": "vector-databases",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "fsdl-llm-bootcamp",
+    "kind": "course",
+    "title": "Full Stack LLM Bootcamp",
+    "provider": "Full Stack Deep Learning",
+    "url": "https://fullstackdeeplearning.com/llm-bootcamp/",
+    "description": "Free lecture series on shipping LLM applications: prompting, augmentation, UX, and production concerns.",
+    "skillsTaught": [
+      {
+        "skillId": "ai-app-development",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "hamel-evals",
+    "kind": "course",
+    "title": "Your AI Product Needs Evals",
+    "provider": "Hamel Husain (blog)",
+    "url": "https://hamel.dev/blog/posts/evals/",
+    "description": "Widely-shared practical guide to evaluating LLM applications: unit tests, LLM-as-judge, and human review loops.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "ollama-github",
+    "kind": "course",
+    "title": "Ollama",
+    "provider": "GitHub (Ollama)",
+    "url": "https://github.com/ollama/ollama",
+    "description": "Run open-weight language models locally: install, pull models, and serve them behind a local API.",
+    "skillsTaught": [
+      {
+        "skillId": "local-llms",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "openai-cookbook",
+    "kind": "course",
+    "title": "OpenAI Cookbook",
+    "provider": "OpenAI",
+    "url": "https://cookbook.openai.com/",
+    "description": "Runnable example notebooks for LLM development: API patterns, retrieval, function calling, and vision.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      },
+      {
+        "skillId": "multimodal-ai",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "dlai-short-courses",
+    "kind": "course",
+    "title": "DeepLearning.AI Short Courses",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/short-courses/",
+    "description": "A library of free one-hour courses with industry partners on RAG, agents, fine-tuning, evals, and multimodal AI.",
+    "skillsTaught": [
+      {
+        "skillId": "rag",
+        "level": 2
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "fine-tuning",
+        "level": 1
+      },
+      {
+        "skillId": "multimodal-ai",
+        "level": 1
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "elements-of-ai",
+    "kind": "course",
+    "title": "Elements of AI",
+    "provider": "University of Helsinki & MinnaLearn",
+    "url": "https://www.elementsofai.com/",
+    "description": "Famous free introduction to what AI is and isn't, its societal implications, and basic ML concepts \u2014 no coding required.",
+    "skillsTaught": [
+      {
+        "skillId": "responsible-ai",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 30,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "hf-fine-tune",
+    "kind": "course",
+    "title": "Fine-tune a Pretrained Model (Hugging Face docs)",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/docs/transformers/training",
+    "description": "Official guide to fine-tuning transformer models with the Trainer API and native PyTorch.",
+    "skillsTaught": [
+      {
+        "skillId": "fine-tuning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "cohere-llmu",
+    "kind": "course",
+    "title": "Cohere LLM University",
+    "provider": "Cohere",
+    "url": "https://cohere.com/llmu",
+    "description": "Structured curriculum on large language models: how they work, embeddings, semantic search, and RAG.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "gcsb-genai",
+    "kind": "course",
+    "title": "Google Cloud: Introduction to Generative AI Learning Path",
+    "provider": "Google Cloud",
+    "url": "https://www.skills.google/paths/118",
+    "description": "Beginner path introducing generative AI, large language models, and responsible AI principles.",
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "responsible-ai",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 10,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "langchain-rag-tutorial",
+    "kind": "project",
+    "title": "Build a RAG App (LangChain tutorial)",
+    "provider": "LangChain (official docs)",
+    "url": "https://python.langchain.com/docs/tutorials/rag/",
+    "description": "Guided build of a retrieval-augmented generation app over your own documents: chunking, embedding, retrieval, answering.",
+    "skillsTaught": [
+      {
+        "skillId": "rag",
+        "level": 2
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "anthropic-quickstarts",
+    "kind": "project",
+    "title": "Anthropic Quickstarts",
+    "provider": "GitHub (Anthropic)",
+    "url": "https://github.com/anthropics/anthropic-quickstarts",
+    "description": "Deployable starter projects built on Claude \u2014 clone one, understand it, and extend it into your own AI product.",
+    "skillsTaught": [
+      {
+        "skillId": "ai-app-development",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "open-webui",
+    "kind": "project",
+    "title": "Self-host a Chat UI with Open WebUI",
+    "provider": "GitHub (Open WebUI)",
+    "url": "https://github.com/open-webui/open-webui",
+    "description": "Deploy a full-featured local chat interface over Ollama models and learn the moving parts of an LLM stack.",
+    "skillsTaught": [
+      {
+        "skillId": "local-llms",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 5,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "promptfoo",
+    "kind": "assessment",
+    "title": "Evaluate Your Prompts with promptfoo",
+    "provider": "promptfoo",
+    "url": "https://www.promptfoo.dev/",
+    "description": "Put your prompts to the test: define eval cases and measure output quality systematically across models.",
+    "skillsTaught": [
+      {
+        "skillId": "prompt-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "aws-cp-essentials",
+    "kind": "course",
+    "title": "AWS Cloud Practitioner Essentials",
+    "provider": "Coursera (AWS)",
+    "url": "https://www.coursera.org/learn/aws-cloud-practitioner-essentials",
+    "description": "AWS's official introduction to the cloud: core services, pricing, security, and the shared responsibility model.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 40,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fcc-clf-c02",
+    "kind": "course",
+    "title": "AWS Certified Cloud Practitioner Course (CLF-C02)",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=NhDYbskXRgc",
+    "description": "Full free video course preparing for the AWS Cloud Practitioner certification exam.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 14,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "maarek-saa",
+    "kind": "course",
+    "title": "Ultimate AWS Certified Solutions Architect Associate (SAA-C03)",
+    "provider": "Udemy (Stephane Maarek)",
+    "url": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+    "description": "The best-selling SAA prep course: EC2, VPC, S3, RDS, serverless, and architecture patterns hands-on.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 27,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "cantrill-saa",
+    "kind": "course",
+    "title": "AWS Certified Solutions Architect \u2013 Associate (Adrian Cantrill)",
+    "provider": "learn.cantrill.io",
+    "url": "https://learn.cantrill.io/",
+    "description": "Deeply technical SAA course famous for its diagrams and hands-on demos that go beyond exam prep.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "az900-path",
+    "kind": "course",
+    "title": "Introduction to Cloud Infrastructure: Describe Cloud Concepts",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+    "description": "First learning path in Microsoft's AZ-900 prep series, covering cloud concepts, deployment models, and the shared responsibility model with interactive modules.",
+    "skillsTaught": [
+      {
+        "skillId": "azure-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 3,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fcc-az900",
+    "kind": "course",
+    "title": "Azure Fundamentals Certification Course (AZ-900)",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=NKEFWyqJ5XA",
+    "description": "Full free video course preparing for the Microsoft Azure Fundamentals certification.",
+    "skillsTaught": [
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 3,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "gcsb-cloud-engineer",
+    "kind": "course",
+    "title": "Google Skills: Associate Cloud Engineer Certification Path",
+    "provider": "Google Cloud",
+    "url": "https://www.skills.google/paths/11",
+    "description": "Hands-on Google Cloud path with labs: Compute Engine, networking, storage, and deploying workloads.",
+    "skillsTaught": [
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "coursera-gcp-core",
+    "kind": "course",
+    "title": "Google Cloud Fundamentals: Core Infrastructure",
+    "provider": "Coursera (Google Cloud)",
+    "url": "https://www.coursera.org/learn/gcp-fundamentals",
+    "description": "Official introduction to Google Cloud: projects, IAM, Compute Engine, storage options, and networking.",
+    "skillsTaught": [
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 6,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "aws-skill-builder",
+    "kind": "course",
+    "title": "AWS Skill Builder",
+    "provider": "AWS",
+    "url": "https://skillbuilder.aws/",
+    "description": "AWS's official training platform with hundreds of free digital courses across services and roles.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "serverless-land",
+    "kind": "course",
+    "title": "Serverless Land",
+    "provider": "AWS",
+    "url": "https://serverlessland.com/",
+    "description": "AWS's hub for serverless learning: patterns, workflows, and hands-on examples with Lambda and EventBridge.",
+    "skillsTaught": [
+      {
+        "skillId": "serverless",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "aws-well-architected",
+    "kind": "course",
+    "title": "AWS Well-Architected Framework",
+    "provider": "AWS",
+    "url": "https://aws.amazon.com/architecture/well-architected/",
+    "description": "AWS's canonical guidance for designing cloud systems across six pillars including security, reliability, performance efficiency, and cost optimization.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-cost-optimization",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "finops-intro",
+    "kind": "course",
+    "title": "What is FinOps?",
+    "provider": "FinOps Foundation",
+    "url": "https://www.finops.org/introduction/what-is-finops/",
+    "description": "The FinOps Foundation's introduction to cloud financial management: principles, phases, and practices.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-cost-optimization",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "aws-iam-guide",
+    "kind": "course",
+    "title": "AWS IAM User Guide",
+    "provider": "AWS (official docs)",
+    "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+    "description": "Official guide to AWS identity and access management: users, roles, policies, and least-privilege design.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-security",
+        "level": 2
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "cloud-resume-challenge",
+    "kind": "project",
+    "title": "The Cloud Resume Challenge",
+    "provider": "cloudresumechallenge.dev",
+    "url": "https://cloudresumechallenge.dev/",
+    "description": "The famous multi-step project: host your resume with S3, CloudFront, Lambda, DynamoDB, and CI/CD.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 2
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      },
+      {
+        "skillId": "infrastructure-as-code",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "aws-hands-on",
+    "kind": "project",
+    "title": "AWS Hands-On Tutorials",
+    "provider": "AWS",
+    "url": "https://aws.amazon.com/getting-started/hands-on/",
+    "description": "Official step-by-step tutorials: launch a VM, host a website, set up a database, and more on the free tier.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "aws-workshops",
+    "kind": "project",
+    "title": "AWS Workshops",
+    "provider": "AWS",
+    "url": "https://workshops.aws/",
+    "description": "Guided multi-hour workshops built by AWS teams covering real architectures you deploy yourself.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "tutorials-dojo",
+    "kind": "assessment",
+    "title": "Tutorials Dojo Practice Exams",
+    "provider": "Tutorials Dojo",
+    "url": "https://tutorialsdojo.com/",
+    "description": "Highly-regarded AWS practice exams with detailed explanations for gauging certification readiness.",
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "az900-practice",
+    "kind": "assessment",
+    "title": "Azure Fundamentals Practice Assessment",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    "description": "Microsoft's free official practice assessment for the AZ-900 Azure Fundamentals certification.",
+    "skillsTaught": [
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "google-data-analytics",
+    "kind": "course",
+    "title": "Google Data Analytics Professional Certificate",
+    "provider": "Coursera (Google)",
+    "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+    "description": "Google's flagship analytics certificate: spreadsheets, SQL, R, Tableau, cleaning data, and communicating findings.",
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      },
+      {
+        "skillId": "r-programming",
+        "level": 1
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 2
+      },
+      {
+        "skillId": "tableau",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 180,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "kaggle-python",
+    "kind": "course",
+    "title": "Kaggle Learn: Python",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/python",
+    "description": "Short hands-on Python course in hosted notebooks, aimed at data work.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-pandas",
+    "kind": "course",
+    "title": "Kaggle Learn: Pandas",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/pandas",
+    "description": "Hands-on pandas course: indexing, grouping, joining, and reshaping DataFrames in real notebooks.",
+    "skillsTaught": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-data-viz",
+    "kind": "course",
+    "title": "Kaggle Learn: Data Visualization",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/data-visualization",
+    "description": "Short course on making great charts with seaborn: line, bar, scatter, distributions, and styling.",
+    "skillsTaught": [
+      {
+        "skillId": "data-visualization",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-data-cleaning",
+    "kind": "course",
+    "title": "Kaggle Learn: Data Cleaning",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/data-cleaning",
+    "description": "Practical course on the messy parts of data work: missing values, scaling, dates, encodings, and inconsistent entries.",
+    "skillsTaught": [
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "wes-mckinney-book",
+    "kind": "course",
+    "title": "Python for Data Analysis (Open Edition)",
+    "provider": "Wes McKinney",
+    "url": "https://wesmckinney.com/book/",
+    "description": "The pandas creator's book, free online: NumPy, pandas, data wrangling, and analysis workflows in depth.",
+    "skillsTaught": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 3
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "khan-stats",
+    "kind": "course",
+    "title": "Khan Academy: Statistics and Probability",
+    "provider": "Khan Academy",
+    "url": "https://www.khanacademy.org/math/statistics-probability",
+    "description": "Free complete statistics curriculum: distributions, probability, sampling, and an introduction to inference.",
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "probability",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "lakens-inference",
+    "kind": "course",
+    "title": "Improving Your Statistical Inferences",
+    "provider": "Coursera (Eindhoven University of Technology)",
+    "url": "https://www.coursera.org/learn/statistical-inferences",
+    "description": "Daniel Lakens' acclaimed course on doing inference right: p-values, effect sizes, power, and preregistration.",
+    "skillsTaught": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "probability",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "seeing-theory",
+    "kind": "course",
+    "title": "Seeing Theory",
+    "provider": "Brown University",
+    "url": "https://seeing-theory.brown.edu/",
+    "description": "A beautiful visual introduction to probability and statistics with interactive simulations.",
+    "skillsTaught": [
+      {
+        "skillId": "probability",
+        "level": 1
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "coursera-excel",
+    "kind": "course",
+    "title": "Excel Skills for Business Specialization",
+    "provider": "Coursera (Macquarie University)",
+    "url": "https://www.coursera.org/specializations/excel",
+    "description": "Four-course specialization taking Excel from basics to advanced formulas, lookups, and dashboards.",
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "tableau-training",
+    "kind": "course",
+    "title": "Tableau Free Training Videos",
+    "provider": "Tableau (Salesforce)",
+    "url": "https://www.tableau.com/learn/training",
+    "description": "Official Tableau training videos: connecting data, building views, calculations, and dashboards.",
+    "skillsTaught": [
+      {
+        "skillId": "tableau",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "ms-powerbi-start",
+    "kind": "course",
+    "title": "Get Started Building with Power BI (Microsoft Learn)",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/modules/get-started-with-power-bi/",
+    "description": "Official Microsoft module introducing Power BI: connecting data, building reports, and sharing dashboards.",
+    "skillsTaught": [
+      {
+        "skillId": "power-bi",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 0.5,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "udemy-maven-powerbi",
+    "kind": "course",
+    "title": "Microsoft Power BI Desktop for Business Intelligence",
+    "provider": "Udemy (Maven Analytics)",
+    "url": "https://www.udemy.com/course/microsoft-power-bi-up-running-with-power-bi-desktop/",
+    "description": "Best-selling Power BI course: data modeling, DAX measures, and building polished interactive reports.",
+    "skillsTaught": [
+      {
+        "skillId": "power-bi",
+        "level": 3
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 18,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "r4ds",
+    "kind": "course",
+    "title": "R for Data Science (2nd Edition)",
+    "provider": "Hadley Wickham (free online book)",
+    "url": "https://r4ds.hadley.nz/",
+    "description": "The standard tidyverse text, free online: import, tidy, transform, visualize, and communicate data with R.",
+    "skillsTaught": [
+      {
+        "skillId": "r-programming",
+        "level": 3
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "udacity-ab-testing",
+    "kind": "course",
+    "title": "A/B Testing",
+    "provider": "Udacity",
+    "url": "https://www.udacity.com/course/ab-testing--ud257",
+    "description": "Free course on designing and analyzing online controlled experiments, taught by Google experimenters.",
+    "skillsTaught": [
+      {
+        "skillId": "ab-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "fpp3",
+    "kind": "course",
+    "title": "Forecasting: Principles and Practice (3rd Edition)",
+    "provider": "OTexts (Hyndman & Athanasopoulos)",
+    "url": "https://otexts.com/fpp3/",
+    "description": "The standard free forecasting textbook: time series decomposition, exponential smoothing, and ARIMA in R.",
+    "skillsTaught": [
+      {
+        "skillId": "time-series-analysis",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fcc-data-analysis-python",
+    "kind": "course",
+    "title": "Data Analysis with Python Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/data-analysis-with-python/",
+    "description": "freeCodeCamp certification on NumPy, pandas, and matplotlib through five graded analysis projects.",
+    "skillsTaught": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "maven-challenges",
+    "kind": "project",
+    "title": "Maven Analytics Data Challenges",
+    "provider": "Maven Analytics",
+    "url": "https://mavenanalytics.io/challenges",
+    "description": "Monthly real-dataset challenges: analyze, visualize, and present findings against a business brief.",
+    "skillsTaught": [
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 12,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "tidytuesday",
+    "kind": "project",
+    "title": "TidyTuesday",
+    "provider": "GitHub (R for Data Science community)",
+    "url": "https://github.com/rfordatascience/tidytuesday",
+    "description": "Weekly community data projects: wrangle and visualize a fresh real-world dataset every Tuesday.",
+    "skillsTaught": [
+      {
+        "skillId": "r-programming",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "r-programming",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "kaggle-datasets-eda",
+    "kind": "project",
+    "title": "Publish an EDA Notebook on a Kaggle Dataset",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/datasets",
+    "description": "Pick any public dataset, explore it end to end, and publish a polished analysis notebook for feedback.",
+    "skillsTaught": [
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "fivethirtyeight-data",
+    "kind": "project",
+    "title": "Analyze a FiveThirtyEight Dataset",
+    "provider": "GitHub (FiveThirtyEight)",
+    "url": "https://github.com/fivethirtyeight/data",
+    "description": "Reanalyze the raw data behind published FiveThirtyEight stories and check their conclusions yourself.",
+    "skillsTaught": [
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "stratascratch",
+    "kind": "assessment",
+    "title": "StrataScratch",
+    "provider": "StrataScratch",
+    "url": "https://www.stratascratch.com/",
+    "description": "Real analytics interview questions from top companies, solved in SQL or pandas with instant checking.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "guess-correlation",
+    "kind": "assessment",
+    "title": "Guess the Correlation",
+    "provider": "guessthecorrelation.com",
+    "url": "http://guessthecorrelation.com/",
+    "description": "A game that tests how well you can read correlation from scatter plots \u2014 harder than it looks.",
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.6
+  },
+  {
+    "id": "w3schools-excel-exercises",
+    "kind": "assessment",
+    "title": "W3Schools Excel Exercises",
+    "provider": "W3Schools",
+    "url": "https://www.w3schools.com/excel/excel_exercises.php",
+    "description": "Short free interactive exercises checking core Excel formulas and features.",
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.6
+  },
+  {
+    "id": "sqlbolt",
+    "kind": "course",
+    "title": "SQLBolt",
+    "provider": "sqlbolt.com",
+    "url": "https://sqlbolt.com/",
+    "description": "Interactive SQL lessons and exercises: SELECT queries, filtering, joins, and aggregation, run right in the browser.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "mode-sql",
+    "kind": "course",
+    "title": "SQL Tutorial for Data Analysis",
+    "provider": "ThoughtSpot (formerly Mode Analytics)",
+    "url": "https://www.thoughtspot.com/sql-tutorial",
+    "description": "Analytics-focused SQL tutorial from basics to window functions and performance tuning, with real datasets.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "udemy-sql-bootcamp",
+    "kind": "course",
+    "title": "The Complete SQL Bootcamp",
+    "provider": "Udemy (Jose Portilla)",
+    "url": "https://www.udemy.com/course/the-complete-sql-bootcamp/",
+    "description": "Best-selling PostgreSQL-based SQL course: queries, joins, aggregation, and database basics for analysis.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "postgresql",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 9,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "postgresqltutorial",
+    "kind": "course",
+    "title": "PostgreSQL Tutorial",
+    "provider": "postgresqltutorial.com (Neon)",
+    "url": "https://www.postgresqltutorial.com/",
+    "description": "Comprehensive PostgreSQL tutorial covering queries, indexes, views, functions, and administration.",
+    "skillsTaught": [
+      {
+        "skillId": "postgresql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "planetscale-mysql",
+    "kind": "course",
+    "title": "MySQL for Developers",
+    "provider": "PlanetScale",
+    "url": "https://planetscale.com/learn/courses/mysql-for-developers",
+    "description": "Free video course on MySQL for application developers: schema design, indexes, and writing fast queries.",
+    "skillsTaught": [
+      {
+        "skillId": "mysql",
+        "level": 2
+      },
+      {
+        "skillId": "database-performance",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "mongodb-university",
+    "kind": "course",
+    "title": "MongoDB University",
+    "provider": "MongoDB",
+    "url": "https://learn.mongodb.com/",
+    "description": "Official free MongoDB courses: document modeling, CRUD, aggregation pipelines, and indexes, with labs.",
+    "skillsTaught": [
+      {
+        "skillId": "nosql-databases",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "ibm-data-engineering",
+    "kind": "course",
+    "title": "IBM Data Engineering Professional Certificate",
+    "provider": "Coursera (IBM)",
+    "url": "https://www.coursera.org/professional-certificates/ibm-data-engineer",
+    "description": "Multi-course certificate covering Python, SQL, ETL, warehousing, and an introduction to Airflow, Kafka, and Spark.",
+    "skillsTaught": [
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "apache-airflow",
+        "level": 1
+      },
+      {
+        "skillId": "apache-kafka",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "de-zoomcamp",
+    "kind": "course",
+    "title": "Data Engineering Zoomcamp",
+    "provider": "DataTalksClub",
+    "url": "https://github.com/DataTalksClub/data-engineering-zoomcamp",
+    "description": "Free nine-week bootcamp building a full pipeline: Docker, Terraform, warehouses, Spark, Kafka, and dbt on real data.",
+    "skillsTaught": [
+      {
+        "skillId": "etl-pipelines",
+        "level": 3
+      },
+      {
+        "skillId": "apache-spark",
+        "level": 2
+      },
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      },
+      {
+        "skillId": "dbt",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-data-platforms",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "data-lakes",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 120,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fcc-database-design",
+    "kind": "course",
+    "title": "Database Design Full Course",
+    "provider": "YouTube (freeCodeCamp)",
+    "url": "https://www.youtube.com/watch?v=ztHopE5Wnpc",
+    "description": "Full video course on database design: entities, relationships, keys, and normalization from first principles.",
+    "skillsTaught": [
+      {
+        "skillId": "data-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "spark-quickstart",
+    "kind": "course",
+    "title": "Apache Spark Quick Start (official docs)",
+    "provider": "Apache Spark",
+    "url": "https://spark.apache.org/docs/latest/quick-start.html",
+    "description": "The official Spark quick start: DataFrames, transformations, and running your first distributed jobs.",
+    "skillsTaught": [
+      {
+        "skillId": "apache-spark",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "confluent-courses",
+    "kind": "course",
+    "title": "Confluent Developer Kafka Courses",
+    "provider": "Confluent",
+    "url": "https://developer.confluent.io/courses/",
+    "description": "Free video courses on Apache Kafka from its creators: topics, producers and consumers, and stream processing.",
+    "skillsTaught": [
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "airflow-tutorial",
+    "kind": "course",
+    "title": "Apache Airflow Tutorial (official docs)",
+    "provider": "Apache Airflow",
+    "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/",
+    "description": "Official Airflow tutorials: writing your first DAG, operators, scheduling, and pipeline best practices.",
+    "skillsTaught": [
+      {
+        "skillId": "apache-airflow",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "dbt-learn",
+    "kind": "course",
+    "title": "dbt Learn",
+    "provider": "dbt Labs",
+    "url": "https://learn.getdbt.com/",
+    "description": "Official free dbt courses: the fundamentals of transforming warehouse data with models, tests, and docs.",
+    "skillsTaught": [
+      {
+        "skillId": "dbt",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "advanced-sql",
+        "level": 1
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "gcsb-data-engineer",
+    "kind": "course",
+    "title": "Google Skills: Professional Data Engineer Certification Path",
+    "provider": "Google Cloud",
+    "url": "https://www.skills.google/paths/16",
+    "description": "Google Cloud's hands-on path for data engineers: BigQuery, Dataflow, and building batch and streaming pipelines.",
+    "skillsTaught": [
+      {
+        "skillId": "cloud-data-platforms",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "elastic-free-training",
+    "kind": "course",
+    "title": "Elastic Training: Learn Elastic for Free",
+    "provider": "Elastic",
+    "url": "https://www.elastic.co/training",
+    "description": "Official Elastic training hub with a free self-paced section: Elasticsearch indexing, search queries, aggregations, and the Elastic Stack.",
+    "skillsTaught": [
+      {
+        "skillId": "elasticsearch",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nosql-databases",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "gx-docs",
+    "kind": "course",
+    "title": "Great Expectations Documentation",
+    "provider": "Great Expectations",
+    "url": "https://docs.greatexpectations.io/",
+    "description": "Official docs for the leading data-quality framework: expectations, validation, and data docs in pipelines.",
+    "skillsTaught": [
+      {
+        "skillId": "data-quality",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "aws-what-is-data-lake",
+    "kind": "course",
+    "title": "What is a Data Lake? (AWS)",
+    "provider": "AWS",
+    "url": "https://aws.amazon.com/what-is/data-lake/",
+    "description": "AWS's explainer on data lakes: architecture elements, how they differ from data warehouses, use cases, and governance pitfalls.",
+    "skillsTaught": [
+      {
+        "skillId": "data-lakes",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 0.5,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "jaffle-shop",
+    "kind": "project",
+    "title": "dbt Jaffle Shop Project",
+    "provider": "GitHub (dbt Labs)",
+    "url": "https://github.com/dbt-labs/jaffle-shop",
+    "description": "dbt Labs' demo project: model a small business's raw data into clean, tested marts.",
+    "skillsTaught": [
+      {
+        "skillId": "dbt",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "data-eng-practice",
+    "kind": "project",
+    "title": "Data Engineering Practice Problems",
+    "provider": "GitHub (danielbeach)",
+    "url": "https://github.com/danielbeach/data-engineering-practice",
+    "description": "Hands-on exercises for aspiring data engineers: downloading, transforming, and aggregating real files with Python.",
+    "skillsTaught": [
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "confluent-tutorials",
+    "kind": "project",
+    "title": "Confluent Kafka Tutorials",
+    "provider": "Confluent",
+    "url": "https://developer.confluent.io/tutorials/",
+    "description": "Guided builds of real event-streaming use cases with step-by-step Kafka code you run yourself.",
+    "skillsTaught": [
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "apache-kafka",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "nyc-taxi-pipeline",
+    "kind": "project",
+    "title": "NYC Taxi Trip Data Pipeline",
+    "provider": "NYC TLC (open data)",
+    "url": "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page",
+    "description": "Build an end-to-end pipeline over the classic NYC taxi trip records: ingest, clean, load, and query millions of rows.",
+    "skillsTaught": [
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "pgexercises",
+    "kind": "assessment",
+    "title": "PostgreSQL Exercises",
+    "provider": "pgexercises.com",
+    "url": "https://pgexercises.com/",
+    "description": "Graded interactive SQL exercises on a realistic dataset, from basic SELECTs to window functions and recursion.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "hackerrank-sql",
+    "kind": "assessment",
+    "title": "HackerRank SQL (Basic) Skills Certification",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification/sql_basic",
+    "description": "Timed certification test verifying SQL proficiency with a shareable credential.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "sqlzoo",
+    "kind": "assessment",
+    "title": "SQLZoo",
+    "provider": "sqlzoo.net",
+    "url": "https://sqlzoo.net/",
+    "description": "Classic interactive SQL practice site with progressive quizzes on real query problems.",
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.65
+  },
+  {
+    "id": "leetcode-database",
+    "kind": "assessment",
+    "title": "LeetCode Database Problems",
+    "provider": "LeetCode",
+    "url": "https://leetcode.com/problemset/database/",
+    "description": "SQL interview problems that test joins, aggregation, and window functions under time pressure.",
+    "skillsTaught": [
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "docker-get-started",
+    "kind": "course",
+    "title": "Docker: Get Started (official docs)",
+    "provider": "Docker",
+    "url": "https://docs.docker.com/get-started/",
+    "description": "Official Docker introduction: containers, images, Dockerfiles, volumes, and multi-container apps with Compose.",
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "nana-docker",
+    "kind": "course",
+    "title": "Docker Tutorial for Beginners",
+    "provider": "YouTube (TechWorld with Nana)",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "description": "Popular free video introduction to Docker: what containers are and how to build and run them.",
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 3,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "udemy-max-docker-k8s",
+    "kind": "course",
+    "title": "Docker & Kubernetes: The Practical Guide",
+    "provider": "Udemy (Maximilian Schwarzm\u00fcller)",
+    "url": "https://www.udemy.com/course/docker-kubernetes-the-practical-guide/",
+    "description": "Hands-on course from Docker basics through multi-container apps to deploying on Kubernetes.",
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 3
+      },
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 23,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "nana-kubernetes",
+    "kind": "course",
+    "title": "Kubernetes Tutorial for Beginners",
+    "provider": "YouTube (TechWorld with Nana)",
+    "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+    "description": "The most-watched free Kubernetes course: architecture, pods, services, deployments, and a demo project.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "k8s-tutorials",
+    "kind": "course",
+    "title": "Kubernetes Official Tutorials",
+    "provider": "kubernetes.io",
+    "url": "https://kubernetes.io/docs/tutorials/",
+    "description": "Official Kubernetes tutorials: cluster basics, configuration, stateless and stateful application patterns.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "devops-with-docker",
+    "kind": "course",
+    "title": "DevOps with Docker",
+    "provider": "University of Helsinki",
+    "url": "https://devopswithdocker.com/",
+    "description": "Helsinki's free graded course on Docker, docker-compose, and container-based development workflows.",
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 3
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "devops-with-kubernetes",
+    "kind": "course",
+    "title": "DevOps with Kubernetes",
+    "provider": "University of Helsinki",
+    "url": "https://devopswithkubernetes.com/",
+    "description": "Free follow-up course deploying real applications to Kubernetes with GitOps, observability, and service meshes.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      },
+      {
+        "skillId": "gitops",
+        "level": 1
+      },
+      {
+        "skillId": "monitoring-observability",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 60,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "github-actions-docs",
+    "kind": "course",
+    "title": "GitHub Actions Documentation",
+    "provider": "GitHub",
+    "url": "https://docs.github.com/en/actions",
+    "description": "Official docs for GitHub Actions: workflows, runners, secrets, and building CI/CD pipelines.",
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "terraform-tutorials",
+    "kind": "course",
+    "title": "Terraform Tutorials",
+    "provider": "HashiCorp Developer",
+    "url": "https://developer.hashicorp.com/terraform/tutorials",
+    "description": "Official hands-on Terraform tutorials: providers, state, modules, and provisioning real cloud infrastructure.",
+    "skillsTaught": [
+      {
+        "skillId": "infrastructure-as-code",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "ansible-getting-started",
+    "kind": "course",
+    "title": "Ansible: Getting Started (official docs)",
+    "provider": "Ansible (Red Hat)",
+    "url": "https://docs.ansible.com/ansible/latest/getting_started/index.html",
+    "description": "Official introduction to Ansible: inventories, playbooks, and automating server configuration idempotently.",
+    "skillsTaught": [
+      {
+        "skillId": "configuration-management",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "google-sre-book",
+    "kind": "course",
+    "title": "Site Reliability Engineering (Google SRE Book)",
+    "provider": "Google",
+    "url": "https://sre.google/sre-book/table-of-contents/",
+    "description": "The book that defined SRE, free online: SLOs, error budgets, toil, monitoring, and incident management.",
+    "skillsTaught": [
+      {
+        "skillId": "sre-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "monitoring-observability",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "grafana-tutorials",
+    "kind": "course",
+    "title": "Grafana Tutorials",
+    "provider": "Grafana Labs",
+    "url": "https://grafana.com/tutorials/",
+    "description": "Official tutorials for building dashboards and alerts with Grafana, Prometheus, and Loki.",
+    "skillsTaught": [
+      {
+        "skillId": "monitoring-observability",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "linux-upskill",
+    "kind": "course",
+    "title": "Linux Upskill Challenge",
+    "provider": "linuxupskillchallenge.org",
+    "url": "https://linuxupskillchallenge.org/",
+    "description": "A free month-long guided course administering your own Linux server, one hands-on lesson a day.",
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "kodekloud",
+    "kind": "course",
+    "title": "KodeKloud",
+    "provider": "KodeKloud",
+    "url": "https://kodekloud.com/",
+    "description": "DevOps learning platform with browser-based labs for Linux, Docker, Kubernetes, and certification prep.",
+    "skillsTaught": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 2
+      },
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "tau",
+    "kind": "course",
+    "title": "Test Automation University",
+    "provider": "Applitools",
+    "url": "https://testautomationu.applitools.com/",
+    "description": "Free university of test automation courses: Selenium, Playwright, API testing, and test strategy.",
+    "skillsTaught": [
+      {
+        "skillId": "test-automation",
+        "level": 2
+      },
+      {
+        "skillId": "api-testing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "argocd-docs",
+    "kind": "course",
+    "title": "Argo CD Documentation",
+    "provider": "Argo Project",
+    "url": "https://argo-cd.readthedocs.io/en/stable/",
+    "description": "Official docs for Argo CD: declarative GitOps delivery, application sync, and automated rollbacks on Kubernetes.",
+    "skillsTaught": [
+      {
+        "skillId": "gitops",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "roadmap-devops",
+    "kind": "course",
+    "title": "DevOps Roadmap",
+    "provider": "roadmap.sh",
+    "url": "https://roadmap.sh/devops",
+    "description": "Structured self-study roadmap through the DevOps toolchain with linked resources at every step.",
+    "skillsTaught": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "kubernetes-the-hard-way",
+    "kind": "project",
+    "title": "Kubernetes the Hard Way",
+    "provider": "GitHub (Kelsey Hightower)",
+    "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way",
+    "description": "Bootstrap a Kubernetes cluster from scratch with no installers, learning every component along the way.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "kubernetes",
+        "level": 1
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
+    ],
+    "difficulty": 5,
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "kodekloud-engineer",
+    "kind": "project",
+    "title": "KodeKloud Engineer",
+    "provider": "KodeKloud",
+    "url": "https://engineer.kodekloud.com/",
+    "description": "Work real simulated sysadmin and DevOps tickets on live systems, progressing through job levels.",
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "actions-starter-workflows",
+    "kind": "project",
+    "title": "Set Up CI with GitHub Actions Starter Workflows",
+    "provider": "GitHub",
+    "url": "https://github.com/actions/starter-workflows",
+    "description": "Add automated build and test pipelines to your own repository starting from GitHub's official workflow templates.",
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "sadservers",
+    "kind": "assessment",
+    "title": "SadServers",
+    "provider": "sadservers.com",
+    "url": "https://sadservers.com/",
+    "description": "Debug broken Linux servers against the clock \u2014 'LeetCode for sysadmins' scenarios that test real troubleshooting.",
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      },
+      {
+        "skillId": "debugging",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "killercoda",
+    "kind": "assessment",
+    "title": "Killercoda Interactive Scenarios",
+    "provider": "Killercoda",
+    "url": "https://killercoda.com/",
+    "description": "Browser-based interactive scenarios that test your Kubernetes and Linux skills on disposable live environments.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "killer-sh",
+    "kind": "assessment",
+    "title": "Killer Shell (CKA/CKAD Simulator)",
+    "provider": "killer.sh",
+    "url": "https://killer.sh/",
+    "description": "The official Kubernetes certification exam simulator \u2014 harder than the real CKA, with full solutions.",
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "cs50x",
+    "kind": "course",
+    "title": "CS50: Introduction to Computer Science",
+    "provider": "Harvard / edX",
+    "url": "https://cs50.harvard.edu/x/",
+    "description": "Harvard's famous introduction to computer science and programming: C, Python, SQL, algorithms, and how computers actually work.",
+    "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      },
+      {
+        "skillId": "data-structures",
+        "level": 1
+      },
+      {
+        "skillId": "algorithms",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 100,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.95
+  },
+  {
+    "id": "python-for-everybody",
+    "kind": "course",
+    "title": "Python for Everybody Specialization",
+    "provider": "Coursera (University of Michigan)",
+    "url": "https://www.coursera.org/specializations/python",
+    "description": "Dr. Chuck's gentle five-course Python specialization: programming basics, data structures, web scraping, and databases with Python.",
+    "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "fcc-scientific-computing-python",
+    "kind": "course",
+    "title": "Scientific Computing with Python Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/scientific-computing-with-python/",
+    "description": "Interactive freeCodeCamp certification teaching Python from scratch through five real projects, including object-oriented programming.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "fcc-python-video",
+    "kind": "course",
+    "title": "Learn Python \u2013 Full Course for Beginners",
+    "provider": "YouTube (freeCodeCamp)",
+    "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "description": "A single-sitting video introduction to Python covering syntax, functions, and simple programs.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 5,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "python-official-tutorial",
+    "kind": "course",
+    "title": "The Python Tutorial",
+    "provider": "Python.org (official docs)",
+    "url": "https://docs.python.org/3/tutorial/",
+    "description": "The official Python tutorial: the language, its standard library, and idioms straight from the source.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "udemy-100-days-python",
+    "kind": "course",
+    "title": "100 Days of Code: The Complete Python Pro Bootcamp",
+    "provider": "Udemy (Angela Yu)",
+    "url": "https://www.udemy.com/course/100-days-of-code/",
+    "description": "Project-a-day Python bootcamp building 100 apps: automation, web scraping, GUIs, and beginner web development.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "mooc-fi-java",
+    "kind": "course",
+    "title": "Java Programming MOOC",
+    "provider": "University of Helsinki",
+    "url": "https://java-programming.mooc.fi/",
+    "description": "Helsinki's rigorous free Java course with hundreds of auto-graded exercises, from first steps to object-oriented design. Now in legacy mode (content frozen) but still free and fully usable.",
+    "skillsTaught": [
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 80,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "coursera-duke-java",
+    "kind": "course",
+    "title": "Java Programming and Software Engineering Fundamentals",
+    "provider": "Coursera (Duke University)",
+    "url": "https://www.coursera.org/specializations/java-programming",
+    "description": "Duke's beginner Java specialization covering core programming, problem solving, and software design.",
+    "skillsTaught": [
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "missing-semester",
+    "kind": "course",
+    "title": "The Missing Semester of Your CS Education",
+    "provider": "MIT",
+    "url": "https://missing.csail.mit.edu/",
+    "description": "MIT's crash course in the tools nobody teaches: the shell, scripting, editors, Git, and debugging workflows.",
+    "skillsTaught": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "shell-scripting",
+        "level": 2
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      },
+      {
+        "skillId": "debugging",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "linux-journey",
+    "kind": "course",
+    "title": "Linux Journey",
+    "provider": "Linux Journey (hosted by LabEx)",
+    "url": "https://labex.io/linuxjourney",
+    "description": "Bite-sized interactive lessons taking you from zero to comfortable on the Linux command line.",
+    "skillsTaught": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "learn-git-branching",
+    "kind": "course",
+    "title": "Learn Git Branching",
+    "provider": "learngitbranching.js.org",
+    "url": "https://learngitbranching.js.org/",
+    "description": "Visual, interactive Git sandbox that teaches commits, branching, merging, and rebasing by doing.",
+    "skillsTaught": [
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "fcc-git-video",
+    "kind": "course",
+    "title": "Git and GitHub for Beginners \u2013 Crash Course",
+    "provider": "YouTube (freeCodeCamp)",
+    "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+    "description": "One-hour crash course on Git and GitHub: repositories, commits, branches, and pull requests.",
+    "skillsTaught": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "pro-git-book",
+    "kind": "course",
+    "title": "Pro Git (2nd Edition)",
+    "provider": "git-scm.com",
+    "url": "https://git-scm.com/book/en/v2",
+    "description": "The definitive free Git book: everything from daily commands to branching workflows and Git internals.",
+    "skillsTaught": [
+      {
+        "skillId": "version-control-git",
+        "level": 3
+      },
+      {
+        "skillId": "git-collaboration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "coursera-ucsd-dsa",
+    "kind": "course",
+    "title": "Data Structures and Algorithms Specialization",
+    "provider": "Coursera (UC San Diego)",
+    "url": "https://www.coursera.org/specializations/data-structures-algorithms",
+    "description": "Algorithmic techniques and data structures with programming challenges: sorting, hashing, trees, graphs, and dynamic programming.",
+    "skillsTaught": [
+      {
+        "skillId": "data-structures",
+        "level": 3
+      },
+      {
+        "skillId": "algorithms",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 80,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "princeton-algorithms",
+    "kind": "course",
+    "title": "Algorithms, Part I",
+    "provider": "Coursera (Princeton University)",
+    "url": "https://www.coursera.org/learn/algorithms-part1",
+    "description": "Sedgewick's classic algorithms course covering union-find, sorting, searching, and balanced trees in Java.",
+    "skillsTaught": [
+      {
+        "skillId": "algorithms",
+        "level": 3
+      },
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "java",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 50,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "fcc-dsa-video",
+    "kind": "course",
+    "title": "Data Structures Easy to Advanced Course",
+    "provider": "YouTube (freeCodeCamp)",
+    "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+    "description": "Full video course on data structures by a Google engineer: arrays, linked lists, heaps, hash tables, and trees with implementations.",
+    "skillsTaught": [
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "regexone",
+    "kind": "course",
+    "title": "RegexOne",
+    "provider": "regexone.com",
+    "url": "https://regexone.com/",
+    "description": "Interactive lessons that teach regular expressions pattern by pattern with instant feedback.",
+    "skillsTaught": [
+      {
+        "skillId": "regex",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 3,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "google-tech-writing",
+    "kind": "course",
+    "title": "Google Technical Writing Courses",
+    "provider": "Google for Developers",
+    "url": "https://developers.google.com/tech-writing",
+    "description": "Google's self-paced technical writing courses for engineers: clear sentences, structured documents, and audience awareness.",
+    "skillsTaught": [
+      {
+        "skillId": "technical-writing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "coursera-agile-jira",
+    "kind": "course",
+    "title": "Agile with Atlassian Jira",
+    "provider": "Coursera (Atlassian)",
+    "url": "https://www.coursera.org/learn/agile-atlassian-jira",
+    "description": "Hands-on introduction to agile principles, Scrum, and Kanban using Jira boards and backlogs.",
+    "skillsTaught": [
+      {
+        "skillId": "agile-methodologies",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 12,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "refactoring-guru-patterns",
+    "kind": "course",
+    "title": "Design Patterns (Refactoring.Guru)",
+    "provider": "Refactoring.Guru",
+    "url": "https://refactoring.guru/design-patterns",
+    "description": "Illustrated catalog of the classic design patterns with intent, structure, and code examples in multiple languages.",
+    "skillsTaught": [
+      {
+        "skillId": "design-patterns",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "refactoring-guru-refactoring",
+    "kind": "course",
+    "title": "Refactoring (Refactoring.Guru)",
+    "provider": "Refactoring.Guru",
+    "url": "https://refactoring.guru/refactoring",
+    "description": "Catalog of code smells and step-by-step refactoring techniques for keeping code clean and maintainable.",
+    "skillsTaught": [
+      {
+        "skillId": "clean-code",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "real-python-testing",
+    "kind": "course",
+    "title": "Getting Started With Testing in Python",
+    "provider": "Real Python",
+    "url": "https://realpython.com/python-testing/",
+    "description": "Practical guide to writing your first automated tests in Python with unittest and pytest.",
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "practical-networking",
+    "kind": "course",
+    "title": "Networking Fundamentals (Module 1)",
+    "provider": "Practical Networking",
+    "url": "https://www.practicalnetworking.net/series/networking-fundamentals/",
+    "description": "Free video module explaining how data moves through a network: network devices, the OSI model, hosts and IP addresses, switches, and routers.",
+    "skillsTaught": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 3,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "cisco-networking-basics",
+    "kind": "course",
+    "title": "Networking Basics",
+    "provider": "Cisco Networking Academy",
+    "url": "https://www.netacad.com/courses/networking-basics",
+    "description": "Cisco's free self-paced networking course: IP addressing, protocols, DNS, TCP, and how devices communicate across networks.",
+    "skillsTaught": [
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 22,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "mostly-adequate-guide",
+    "kind": "course",
+    "title": "Professor Frisby's Mostly Adequate Guide to Functional Programming",
+    "provider": "GitHub (MostlyAdequate)",
+    "url": "https://github.com/MostlyAdequate/mostly-adequate-guide",
+    "description": "Free book on functional programming in JavaScript: pure functions, currying, composition, and functors.",
+    "skillsTaught": [
+      {
+        "skillId": "functional-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "build-your-own-x",
+    "kind": "project",
+    "title": "Build Your Own X",
+    "provider": "GitHub (CodeCrafters community)",
+    "url": "https://github.com/codecrafters-io/build-your-own-x",
+    "description": "Curated tutorials for re-building real technology from scratch: your own Git, database, interpreter, or web server.",
+    "skillsTaught": [
+      {
+        "skillId": "algorithms",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 40,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "first-contributions",
+    "kind": "project",
+    "title": "First Contributions",
+    "provider": "GitHub",
+    "url": "https://github.com/firstcontributions/first-contributions",
+    "description": "Guided project that walks you through making your first real open-source pull request.",
+    "skillsTaught": [
+      {
+        "skillId": "open-source-contribution",
+        "level": 1
+      },
+      {
+        "skillId": "git-collaboration",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 2,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "advent-of-code",
+    "kind": "project",
+    "title": "Advent of Code",
+    "provider": "adventofcode.com",
+    "url": "https://adventofcode.com/",
+    "description": "Annual programming puzzle calendar that sharpens algorithms and data-structure skills in any language.",
+    "skillsTaught": [
+      {
+        "skillId": "algorithms",
+        "level": 2
+      },
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "roadmap-task-tracker",
+    "kind": "project",
+    "title": "Task Tracker CLI Project",
+    "provider": "roadmap.sh",
+    "url": "https://roadmap.sh/projects/task-tracker",
+    "description": "Build a command-line task tracker to practice file I/O, argument parsing, and program structure.",
+    "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 6,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.6
+  },
+  {
+    "id": "leetcode",
+    "kind": "assessment",
+    "title": "LeetCode Problem Set",
+    "provider": "LeetCode",
+    "url": "https://leetcode.com/problemset/",
+    "description": "The standard interview-prep problem bank for testing your data structures and algorithms under pressure.",
+    "skillsTaught": [
+      {
+        "skillId": "data-structures",
+        "level": 2
+      },
+      {
+        "skillId": "algorithms",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "codewars",
+    "kind": "assessment",
+    "title": "Codewars",
+    "provider": "Codewars",
+    "url": "https://www.codewars.com/",
+    "description": "Kata-based coding challenges with community solutions, ranked by difficulty across many languages.",
+    "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "algorithms",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "exercism",
+    "kind": "assessment",
+    "title": "Exercism",
+    "provider": "Exercism",
+    "url": "https://exercism.org/",
+    "description": "Free practice exercises with human mentoring across dozens of language tracks to prove and polish your fluency.",
+    "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "hackerrank-python-basic",
+    "kind": "assessment",
+    "title": "HackerRank Python (Basic) Skills Certification",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification/python_basic",
+    "description": "Timed certification test that verifies basic Python proficiency with a shareable credential.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "ng-ml-spec",
+    "kind": "course",
+    "title": "Machine Learning Specialization",
+    "provider": "Coursera (DeepLearning.AI & Stanford)",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+    "description": "Andrew Ng's modern ML specialization: regression, classification, neural networks, trees, and practical advice.",
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 3
+      },
+      {
+        "skillId": "unsupervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 100,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.95
+  },
+  {
+    "id": "dl-spec",
+    "kind": "course",
+    "title": "Deep Learning Specialization",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/specializations/deep-learning",
+    "description": "Five-course deep dive: neural networks, optimization, CNNs, sequence models, and structuring ML projects.",
+    "skillsTaught": [
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 3
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 120,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.95
+  },
+  {
+    "id": "fastai",
+    "kind": "course",
+    "title": "Practical Deep Learning for Coders",
+    "provider": "fast.ai",
+    "url": "https://course.fast.ai/",
+    "description": "Top-down deep learning: train state-of-the-art vision and NLP models in the first lessons, then learn the internals.",
+    "skillsTaught": [
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      },
+      {
+        "skillId": "pytorch",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 2
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 70,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "google-ml-crash",
+    "kind": "course",
+    "title": "Machine Learning Crash Course",
+    "provider": "Google for Developers",
+    "url": "https://developers.google.com/machine-learning/crash-course",
+    "description": "Google's fast-paced practical ML introduction with interactive visualizations and exercises.",
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "kaggle-intro-ml",
+    "kind": "course",
+    "title": "Kaggle Learn: Intro to Machine Learning",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+    "description": "Build your first models fast: decision trees, validation, and scikit-learn basics in hosted notebooks.",
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-intermediate-ml",
+    "kind": "course",
+    "title": "Kaggle Learn: Intermediate Machine Learning",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/intermediate-machine-learning",
+    "description": "Missing values, categorical encodings, pipelines, cross-validation, gradient boosting, and leakage.",
+    "skillsTaught": [
+      {
+        "skillId": "scikit-learn",
+        "level": 2
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "sklearn-guide",
+    "kind": "course",
+    "title": "scikit-learn User Guide",
+    "provider": "scikit-learn (official docs)",
+    "url": "https://scikit-learn.org/stable/user_guide.html",
+    "description": "The official scikit-learn guide: estimators, pipelines, model selection, and metrics with worked examples.",
+    "skillsTaught": [
+      {
+        "skillId": "scikit-learn",
+        "level": 3
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "statquest",
+    "kind": "course",
+    "title": "StatQuest with Josh Starmer",
+    "provider": "YouTube",
+    "url": "https://www.youtube.com/@statquest",
+    "description": "Beloved channel that clearly explains statistics and every major ML algorithm, one concept at a time.",
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 2
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "imperial-math-ml",
+    "kind": "course",
+    "title": "Mathematics for Machine Learning Specialization",
+    "provider": "Coursera (Imperial College London)",
+    "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+    "description": "Linear algebra, multivariate calculus, and PCA, taught specifically as the math you need for ML.",
+    "skillsTaught": [
+      {
+        "skillId": "math-for-ml",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 3,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "3b1b-nn",
+    "kind": "course",
+    "title": "Neural Networks (3Blue1Brown series)",
+    "provider": "3Blue1Brown",
+    "url": "https://www.3blue1brown.com/topics/neural-networks",
+    "description": "Grant Sanderson's visual series on what neural networks are, how they learn, and what backpropagation really does.",
+    "skillsTaught": [
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "pytorch-tutorials",
+    "kind": "course",
+    "title": "PyTorch Tutorials (official)",
+    "provider": "PyTorch",
+    "url": "https://pytorch.org/tutorials/",
+    "description": "Official PyTorch tutorials: tensors, autograd, the training loop, datasets, and deployment recipes.",
+    "skillsTaught": [
+      {
+        "skillId": "pytorch",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "learnpytorch-io",
+    "kind": "course",
+    "title": "Zero to Mastery: Learn PyTorch for Deep Learning",
+    "provider": "learnpytorch.io (Daniel Bourke)",
+    "url": "https://www.learnpytorch.io/",
+    "description": "Free code-first PyTorch book/course: workflows, computer vision, custom datasets, and model deployment.",
+    "skillsTaught": [
+      {
+        "skillId": "pytorch",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 50,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "tf-developer-cert",
+    "kind": "course",
+    "title": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/professional-certificates/tensorflow-in-practice",
+    "description": "Hands-on TensorFlow certificate: CNNs for vision, NLP models, and time series, all in Keras.",
+    "skillsTaught": [
+      {
+        "skillId": "tensorflow",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 2
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 80,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "cs231n",
+    "kind": "course",
+    "title": "CS231n: Deep Learning for Computer Vision",
+    "provider": "Stanford University",
+    "url": "https://cs231n.stanford.edu/",
+    "description": "Stanford's renowned vision course: CNNs, training at scale, detection, segmentation, and vision transformers.",
+    "skillsTaught": [
+      {
+        "skillId": "computer-vision",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 5,
+    "durationHours": 60,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "hf-nlp-course",
+    "kind": "course",
+    "title": "Hugging Face LLM Course",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/llm-course",
+    "description": "Free course on transformers and large language models: tokenizers, fine-tuning pretrained models, and sharing them on the Hub.",
+    "skillsTaught": [
+      {
+        "skillId": "nlp",
+        "level": 3
+      },
+      {
+        "skillId": "fine-tuning",
+        "level": 1
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "google-recsys",
+    "kind": "course",
+    "title": "Recommendation Systems Course",
+    "provider": "Google for Developers",
+    "url": "https://developers.google.com/machine-learning/recommendation",
+    "description": "Google's course on recommenders: candidate generation, matrix factorization, retrieval, and ranking.",
+    "skillsTaught": [
+      {
+        "skillId": "recommender-systems",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "spinning-up-rl",
+    "kind": "course",
+    "title": "Spinning Up in Deep RL",
+    "provider": "OpenAI",
+    "url": "https://spinningup.openai.com/",
+    "description": "OpenAI's educational resource for deep reinforcement learning: theory, key algorithms, and runnable code.",
+    "skillsTaught": [
+      {
+        "skillId": "reinforcement-learning",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 5,
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "interpretable-ml-book",
+    "kind": "course",
+    "title": "Interpretable Machine Learning",
+    "provider": "Christoph Molnar (free online book)",
+    "url": "https://christophm.github.io/interpretable-ml-book/",
+    "description": "The reference book on explaining models: feature importance, SHAP, LIME, counterfactuals, and their limits.",
+    "skillsTaught": [
+      {
+        "skillId": "model-interpretability",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "mlops-zoomcamp",
+    "kind": "course",
+    "title": "MLOps Zoomcamp",
+    "provider": "DataTalksClub",
+    "url": "https://github.com/DataTalksClub/mlops-zoomcamp",
+    "description": "Free course on productionizing ML: experiment tracking, orchestration, deployment, and monitoring.",
+    "skillsTaught": [
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 80,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "madewithml",
+    "kind": "course",
+    "title": "Made With ML",
+    "provider": "madewithml.com (Goku Mohandas)",
+    "url": "https://madewithml.com/",
+    "description": "Design, develop, deploy, and iterate on production ML systems with sound software engineering practice.",
+    "skillsTaught": [
+      {
+        "skillId": "mlops",
+        "level": 2
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-titanic",
+    "kind": "project",
+    "title": "Kaggle Competition: Titanic",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/titanic",
+    "description": "The classic first ML competition: predict survival from passenger data and submit to a live leaderboard.",
+    "skillsTaught": [
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-house-prices",
+    "kind": "project",
+    "title": "Kaggle Competition: House Prices",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques",
+    "description": "Regression competition rewarding careful feature engineering and validation on 79 housing features.",
+    "skillsTaught": [
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 12,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "kaggle-digit-recognizer",
+    "kind": "project",
+    "title": "Kaggle Competition: Digit Recognizer",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/digit-recognizer",
+    "description": "Computer-vision starter competition: classify handwritten MNIST digits with your first neural networks.",
+    "skillsTaught": [
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "hf-spaces-demo",
+    "kind": "project",
+    "title": "Ship a Model Demo on Hugging Face Spaces",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/spaces",
+    "description": "Wrap a trained model in a Gradio interface and deploy it as a public, shareable demo.",
+    "skillsTaught": [
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 6,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "deep-ml",
+    "kind": "assessment",
+    "title": "Deep-ML Problems",
+    "provider": "deep-ml.com",
+    "url": "https://www.deep-ml.com/",
+    "description": "LeetCode-style machine learning problems: implement algorithms and math from scratch with instant checking.",
+    "skillsTaught": [
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.65
+  },
+  {
+    "id": "hackerrank-ai",
+    "kind": "assessment",
+    "title": "HackerRank Artificial Intelligence Challenges",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/domains/ai",
+    "description": "Graded AI and machine learning challenges: bot building, statistics, and prediction problems.",
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "google-cybersecurity-cert",
+    "kind": "course",
+    "title": "Google Cybersecurity Professional Certificate",
+    "provider": "Coursera (Google)",
+    "url": "https://www.coursera.org/professional-certificates/google-cybersecurity",
+    "description": "Google's entry-level security certificate: threats, networks, Linux and SQL for security, SIEM tools, and detection.",
+    "skillsTaught": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 170,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "tryhackme",
+    "kind": "course",
+    "title": "TryHackMe",
+    "provider": "TryHackMe",
+    "url": "https://tryhackme.com/",
+    "description": "Gamified hands-on security training: guided rooms and structured paths from fundamentals to offensive security.",
+    "skillsTaught": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "digital-forensics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "htb-academy",
+    "kind": "course",
+    "title": "Hack The Box Academy",
+    "provider": "Hack The Box",
+    "url": "https://academy.hackthebox.com/",
+    "description": "Structured offensive-security modules with live targets: enumeration, exploitation, and web attacks.",
+    "skillsTaught": [
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 3
+      },
+      {
+        "skillId": "web-security",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "portswigger",
+    "kind": "course",
+    "title": "PortSwigger Web Security Academy",
+    "provider": "PortSwigger",
+    "url": "https://portswigger.net/web-security",
+    "description": "The gold-standard free web security training: SQL injection, XSS, CSRF, and dozens of hands-on labs.",
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 50,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "owasp-top-ten",
+    "kind": "course",
+    "title": "OWASP Top Ten",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-project-top-ten/",
+    "description": "The canonical list of the most critical web application security risks, with explanations and mitigations.",
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "professor-messer",
+    "kind": "course",
+    "title": "Professor Messer Security+ Training",
+    "provider": "professormesser.com",
+    "url": "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/",
+    "description": "Free complete video training for CompTIA Security+: threats, architecture, operations, and governance.",
+    "skillsTaught": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "coursera-crypto",
+    "kind": "course",
+    "title": "Cryptography I",
+    "provider": "Coursera (Stanford University)",
+    "url": "https://www.coursera.org/learn/crypto",
+    "description": "Dan Boneh's rigorous introduction to cryptography: ciphers, integrity, authenticated encryption, and key exchange.",
+    "skillsTaught": [
+      {
+        "skillId": "cryptography-basics",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "probability",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 30,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "owasp-cheatsheets",
+    "kind": "course",
+    "title": "OWASP Cheat Sheet Series",
+    "provider": "OWASP",
+    "url": "https://cheatsheetseries.owasp.org/",
+    "description": "Concise, actionable guidance for building secure software: validation, authentication, secrets, and more.",
+    "skillsTaught": [
+      {
+        "skillId": "secure-coding",
+        "level": 2
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "letsdefend",
+    "kind": "course",
+    "title": "LetsDefend",
+    "provider": "LetsDefend",
+    "url": "https://letsdefend.io/",
+    "description": "Blue-team training on a simulated SOC: triage real alerts, investigate incidents, and practice response.",
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      },
+      {
+        "skillId": "digital-forensics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "tcm-security",
+    "kind": "course",
+    "title": "TCM Security Academy",
+    "provider": "TCM Security",
+    "url": "https://tcm-sec.com/academy/",
+    "description": "Practical ethical hacking courses: external pentests, Active Directory attacks, and report writing.",
+    "skillsTaught": [
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 25,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "gdpr-eu",
+    "kind": "course",
+    "title": "GDPR.eu Guide",
+    "provider": "gdpr.eu",
+    "url": "https://gdpr.eu/",
+    "description": "Plain-language guide to the GDPR: principles, rights, lawful bases, and compliance checklists.",
+    "skillsTaught": [
+      {
+        "skillId": "compliance-privacy",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "owasp-threat-modeling",
+    "kind": "course",
+    "title": "OWASP Threat Modeling",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-community/Threat_Modeling",
+    "description": "OWASP's conceptual introduction to threat modeling: what a threat model is, the Four Question Framework, and fitting threat modeling into the development lifecycle.",
+    "skillsTaught": [
+      {
+        "skillId": "threat-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 1,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "juice-shop",
+    "kind": "project",
+    "title": "OWASP Juice Shop",
+    "provider": "OWASP",
+    "url": "https://owasp.org/www-project-juice-shop/",
+    "description": "Deploy and hack the most modern insecure web app: a full vulnerability scavenger hunt with scoreboard.",
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "web-security",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "dvwa",
+    "kind": "project",
+    "title": "Damn Vulnerable Web Application (DVWA)",
+    "provider": "GitHub (digininja)",
+    "url": "https://github.com/digininja/DVWA",
+    "description": "Set up the classic deliberately vulnerable PHP app and exploit it at increasing security levels.",
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "web-security",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "wazuh-homelab",
+    "kind": "project",
+    "title": "Build a Home SOC Lab with Wazuh",
+    "provider": "Wazuh",
+    "url": "https://wazuh.com/",
+    "description": "Deploy the open-source Wazuh SIEM in a home lab, ship logs from endpoints, and write detection rules.",
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "otw-bandit",
+    "kind": "assessment",
+    "title": "OverTheWire: Bandit",
+    "provider": "OverTheWire",
+    "url": "https://overthewire.org/wargames/bandit/",
+    "description": "The classic wargame testing Linux command-line and security basics level by level over SSH.",
+    "skillsTaught": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "picoctf",
+    "kind": "assessment",
+    "title": "CyLab Security Academy (formerly picoCTF)",
+    "provider": "Carnegie Mellon University",
+    "url": "https://cylabacademy.org/",
+    "description": "CMU's free security training platform, formerly picoCTF, testing skills across crypto, web, forensics, and binary challenges.",
+    "skillsTaught": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "cryptohack",
+    "kind": "assessment",
+    "title": "CryptoHack",
+    "provider": "cryptohack.org",
+    "url": "https://cryptohack.org/",
+    "description": "Progressive cryptography challenges that test your understanding by making you break weak crypto in Python.",
+    "skillsTaught": [
+      {
+        "skillId": "cryptography-basics",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "cyberdefenders",
+    "kind": "assessment",
+    "title": "CyberDefenders",
+    "provider": "CyberDefenders",
+    "url": "https://cyberdefenders.org/",
+    "description": "Blue-team CTF challenges testing digital forensics and incident response on realistic case evidence.",
+    "skillsTaught": [
+      {
+        "skillId": "digital-forensics",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-operations",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "freemium",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "nodejs-learn",
+    "kind": "course",
+    "title": "Node.js Official Learning Path",
+    "provider": "nodejs.org",
+    "url": "https://nodejs.org/en/learn",
+    "description": "The official Node.js guides: the runtime, asynchronous patterns, streams, and building command-line and server programs.",
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "udemy-max-node",
+    "kind": "course",
+    "title": "NodeJS \u2013 The Complete Guide (MVC, REST APIs, GraphQL)",
+    "provider": "Udemy (Maximilian Schwarzm\u00fcller)",
+    "url": "https://www.udemy.com/course/nodejs-the-complete-guide/",
+    "description": "Comprehensive Node course building real backends: Express, REST APIs, authentication, websockets, and deployment.",
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 3
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "authentication",
+        "level": 2
+      },
+      {
+        "skillId": "websockets",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 40,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "fcc-backend-apis",
+    "kind": "course",
+    "title": "Back End Development and APIs Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "description": "freeCodeCamp certification on Node, Express, and MongoDB: build microservice APIs and pass automated tests.",
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      },
+      {
+        "skillId": "nosql-databases",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "meta-backend-cert",
+    "kind": "course",
+    "title": "Meta Back-End Developer Professional Certificate",
+    "provider": "Coursera (Meta)",
+    "url": "https://www.coursera.org/professional-certificates/meta-back-end-developer",
+    "description": "Meta's certificate covering Python, Django, MySQL, REST APIs, and a capstone backend project.",
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "django",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "mysql",
+        "level": 1
+      },
+      {
+        "skillId": "authentication",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "django-tutorial",
+    "kind": "course",
+    "title": "Django Official Tutorial (Writing your first Django app)",
+    "provider": "Django Project (official docs)",
+    "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
+    "description": "The official eight-part Django tutorial: models, the ORM, views, templates, forms, and the admin site.",
+    "skillsTaught": [
+      {
+        "skillId": "django",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "fastapi-tutorial",
+    "kind": "course",
+    "title": "FastAPI Tutorial \u2013 User Guide",
+    "provider": "FastAPI (official docs)",
+    "url": "https://fastapi.tiangolo.com/tutorial/",
+    "description": "The official FastAPI tutorial: path operations, Pydantic validation, dependency injection, and auto-generated API docs.",
+    "skillsTaught": [
+      {
+        "skillId": "fastapi",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "udemy-darby-spring",
+    "kind": "course",
+    "title": "Spring Boot 4, Spring 7 & Hibernate for Beginners",
+    "provider": "Udemy (Chad Darby)",
+    "url": "https://www.udemy.com/course/spring-hibernate-tutorial/",
+    "description": "Best-selling Spring Boot course: REST controllers, Spring Data JPA, Hibernate, security, and real CRUD apps.",
+    "skillsTaught": [
+      {
+        "skillId": "spring-boot",
+        "level": 3
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 34,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "go-tour",
+    "kind": "course",
+    "title": "A Tour of Go",
+    "provider": "go.dev (official)",
+    "url": "https://go.dev/tour/",
+    "description": "The official interactive introduction to Go: syntax, methods, interfaces, and concurrency with goroutines and channels.",
+    "skillsTaught": [
+      {
+        "skillId": "go",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "learn-go-with-tests",
+    "kind": "course",
+    "title": "Learn Go with Tests",
+    "provider": "GitHub (Chris James)",
+    "url": "https://github.com/quii/learn-go-with-tests",
+    "description": "Learn idiomatic Go through test-driven development, from hello world to concurrency and property-based tests.",
+    "skillsTaught": [
+      {
+        "skillId": "go",
+        "level": 3
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "restfulapi-net",
+    "kind": "course",
+    "title": "REST API Tutorial",
+    "provider": "restfulapi.net",
+    "url": "https://restfulapi.net/",
+    "description": "Guide to REST principles: resources, HTTP methods, status codes, versioning, and API design best practices.",
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "ms-api-design",
+    "kind": "course",
+    "title": "Web API Design Best Practices",
+    "provider": "Microsoft Learn (Azure Architecture Center)",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design",
+    "description": "Microsoft's guidance for designing RESTful web APIs: resource modeling, pagination, versioning, and error handling.",
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 3
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "graphql-learn",
+    "kind": "course",
+    "title": "Introduction to GraphQL (official)",
+    "provider": "graphql.org",
+    "url": "https://graphql.org/learn/",
+    "description": "The official GraphQL introduction: schemas, types, queries, mutations, and execution.",
+    "skillsTaught": [
+      {
+        "skillId": "graphql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "copenhagen-book",
+    "kind": "course",
+    "title": "Pilcrow's Auth Book",
+    "provider": "auth.pilcrowonpaper.com",
+    "url": "https://auth.pilcrowonpaper.com/",
+    "description": "Free practical guide to authentication for the web, successor to The Copenhagen Book: sessions, tokens, OAuth, passkeys, and password security.",
+    "skillsTaught": [
+      {
+        "skillId": "authentication",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "rabbitmq-tutorials",
+    "kind": "course",
+    "title": "RabbitMQ Tutorials",
+    "provider": "RabbitMQ (official docs)",
+    "url": "https://www.rabbitmq.com/tutorials",
+    "description": "Official hands-on tutorials for messaging patterns: work queues, publish/subscribe, routing, and RPC over RabbitMQ.",
+    "skillsTaught": [
+      {
+        "skillId": "message-queues",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "redis-crash-course",
+    "kind": "course",
+    "title": "Redis Crash Course",
+    "provider": "YouTube (Web Dev Simplified)",
+    "url": "https://www.youtube.com/watch?v=jgpVdJB2sKQ",
+    "description": "Fast introduction to Redis and caching patterns for speeding up backend applications.",
+    "skillsTaught": [
+      {
+        "skillId": "caching",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "system-design-primer",
+    "kind": "course",
+    "title": "The System Design Primer",
+    "provider": "GitHub (Donne Martin)",
+    "url": "https://github.com/donnemartin/system-design-primer",
+    "description": "The most-starred guide to designing large-scale systems: caching, load balancing, sharding, and interview-ready case studies.",
+    "skillsTaught": [
+      {
+        "skillId": "system-design",
+        "level": 3
+      },
+      {
+        "skillId": "caching",
+        "level": 2
+      },
+      {
+        "skillId": "message-queues",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 1
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "fowler-microservices",
+    "kind": "course",
+    "title": "Microservices Guide",
+    "provider": "martinfowler.com",
+    "url": "https://martinfowler.com/microservices/",
+    "description": "Martin Fowler's curated guide to microservice architecture: when to use it, trade-offs, and core patterns.",
+    "skillsTaught": [
+      {
+        "skillId": "microservices",
+        "level": 2
+      },
+      {
+        "skillId": "event-driven-architecture",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "difficulty": 4,
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "nginx-beginners",
+    "kind": "course",
+    "title": "NGINX Beginner's Guide",
+    "provider": "nginx.org (official docs)",
+    "url": "https://nginx.org/en/docs/beginners_guide.html",
+    "description": "Official primer on nginx: serving static content, configuration structure, and setting up a simple reverse proxy.",
+    "skillsTaught": [
+      {
+        "skillId": "web-servers",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "postman-academy",
+    "kind": "course",
+    "title": "Postman Academy",
+    "provider": "Postman",
+    "url": "https://academy.postman.com/",
+    "description": "Free structured courses on testing and documenting APIs with Postman, from first request to automated collections.",
+    "skillsTaught": [
+      {
+        "skillId": "api-testing",
+        "level": 2
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "mdn-websockets",
+    "kind": "course",
+    "title": "The WebSocket API (MDN)",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
+    "description": "MDN's guide to the WebSocket API for two-way realtime communication between client and server.",
+    "skillsTaught": [
+      {
+        "skillId": "websockets",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "coding-challenges",
+    "kind": "project",
+    "title": "Coding Challenges",
+    "provider": "codingchallenges.fyi (John Crickett)",
+    "url": "https://codingchallenges.fyi/",
+    "description": "Weekly build-it-yourself challenges recreating real tools \u2014 wc, load balancers, rate limiters \u2014 in any language.",
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "system-design",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 40,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "codecrafters",
+    "kind": "project",
+    "title": "CodeCrafters: Build Your Own Redis, Git, HTTP Server",
+    "provider": "CodeCrafters",
+    "url": "https://codecrafters.io/",
+    "description": "Guided deep-dive projects rebuilding real systems software from scratch with stage-by-stage automated tests.",
+    "skillsTaught": [
+      {
+        "skillId": "concurrency",
+        "level": 2
+      },
+      {
+        "skillId": "system-design",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "difficulty": 5,
+    "durationHours": 40,
+    "format": "project",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "app-ideas",
+    "kind": "project",
+    "title": "App Ideas Collection",
+    "provider": "GitHub (florinpop17)",
+    "url": "https://github.com/florinpop17/app-ideas",
+    "description": "A large collection of app ideas in three tiers with user stories \u2014 pick one and build it end to end.",
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "roadmap-url-shortener",
+    "kind": "project",
+    "title": "URL Shortening Service Project",
+    "provider": "roadmap.sh",
+    "url": "https://roadmap.sh/projects/url-shortening-service",
+    "description": "Design and build a URL shortener API with redirects and statistics \u2014 a classic backend portfolio project.",
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nodejs",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.6
+  },
+  {
+    "id": "hackerrank-nodejs-basic",
+    "kind": "assessment",
+    "title": "HackerRank Node.js (Basic) Skills Certification",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification/nodejs_basic",
+    "description": "Timed certification verifying basic Node.js proficiency: modules, callbacks, and simple server tasks.",
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nodejs",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "fcc-responsive-web-design",
+    "kind": "course",
+    "title": "Responsive Web Design Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+    "description": "freeCodeCamp's interactive certification teaching HTML and CSS by building projects, with flexbox, grid, and responsive layouts.",
+    "skillsTaught": [
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      },
+      {
+        "skillId": "web-accessibility",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fcc-javascript-algorithms",
+    "kind": "course",
+    "title": "JavaScript Algorithms and Data Structures Certification",
+    "provider": "freeCodeCamp",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
+    "description": "Interactive JavaScript certification covering the language, ES6, regular expressions, and algorithmic thinking.",
+    "skillsTaught": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "regex",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "odin-foundations",
+    "kind": "course",
+    "title": "The Odin Project \u2014 Foundations",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/foundations",
+    "description": "Project-driven open curriculum covering how the web works, HTML, CSS, JavaScript basics, and Git.",
+    "skillsTaught": [
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 100,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "odin-full-stack-js",
+    "kind": "course",
+    "title": "The Odin Project \u2014 Full Stack JavaScript",
+    "provider": "The Odin Project",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+    "description": "The advanced Odin path: React, Node and Express, databases, and authentication, all through substantial projects.",
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 150,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "mdn-learn",
+    "kind": "course",
+    "title": "MDN Learn Web Development",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn",
+    "description": "Mozilla's structured curriculum for web development fundamentals: HTML, CSS, JavaScript, forms, and working with APIs.",
+    "skillsTaught": [
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      },
+      {
+        "skillId": "web-accessibility",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 80,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "javascript-info",
+    "kind": "course",
+    "title": "The Modern JavaScript Tutorial",
+    "provider": "javascript.info",
+    "url": "https://javascript.info/",
+    "description": "Deep, well-structured JavaScript reference-tutorial from basics through closures, prototypes, promises, and the event loop.",
+    "skillsTaught": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 60,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "udemy-jonas-js",
+    "kind": "course",
+    "title": "The Complete JavaScript Course: From Zero to Expert",
+    "provider": "Udemy (Jonas Schmedtmann)",
+    "url": "https://www.udemy.com/course/the-complete-javascript-course/",
+    "description": "Highly-rated project-based JavaScript course covering modern JS, asynchronous code, and real application architecture.",
+    "skillsTaught": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 69,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "udemy-max-react",
+    "kind": "course",
+    "title": "React \u2013 The Complete Guide (incl. Next.js, Redux)",
+    "provider": "Udemy (Maximilian Schwarzm\u00fcller)",
+    "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+    "description": "The best-selling React course: components, hooks, Redux and modern state management, plus an introduction to Next.js.",
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 3
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "nextjs",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 68,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "react-dev-learn",
+    "kind": "course",
+    "title": "Learn React (official documentation)",
+    "provider": "react.dev",
+    "url": "https://react.dev/learn",
+    "description": "The official React docs course: thinking in React, state, effects, and modern component patterns.",
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "nextjs-learn",
+    "kind": "course",
+    "title": "Next.js Learn",
+    "provider": "Vercel",
+    "url": "https://nextjs.org/learn",
+    "description": "Official interactive Next.js course: routing, data fetching, server rendering, and deploying a full dashboard app.",
+    "skillsTaught": [
+      {
+        "skillId": "nextjs",
+        "level": 2
+      },
+      {
+        "skillId": "react-advanced",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 12,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "udemy-max-typescript",
+    "kind": "course",
+    "title": "Understanding TypeScript",
+    "provider": "Udemy (Maximilian Schwarzm\u00fcller)",
+    "url": "https://www.udemy.com/course/understanding-typescript/",
+    "description": "Practical TypeScript from basics to generics, decorators, and using TypeScript with React and Node.",
+    "skillsTaught": [
+      {
+        "skillId": "typescript",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "video",
+    "cost": "paid",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "typescript-handbook",
+    "kind": "course",
+    "title": "The TypeScript Handbook",
+    "provider": "typescriptlang.org (official docs)",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "description": "The official TypeScript handbook: the type system, narrowing, generics, and configuring the compiler.",
+    "skillsTaught": [
+      {
+        "skillId": "typescript",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "css-for-js",
+    "kind": "course",
+    "title": "CSS for JavaScript Developers",
+    "provider": "Josh W. Comeau",
+    "url": "https://css-for-js.dev/",
+    "description": "Interactive deep-dive into how CSS really works: layout algorithms, flexbox, grid, and polished component styling.",
+    "skillsTaught": [
+      {
+        "skillId": "css-advanced",
+        "level": 3
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "paid",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "tailwind-docs",
+    "kind": "course",
+    "title": "Tailwind CSS Documentation",
+    "provider": "Tailwind Labs (official docs)",
+    "url": "https://tailwindcss.com/docs",
+    "description": "The official Tailwind CSS docs: utility-first workflow, responsive variants, dark mode, and theming.",
+    "skillsTaught": [
+      {
+        "skillId": "tailwind-css",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "meta-frontend-cert",
+    "kind": "course",
+    "title": "Meta Front-End Developer Professional Certificate",
+    "provider": "Coursera (Meta)",
+    "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+    "description": "Meta's nine-course certificate taking you from web basics to React, UI principles, and a capstone project.",
+    "skillsTaught": [
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 2,
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "fullstackopen",
+    "kind": "course",
+    "title": "Full Stack Open",
+    "provider": "University of Helsinki",
+    "url": "https://fullstackopen.com/en/",
+    "description": "Helsinki's acclaimed free course on modern web development: React, Redux, Node, GraphQL, TypeScript, and testing.",
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 3
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "graphql",
+        "level": 2
+      },
+      {
+        "skillId": "typescript",
+        "level": 1
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 150,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.9
+  },
+  {
+    "id": "webdev-accessibility",
+    "kind": "course",
+    "title": "Learn Accessibility",
+    "provider": "web.dev (Google)",
+    "url": "https://web.dev/learn/accessibility",
+    "description": "Google's course on building accessible websites: semantics, ARIA, focus management, and testing with assistive technology.",
+    "skillsTaught": [
+      {
+        "skillId": "web-accessibility",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "webdev-performance",
+    "kind": "course",
+    "title": "Learn Performance",
+    "provider": "web.dev (Google)",
+    "url": "https://web.dev/learn/performance",
+    "description": "Google's course on web performance: Core Web Vitals, the critical rendering path, lazy loading, and image optimization.",
+    "skillsTaught": [
+      {
+        "skillId": "web-performance",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "motion-docs",
+    "kind": "course",
+    "title": "Motion Documentation",
+    "provider": "motion.dev",
+    "url": "https://motion.dev/docs",
+    "description": "Official docs for the Motion animation library: springs, gestures, layout animations, and scroll-driven effects for React.",
+    "skillsTaught": [
+      {
+        "skillId": "web-animations",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "react-native-docs",
+    "kind": "course",
+    "title": "React Native: Get Started (official docs)",
+    "provider": "reactnative.dev",
+    "url": "https://reactnative.dev/docs/getting-started",
+    "description": "Official React Native documentation: core components, native APIs, navigation, and shipping to iOS and Android.",
+    "skillsTaught": [
+      {
+        "skillId": "react-native",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "vuejs-tutorial",
+    "kind": "course",
+    "title": "Vue.js Official Tutorial",
+    "provider": "vuejs.org",
+    "url": "https://vuejs.org/tutorial/",
+    "description": "The official step-by-step interactive Vue tutorial: reactivity, components, props, and the composition API.",
+    "skillsTaught": [
+      {
+        "skillId": "vue",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.85
+  },
+  {
+    "id": "vite-guide",
+    "kind": "course",
+    "title": "Vite Guide",
+    "provider": "vite.dev (official docs)",
+    "url": "https://vite.dev/guide/",
+    "description": "Official guide to the Vite build tool: dev server, bundling, environment variables, and framework integrations.",
+    "skillsTaught": [
+      {
+        "skillId": "frontend-build-tools",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "chrome-devtools-docs",
+    "kind": "course",
+    "title": "Chrome DevTools Documentation",
+    "provider": "Chrome for Developers",
+    "url": "https://developer.chrome.com/docs/devtools",
+    "description": "Official guides to Chrome DevTools: inspecting elements, debugging JavaScript, and profiling network and performance.",
+    "skillsTaught": [
+      {
+        "skillId": "browser-devtools",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "frontend-mentor",
+    "kind": "project",
+    "title": "Frontend Mentor Challenges",
+    "provider": "Frontend Mentor",
+    "url": "https://www.frontendmentor.io/challenges",
+    "description": "Build real website components and pages from professional designs, then compare solutions with the community.",
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 30,
+    "format": "project",
+    "cost": "freemium",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "javascript30",
+    "kind": "project",
+    "title": "JavaScript30",
+    "provider": "Wes Bos",
+    "url": "https://javascript30.com/",
+    "description": "Thirty small vanilla JavaScript projects in thirty days \u2014 no frameworks, no libraries, just the platform.",
+    "skillsTaught": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "browser-devtools",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ],
+    "difficulty": 2,
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.8
+  },
+  {
+    "id": "realworld-app",
+    "kind": "project",
+    "title": "RealWorld Example App (Conduit)",
+    "provider": "GitHub (gothinkster)",
+    "url": "https://github.com/gothinkster/realworld",
+    "description": "Build a full Medium-style app against a real spec and API, in the frontend stack of your choice.",
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 1
+      }
+    ],
+    "difficulty": 3,
+    "durationHours": 40,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.75
+  },
+  {
+    "id": "github-pages-site",
+    "kind": "project",
+    "title": "Publish a Personal Site with GitHub Pages",
+    "provider": "GitHub",
+    "url": "https://pages.github.com/",
+    "description": "Ship your first live website: build a simple personal page and host it for free straight from a Git repository.",
+    "skillsTaught": [
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [],
+    "difficulty": 1,
+    "durationHours": 4,
+    "format": "project",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "flexbox-froggy",
+    "kind": "assessment",
+    "title": "Flexbox Froggy",
+    "provider": "Codepip",
+    "url": "https://codepip.com/games/flexbox-froggy/",
+    "description": "A game that tests your CSS flexbox skills level by level as you guide frogs to their lily pads.",
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.7
+  },
+  {
+    "id": "css-diner",
+    "kind": "assessment",
+    "title": "CSS Diner",
+    "provider": "flukeout.github.io",
+    "url": "https://flukeout.github.io/",
+    "description": "Interactive game testing your command of CSS selectors, from simple elements to advanced combinators.",
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.65
+  },
+  {
+    "id": "w3schools-js-quiz",
+    "kind": "assessment",
+    "title": "W3Schools JavaScript Quiz",
+    "provider": "W3Schools",
+    "url": "https://www.w3schools.com/js/js_quiz.asp",
+    "description": "Quick 25-question quiz to check your grasp of JavaScript fundamentals.",
+    "skillsTaught": [
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "difficulty": 1,
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "qualityPrior": 0.6
+  }
+]

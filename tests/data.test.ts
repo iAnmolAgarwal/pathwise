@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { GoalTemplateSchema, SkillSchema } from "@/schemas";
+import { CatalogItemSchema, GoalTemplateSchema, SkillSchema } from "@/schemas";
+import catalogJson from "@/data/catalog.json";
+import embeddingsJson from "@/data/embeddings.json";
 import goalsJson from "@/data/goals.json";
 import skillsJson from "@/data/skills.json";
 
@@ -38,6 +40,30 @@ describe("skills.json", () => {
         .map((r) => `${g.id} -> ${r.skillId}`),
     );
     expect(dangling).toEqual([]);
+  });
+
+  it("catalog.json parses and references only existing skills", () => {
+    const catalog = z.array(CatalogItemSchema).parse(catalogJson);
+    expect(catalog.length).toBeGreaterThanOrEqual(150);
+    expect(new Set(catalog.map((c) => c.id)).size).toBe(catalog.length);
+    const dangling = catalog.flatMap((c) =>
+      [...c.skillsTaught, ...c.skillsRequired]
+        .filter((r) => !ids.has(r.skillId))
+        .map((r) => `${c.id} -> ${r.skillId}`),
+    );
+    expect(dangling).toEqual([]);
+  });
+
+  it("embeddings.json covers every skill and catalog item with 384-dim vectors", () => {
+    const embeddings = embeddingsJson as Record<string, number[]>;
+    const catalogIds = (catalogJson as { id: string }[]).map((c) => c.id);
+    const expected = [...ids, ...catalogIds];
+    expect(Object.keys(embeddings).length).toBe(expected.length);
+    for (const id of expected) {
+      expect(embeddings[id], `missing embedding for ${id}`).toBeDefined();
+    }
+    expect(embeddings[catalogIds[0]]).toHaveLength(384);
+    expect(embeddings[skills[0].id]).toHaveLength(384);
   });
 
   it("prereq edges form a DAG", () => {
