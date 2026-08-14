@@ -1,7 +1,19 @@
 import { z } from "zod";
 
-// Open string until the M1 taxonomy fixes the closed ~10-domain vocabulary.
-export const DomainSchema = z.string().min(1);
+export const DOMAINS = [
+  "foundations",
+  "web-frontend",
+  "web-backend",
+  "data-engineering",
+  "data-analysis",
+  "machine-learning",
+  "ai-engineering",
+  "cloud",
+  "devops",
+  "security",
+] as const;
+
+export const DomainSchema = z.enum(DOMAINS);
 
 export const LevelBandSchema = z.literal([1, 2, 3]);
 export const SkillLevelSchema = z.literal([1, 2, 3]);

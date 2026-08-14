@@ -1,0 +1,1274 @@
+[
+  {
+    "id": "programming-basics",
+    "name": "Programming Basics",
+    "domain": "foundations",
+    "description": "Core programming concepts: variables, control flow, loops, functions, and basic problem decomposition in any language.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "domain": "foundations",
+    "description": "The Python language: syntax, data types, functions, modules, and the standard library. The default language for data and AI work.",
+    "levelBand": 1,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "domain": "foundations",
+    "description": "The Java language: syntax, classes, the JVM, collections, and build basics. Workhorse of enterprise backend development.",
+    "levelBand": 1,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "command-line",
+    "name": "Command Line & Linux Basics",
+    "domain": "foundations",
+    "description": "Working in a terminal: navigating the filesystem, managing files and processes, pipes, permissions, and package managers on Linux or macOS.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "version-control-git",
+    "name": "Git & Version Control",
+    "domain": "foundations",
+    "description": "Tracking code history with Git: commits, branches, merges, remotes, and undoing mistakes safely.",
+    "levelBand": 1,
+    "prereqs": ["command-line"]
+  },
+  {
+    "id": "debugging",
+    "name": "Debugging",
+    "domain": "foundations",
+    "description": "Finding and fixing defects systematically: reading stack traces, using breakpoints and print debugging, and isolating root causes.",
+    "levelBand": 1,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "networking-basics",
+    "name": "Networking & How the Web Works",
+    "domain": "foundations",
+    "description": "How the internet works: IP, DNS, TCP, HTTP requests and responses, URLs, and the client–server model.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "agile-methodologies",
+    "name": "Agile & Scrum",
+    "domain": "foundations",
+    "description": "Agile software delivery: Scrum roles and ceremonies, Kanban flow, user stories, estimation, and iterative planning.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "oop",
+    "name": "Object-Oriented Programming",
+    "domain": "foundations",
+    "description": "Designing with classes and objects: encapsulation, inheritance, polymorphism, interfaces, and composition.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "data-structures",
+    "name": "Data Structures",
+    "domain": "foundations",
+    "description": "Arrays, linked lists, stacks, queues, hash maps, trees, and graphs — how they work and when to use each.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "algorithms",
+    "name": "Algorithms",
+    "domain": "foundations",
+    "description": "Sorting, searching, recursion, graph traversal, dynamic programming, and reasoning about time and space complexity with Big-O.",
+    "levelBand": 2,
+    "prereqs": ["data-structures"]
+  },
+  {
+    "id": "python-advanced",
+    "name": "Advanced Python",
+    "domain": "foundations",
+    "description": "Idiomatic Python beyond the basics: comprehensions, generators, decorators, context managers, typing, and packaging.",
+    "levelBand": 2,
+    "prereqs": ["python", "oop"]
+  },
+  {
+    "id": "functional-programming",
+    "name": "Functional Programming",
+    "domain": "foundations",
+    "description": "Programming with pure functions, immutability, higher-order functions, map/filter/reduce, and function composition.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "regex",
+    "name": "Regular Expressions",
+    "domain": "foundations",
+    "description": "Pattern matching for text: regex syntax, capture groups, anchors, and using regular expressions for search, validation, and extraction.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "shell-scripting",
+    "name": "Shell Scripting",
+    "domain": "foundations",
+    "description": "Automating tasks with Bash: scripts, variables, conditionals, loops, and text-processing tools like grep, sed, and awk.",
+    "levelBand": 2,
+    "prereqs": ["command-line"]
+  },
+  {
+    "id": "unit-testing",
+    "name": "Unit Testing",
+    "domain": "foundations",
+    "description": "Writing automated tests: test cases, assertions, mocking, test-driven development, and organizing a test suite.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "clean-code",
+    "name": "Clean Code & Refactoring",
+    "domain": "foundations",
+    "description": "Writing readable, maintainable code: naming, small functions, code smells, and refactoring safely in small steps.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "git-collaboration",
+    "name": "Collaborative Git Workflows",
+    "domain": "foundations",
+    "description": "Working on a shared codebase: branching strategies, pull requests, code review, resolving conflicts, and keeping history clean.",
+    "levelBand": 2,
+    "prereqs": ["version-control-git"]
+  },
+  {
+    "id": "open-source-contribution",
+    "name": "Open-Source Contribution",
+    "domain": "foundations",
+    "description": "Contributing to open-source projects: finding good first issues, following contribution guides, and submitting pull requests upstream.",
+    "levelBand": 2,
+    "prereqs": ["git-collaboration"]
+  },
+  {
+    "id": "technical-writing",
+    "name": "Technical Writing",
+    "domain": "foundations",
+    "description": "Writing clear documentation: READMEs, design docs, API references, and explaining technical decisions to different audiences.",
+    "levelBand": 2,
+    "prereqs": []
+  },
+  {
+    "id": "design-patterns",
+    "name": "Design Patterns",
+    "domain": "foundations",
+    "description": "Classic reusable solutions to recurring design problems: factory, strategy, observer, adapter, and when not to use them.",
+    "levelBand": 3,
+    "prereqs": ["oop"]
+  },
+  {
+    "id": "concurrency",
+    "name": "Concurrency & Parallelism",
+    "domain": "foundations",
+    "description": "Threads, async/await, locks, race conditions, and designing programs that safely do more than one thing at a time.",
+    "levelBand": 3,
+    "prereqs": ["data-structures"]
+  },
+  {
+    "id": "html",
+    "name": "HTML",
+    "domain": "web-frontend",
+    "description": "Structuring web pages with semantic HTML: elements, forms, media, and document structure.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "domain": "web-frontend",
+    "description": "Styling web pages: selectors, the box model, flexbox, colors, typography, and layout fundamentals.",
+    "levelBand": 1,
+    "prereqs": ["html"]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "domain": "web-frontend",
+    "description": "The JavaScript language: syntax, functions, objects, arrays, DOM manipulation, and events in the browser.",
+    "levelBand": 1,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "responsive-design",
+    "name": "Responsive Design",
+    "domain": "web-frontend",
+    "description": "Making layouts work on any screen: media queries, fluid grids, mobile-first thinking, and responsive images.",
+    "levelBand": 1,
+    "prereqs": ["css"]
+  },
+  {
+    "id": "browser-devtools",
+    "name": "Browser DevTools",
+    "domain": "web-frontend",
+    "description": "Inspecting and debugging web pages with browser developer tools: the element inspector, console, network panel, and performance tab.",
+    "levelBand": 1,
+    "prereqs": ["html", "css"]
+  },
+  {
+    "id": "css-advanced",
+    "name": "Advanced CSS",
+    "domain": "web-frontend",
+    "description": "Modern CSS at depth: Grid, custom properties, container queries, transitions, and organizing CSS at scale.",
+    "levelBand": 2,
+    "prereqs": ["css"]
+  },
+  {
+    "id": "javascript-advanced",
+    "name": "Modern JavaScript",
+    "domain": "web-frontend",
+    "description": "JavaScript beyond the basics: closures, prototypes, ES modules, promises, async/await, and the event loop.",
+    "levelBand": 2,
+    "prereqs": ["javascript"]
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "domain": "web-frontend",
+    "description": "Typed JavaScript: type annotations, interfaces, generics, narrowing, and configuring the TypeScript compiler.",
+    "levelBand": 2,
+    "prereqs": ["javascript"]
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "domain": "web-frontend",
+    "description": "Building user interfaces with React: components, props, state, hooks, and rendering lists and forms.",
+    "levelBand": 2,
+    "prereqs": ["javascript-advanced", "css"]
+  },
+  {
+    "id": "vue",
+    "name": "Vue.js",
+    "domain": "web-frontend",
+    "description": "Building user interfaces with Vue: single-file components, reactivity, directives, and the composition API.",
+    "levelBand": 2,
+    "prereqs": ["javascript-advanced", "css"]
+  },
+  {
+    "id": "state-management",
+    "name": "Frontend State Management",
+    "domain": "web-frontend",
+    "description": "Managing application state in frontend apps: lifting state, context, and stores like Redux or Zustand, plus server-state caching.",
+    "levelBand": 2,
+    "prereqs": ["react"]
+  },
+  {
+    "id": "tailwind-css",
+    "name": "Tailwind CSS",
+    "domain": "web-frontend",
+    "description": "Utility-first styling with Tailwind CSS: composing designs from utility classes, responsive variants, and theming.",
+    "levelBand": 2,
+    "prereqs": ["css"]
+  },
+  {
+    "id": "frontend-build-tools",
+    "name": "Frontend Build Tools",
+    "domain": "web-frontend",
+    "description": "The frontend toolchain: npm and package.json, bundlers like Vite and webpack, transpiling, and environment configuration.",
+    "levelBand": 2,
+    "prereqs": ["javascript"]
+  },
+  {
+    "id": "api-integration",
+    "name": "Working with APIs",
+    "domain": "web-frontend",
+    "description": "Consuming APIs from the client: fetch, JSON, authentication headers, error handling, and loading states.",
+    "levelBand": 2,
+    "prereqs": ["javascript-advanced", "networking-basics"]
+  },
+  {
+    "id": "web-accessibility",
+    "name": "Web Accessibility",
+    "domain": "web-frontend",
+    "description": "Building interfaces everyone can use: semantic markup, ARIA, keyboard navigation, contrast, and testing with screen readers.",
+    "levelBand": 2,
+    "prereqs": ["html", "css"]
+  },
+  {
+    "id": "react-advanced",
+    "name": "Advanced React",
+    "domain": "web-frontend",
+    "description": "React at depth: performance optimization, custom hooks, suspense, server components, and common architecture patterns.",
+    "levelBand": 3,
+    "prereqs": ["react"]
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "domain": "web-frontend",
+    "description": "Full-stack React with Next.js: file-based routing, server-side rendering, route handlers, and deployment.",
+    "levelBand": 3,
+    "prereqs": ["react"]
+  },
+  {
+    "id": "frontend-testing",
+    "name": "Frontend Testing",
+    "domain": "web-frontend",
+    "description": "Testing UIs: component tests with Testing Library, end-to-end tests with Playwright or Cypress, and what to test at each layer.",
+    "levelBand": 3,
+    "prereqs": ["react", "unit-testing"]
+  },
+  {
+    "id": "web-performance",
+    "name": "Web Performance",
+    "domain": "web-frontend",
+    "description": "Making sites fast: Core Web Vitals, lazy loading, code splitting, image optimization, and profiling with Lighthouse.",
+    "levelBand": 3,
+    "prereqs": ["javascript-advanced", "browser-devtools"]
+  },
+  {
+    "id": "web-animations",
+    "name": "Web Animations & Motion",
+    "domain": "web-frontend",
+    "description": "Bringing interfaces to life: CSS transitions and keyframes, JavaScript animation libraries, springs, and motion design principles.",
+    "levelBand": 3,
+    "prereqs": ["css-advanced", "javascript-advanced"]
+  },
+  {
+    "id": "react-native",
+    "name": "React Native",
+    "domain": "web-frontend",
+    "description": "Building mobile apps with React Native: native components, navigation, styling, and shipping to iOS and Android.",
+    "levelBand": 3,
+    "prereqs": ["react"]
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "domain": "web-backend",
+    "description": "Server-side JavaScript with Node.js: the runtime, npm ecosystem, file and network I/O, and asynchronous patterns.",
+    "levelBand": 2,
+    "prereqs": ["javascript-advanced"]
+  },
+  {
+    "id": "express",
+    "name": "Express.js",
+    "domain": "web-backend",
+    "description": "Building web servers with Express: routing, middleware, request handling, and structuring a Node backend.",
+    "levelBand": 2,
+    "prereqs": ["nodejs"]
+  },
+  {
+    "id": "go",
+    "name": "Go",
+    "domain": "web-backend",
+    "description": "The Go language: syntax, structs and interfaces, goroutines and channels, and building fast networked services.",
+    "levelBand": 2,
+    "prereqs": ["programming-basics"]
+  },
+  {
+    "id": "django",
+    "name": "Django",
+    "domain": "web-backend",
+    "description": "Building web applications with Django: models and the ORM, views, templates, the admin, and Django REST Framework.",
+    "levelBand": 2,
+    "prereqs": ["python"]
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI",
+    "domain": "web-backend",
+    "description": "Building Python APIs with FastAPI: path operations, Pydantic models, dependency injection, async endpoints, and automatic docs.",
+    "levelBand": 2,
+    "prereqs": ["python"]
+  },
+  {
+    "id": "spring-boot",
+    "name": "Spring Boot",
+    "domain": "web-backend",
+    "description": "Building Java services with Spring Boot: dependency injection, REST controllers, Spring Data, and configuration.",
+    "levelBand": 2,
+    "prereqs": ["java", "oop"]
+  },
+  {
+    "id": "rest-api-design",
+    "name": "REST API Design",
+    "domain": "web-backend",
+    "description": "Designing HTTP APIs: resources and verbs, status codes, pagination, versioning, error shapes, and consistency conventions.",
+    "levelBand": 2,
+    "prereqs": ["networking-basics"]
+  },
+  {
+    "id": "orm-data-access",
+    "name": "ORMs & Data Access",
+    "domain": "web-backend",
+    "description": "Talking to databases from application code: ORMs and query builders, migrations, transactions, and the N+1 problem.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "authentication",
+    "name": "Authentication & Authorization",
+    "domain": "web-backend",
+    "description": "Securing application access: sessions, JWTs, OAuth 2.0 flows, password handling, and role-based authorization.",
+    "levelBand": 2,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "api-documentation",
+    "name": "API Documentation",
+    "domain": "web-backend",
+    "description": "Documenting APIs so others can use them: OpenAPI/Swagger specs, generated reference docs, and good example-driven guides.",
+    "levelBand": 2,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "api-testing",
+    "name": "API Testing",
+    "domain": "web-backend",
+    "description": "Testing HTTP APIs: exploratory testing with Postman or curl, automated integration tests, and contract testing.",
+    "levelBand": 2,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "web-servers",
+    "name": "Web Servers & Reverse Proxies",
+    "domain": "web-backend",
+    "description": "Serving traffic in production: nginx configuration, reverse proxying, TLS certificates, and load balancing basics.",
+    "levelBand": 2,
+    "prereqs": ["networking-basics", "command-line"]
+  },
+  {
+    "id": "graphql",
+    "name": "GraphQL",
+    "domain": "web-backend",
+    "description": "Query-language APIs with GraphQL: schemas, resolvers, queries and mutations, and when GraphQL beats REST.",
+    "levelBand": 3,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "websockets",
+    "name": "WebSockets & Realtime",
+    "domain": "web-backend",
+    "description": "Realtime communication: WebSockets, server-sent events, pub/sub patterns, and building live features like chat and presence.",
+    "levelBand": 3,
+    "prereqs": ["nodejs"]
+  },
+  {
+    "id": "caching",
+    "name": "Caching",
+    "domain": "web-backend",
+    "description": "Speeding up systems with caches: Redis, cache-aside and write-through patterns, TTLs, invalidation, and HTTP caching.",
+    "levelBand": 3,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "message-queues",
+    "name": "Message Queues",
+    "domain": "web-backend",
+    "description": "Decoupling services with queues: RabbitMQ and similar brokers, producers and consumers, acknowledgement, and retry strategies.",
+    "levelBand": 3,
+    "prereqs": ["rest-api-design"]
+  },
+  {
+    "id": "event-driven-architecture",
+    "name": "Event-Driven Architecture",
+    "domain": "web-backend",
+    "description": "Designing systems around events: event sourcing concepts, publish/subscribe topologies, idempotency, and eventual consistency.",
+    "levelBand": 3,
+    "prereqs": ["message-queues"]
+  },
+  {
+    "id": "microservices",
+    "name": "Microservices",
+    "domain": "web-backend",
+    "description": "Splitting systems into services: service boundaries, inter-service communication, API gateways, and the operational costs of distribution.",
+    "levelBand": 3,
+    "prereqs": ["rest-api-design", "docker"]
+  },
+  {
+    "id": "system-design",
+    "name": "System Design",
+    "domain": "web-backend",
+    "description": "Designing systems that scale: load balancing, replication, sharding, consistency trade-offs, and capacity estimation.",
+    "levelBand": 3,
+    "prereqs": ["rest-api-design", "data-modeling", "caching"]
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "domain": "data-engineering",
+    "description": "Querying relational data with SQL: SELECT, filtering, joins, grouping and aggregation, and modifying data.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "data-modeling",
+    "name": "Data Modeling",
+    "domain": "data-engineering",
+    "description": "Designing database schemas: entities and relationships, normalization, keys and constraints, and modeling for real query patterns.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "domain": "data-engineering",
+    "description": "Working with PostgreSQL: data types, indexes, views, JSON support, and administering a Postgres database.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL",
+    "domain": "data-engineering",
+    "description": "Working with MySQL: storage engines, indexing, users and permissions, and running MySQL-backed applications.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "nosql-databases",
+    "name": "NoSQL Databases",
+    "domain": "data-engineering",
+    "description": "Non-relational data stores: document databases like MongoDB, key-value stores, and choosing between NoSQL and relational models.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "etl-pipelines",
+    "name": "ETL & Data Pipelines",
+    "domain": "data-engineering",
+    "description": "Moving and transforming data: extract-transform-load patterns, batch versus streaming, scheduling, and pipeline reliability.",
+    "levelBand": 2,
+    "prereqs": ["sql", "python"]
+  },
+  {
+    "id": "big-data-fundamentals",
+    "name": "Big Data Fundamentals",
+    "domain": "data-engineering",
+    "description": "Working with data too big for one machine: distributed storage and compute, partitioning, and the modern data stack landscape.",
+    "levelBand": 2,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "advanced-sql",
+    "name": "Advanced SQL",
+    "domain": "data-engineering",
+    "description": "SQL at depth: window functions, common table expressions, subqueries, query plans, and analytical query patterns.",
+    "levelBand": 3,
+    "prereqs": ["sql"]
+  },
+  {
+    "id": "database-performance",
+    "name": "Database Performance",
+    "domain": "data-engineering",
+    "description": "Making databases fast: index design, query tuning, EXPLAIN plans, connection pooling, and locating bottlenecks.",
+    "levelBand": 3,
+    "prereqs": ["advanced-sql", "data-modeling"]
+  },
+  {
+    "id": "data-warehousing",
+    "name": "Data Warehousing",
+    "domain": "data-engineering",
+    "description": "Analytical data stores: star schemas, fact and dimension tables, slowly changing dimensions, and warehouse design.",
+    "levelBand": 3,
+    "prereqs": ["data-modeling", "etl-pipelines"]
+  },
+  {
+    "id": "data-lakes",
+    "name": "Data Lakes & Lakehouses",
+    "domain": "data-engineering",
+    "description": "Storing raw data at scale: object-storage lakes, file formats like Parquet, table formats like Delta and Iceberg, and lakehouse architecture.",
+    "levelBand": 3,
+    "prereqs": ["big-data-fundamentals"]
+  },
+  {
+    "id": "cloud-data-platforms",
+    "name": "Cloud Data Platforms",
+    "domain": "data-engineering",
+    "description": "Managed analytics platforms: BigQuery, Snowflake, and Redshift — loading data, writing analytical SQL, and controlling cost.",
+    "levelBand": 3,
+    "prereqs": ["data-warehousing", "cloud-fundamentals"]
+  },
+  {
+    "id": "apache-spark",
+    "name": "Apache Spark",
+    "domain": "data-engineering",
+    "description": "Distributed data processing with Spark: DataFrames, transformations and actions, Spark SQL, and PySpark jobs.",
+    "levelBand": 3,
+    "prereqs": ["python", "big-data-fundamentals"]
+  },
+  {
+    "id": "apache-kafka",
+    "name": "Apache Kafka",
+    "domain": "data-engineering",
+    "description": "Streaming data with Kafka: topics and partitions, producers and consumers, consumer groups, and stream processing basics.",
+    "levelBand": 3,
+    "prereqs": ["big-data-fundamentals"]
+  },
+  {
+    "id": "apache-airflow",
+    "name": "Apache Airflow",
+    "domain": "data-engineering",
+    "description": "Orchestrating data workflows with Airflow: DAGs, operators, scheduling, backfills, and monitoring pipeline runs.",
+    "levelBand": 3,
+    "prereqs": ["python", "etl-pipelines"]
+  },
+  {
+    "id": "dbt",
+    "name": "dbt",
+    "domain": "data-engineering",
+    "description": "Transforming data in the warehouse with dbt: models, tests, documentation, and analytics engineering workflow.",
+    "levelBand": 3,
+    "prereqs": ["advanced-sql", "data-warehousing"]
+  },
+  {
+    "id": "elasticsearch",
+    "name": "Elasticsearch & Search",
+    "domain": "data-engineering",
+    "description": "Full-text search and log analytics with Elasticsearch: indexing, queries and aggregations, relevance, and the ELK stack.",
+    "levelBand": 3,
+    "prereqs": ["nosql-databases"]
+  },
+  {
+    "id": "data-quality",
+    "name": "Data Quality & Governance",
+    "domain": "data-engineering",
+    "description": "Keeping data trustworthy: validation checks, freshness and completeness monitoring, lineage, and ownership practices.",
+    "levelBand": 3,
+    "prereqs": ["etl-pipelines"]
+  },
+  {
+    "id": "spreadsheets",
+    "name": "Spreadsheets",
+    "domain": "data-analysis",
+    "description": "Analyzing data in Excel or Google Sheets: formulas, lookups, pivot tables, and charts.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "statistics-fundamentals",
+    "name": "Statistics Fundamentals",
+    "domain": "data-analysis",
+    "description": "Descriptive statistics: distributions, mean and median, variance, correlation, and reading data honestly.",
+    "levelBand": 1,
+    "prereqs": []
+  },
+  {
+    "id": "probability",
+    "name": "Probability",
+    "domain": "data-analysis",
+    "description": "Probability theory for data work: random variables, common distributions, conditional probability, and Bayes' theorem.",
+    "levelBand": 2,
+    "prereqs": ["statistics-fundamentals"]
+  },
+  {
+    "id": "inferential-statistics",
+    "name": "Inferential Statistics",
+    "domain": "data-analysis",
+    "description": "Drawing conclusions from samples: hypothesis tests, p-values, confidence intervals, and regression basics.",
+    "levelBand": 2,
+    "prereqs": ["probability"]
+  },
+  {
+    "id": "python-data-analysis",
+    "name": "Python for Data Analysis",
+    "domain": "data-analysis",
+    "description": "Analyzing data with pandas and NumPy: DataFrames, filtering and grouping, joins, and reshaping datasets.",
+    "levelBand": 2,
+    "prereqs": ["python"]
+  },
+  {
+    "id": "r-programming",
+    "name": "R Programming",
+    "domain": "data-analysis",
+    "description": "Statistical computing with R: data frames, the tidyverse, ggplot2 visualization, and statistical modeling.",
+    "levelBand": 2,
+    "prereqs": ["statistics-fundamentals"]
+  },
+  {
+    "id": "data-cleaning",
+    "name": "Data Cleaning",
+    "domain": "data-analysis",
+    "description": "Preparing messy real-world data: missing values, outliers, type fixes, deduplication, and reproducible cleaning steps.",
+    "levelBand": 2,
+    "prereqs": ["python-data-analysis"]
+  },
+  {
+    "id": "exploratory-data-analysis",
+    "name": "Exploratory Data Analysis",
+    "domain": "data-analysis",
+    "description": "Getting to know a dataset: summary statistics, distribution plots, correlation analysis, and forming hypotheses from data.",
+    "levelBand": 2,
+    "prereqs": ["python-data-analysis", "statistics-fundamentals"]
+  },
+  {
+    "id": "data-visualization",
+    "name": "Data Visualization",
+    "domain": "data-analysis",
+    "description": "Communicating data visually: choosing chart types, matplotlib and seaborn, color and labeling, and avoiding misleading charts.",
+    "levelBand": 2,
+    "prereqs": ["python-data-analysis"]
+  },
+  {
+    "id": "tableau",
+    "name": "Tableau",
+    "domain": "data-analysis",
+    "description": "Building interactive dashboards in Tableau: connecting data, calculated fields, filters, and publishing workbooks.",
+    "levelBand": 2,
+    "prereqs": ["spreadsheets"]
+  },
+  {
+    "id": "power-bi",
+    "name": "Power BI",
+    "domain": "data-analysis",
+    "description": "Business intelligence with Power BI: data modeling, DAX measures, report design, and sharing dashboards.",
+    "levelBand": 2,
+    "prereqs": ["spreadsheets"]
+  },
+  {
+    "id": "data-storytelling",
+    "name": "Data Storytelling",
+    "domain": "data-analysis",
+    "description": "Turning analysis into decisions: structuring a narrative, presenting to stakeholders, and pairing visuals with clear takeaways.",
+    "levelBand": 2,
+    "prereqs": ["data-visualization"]
+  },
+  {
+    "id": "ab-testing",
+    "name": "A/B Testing & Experimentation",
+    "domain": "data-analysis",
+    "description": "Running controlled experiments: experiment design, sample size and power, significance testing, and common experimentation pitfalls.",
+    "levelBand": 3,
+    "prereqs": ["inferential-statistics"]
+  },
+  {
+    "id": "time-series-analysis",
+    "name": "Time Series Analysis",
+    "domain": "data-analysis",
+    "description": "Analyzing data over time: trend and seasonality, autocorrelation, forecasting models like ARIMA, and evaluating forecasts.",
+    "levelBand": 3,
+    "prereqs": ["inferential-statistics", "python-data-analysis"]
+  },
+  {
+    "id": "ml-fundamentals",
+    "name": "Machine Learning Fundamentals",
+    "domain": "machine-learning",
+    "description": "What machine learning is and how it works: the learning problem, training and test data, overfitting, and the main model families.",
+    "levelBand": 2,
+    "prereqs": ["python", "statistics-fundamentals"]
+  },
+  {
+    "id": "math-for-ml",
+    "name": "Math for Machine Learning",
+    "domain": "machine-learning",
+    "description": "The math behind ML: linear algebra with vectors and matrices, calculus and gradients, and optimization basics.",
+    "levelBand": 2,
+    "prereqs": []
+  },
+  {
+    "id": "neural-networks",
+    "name": "Neural Networks",
+    "domain": "machine-learning",
+    "description": "How neural networks learn: perceptrons, activation functions, backpropagation, and training with gradient descent.",
+    "levelBand": 2,
+    "prereqs": ["ml-fundamentals", "math-for-ml"]
+  },
+  {
+    "id": "supervised-learning",
+    "name": "Supervised Learning",
+    "domain": "machine-learning",
+    "description": "Learning from labeled data: linear and logistic regression, decision trees, ensembles like random forests and gradient boosting.",
+    "levelBand": 2,
+    "prereqs": ["ml-fundamentals"]
+  },
+  {
+    "id": "unsupervised-learning",
+    "name": "Unsupervised Learning",
+    "domain": "machine-learning",
+    "description": "Finding structure without labels: k-means and hierarchical clustering, PCA and dimensionality reduction, and anomaly detection.",
+    "levelBand": 2,
+    "prereqs": ["ml-fundamentals"]
+  },
+  {
+    "id": "scikit-learn",
+    "name": "scikit-learn",
+    "domain": "machine-learning",
+    "description": "Practical ML in Python with scikit-learn: estimators, pipelines, cross-validation, and hyperparameter search.",
+    "levelBand": 2,
+    "prereqs": ["supervised-learning", "python-data-analysis"]
+  },
+  {
+    "id": "feature-engineering",
+    "name": "Feature Engineering",
+    "domain": "machine-learning",
+    "description": "Turning raw data into model inputs: encoding categoricals, scaling, handling missing data, and creating informative features.",
+    "levelBand": 2,
+    "prereqs": ["python-data-analysis", "supervised-learning"]
+  },
+  {
+    "id": "model-evaluation",
+    "name": "Model Evaluation",
+    "domain": "machine-learning",
+    "description": "Judging models honestly: accuracy, precision and recall, ROC curves, cross-validation, and leakage traps.",
+    "levelBand": 2,
+    "prereqs": ["supervised-learning", "inferential-statistics"]
+  },
+  {
+    "id": "deep-learning",
+    "name": "Deep Learning",
+    "domain": "machine-learning",
+    "description": "Training deep neural networks: CNNs, RNNs, embeddings, regularization, transfer learning, and the transformer architecture.",
+    "levelBand": 3,
+    "prereqs": ["neural-networks"]
+  },
+  {
+    "id": "pytorch",
+    "name": "PyTorch",
+    "domain": "machine-learning",
+    "description": "Building models in PyTorch: tensors, autograd, the training loop, datasets and dataloaders, and GPU training.",
+    "levelBand": 3,
+    "prereqs": ["deep-learning"]
+  },
+  {
+    "id": "tensorflow",
+    "name": "TensorFlow & Keras",
+    "domain": "machine-learning",
+    "description": "Building models with TensorFlow and Keras: sequential and functional APIs, training callbacks, and saving and serving models.",
+    "levelBand": 3,
+    "prereqs": ["deep-learning"]
+  },
+  {
+    "id": "computer-vision",
+    "name": "Computer Vision",
+    "domain": "machine-learning",
+    "description": "Teaching machines to see: image classification, object detection, segmentation, and modern vision architectures.",
+    "levelBand": 3,
+    "prereqs": ["deep-learning"]
+  },
+  {
+    "id": "nlp",
+    "name": "Natural Language Processing",
+    "domain": "machine-learning",
+    "description": "Working with text: tokenization, word embeddings, text classification, sequence models, and transformer-based NLP.",
+    "levelBand": 3,
+    "prereqs": ["deep-learning"]
+  },
+  {
+    "id": "recommender-systems",
+    "name": "Recommender Systems",
+    "domain": "machine-learning",
+    "description": "Systems that suggest content: collaborative filtering, content-based methods, matrix factorization, and ranking metrics.",
+    "levelBand": 3,
+    "prereqs": ["supervised-learning"]
+  },
+  {
+    "id": "reinforcement-learning",
+    "name": "Reinforcement Learning",
+    "domain": "machine-learning",
+    "description": "Learning from interaction: Markov decision processes, Q-learning, policy gradients, and reward design.",
+    "levelBand": 3,
+    "prereqs": ["deep-learning"]
+  },
+  {
+    "id": "model-interpretability",
+    "name": "Model Interpretability",
+    "domain": "machine-learning",
+    "description": "Explaining model predictions: feature importance, SHAP and LIME, partial dependence, and communicating model behavior.",
+    "levelBand": 3,
+    "prereqs": ["model-evaluation"]
+  },
+  {
+    "id": "mlops",
+    "name": "MLOps",
+    "domain": "machine-learning",
+    "description": "Running ML in production: experiment tracking, model registries, automated retraining, monitoring, and drift detection.",
+    "levelBand": 3,
+    "prereqs": ["model-deployment", "ci-cd"]
+  },
+  {
+    "id": "model-deployment",
+    "name": "Model Deployment",
+    "domain": "machine-learning",
+    "description": "Serving models to users: packaging models as APIs, batch versus online inference, containerization, and latency budgets.",
+    "levelBand": 3,
+    "prereqs": ["scikit-learn", "docker"]
+  },
+  {
+    "id": "llm-fundamentals",
+    "name": "LLM Fundamentals",
+    "domain": "ai-engineering",
+    "description": "How large language models work: tokens, context windows, pretraining versus fine-tuning, sampling, and capabilities and limits.",
+    "levelBand": 2,
+    "prereqs": ["ml-fundamentals"]
+  },
+  {
+    "id": "prompt-engineering",
+    "name": "Prompt Engineering",
+    "domain": "ai-engineering",
+    "description": "Getting reliable output from LLMs: instruction design, few-shot examples, chain-of-thought, and structured output formats.",
+    "levelBand": 2,
+    "prereqs": ["llm-fundamentals"]
+  },
+  {
+    "id": "llm-apis",
+    "name": "Working with LLM APIs",
+    "domain": "ai-engineering",
+    "description": "Building on hosted LLMs: chat completions, streaming, tool and function calling, structured outputs, and managing cost and rate limits.",
+    "levelBand": 2,
+    "prereqs": ["prompt-engineering"]
+  },
+  {
+    "id": "responsible-ai",
+    "name": "Responsible AI",
+    "domain": "ai-engineering",
+    "description": "Building AI systems responsibly: bias and fairness, privacy, safety and misuse, transparency, and AI governance basics.",
+    "levelBand": 2,
+    "prereqs": ["ml-fundamentals"]
+  },
+  {
+    "id": "embeddings-vector-search",
+    "name": "Embeddings & Vector Search",
+    "domain": "ai-engineering",
+    "description": "Representing meaning as vectors: text embeddings, cosine similarity, semantic search, and chunking strategies.",
+    "levelBand": 3,
+    "prereqs": ["llm-fundamentals"]
+  },
+  {
+    "id": "vector-databases",
+    "name": "Vector Databases",
+    "domain": "ai-engineering",
+    "description": "Storing and querying embeddings at scale: approximate nearest neighbor indexes, pgvector, Pinecone-class stores, and hybrid search.",
+    "levelBand": 3,
+    "prereqs": ["embeddings-vector-search"]
+  },
+  {
+    "id": "rag",
+    "name": "Retrieval-Augmented Generation",
+    "domain": "ai-engineering",
+    "description": "Grounding LLMs in your data: retrieval pipelines, context construction, citation, and evaluating RAG quality.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis", "embeddings-vector-search"]
+  },
+  {
+    "id": "ai-agents",
+    "name": "AI Agents",
+    "domain": "ai-engineering",
+    "description": "LLMs that take actions: tool-use loops, planning, memory, multi-step workflows, and guardrails for autonomy.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis"]
+  },
+  {
+    "id": "fine-tuning",
+    "name": "Fine-Tuning LLMs",
+    "domain": "ai-engineering",
+    "description": "Adapting models to your task: supervised fine-tuning, LoRA and parameter-efficient methods, dataset curation, and when not to fine-tune.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis", "deep-learning"]
+  },
+  {
+    "id": "llm-evaluation",
+    "name": "LLM Evaluation",
+    "domain": "ai-engineering",
+    "description": "Measuring LLM application quality: eval datasets, LLM-as-judge, regression suites, and monitoring quality in production.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis"]
+  },
+  {
+    "id": "local-llms",
+    "name": "Running Local LLMs",
+    "domain": "ai-engineering",
+    "description": "Running open-weight models yourself: Ollama and llama.cpp, quantization, hardware trade-offs, and local inference servers.",
+    "levelBand": 3,
+    "prereqs": ["llm-fundamentals", "command-line"]
+  },
+  {
+    "id": "multimodal-ai",
+    "name": "Multimodal AI",
+    "domain": "ai-engineering",
+    "description": "Models beyond text: vision-language models, image generation, speech-to-text, and building multimodal applications.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis"]
+  },
+  {
+    "id": "ai-app-development",
+    "name": "AI Application Development",
+    "domain": "ai-engineering",
+    "description": "Shipping LLM-powered products: streaming UIs, latency and cost engineering, caching, fallbacks, and production reliability.",
+    "levelBand": 3,
+    "prereqs": ["llm-apis", "rest-api-design"]
+  },
+  {
+    "id": "cloud-fundamentals",
+    "name": "Cloud Fundamentals",
+    "domain": "cloud",
+    "description": "How cloud computing works: IaaS, PaaS and SaaS, regions and availability zones, virtual machines, and pay-as-you-go pricing.",
+    "levelBand": 1,
+    "prereqs": ["networking-basics"]
+  },
+  {
+    "id": "aws-fundamentals",
+    "name": "AWS Fundamentals",
+    "domain": "cloud",
+    "description": "Core Amazon Web Services: EC2, S3, IAM, VPC basics, and navigating the AWS console and CLI.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "azure-fundamentals",
+    "name": "Azure Fundamentals",
+    "domain": "cloud",
+    "description": "Core Microsoft Azure services: virtual machines, storage accounts, Entra ID, resource groups, and the Azure portal.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "gcp-fundamentals",
+    "name": "Google Cloud Fundamentals",
+    "domain": "cloud",
+    "description": "Core Google Cloud services: Compute Engine, Cloud Storage, IAM, projects, and the gcloud CLI.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "cloud-networking",
+    "name": "Cloud Networking",
+    "domain": "cloud",
+    "description": "Networking in the cloud: VPCs and subnets, security groups, DNS, load balancers, and private connectivity.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "cloud-storage",
+    "name": "Cloud Storage",
+    "domain": "cloud",
+    "description": "Cloud storage services: object storage like S3, block and file storage, storage classes, and lifecycle policies.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "cloud-databases",
+    "name": "Cloud Databases",
+    "domain": "cloud",
+    "description": "Managed databases in the cloud: RDS-class relational services, serverless databases, backups, and high availability.",
+    "levelBand": 2,
+    "prereqs": ["cloud-fundamentals", "sql"]
+  },
+  {
+    "id": "serverless",
+    "name": "Serverless Computing",
+    "domain": "cloud",
+    "description": "Running code without servers: AWS Lambda-style functions, API gateways, event triggers, and serverless design trade-offs.",
+    "levelBand": 3,
+    "prereqs": ["aws-fundamentals"]
+  },
+  {
+    "id": "cloud-security",
+    "name": "Cloud Security",
+    "domain": "cloud",
+    "description": "Securing cloud workloads: IAM policies and least privilege, the shared responsibility model, encryption, and audit logging.",
+    "levelBand": 3,
+    "prereqs": ["cloud-fundamentals", "security-fundamentals"]
+  },
+  {
+    "id": "cloud-architecture",
+    "name": "Cloud Architecture",
+    "domain": "cloud",
+    "description": "Designing cloud systems: well-architected principles, high availability, auto-scaling, multi-tier architectures, and disaster recovery.",
+    "levelBand": 3,
+    "prereqs": ["aws-fundamentals", "cloud-networking"]
+  },
+  {
+    "id": "cloud-cost-optimization",
+    "name": "Cloud Cost Optimization",
+    "domain": "cloud",
+    "description": "Controlling cloud spend: rightsizing, reserved and spot capacity, budgets and alerts, and FinOps practices.",
+    "levelBand": 3,
+    "prereqs": ["cloud-fundamentals"]
+  },
+  {
+    "id": "devops-fundamentals",
+    "name": "DevOps Fundamentals",
+    "domain": "devops",
+    "description": "The DevOps way of working: automating the path from commit to production, feedback loops, and dev–ops collaboration culture.",
+    "levelBand": 2,
+    "prereqs": ["version-control-git", "command-line"]
+  },
+  {
+    "id": "linux-administration",
+    "name": "Linux Administration",
+    "domain": "devops",
+    "description": "Running Linux servers: users and permissions, systemd services, networking configuration, logs, and troubleshooting.",
+    "levelBand": 2,
+    "prereqs": ["command-line"]
+  },
+  {
+    "id": "docker",
+    "name": "Docker & Containers",
+    "domain": "devops",
+    "description": "Containerizing applications: images and Dockerfiles, containers, volumes, networking, and Docker Compose.",
+    "levelBand": 2,
+    "prereqs": ["command-line"]
+  },
+  {
+    "id": "ci-cd",
+    "name": "CI/CD",
+    "domain": "devops",
+    "description": "Automating build, test, and deployment: pipelines with GitHub Actions-class tools, artifacts, environments, and safe release strategies.",
+    "levelBand": 2,
+    "prereqs": ["devops-fundamentals", "unit-testing"]
+  },
+  {
+    "id": "infrastructure-as-code",
+    "name": "Infrastructure as Code",
+    "domain": "devops",
+    "description": "Declaring infrastructure in code: Terraform providers and state, modules, plan/apply workflow, and drift management.",
+    "levelBand": 3,
+    "prereqs": ["cloud-fundamentals", "devops-fundamentals"]
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "domain": "devops",
+    "description": "Orchestrating containers with Kubernetes: pods, deployments, services, config and secrets, and debugging workloads.",
+    "levelBand": 3,
+    "prereqs": ["docker"]
+  },
+  {
+    "id": "configuration-management",
+    "name": "Configuration Management",
+    "domain": "devops",
+    "description": "Managing server configuration at scale with Ansible-class tools: playbooks, idempotency, and inventory management.",
+    "levelBand": 3,
+    "prereqs": ["linux-administration"]
+  },
+  {
+    "id": "monitoring-observability",
+    "name": "Monitoring & Observability",
+    "domain": "devops",
+    "description": "Knowing what production is doing: metrics with Prometheus and Grafana, structured logging, tracing, and alerting.",
+    "levelBand": 3,
+    "prereqs": ["devops-fundamentals"]
+  },
+  {
+    "id": "test-automation",
+    "name": "Test Automation",
+    "domain": "devops",
+    "description": "Automating quality checks: end-to-end suites with Selenium or Playwright, test strategy, flake management, and CI integration.",
+    "levelBand": 3,
+    "prereqs": ["unit-testing"]
+  },
+  {
+    "id": "gitops",
+    "name": "GitOps",
+    "domain": "devops",
+    "description": "Operating infrastructure through Git: declarative environments, ArgoCD-style reconciliation, and auditable deployments.",
+    "levelBand": 3,
+    "prereqs": ["kubernetes", "ci-cd"]
+  },
+  {
+    "id": "sre-fundamentals",
+    "name": "Site Reliability Engineering",
+    "domain": "devops",
+    "description": "Reliability as an engineering discipline: SLIs, SLOs and error budgets, incident management, and postmortem culture.",
+    "levelBand": 3,
+    "prereqs": ["monitoring-observability"]
+  },
+  {
+    "id": "security-fundamentals",
+    "name": "Security Fundamentals",
+    "domain": "security",
+    "description": "Core security concepts: the CIA triad, threat actors, attack surfaces, defense in depth, and basic security hygiene.",
+    "levelBand": 1,
+    "prereqs": ["networking-basics"]
+  },
+  {
+    "id": "web-security",
+    "name": "Web Application Security",
+    "domain": "security",
+    "description": "Securing web apps: the OWASP Top 10, injection, XSS, CSRF, security headers, and secure session handling.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals"]
+  },
+  {
+    "id": "network-security",
+    "name": "Network Security",
+    "domain": "security",
+    "description": "Defending networks: firewalls, VPNs, TLS, network segmentation, intrusion detection, and traffic analysis.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals"]
+  },
+  {
+    "id": "cryptography-basics",
+    "name": "Cryptography Basics",
+    "domain": "security",
+    "description": "Applied cryptography: symmetric and asymmetric encryption, hashing, digital signatures, and TLS in practice.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals"]
+  },
+  {
+    "id": "secure-coding",
+    "name": "Secure Coding",
+    "domain": "security",
+    "description": "Writing code attackers can't abuse: input validation, secrets handling, dependency risk, and secure defaults.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals", "programming-basics"]
+  },
+  {
+    "id": "identity-access-management",
+    "name": "Identity & Access Management",
+    "domain": "security",
+    "description": "Controlling who can do what: authentication factors, SSO and federation, role-based access, and least privilege.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals"]
+  },
+  {
+    "id": "compliance-privacy",
+    "name": "Compliance & Privacy",
+    "domain": "security",
+    "description": "Regulatory basics for technologists: GDPR-class privacy principles, data protection, audit requirements, and security frameworks.",
+    "levelBand": 2,
+    "prereqs": ["security-fundamentals"]
+  },
+  {
+    "id": "threat-modeling",
+    "name": "Threat Modeling",
+    "domain": "security",
+    "description": "Thinking like an attacker before building: identifying assets, enumerating threats with STRIDE-class methods, and prioritizing mitigations.",
+    "levelBand": 3,
+    "prereqs": ["web-security"]
+  },
+  {
+    "id": "ethical-hacking-basics",
+    "name": "Ethical Hacking Basics",
+    "domain": "security",
+    "description": "Offensive security foundations: reconnaissance, vulnerability scanning, exploitation basics in lab environments, and responsible disclosure.",
+    "levelBand": 3,
+    "prereqs": ["web-security", "network-security"]
+  },
+  {
+    "id": "security-operations",
+    "name": "Security Operations",
+    "domain": "security",
+    "description": "Defending in real time: SOC workflows, SIEM tools, log analysis, threat intelligence, and alert triage.",
+    "levelBand": 3,
+    "prereqs": ["network-security", "linux-administration"]
+  },
+  {
+    "id": "incident-response",
+    "name": "Incident Response",
+    "domain": "security",
+    "description": "Handling security incidents: preparation, detection, containment, eradication, recovery, and lessons-learned reviews.",
+    "levelBand": 3,
+    "prereqs": ["security-operations"]
+  },
+  {
+    "id": "digital-forensics",
+    "name": "Digital Forensics",
+    "domain": "security",
+    "description": "Investigating after an incident: evidence preservation, disk and memory analysis, timelines, and chain of custody.",
+    "levelBand": 3,
+    "prereqs": ["security-operations"]
+  }
+]

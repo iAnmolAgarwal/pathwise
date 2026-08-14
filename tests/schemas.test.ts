@@ -35,7 +35,7 @@ describe("SkillSchema", () => {
       SkillSchema.safeParse({
         id: "react",
         name: "React",
-        domain: "web-dev",
+        domain: "web-frontend",
         description: "Component-based UI library for the web.",
         levelBand: 2,
         prereqs: ["javascript"],
@@ -48,7 +48,7 @@ describe("SkillSchema", () => {
       SkillSchema.safeParse({
         id: "react",
         name: "React",
-        domain: "web-dev",
+        domain: "web-frontend",
         description: "x",
         levelBand: 4,
         prereqs: [],
