@@ -152,18 +152,18 @@
   {
     "id": "langchain-tutorials",
     "kind": "course",
-    "title": "LangChain Tutorials",
+    "title": "LangChain Documentation (Python)",
     "provider": "LangChain (official docs)",
-    "url": "https://python.langchain.com/docs/tutorials/",
-    "description": "Official LangChain tutorials: chatbots, retrieval-augmented generation, agents, and extraction pipelines.",
+    "url": "https://docs.langchain.com/oss/python/langchain/overview",
+    "description": "Official LangChain docs: the create_agent harness, quickstart, and guides for building agents and RAG pipelines.",
     "durationHours": 10,
     "format": "text",
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "rag", "level": 2 },
-      { "skillId": "ai-agents", "level": 1 }
+      { "skillId": "ai-agents", "level": 2 },
+      { "skillId": "rag", "level": 1 }
     ],
     "skillsRequired": [
       { "skillId": "python", "level": 2 },
@@ -344,7 +344,7 @@
     "kind": "course",
     "title": "Google Cloud: Introduction to Generative AI Learning Path",
     "provider": "Google Cloud",
-    "url": "https://www.cloudskillsboost.google/paths/118",
+    "url": "https://www.skills.google/paths/118",
     "description": "Beginner path introducing generative AI, large language models, and responsible AI principles.",
     "durationHours": 10,
     "format": "video",

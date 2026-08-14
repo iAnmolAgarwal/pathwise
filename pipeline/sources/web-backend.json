@@ -42,7 +42,7 @@
     "provider": "freeCodeCamp",
     "url": "https://www.freecodecamp.org/learn/back-end-development-and-apis/",
     "description": "freeCodeCamp certification on Node, Express, and MongoDB: build microservice APIs and pass automated tests.",
-    "durationHours": 40,
+    "durationHours": 60,
     "format": "interactive",
     "cost": "free",
     "difficulty": 2,
@@ -82,7 +82,7 @@
     "title": "Django Official Tutorial (Writing your first Django app)",
     "provider": "Django Project (official docs)",
     "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
-    "description": "The official seven-part Django tutorial: models, the ORM, views, templates, forms, and the admin site.",
+    "description": "The official eight-part Django tutorial: models, the ORM, views, templates, forms, and the admin site.",
     "durationHours": 10,
     "format": "text",
     "cost": "free",
@@ -116,7 +116,7 @@
   {
     "id": "udemy-darby-spring",
     "kind": "course",
-    "title": "Spring Boot 3, Spring 6 & Hibernate for Beginners",
+    "title": "Spring Boot 4, Spring 7 & Hibernate for Beginners",
     "provider": "Udemy (Chad Darby)",
     "url": "https://www.udemy.com/course/spring-hibernate-tutorial/",
     "description": "Best-selling Spring Boot course: REST controllers, Spring Data JPA, Hibernate, security, and real CRUD apps.",
@@ -219,10 +219,10 @@
   {
     "id": "copenhagen-book",
     "kind": "course",
-    "title": "The Copenhagen Book",
-    "provider": "thecopenhagenbook.com",
-    "url": "https://thecopenhagenbook.com/",
-    "description": "Free practical guide to authentication for the web: sessions, tokens, OAuth, passkeys, and password security.",
+    "title": "Pilcrow's Auth Book",
+    "provider": "auth.pilcrowonpaper.com",
+    "url": "https://auth.pilcrowonpaper.com/",
+    "description": "Free practical guide to authentication for the web, successor to The Copenhagen Book: sessions, tokens, OAuth, passkeys, and password security.",
     "durationHours": 6,
     "format": "text",
     "cost": "free",
@@ -366,7 +366,7 @@
     "qualityPrior": 0.8,
     "skillsTaught": [
       { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "data-structures", "level": 2 }
+      { "skillId": "system-design", "level": 1 }
     ],
     "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
   },

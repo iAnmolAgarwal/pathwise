@@ -295,10 +295,10 @@
   {
     "id": "hf-nlp-course",
     "kind": "course",
-    "title": "Hugging Face NLP Course",
+    "title": "Hugging Face LLM Course",
     "provider": "Hugging Face",
-    "url": "https://huggingface.co/learn/nlp-course",
-    "description": "Free course on transformers for NLP: tokenizers, fine-tuning pretrained models, and sharing them on the Hub.",
+    "url": "https://huggingface.co/learn/llm-course",
+    "description": "Free course on transformers and large language models: tokenizers, fine-tuning pretrained models, and sharing them on the Hub.",
     "durationHours": 30,
     "format": "text",
     "cost": "free",
@@ -306,7 +306,8 @@
     "qualityPrior": 0.85,
     "skillsTaught": [
       { "skillId": "nlp", "level": 3 },
-      { "skillId": "fine-tuning", "level": 1 }
+      { "skillId": "fine-tuning", "level": 1 },
+      { "skillId": "llm-fundamentals", "level": 1 }
     ],
     "skillsRequired": [
       { "skillId": "python", "level": 2 },

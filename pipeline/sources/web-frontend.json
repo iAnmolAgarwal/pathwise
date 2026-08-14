@@ -24,7 +24,7 @@
     "kind": "course",
     "title": "JavaScript Algorithms and Data Structures Certification",
     "provider": "freeCodeCamp",
-    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/",
+    "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
     "description": "Interactive JavaScript certification covering the language, ES6, regular expressions, and algorithmic thinking.",
     "durationHours": 60,
     "format": "interactive",
@@ -489,7 +489,7 @@
     "difficulty": 1,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "html", "level": 2 },
+      { "skillId": "html", "level": 1 },
       { "skillId": "version-control-git", "level": 1 }
     ],
     "skillsRequired": []
@@ -499,7 +499,7 @@
     "kind": "assessment",
     "title": "Flexbox Froggy",
     "provider": "Codepip",
-    "url": "https://flexboxfroggy.com/",
+    "url": "https://codepip.com/games/flexbox-froggy/",
     "description": "A game that tests your CSS flexbox skills level by level as you guide frogs to their lily pads.",
     "durationHours": 1,
     "format": "interactive",

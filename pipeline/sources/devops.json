@@ -283,7 +283,7 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "devops-fundamentals", "level": 2 }],
+    "skillsTaught": [{ "skillId": "devops-fundamentals", "level": 1 }],
     "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
   },
   {

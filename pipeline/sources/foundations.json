@@ -13,6 +13,8 @@
     "qualityPrior": 0.95,
     "skillsTaught": [
       { "skillId": "programming-basics", "level": 2 },
+      { "skillId": "python", "level": 1 },
+      { "skillId": "sql", "level": 1 },
       { "skillId": "data-structures", "level": 1 },
       { "skillId": "algorithms", "level": 1 }
     ],
@@ -32,7 +34,8 @@
     "qualityPrior": 0.9,
     "skillsTaught": [
       { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "python", "level": 2 }
+      { "skillId": "python", "level": 2 },
+      { "skillId": "sql", "level": 1 }
     ],
     "skillsRequired": []
   },
@@ -109,7 +112,7 @@
     "title": "Java Programming MOOC",
     "provider": "University of Helsinki",
     "url": "https://java-programming.mooc.fi/",
-    "description": "Helsinki's rigorous free Java course with hundreds of auto-graded exercises, from first steps to object-oriented design.",
+    "description": "Helsinki's rigorous free Java course with hundreds of auto-graded exercises, from first steps to object-oriented design. Now in legacy mode (content frozen) but still free and fully usable.",
     "durationHours": 80,
     "format": "interactive",
     "cost": "free",
@@ -163,8 +166,8 @@
     "id": "linux-journey",
     "kind": "course",
     "title": "Linux Journey",
-    "provider": "linuxjourney.com",
-    "url": "https://linuxjourney.com/",
+    "provider": "Linux Journey (hosted by LabEx)",
+    "url": "https://labex.io/linuxjourney",
     "description": "Bite-sized interactive lessons taking you from zero to comfortable on the Linux command line.",
     "durationHours": 12,
     "format": "interactive",
@@ -369,17 +372,47 @@
   {
     "id": "practical-networking",
     "kind": "course",
-    "title": "Networking Fundamentals",
+    "title": "Networking Fundamentals (Module 1)",
     "provider": "Practical Networking",
-    "url": "https://www.practicalnetworking.net/",
-    "description": "Clear visual explanations of how data moves through networks: IP addressing, subnets, ARP, DNS, and TCP.",
-    "durationHours": 15,
+    "url": "https://www.practicalnetworking.net/series/networking-fundamentals/",
+    "description": "Free video module explaining how data moves through a network: network devices, the OSI model, hosts and IP addresses, switches, and routers.",
+    "durationHours": 3,
     "format": "video",
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "networking-basics", "level": 1 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "cisco-networking-basics",
+    "kind": "course",
+    "title": "Networking Basics",
+    "provider": "Cisco Networking Academy",
+    "url": "https://www.netacad.com/courses/networking-basics",
+    "description": "Cisco's free self-paced networking course: IP addressing, protocols, DNS, TCP, and how devices communicate across networks.",
+    "durationHours": 22,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
     "skillsTaught": [{ "skillId": "networking-basics", "level": 2 }],
     "skillsRequired": []
+  },
+  {
+    "id": "mostly-adequate-guide",
+    "kind": "course",
+    "title": "Professor Frisby's Mostly Adequate Guide to Functional Programming",
+    "provider": "GitHub (MostlyAdequate)",
+    "url": "https://github.com/MostlyAdequate/mostly-adequate-guide",
+    "description": "Free book on functional programming in JavaScript: pure functions, currying, composition, and functors.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "functional-programming", "level": 2 }],
+    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
   },
   {
     "id": "build-your-own-x",
