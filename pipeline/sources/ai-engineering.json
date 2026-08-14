@@ -1,0 +1,432 @@
+[
+  {
+    "id": "dlai-prompt-eng",
+    "kind": "course",
+    "title": "ChatGPT Prompt Engineering for Developers",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+    "description": "Short course on prompting LLMs from code: summarizing, inferring, transforming, and building a chatbot.",
+    "durationHours": 2,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "prompt-engineering", "level": 2 },
+      { "skillId": "llm-apis", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+  },
+  {
+    "id": "prompting-guide",
+    "kind": "course",
+    "title": "Prompt Engineering Guide",
+    "provider": "promptingguide.ai (DAIR.AI)",
+    "url": "https://www.promptingguide.ai/",
+    "description": "Comprehensive open guide to prompting techniques: few-shot, chain-of-thought, RAG prompting, and evaluation.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "prompt-engineering", "level": 3 },
+      { "skillId": "llm-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "anthropic-courses",
+    "kind": "course",
+    "title": "Anthropic Courses",
+    "provider": "GitHub (Anthropic)",
+    "url": "https://github.com/anthropics/courses",
+    "description": "Anthropic's official notebook courses: API fundamentals, an interactive prompt engineering tutorial, tool use, and evaluations.",
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "prompt-engineering", "level": 3 },
+      { "skillId": "llm-apis", "level": 2 },
+      { "skillId": "ai-agents", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+  },
+  {
+    "id": "anthropic-docs",
+    "kind": "course",
+    "title": "Claude Developer Documentation",
+    "provider": "Anthropic",
+    "url": "https://docs.anthropic.com/",
+    "description": "Official developer docs for building with Claude: messages, tool use, structured outputs, and prompt caching.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "llm-apis", "level": 2 },
+      { "skillId": "prompt-engineering", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+  },
+  {
+    "id": "karpathy-zero-hero",
+    "kind": "course",
+    "title": "Neural Networks: Zero to Hero",
+    "provider": "Andrej Karpathy",
+    "url": "https://karpathy.ai/zero-to-hero.html",
+    "description": "Build neural networks and a GPT from scratch in code, from backpropagation up to a working language model.",
+    "durationHours": 25,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "llm-fundamentals", "level": 3 },
+      { "skillId": "neural-networks", "level": 2 },
+      { "skillId": "deep-learning", "level": 2 },
+      { "skillId": "pytorch", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "math-for-ml", "level": 1 }
+    ]
+  },
+  {
+    "id": "karpathy-intro-llms",
+    "kind": "course",
+    "title": "Intro to Large Language Models",
+    "provider": "YouTube (Andrej Karpathy)",
+    "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+    "description": "One-hour general-audience talk on what LLMs are, how they are trained, and where they are heading.",
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "llm-fundamentals", "level": 1 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "gen-ai-for-everyone",
+    "kind": "course",
+    "title": "Generative AI for Everyone",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/learn/generative-ai-for-everyone",
+    "description": "Andrew Ng's non-technical introduction to generative AI: capabilities, use cases, and responsible adoption.",
+    "durationHours": 6,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "llm-fundamentals", "level": 1 },
+      { "skillId": "responsible-ai", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "hf-agents-course",
+    "kind": "course",
+    "title": "Hugging Face Agents Course",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/agents-course",
+    "description": "Free course on building AI agents: tool use, planning, agent frameworks, and a final graded project.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "ai-agents", "level": 2 },
+      { "skillId": "llm-apis", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "llm-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "langchain-tutorials",
+    "kind": "course",
+    "title": "LangChain Tutorials",
+    "provider": "LangChain (official docs)",
+    "url": "https://python.langchain.com/docs/tutorials/",
+    "description": "Official LangChain tutorials: chatbots, retrieval-augmented generation, agents, and extraction pipelines.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "rag", "level": 2 },
+      { "skillId": "ai-agents", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "llm-apis", "level": 1 }
+    ]
+  },
+  {
+    "id": "pinecone-learn",
+    "kind": "course",
+    "title": "Pinecone Learning Center",
+    "provider": "Pinecone",
+    "url": "https://www.pinecone.io/learn/",
+    "description": "In-depth guides on embeddings, vector search, and retrieval architecture from a leading vector database team.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "embeddings-vector-search", "level": 3 },
+      { "skillId": "vector-databases", "level": 2 },
+      { "skillId": "rag", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "llm-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "fsdl-llm-bootcamp",
+    "kind": "course",
+    "title": "Full Stack LLM Bootcamp",
+    "provider": "Full Stack Deep Learning",
+    "url": "https://fullstackdeeplearning.com/llm-bootcamp/",
+    "description": "Free lecture series on shipping LLM applications: prompting, augmentation, UX, and production concerns.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "ai-app-development", "level": 2 },
+      { "skillId": "llm-apis", "level": 2 },
+      { "skillId": "llm-evaluation", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "llm-apis", "level": 1 },
+      { "skillId": "rest-api-design", "level": 1 }
+    ]
+  },
+  {
+    "id": "hamel-evals",
+    "kind": "course",
+    "title": "Your AI Product Needs Evals",
+    "provider": "Hamel Husain (blog)",
+    "url": "https://hamel.dev/blog/posts/evals/",
+    "description": "Widely-shared practical guide to evaluating LLM applications: unit tests, LLM-as-judge, and human review loops.",
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "llm-evaluation", "level": 2 }],
+    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+  },
+  {
+    "id": "ollama-github",
+    "kind": "course",
+    "title": "Ollama",
+    "provider": "GitHub (Ollama)",
+    "url": "https://github.com/ollama/ollama",
+    "description": "Run open-weight language models locally: install, pull models, and serve them behind a local API.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "local-llms", "level": 2 }],
+    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+  },
+  {
+    "id": "openai-cookbook",
+    "kind": "course",
+    "title": "OpenAI Cookbook",
+    "provider": "OpenAI",
+    "url": "https://cookbook.openai.com/",
+    "description": "Runnable example notebooks for LLM development: API patterns, retrieval, function calling, and vision.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "llm-apis", "level": 2 },
+      { "skillId": "rag", "level": 1 },
+      { "skillId": "multimodal-ai", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+  },
+  {
+    "id": "dlai-short-courses",
+    "kind": "course",
+    "title": "DeepLearning.AI Short Courses",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/short-courses/",
+    "description": "A library of free one-hour courses with industry partners on RAG, agents, fine-tuning, evals, and multimodal AI.",
+    "durationHours": 30,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "rag", "level": 2 },
+      { "skillId": "ai-agents", "level": 2 },
+      { "skillId": "fine-tuning", "level": 1 },
+      { "skillId": "multimodal-ai", "level": 1 },
+      { "skillId": "llm-evaluation", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "llm-apis", "level": 1 }
+    ]
+  },
+  {
+    "id": "elements-of-ai",
+    "kind": "course",
+    "title": "Elements of AI",
+    "provider": "University of Helsinki & MinnaLearn",
+    "url": "https://www.elementsofai.com/",
+    "description": "Famous free introduction to what AI is and isn't, its societal implications, and basic ML concepts — no coding required.",
+    "durationHours": 30,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "responsible-ai", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "hf-fine-tune",
+    "kind": "course",
+    "title": "Fine-tune a Pretrained Model (Hugging Face docs)",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/docs/transformers/training",
+    "description": "Official guide to fine-tuning transformer models with the Trainer API and native PyTorch.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "fine-tuning", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "deep-learning", "level": 1 },
+      { "skillId": "python", "level": 2 }
+    ]
+  },
+  {
+    "id": "cohere-llmu",
+    "kind": "course",
+    "title": "Cohere LLM University",
+    "provider": "Cohere",
+    "url": "https://cohere.com/llmu",
+    "description": "Structured curriculum on large language models: how they work, embeddings, semantic search, and RAG.",
+    "durationHours": 15,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "llm-fundamentals", "level": 2 },
+      { "skillId": "embeddings-vector-search", "level": 1 },
+      { "skillId": "rag", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+  },
+  {
+    "id": "gcsb-genai",
+    "kind": "course",
+    "title": "Google Cloud: Introduction to Generative AI Learning Path",
+    "provider": "Google Cloud",
+    "url": "https://www.cloudskillsboost.google/paths/118",
+    "description": "Beginner path introducing generative AI, large language models, and responsible AI principles.",
+    "durationHours": 10,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "llm-fundamentals", "level": 1 },
+      { "skillId": "responsible-ai", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "langchain-rag-tutorial",
+    "kind": "project",
+    "title": "Build a RAG App (LangChain tutorial)",
+    "provider": "LangChain (official docs)",
+    "url": "https://python.langchain.com/docs/tutorials/rag/",
+    "description": "Guided build of a retrieval-augmented generation app over your own documents: chunking, embedding, retrieval, answering.",
+    "durationHours": 6,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "rag", "level": 2 },
+      { "skillId": "embeddings-vector-search", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "llm-apis", "level": 2 }]
+  },
+  {
+    "id": "anthropic-quickstarts",
+    "kind": "project",
+    "title": "Anthropic Quickstarts",
+    "provider": "GitHub (Anthropic)",
+    "url": "https://github.com/anthropics/anthropic-quickstarts",
+    "description": "Deployable starter projects built on Claude — clone one, understand it, and extend it into your own AI product.",
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "ai-app-development", "level": 2 },
+      { "skillId": "llm-apis", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+  },
+  {
+    "id": "open-webui",
+    "kind": "project",
+    "title": "Self-host a Chat UI with Open WebUI",
+    "provider": "GitHub (Open WebUI)",
+    "url": "https://github.com/open-webui/open-webui",
+    "description": "Deploy a full-featured local chat interface over Ollama models and learn the moving parts of an LLM stack.",
+    "durationHours": 5,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "local-llms", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "command-line", "level": 2 },
+      { "skillId": "docker", "level": 1 }
+    ]
+  },
+  {
+    "id": "promptfoo",
+    "kind": "assessment",
+    "title": "Evaluate Your Prompts with promptfoo",
+    "provider": "promptfoo",
+    "url": "https://www.promptfoo.dev/",
+    "description": "Put your prompts to the test: define eval cases and measure output quality systematically across models.",
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "prompt-engineering", "level": 2 },
+      { "skillId": "llm-evaluation", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+  }
+]

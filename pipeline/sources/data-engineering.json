@@ -1,0 +1,427 @@
+[
+  {
+    "id": "sqlbolt",
+    "kind": "course",
+    "title": "SQLBolt",
+    "provider": "sqlbolt.com",
+    "url": "https://sqlbolt.com/",
+    "description": "Interactive SQL lessons and exercises: SELECT queries, filtering, joins, and aggregation, run right in the browser.",
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "sql", "level": 2 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "mode-sql",
+    "kind": "course",
+    "title": "Mode SQL Tutorial",
+    "provider": "Mode Analytics",
+    "url": "https://mode.com/sql-tutorial/",
+    "description": "Analytics-focused SQL tutorial from basics to window functions and performance tuning, with real datasets.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "advanced-sql", "level": 2 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "udemy-sql-bootcamp",
+    "kind": "course",
+    "title": "The Complete SQL Bootcamp",
+    "provider": "Udemy (Jose Portilla)",
+    "url": "https://www.udemy.com/course/the-complete-sql-bootcamp/",
+    "description": "Best-selling PostgreSQL-based SQL course: queries, joins, aggregation, and database basics for analysis.",
+    "durationHours": 9,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "postgresql", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "postgresqltutorial",
+    "kind": "course",
+    "title": "PostgreSQL Tutorial",
+    "provider": "postgresqltutorial.com (Neon)",
+    "url": "https://www.postgresqltutorial.com/",
+    "description": "Comprehensive PostgreSQL tutorial covering queries, indexes, views, functions, and administration.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "postgresql", "level": 2 },
+      { "skillId": "advanced-sql", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+  },
+  {
+    "id": "planetscale-mysql",
+    "kind": "course",
+    "title": "MySQL for Developers",
+    "provider": "PlanetScale",
+    "url": "https://planetscale.com/learn/courses/mysql-for-developers",
+    "description": "Free video course on MySQL for application developers: schema design, indexes, and writing fast queries.",
+    "durationHours": 10,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "mysql", "level": 2 },
+      { "skillId": "database-performance", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+  },
+  {
+    "id": "mongodb-university",
+    "kind": "course",
+    "title": "MongoDB University",
+    "provider": "MongoDB",
+    "url": "https://learn.mongodb.com/",
+    "description": "Official free MongoDB courses: document modeling, CRUD, aggregation pipelines, and indexes, with labs.",
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "nosql-databases", "level": 2 }],
+    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+  },
+  {
+    "id": "ibm-data-engineering",
+    "kind": "course",
+    "title": "IBM Data Engineering Professional Certificate",
+    "provider": "Coursera (IBM)",
+    "url": "https://www.coursera.org/professional-certificates/ibm-data-engineer",
+    "description": "Multi-course certificate covering Python, SQL, ETL, warehousing, and an introduction to Airflow, Kafka, and Spark.",
+    "durationHours": 150,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "etl-pipelines", "level": 2 },
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "python", "level": 2 },
+      { "skillId": "data-warehousing", "level": 2 },
+      { "skillId": "big-data-fundamentals", "level": 2 },
+      { "skillId": "apache-airflow", "level": 1 },
+      { "skillId": "apache-kafka", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "de-zoomcamp",
+    "kind": "course",
+    "title": "Data Engineering Zoomcamp",
+    "provider": "DataTalksClub",
+    "url": "https://github.com/DataTalksClub/data-engineering-zoomcamp",
+    "description": "Free nine-week bootcamp building a full pipeline: Docker, Terraform, warehouses, Spark, Kafka, and dbt on real data.",
+    "durationHours": 120,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "etl-pipelines", "level": 3 },
+      { "skillId": "apache-spark", "level": 2 },
+      { "skillId": "apache-kafka", "level": 2 },
+      { "skillId": "dbt", "level": 2 },
+      { "skillId": "cloud-data-platforms", "level": 2 },
+      { "skillId": "big-data-fundamentals", "level": 2 },
+      { "skillId": "docker", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "sql", "level": 2 }
+    ]
+  },
+  {
+    "id": "fcc-database-design",
+    "kind": "course",
+    "title": "Database Design Full Course",
+    "provider": "YouTube (freeCodeCamp)",
+    "url": "https://www.youtube.com/watch?v=ztHopE5Wnpc",
+    "description": "Full video course on database design: entities, relationships, keys, and normalization from first principles.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "data-modeling", "level": 2 }],
+    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+  },
+  {
+    "id": "spark-quickstart",
+    "kind": "course",
+    "title": "Apache Spark Quick Start (official docs)",
+    "provider": "Apache Spark",
+    "url": "https://spark.apache.org/docs/latest/quick-start.html",
+    "description": "The official Spark quick start: DataFrames, transformations, and running your first distributed jobs.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "apache-spark", "level": 1 }],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "big-data-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "confluent-courses",
+    "kind": "course",
+    "title": "Confluent Developer Kafka Courses",
+    "provider": "Confluent",
+    "url": "https://developer.confluent.io/courses/",
+    "description": "Free video courses on Apache Kafka from its creators: topics, producers and consumers, and stream processing.",
+    "durationHours": 15,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "apache-kafka", "level": 2 }],
+    "skillsRequired": [{ "skillId": "big-data-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "airflow-tutorial",
+    "kind": "course",
+    "title": "Apache Airflow Tutorial (official docs)",
+    "provider": "Apache Airflow",
+    "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/",
+    "description": "Official Airflow tutorials: writing your first DAG, operators, scheduling, and pipeline best practices.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "apache-airflow", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "etl-pipelines", "level": 1 }
+    ]
+  },
+  {
+    "id": "dbt-learn",
+    "kind": "course",
+    "title": "dbt Learn",
+    "provider": "dbt Labs",
+    "url": "https://learn.getdbt.com/",
+    "description": "Official free dbt courses: the fundamentals of transforming warehouse data with models, tests, and docs.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "dbt", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "advanced-sql", "level": 1 },
+      { "skillId": "data-warehousing", "level": 1 }
+    ]
+  },
+  {
+    "id": "gcsb-data-engineer",
+    "kind": "course",
+    "title": "Google Cloud Skills Boost: Data Engineer Learning Path",
+    "provider": "Google Cloud",
+    "url": "https://www.cloudskillsboost.google/paths/16",
+    "description": "Google Cloud's hands-on path for data engineers: BigQuery, Dataflow, and building batch and streaming pipelines.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "cloud-data-platforms", "level": 2 },
+      { "skillId": "etl-pipelines", "level": 2 },
+      { "skillId": "data-warehousing", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "python", "level": 1 }
+    ]
+  },
+  {
+    "id": "elastic-free-training",
+    "kind": "course",
+    "title": "Elastic Free Training",
+    "provider": "Elastic",
+    "url": "https://www.elastic.co/training/free",
+    "description": "Official free Elasticsearch courses: indexing, search queries, aggregations, and the Elastic Stack.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "elasticsearch", "level": 2 }],
+    "skillsRequired": [{ "skillId": "nosql-databases", "level": 1 }]
+  },
+  {
+    "id": "gx-docs",
+    "kind": "course",
+    "title": "Great Expectations Documentation",
+    "provider": "Great Expectations",
+    "url": "https://docs.greatexpectations.io/",
+    "description": "Official docs for the leading data-quality framework: expectations, validation, and data docs in pipelines.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "data-quality", "level": 2 }],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "etl-pipelines", "level": 1 }
+    ]
+  },
+  {
+    "id": "jaffle-shop",
+    "kind": "project",
+    "title": "dbt Jaffle Shop Project",
+    "provider": "GitHub (dbt Labs)",
+    "url": "https://github.com/dbt-labs/jaffle_shop",
+    "description": "The canonical dbt starter project: model a small business's raw data into clean, tested marts.",
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "dbt", "level": 2 }],
+    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+  },
+  {
+    "id": "data-eng-practice",
+    "kind": "project",
+    "title": "Data Engineering Practice Problems",
+    "provider": "GitHub (danielbeach)",
+    "url": "https://github.com/danielbeach/data-engineering-practice",
+    "description": "Hands-on exercises for aspiring data engineers: downloading, transforming, and aggregating real files with Python.",
+    "durationHours": 20,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "etl-pipelines", "level": 2 },
+      { "skillId": "python-advanced", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "sql", "level": 1 }
+    ]
+  },
+  {
+    "id": "confluent-tutorials",
+    "kind": "project",
+    "title": "Confluent Kafka Tutorials",
+    "provider": "Confluent",
+    "url": "https://developer.confluent.io/tutorials/",
+    "description": "Guided builds of real event-streaming use cases with step-by-step Kafka code you run yourself.",
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "apache-kafka", "level": 2 }],
+    "skillsRequired": [{ "skillId": "apache-kafka", "level": 1 }]
+  },
+  {
+    "id": "nyc-taxi-pipeline",
+    "kind": "project",
+    "title": "NYC Taxi Trip Data Pipeline",
+    "provider": "NYC TLC (open data)",
+    "url": "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page",
+    "description": "Build an end-to-end pipeline over the classic NYC taxi trip records: ingest, clean, load, and query millions of rows.",
+    "durationHours": 15,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      { "skillId": "etl-pipelines", "level": 2 },
+      { "skillId": "data-warehousing", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "sql", "level": 2 }
+    ]
+  },
+  {
+    "id": "pgexercises",
+    "kind": "assessment",
+    "title": "PostgreSQL Exercises",
+    "provider": "pgexercises.com",
+    "url": "https://pgexercises.com/",
+    "description": "Graded interactive SQL exercises on a realistic dataset, from basic SELECTs to window functions and recursion.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "sql", "level": 2 },
+      { "skillId": "advanced-sql", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+  },
+  {
+    "id": "hackerrank-sql",
+    "kind": "assessment",
+    "title": "HackerRank SQL Skills Certification",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification/sql",
+    "description": "Timed certification test verifying SQL proficiency with a shareable credential.",
+    "durationHours": 2,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "sql", "level": 2 }],
+    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+  },
+  {
+    "id": "sqlzoo",
+    "kind": "assessment",
+    "title": "SQLZoo",
+    "provider": "sqlzoo.net",
+    "url": "https://sqlzoo.net/",
+    "description": "Classic interactive SQL practice site with progressive quizzes on real query problems.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.65,
+    "skillsTaught": [{ "skillId": "sql", "level": 1 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "leetcode-database",
+    "kind": "assessment",
+    "title": "LeetCode Database Problems",
+    "provider": "LeetCode",
+    "url": "https://leetcode.com/problemset/database/",
+    "description": "SQL interview problems that test joins, aggregation, and window functions under time pressure.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "advanced-sql", "level": 2 }],
+    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+  }
+]

@@ -1,0 +1,517 @@
+[
+  {
+    "id": "ng-ml-spec",
+    "kind": "course",
+    "title": "Machine Learning Specialization",
+    "provider": "Coursera (DeepLearning.AI & Stanford)",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+    "description": "Andrew Ng's modern ML specialization: regression, classification, neural networks, trees, and practical advice.",
+    "durationHours": 100,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.95,
+    "skillsTaught": [
+      { "skillId": "ml-fundamentals", "level": 3 },
+      { "skillId": "supervised-learning", "level": 3 },
+      { "skillId": "unsupervised-learning", "level": 2 },
+      { "skillId": "neural-networks", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "statistics-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "dl-spec",
+    "kind": "course",
+    "title": "Deep Learning Specialization",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/specializations/deep-learning",
+    "description": "Five-course deep dive: neural networks, optimization, CNNs, sequence models, and structuring ML projects.",
+    "durationHours": 120,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.95,
+    "skillsTaught": [
+      { "skillId": "deep-learning", "level": 3 },
+      { "skillId": "neural-networks", "level": 3 },
+      { "skillId": "computer-vision", "level": 1 },
+      { "skillId": "nlp", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "ml-fundamentals", "level": 2 },
+      { "skillId": "math-for-ml", "level": 2 },
+      { "skillId": "python", "level": 2 }
+    ]
+  },
+  {
+    "id": "fastai",
+    "kind": "course",
+    "title": "Practical Deep Learning for Coders",
+    "provider": "fast.ai",
+    "url": "https://course.fast.ai/",
+    "description": "Top-down deep learning: train state-of-the-art vision and NLP models in the first lessons, then learn the internals.",
+    "durationHours": 70,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "deep-learning", "level": 3 },
+      { "skillId": "pytorch", "level": 2 },
+      { "skillId": "computer-vision", "level": 2 },
+      { "skillId": "nlp", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "google-ml-crash",
+    "kind": "course",
+    "title": "Machine Learning Crash Course",
+    "provider": "Google for Developers",
+    "url": "https://developers.google.com/machine-learning/crash-course",
+    "description": "Google's fast-paced practical ML introduction with interactive visualizations and exercises.",
+    "durationHours": 15,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "ml-fundamentals", "level": 2 },
+      { "skillId": "supervised-learning", "level": 1 },
+      { "skillId": "feature-engineering", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 1 },
+      { "skillId": "statistics-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "kaggle-intro-ml",
+    "kind": "course",
+    "title": "Kaggle Learn: Intro to Machine Learning",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+    "description": "Build your first models fast: decision trees, validation, and scikit-learn basics in hosted notebooks.",
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "ml-fundamentals", "level": 1 },
+      { "skillId": "supervised-learning", "level": 1 },
+      { "skillId": "scikit-learn", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+  },
+  {
+    "id": "kaggle-intermediate-ml",
+    "kind": "course",
+    "title": "Kaggle Learn: Intermediate Machine Learning",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/learn/intermediate-machine-learning",
+    "description": "Missing values, categorical encodings, pipelines, cross-validation, gradient boosting, and leakage.",
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "scikit-learn", "level": 2 },
+      { "skillId": "feature-engineering", "level": 2 },
+      { "skillId": "model-evaluation", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "sklearn-guide",
+    "kind": "course",
+    "title": "scikit-learn User Guide",
+    "provider": "scikit-learn (official docs)",
+    "url": "https://scikit-learn.org/stable/user_guide.html",
+    "description": "The official scikit-learn guide: estimators, pipelines, model selection, and metrics with worked examples.",
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "scikit-learn", "level": 3 },
+      { "skillId": "model-evaluation", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "ml-fundamentals", "level": 2 },
+      { "skillId": "python-data-analysis", "level": 1 }
+    ]
+  },
+  {
+    "id": "statquest",
+    "kind": "course",
+    "title": "StatQuest with Josh Starmer",
+    "provider": "YouTube",
+    "url": "https://www.youtube.com/@statquest",
+    "description": "Beloved channel that clearly explains statistics and every major ML algorithm, one concept at a time.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "ml-fundamentals", "level": 2 },
+      { "skillId": "supervised-learning", "level": 2 },
+      { "skillId": "model-evaluation", "level": 2 },
+      { "skillId": "statistics-fundamentals", "level": 2 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "imperial-math-ml",
+    "kind": "course",
+    "title": "Mathematics for Machine Learning Specialization",
+    "provider": "Coursera (Imperial College London)",
+    "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+    "description": "Linear algebra, multivariate calculus, and PCA, taught specifically as the math you need for ML.",
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "math-for-ml", "level": 3 }],
+    "skillsRequired": []
+  },
+  {
+    "id": "3b1b-nn",
+    "kind": "course",
+    "title": "Neural Networks (3Blue1Brown series)",
+    "provider": "3Blue1Brown",
+    "url": "https://www.3blue1brown.com/topics/neural-networks",
+    "description": "Grant Sanderson's visual series on what neural networks are, how they learn, and what backpropagation really does.",
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "neural-networks", "level": 1 },
+      { "skillId": "math-for-ml", "level": 1 }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "pytorch-tutorials",
+    "kind": "course",
+    "title": "PyTorch Tutorials (official)",
+    "provider": "PyTorch",
+    "url": "https://pytorch.org/tutorials/",
+    "description": "Official PyTorch tutorials: tensors, autograd, the training loop, datasets, and deployment recipes.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "pytorch", "level": 2 },
+      { "skillId": "deep-learning", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "neural-networks", "level": 1 }
+    ]
+  },
+  {
+    "id": "learnpytorch-io",
+    "kind": "course",
+    "title": "Zero to Mastery: Learn PyTorch for Deep Learning",
+    "provider": "learnpytorch.io (Daniel Bourke)",
+    "url": "https://www.learnpytorch.io/",
+    "description": "Free code-first PyTorch book/course: workflows, computer vision, custom datasets, and model deployment.",
+    "durationHours": 50,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "pytorch", "level": 3 },
+      { "skillId": "deep-learning", "level": 2 },
+      { "skillId": "computer-vision", "level": 1 },
+      { "skillId": "model-deployment", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "tf-developer-cert",
+    "kind": "course",
+    "title": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/professional-certificates/tensorflow-in-practice",
+    "description": "Hands-on TensorFlow certificate: CNNs for vision, NLP models, and time series, all in Keras.",
+    "durationHours": 80,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "tensorflow", "level": 3 },
+      { "skillId": "deep-learning", "level": 2 },
+      { "skillId": "computer-vision", "level": 2 },
+      { "skillId": "nlp", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "neural-networks", "level": 1 }
+    ]
+  },
+  {
+    "id": "cs231n",
+    "kind": "course",
+    "title": "CS231n: Deep Learning for Computer Vision",
+    "provider": "Stanford University",
+    "url": "https://cs231n.stanford.edu/",
+    "description": "Stanford's renowned vision course: CNNs, training at scale, detection, segmentation, and vision transformers.",
+    "durationHours": 60,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 5,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      { "skillId": "computer-vision", "level": 3 },
+      { "skillId": "deep-learning", "level": 2 }
+    ],
+    "skillsRequired": [
+      { "skillId": "deep-learning", "level": 1 },
+      { "skillId": "math-for-ml", "level": 2 },
+      { "skillId": "python", "level": 2 }
+    ]
+  },
+  {
+    "id": "hf-nlp-course",
+    "kind": "course",
+    "title": "Hugging Face NLP Course",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/nlp-course",
+    "description": "Free course on transformers for NLP: tokenizers, fine-tuning pretrained models, and sharing them on the Hub.",
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "nlp", "level": 3 },
+      { "skillId": "fine-tuning", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "deep-learning", "level": 1 }
+    ]
+  },
+  {
+    "id": "google-recsys",
+    "kind": "course",
+    "title": "Recommendation Systems Course",
+    "provider": "Google for Developers",
+    "url": "https://developers.google.com/machine-learning/recommendation",
+    "description": "Google's course on recommenders: candidate generation, matrix factorization, retrieval, and ranking.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "recommender-systems", "level": 2 }],
+    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 2 }]
+  },
+  {
+    "id": "spinning-up-rl",
+    "kind": "course",
+    "title": "Spinning Up in Deep RL",
+    "provider": "OpenAI",
+    "url": "https://spinningup.openai.com/",
+    "description": "OpenAI's educational resource for deep reinforcement learning: theory, key algorithms, and runnable code.",
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 5,
+    "qualityPrior": 0.85,
+    "skillsTaught": [{ "skillId": "reinforcement-learning", "level": 3 }],
+    "skillsRequired": [
+      { "skillId": "deep-learning", "level": 2 },
+      { "skillId": "math-for-ml", "level": 2 },
+      { "skillId": "python", "level": 2 }
+    ]
+  },
+  {
+    "id": "interpretable-ml-book",
+    "kind": "course",
+    "title": "Interpretable Machine Learning",
+    "provider": "Christoph Molnar (free online book)",
+    "url": "https://christophm.github.io/interpretable-ml-book/",
+    "description": "The reference book on explaining models: feature importance, SHAP, LIME, counterfactuals, and their limits.",
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [{ "skillId": "model-interpretability", "level": 3 }],
+    "skillsRequired": [
+      { "skillId": "supervised-learning", "level": 2 },
+      { "skillId": "model-evaluation", "level": 1 }
+    ]
+  },
+  {
+    "id": "mlops-zoomcamp",
+    "kind": "course",
+    "title": "MLOps Zoomcamp",
+    "provider": "DataTalksClub",
+    "url": "https://github.com/DataTalksClub/mlops-zoomcamp",
+    "description": "Free course on productionizing ML: experiment tracking, orchestration, deployment, and monitoring.",
+    "durationHours": 80,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      { "skillId": "mlops", "level": 3 },
+      { "skillId": "model-deployment", "level": 2 },
+      { "skillId": "docker", "level": 1 },
+      { "skillId": "ci-cd", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "scikit-learn", "level": 1 }
+    ]
+  },
+  {
+    "id": "madewithml",
+    "kind": "course",
+    "title": "Made With ML",
+    "provider": "madewithml.com (Goku Mohandas)",
+    "url": "https://madewithml.com/",
+    "description": "Design, develop, deploy, and iterate on production ML systems with sound software engineering practice.",
+    "durationHours": 40,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "mlops", "level": 2 },
+      { "skillId": "model-deployment", "level": 2 },
+      { "skillId": "feature-engineering", "level": 1 }
+    ],
+    "skillsRequired": [
+      { "skillId": "python", "level": 2 },
+      { "skillId": "scikit-learn", "level": 1 }
+    ]
+  },
+  {
+    "id": "kaggle-titanic",
+    "kind": "project",
+    "title": "Kaggle Competition: Titanic",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/titanic",
+    "description": "The classic first ML competition: predict survival from passenger data and submit to a live leaderboard.",
+    "durationHours": 8,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "scikit-learn", "level": 1 },
+      { "skillId": "supervised-learning", "level": 1 },
+      { "skillId": "feature-engineering", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "python-data-analysis", "level": 1 }]
+  },
+  {
+    "id": "kaggle-house-prices",
+    "kind": "project",
+    "title": "Kaggle Competition: House Prices",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques",
+    "description": "Regression competition rewarding careful feature engineering and validation on 79 housing features.",
+    "durationHours": 12,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      { "skillId": "feature-engineering", "level": 2 },
+      { "skillId": "supervised-learning", "level": 2 },
+      { "skillId": "model-evaluation", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "scikit-learn", "level": 1 }]
+  },
+  {
+    "id": "kaggle-digit-recognizer",
+    "kind": "project",
+    "title": "Kaggle Competition: Digit Recognizer",
+    "provider": "Kaggle",
+    "url": "https://www.kaggle.com/competitions/digit-recognizer",
+    "description": "Computer-vision starter competition: classify handwritten MNIST digits with your first neural networks.",
+    "durationHours": 10,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      { "skillId": "neural-networks", "level": 2 },
+      { "skillId": "computer-vision", "level": 1 }
+    ],
+    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "hf-spaces-demo",
+    "kind": "project",
+    "title": "Ship a Model Demo on Hugging Face Spaces",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/spaces",
+    "description": "Wrap a trained model in a Gradio interface and deploy it as a public, shareable demo.",
+    "durationHours": 6,
+    "format": "project",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [{ "skillId": "model-deployment", "level": 2 }],
+    "skillsRequired": [{ "skillId": "scikit-learn", "level": 1 }]
+  },
+  {
+    "id": "deep-ml",
+    "kind": "assessment",
+    "title": "Deep-ML Problems",
+    "provider": "deep-ml.com",
+    "url": "https://www.deep-ml.com/",
+    "description": "LeetCode-style machine learning problems: implement algorithms and math from scratch with instant checking.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.65,
+    "skillsTaught": [
+      { "skillId": "math-for-ml", "level": 2 },
+      { "skillId": "ml-fundamentals", "level": 2 }
+    ],
+    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+  },
+  {
+    "id": "hackerrank-ai",
+    "kind": "assessment",
+    "title": "HackerRank Artificial Intelligence Challenges",
+    "provider": "HackerRank",
+    "url": "https://www.hackerrank.com/domains/ai",
+    "description": "Graded AI and machine learning challenges: bot building, statistics, and prediction problems.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [{ "skillId": "ml-fundamentals", "level": 2 }],
+    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+  }
+]
