@@ -87,7 +87,7 @@
 
 .eyebrow,
 .footer {
-  font-size: clamp(5px, 0.72vmin, 9px);
+  font-size: clamp(9px, 1.05vmin, 13px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.16em;
@@ -103,7 +103,7 @@
 .panel:nth-child(1) .eyebrow { top: 12%; left: 10%; }
 .panel:nth-child(1) .title { left: 10%; top: 24%; font-size: clamp(23px, 5.15vmin, 64px); font-weight: 700; line-height: 0.78; letter-spacing: -0.055em; }
 .panel:nth-child(1) .footer { bottom: 9%; left: 10%; }
-.panel:nth-child(1) .art { left: 10%; right: 52%; bottom: 20%; }
+.panel:nth-child(1) .art { left: 10%; right: 42%; bottom: 20%; }
 
 /* Panel 2 — live profile (top-middle): only the top strip is visible beside the glass. */
 .panel:nth-child(2) { background: #120304; }
@@ -111,7 +111,7 @@
 .panel:nth-child(2) .eyebrow { top: 9%; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 .panel:nth-child(2) .title { display: none; }
 .panel:nth-child(2) .footer { display: none; }
-.panel:nth-child(2) .art { left: 6%; right: 6%; top: 18%; }
+.panel:nth-child(2) .art { left: 4%; right: 4%; top: 17%; }
 
 /* Panel 3 — skill graph (top-right): right-aligned. */
 .panel:nth-child(3) { background: #080808; }
@@ -119,7 +119,7 @@
 .panel:nth-child(3) .eyebrow { top: 12%; right: 10%; }
 .panel:nth-child(3) .title { right: 10%; top: 24%; font-size: clamp(29px, 6.45vmin, 80px); font-weight: 800; line-height: 0.77; letter-spacing: -0.075em; text-align: right; transform: rotate(-3deg); transform-origin: right top; }
 .panel:nth-child(3) .footer { right: 10%; bottom: 9%; }
-.panel:nth-child(3) .art { right: 10%; left: 52%; bottom: 20%; }
+.panel:nth-child(3) .art { right: 10%; left: 42%; bottom: 20%; }
 
 /* Panel 4 — adaptive (bottom-left). */
 .panel:nth-child(4) { background: #020b52; }
@@ -127,7 +127,7 @@
 .panel:nth-child(4) .eyebrow { top: 12%; left: 10%; }
 .panel:nth-child(4) .title { bottom: 12%; left: 10%; font-size: clamp(18px, 3.6vmin, 45px); font-weight: 500; line-height: 0.84; letter-spacing: -0.055em; }
 .panel:nth-child(4) .footer { right: 55%; bottom: 5%; display: none; }
-.panel:nth-child(4) .art { left: 10%; right: 50%; top: 24%; }
+.panel:nth-child(4) .art { left: 10%; right: 40%; top: 26%; }
 
 /* Panel 5 — dashboard (bottom-middle): only the bottom strip is visible. */
 .panel:nth-child(5) { background: #070403; }
@@ -135,7 +135,7 @@
 .panel:nth-child(5) .eyebrow { display: none; }
 .panel:nth-child(5) .title { right: 8%; bottom: 10%; font-size: clamp(17px, 3.25vmin, 40px); font-weight: 400; font-style: italic; line-height: 0.88; letter-spacing: -0.05em; text-align: right; }
 .panel:nth-child(5) .footer { display: none; }
-.panel:nth-child(5) .art { left: 8%; right: 50%; bottom: 10%; }
+.panel:nth-child(5) .art { left: 8%; right: 46%; bottom: 10%; }
 
 /* Panel 6 — judge mode (bottom-right). */
 .panel:nth-child(6) { background: #0a2a3a; }
@@ -143,7 +143,7 @@
 .panel:nth-child(6) .eyebrow { top: 12%; right: 10%; }
 .panel:nth-child(6) .title { right: 10%; bottom: 12%; font-size: clamp(18px, 3.7vmin, 46px); font-weight: 400; font-style: italic; line-height: 0.87; letter-spacing: -0.055em; text-align: right; }
 .panel:nth-child(6) .footer { display: none; }
-.panel:nth-child(6) .art { right: 10%; left: 50%; top: 24%; }
+.panel:nth-child(6) .art { right: 10%; left: 40%; top: 26%; }
 
 /* --- panel art: small hand-drawn feature illustrations ---------------- */
 .art {
@@ -151,9 +151,9 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 0.6vmin;
-  font-size: clamp(6px, 0.9vmin, 11px);
-  color: rgb(255 255 255 / 80%);
+  gap: 0.9vmin;
+  font-size: clamp(11px, 1.45vmin, 16px);
+  color: rgb(255 255 255 / 85%);
 }
 
 .bar {
@@ -377,6 +377,11 @@
   letter-spacing: 0.035em;
   transform: scaleX(1.07);
   transform-origin: left center;
+}
+
+.quiet .grain,
+.quiet .poster {
+  animation-play-state: paused;
 }
 
 .grain {

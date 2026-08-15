@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./arcdeck.module.css";
+import { useInView } from "./useInView";
 
 type Theme = "ink" | "paper" | "signal";
 type Art = "count" | "process" | "portal" | "pulse" | "statement" | "brief" | "orbit";
@@ -225,6 +226,8 @@ function ArcCard({
 
 export function ArcDeck({ id }: { id?: string }) {
   const stageRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef);
   const value = useRef(-1);
   const target = useRef(-1);
   const velocity = useRef(0);
@@ -249,8 +252,9 @@ export function ArcDeck({ id }: { id?: string }) {
   }, []);
 
   useEffect(() => {
+    if (!inView) return;
     let frame = 0;
-    const started = performance.now();
+    const started = performance.now() - (lastFrameValue.current + 1) * 2100;
     const tick = (now: number) => {
       if (!manual.current) {
         const time = ((now - started) % 5300) / 1000;
@@ -281,13 +285,15 @@ export function ArcDeck({ id }: { id?: string }) {
       const motionResponse = Math.abs(requestedMotion) > Math.abs(visualMotion.current) ? 0.38 : 0.115;
       visualMotion.current += (requestedMotion - visualMotion.current) * motionResponse;
       if (Math.abs(visualMotion.current) < 0.0005) visualMotion.current = 0;
-      setPosition(value.current);
-      setMotion(visualMotion.current);
+      if (frameDelta !== 0 || visualMotion.current !== 0) {
+        setPosition(value.current);
+        setMotion(visualMotion.current);
+      }
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [inView]);
 
   const takeControl = useCallback(() => {
     manual.current = true;
@@ -329,7 +335,7 @@ export function ArcDeck({ id }: { id?: string }) {
   const logicalCards = Array.from({ length: 19 }, (_, index) => index - 7);
 
   return (
-    <section id={id} className={styles.section} aria-label="How Pathwise works">
+    <section ref={sectionRef} id={id} className={styles.section} aria-label="How Pathwise works">
       <div className={styles.header}>
         <div>
           <p className={styles.label}>How it works</p>

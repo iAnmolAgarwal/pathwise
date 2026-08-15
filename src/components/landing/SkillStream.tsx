@@ -2,7 +2,9 @@
 
 import { ArrowRight, Pause, Play } from "lucide-react";
 import Link from "next/link";
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
+
+import { useInView } from "./useInView";
 
 import skills from "@/data/skills.json";
 import { Button } from "@/components/ui/button";
@@ -66,6 +68,9 @@ function pickSkills(): { right: SkillCard[]; left: SkillCard[] } {
 
 export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?: string }) {
   const [paused, setPaused] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef);
+  const running = !paused && inView;
   const animationId = useId().replace(/[^a-zA-Z0-9]/g, "");
   const rightAnimation = `stream-right-${animationId}`;
   const leftAnimation = `stream-left-${animationId}`;
@@ -76,7 +81,7 @@ export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?:
   const rails = useMemo(() => pickSkills(), []);
 
   return (
-    <section id={id} className={styles.shell} aria-labelledby="stream-title">
+    <section ref={sectionRef} id={id} className={styles.shell} aria-labelledby="stream-title">
       <style>{animationCSS}</style>
 
       <div className={styles.scene} aria-hidden>
@@ -92,7 +97,7 @@ export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?:
                 style={{
                   animation: `${animationName} 18s linear infinite`,
                   animationDelay: `${-(index * 18) / 9}s`,
-                  animationPlayState: paused ? "paused" : "running",
+                  animationPlayState: running ? "running" : "paused",
                 }}
               >
                 <span className={styles.domain}>{skill.domain.replace(/-/g, " ")}</span>

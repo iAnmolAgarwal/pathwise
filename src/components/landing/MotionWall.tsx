@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { useInView } from "./useInView";
+
 import styles from "./wall.module.css";
 
 interface Panel {
@@ -65,9 +67,6 @@ function PanelArt({ index }: { index: number }) {
           </span>
           <span className={`${styles.chip} ${styles.new}`}>
             <em>+ sql</em> level 2
-          </span>
-          <span className={styles.chip}>
-            <em>style</em> projects
           </span>
         </div>
       );
@@ -153,6 +152,8 @@ function PanelArt({ index }: { index: number }) {
 
 export function MotionWall({ id }: { id?: string }) {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef);
 
   useEffect(() => {
     const cleanups: Array<() => void> = [];
@@ -184,7 +185,7 @@ export function MotionWall({ id }: { id?: string }) {
   }, []);
 
   return (
-    <section id={id} className={styles.scene} aria-labelledby="wall-heading">
+    <section ref={sectionRef} id={id} className={`${styles.scene} ${inView ? "" : styles.quiet}`} aria-labelledby="wall-heading">
       <div className={styles.wall} aria-hidden>
         {PANELS.map((panel, index) => (
           <article className={styles.panel} key={panel.eyebrow}>

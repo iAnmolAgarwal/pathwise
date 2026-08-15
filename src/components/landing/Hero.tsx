@@ -3,7 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { Application } from "@splinetool/runtime";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,12 +12,23 @@ import { Orb } from "@/components/ui/orb";
 import { NovaScene } from "@/components/landing/NovaScene";
 
 import styles from "./hero.module.css";
+import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
 export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?: string; appHref?: string }) {
   const containerRef = useRef<HTMLElement>(null);
+  const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  const inView = useInView(containerRef, "0px");
+
+  // Nova's scene renders at 60 fps; stop it while the hero is scrolled away.
+  useEffect(() => {
+    const app = appRef.current;
+    if (!app || !sceneLoaded) return;
+    if (inView) app.play();
+    else app.stop();
+  }, [inView, sceneLoaded]);
 
   const cursorX = useMotionValue(-500);
   const cursorY = useMotionValue(-500);
@@ -56,7 +68,13 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
             </div>
           )}
 
-          <NovaScene className={styles.spline} onLoad={() => setSceneLoaded(true)} />
+          <NovaScene
+            className={styles.spline}
+            onLoad={(app) => {
+              appRef.current = app;
+              setSceneLoaded(true);
+            }}
+          />
 
           <motion.div
             className={styles.liveLabelWrap}

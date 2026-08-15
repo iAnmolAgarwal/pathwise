@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 
 import styles from "./beams.module.css";
+import { useInView } from "./useInView";
 
 interface AnimatedBeamProps {
   containerRef: RefObject<HTMLDivElement | null>;
@@ -20,6 +21,7 @@ interface AnimatedBeamProps {
   gradientStartColor?: string;
   gradientStopColor?: string;
   endYOffset?: number;
+  active?: boolean;
 }
 
 function AnimatedBeam({
@@ -33,6 +35,7 @@ function AnimatedBeam({
   gradientStartColor = "#ff9d3d",
   gradientStopColor = "#8b5cff",
   endYOffset = 0,
+  active = true,
 }: AnimatedBeamProps) {
   const gradientId = useId().replace(/:/g, "");
   const [path, setPath] = useState("");
@@ -84,8 +87,8 @@ function AnimatedBeam({
           id={gradientId}
           gradientUnits="userSpaceOnUse"
           initial={{ x1: "0%", x2: "0%", y1: "0%", y2: "0%" }}
-          animate={{ x1: coords.x1, x2: coords.x2, y1: ["0%", "0%"], y2: ["0%", "0%"] }}
-          transition={{ delay, duration, ease: "linear", repeat: Infinity }}
+          animate={active ? { x1: coords.x1, x2: coords.x2, y1: ["0%", "0%"], y2: ["0%", "0%"] } : { x1: "0%", x2: "0%" }}
+          transition={active ? { delay, duration, ease: "linear", repeat: Infinity } : { duration: 0 }}
         >
           <stop stopColor={gradientStartColor} stopOpacity="0" />
           <stop offset="28%" stopColor={gradientStartColor} stopOpacity="1" />
@@ -118,6 +121,8 @@ Node.displayName = "Node";
 /** "Under the hood" — what flows into and out of the engine. */
 export function BeamNetwork({ id }: { id?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef);
   const profileRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<HTMLDivElement>(null);
   const catalogRef = useRef<HTMLDivElement>(null);
@@ -128,7 +133,7 @@ export function BeamNetwork({ id }: { id?: string }) {
   const stroke = 1.6;
 
   return (
-    <section id={id} className={styles.section} aria-labelledby="beams-title">
+    <section ref={sectionRef} id={id} className={styles.section} aria-labelledby="beams-title">
       <div className={styles.orb} aria-hidden />
       <header className={styles.header}>
         <Badge variant="eyebrow" dot>
@@ -150,7 +155,7 @@ export function BeamNetwork({ id }: { id?: string }) {
           <Node ref={catalogRef} name="Catalog" icon={<BookOpen strokeWidth={stroke} />} />
         </div>
         <div className={styles.center}>
-          <Node ref={centerRef} name="Nova · engine" large icon={<Orb state="connecting" size={64} label="Engine" />} />
+          <Node ref={centerRef} name="Nova · engine" large icon={<Orb state="connecting" size={64} label="Engine" paused={!inView} />} />
         </div>
         <div className={`${styles.column} ${styles.right}`}>
           <Node ref={pathRef} name="Path" icon={<Route strokeWidth={stroke} />} />
@@ -158,12 +163,12 @@ export function BeamNetwork({ id }: { id?: string }) {
           <Node ref={dashboardRef} name="Dashboard" icon={<BarChart3 strokeWidth={stroke} />} />
         </div>
 
-        <AnimatedBeam containerRef={containerRef} fromRef={profileRef} toRef={centerRef} curvature={-88} endYOffset={-8} duration={4.8} />
-        <AnimatedBeam containerRef={containerRef} fromRef={graphRef} toRef={centerRef} duration={4} delay={0.3} gradientStartColor="#ff8c42" gradientStopColor="#c05cff" />
-        <AnimatedBeam containerRef={containerRef} fromRef={catalogRef} toRef={centerRef} curvature={88} endYOffset={8} duration={5.2} delay={0.7} gradientStartColor="#3ee18e" gradientStopColor="#8868ff" />
-        <AnimatedBeam containerRef={containerRef} fromRef={pathRef} toRef={centerRef} curvature={-88} endYOffset={-8} reverse duration={5} delay={0.2} gradientStartColor="#4aa8ff" gradientStopColor="#a45cff" />
-        <AnimatedBeam containerRef={containerRef} fromRef={feedbackRef} toRef={centerRef} reverse duration={4.2} delay={0.5} gradientStartColor="#ff5a24" gradientStopColor="#bd5cff" />
-        <AnimatedBeam containerRef={containerRef} fromRef={dashboardRef} toRef={centerRef} curvature={88} endYOffset={8} reverse duration={5.4} delay={0.9} gradientStartColor="#ff5f87" gradientStopColor="#5d83ff" />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={profileRef} toRef={centerRef} curvature={-88} endYOffset={-8} duration={4.8} />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={graphRef} toRef={centerRef} duration={4} delay={0.3} gradientStartColor="#ff8c42" gradientStopColor="#c05cff" />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={catalogRef} toRef={centerRef} curvature={88} endYOffset={8} duration={5.2} delay={0.7} gradientStartColor="#3ee18e" gradientStopColor="#8868ff" />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={pathRef} toRef={centerRef} curvature={-88} endYOffset={-8} reverse duration={5} delay={0.2} gradientStartColor="#4aa8ff" gradientStopColor="#a45cff" />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={feedbackRef} toRef={centerRef} reverse duration={4.2} delay={0.5} gradientStartColor="#ff5a24" gradientStopColor="#bd5cff" />
+        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={dashboardRef} toRef={centerRef} curvature={88} endYOffset={8} reverse duration={5.4} delay={0.9} gradientStartColor="#ff5f87" gradientStopColor="#5d83ff" />
       </div>
 
       <div className={styles.status}>

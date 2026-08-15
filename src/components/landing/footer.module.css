@@ -35,6 +35,12 @@
   animation: noiseShift 0.28s steps(2) infinite;
 }
 
+.quiet .aurora,
+.quiet .aurora2,
+.quiet .noise {
+  animation-play-state: paused;
+}
+
 .intro {
   position: absolute;
   z-index: 4;

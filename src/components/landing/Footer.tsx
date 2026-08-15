@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 import styles from "./footer.module.css";
+import { useInView } from "./useInView";
 
 const NAV = [
   { label: "How it works", href: "#how-it-works" },
@@ -30,12 +31,14 @@ function PathwiseMark() {
 
 export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string }) {
   const cardRef = useRef<HTMLElement | null>(null);
+  const inView = useInView(cardRef);
 
   useEffect(() => {
     const card = cardRef.current;
     if (!card) return;
     let frame = 0;
     const onMove = (event: PointerEvent) => {
+      if (card.dataset.quiet === "true") return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const rect = card.getBoundingClientRect();
@@ -59,7 +62,7 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
   }, []);
 
   return (
-    <footer ref={cardRef} className={styles.card} aria-label="Pathwise footer">
+    <footer ref={cardRef} className={`${styles.card} ${inView ? "" : styles.quiet}`} aria-label="Pathwise footer" data-quiet={inView ? "false" : "true"}>
       <div className={`${styles.aurora} bg-aurora`} aria-hidden />
       <div className={`${styles.aurora2} bg-aurora-2`} aria-hidden />
       <div className={styles.mouseLight} aria-hidden />
