@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const ItemEvent = (type: string) =>
+const ItemEvent = <T extends string>(type: T) =>
   z.object({ type: z.literal(type), catalogId: z.string().min(1) });
 
 /** Learner feedback (§5.5). Item events name a path item; quiz_result names a skill. */

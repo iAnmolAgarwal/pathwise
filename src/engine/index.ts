@@ -20,6 +20,8 @@ export type GenerateOptions = {
   /** ISO timestamp stamped into Path.meta; injected so generation is a pure function. */
   now: string;
   trigger: Path["meta"]["trigger"];
+  /** Hours already spent on completed items; they came out of the same horizon budget. */
+  spentHours?: number;
 };
 
 export type Working = {
@@ -52,7 +54,7 @@ export function generatePath(
   const gap = computeGap(profile, required, data.skills);
   const candidates = scoreCandidates(gap, profile, data);
 
-  const budgetHours = timeBudgetHours(profile.preferences);
+  const budgetHours = Math.max(0, timeBudgetHours(profile.preferences) - (options.spentHours ?? 0));
   const courseBudgetHours = Math.round(budgetHours * (1 - EXTRAS_BUDGET_SHARE));
   // Select → repair → prune, repeated: pruning can free hours that admit another course.
   let kept: Candidate[] = [];

@@ -114,4 +114,12 @@ describe("generatePath", () => {
     expect(res.path.phases).toEqual([]);
     expect(PathSchema.safeParse(res.path).success).toBe(true);
   });
+
+  it("subtracts hours already spent on completed items from the budget", () => {
+    const res = generatePath(profile, data, { now: NOW, trigger: "replan", spentHours: 100 });
+    expect(res.working.budgetHours).toBe(10 * PACE_HORIZON_WEEKS.standard - 100);
+    const tiny = generatePath(profile, data, { now: NOW, trigger: "replan", spentHours: 10 * PACE_HORIZON_WEEKS.standard });
+    expect(tiny.working.budgetHours).toBe(0);
+    expect(tiny.path.phases.flatMap((p) => p.items)).toEqual([]);
+  });
 });
