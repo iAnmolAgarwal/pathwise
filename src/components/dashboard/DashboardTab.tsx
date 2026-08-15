@@ -66,21 +66,30 @@ export function DashboardTab({ summary, onOpenItem }: Props) {
         <p className="text-xs uppercase tracking-wide text-neutral-500">Skills: known vs required, by domain</p>
         {radar.length === 0 ? (
           <p className="mt-2 text-sm text-neutral-600">Add a goal to see which domains it needs.</p>
+        ) : radar.length < 3 ? (
+          // A radar needs three axes to be a shape; with fewer domains, paired bars are the honest form.
+          <DomainBars radar={radar} />
         ) : (
           <>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={radar} outerRadius="75%">
+                <RadarChart data={radar.map((r) => ({ ...r, requiredPct: 100, knownPct: Math.round((r.known / r.required) * 100) }))} outerRadius="75%">
                   <PolarGrid stroke="#e5e5e5" />
                   <PolarAngleAxis dataKey="label" tick={{ fontSize: 11, fill: "#52514e" }} />
-                  <PolarRadiusAxis tick={false} axisLine={false} />
-                  <Radar name="Required by goal" dataKey="required" stroke={SERIES.required} fill={SERIES.required} fillOpacity={0.12} strokeWidth={2} />
-                  <Radar name="You know" dataKey="known" stroke={SERIES.known} fill={SERIES.known} fillOpacity={0.35} strokeWidth={2} />
-                  <Tooltip formatter={(v) => `${v} levels`} />
+                  <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                  <Radar name="Required by goal" dataKey="requiredPct" stroke={SERIES.required} fill={SERIES.required} fillOpacity={0.08} strokeWidth={2} />
+                  <Radar name="You know" dataKey="knownPct" stroke={SERIES.known} fill={SERIES.known} fillOpacity={0.35} strokeWidth={2} />
+                  <Tooltip
+                    formatter={(value, name, entry) => {
+                      const r = entry.payload as { known: number; required: number };
+                      return [name === "You know" ? `${value}% (${r.known} of ${r.required} levels)` : `${r.required} levels`, name];
+                    }}
+                  />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                 </RadarChart>
               </ResponsiveContainer>
             </div>
+            <p className="text-xs text-neutral-500">Each axis is one domain the goal needs; the outer edge is the goal, the filled shape is how far you are.</p>
             <details className="mt-1 text-xs">
               <summary className="cursor-pointer text-neutral-600">Table view</summary>
               <table className="mt-1 w-full text-left">
@@ -124,6 +133,33 @@ export function DashboardTab({ summary, onOpenItem }: Props) {
           </ol>
         )}
       </section>
+    </div>
+  );
+}
+
+function DomainBars({ radar }: { radar: DashboardSummary["radar"] }) {
+  const max = Math.max(...radar.map((r) => r.required));
+  return (
+    <div className="mt-2 flex flex-col gap-3">
+      {radar.map((r) => (
+        <div key={r.domain}>
+          <p className="text-sm">{r.label}</p>
+          <div className="mt-1 flex flex-col gap-0.5">
+            <div className="flex items-center gap-2 text-xs">
+              <span className="h-2.5 rounded-r" style={{ width: `${(r.required / max) * 100}%`, background: SERIES.required, opacity: 0.35 }} />
+              <span className="tabular-nums text-neutral-600">{r.required} required</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <span className="h-2.5 rounded-r" style={{ width: `${(r.known / max) * 100}%`, background: SERIES.known }} />
+              <span className="tabular-nums text-neutral-600">{r.known} known</span>
+            </div>
+          </div>
+        </div>
+      ))}
+      <p className="text-xs text-neutral-500">
+        <span className="mr-1 inline-block h-2 w-2" style={{ background: SERIES.required, opacity: 0.35 }} /> Required by goal
+        <span className="ml-3 mr-1 inline-block h-2 w-2" style={{ background: SERIES.known }} /> You know
+      </p>
     </div>
   );
 }
