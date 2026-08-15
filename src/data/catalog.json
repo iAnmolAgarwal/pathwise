@@ -6357,6 +6357,10 @@
     "description": "Interactive JavaScript certification covering the language, ES6, regular expressions, and algorithmic thinking.",
     "skillsTaught": [
       {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
         "skillId": "javascript",
         "level": 2
       },
@@ -6389,6 +6393,10 @@
     "url": "https://www.theodinproject.com/paths/foundations",
     "description": "Project-driven open curriculum covering how the web works, HTML, CSS, JavaScript basics, and Git.",
     "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
       {
         "skillId": "html",
         "level": 2
@@ -6475,6 +6483,10 @@
     "description": "Mozilla's structured curriculum for web development fundamentals: HTML, CSS, JavaScript, forms, and working with APIs.",
     "skillsTaught": [
       {
+        "skillId": "programming-basics",
+        "level": 1
+      },
+      {
         "skillId": "html",
         "level": 2
       },
@@ -6539,6 +6551,10 @@
     "url": "https://www.udemy.com/course/the-complete-javascript-course/",
     "description": "Highly-rated project-based JavaScript course covering modern JS, asynchronous code, and real application architecture.",
     "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
       {
         "skillId": "javascript",
         "level": 2
@@ -6771,6 +6787,10 @@
     "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
     "description": "Meta's nine-course certificate taking you from web basics to React, UI principles, and a capstone project.",
     "skillsTaught": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      },
       {
         "skillId": "html",
         "level": 2

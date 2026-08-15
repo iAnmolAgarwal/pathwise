@@ -32,6 +32,7 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
+      { "skillId": "programming-basics", "level": 2 },
       { "skillId": "javascript", "level": 2 },
       { "skillId": "javascript-advanced", "level": 1 },
       { "skillId": "regex", "level": 1 }
@@ -51,6 +52,7 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
+      { "skillId": "programming-basics", "level": 2 },
       { "skillId": "html", "level": 2 },
       { "skillId": "css", "level": 2 },
       { "skillId": "javascript", "level": 2 },
@@ -97,6 +99,7 @@
     "difficulty": 1,
     "qualityPrior": 0.9,
     "skillsTaught": [
+      { "skillId": "programming-basics", "level": 1 },
       { "skillId": "html", "level": 2 },
       { "skillId": "css", "level": 2 },
       { "skillId": "javascript", "level": 2 },
@@ -136,6 +139,7 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
+      { "skillId": "programming-basics", "level": 2 },
       { "skillId": "javascript", "level": 2 },
       { "skillId": "javascript-advanced", "level": 2 },
       { "skillId": "api-integration", "level": 1 }
@@ -276,6 +280,7 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
+      { "skillId": "programming-basics", "level": 1 },
       { "skillId": "html", "level": 2 },
       { "skillId": "css", "level": 2 },
       { "skillId": "javascript", "level": 2 },
