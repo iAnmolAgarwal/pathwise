@@ -34,7 +34,7 @@ describe("sequenceItems", () => {
     const a = item({ id: "js-course", skillsTaught: [{ skillId: "js", level: 2 }], difficulty: 3 });
     const res = sequenceItems([b, a], skills);
     expect(res.ordered.map((i) => i.id)).toEqual(["js-course", "react-course"]);
-    expect(res.edges).toEqual([{ from: "js-course", to: "react-course", becauseSkill: "js" }]);
+    expect(res.edges).toEqual([{ from: "js-course", to: "react-course", becauseSkill: "js", hard: true }]);
   });
 
   it("also orders by the skill DAG when requirements are not listed explicitly", () => {
@@ -86,6 +86,21 @@ describe("sequenceItems", () => {
     const y = item({ id: "y", skillsTaught: [{ skillId: "b", level: 1 }], skillsRequired: [{ skillId: "a", level: 1 }] });
     const res = sequenceItems([x, y], skills);
     expect(res.ordered.map((i) => i.id).sort()).toEqual(["x", "y"]);
+  });
+
+  it("breaks a cycle at a soft prerequisite edge before a hard requirement edge", () => {
+    // stats teaches b, whose prereq a is taught by infer (soft edge infer→stats);
+    // infer requires b (hard edge stats→infer); z requires b, so it must follow stats.
+    const cycleSkills: Skill[] = [
+      ...skills,
+      { id: "c", name: "C", domain: "foundations", description: "x", levelBand: 2, prereqs: ["a"] },
+    ];
+    const stats = item({ id: "stats", skillsTaught: [{ skillId: "c", level: 2 }, { skillId: "b", level: 2 }], difficulty: 3 });
+    const infer = item({ id: "infer", skillsTaught: [{ skillId: "a", level: 3 }], skillsRequired: [{ skillId: "b", level: 2 }], difficulty: 3 });
+    const z = item({ id: "z", skillsRequired: [{ skillId: "b", level: 1 }], difficulty: 1 });
+    const order = sequenceItems([z, infer, stats], cycleSkills).ordered.map((i) => i.id);
+    expect(order.indexOf("stats")).toBeLessThan(order.indexOf("z"));
+    expect(order.indexOf("stats")).toBeLessThan(order.indexOf("infer"));
   });
 
   it("is deterministic regardless of input order", () => {

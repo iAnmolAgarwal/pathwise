@@ -31,9 +31,9 @@ const gap: Gap[] = [
 ];
 
 const edges: SequenceEdge[] = [
-  { from: "js-course", to: "react-course", becauseSkill: "js" },
-  { from: "react-course", to: "next-course", becauseSkill: "react" },
-  { from: "ghost", to: "react-course", becauseSkill: "js" },
+  { from: "js-course", to: "react-course", becauseSkill: "js", hard: true },
+  { from: "react-course", to: "next-course", becauseSkill: "react", hard: true },
+  { from: "ghost", to: "react-course", becauseSkill: "js", hard: true },
 ];
 
 describe("buildEvidence", () => {

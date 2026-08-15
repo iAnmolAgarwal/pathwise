@@ -232,7 +232,6 @@ exports[`fixture learners (§5.6) > partial-skills-ml > matches its snapshot 1`]
     },
     {
       "items": [
-        "course:kaggle-intermediate-ml (5h, score 0.521)",
         "course:statquest (40h, score 0.507)",
         "course:imperial-math-ml (60h, score 0.365)",
         "project:kaggle-titanic (8h, score 0.494)",
@@ -254,17 +253,18 @@ exports[`fixture learners (§5.6) > partial-skills-ml > matches its snapshot 1`]
     },
     {
       "items": [
+        "course:kaggle-intermediate-ml (5h, score 0.521)",
         "course:github-actions-docs (8h, score 0.437)",
-        "course:learnpytorch-io (50h, score 0.446)",
-        "project:hf-spaces-demo (6h, score 0.410)",
+        "project:kaggle-house-prices (12h, score 0.463)",
       ],
       "milestone": "Build a well-evaluated model on real data",
       "title": "Phase 4 — Core Machine Learning",
     },
     {
       "items": [
+        "course:learnpytorch-io (50h, score 0.446)",
         "course:madewithml (40h, score 0.412)",
-        "project:kaggle-house-prices (12h, score 0.463)",
+        "project:hf-spaces-demo (6h, score 0.410)",
       ],
       "milestone": "Build a well-evaluated model on real data",
       "title": "Phase 5 — Core Machine Learning",

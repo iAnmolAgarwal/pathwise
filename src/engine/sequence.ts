@@ -29,6 +29,7 @@ export function precedenceEdges(items: CatalogItem[], skills: Skill[]): Sequence
       const taughtByB = new Set(b.skillsTaught.map((t) => t.skillId));
       const because = new Set<string>();
       for (const r of b.skillsRequired) if (taughtByA.has(r.skillId)) because.add(r.skillId);
+      const hard = because.size > 0;
       for (const t of b.skillsTaught) {
         for (const p of prereqsOf.get(t.skillId) ?? []) {
           if (taughtByA.has(p) && !taughtByB.has(p)) because.add(p);
@@ -36,7 +37,7 @@ export function precedenceEdges(items: CatalogItem[], skills: Skill[]): Sequence
       }
       // One edge per pair; the first (most specific) reason is kept.
       const [becauseSkill] = because;
-      if (becauseSkill) edges.push({ from: a.id, to: b.id, becauseSkill });
+      if (becauseSkill) edges.push({ from: a.id, to: b.id, becauseSkill, hard });
     }
   }
   return edges;
@@ -54,7 +55,9 @@ function tieBreak(a: CatalogItem, b: CatalogItem): number {
  * Topological sort of items over the induced precedence order (§5.4), ties broken by
  * difficulty then duration. Phases are the longest-path layers (antichains) of that
  * order. Requirement cycles — possible in a hand-annotated catalog — are broken by
- * releasing the easiest stuck item, so every item is always placed exactly once.
+ * releasing a stuck item, preferring one held back only by soft (prerequisite-derived)
+ * edges over one whose hard skillsRequired would be violated, easiest first; so every
+ * item is always placed exactly once and hard constraints give way last.
  */
 export function sequenceItems(items: CatalogItem[], skills: Skill[]): Sequenced {
   const byId = new Map(items.map((i) => [i.id, i]));
@@ -76,7 +79,11 @@ export function sequenceItems(items: CatalogItem[], skills: Skill[]): Sequenced 
     let ready = [...remaining].filter((id) => incoming.get(id)!.size === 0);
     if (ready.length === 0) {
       // Cycle: release the easiest stuck item by discarding its remaining incoming edges.
-      const stuck = [...remaining].map((id) => byId.get(id)!).sort(tieBreak)[0];
+      const hardIn = (id: string) =>
+        allEdges.some((e) => e.to === id && e.hard && incoming.get(id)!.has(e.from));
+      const candidates = [...remaining].map((id) => byId.get(id)!);
+      const soft = candidates.filter((c) => !hardIn(c.id));
+      const stuck = (soft.length > 0 ? soft : candidates).sort(tieBreak)[0];
       for (const from of incoming.get(stuck.id)!) droppedEdges.add(edgeKey(from, stuck.id));
       incoming.get(stuck.id)!.clear();
       ready = [stuck.id];

@@ -33,4 +33,5 @@ export type Candidate = {
   gapSkills: { skillId: string; taughtLevel: SkillLevel; levelsGained: number }[];
 };
 
-export type SequenceEdge = { from: string; to: string; becauseSkill: string };
+/** hard: `to` lists the skill in skillsRequired; soft: it is a prerequisite of a skill `to` teaches. */
+export type SequenceEdge = { from: string; to: string; becauseSkill: string; hard: boolean };
