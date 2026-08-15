@@ -31,6 +31,7 @@ export function applyProfileOps(profile: Profile, ops: ProfileOp[]): Profile {
         break;
       }
       case "set_preference": {
+        // Re-validate so callers that bypass ProfileOpSchema still cannot corrupt the profile.
         const value = PreferencesSchema.shape[op.key].parse(op.value);
         // Keyed assignment through a typed view of the preferences record.
         (next.preferences as Record<string, unknown>)[op.key] = value;

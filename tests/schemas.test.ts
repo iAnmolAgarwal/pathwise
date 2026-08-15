@@ -9,6 +9,7 @@ import {
   ProfileOpSchema,
   ProfileSchema,
   SkillSchema,
+  mappedGoalSchema,
 } from "@/schemas";
 
 const evidence = {
@@ -241,5 +242,23 @@ describe("EvidenceSchema", () => {
     expect(
       EvidenceSchema.safeParse({ ...evidence, provenance: "trust me" }).success,
     ).toBe(false);
+  });
+});
+
+describe("ProfileOpSchema set_preference", () => {
+  it("types the value per preference key", () => {
+    expect(ProfileOpSchema.safeParse({ op: "set_preference", key: "hoursPerWeek", value: 8 }).success).toBe(true);
+    expect(ProfileOpSchema.safeParse({ op: "set_preference", key: "hoursPerWeek", value: "eight" }).success).toBe(false);
+    expect(ProfileOpSchema.safeParse({ op: "set_preference", key: "pace", value: "warp" }).success).toBe(false);
+    expect(ProfileOpSchema.safeParse({ op: "set_preference", key: "formats", value: ["video", "text"] }).success).toBe(true);
+  });
+});
+
+describe("mappedGoalSchema", () => {
+  it("only accepts skill ids from the closed vocabulary", () => {
+    const schema = mappedGoalSchema(["python", "sql"]);
+    const ok = { text: "analyse sales data", matchesTemplateId: null, mappedSkills: [{ skillId: "sql", level: 2 }], rationale: "SQL is how you query it." };
+    expect(schema.safeParse(ok).success).toBe(true);
+    expect(schema.safeParse({ ...ok, mappedSkills: [{ skillId: "excel", level: 2 }] }).success).toBe(false);
   });
 });

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { applyProfileOps, defaultProfile } from "@/engine/profile";
-import type { Profile } from "@/schemas";
+import type { Profile, ProfileOp } from "@/schemas";
 
 describe("defaultProfile", () => {
   it("has no goals, no skills, and the documented default preferences", () => {
@@ -51,7 +51,9 @@ describe("applyProfileOps", () => {
     ]);
     expect(p.preferences.hoursPerWeek).toBe(10);
     expect(p.preferences.formats).toEqual(["video"]);
-    expect(() => applyProfileOps(base, [{ op: "set_preference", key: "pace", value: "warp" }])).toThrow();
-    expect(() => applyProfileOps(base, [{ op: "set_preference", key: "hoursPerWeek", value: -1 }])).toThrow();
+    // Values that slip past the static types (e.g. from raw JSON) are still rejected.
+    const bad = (op: unknown) => op as ProfileOp;
+    expect(() => applyProfileOps(base, [bad({ op: "set_preference", key: "pace", value: "warp" })])).toThrow();
+    expect(() => applyProfileOps(base, [bad({ op: "set_preference", key: "hoursPerWeek", value: -1 })])).toThrow();
   });
 });

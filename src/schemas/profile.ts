@@ -32,6 +32,30 @@ export const ProfileSchema = z.object({
   preferences: PreferencesSchema,
 });
 
+// set_preference is typed per key so the same schema doubles as the LLM's output contract.
+const SetPreferenceOpSchema = z.discriminatedUnion("key", [
+  z.object({
+    op: z.literal("set_preference"),
+    key: z.literal("hoursPerWeek"),
+    value: PreferencesSchema.shape.hoursPerWeek,
+  }),
+  z.object({
+    op: z.literal("set_preference"),
+    key: z.literal("formats"),
+    value: PreferencesSchema.shape.formats,
+  }),
+  z.object({
+    op: z.literal("set_preference"),
+    key: z.literal("budget"),
+    value: PreferencesSchema.shape.budget,
+  }),
+  z.object({
+    op: z.literal("set_preference"),
+    key: z.literal("pace"),
+    value: PreferencesSchema.shape.pace,
+  }),
+]);
+
 // The LLM never writes Profile directly: it emits ProfileOp[], applied deterministically.
 export const ProfileOpSchema = z.discriminatedUnion("op", [
   z.object({ op: z.literal("add_goal"), goal: ProfileGoalSchema }),
@@ -42,11 +66,7 @@ export const ProfileOpSchema = z.discriminatedUnion("op", [
     level: ProfileSkillLevelSchema,
     source: z.enum(["stated", "inferred"]),
   }),
-  z.object({
-    op: z.literal("set_preference"),
-    key: PreferencesSchema.keyof(),
-    value: z.unknown(),
-  }),
+  SetPreferenceOpSchema,
 ]);
 
 export type ProfileGoal = z.infer<typeof ProfileGoalSchema>;
