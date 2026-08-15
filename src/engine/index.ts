@@ -31,7 +31,10 @@ export type Working = {
   stoppedBecause: SelectionStop;
   uncovered: { skillId: string; levelsMissing: number }[];
   dropped: string[];
+  /** Precedence edges over every path item (courses, projects, assessments). */
   edges: SequenceEdge[];
+  /** Edges the course toposort actually honoured (cycle-broken edges removed). */
+  courseOrderEdges: SequenceEdge[];
 };
 
 /**
@@ -49,9 +52,25 @@ export function generatePath(
 
   const budgetHours = timeBudgetHours(profile.preferences);
   const courseBudgetHours = Math.round(budgetHours * (1 - EXTRAS_BUDGET_SHARE));
-  const selection = selectCourses(candidates, gap, courseBudgetHours, profile, data);
-  const repaired = repairRequirements(selection.selected, profile, data, gap, courseBudgetHours);
-  const kept = pruneRedundant(repaired.selected, gap, profile);
+  // Select → repair → prune, repeated: pruning can free hours that admit another course.
+  let kept: Candidate[] = [];
+  let selection = selectCourses(candidates, gap, courseBudgetHours, profile, data);
+  let dropped: Candidate[] = [];
+  const prerequisiteGaps: Gap[] = [];
+  for (let round = 0; round < 4; round++) {
+    const repaired = repairRequirements(selection.selected, profile, data, gap, courseBudgetHours);
+    dropped = repaired.dropped;
+    prerequisiteGaps.push(...selection.prerequisiteGaps, ...repaired.prerequisiteGaps);
+    const pruned = pruneRedundant(repaired.selected, gap, profile);
+    const unchanged =
+      pruned.length === kept.length && pruned.every((c) => kept.includes(c));
+    kept = pruned;
+    if (unchanged) break;
+    selection = selectCourses(candidates, gap, courseBudgetHours, profile, data, kept);
+    if (selection.selected.length === kept.length) break;
+  }
+  // Evidence is built against the goal gap plus any requirement gaps selection opened.
+  const evidenceGap: Gap[] = dedupeGaps([...gap, ...prerequisiteGaps]);
 
   const byId = new Map(kept.map((c) => [c.item.id, c]));
   const sequenced = sequenceItems(
@@ -78,7 +97,7 @@ export function generatePath(
       data.skills,
     );
     const items = cands.map((c) => {
-      const evidence = buildEvidence(c, gap, edges, seen);
+      const evidence = buildEvidence(c, evidenceGap, edges, seen);
       seen.push(c.item.id);
       return { catalogId: c.item.id, status: "todo" as const, evidence };
     });
@@ -99,10 +118,16 @@ export function generatePath(
       usedHours: courseHours + extras.usedHours,
       stoppedBecause: selection.stoppedBecause,
       uncovered: [...selection.uncovered].map(([skillId, levelsMissing]) => ({ skillId, levelsMissing })),
-      dropped: repaired.dropped.map((c) => c.item.id),
+      dropped: dropped.map((c) => c.item.id),
       edges,
+      courseOrderEdges: sequenced.edges,
     },
   };
+}
+
+function dedupeGaps(gaps: Gap[]): Gap[] {
+  const seen = new Set<string>();
+  return gaps.filter((g) => (seen.has(g.skillId) ? false : (seen.add(g.skillId), true)));
 }
 
 export { ENGINE_WEIGHTS } from "./score";

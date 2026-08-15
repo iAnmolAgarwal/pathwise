@@ -118,6 +118,9 @@ describe("repairRequirements", () => {
     const repaired = repairRequirements(picked, profile, { catalog, embeddings }, gap, 1000);
     expect(repaired.selected.map((c) => c.item.id).sort()).toEqual(["adv", "z-course"]);
     expect(repaired.added.map((c) => c.item.id)).toEqual(["z-course"]);
+    expect(repaired.prerequisiteGaps).toEqual([
+      { skillId: "z", targetLevel: 1, currentLevel: 0, reason: "prereq-of:a", graphPath: ["z", "a"] },
+    ]);
   });
 
   it("drops an item whose requirement no course can satisfy", () => {
@@ -197,6 +200,9 @@ describe("selectCourses — requirement awareness", () => {
     const res = selectCourses(score(catalog), gap, 1000, profile, { catalog, embeddings });
     expect(res.selected.map((c) => c.item.id)).toEqual(["z-course", "adv"]);
     expect(res.usedHours).toBe(13);
+    expect(res.prerequisiteGaps).toEqual([
+      { skillId: "z", targetLevel: 1, currentLevel: 0, reason: "prereq-of:a", graphPath: ["z", "a"] },
+    ]);
   });
 
   it("does not pull in a prerequisite when item plus prerequisite exceed the budget", () => {
@@ -244,5 +250,46 @@ describe("pruneRedundant", () => {
     ];
     const pruned = pruneRedundant(cands, gap, profile);
     expect(pruned.map((c) => c.item.id).sort()).toEqual(["adv", "z-course"]);
+  });
+});
+
+describe("self-requirements", () => {
+  const catalog = [
+    item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "a", level: 1 }] }),
+  ];
+
+  it("repairRequirements does not let an item satisfy its own requirement", () => {
+    const repaired = repairRequirements(score(catalog), profile, { catalog, embeddings }, gap, 1000);
+    expect(repaired.selected).toEqual([]);
+    expect(repaired.dropped.map((c) => c.item.id)).toEqual(["adv"]);
+  });
+
+  it("selectCourses treats a self-requiring item as blocked until another item teaches the basics", () => {
+    const withIntro = [...catalog, item({ id: "intro", skillsTaught: [{ skillId: "a", level: 1 }], durationHours: 2 })];
+    const res = selectCourses(score(withIntro), gap, 1000, profile, { catalog: withIntro, embeddings });
+    expect(res.selected.map((c) => c.item.id)).toEqual(["intro", "adv"]);
+  });
+
+  it("selectCourses resumes from an initial selection, counting its hours and skills", () => {
+    const outside = item({ id: "outside", skillsTaught: [{ skillId: "a", level: 1 }], durationHours: 7 });
+    const cands = score(catalog);
+    const initial = score([outside], profile, [{ skillId: "a", targetLevel: 1, currentLevel: 0, reason: "goal", graphPath: ["a"] }]);
+    const res = selectCourses(cands, gap, 1000, profile, { catalog, embeddings }, initial);
+    expect(res.selected.map((c) => c.item.id)).toEqual(["outside", "adv"]);
+    expect(res.usedHours).toBe(17);
+  });
+});
+
+describe("repairRequirements convergence", () => {
+  it("does not re-add a fix it already dropped, and drops the dependent instead", () => {
+    const catalog = [
+      item({ id: "needs-u", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "u", level: 1 }] }),
+      // The only teacher of u itself needs a skill nobody teaches.
+      item({ id: "u-course", skillsTaught: [{ skillId: "u", level: 1 }], skillsRequired: [{ skillId: "python", level: 1 }], durationHours: 4 }),
+    ];
+    const cands = score(catalog);
+    const repaired = repairRequirements(cands, profile, { catalog, embeddings }, gap, 1000);
+    expect(repaired.selected).toEqual([]);
+    expect(repaired.dropped.map((c) => c.item.id).sort()).toEqual(["needs-u", "u-course"]);
   });
 });

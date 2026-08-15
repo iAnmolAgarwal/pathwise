@@ -21,7 +21,30 @@ export type CourseSelection = {
   /** skillId → levels still missing after selection */
   uncovered: Map<string, number>;
   stoppedBecause: SelectionStop;
+  /** Gaps opened by items' requirements (skills outside the goal gap), for evidence. */
+  prerequisiteGaps: Gap[];
 };
+
+/** Describe a requirement pulled in on behalf of `dependent` as a prereq-of gap entry. */
+function prerequisiteGap(
+  need: { skillId: string; level: number },
+  dependent: Candidate,
+  gap: Gap[],
+  profile: Profile | undefined,
+): Gap {
+  const gapIds = new Set(gap.map((g) => g.skillId));
+  const servesSkill =
+    dependent.item.skillsTaught.find((t) => gapIds.has(t.skillId))?.skillId ??
+    dependent.item.skillsTaught[0]?.skillId ??
+    dependent.item.id;
+  return {
+    skillId: need.skillId,
+    targetLevel: need.level as Gap["targetLevel"],
+    currentLevel: (profile?.skills[need.skillId]?.level ?? 0) as Gap["currentLevel"],
+    reason: `prereq-of:${servesSkill}`,
+    graphPath: [need.skillId, servesSkill],
+  };
+}
 
 /** Levels of a skill the learner will hold after the given items, starting from the profile. */
 export function achievedLevels(profile: Profile, items: CatalogItem[]): Map<string, number> {
@@ -64,6 +87,7 @@ export function selectCourses(
   budgetHours: number,
   profile?: Profile,
   data?: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
+  initial: Candidate[] = [],
 ): CourseSelection {
   const achieved = new Map<string, number>(gap.map((g) => [g.skillId, g.currentLevel]));
   if (profile) {
@@ -76,6 +100,7 @@ export function selectCourses(
   let usedHours = 0;
   let stoppedBecause: SelectionStop = "covered";
   let budgetBound = false;
+  const prerequisiteGaps: Gap[] = [];
 
   const take = (c: Candidate) => {
     selected.push(c);
@@ -86,6 +111,7 @@ export function selectCourses(
   };
   const priorityOf = (c: Candidate, gain: number) =>
     (gain * c.breakdown.total) / c.item.durationHours;
+  for (const c of initial) take(c);
 
   for (let guard = 0; guard < 500; guard++) {
     if (uncoveredLevels(gap, achieved).size === 0) {
@@ -127,6 +153,7 @@ export function selectCourses(
           continue;
         }
         take(fix);
+        prerequisiteGaps.push(prerequisiteGap(missing, c, gap, profile));
         unblocked = true;
         break;
       }
@@ -140,7 +167,13 @@ export function selectCourses(
     stoppedBecause = budgetBound ? "budget" : "no-candidates";
   }
 
-  return { selected, usedHours, uncovered: uncoveredLevels(gap, achieved), stoppedBecause };
+  return {
+    selected,
+    usedHours,
+    uncovered: uncoveredLevels(gap, achieved),
+    stoppedBecause,
+    prerequisiteGaps,
+  };
 }
 
 /**
@@ -164,8 +197,10 @@ export function pruneRedundant(selected: Candidate[], gap: Gap[], profile: Profi
   for (const c of order) {
     const without = kept.filter((k) => k !== c);
     if (contribution(without) < contribution(kept)) continue;
-    const levels = achievedLevels(profile, without.map((k) => k.item));
-    const someoneNeedsIt = without.some((k) => unmetRequirements(k.item, levels).length > 0);
+    const someoneNeedsIt = without.some((k) => {
+      const others = achievedLevels(profile, without.filter((o) => o !== k).map((o) => o.item));
+      return unmetRequirements(k.item, others).length > 0;
+    });
     if (someoneNeedsIt) continue;
     kept.splice(kept.indexOf(c), 1);
   }
@@ -200,31 +235,38 @@ export function repairRequirements(
   data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
   gap: Gap[],
   budgetHours: number,
-): { selected: Candidate[]; added: Candidate[]; dropped: Candidate[] } {
+): { selected: Candidate[]; added: Candidate[]; dropped: Candidate[]; prerequisiteGaps: Gap[] } {
   const current = [...selected];
   const added: Candidate[] = [];
   const dropped: Candidate[] = [];
+  const prerequisiteGaps: Gap[] = [];
   let usedHours = current.reduce((h, c) => h + c.item.durationHours, 0);
+  // Anything dropped stays out, otherwise a fix that is itself unsatisfiable oscillates.
+  const banned = new Set<string>();
 
+  // An item never satisfies its own requirements: check each against the *other* items.
+  const levelsWithout = (c: Candidate) =>
+    achievedLevels(profile, current.filter((k) => k !== c).map((k) => k.item));
   for (let guard = 0; guard < 100; guard++) {
-    const levels = achievedLevels(profile, current.map((c) => c.item));
-    const offender = current.find((c) => unmetRequirements(c.item, levels).length > 0);
+    const offender = current.find((c) => unmetRequirements(c.item, levelsWithout(c)).length > 0);
     if (!offender) break;
-    const missing = unmetRequirements(offender.item, levels)[0];
-    const fix = bestCourseTeaching(missing, current, data, profile, gap);
+    const missing = unmetRequirements(offender.item, levelsWithout(offender))[0];
+    const fix = bestCourseTeaching(missing, current, data, profile, gap, undefined, banned);
     if (fix && usedHours + fix.item.durationHours <= budgetHours) {
       current.push(fix);
       added.push(fix);
+      prerequisiteGaps.push(prerequisiteGap(missing, offender, gap, profile));
       usedHours += fix.item.durationHours;
     } else {
       current.splice(current.indexOf(offender), 1);
       dropped.push(offender);
+      banned.add(offender.item.id);
       usedHours -= offender.item.durationHours;
       const idx = added.indexOf(offender);
       if (idx >= 0) added.splice(idx, 1);
     }
   }
-  return { selected: current, added, dropped };
+  return { selected: current, added, dropped, prerequisiteGaps };
 }
 
 function bestCourseTeaching(
@@ -234,8 +276,9 @@ function bestCourseTeaching(
   profile: Profile,
   gap: Gap[],
   achieved?: Map<string, number>,
+  excluded: Set<string> = new Set(),
 ): Candidate | null {
-  const usedIds = new Set(already.map((c) => c.item.id));
+  const usedIds = new Set([...already.map((c) => c.item.id), ...excluded]);
   const teaching = data.catalog.filter(
     (i) =>
       i.kind === "course" &&
