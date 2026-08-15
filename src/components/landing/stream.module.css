@@ -99,6 +99,15 @@
   background: rgb(255 255 255 / 18%);
 }
 
+.mirror {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.mirror .level {
+  justify-content: flex-end;
+}
+
 .level i.on {
   background: var(--color-violet);
   box-shadow: 0 0 8px var(--color-violet-glow);

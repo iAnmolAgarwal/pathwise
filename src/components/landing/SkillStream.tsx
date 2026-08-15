@@ -82,12 +82,12 @@ export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?:
       <div className={styles.scene} aria-hidden>
         <div className={styles.world}>
           {[
-            { animationName: rightAnimation, cards: rails.right },
-            { animationName: leftAnimation, cards: rails.left },
-          ].map(({ animationName, cards }) =>
+            { animationName: rightAnimation, cards: rails.right, mirror: false },
+            { animationName: leftAnimation, cards: rails.left, mirror: true },
+          ].map(({ animationName, cards, mirror }) =>
             cards.map((skill, index) => (
               <div
-                className={styles.card}
+                className={`${styles.card} ${mirror ? styles.mirror : ""}`}
                 key={`${animationName}-${skill.id}`}
                 style={{
                   animation: `${animationName} 18s linear infinite`,
