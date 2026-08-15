@@ -240,7 +240,8 @@
   gap: clamp(14px, 1.8vw, 28px);
 }
 
-.socials a {
+.socials a,
+.socials span {
   color: rgb(210 207 218 / 48%);
   font-size: clamp(8px, 0.72vw, 11px);
   letter-spacing: -0.01em;

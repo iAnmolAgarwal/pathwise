@@ -13,8 +13,12 @@ const NAV = [
   { label: "Source", href: "https://github.com/anmolagarwal2625/pathwise" },
 ];
 
-/** Team links (LinkedIn); the row renders only once entries exist. */
-const TEAM: Array<{ label: string; href: string }> = [];
+/** Team row: names link to LinkedIn where a profile has been provided. */
+const TEAM: Array<{ label: string; href?: string }> = [
+  { label: "Anmol Agarwal", href: "https://www.linkedin.com/in/anmolagarwal26" },
+  { label: "Riyan Garg" },
+  { label: "Sansriti Mishra" },
+];
 
 /** Placeholder mark until the team picks one: two interlocking forms in the reference's construction. */
 function PathwiseMark() {
@@ -114,11 +118,15 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
 
       {TEAM.length > 0 && (
         <div className={styles.socials}>
-          {TEAM.map((member) => (
-            <a key={member.href} href={member.href} target="_blank" rel="noreferrer">
-              {member.label}
-            </a>
-          ))}
+          {TEAM.map((member) =>
+            member.href ? (
+              <a key={member.label} href={member.href} target="_blank" rel="noreferrer">
+                {member.label}
+              </a>
+            ) : (
+              <span key={member.label}>{member.label}</span>
+            ),
+          )}
         </div>
       )}
     </footer>
