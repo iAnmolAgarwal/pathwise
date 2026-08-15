@@ -1,6 +1,8 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { generatePath } from "@/engine";
+import type { DashboardSummary } from "@/engine/dashboard";
+import { diffPaths } from "@/engine/replan";
 import { applyProfileOps } from "@/engine/profile";
 import type { EngineData } from "@/engine/types";
 import {
@@ -27,14 +29,14 @@ export interface ChatContext {
   saveProfile(profile: Profile): Promise<void>;
   getLatestPath(): Promise<{ version: number; path: Path } | null>;
   savePath(path: Path, diff: PathDiff | null): Promise<{ version: number }>;
-  /** Same computation as /api/dashboard; a stub until that route exists. */
-  dashboardSummary(): Promise<unknown>;
+  /** Same computation as /api/dashboard (§8.3). */
+  dashboardSummary(): Promise<DashboardSummary>;
   now(): Date;
 }
 
 export type ToolSideEffect =
   | { type: "profile_updated"; profile: Profile; ops: ProfileOp[] }
-  | { type: "path_updated"; version: number; path: Path };
+  | { type: "path_updated"; version: number; path: Path; diff: PathDiff | null };
 
 export type ToolOutcome = {
   result: unknown;
@@ -136,8 +138,13 @@ export async function executeTool(
         return explainItem(ctx, ExplainInput.parse(rawInput).catalogId);
       case "search_catalog":
         return { result: searchCatalog(ctx.data, SearchInput.parse(rawInput)), effects: [] };
-      case "get_dashboard_summary":
-        return { result: await ctx.dashboardSummary(), effects: [] };
+      case "get_dashboard_summary": {
+        // Skill-by-skill status is for the graph; the assistant gets the readable parts.
+        const { skillStatus: _skillStatus, gap, ...summary } = await ctx.dashboardSummary();
+        void _skillStatus;
+        const skillName = (id: string) => ctx.data.skills.find((s) => s.id === id)?.name ?? id;
+        return { result: { ...summary, openGap: gap.map((g) => `${skillName(g.skillId)} ${g.currentLevel}→${g.targetLevel}`) }, effects: [] };
+      }
       default:
         return { result: { error: `Unknown tool ${name}` }, isError: true, effects: [] };
     }
@@ -183,11 +190,24 @@ async function regenerate(ctx: ChatContext, trigger: Path["meta"]["trigger"], re
     now: ctx.now().toISOString(),
     trigger: previous ? "replan" : trigger,
   });
-  const saved = await ctx.savePath(path, null);
   const catalog = new Map(ctx.data.catalog.map((c) => [c.id, c]));
+  const skillName = (id: string) => ctx.data.skills.find((s) => s.id === id)?.name ?? id;
+  const diff =
+    previous && reason
+      ? diffPaths(previous.path, path, { eventId: `chat:v${previous.version}`, humanReadable: reason }, {
+          added: (item) => `Closes ${item.evidence.gapSkillsCovered.map((g) => skillName(g.skillId)).slice(0, 3).join(", ") || "a requirement"}`,
+          removed: () => "No longer needed after the profile changed",
+        })
+      : null;
+  const saved = await ctx.savePath(path, diff);
   const summary = {
     version: saved.version,
     reason: reason ?? null,
+    diff: diff && {
+      added: diff.added.map((d) => `${catalog.get(d.catalogId)?.title ?? d.catalogId} — ${d.reason}`),
+      removed: diff.removed.map((d) => `${catalog.get(d.catalogId)?.title ?? d.catalogId} — ${d.reason}`),
+      reordered: diff.reordered,
+    },
     budgetHours: working.budgetHours,
     plannedHours: working.usedHours,
     stoppedBecause: working.stoppedBecause,
@@ -201,7 +221,7 @@ async function regenerate(ctx: ChatContext, trigger: Path["meta"]["trigger"], re
       }),
     })),
   };
-  return { result: summary, effects: [{ type: "path_updated", version: saved.version, path }] };
+  return { result: summary, effects: [{ type: "path_updated", version: saved.version, path, diff }] };
 }
 
 export function describeEvidence(evidence: Evidence, data: EngineData) {

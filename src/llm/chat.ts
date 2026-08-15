@@ -1,5 +1,5 @@
 import type Anthropic from "@anthropic-ai/sdk";
-import type { Path, Profile, ProfileOp } from "@/schemas";
+import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import { applyProfileOps } from "@/engine/profile";
 import { EFFORT, MAX_TOKENS, MODEL } from "./client";
 import { summarizePath, summarizeProfile } from "./context";
@@ -20,7 +20,7 @@ export type ChatEvent =
   | { type: "nova_state"; state: NovaState }
   | { type: "tool_call"; name: string; status: "start" | "done" | "error" }
   | { type: "profile_updated"; profile: Profile; ops: ProfileOp[] }
-  | { type: "path_updated"; version: number; path: Path }
+  | { type: "path_updated"; version: number; path: Path; diff: PathDiff | null }
   | { type: "usage"; usage: UsageTotals; calls: number }
   | { type: "degraded"; degradation: Degradation }
   | { type: "done"; text: string };
@@ -163,7 +163,7 @@ function emitEffects(effects: ToolSideEffect[], emit: (event: ChatEvent) => void
   for (const effect of effects) {
     if (effect.type === "profile_updated") emit({ type: "profile_updated", profile: effect.profile, ops: effect.ops });
     if (effect.type === "path_updated") {
-      emit({ type: "path_updated", version: effect.version, path: effect.path });
+      emit({ type: "path_updated", version: effect.version, path: effect.path, diff: effect.diff });
       emit({ type: "nova_state", state: "celebrating" });
     }
   }

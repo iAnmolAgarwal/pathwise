@@ -61,6 +61,38 @@ describe("executeTool", () => {
     expect(missing.isError).toBe(true);
   });
 
+  it("get_dashboard_summary reports progress, next action and streak from the same computation as the route", async () => {
+    const { ctx } = memoryContext();
+    await executeTool(noClient, ctx, "apply_profile_ops", {
+      ops: [{ op: "add_goal", goal: { type: "role", templateId: "frontend-developer" } }],
+    });
+    await executeTool(noClient, ctx, "generate_path", {});
+    const out = await executeTool(noClient, ctx, "get_dashboard_summary", {});
+    const r = out.result as { progress: { percent: number; itemsTotal: number }; nextAction: { title: string | null; why: string }; streak: { current: number }; radar: unknown[] };
+    expect(out.isError).toBeFalsy();
+    expect(r.progress.itemsTotal).toBeGreaterThan(0);
+    expect(r.nextAction.title).toBeTruthy();
+    expect(r.nextAction.why).toMatch(/Next in/);
+    expect(r.streak.current).toBe(0);
+    expect(r.radar.length).toBeGreaterThan(0);
+    expect(r).not.toHaveProperty("skillStatus");
+  });
+
+  it("replan_path records a diff against the previous version with the stated reason as cause", async () => {
+    const { ctx, state } = memoryContext();
+    await executeTool(noClient, ctx, "apply_profile_ops", {
+      ops: [{ op: "add_goal", goal: { type: "role", templateId: "frontend-developer" } }],
+    });
+    await executeTool(noClient, ctx, "generate_path", {});
+    await executeTool(noClient, ctx, "apply_profile_ops", {
+      ops: [{ op: "set_skill", skillId: "html", level: 3, source: "stated" }, { op: "set_skill", skillId: "css", level: 3, source: "stated" }],
+    });
+    const out = await executeTool(noClient, ctx, "replan_path", { reason: "you already know HTML and CSS" });
+    expect(out.isError).toBeFalsy();
+    expect(state.diffs.at(-1)).toMatchObject({ cause: { humanReadable: "you already know HTML and CSS" } });
+    expect((out.result as { diff: unknown }).diff).toBeTruthy();
+  });
+
   it("unknown tools return an error result", async () => {
     const { ctx } = memoryContext();
     expect((await executeTool(noClient, ctx, "launch_rockets", {})).isError).toBe(true);

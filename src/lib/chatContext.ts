@@ -1,4 +1,5 @@
-import { getLatestPath, getProfile, insertPath, saveProfile } from "@/db/queries";
+import { getLatestPath, getProfile, insertPath, listFeedbackDays, saveProfile } from "@/db/queries";
+import { computeDashboard } from "@/lib/dashboard";
 import { loadEngineData } from "@/lib/engineData";
 import type { ChatContext } from "@/llm/tools";
 import { summarizeProfile } from "@/llm/context";
@@ -24,21 +25,9 @@ export function dbChatContext(learnerId: string): ChatContext {
       const row = await insertPath(learnerId, path, diff);
       return { version: row.version };
     },
-    // Dashboard computation arrives with the dashboard route; until then, honest counts only.
     async dashboardSummary() {
-      const latest = await getLatestPath(learnerId);
-      const items = latest?.data.phases.flatMap((p) => p.items) ?? [];
-      const done = items.filter((i) => i.status === "done").length;
-      const next = items.find((i) => i.status === "todo" || i.status === "in_progress");
-      const catalog = new Map(data.catalog.map((c) => [c.id, c]));
-      return {
-        available: false,
-        note: "Progress tracking and the dashboard arrive in a later release; counts below come from the current path.",
-        pathVersion: latest?.version ?? null,
-        itemsPlanned: items.length,
-        itemsDone: done,
-        nextItem: next ? { catalogId: next.catalogId, title: catalog.get(next.catalogId)?.title } : null,
-      };
+      const [profile, latest, eventDays] = await Promise.all([this.getProfile(), getLatestPath(learnerId), listFeedbackDays(learnerId)]);
+      return computeDashboard(profile, latest?.data ?? null, eventDays);
     },
     now: () => new Date(),
   };

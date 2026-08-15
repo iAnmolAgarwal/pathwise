@@ -1,6 +1,6 @@
 import { desc, eq, sql } from "drizzle-orm";
-import { chatMessages, db, learners, paths, profiles, tokenUsage } from "./index";
-import type { Path, PathDiff, Profile } from "../schemas";
+import { chatMessages, db, feedbackEvents, learners, paths, profiles, tokenUsage } from "./index";
+import type { FeedbackEvent, Path, PathDiff, Profile } from "../schemas";
 
 export async function createLearner(displayName: string, profile: Profile) {
   const avatarSeed = Math.random().toString(36).slice(2, 10);
@@ -35,7 +35,7 @@ export async function saveProfile(learnerId: string, data: Profile) {
 
 export async function getLatestPath(
   learnerId: string,
-): Promise<{ version: number; data: Path; diff: PathDiff | null; createdAt: Date } | null> {
+): Promise<{ id: string; version: number; data: Path; diff: PathDiff | null; createdAt: Date } | null> {
   const [row] = await db()
     .select()
     .from(paths)
@@ -53,6 +53,29 @@ export async function insertPath(learnerId: string, data: Path, diff: PathDiff |
     .values({ learnerId, version, data, diff })
     .returning();
   return row;
+}
+
+/** Item status changes that did not trigger a new version are written onto the current one. */
+export async function updatePathData(pathId: string, data: Path) {
+  await db().update(paths).set({ data }).where(eq(paths.id, pathId));
+}
+
+/** Append-only feedback stream (§4.2); the row id becomes the PathDiff cause.eventId. */
+export async function insertFeedbackEvent(learnerId: string, event: FeedbackEvent) {
+  const [row] = await db()
+    .insert(feedbackEvents)
+    .values({ learnerId, type: event.type, payload: event })
+    .returning();
+  return row;
+}
+
+/** Distinct UTC days with feedback activity, oldest first — the streak's raw material. */
+export async function listFeedbackDays(learnerId: string): Promise<string[]> {
+  const rows = await db()
+    .select({ day: sql<string>`to_char(${feedbackEvents.createdAt} at time zone 'UTC', 'YYYY-MM-DD')` })
+    .from(feedbackEvents)
+    .where(eq(feedbackEvents.learnerId, learnerId));
+  return [...new Set(rows.map((r) => r.day))].sort();
 }
 
 export type StoredChatMessage = {

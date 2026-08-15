@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { ChatEvent, NovaState } from "@/llm/chat";
-import type { Path, Profile, ProfileOp } from "@/schemas";
+import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import { readSse } from "@/lib/sseClient";
 
 export type ChatMessageView = {
@@ -18,7 +18,7 @@ type Props = {
   learnerId: string;
   initialMessages: ChatMessageView[];
   onProfileUpdated: (profile: Profile, ops: ProfileOp[]) => void;
-  onPathUpdated: (version: number, path: Path) => void;
+  onPathUpdated: (version: number, path: Path, diff: PathDiff | null) => void;
   onNovaState: (state: NovaState) => void;
 };
 
@@ -100,7 +100,7 @@ export function ChatPanel({ learnerId, initialMessages, onProfileUpdated, onPath
             onProfileUpdated(event.profile, event.ops);
             break;
           case "path_updated":
-            onPathUpdated(event.version, event.path);
+            onPathUpdated(event.version, event.path, event.diff);
             break;
           case "degraded":
             patch((m) => ({ ...m, degraded: true, text: m.text || event.degradation.message }));
