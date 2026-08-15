@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { ChatEvent, NovaState } from "@/llm/chat";
+import type { ChatEvent } from "@/llm/chat";
+import type { NovaState } from "@/schemas";
 import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import { readSse } from "@/lib/sseClient";
 

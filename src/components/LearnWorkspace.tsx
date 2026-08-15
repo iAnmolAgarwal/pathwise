@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
-import type { NovaState } from "@/llm/chat";
+import type { NovaState } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import { DashboardTab } from "./dashboard/DashboardTab";

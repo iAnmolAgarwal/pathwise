@@ -1,5 +1,5 @@
 import type Anthropic from "@anthropic-ai/sdk";
-import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
+import type { NovaState, Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import { applyProfileOps } from "@/engine/profile";
 import { EFFORT, MAX_TOKENS, MODEL } from "./client";
 import { summarizePath, summarizeProfile } from "./context";
@@ -12,7 +12,7 @@ import { CHAT_TOOLS, executeTool, type ChatContext, type ToolSideEffect } from "
 /** Cap on model calls per learner turn (§8.3). */
 export const MAX_TOOL_ITERATIONS = 6;
 
-export type NovaState = "idle" | "listening" | "thinking" | "speaking" | "celebrating" | "resting";
+export type { NovaState };
 
 /** Events the SSE handler forwards to the client, one JSON object each. */
 export type ChatEvent =
