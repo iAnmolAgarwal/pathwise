@@ -7,7 +7,8 @@
 /*
  * Design tokens. Dark-only, high-contrast: near-black ink, white text, white
  * primary actions, violet used as light (glows, gradients, progress) rather
- * than as a fill. The landing footer alone uses the aurora group. Everything below
+ * than as a fill; Inter throughout with tight negative tracking at display
+ * sizes. The landing footer alone uses the aurora group. Everything below
  * is referenced by utility name (bg-brand, text-ink-2, rounded-card, ...);
  * component styles should never restate raw values.
  */
@@ -113,8 +114,8 @@
   --color-sidebar-ring: var(--color-brand);
 
   /* --- type ---------------------------------------------------------- */
-  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
   --font-heading: var(--font-display);
 
@@ -126,12 +127,18 @@
   --text-body--line-height: 1.6;
   --text-lead: 1.0625rem; /* 17px */
   --text-lead--line-height: 1.6;
-  --text-display-sm: clamp(2rem, 3.2vw, 2.75rem);
-  --text-display-sm--line-height: 1.02;
-  --text-display-sm--letter-spacing: -0.02em;
-  --text-display: clamp(3.25rem, 6.4vw, 5.75rem);
-  --text-display--line-height: 0.94;
-  --text-display--letter-spacing: -0.03em;
+  --text-display-sm: clamp(2rem, 3.25vw, 3.625rem); /* footer heading scale */
+  --text-display-sm--line-height: 1.06;
+  --text-display-sm--letter-spacing: -0.047em;
+  --text-display-sm--font-weight: 420;
+  --text-display: clamp(3.625rem, min(7vw, 13vh), 6.75rem); /* hero h1 scale */
+  --text-display--line-height: 0.88;
+  --text-display--letter-spacing: -0.075em;
+  --text-display--font-weight: 590;
+  --text-wordmark: clamp(5.375rem, 13.4vw, 12.8125rem);
+  --text-wordmark--line-height: 0.72;
+  --text-wordmark--letter-spacing: -0.087em;
+  --text-wordmark--font-weight: 540;
 
   /* --- shape --------------------------------------------------------- */
   --radius-chip: 6px;
@@ -241,7 +248,7 @@
   h1,
   h2,
   h3 {
-    @apply font-display font-normal;
+    @apply font-display;
     text-wrap: balance;
   }
   :focus-visible {

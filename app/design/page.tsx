@@ -45,11 +45,11 @@ export default function DesignPage() {
       <div className="relative mx-auto max-w-6xl">
         <p className="label-caps text-ink-3">Design reference · step 0 tokens</p>
         <h1 className="mt-4 text-display max-w-4xl">
-          Learn what <em className="text-gradient-violet">matters</em>, in the right order.
+          Learn what <span className="text-gradient-violet">matters</span>, in the right order.
         </h1>
         <p className="mt-6 max-w-xl text-lead text-ink-2">
-          Newsreader for display, Instrument Sans for body copy at 15px, JetBrains Mono for
-          identifiers. Black ink, white text and actions, violet only as light.
+          Inter throughout — 590 and tight for the hero, 420 for section headings, 15px body — with
+          JetBrains Mono for identifiers. Black ink, white text and actions, violet only as light.
         </p>
 
         <Section title="Palette">
@@ -65,7 +65,7 @@ export default function DesignPage() {
 
         <Section title="Type">
           <div className="space-y-6">
-            <div className="font-display text-display-sm">Display small — phase &amp; card titles</div>
+            <div className="font-display text-display-sm max-w-3xl">Ready to learn what matters, <span className="text-ink-2">skip what you already know?</span></div>
             <p className="text-body max-w-2xl text-ink-1">
               Body 15px / 1.6 — Nova maps your gap across 159 skills, then picks the fewest
               courses that close it. Feedback reshapes the path; you see exactly what changed
@@ -112,7 +112,7 @@ export default function DesignPage() {
               chip · 6px
             </div>
             <div className="w-56 rounded-card border border-line bg-surface-1 p-4 shadow-float">
-              <div className="font-display text-display-sm !text-xl">Card · 12px</div>
+              <div className="font-display text-xl font-[540] tracking-[-0.03em]">Card · 12px</div>
               <div className="mt-1 text-[12px] text-ink-3">shadow-float</div>
             </div>
             <div className="glass w-56 rounded-float p-4 shadow-float">
@@ -165,7 +165,7 @@ export default function DesignPage() {
             <div className="absolute left-8 top-8 flex items-center gap-2 text-[12px] font-medium text-aurora-sky-2">
               <span className="text-aurora-sky animate-spark">✦</span> Start with a goal
             </div>
-            <div className="absolute bottom-6 left-8 font-display text-[112px] leading-[0.72] tracking-[-0.05em] text-aurora-text">
+            <div className="absolute bottom-6 left-8 font-display text-[112px] leading-[0.72] tracking-[-0.087em] font-[540] text-aurora-text">
               pathwise
             </div>
           </div>
