@@ -76,18 +76,4 @@ function Button({
   );
 }
 
-/** Reference-style spinner for busy buttons and scene loaders. */
-function Spinner({ className }: { className?: string }) {
-  return (
-    <span
-      role="status"
-      aria-label="Loading"
-      className={cn(
-        "inline-block size-4 animate-spin-loader rounded-full border-2 border-current/20 border-t-current",
-        className,
-      )}
-    />
-  );
-}
-
-export { Button, Spinner, buttonVariants };
+export { Button, buttonVariants };

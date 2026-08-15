@@ -2,7 +2,8 @@
 import { ArrowRight, ArrowUpRight, Check, Sparkles, X } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button, Spinner } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { Orb } from "@/components/ui/orb";
 import {
   Card,
   CardContent,
@@ -89,7 +90,7 @@ export default function DesignPage() {
                 </Button>
                 <Button disabled>Disabled</Button>
                 <Button aria-busy>
-                  <Spinner /> Thinking
+                  <Orb state="working" size={20} /> Thinking
                 </Button>
               </Row>
               <Row label="secondary">
@@ -246,8 +247,8 @@ export default function DesignPage() {
               </Card>
               <Card variant="glass" size="sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-[15px]">
-                    <i className="size-[7px] rounded-full bg-violet shadow-glow-dot" aria-hidden />
+                  <CardTitle className="flex items-center gap-3 text-[15px]">
+                    <Orb state="searching" size={20} />
                     Nova is thinking
                   </CardTitle>
                   <CardDescription>Reading your profile · comparing 246 resources</CardDescription>
@@ -331,10 +332,35 @@ export default function DesignPage() {
                 </span>
                 spark 2.6s
               </span>
-              <span className="flex items-center gap-3">
-                <Spinner className="text-ink-1" /> loader 0.8s
-              </span>
               <span className="font-mono">ease-enter .22,1,.36,1 · 220 / 450 / 800 / 1000ms</span>
+            </div>
+          </Section>
+
+          <Section title="Orbs">
+            <p className="mb-6 max-w-2xl text-[13px] text-ink-3">
+              Every thinking and loading moment uses one of these nine states (thinking-orbs, monochrome
+              canvas). 64px for avatar-scale moments, 20px inline.
+            </p>
+            <div className="grid grid-cols-9 gap-4">
+              {(
+                [
+                  "working",
+                  "searching",
+                  "solving",
+                  "listening",
+                  "connecting",
+                  "weaving",
+                  "composing",
+                  "breathing",
+                  "shaping",
+                ] as const
+              ).map((state) => (
+                <div key={state} className="flex flex-col items-center gap-3">
+                  <Orb state={state} size={64} />
+                  <Orb state={state} size={20} />
+                  <span className="font-mono text-[11px] text-ink-3">{state}</span>
+                </div>
+              ))}
             </div>
           </Section>
 
