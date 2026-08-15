@@ -172,3 +172,26 @@ describe("scoreCandidates", () => {
     expect(scoreCandidates([], profile, { catalog, embeddings })).toEqual([]);
   });
 });
+
+describe("dislikes (§5.5 not_interested memo)", () => {
+  const embeddings = { js: [1, 0], a: [1, 0], b: [1, 0] };
+  const catalog = [
+    item({ id: "a", skillsTaught: [{ skillId: "js", level: 2 }], provider: "Udemy", format: "video" }),
+    item({ id: "b", skillsTaught: [{ skillId: "js", level: 2 }], provider: "MDN", format: "text" }),
+  ];
+
+  it("excludes disliked items from the candidate set", () => {
+    const p: Profile = { ...profile, dislikes: { catalogIds: ["a"], providers: [], formats: [] } };
+    expect(scoreCandidates(gap, p, { catalog, embeddings }).map((c) => c.item.id)).toEqual(["b"]);
+  });
+
+  it("penalises preferenceFit for a disliked provider or format, but never below zero", () => {
+    const disliked = { catalogIds: [], providers: ["Udemy"], formats: ["video" as const] };
+    const [a, b] = catalog;
+    expect(preferenceFit(a, profile.preferences, disliked)).toBeLessThan(preferenceFit(a, profile.preferences));
+    expect(preferenceFit(a, profile.preferences, disliked)).toBeGreaterThanOrEqual(0);
+    expect(preferenceFit(b, profile.preferences, disliked)).toBe(preferenceFit(b, profile.preferences));
+    const scored = scoreCandidates(gap, { ...profile, dislikes: disliked }, { catalog, embeddings });
+    expect(scored[0].item.id).toBe("b");
+  });
+});

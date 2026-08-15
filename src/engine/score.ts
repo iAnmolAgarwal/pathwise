@@ -1,4 +1,4 @@
-import type { CatalogItem, Preferences, Profile, ScoreBreakdown } from "../schemas";
+import type { CatalogItem, Dislikes, Preferences, Profile, ScoreBreakdown } from "../schemas";
 import { centroid, cosine } from "./similarity";
 import type { Candidate, Gap } from "./types";
 
@@ -54,8 +54,14 @@ export function levelFit(item: CatalogItem, gap: Gap[], profile: Profile): numbe
   return clamp01(1 - Math.abs(item.difficulty - ideal) / 4);
 }
 
-/** Mean of three sub-fits: format ∈ prefs, cost within budget, duration vs weekly hours. */
-export function preferenceFit(item: CatalogItem, prefs: Preferences): number {
+/** Each disliked provider/format memo (§5.5 not_interested) halves the preference fit. */
+export const DISLIKE_PENALTY = 0.5;
+
+/**
+ * Mean of three sub-fits: format ∈ prefs, cost within budget, duration vs weekly hours;
+ * then scaled down for every dislike memo the item matches.
+ */
+export function preferenceFit(item: CatalogItem, prefs: Preferences, dislikes?: Dislikes): number {
   const formatFit =
     prefs.formats.length === 0 || prefs.formats.includes(item.format) ? 1 : 0.25;
   const costFit =
@@ -63,7 +69,10 @@ export function preferenceFit(item: CatalogItem, prefs: Preferences): number {
   // Full marks up to two weeks of the learner's hours; linear decay to zero at ten weeks.
   const weeks = item.durationHours / prefs.hoursPerWeek;
   const durationFit = clamp01(1 - Math.max(0, weeks - 2) / 8);
-  return (formatFit + costFit + durationFit) / 3;
+  let fit = (formatFit + costFit + durationFit) / 3;
+  if (dislikes?.providers.includes(item.provider)) fit *= DISLIKE_PENALTY;
+  if (dislikes?.formats.includes(item.format)) fit *= DISLIKE_PENALTY;
+  return fit;
 }
 
 /**
@@ -82,7 +91,9 @@ export function scoreCandidates(
   );
 
   const candidates: Candidate[] = [];
+  const excluded = new Set(profile.dislikes?.catalogIds ?? []);
   for (const item of data.catalog) {
+    if (excluded.has(item.id)) continue;
     const { coverage, gapSkills } = coverageOf(item, gap);
     if (gapSkills.length === 0) continue;
     const itemVec = data.embeddings[item.id];
@@ -91,7 +102,7 @@ export function scoreCandidates(
     const breakdown: ScoreBreakdown = {
       coverage,
       levelFit: levelFit(item, gap, profile),
-      preferenceFit: preferenceFit(item, profile.preferences),
+      preferenceFit: preferenceFit(item, profile.preferences, profile.dislikes),
       quality: clamp01(item.qualityPrior),
       similarity,
       total: 0,
