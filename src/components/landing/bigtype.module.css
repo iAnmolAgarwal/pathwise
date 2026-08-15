@@ -16,14 +16,14 @@
 
 .showcase {
   background:
-    radial-gradient(circle at 50% -10%, rgb(139 92 255 / 22%), transparent 43%),
-    linear-gradient(180deg, #14111d, #0b0a10);
+    radial-gradient(circle at 50% -10%, rgb(255 255 255 / 9%), transparent 43%),
+    var(--color-ink);
 }
 
 .contact {
   background:
-    radial-gradient(circle at 50% 115%, rgb(132 83 255 / 35%), transparent 45%),
-    linear-gradient(180deg, #111014, var(--color-ink));
+    radial-gradient(circle at 50% 118%, var(--color-violet-haze), transparent 46%),
+    var(--color-ink);
 }
 
 .label {
