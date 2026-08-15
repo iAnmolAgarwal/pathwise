@@ -91,7 +91,7 @@
 }
 
 .lead {
-  max-width: 530px;
+  max-width: 440px;
   margin: clamp(15px, 2.8vh, 26px) 0 0;
   color: var(--color-ink-2);
   font-size: clamp(13px, 1.3vw, 17px);
@@ -255,7 +255,8 @@
     min-height: 460px;
     overflow: hidden;
   }
-  .spline { transform: none; }
+  .spline { transform: none; mask-image: linear-gradient(to bottom, black 78%, transparent 100%); }
+  .liveLabelWrap { bottom: 12%; }
   .h1 { font-size: clamp(58px, 14vw, 86px); }
 }
 

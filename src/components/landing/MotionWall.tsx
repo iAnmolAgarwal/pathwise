@@ -22,7 +22,7 @@ const PANELS: Panel[] = [
   { eyebrow: "SKILL GRAPH", title: ["GAP", "MAP"], footer: "159 NODES / 193 EDGES", speed: 0.92 },
   { eyebrow: "ADAPTIVE", title: ["PATH", "DIFF"], footer: "FEEDBACK REWRITES", speed: 0.9 },
   { eyebrow: "DASHBOARD", title: ["PROGRESS", "RADAR"], footer: "STREAK / NEXT ACTION", speed: 0.86 },
-  { eyebrow: "JUDGE MODE", title: ["COST", "AWARE"], footer: "DEGRADES, NEVER DIES", speed: 0.84 },
+  { eyebrow: "RESILIENT", title: ["STILL", "ANSWERS"], footer: "WHEN THE MODEL IS DOWN", speed: 0.84 },
 ];
 
 /** Small illustrations of each feature, drawn in CSS/SVG so every panel carries information. */
@@ -103,8 +103,8 @@ function PanelArt({ index }: { index: number }) {
         <div className={styles.art} aria-hidden>
           <div className={styles.diff}>
             <b>Path updated</b>
-            Swapped <s>Kafka: The Definitive Guide</s> for Streaming Systems because you marked the
-            last one too hard.
+            Swapped <s>Confluent Kafka Tutorials</s> for Confluent Developer Kafka Courses because you
+            marked the last one too hard.
           </div>
         </div>
       );
@@ -119,7 +119,7 @@ function PanelArt({ index }: { index: number }) {
             <i />
             <i className={styles.on} />
             <i className={styles.on} />
-            <span>6-week streak</span>
+            <span>6-day streak</span>
           </div>
           <div className={styles.bar} style={{ "--w": "38%" } as React.CSSProperties}>
             <span>progress</span>
@@ -132,18 +132,22 @@ function PanelArt({ index }: { index: number }) {
       return (
         <div className={`${styles.art} ${styles.meter}`} aria-hidden>
           <span className={styles.state}>
-            <i /> LLM budget · 62% left
+            <i /> Nova is resting — model unavailable
           </span>
-          <div className={styles.meterRow} style={{ "--w": "62%" } as React.CSSProperties}>
-            <span>tokens</span>
+          <div className={styles.meterRow} style={{ "--w": "100%" } as React.CSSProperties}>
+            <span>path</span>
             <i />
           </div>
-          <div className={styles.meterRow} style={{ "--w": "91%" } as React.CSSProperties}>
-            <span>cache hits</span>
+          <div className={styles.meterRow} style={{ "--w": "100%" } as React.CSSProperties}>
+            <span>graph</span>
+            <i />
+          </div>
+          <div className={styles.meterRow} style={{ "--w": "100%" } as React.CSSProperties}>
+            <span>dashboard</span>
             <i />
           </div>
           <span className={styles.state}>
-            <i style={{ background: "#ffffff", boxShadow: "0 0 8px rgba(255,255,255,.6)" }} /> degraded → engine still answers
+            <i style={{ background: "#ffffff", boxShadow: "0 0 8px rgba(255,255,255,.6)" }} /> still working — the engine never needs the model
           </span>
         </div>
       );
@@ -227,7 +231,7 @@ export function MotionWall({ id }: { id?: string }) {
         <div className={styles.reflection} aria-hidden />
         <div className={styles.glassCopy}>
           <p className={styles.intro}>
-            Most recommenders hand you a list. Pathwise hands you a sequenced, evidenced plan — and a
+            A course catalogue hands you a list. Pathwise hands you a sequenced, evidenced plan — and a
             mentor who explains every step and changes it when you push back.
           </p>
           <h2 id="wall-heading" className={styles.heading}>

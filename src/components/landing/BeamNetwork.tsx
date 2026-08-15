@@ -155,7 +155,7 @@ export function BeamNetwork({ id }: { id?: string }) {
           <Node ref={catalogRef} name="Catalog" icon={<BookOpen strokeWidth={stroke} />} />
         </div>
         <div className={styles.center}>
-          <Node ref={centerRef} name="Nova · engine" large icon={<Orb state="connecting" size={64} label="Engine" paused={!inView} />} />
+          <Node ref={centerRef} name="Engine" large icon={<Orb state="connecting" size={64} label="Engine" paused={!inView} />} />
         </div>
         <div className={`${styles.column} ${styles.right}`}>
           <Node ref={pathRef} name="Path" icon={<Route strokeWidth={stroke} />} />

@@ -294,32 +294,38 @@
 }
 
 @media (max-width: 820px) {
-  .card { min-height: max(100svh, 760px); }
-  .intro { top: 9.5%; left: 6%; width: 88%; }
-  .heading { max-width: 680px; font-size: clamp(34px, 8.5vw, 62px); }
-  .contact { top: 38%; left: 6%; }
-  .navigation { top: 49%; right: 6%; left: 6%; justify-content: flex-start; gap: 14px 27px; flex-wrap: wrap; transform: none; }
+  /* Below tablet the absolute slots would collide, so the footer stacks in flow. */
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    min-height: 0;
+    padding: 72px 6% 28px;
+  }
+  .intro, .contact, .navigation, .brand, .copyright, .socials {
+    position: static;
+    inset: auto;
+    width: auto;
+    transform: none;
+  }
+  .heading { max-width: 680px; font-size: clamp(32px, 8.5vw, 56px); }
+  .navigation { justify-content: flex-start; gap: 14px 27px; flex-wrap: wrap; }
   .navigation a { font-size: 15px; }
-  .brand { right: 5%; bottom: 13.5%; left: 6%; gap: 16px; }
+  .brand { gap: 16px; margin-top: 24px; }
   .markWrap { width: clamp(72px, 21vw, 130px); }
   .wordmark { font-size: clamp(65px, 17vw, 120px); }
-  .copyright { bottom: 3%; left: 6%; }
-  .socials { right: 6%; bottom: 7%; }
+  .copyright { margin: 0; }
+  .socials { gap: 18px; }
 }
 
 @media (max-width: 520px) {
-  .card { min-height: max(100svh, 720px); }
-  .intro { top: 8%; }
-  .heading { font-size: clamp(32px, 9.7vw, 48px); line-height: 1.03; }
-  .contact { top: 37%; }
+  .card { padding: 56px 6% 24px; gap: 26px; }
+  .heading { font-size: clamp(30px, 9.7vw, 44px); line-height: 1.03; }
   .email { font-size: 16px; }
-  .navigation { top: 47.5%; gap: 8px 23px; }
   .navigation a { font-size: 14px; }
-  .brand { bottom: 14.5%; gap: 10px; }
   .markWrap { width: 20vw; }
   .wordmark { font-size: 17vw; }
-  .socials { right: auto; bottom: 7.2%; left: 6%; }
-  .copyright { bottom: 3.1%; font-size: 8px; }
+  .copyright { font-size: 9px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

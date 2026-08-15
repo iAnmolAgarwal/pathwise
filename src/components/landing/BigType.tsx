@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
@@ -43,9 +43,9 @@ export function Showcase({ id }: { id?: string }) {
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.7, ease: EASE, delay: 0.3 }}
       >
-        Tell Nova where you want to be. Pathwise measures the gap between what you know and what
-        the goal needs across 159 skills, builds the shortest evidenced route through 246 courses,
-        projects and assessments — and rewrites it when you push back.
+        One sentence about where you want to be becomes a measured gap across 159 skills, then a
+        sequenced route through 246 real courses, projects and assessments — every pick with its
+        evidence attached, every step open to change.
       </motion.p>
     </section>
   );
@@ -66,7 +66,7 @@ export function TryIt({ id, appHref = "/learn" }: { id?: string; appHref?: strin
       >
         <Button size="lg" asChild>
           <Link href={appHref}>
-            Open Nova <ArrowUpRight data-icon="inline-end" />
+            Open Nova <ArrowRight data-icon="inline-end" />
           </Link>
         </Button>
       </motion.div>

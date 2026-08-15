@@ -81,12 +81,12 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Link href={appHref} className={styles.liveLabel} aria-label="Nova is live — start a quick chat">
+            <Link href={appHref} className={styles.liveLabel} aria-label="Talk to Nova — start a quick chat">
               <span className={styles.liveIcon}>
                 <span />
               </span>
               <div>
-                <strong>Nova is live</strong>
+                <strong>Talk to Nova</strong>
                 <small>Start a quick chat</small>
               </div>
             </Link>
@@ -109,8 +109,8 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
           </h1>
 
           <p className={styles.lead}>
-            Tell Nova where you want to be. She maps your skill gap, sequences the fewest courses
-            that close it, and rewrites the plan when you push back.
+            Tell Nova where you want to be. She maps your skill gap, sequences the shortest route she
+            can find through real courses, and rewrites it when you push back.
           </p>
 
           <div className={styles.buttons}>

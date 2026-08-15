@@ -59,6 +59,7 @@
 
 .controls {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -159,13 +160,31 @@
   z-index: 3;
   margin: 0;
   left: 6.5%;
-  top: 22%;
-  max-width: 48%;
+  top: 23%;
+  max-width: 52%;
   font-size: clamp(10px, 5.8cqw, 27px);
   line-height: 0.92;
   letter-spacing: -0.055em;
   font-weight: 580;
 }
+
+.sub {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  left: 6.5%;
+  top: 13.5%;
+  max-width: 72%;
+  font-size: clamp(5px, 1.75cqw, 9.5px);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  opacity: 0.72;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metrics i { display: block; margin-top: 0.3em; font-size: 0.42em; font-style: normal; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
 
 .ink .cardSurface { color: var(--color-ink-1); background: var(--color-surface-2); border: 1px solid var(--color-line); }
 .ink .cardSurface::after { content: ""; position: absolute; inset: 0; opacity: 0.13; background: repeating-linear-gradient(0deg, transparent 0 12%, #fff 12.4% 12.8%); }
@@ -175,7 +194,7 @@
 .micro { position: absolute; left: 7%; bottom: 12%; font-size: clamp(4px, 1.55cqw, 8px); line-height: 1.35; letter-spacing: 0.05em; }
 .giant { position: absolute; right: 7%; bottom: -17%; font-size: clamp(76px, 44cqw, 210px); line-height: 1; font-weight: 350; letter-spacing: -0.1em; }
 .rule { position: absolute; left: 7%; right: 7%; bottom: 8%; border-bottom: 1px solid rgb(255 255 255 / 45%); }
-.steps { position: absolute; left: 19%; top: 42%; font-size: clamp(9px, 5.1cqw, 25px); line-height: 0.86; letter-spacing: -0.04em; }
+.steps { position: absolute; left: 19%; top: 46%; font-size: clamp(9px, 5.1cqw, 25px); line-height: 0.86; letter-spacing: -0.04em; }
 .steps span { display: inline-block; width: 15%; margin-left: -15%; color: var(--color-ink-3); font-size: 0.55em; vertical-align: top; padding-top: 0.2em; }
 .bars { position: absolute; right: 7%; top: 27%; width: 26%; display: grid; gap: 12%; }
 .bars i { height: 3px; background: rgb(255 255 255 / 30%); border-radius: 9px; }
@@ -207,16 +226,12 @@
 .route { position: absolute; left: 7%; bottom: 11%; font-size: clamp(4px, 1.4cqw, 8px); color: var(--color-ink-3); }
 
 .hint {
-  position: absolute;
-  z-index: 99;
-  left: 50%;
-  bottom: 3.2%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-right: 12px;
   color: rgb(255 255 255 / 45%);
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.16em;
   pointer-events: none;
 }

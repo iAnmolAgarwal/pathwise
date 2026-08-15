@@ -14,18 +14,22 @@ interface CardData {
   type: Art;
   kicker: string;
   title: string;
+  /** One line that stays readable even when the next card overlaps this one. */
+  sub: string;
 }
 
-/** The seven steps from a sentence to a sequenced, adaptive plan. */
+/** A cover card plus the six steps from a sentence to a sequenced, adaptive plan. */
 const CARDS: CardData[] = [
-  { theme: "signal", type: "count", kicker: "HOW IT WORKS · 2026", title: "Seven steps" },
-  { theme: "ink", type: "process", kicker: "STEP / 01", title: "Say your goal" },
-  { theme: "paper", type: "portal", kicker: "STEP / 02", title: "Map the gap" },
-  { theme: "ink", type: "pulse", kicker: "STEP / 03", title: "Score it all" },
-  { theme: "signal", type: "statement", kicker: "STEP / 04", title: "Fewest steps" },
-  { theme: "paper", type: "brief", kicker: "STEP / 05", title: "Explain picks" },
-  { theme: "ink", type: "orbit", kicker: "STEP / 06", title: "Adapt on feedback" },
+  { theme: "signal", type: "count", kicker: "HOW IT WORKS", title: "Six steps", sub: "From one sentence to a plan you can act on" },
+  { theme: "ink", type: "process", kicker: "STEP / 01", title: "Say your goal", sub: "Goal, current level, hours a week, how you like to learn" },
+  { theme: "paper", type: "portal", kicker: "STEP / 02", title: "Map the gap", sub: "What the goal needs minus what you already have" },
+  { theme: "ink", type: "pulse", kicker: "STEP / 03", title: "Score it all", sub: "246 items scored on relevance, level fit, time and style" },
+  { theme: "signal", type: "statement", kicker: "STEP / 04", title: "Fewest steps", sub: "Cover the gap with as few items as possible, in prerequisite order" },
+  { theme: "paper", type: "brief", kicker: "STEP / 05", title: "Explain picks", sub: "Every item carries its scores; Nova narrates the why" },
+  { theme: "ink", type: "orbit", kicker: "STEP / 06", title: "Adapt on feedback", sub: "Done, too hard, too easy — the path replans and shows the diff" },
 ];
+
+const STEPS = CARDS.length - 1;
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -38,7 +42,7 @@ function CardArt({ card }: { card: CardData }) {
           <div className={styles.micro}>
             FROM ONE SENTENCE TO A<br />SEQUENCED, EVIDENCED PLAN
           </div>
-          <strong className={styles.giant}>7</strong>
+          <strong className={styles.giant}>6</strong>
           <i className={styles.rule} />
         </>
       );
@@ -80,9 +84,15 @@ function CardArt({ card }: { card: CardData }) {
       return (
         <>
           <div className={styles.metrics}>
-            <b>246</b>
-            <b>0.82</b>
-            <b>04</b>
+            <b>
+              246<i>items</i>
+            </b>
+            <b>
+              0.82<i>top score</i>
+            </b>
+            <b>
+              4<i>signals</i>
+            </b>
           </div>
           <div className={styles.portrait}>
             <i />
@@ -160,11 +170,14 @@ function ArcCard({
   width,
   motion,
   isHovered,
+  hiddenCopy,
   onHoverChange,
   onChoose,
 }: {
   card: CardData;
   index: number;
+  /** Looped duplicate — hidden from assistive tech so the deck reads as one set. */
+  hiddenCopy: boolean;
   slot: number;
   width: number;
   motion: number;
@@ -194,6 +207,7 @@ function ArcCard({
     <article
       className={`${styles.card} ${styles[card.theme]}`}
       aria-label={card.title}
+      aria-hidden={hiddenCopy}
       onMouseEnter={() => onHoverChange(true)}
       onMouseLeave={() => onHoverChange(false)}
       onClick={onChoose}
@@ -214,9 +228,10 @@ function ArcCard({
         <div className={styles.cardSurface}>
           <header>
             <span>{card.kicker}</span>
-            <span>{String(index + 1).padStart(2, "0")} / {String(CARDS.length).padStart(2, "0")}</span>
+            <span>{index === 0 ? "INTRO" : `${String(index).padStart(2, "0")} / ${String(STEPS).padStart(2, "0")}`}</span>
           </header>
           <h3>{card.title}</h3>
+          <p className={styles.sub}>{card.sub}</p>
           <CardArt card={card} />
         </div>
       </div>
@@ -339,9 +354,14 @@ export function ArcDeck({ id }: { id?: string }) {
       <div className={styles.header}>
         <div>
           <p className={styles.label}>How it works</p>
-          <h2 className={styles.title}>Drag the deck — from a sentence to a plan in six moves.</h2>
+          <h2 className={styles.title}>Drag the deck — from a sentence to a plan in six steps.</h2>
         </div>
         <div className={styles.controls}>
+          <span className={styles.hint} aria-hidden>
+            <span>DRAG</span>
+            <i />
+            <span>CLICK A CARD</span>
+          </span>
           <button type="button" className={styles.control} onClick={() => moveOne(1)} aria-label="Previous step">
             <ArrowLeft size={16} strokeWidth={1.8} />
           </button>
@@ -367,6 +387,7 @@ export function ArcDeck({ id }: { id?: string }) {
               key={logical}
               card={CARDS[dataIndex]}
               index={dataIndex}
+              hiddenCopy={logical < 0 || logical >= CARDS.length}
               slot={slot}
               width={stageWidth}
               motion={motion}
@@ -378,11 +399,6 @@ export function ArcDeck({ id }: { id?: string }) {
             />
           );
         })}
-      </div>
-      <div className={styles.hint} aria-hidden>
-        <span>DRAG</span>
-        <i />
-        <span>CLICK A CARD</span>
       </div>
     </section>
   );

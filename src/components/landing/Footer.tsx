@@ -13,13 +13,10 @@ const NAV = [
   { label: "Source", href: "https://github.com/anmolagarwal2625/pathwise" },
 ];
 
-/** Placeholder until the team picks a mark: two interlocking forms in the reference's construction. */
-const TEAM = [
-  { label: "Anmol", href: "#" },
-  { label: "Teammate", href: "#" },
-  { label: "Teammate", href: "#" },
-];
+/** Team links (LinkedIn); the row renders only once entries exist. */
+const TEAM: Array<{ label: string; href: string }> = [];
 
+/** Placeholder mark until the team picks one: two interlocking forms in the reference's construction. */
 function PathwiseMark() {
   return (
     <svg className={styles.mark} viewBox="0 0 160 160" role="img" aria-label="Pathwise symbol">
@@ -72,7 +69,7 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
       <div className={styles.intro}>
         <div className={`${styles.eyebrow} ${styles.reveal} ${styles.delayOne}`}>
           <span className={styles.spark}>✦</span>
-          Start with a goal
+          Get in touch
         </div>
         <h2 className={`${styles.heading} ${styles.reveal} ${styles.delayTwo}`}>
           Ready to learn what matters,
@@ -113,15 +110,17 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
         </div>
       </div>
 
-      <p className={styles.copyright}>© 2026 Pathwise · Team Apprentice. All rights reserved.</p>
+      <p className={styles.copyright}>© 2026 Pathwise · built by Team Apprentice</p>
 
-      <div className={styles.socials}>
-        {TEAM.map((member, index) => (
-          <a key={`${member.label}-${index}`} href={member.href} target={member.href === "#" ? undefined : "_blank"} rel="noreferrer">
-            {member.label}
-          </a>
-        ))}
-      </div>
+      {TEAM.length > 0 && (
+        <div className={styles.socials}>
+          {TEAM.map((member) => (
+            <a key={member.href} href={member.href} target="_blank" rel="noreferrer">
+              {member.label}
+            </a>
+          ))}
+        </div>
+      )}
     </footer>
   );
 }

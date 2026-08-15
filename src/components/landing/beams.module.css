@@ -60,7 +60,7 @@
 
 .title span {
   color: transparent;
-  background: linear-gradient(90deg, #ffffff, #d6c9ff 50%, #ffce9e);
+  background: linear-gradient(90deg, #ffffff, #d6c9ff 50%, #a78bfa);
   background-clip: text;
   -webkit-background-clip: text;
 }
