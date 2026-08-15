@@ -1,0 +1,234 @@
+/* "How it works" — arc-arranged card deck (from the arc deck reference). */
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  color: #18191a;
+  background: linear-gradient(180deg, #e3e5e7 0%, #e3e5e7 72%, #aeb2b5 118%);
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 22%;
+  pointer-events: none;
+  background: linear-gradient(transparent, rgb(67 71 74 / 16%));
+}
+
+.header {
+  position: absolute;
+  z-index: 50;
+  top: clamp(24px, 4vh, 44px);
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  pointer-events: none;
+}
+
+.header > * {
+  pointer-events: auto;
+}
+
+.label {
+  margin: 0;
+  color: rgb(24 25 26 / 55%);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 10px 0 0;
+  max-width: 420px;
+  color: #18191a;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-weight: 540;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgb(24 25 26 / 16%);
+  border-radius: 999px;
+  color: #18191a;
+  background: rgb(255 255 255 / 55%);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.control:hover {
+  transform: translateY(-2px);
+  background: rgb(255 255 255 / 85%);
+}
+
+.stage {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(100vw, 62vh);
+  height: 100%;
+  transform: translateX(-50%);
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.stage:active {
+  cursor: grabbing;
+}
+
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 91.5%;
+  aspect-ratio: 1.75 / 1;
+  container-type: inline-size;
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+  transition: opacity 0.12s linear;
+  cursor: pointer;
+}
+
+.cardMotion {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.cardSurface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: max(5px, 1.35%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 40%) inset, 0 9px 20px rgb(20 24 27 / 12%);
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.36s cubic-bezier(0.2, 0.78, 0.2, 1),
+    box-shadow 0.36s cubic-bezier(0.2, 0.78, 0.2, 1);
+}
+
+.card:hover .cardSurface {
+  transform: translateZ(0) scale(1.055);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 55%) inset, 0 24px 52px rgb(20 24 27 / 30%);
+}
+
+.card header {
+  position: absolute;
+  z-index: 3;
+  left: 6.5%;
+  right: 6.5%;
+  top: 8%;
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(4px, 1.45cqw, 8px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.82;
+}
+
+.card h3 {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  left: 6.5%;
+  top: 22%;
+  max-width: 48%;
+  font-size: clamp(10px, 5.8cqw, 27px);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  font-weight: 580;
+}
+
+.ink .cardSurface { color: #f6f5f1; background: #171719; border: 1px solid rgb(255 255 255 / 9%); }
+.ink .cardSurface::after { content: ""; position: absolute; inset: 0; opacity: 0.13; background: repeating-linear-gradient(0deg, transparent 0 12%, #fff 12.4% 12.8%); }
+.paper .cardSurface { color: #18191a; background: #f8f8f5; border: 1px solid rgb(10 12 13 / 11%); }
+.signal .cardSurface { color: #fff8ee; background: #ff4b32; border: 1px solid rgb(139 29 13 / 16%); }
+
+.micro { position: absolute; left: 7%; bottom: 12%; font-size: clamp(4px, 1.55cqw, 8px); line-height: 1.35; letter-spacing: 0.05em; }
+.giant { position: absolute; right: 7%; bottom: -17%; font-size: clamp(76px, 44cqw, 210px); line-height: 1; font-weight: 350; letter-spacing: -0.1em; }
+.rule { position: absolute; left: 7%; right: 7%; bottom: 8%; border-bottom: 1px solid rgb(255 255 255 / 50%); }
+.steps { position: absolute; left: 19%; top: 34%; font-size: clamp(9px, 5.1cqw, 25px); line-height: 0.86; letter-spacing: -0.04em; }
+.steps span { display: inline-block; width: 15%; margin-left: -15%; color: #727276; font-size: 0.55em; vertical-align: top; padding-top: 0.2em; }
+.bars { position: absolute; right: 7%; top: 27%; width: 26%; display: grid; gap: 12%; }
+.bars i { height: 3px; background: #55555a; border-radius: 9px; }
+.bars i:nth-child(2) { width: 70%; } .bars i:nth-child(3) { width: 89%; } .bars i:nth-child(4) { width: 48%; }
+.rows { position: absolute; left: 7%; right: 45%; bottom: 10%; font-size: clamp(4px, 1.7cqw, 9px); }
+.rows p { padding: 8% 0; margin: 0; display: flex; justify-content: space-between; border-top: 1px solid #d8d8d4; }
+.rows b { color: #a3a39e; }
+.portalArt { position: absolute; right: 6%; top: 26%; width: 33%; height: 64%; background: #171719; box-shadow: -13px 13px 23px rgb(0 0 0 / 13%); }
+.portalArt i { position: absolute; inset: 11% 21%; background: linear-gradient(115deg, #fff, #d7d7d3); box-shadow: 0 0 16px #fff; }
+.portalArt b { position: absolute; right: 22%; top: 43%; color: #18191a; font: 8px monospace; }
+.metrics { position: absolute; left: 7%; right: 7%; top: 26%; display: flex; justify-content: space-around; border-top: 1px solid #454549; padding-top: 4%; font-size: clamp(5px, 2.7cqw, 13px); }
+.portrait { position: absolute; left: 7%; bottom: 7%; width: 34%; height: 45%; background: radial-gradient(circle at 50% 35%, #c9cac7 0 7%, #19191b 8% 27%, transparent 28%), linear-gradient(135deg, #e8e8e4, #bfc1bf); overflow: hidden; }
+.portrait::after { content: ""; position: absolute; width: 48%; height: 8%; background: #ff4b32; top: 35%; left: 45%; box-shadow: 0 0 10px #ff4b32; }
+.portrait i { position: absolute; width: 58%; height: 52%; border-radius: 50% 50% 0 0; background: #111; left: 22%; bottom: -5%; }
+.swatches { position: absolute; left: 48%; top: 51%; display: flex; gap: 4px; }
+.swatches i { width: clamp(9px, 5cqw, 23px); aspect-ratio: 1; background: #ff4b32; }
+.swatches i:nth-child(2) { background: #ff735e; } .swatches i:nth-child(3) { background: #eee; } .swatches i:nth-child(4) { background: #777; }
+.cities { position: absolute; left: 49%; bottom: 7%; font-size: clamp(4px, 1.9cqw, 9px); line-height: 0.92; }
+.edgeNote { position: absolute; right: 7%; top: 19%; text-align: right; font-size: clamp(4px, 1.45cqw, 8px); line-height: 1.2; }
+.word { position: absolute; left: -3%; bottom: -18%; color: rgb(255 244 233 / 82%); font-size: clamp(43px, 29cqw, 140px); line-height: 1; letter-spacing: -0.09em; font-weight: 450; }
+.briefNo { position: absolute; left: 7%; bottom: 7%; color: #d0d0cb; font-size: clamp(28px, 18cqw, 88px); letter-spacing: -0.08em; }
+.columns { position: absolute; left: 50%; right: 6%; top: 32%; font-size: clamp(4px, 1.6cqw, 8px); }
+.columns p { margin: 0; padding: 6% 0; border-top: 1px solid #ddd; color: #999; }
+.columns b { color: #202020; }
+.orbitArt { position: absolute; width: 47%; aspect-ratio: 1; right: 4%; bottom: -38%; border: 1px solid #555; border-radius: 50%; }
+.orbitArt i { position: absolute; inset: 12%; border: 1px solid #414145; border-radius: 50%; }
+.orbitArt i:nth-child(2) { inset: 27%; } .orbitArt i:nth-child(3) { inset: 42%; }
+.orbitArt b { position: absolute; width: 9%; aspect-ratio: 1; border-radius: 50%; background: #ff4b32; left: 4%; top: 23%; }
+.route { position: absolute; left: 7%; bottom: 11%; font-size: clamp(4px, 1.4cqw, 8px); color: #a3a3a6; }
+
+.hint {
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  bottom: 3.2%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(255 255 255 / 75%);
+  font-size: 7px;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+}
+
+.hint i { width: 16px; height: 1px; background: currentColor; }
+
+@media (hover: none) {
+  .card:hover .cardSurface { transform: translateZ(0) scale(1); box-shadow: 0 1px 0 rgb(255 255 255 / 40%) inset, 0 9px 20px rgb(20 24 27 / 12%); }
+}
+
+@media (max-width: 720px) {
+  .header { flex-direction: column; }
+  .stage { top: 120px; height: calc(100% - 120px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .cardMotion, .cardSurface { transition: none; }
+}
