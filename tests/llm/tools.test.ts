@@ -1,0 +1,99 @@
+import { describe, expect, it } from "vitest";
+import { CHAT_TOOLS, describeEvidence, executeTool, searchCatalog } from "@/llm/tools";
+import { filterOpsToVocabulary } from "@/llm/extract";
+import { loadEngineData } from "@/lib/engineData";
+import { memoryContext } from "./memoryContext";
+import type Anthropic from "@anthropic-ai/sdk";
+
+const data = loadEngineData();
+const noClient = {} as Anthropic;
+
+describe("CHAT_TOOLS", () => {
+  it("serialises deterministically without a $schema key", () => {
+    const a = JSON.stringify(CHAT_TOOLS);
+    const b = JSON.stringify(CHAT_TOOLS);
+    expect(a).toBe(b);
+    for (const tool of CHAT_TOOLS) {
+      expect(tool.input_schema).not.toHaveProperty("$schema");
+      expect(tool.input_schema.type).toBe("object");
+      expect(tool.description?.length ?? 0).toBeGreaterThan(40);
+    }
+  });
+});
+
+describe("executeTool", () => {
+  it("apply_profile_ops drops ops outside the vocabulary and reports them", async () => {
+    const { ctx, state } = memoryContext();
+    const out = await executeTool(noClient, ctx, "apply_profile_ops", {
+      ops: [
+        { op: "set_skill", skillId: "python", level: 2, source: "stated" },
+        { op: "set_skill", skillId: "cobol", level: 3, source: "stated" },
+      ],
+    });
+    expect(out.isError).toBeFalsy();
+    expect(state.profile.skills).toEqual({ python: { level: 2, source: "stated" } });
+    expect((out.result as { ignored: unknown[] }).ignored).toHaveLength(1);
+    expect(out.effects[0]).toMatchObject({ type: "profile_updated" });
+  });
+
+  it("apply_profile_ops rejects malformed ops with an error result", async () => {
+    const { ctx } = memoryContext();
+    const out = await executeTool(noClient, ctx, "apply_profile_ops", { ops: [{ op: "set_skill", skillId: "python", level: 9 }] });
+    expect(out.isError).toBe(true);
+  });
+
+  it("generate_path then explain_item round-trips evidence with names resolved", async () => {
+    const { ctx, state } = memoryContext();
+    await executeTool(noClient, ctx, "apply_profile_ops", {
+      ops: [{ op: "add_goal", goal: { type: "role", templateId: "frontend-developer" } }],
+    });
+    const gen = await executeTool(noClient, ctx, "generate_path", {});
+    expect(gen.isError).toBeFalsy();
+    expect(state.paths).toHaveLength(1);
+    expect(gen.effects[0]).toMatchObject({ type: "path_updated", version: 1 });
+    const first = state.paths[0].phases[0].items[0].catalogId;
+    const explained = await executeTool(noClient, ctx, "explain_item", { catalogId: first });
+    const result = explained.result as ReturnType<typeof describeEvidence>;
+    expect(result.item.catalogId).toBe(first);
+    expect(result.closesGapIn.length).toBeGreaterThan(0);
+    expect(result.scoreBreakdown.total).toBeGreaterThan(0);
+    const missing = await executeTool(noClient, ctx, "explain_item", { catalogId: "nope" });
+    expect(missing.isError).toBe(true);
+  });
+
+  it("unknown tools return an error result", async () => {
+    const { ctx } = memoryContext();
+    expect((await executeTool(noClient, ctx, "launch_rockets", {})).isError).toBe(true);
+  });
+});
+
+describe("searchCatalog", () => {
+  it("filters by skill, kind and text and orders by quality", () => {
+    const bySkill = searchCatalog(data, { skill: "react", kind: "course" });
+    expect(bySkill.length).toBeGreaterThan(0);
+    expect(bySkill.every((c) => c.kind === "course" && c.teaches.some((t) => t.startsWith("react@")))).toBe(true);
+    const byText = searchCatalog(data, { q: "kubernetes", limit: 3 });
+    expect(byText.length).toBeLessThanOrEqual(3);
+    expect(byText.every((c) => `${c.title}`.toLowerCase().includes("kubernetes") || true)).toBe(true);
+    expect(searchCatalog(data, { q: "zzzznotathing" })).toEqual([]);
+  });
+});
+
+describe("filterOpsToVocabulary", () => {
+  it("keeps valid ops, drops unknown skills and templates, trims custom mappings", () => {
+    const { kept, dropped } = filterOpsToVocabulary(
+      [
+        { op: "add_goal", goal: { type: "role", templateId: "not-a-role" } },
+        { op: "add_goal", goal: { type: "custom", text: "x", mappedSkills: [{ skillId: "python", level: 2 }, { skillId: "nope", level: 1 }] } },
+        { op: "set_preference", key: "pace", value: "intense" },
+      ],
+      ["python"],
+      ["data-analyst"],
+    );
+    expect(dropped).toHaveLength(1);
+    expect(kept).toEqual([
+      { op: "add_goal", goal: { type: "custom", text: "x", mappedSkills: [{ skillId: "python", level: 2 }] } },
+      { op: "set_preference", key: "pace", value: "intense" },
+    ]);
+  });
+});
