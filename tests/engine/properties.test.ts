@@ -189,3 +189,15 @@ describe("engine properties (§5.6)", () => {
     for (const s of data.skills) expect(visit(s.id), s.id).toBe(true);
   });
 });
+
+describe("evidence score consistency", () => {
+  it("every item's evidence coverage is measured against the same (evidence) gap", async () => {
+    const { coverageOf } = await import("@/engine/score");
+    for (const { name, result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        const expected = coverageOf(catalogById.get(item.catalogId)!, result.working.evidenceGap).coverage;
+        expect(item.evidence.scoreBreakdown.coverage, `${name}: ${item.catalogId}`).toBeCloseTo(expected, 6);
+      }
+    }
+  });
+});

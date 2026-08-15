@@ -24,6 +24,8 @@ export type GenerateOptions = {
 
 export type Working = {
   gap: Gap[];
+  /** Goal gap plus requirement gaps opened during selection; evidence is scored against this. */
+  evidenceGap: Gap[];
   candidates: Candidate[];
   budgetHours: number;
   courseBudgetHours: number;
@@ -81,10 +83,22 @@ export function generatePath(
   const courseHours = kept.reduce((h, c) => h + c.item.durationHours, 0);
   const extras = attachPhaseExtras(coursePhases, candidates, profile, budgetHours - courseHours);
 
+  // Rescore every chosen item against the evidence gap so all breakdowns share one scale
+  // (items pulled in as prerequisites were scored against a one-skill gap during selection).
+  const rescored = new Map(
+    scoreCandidates(evidenceGap, profile, {
+      catalog: [...coursePhases.flat(), ...extras.phases.flatMap((e) => [e.project, e.assessment])]
+        .filter((c): c is Candidate => c !== undefined)
+        .map((c) => c.item),
+      embeddings: data.embeddings,
+    }).map((c) => [c.item.id, c]),
+  );
+  const consistent = (c: Candidate | undefined): Candidate[] =>
+    c ? [rescored.get(c.item.id) ?? c] : [];
   const phaseCandidates: Candidate[][] = coursePhases.map((courses, i) => [
-    ...courses,
-    ...(extras.phases[i].project ? [extras.phases[i].project] : []),
-    ...(extras.phases[i].assessment ? [extras.phases[i].assessment] : []),
+    ...courses.flatMap(consistent),
+    ...consistent(extras.phases[i].project),
+    ...consistent(extras.phases[i].assessment),
   ]);
   const allItems: CatalogItem[] = phaseCandidates.flat().map((c) => c.item);
   const edges = precedenceEdges(allItems, data.skills);
@@ -112,6 +126,7 @@ export function generatePath(
     path,
     working: {
       gap,
+      evidenceGap,
       candidates,
       budgetHours,
       courseBudgetHours,
