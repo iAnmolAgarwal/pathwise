@@ -28,6 +28,8 @@ export type DashboardSummary = {
   streak: Streak;
   gap: Pick<Gap, "skillId" | "targetLevel" | "currentLevel" | "reason">[];
   skillStatus: Record<string, SkillStatus>;
+  /** The UTC date the summary was computed for. */
+  today: string;
 };
 
 export type Streak = { current: number; longest: number; activeDays: string[] };
@@ -155,6 +157,7 @@ export function dashboardSummary(input: DashboardInput): DashboardSummary {
     streak: streakFromDays(input.eventDays, input.today),
     gap: gap.map(({ skillId, targetLevel, currentLevel, reason }) => ({ skillId, targetLevel, currentLevel, reason })),
     skillStatus,
+    today: input.today,
   };
 }
 
