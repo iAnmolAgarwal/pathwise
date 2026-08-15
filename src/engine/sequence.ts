@@ -13,11 +13,14 @@ export type Sequenced = {
 /**
  * Item A precedes item B when A teaches a skill that B requires, or a skill that is a
  * prerequisite (in the skill DAG) of something B teaches and B does not teach itself.
+ * Assessments are never treated as teachers.
  */
 export function precedenceEdges(items: CatalogItem[], skills: Skill[]): SequenceEdge[] {
   const prereqsOf = new Map(skills.map((s) => [s.id, s.prereqs]));
   const edges: SequenceEdge[] = [];
   for (const a of items) {
+    // Assessments validate skills rather than teach them, so they never precede anything by teaching.
+    if (a.kind === "assessment") continue;
     const taughtByA = new Set(a.skillsTaught.map((t) => t.skillId));
     for (const b of items) {
       if (a.id === b.id) continue;

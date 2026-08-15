@@ -118,3 +118,12 @@ describe("namePhase", () => {
     expect(low).not.toEqual(high);
   });
 });
+
+describe("assessments in sequencing", () => {
+  it("never treats an assessment as the teacher of a skill", () => {
+    const quiz = item({ id: "quiz", kind: "assessment", skillsTaught: [{ skillId: "js", level: 1 }] });
+    const react = item({ id: "react", skillsTaught: [{ skillId: "react", level: 2 }], skillsRequired: [{ skillId: "js", level: 1 }] });
+    const res = sequenceItems([quiz, react], skills);
+    expect(res.edges).toEqual([]);
+  });
+});
