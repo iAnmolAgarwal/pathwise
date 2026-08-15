@@ -6,7 +6,7 @@ import type { EngineData } from "@/engine/types";
 import {
   CatalogKindSchema,
   DomainSchema,
-  ProfileOpSchema,
+  ChatProfileOpSchema,
   type Evidence,
   type Path,
   type PathDiff,
@@ -44,7 +44,7 @@ export type ToolOutcome = {
 };
 
 const Empty = z.object({});
-const ApplyOpsInput = z.object({ ops: z.array(ProfileOpSchema).min(1).max(50) });
+const ApplyOpsInput = z.object({ ops: z.array(ChatProfileOpSchema).min(1).max(50) });
 const MapGoalInput = z.object({ text: z.string().min(1) });
 const ReplanInput = z.object({ reason: z.string().min(1) });
 const ExplainInput = z.object({ catalogId: z.string().min(1) });

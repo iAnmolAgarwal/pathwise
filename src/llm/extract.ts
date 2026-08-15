@@ -1,12 +1,12 @@
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { ProfileOpSchema, type Profile, type ProfileOp } from "@/schemas";
+import { ChatProfileOpSchema, type Profile, type ProfileOp } from "@/schemas";
 import { EFFORT, MAX_TOKENS, MODEL } from "./client";
 import { EXTRACT_SYSTEM_PROMPT } from "./prompts";
 import { summarizeProfile } from "./context";
 
-const ExtractionSchema = z.object({ ops: z.array(ProfileOpSchema) });
+const ExtractionSchema = z.object({ ops: z.array(ChatProfileOpSchema) });
 
 /**
  * One chat message → ProfileOp[] (§8.1). Structured output means no JSON retry loops; the

@@ -57,3 +57,24 @@ describe("applyProfileOps", () => {
     expect(() => applyProfileOps(base, [bad({ op: "set_preference", key: "hoursPerWeek", value: -1 })])).toThrow();
   });
 });
+
+describe("applyProfileOps: adaptation ops (§5.5)", () => {
+  const base: Profile = defaultProfile();
+
+  it("avoid accumulates item, provider and format memos without duplicates", () => {
+    const p = applyProfileOps(base, [
+      { op: "avoid", catalogId: "a", provider: "Udemy", format: "video" },
+      { op: "avoid", catalogId: "b", provider: "Udemy" },
+      { op: "avoid", catalogId: "a" },
+    ]);
+    expect(p.dislikes).toEqual({ catalogIds: ["a", "b"], providers: ["Udemy"], formats: ["video"] });
+  });
+
+  it("assessed level overwrites inferred, and inferred never overwrites assessed", () => {
+    let p = applyProfileOps(base, [{ op: "set_skill", skillId: "sql", level: 1, source: "inferred" }]);
+    p = applyProfileOps(p, [{ op: "set_skill", skillId: "sql", level: 3, source: "assessed" }]);
+    expect(p.skills.sql).toEqual({ level: 3, source: "assessed" });
+    p = applyProfileOps(p, [{ op: "set_skill", skillId: "sql", level: 0, source: "inferred" }]);
+    expect(p.skills.sql).toEqual({ level: 3, source: "assessed" });
+  });
+});

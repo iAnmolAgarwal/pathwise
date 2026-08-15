@@ -134,6 +134,8 @@ function opKey(op: ProfileOp): string {
       return `skill:${op.skillId}`;
     case "set_preference":
       return `pref:${op.key}`;
+    case "avoid":
+      return `avoid:${op.catalogId}`;
   }
 }
 
@@ -147,5 +149,7 @@ export function describeOp(op: ProfileOp, skillName: (id: string) => string, tem
       return `${skillName(op.skillId)} → ${LEVEL_LABEL[op.level]} (${op.source})`;
     case "set_preference":
       return `${op.key} → ${Array.isArray(op.value) ? op.value.join(", ") || "any" : String(op.value)}`;
+    case "avoid":
+      return `Avoid ${op.catalogId}${op.provider ? ` (and de-prioritise ${op.provider})` : ""}`;
   }
 }

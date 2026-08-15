@@ -37,7 +37,18 @@ export function applyProfileOps(profile: Profile, ops: ProfileOp[]): Profile {
         (next.preferences as Record<string, unknown>)[op.key] = value;
         break;
       }
+      case "avoid": {
+        const d = (next.dislikes ??= { catalogIds: [], providers: [], formats: [] });
+        pushUnique(d.catalogIds, op.catalogId);
+        if (op.provider) pushUnique(d.providers, op.provider);
+        if (op.format) pushUnique(d.formats, op.format);
+        break;
+      }
     }
   }
   return next;
+}
+
+function pushUnique<T>(list: T[], value: T) {
+  if (!list.includes(value)) list.push(value);
 }

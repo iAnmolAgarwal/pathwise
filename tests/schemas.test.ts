@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  ChatProfileOpSchema,
   CatalogItemSchema,
   EvidenceSchema,
   GapReasonSchema,
@@ -160,9 +161,9 @@ describe("ProfileOpSchema", () => {
     ).toBe(false);
   });
 
-  it("rejects assessed as a set_skill source", () => {
+  it("chat ops reject assessed as a set_skill source", () => {
     expect(
-      ProfileOpSchema.safeParse({
+      ChatProfileOpSchema.safeParse({
         op: "set_skill",
         skillId: "css",
         level: 2,
