@@ -1,5 +1,5 @@
-import { desc, eq } from "drizzle-orm";
-import { db, learners, paths, profiles } from "./index";
+import { desc, eq, sql } from "drizzle-orm";
+import { chatMessages, db, learners, paths, profiles, tokenUsage } from "./index";
 import type { Path, PathDiff, Profile } from "../schemas";
 
 export async function createLearner(displayName: string, profile: Profile) {
@@ -53,4 +53,51 @@ export async function insertPath(learnerId: string, data: Path, diff: PathDiff |
     .values({ learnerId, version, data, diff })
     .returning();
   return row;
+}
+
+export type StoredChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: { text: string; toolCalls?: string[]; degraded?: boolean };
+  createdAt: Date;
+};
+
+/** Oldest-first list of the most recent `limit` messages. */
+export async function listChatMessages(learnerId: string, limit = 40): Promise<StoredChatMessage[]> {
+  const rows = await db()
+    .select()
+    .from(chatMessages)
+    .where(eq(chatMessages.learnerId, learnerId))
+    .orderBy(desc(chatMessages.createdAt))
+    .limit(limit);
+  return rows.reverse().map((r) => ({
+    id: r.id,
+    role: r.role as StoredChatMessage["role"],
+    content: r.content as StoredChatMessage["content"],
+    createdAt: r.createdAt,
+  }));
+}
+
+export async function insertChatMessage(
+  learnerId: string,
+  role: StoredChatMessage["role"],
+  content: StoredChatMessage["content"],
+) {
+  const [row] = await db().insert(chatMessages).values({ learnerId, role, content }).returning();
+  return row;
+}
+
+/** Judge-mode metering (§8.4): one row per learner per UTC day, incremented per response. */
+export async function addTokenUsage(learnerId: string, inputTokens: number, outputTokens: number) {
+  const day = new Date().toISOString().slice(0, 10);
+  await db()
+    .insert(tokenUsage)
+    .values({ learnerId, day, inputTokens, outputTokens })
+    .onConflictDoUpdate({
+      target: [tokenUsage.learnerId, tokenUsage.day],
+      set: {
+        inputTokens: sql`${tokenUsage.inputTokens} + ${inputTokens}`,
+        outputTokens: sql`${tokenUsage.outputTokens} + ${outputTokens}`,
+      },
+    });
 }
