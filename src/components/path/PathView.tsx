@@ -5,10 +5,13 @@ type Props = {
   path: Path;
   catalog: Record<string, CatalogLite>;
   skillName: (id: string) => string;
+  /** When set, items become selectable and the inline evidence collapses behind the selection. */
+  onExplain?: (catalogId: string) => void;
+  selectedId?: string | null;
 };
 
 /** Unstyled-by-design rendering of a Path: phases, items, and each item's Evidence. */
-export function PathView({ path, catalog, skillName }: Props) {
+export function PathView({ path, catalog, skillName, onExplain, selectedId }: Props) {
   return (
     <ol className="mt-4 flex flex-col gap-6">
       {path.phases.map((phase) => (
@@ -19,7 +22,12 @@ export function PathView({ path, catalog, skillName }: Props) {
             {phase.items.map((item) => {
               const c = catalog[item.catalogId];
               return (
-                <li key={item.catalogId} className="rounded border border-neutral-200 p-3 text-sm">
+                <li
+                  key={item.catalogId}
+                  className={`rounded border p-3 text-sm ${selectedId === item.catalogId ? "border-black bg-neutral-50" : "border-neutral-200"}`}
+                  data-testid="path-item"
+                  data-catalog-id={item.catalogId}
+                >
                   <div className="flex flex-wrap items-baseline gap-2">
                     <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs uppercase">{c?.kind ?? "item"}</span>
                     <a href={item.evidence.provenance} target="_blank" rel="noreferrer" className="font-medium underline">
@@ -28,8 +36,17 @@ export function PathView({ path, catalog, skillName }: Props) {
                     <span className="text-neutral-500">
                       {c?.provider} · {c?.durationHours}h · difficulty {c?.difficulty}/5
                     </span>
+                    {onExplain && (
+                      <button
+                        type="button"
+                        className="ml-auto rounded border px-2 py-0.5 text-xs hover:bg-neutral-100"
+                        onClick={() => onExplain(item.catalogId)}
+                      >
+                        Why this?
+                      </button>
+                    )}
                   </div>
-                  <EvidenceBlock evidence={item.evidence} catalog={catalog} skillName={skillName} />
+                  {!onExplain && <EvidenceBlock evidence={item.evidence} catalog={catalog} skillName={skillName} />}
                 </li>
               );
             })}
@@ -40,7 +57,7 @@ export function PathView({ path, catalog, skillName }: Props) {
   );
 }
 
-function EvidenceBlock({ evidence, catalog, skillName }: { evidence: Evidence; catalog: Record<string, CatalogLite>; skillName: (id: string) => string }) {
+export function EvidenceBlock({ evidence, catalog, skillName }: { evidence: Evidence; catalog: Record<string, CatalogLite>; skillName: (id: string) => string }) {
   const b = evidence.scoreBreakdown;
   const rows: [string, number][] = [
     ["coverage", b.coverage],

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { Domain, Path, Profile, ProfileOp } from "@/schemas";
-import { PathView } from "./PathView";
 
 export type CatalogLite = {
   title: string;
@@ -20,19 +19,29 @@ type GoalLite = {
   requiredSkills: { skillId: string; level: 1 | 2 | 3 }[];
 };
 
+export type GenerateMeta = {
+  budgetHours: number;
+  usedHours: number;
+  stoppedBecause: string;
+  uncovered: { skillId: string; levelsMissing: number }[];
+};
+
 type Props = {
   learnerId: string;
   initialProfile: Profile;
-  initialPath: { version: number; path: Path } | null;
   goals: GoalLite[];
   skills: SkillLite[];
-  catalog: Record<string, CatalogLite>;
+  onProfileSaved: (profile: Profile) => void;
+  onPathGenerated: (version: number, path: Path, meta: GenerateMeta) => void;
 };
 
 const LEVEL_LABEL = ["Not yet", "Basics", "Comfortable", "Strong"];
 
-/** Plain form: template goal + declared skill levels + preferences → generate → render path. */
-export function PathBuilder({ learnerId, initialProfile, initialPath, goals, skills, catalog }: Props) {
+/**
+ * Plain form: template goal + declared skill levels + preferences → generate. The manual
+ * route to a path; it keeps working when the conversational one is degraded.
+ */
+export function PathBuilder({ learnerId, initialProfile, goals, skills, onProfileSaved, onPathGenerated }: Props) {
   const initialGoal = initialProfile.goals.find((g) => g.type === "role");
   const [goalId, setGoalId] = useState(initialGoal?.type === "role" ? initialGoal.templateId : goals[0].id);
   const [levels, setLevels] = useState<Record<string, number>>(
@@ -41,8 +50,6 @@ export function PathBuilder({ learnerId, initialProfile, initialPath, goals, ski
   const [hoursPerWeek, setHoursPerWeek] = useState(initialProfile.preferences.hoursPerWeek);
   const [pace, setPace] = useState(initialProfile.preferences.pace);
   const [budget, setBudget] = useState(initialProfile.preferences.budget);
-  const [result, setResult] = useState(initialPath);
-  const [meta, setMeta] = useState<{ budgetHours: number; usedHours: number; stoppedBecause: string; uncovered: { skillId: string; levelsMissing: number }[] } | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -89,6 +96,7 @@ export function PathBuilder({ learnerId, initialProfile, initialPath, goals, ski
       setBusy(false);
       return;
     }
+    onProfileSaved(await saved.json());
     const res = await fetch("/api/path/generate", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -100,13 +108,11 @@ export function PathBuilder({ learnerId, initialProfile, initialPath, goals, ski
       return;
     }
     const json = await res.json();
-    setResult({ version: json.version, path: json.path });
-    setMeta(json.working);
+    onPathGenerated(json.version, json.path, json.working);
     setBusy(false);
   }
 
   return (
-    <div className="mt-6 flex flex-col gap-8">
       <form onSubmit={generate} className="flex flex-col gap-4 rounded border p-4">
         <label className="flex flex-col gap-1 text-sm">
           Goal
@@ -186,27 +192,5 @@ export function PathBuilder({ learnerId, initialProfile, initialPath, goals, ski
         </button>
         {error && <p className="text-sm text-red-600">{error}</p>}
       </form>
-
-      {result && (
-        <section>
-          <h2 className="text-xl font-semibold">
-            Your path <span className="text-sm font-normal text-neutral-500">(version {result.version})</span>
-          </h2>
-          {meta && (
-            <p className="mt-1 text-sm text-neutral-600">
-              {meta.usedHours} of {meta.budgetHours} budgeted hours planned · stopped because: {meta.stoppedBecause}
-              {meta.uncovered.length > 0 && (
-                <>
-                  {" "}
-                  · still uncovered:{" "}
-                  {meta.uncovered.map((u) => `${skillById.get(u.skillId)?.name ?? u.skillId} (${u.levelsMissing})`).join(", ")}
-                </>
-              )}
-            </p>
-          )}
-          <PathView path={result.path} catalog={catalog} skillName={(id) => skillById.get(id)?.name ?? id} />
-        </section>
-      )}
-    </div>
   );
 }
