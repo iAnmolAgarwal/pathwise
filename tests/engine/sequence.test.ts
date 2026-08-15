@@ -127,3 +127,29 @@ describe("assessments in sequencing", () => {
     expect(res.edges).toEqual([]);
   });
 });
+
+describe("phase merging", () => {
+  it("merges a one-item layer into the following layer when the result stays small", () => {
+    // Chain a → b → c → d: four one-item antichains would read as four phases.
+    const items = [
+      item({ id: "a", skillsTaught: [{ skillId: "a", level: 1 }] }),
+      item({ id: "b", skillsRequired: [{ skillId: "a", level: 1 }], skillsTaught: [{ skillId: "b", level: 1 }] }),
+      item({ id: "c", skillsRequired: [{ skillId: "b", level: 1 }], skillsTaught: [{ skillId: "sql", level: 1 }] }),
+      item({ id: "d", skillsRequired: [{ skillId: "sql", level: 1 }] }),
+    ];
+    const res = sequenceItems(items, skills);
+    expect(res.ordered.map((i) => i.id)).toEqual(["a", "b", "c", "d"]);
+    expect(res.phases.length).toBeLessThan(4);
+    for (const p of res.phases) expect(p.length).toBeLessThanOrEqual(MAX_PHASE_ITEMS);
+  });
+
+  it("keeps a full antichain as its own phase", () => {
+    const items = [
+      item({ id: "a", skillsTaught: [{ skillId: "a", level: 1 }] }),
+      item({ id: "b", skillsTaught: [{ skillId: "b", level: 1 }] }),
+      item({ id: "c", skillsRequired: [{ skillId: "a", level: 1 }] }),
+      item({ id: "d", skillsRequired: [{ skillId: "b", level: 1 }] }),
+    ];
+    expect(sequenceItems(items, skills).phases.map((p) => p.map((i) => i.id))).toEqual([["a", "b"], ["c", "d"]]);
+  });
+});

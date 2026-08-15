@@ -5,6 +5,7 @@ import { scoreCandidates } from "./score";
 import {
   EXTRAS_BUDGET_SHARE,
   attachPhaseExtras,
+  pruneRedundant,
   repairRequirements,
   selectCourses,
   timeBudgetHours,
@@ -48,16 +49,17 @@ export function generatePath(
 
   const budgetHours = timeBudgetHours(profile.preferences);
   const courseBudgetHours = Math.round(budgetHours * (1 - EXTRAS_BUDGET_SHARE));
-  const selection = selectCourses(candidates, gap, courseBudgetHours, profile);
+  const selection = selectCourses(candidates, gap, courseBudgetHours, profile, data);
   const repaired = repairRequirements(selection.selected, profile, data, gap, courseBudgetHours);
+  const kept = pruneRedundant(repaired.selected, gap, profile);
 
-  const byId = new Map(repaired.selected.map((c) => [c.item.id, c]));
+  const byId = new Map(kept.map((c) => [c.item.id, c]));
   const sequenced = sequenceItems(
-    repaired.selected.map((c) => c.item),
+    kept.map((c) => c.item),
     data.skills,
   );
   const coursePhases = sequenced.phases.map((phase) => phase.map((i) => byId.get(i.id)!));
-  const courseHours = repaired.selected.reduce((h, c) => h + c.item.durationHours, 0);
+  const courseHours = kept.reduce((h, c) => h + c.item.durationHours, 0);
   const extras = attachPhaseExtras(coursePhases, candidates, profile, budgetHours - courseHours);
 
   const phaseCandidates: Candidate[][] = coursePhases.map((courses, i) => [

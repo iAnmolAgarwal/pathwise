@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ENGINE_VERSION, generatePath } from "@/engine";
+import { PACE_HORIZON_WEEKS } from "@/engine/select";
 import type { EngineData } from "@/engine/types";
 import { PathSchema, type CatalogItem, type Profile } from "@/schemas";
 
@@ -100,7 +101,7 @@ describe("generatePath", () => {
   it("exposes its working: gap, candidates, budget, and stop reason", () => {
     expect(working.gap.map((g) => g.skillId).sort()).toEqual(["js", "react", "testing"]);
     expect(working.candidates.length).toBeGreaterThan(0);
-    expect(working.budgetHours).toBe(240);
+    expect(working.budgetHours).toBe(10 * PACE_HORIZON_WEEKS.standard);
     expect(working.stoppedBecause).toBe("covered");
   });
 

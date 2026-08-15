@@ -3,6 +3,8 @@ import type { SequenceEdge } from "./types";
 
 /** Antichains larger than this are split into consecutive phases so each stays digestible. */
 export const MAX_PHASE_ITEMS = 4;
+/** A phase smaller than this absorbs the next antichain (if the result stays within MAX). */
+export const MIN_PHASE_ITEMS = 2;
 
 export type Sequenced = {
   ordered: CatalogItem[];
@@ -94,9 +96,20 @@ export function sequenceItems(items: CatalogItem[], skills: Skill[]): Sequenced 
   const depth = Math.max(-1, ...layer.values()) + 1;
   const layers: CatalogItem[][] = Array.from({ length: depth }, () => []);
   for (const item of items) layers[layer.get(item.id)!].push(item);
-  const phases: CatalogItem[][] = [];
+  // Merge tiny consecutive layers (long chains would otherwise become one-item phases),
+  // then split anything still oversized. Order within a phase stays layer-major.
+  const merged: CatalogItem[][] = [];
   for (const l of layers) {
     l.sort(tieBreak);
+    const last = merged.at(-1);
+    if (last && last.length < MIN_PHASE_ITEMS && last.length + l.length <= MAX_PHASE_ITEMS) {
+      last.push(...l);
+    } else {
+      merged.push([...l]);
+    }
+  }
+  const phases: CatalogItem[][] = [];
+  for (const l of merged) {
     for (let i = 0; i < l.length; i += MAX_PHASE_ITEMS) phases.push(l.slice(i, i + MAX_PHASE_ITEMS));
   }
   return { ordered: phases.flat(), phases, edges: keptEdges };

@@ -3,7 +3,8 @@ import { scoreCandidates } from "./score";
 import type { Candidate, Gap } from "./types";
 
 /** Planning horizon in weeks by pace; time budget = hoursPerWeek × horizon (§5.3). */
-export const PACE_HORIZON_WEEKS = { relaxed: 36, standard: 24, intense: 12 } as const;
+/** relaxed ≈ 18 months, standard ≈ 12 months, intense ≈ 6 months. */
+export const PACE_HORIZON_WEEKS = { relaxed: 78, standard: 52, intense: 26 } as const;
 
 /** Share of the time budget held back from courses for projects and assessments. */
 export const EXTRAS_BUDGET_SHARE = 0.25;
@@ -51,12 +52,18 @@ function levelsGainedAgainst(candidate: Candidate, gap: Gap[], achieved: Map<str
  * the budget is exhausted, or nothing left adds coverage. Greedy is within a ln(n)
  * factor of the optimal cover; for a ~20-skill gap that bound is loose but the
  * practical result is a small, non-redundant course set.
+ *
+ * Selection is requirement-aware: an item is eligible only once its skillsRequired are
+ * met by the profile plus items already chosen. When every useful item is blocked, the
+ * best course teaching the missing prerequisite is pulled in first (if `data` is given
+ * and it fits the budget), so the chosen set is feasible to sequence.
  */
 export function selectCourses(
   candidates: Candidate[],
   gap: Gap[],
   budgetHours: number,
   profile?: Profile,
+  data?: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
 ): CourseSelection {
   const achieved = new Map<string, number>(gap.map((g) => [g.skillId, g.currentLevel]));
   if (profile) {
@@ -68,41 +75,101 @@ export function selectCourses(
   const selected: Candidate[] = [];
   let usedHours = 0;
   let stoppedBecause: SelectionStop = "covered";
+  let budgetBound = false;
 
-  for (;;) {
+  const take = (c: Candidate) => {
+    selected.push(c);
+    usedHours += c.item.durationHours;
+    for (const t of c.item.skillsTaught) {
+      achieved.set(t.skillId, Math.max(achieved.get(t.skillId) ?? 0, t.level));
+    }
+  };
+  const priorityOf = (c: Candidate, gain: number) =>
+    (gain * c.breakdown.total) / c.item.durationHours;
+
+  for (let guard = 0; guard < 500; guard++) {
     if (uncoveredLevels(gap, achieved).size === 0) {
       stoppedBecause = "covered";
       break;
     }
-    let best: { c: Candidate; priority: number } | null = null;
-    let anyUseful = false;
-    for (const c of pool) {
-      if (selected.includes(c)) continue;
-      const gain = levelsGainedAgainst(c, gap, achieved);
-      if (gain === 0) continue;
-      anyUseful = true;
-      if (usedHours + c.item.durationHours > budgetHours) continue;
-      const priority = (gain * c.breakdown.total) / c.item.durationHours;
-      if (
-        !best ||
-        priority > best.priority ||
-        (priority === best.priority && c.breakdown.total > best.c.breakdown.total)
-      ) {
-        best = { c, priority };
-      }
-    }
-    if (!best) {
-      stoppedBecause = anyUseful ? "budget" : "no-candidates";
+    const chosen = new Set(selected.map((c) => c.item.id));
+    const useful = pool
+      .filter((c) => !chosen.has(c.item.id))
+      .map((c) => ({ c, gain: levelsGainedAgainst(c, gap, achieved) }))
+      .filter(({ gain }) => gain > 0)
+      .map(({ c, gain }) => ({ c, gain, priority: priorityOf(c, gain) }))
+      .sort(
+        (a, b) =>
+          b.priority - a.priority ||
+          b.c.breakdown.total - a.c.breakdown.total ||
+          a.c.item.id.localeCompare(b.c.item.id),
+      );
+    if (useful.length === 0) {
+      stoppedBecause = "no-candidates";
       break;
     }
-    selected.push(best.c);
-    usedHours += best.c.item.durationHours;
-    for (const t of best.c.item.skillsTaught) {
-      achieved.set(t.skillId, Math.max(achieved.get(t.skillId) ?? 0, t.level));
+    const fitting = useful.filter(({ c }) => usedHours + c.item.durationHours <= budgetHours);
+    if (fitting.length < useful.length) budgetBound = true;
+    const eligible = fitting.find(({ c }) => unmetRequirements(c.item, achieved).length === 0);
+    if (eligible) {
+      take(eligible.c);
+      continue;
     }
+    // Every useful item that fits is blocked on a requirement: unblock the best one.
+    let unblocked = false;
+    if (data && profile) {
+      for (const { c } of fitting) {
+        const missing = unmetRequirements(c.item, achieved)[0];
+        const fix = bestCourseTeaching(missing, selected, data, profile, gap, achieved);
+        if (!fix) continue;
+        if (usedHours + fix.item.durationHours + c.item.durationHours > budgetHours) {
+          budgetBound = true;
+          continue;
+        }
+        take(fix);
+        unblocked = true;
+        break;
+      }
+    }
+    if (!unblocked) {
+      stoppedBecause = budgetBound ? "budget" : "no-candidates";
+      break;
+    }
+  }
+  if (stoppedBecause === "covered" && uncoveredLevels(gap, achieved).size > 0) {
+    stoppedBecause = budgetBound ? "budget" : "no-candidates";
   }
 
   return { selected, usedHours, uncovered: uncoveredLevels(gap, achieved), stoppedBecause };
+}
+
+/**
+ * Set-cover cleanup: drop any selected item whose gap contribution is entirely provided by
+ * the other selected items and which no other item depends on for a requirement. Greedy
+ * often takes a cheap level-1 item before a level-2 item that supersedes it.
+ */
+export function pruneRedundant(selected: Candidate[], gap: Gap[], profile: Profile): Candidate[] {
+  const kept = [...selected];
+  const targets = new Map(gap.map((g) => [g.skillId, g.targetLevel]));
+  const contribution = (items: Candidate[]) => {
+    const levels = achievedLevels(profile, items.map((c) => c.item));
+    let sum = 0;
+    for (const [skillId, target] of targets) sum += Math.min(target, levels.get(skillId) ?? 0);
+    return sum;
+  };
+  // Cheapest-value-first so the least useful duplicates go before the anchors.
+  const order = [...kept].sort(
+    (a, b) => a.breakdown.total - b.breakdown.total || a.item.id.localeCompare(b.item.id),
+  );
+  for (const c of order) {
+    const without = kept.filter((k) => k !== c);
+    if (contribution(without) < contribution(kept)) continue;
+    const levels = achievedLevels(profile, without.map((k) => k.item));
+    const someoneNeedsIt = without.some((k) => unmetRequirements(k.item, levels).length > 0);
+    if (someoneNeedsIt) continue;
+    kept.splice(kept.indexOf(c), 1);
+  }
+  return kept;
 }
 
 export function uncoveredLevels(gap: Gap[], achieved: Map<string, number>): Map<string, number> {
@@ -166,6 +233,7 @@ function bestCourseTeaching(
   data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
   profile: Profile,
   gap: Gap[],
+  achieved?: Map<string, number>,
 ): Candidate | null {
   const usedIds = new Set(already.map((c) => c.item.id));
   const teaching = data.catalog.filter(
@@ -187,12 +255,16 @@ function bestCourseTeaching(
   ];
   const gapIds = new Set(gap.map((g) => g.skillId));
   const scored = scoreCandidates(pseudoGap, profile, { catalog: teaching, embeddings: data.embeddings });
-  // Prefer courses that also touch the real gap, then shortest.
+  // Prefer courses that are themselves unblocked, then ones touching the real gap, then value per hour.
+  const ready = (c: Candidate) =>
+    achieved ? Number(unmetRequirements(c.item, achieved).length === 0) : 1;
   scored.sort(
     (a, b) =>
+      ready(b) - ready(a) ||
       Number(b.item.skillsTaught.some((t) => gapIds.has(t.skillId))) -
         Number(a.item.skillsTaught.some((t) => gapIds.has(t.skillId))) ||
-      b.breakdown.total / b.item.durationHours - a.breakdown.total / a.item.durationHours,
+      b.breakdown.total / b.item.durationHours - a.breakdown.total / a.item.durationHours ||
+      a.item.id.localeCompare(b.item.id),
   );
   return scored[0] ?? null;
 }

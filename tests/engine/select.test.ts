@@ -4,6 +4,7 @@ import {
   EXTRAS_BUDGET_SHARE,
   PACE_HORIZON_WEEKS,
   attachPhaseExtras,
+  pruneRedundant,
   repairRequirements,
   selectCourses,
   timeBudgetHours,
@@ -113,8 +114,7 @@ describe("repairRequirements", () => {
       item({ id: "z-course", skillsTaught: [{ skillId: "z", level: 1 }], durationHours: 3 }),
     ];
     const cands = score(catalog);
-    const picked = selectCourses(cands, gap, 1000).selected;
-    expect(picked.map((c) => c.item.id)).toEqual(["adv"]);
+    const picked = cands.filter((c) => c.item.id === "adv");
     const repaired = repairRequirements(picked, profile, { catalog, embeddings }, gap, 1000);
     expect(repaired.selected.map((c) => c.item.id).sort()).toEqual(["adv", "z-course"]);
     expect(repaired.added.map((c) => c.item.id)).toEqual(["z-course"]);
@@ -124,7 +124,7 @@ describe("repairRequirements", () => {
     const catalog = [
       item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }] }),
     ];
-    const repaired = repairRequirements(selectCourses(score(catalog), gap, 1000).selected, profile, { catalog, embeddings }, gap, 1000);
+    const repaired = repairRequirements(score(catalog), profile, { catalog, embeddings }, gap, 1000);
     expect(repaired.selected).toEqual([]);
     expect(repaired.dropped.map((c) => c.item.id)).toEqual(["adv"]);
   });
@@ -134,7 +134,7 @@ describe("repairRequirements", () => {
       item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }] }),
     ];
     const knows = { ...profile, skills: { z: { level: 1 as const, source: "stated" as const } } };
-    const repaired = repairRequirements(selectCourses(score(catalog, knows), gap, 1000).selected, knows, { catalog, embeddings }, gap, 1000);
+    const repaired = repairRequirements(score(catalog, knows), knows, { catalog, embeddings }, gap, 1000);
     expect(repaired.selected.map((c) => c.item.id)).toEqual(["adv"]);
   });
 });
@@ -176,5 +176,73 @@ describe("attachPhaseExtras", () => {
   it("reserves a documented share of the budget for extras", () => {
     expect(EXTRAS_BUDGET_SHARE).toBeGreaterThan(0);
     expect(EXTRAS_BUDGET_SHARE).toBeLessThan(0.5);
+  });
+});
+
+describe("selectCourses — requirement awareness", () => {
+  it("prefers an item whose requirements are met over a blocked one of equal value", () => {
+    const catalog = [
+      item({ id: "blocked", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }], durationHours: 10 }),
+      item({ id: "open", skillsTaught: [{ skillId: "a", level: 2 }], durationHours: 10 }),
+    ];
+    const res = selectCourses(score(catalog), gap, 1000, profile);
+    expect(res.selected.map((c) => c.item.id)).toEqual(["open"]);
+  });
+
+  it("pulls in a prerequisite course when the only useful item is blocked", () => {
+    const catalog = [
+      item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }], durationHours: 10 }),
+      item({ id: "z-course", skillsTaught: [{ skillId: "z", level: 1 }], durationHours: 3 }),
+    ];
+    const res = selectCourses(score(catalog), gap, 1000, profile, { catalog, embeddings });
+    expect(res.selected.map((c) => c.item.id)).toEqual(["z-course", "adv"]);
+    expect(res.usedHours).toBe(13);
+  });
+
+  it("does not pull in a prerequisite when item plus prerequisite exceed the budget", () => {
+    const catalog = [
+      item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }], durationHours: 10 }),
+      item({ id: "z-course", skillsTaught: [{ skillId: "z", level: 1 }], durationHours: 3 }),
+    ];
+    const res = selectCourses(score(catalog), gap, 12, profile, { catalog, embeddings });
+    expect(res.selected).toEqual([]);
+    expect(res.stoppedBecause).toBe("budget");
+  });
+
+  it("selects items in an order where every item's requirements are already met", () => {
+    const catalog = [
+      item({ id: "c3", skillsTaught: [{ skillId: "c", level: 1 }], skillsRequired: [{ skillId: "b", level: 2 }], durationHours: 1 }),
+      item({ id: "b2", skillsTaught: [{ skillId: "b", level: 2 }], skillsRequired: [{ skillId: "a", level: 2 }], durationHours: 1 }),
+      item({ id: "a2", skillsTaught: [{ skillId: "a", level: 2 }], durationHours: 30 }),
+    ];
+    const res = selectCourses(score(catalog), gap, 1000, profile, { catalog, embeddings });
+    expect(res.selected.map((c) => c.item.id)).toEqual(["a2", "b2", "c3"]);
+  });
+});
+
+describe("pruneRedundant", () => {
+  it("removes an item whose every contribution is provided by other selected items", () => {
+    const catalog = [
+      item({ id: "git-video", skillsTaught: [{ skillId: "a", level: 1 }], durationHours: 1 }),
+      item({ id: "git-deep", skillsTaught: [{ skillId: "a", level: 2 }], durationHours: 4 }),
+      item({ id: "b", skillsTaught: [{ skillId: "b", level: 2 }] }),
+    ];
+    const cands = score(catalog);
+    const pruned = pruneRedundant(cands, gap, profile);
+    expect(pruned.map((c) => c.item.id).sort()).toEqual(["b", "git-deep"]);
+  });
+
+  it("keeps an item that is the only teacher of another item's requirement", () => {
+    const catalog = [
+      item({ id: "z-course", skillsTaught: [{ skillId: "z", level: 1 }], durationHours: 1 }),
+      item({ id: "adv", skillsTaught: [{ skillId: "a", level: 2 }], skillsRequired: [{ skillId: "z", level: 1 }] }),
+    ];
+    // z is not in the gap, so z-course contributes no gap levels — but adv needs it.
+    const cands = [
+      ...score(catalog),
+      ...score(catalog, profile, [{ skillId: "z", targetLevel: 1, currentLevel: 0, reason: "goal", graphPath: ["z"] }]),
+    ];
+    const pruned = pruneRedundant(cands, gap, profile);
+    expect(pruned.map((c) => c.item.id).sort()).toEqual(["adv", "z-course"]);
   });
 });
