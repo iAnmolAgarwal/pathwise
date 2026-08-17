@@ -68,6 +68,13 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // Celebrations are momentary: hand control back to the chat lifecycle after a beat.
+  useEffect(() => {
+    if (nova.state !== "celebrating") return;
+    const t = setTimeout(() => dispatchNova({ type: "celebration_done" }), 2200);
+    return () => clearTimeout(t);
+  }, [nova.state, nova.celebrations]);
+
   const skillById = useMemo(() => new Map(skills.map((s) => [s.id, s])), [skills]);
   const skillName = useCallback((id: string) => skillById.get(id)?.name ?? id, [skillById]);
   const templateTitle = useCallback((id: string) => goals.find((g) => g.id === id)?.title ?? id, [goals]);
@@ -123,12 +130,8 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
         setHighlight(null);
         setDiff(body.diff ? { diff: body.diff, version: body.version } : null);
         setTab("path");
-        if (type === "completed") {
-          dispatchNova({ type: "milestone_completed" });
-          setTimeout(() => dispatchNova({ type: "celebration_done" }), 2000);
-        } else {
-          dispatchNova({ type: "stream_close" });
-        }
+        if (type === "completed") dispatchNova({ type: "milestone_completed" });
+        else dispatchNova({ type: "stream_close" });
       } catch (err) {
         setFeedbackError(err instanceof Error ? err.message : String(err));
         dispatchNova({ type: "stream_close" });
@@ -197,6 +200,7 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
           onNovaState={onNovaState}
           onInputFocus={(focused) => dispatchNova({ type: focused ? "input_focus" : "input_blur" })}
           inputRef={chatInputRef}
+          resting={nova.state === "resting"}
         />
       }
       tabs={TABS}

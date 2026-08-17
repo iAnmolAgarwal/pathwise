@@ -1,10 +1,17 @@
 "use client";
 
+import { ArrowUp, Check } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState, type RefObject } from "react";
+
 import type { ChatEvent } from "@/llm/chat";
 import type { NovaState } from "@/schemas";
 import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import { readSse } from "@/lib/sseClient";
+import { Orb } from "@/components/ui/orb";
+import { cn } from "@/lib/utils";
+
+import styles from "./chat.module.css";
 
 export type ChatMessageView = {
   id: string;
@@ -25,9 +32,13 @@ type Props = {
   onInputFocus?: (focused: boolean) => void;
   /** Lets the shell focus the composer ("Talk to Nova"). */
   inputRef?: RefObject<HTMLTextAreaElement | null>;
+  /** Judge mode has parked the model: show the resting notice. */
+  resting?: boolean;
+  /** Compact greeting for the landing drawer. */
+  compact?: boolean;
 };
 
-const TOOL_LABEL: Record<string, string> = {
+export const TOOL_LABEL: Record<string, string> = {
   get_profile: "Reading your profile",
   apply_profile_ops: "Updating your profile",
   map_custom_goal: "Mapping your goal onto skills",
@@ -40,23 +51,38 @@ const TOOL_LABEL: Record<string, string> = {
 
 const SUGGESTIONS = [
   "I want to become a frontend developer. I know some HTML and CSS.",
-  "I'm a nurse who wants to move into data analysis — Excel is my strong point, 5 hours a week, free courses only.",
+  "I'm a nurse moving into data analysis — Excel is my strong point, 5 hours a week, free courses only.",
   "Help me get into cloud engineering; I already work with Linux and Python daily.",
 ];
 
-/** The conversational interface: one SSE turn at a time, tool activity shown inline. */
-export function ChatPanel({ learnerId, initialMessages, onProfileUpdated, onPathUpdated, onNovaState, onInputFocus, inputRef }: Props) {
+const ENTER = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
+
+/** The conversational interface: one SSE turn at a time, tool activity shown as a live checklist. */
+export function ChatPanel({
+  learnerId,
+  initialMessages,
+  onProfileUpdated,
+  onPathUpdated,
+  onNovaState,
+  onInputFocus,
+  inputRef,
+  resting = false,
+  compact = false,
+}: Props) {
   const [messages, setMessages] = useState<ChatMessageView[]>(initialMessages);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [activity, setActivity] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const localRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = inputRef ?? localRef;
   const seq = useRef(initialMessages.length);
+  const reduce = useReducedMotion() ?? false;
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ block: "end" });
-  }, [messages, activity]);
+    bottomRef.current?.scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" });
+  }, [messages, activity, reduce]);
 
   async function send(text: string) {
     const message = text.trim();
@@ -128,76 +154,178 @@ export function ChatPanel({ learnerId, initialMessages, onProfileUpdated, onPath
     }
   }
 
+  const canSend = input.trim().length > 0 && !busy;
+
   return (
-    <section className="flex h-full min-h-0 flex-col" aria-label="Chat with Nova">
-      <div className="flex-1 space-y-3 overflow-y-auto px-5 py-5 text-[14px] leading-relaxed" role="log" aria-live="polite">
+    <section className={styles.panel} aria-label="Chat with Nova">
+      <div className={styles.log} role="log" aria-live="polite">
         {messages.length === 0 && (
-          <div className="text-ink-2">
-            <p>Hi, I&apos;m Nova. Tell me what you want to learn or become, and what you already know — I&apos;ll build your path from there.</p>
-            <ul className="mt-3 flex flex-col gap-2">
-              {SUGGESTIONS.map((s) => (
-                <li key={s}>
-                  <button type="button" className="rounded-card border border-line bg-glass px-3 py-2 text-left text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={() => send(s)}>
+          <motion.div
+            className={cn(styles.greeting, compact && styles.greetingCompact)}
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={ENTER}
+          >
+            <Orb state="breathing" size={64} label="Nova" paused={reduce} />
+            <h2 className={styles.greetingTitle}>
+              Hi, I&apos;m <span className="text-gradient-violet">Nova</span>.
+            </h2>
+            <p className={styles.greetingLead}>
+              Tell me what you want to become and what you already know. I&apos;ll map the gap, build a path from
+              real courses, and change it when you push back.
+            </p>
+            <ul className={styles.suggestions} aria-label="Try one of these">
+              {SUGGESTIONS.map((s, i) => (
+                <motion.li
+                  key={s}
+                  initial={reduce ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ...ENTER, delay: 0.12 + i * 0.07 }}
+                >
+                  <button type="button" className={styles.suggestion} onClick={() => send(s)}>
                     {s}
                   </button>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         )}
-        {messages.map((m) => (
-          <div key={m.id} className={m.role === "user" ? "flex justify-end" : "flex justify-start"} data-role={m.role}>
-            <div
-              className={
-                m.role === "user"
-                  ? "max-w-[85%] whitespace-pre-wrap rounded-card bg-glass-strong px-3.5 py-2.5 text-ink-1"
-                  : `max-w-[85%] whitespace-pre-wrap rounded-card px-3.5 py-2.5 ${m.degraded ? "border border-line bg-surface-2 text-ink-2" : "text-ink-1"}`
-              }
+
+        <AnimatePresence initial={false}>
+          {messages.map((m) => (
+            <motion.div
+              key={m.id}
+              className={cn(styles.row, m.role === "user" ? styles.rowUser : styles.rowNova)}
+              data-role={m.role}
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={ENTER}
             >
-              {m.text || (m.streaming ? <span className="text-ink-3">…</span> : null)}
-              {m.role === "assistant" && m.toolCalls && m.toolCalls.length > 0 && (
-                <p className="mt-1 font-mono text-[11px] text-ink-3">used: {m.toolCalls.join(", ")}</p>
+              {m.role === "user" ? (
+                <div className={styles.userBubble}>{m.text}</div>
+              ) : (
+                <NovaMessage message={m} activity={m.streaming ? activity : null} reduce={reduce} />
               )}
-            </div>
-          </div>
-        ))}
-        {activity && (
-          <p className="text-[12px] text-ink-3" data-testid="chat-activity">
-            {activity}…
-          </p>
-        )}
+            </motion.div>
+          ))}
+        </AnimatePresence>
         <div ref={bottomRef} />
       </div>
-      <form
-        className="flex gap-2 border-t border-line p-3"
-        onSubmit={(e) => {
-          e.preventDefault();
-          void send(input);
-        }}
-      >
-        <textarea
-          ref={inputRef}
-          className="min-h-[2.5rem] flex-1 resize-none rounded-card border border-line bg-glass px-3 py-2 text-[14px] text-ink-1 placeholder:text-ink-3 focus:border-line-strong focus:outline-none"
-          rows={2}
-          value={input}
-          placeholder="Describe your goal, or ask about your path…"
-          onChange={(e) => setInput(e.target.value)}
-          onFocus={() => onInputFocus?.(true)}
-          onBlur={() => onInputFocus?.(false)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              void send(input);
-            }
+
+      <div className={styles.composerWrap}>
+        <AnimatePresence>
+          {resting && (
+            <motion.p
+              className={styles.notice}
+              role="status"
+              initial={reduce ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={ENTER}
+            >
+              <span className={styles.noticeDot} aria-hidden />
+              Nova is resting — the model is unavailable right now. Your path, graph and dashboard still work.
+            </motion.p>
+          )}
+        </AnimatePresence>
+
+        <form
+          className={cn(styles.composer, busy && styles.composerBusy)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            void send(input);
           }}
-          disabled={busy}
-          aria-label="Message Nova"
-        />
-        <button className="rounded-pill bg-brand px-4 py-2 text-[13px] font-[650] text-brand-foreground disabled:opacity-40" disabled={busy || !input.trim()}>
-          {busy ? "…" : "Send"}
-        </button>
-      </form>
-      {error && <p className="px-3 pb-2 text-[12px] text-coral">{error}</p>}
+        >
+          <textarea
+            ref={textareaRef}
+            className={styles.textarea}
+            rows={1}
+            value={input}
+            placeholder={messages.length === 0 ? "Describe your goal…" : "Reply to Nova…"}
+            onChange={(e) => setInput(e.target.value)}
+            onFocus={() => onInputFocus?.(true)}
+            onBlur={() => onInputFocus?.(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                void send(input);
+              }
+            }}
+            disabled={busy}
+            aria-label="Message Nova"
+            data-testid="chat-input"
+          />
+          <div className={styles.composerBar}>
+            <span className={styles.hint} aria-hidden>
+              <kbd>↵</kbd> send · <kbd>⇧↵</kbd> new line
+            </span>
+            <button type="submit" className={styles.send} disabled={!canSend} aria-label={busy ? "Nova is answering" : "Send"} data-testid="chat-send">
+              {busy ? <Orb state="working" size={20} label="Nova is answering" paused={reduce} /> : <ArrowUp />}
+            </button>
+          </div>
+        </form>
+        {error ? (
+          <p className={cn(styles.footnote, styles.footnoteError)} role="alert">
+            {error}
+          </p>
+        ) : (
+          <p className={styles.footnote}>Nova can misread you — the path itself is computed from your profile, not generated.</p>
+        )}
+      </div>
     </section>
+  );
+}
+
+function NovaMessage({ message, activity, reduce }: { message: ChatMessageView; activity: string | null; reduce: boolean }) {
+  const done = message.toolCalls ?? [];
+  const showChecklist = done.length > 0 || activity;
+  const thinking = message.streaming && !message.text && !activity;
+
+  return (
+    <div className={styles.novaMessage}>
+      <div className={styles.novaMark} aria-hidden>
+        <span />
+      </div>
+      <div className={styles.novaBody}>
+        {showChecklist && (
+          <ol className={styles.checklist} aria-label="What Nova did">
+            {done.map((name, i) => (
+              <li key={`${name}-${i}`} className={styles.checkDone}>
+                <span className={styles.checkIcon}>
+                  <Check />
+                </span>
+                {TOOL_LABEL[name] ?? name}
+              </li>
+            ))}
+            {activity && (
+              <li className={styles.checkRunning} data-testid="chat-activity">
+                <span className={styles.checkIcon}>
+                  <Orb state="searching" size={20} label="Working" paused={reduce} />
+                </span>
+                {activity}…
+              </li>
+            )}
+          </ol>
+        )}
+
+        {thinking && (
+          <div className={styles.thinking} aria-label="Nova is thinking">
+            <Orb state="searching" size={20} label="Nova is thinking" paused={reduce} />
+            <span>Thinking</span>
+          </div>
+        )}
+
+        {message.text && (
+          <p className={cn(styles.novaText, message.degraded && styles.novaTextDegraded)}>
+            {message.text}
+            {message.streaming && <span className={styles.caret} aria-hidden />}
+          </p>
+        )}
+
+        {message.degraded && !message.streaming && (
+          <span className={styles.degradedTag}>answered without the model</span>
+        )}
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,378 @@
+/* Chat with Nova: Nova speaks in plain text on the ink, the learner in a soft bubble;
+   tool activity is a live checklist; the composer floats over the log. */
+
+.panel {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.log {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  padding: 24px 22px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+/* --- greeting -------------------------------------------------------- */
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin: auto 0;
+  padding: 8px 4px 24px;
+}
+
+.greetingCompact {
+  gap: 10px;
+  padding-top: 0;
+}
+
+.greetingTitle {
+  margin-top: 6px;
+  font-size: clamp(1.7rem, 2.3vw, 2.25rem);
+  font-weight: 420;
+  line-height: 1.06;
+  letter-spacing: -0.047em;
+}
+.greetingCompact .greetingTitle {
+  font-size: 1.6rem;
+}
+
+.greetingLead {
+  max-width: 46ch;
+  color: var(--color-ink-2);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.suggestion {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  color: var(--color-ink-2);
+  font-size: 13.5px;
+  line-height: 1.45;
+  text-align: left;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out,
+    color var(--dur-fast) ease-out;
+}
+.suggestion:hover {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+  background: var(--color-glass-strong);
+  transform: translateY(-1px);
+}
+
+/* --- rows ------------------------------------------------------------ */
+
+.row {
+  display: flex;
+  width: 100%;
+}
+.rowUser {
+  justify-content: flex-end;
+}
+.rowNova {
+  justify-content: flex-start;
+}
+
+.userBubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  color: var(--color-ink-1);
+  font-size: 14.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  border: 1px solid var(--color-line);
+  border-radius: 16px 16px 6px 16px;
+  background: var(--color-glass-strong);
+  box-shadow: var(--shadow-inset-top);
+}
+
+.novaMessage {
+  display: grid;
+  max-width: 92%;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.novaMark {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  place-items: center;
+  border: 1px solid var(--color-violet-line);
+  border-radius: 7px;
+  background: var(--color-violet-soft);
+}
+.novaMark span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-violet);
+  box-shadow: var(--shadow-glow-dot);
+}
+
+.novaBody {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.novaText {
+  color: var(--color-ink-1);
+  font-size: 15px;
+  line-height: 1.62;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.novaTextDegraded {
+  color: var(--color-ink-2);
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--color-violet);
+  box-shadow: 0 0 8px var(--color-violet-glow);
+  animation: caret 1s steps(2, start) infinite;
+}
+@keyframes caret {
+  to {
+    visibility: hidden;
+  }
+}
+
+.thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-ink-3);
+  font-size: 13px;
+}
+
+.degradedTag {
+  align-self: flex-start;
+  padding: 2px 8px;
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-chip);
+}
+
+/* --- tool checklist (Cowork "Progress" language) --------------------- */
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px 8px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-2);
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  font-size: 13px;
+}
+
+.checkIcon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  place-items: center;
+}
+.checkIcon svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.4;
+}
+
+.checkDone {
+  color: var(--color-ink-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-ink-4);
+}
+.checkDone .checkIcon {
+  color: var(--color-brand-foreground);
+  border-radius: 50%;
+  background: var(--color-ink-1);
+  transform: scale(0.8);
+}
+
+.checkRunning {
+  color: var(--color-ink-1);
+}
+
+/* --- composer -------------------------------------------------------- */
+
+.composerWrap {
+  position: relative;
+  flex-shrink: 0;
+  padding: 8px 16px 12px;
+  background: linear-gradient(to bottom, transparent, var(--color-ink) 28%);
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 4px 10px;
+  padding: 9px 12px;
+  color: var(--color-ink-2);
+  font-size: 12.5px;
+  line-height: 1.4;
+  border: 1px solid var(--color-violet-line);
+  border-radius: var(--radius-card);
+  background: var(--color-violet-soft);
+}
+.noticeDot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-violet);
+  box-shadow: var(--shadow-glow-dot);
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: rgb(19 19 22 / 92%);
+  box-shadow: var(--shadow-float), var(--shadow-inset-top);
+  backdrop-filter: blur(18px);
+  transition:
+    border-color var(--dur-fast) ease-out,
+    box-shadow var(--dur-fast) ease-out;
+}
+.composer:focus-within {
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-float), 0 0 0 4px rgb(255 255 255 / 5%);
+}
+.composerBusy {
+  border-color: var(--color-violet-line);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 24px;
+  max-height: 180px;
+  padding: 14px 16px 6px;
+  color: var(--color-ink-1);
+  font-size: 15px;
+  line-height: 1.55;
+  background: transparent;
+  border: 0;
+  outline: none;
+  resize: none;
+  field-sizing: content;
+}
+.textarea::placeholder {
+  color: var(--color-ink-3);
+}
+.textarea:disabled {
+  opacity: 0.6;
+}
+
+.composerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 8px 8px 16px;
+}
+
+.hint {
+  color: var(--color-ink-4);
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+}
+.hint kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink-3);
+}
+
+.send {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: var(--color-brand-foreground);
+  border-radius: 999px;
+  background: var(--color-brand);
+  box-shadow: var(--shadow-brand);
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) ease-out,
+    opacity var(--dur-fast) ease-out,
+    box-shadow var(--dur-fast) ease-out;
+}
+.send svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+.send:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-brand-hover);
+}
+.send:disabled {
+  cursor: default;
+  opacity: 0.35;
+  box-shadow: none;
+}
+
+.footnote {
+  margin: 8px 6px 0;
+  color: var(--color-ink-4);
+  font-size: 11.5px;
+  text-align: center;
+}
+.footnoteError {
+  color: var(--color-coral);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
