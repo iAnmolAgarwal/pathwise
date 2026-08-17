@@ -163,6 +163,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
   max-width: calc(100% - 36px);
   padding: 12px 14px;
   color: inherit;

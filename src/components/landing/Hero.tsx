@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
 import { NovaScene } from "@/components/landing/NovaScene";
+import { useQuickChat } from "@/components/landing/QuickChat";
 
 import styles from "./hero.module.css";
 import { useInView } from "./useInView";
@@ -21,6 +22,7 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
   const inView = useInView(containerRef, "0px");
+  const quickChat = useQuickChat();
 
   // Nova's scene renders at 60 fps; stop it while the hero is scrolled away.
   useEffect(() => {
@@ -81,7 +83,7 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Link href={appHref} className={styles.liveLabel} aria-label="Talk to Nova — start a quick chat">
+            <button type="button" onClick={quickChat.open} className={styles.liveLabel} aria-label="Talk to Nova — start a quick chat">
               <span className={styles.liveIcon}>
                 <span />
               </span>
@@ -89,7 +91,7 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
                 <strong>Talk to Nova</strong>
                 <small>Start a quick chat</small>
               </div>
-            </Link>
+            </button>
           </motion.div>
         </motion.div>
 
