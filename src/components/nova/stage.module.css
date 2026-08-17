@@ -1,0 +1,80 @@
+/* Nova's in-app stage: a pane-sized frame for the same scene the hero uses. */
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(60% 55% at 50% 45%, var(--color-violet-haze), transparent 70%),
+    var(--color-surface-1);
+  isolation: isolate;
+}
+
+.halo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(40% 40% at 50% 100%, rgb(255 255 255 / 5%), transparent 70%);
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.spline {
+  position: absolute !important;
+  inset: 0;
+  z-index: 2;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  transform: scale(1.02);
+  transform-origin: center 60%;
+  transition:
+    opacity var(--dur-slow) var(--ease-enter),
+    transform var(--dur-reveal) var(--ease-enter);
+}
+
+.splineReady {
+  opacity: 1;
+  transform: none;
+}
+
+.spline canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.caption {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 8px 8px;
+  color: var(--color-ink-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: rgb(8 8 10 / 72%);
+  backdrop-filter: blur(14px);
+}
+
+.stage[data-state="celebrating"] .caption,
+.stage[data-state="thinking"] .caption,
+.stage[data-state="speaking"] .caption {
+  color: var(--color-ink-1);
+}
+
+.stage[data-state="resting"] .caption {
+  color: var(--color-ink-3);
+}
