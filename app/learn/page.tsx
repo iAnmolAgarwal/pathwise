@@ -1,8 +1,15 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Orb } from "@/components/ui/orb";
+
+/** Entry to the app: one field, one button — a learner id is all Nova needs (D-07). */
 export default function StartPage() {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -28,24 +35,52 @@ export default function StartPage() {
   }
 
   return (
-    <main className="mx-auto max-w-md p-8">
-      <h1 className="text-2xl font-semibold">Create a learner</h1>
-      <form onSubmit={create} className="mt-6 flex flex-col gap-3">
-        <label className="flex flex-col gap-1 text-sm">
-          Display name
-          <input
-            className="rounded border px-3 py-2"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            maxLength={60}
-          />
-        </label>
-        <button className="rounded bg-black px-4 py-2 text-white disabled:opacity-50" disabled={busy}>
-          {busy ? "Creating…" : "Continue"}
-        </button>
-        {error && <p className="text-sm text-red-600">{error}</p>}
-      </form>
+    <main className="relative grid min-h-dvh place-items-center overflow-hidden bg-ink px-6 py-16">
+      <div className="bg-vignette pointer-events-none absolute inset-0" aria-hidden />
+      <div className="relative flex w-full max-w-[420px] flex-col items-center text-center">
+        <Link href="/" className="label-caps text-ink-3 transition-colors hover:text-ink-1">
+          Pathwise
+        </Link>
+        <h1 className="mt-6 text-[clamp(2.2rem,4vw,3rem)] font-[420] leading-[1.06] tracking-[-0.047em]">
+          Start with a <span className="text-gradient-violet">name</span>.
+        </h1>
+        <p className="mt-4 max-w-[36ch] text-lead text-ink-2">
+          Nova keeps everything under it — your goal, your skills, every version of your path. No account needed.
+        </p>
+
+        <form onSubmit={create} className="mt-8 flex w-full flex-col gap-3 rounded-panel border border-line bg-surface-2 p-5 text-left shadow-float">
+          <label className="flex flex-col gap-2 text-[13px] text-ink-2">
+            What should Nova call you?
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              required
+              maxLength={60}
+              autoFocus
+              name="displayName"
+              autoComplete="name"
+            />
+          </label>
+          <Button type="submit" size="lg" disabled={busy || !name.trim()} className="mt-1 w-full">
+            {busy ? (
+              <>
+                <Orb state="working" size={20} label="Creating your space" /> Creating your space
+              </>
+            ) : (
+              <>
+                Continue <ArrowRight data-icon="inline-end" />
+              </>
+            )}
+          </Button>
+          {error && (
+            <p className="text-[13px] text-coral" role="alert">
+              {error}
+            </p>
+          )}
+        </form>
+        <p className="mt-4 text-[12px] text-ink-3">Your workspace link is private to whoever has it — bookmark it to come back.</p>
+      </div>
     </main>
   );
 }
