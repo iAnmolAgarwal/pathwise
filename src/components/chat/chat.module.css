@@ -272,6 +272,7 @@
 }
 
 .composer {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-line);
@@ -289,6 +290,37 @@
 }
 .composerBusy {
   border-color: var(--color-violet-line);
+}
+
+.rotating {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  left: 16px;
+  z-index: 1;
+  pointer-events: none;
+}
+.rotatingInner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 6px;
+  color: var(--color-ink-3);
+  font-size: 15px;
+  line-height: 1.55;
+  white-space: nowrap;
+}
+.rotatingSlot {
+  position: relative;
+  display: inline-grid;
+  vertical-align: baseline;
+}
+.rotatingSlot > * {
+  grid-area: 1 / 1;
+}
+.rotatingValue {
+  font-weight: 560;
+  white-space: nowrap;
 }
 
 .textarea {

@@ -14,6 +14,7 @@ import { Orb } from "@/components/ui/orb";
 import { cn } from "@/lib/utils";
 
 import { ProfileCardView } from "./ProfileCardView";
+import { RotatingPrompt } from "./RotatingPrompt";
 import styles from "./chat.module.css";
 
 export type ChatMessageView = {
@@ -88,6 +89,7 @@ export function ChatPanel({
   // Cards answered this session (by card id); older cards count as answered once anything follows them.
   const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number }>>({});
   const [cardBusy, setCardBusy] = useState<string | null>(null);
+  const [focused, setFocused] = useState(false);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" });
@@ -284,15 +286,24 @@ export function ChatPanel({
             void send(input);
           }}
         >
+          {input === "" && !focused && !busy && (
+            <RotatingPrompt className={styles.rotating} paused={reduce} intro={messages.length === 0 ? "I want to become a" : "Ask about your path, or say: I want to become a"} />
+          )}
           <textarea
             ref={textareaRef}
             className={styles.textarea}
             rows={1}
             value={input}
-            placeholder={messages.length === 0 ? "Describe your goal…" : "Reply to Nova…"}
+            placeholder={focused ? (messages.length === 0 ? "Tell Nova what you want to become…" : "Reply to Nova…") : ""}
             onChange={(e) => setInput(e.target.value)}
-            onFocus={() => onInputFocus?.(true)}
-            onBlur={() => onInputFocus?.(false)}
+            onFocus={() => {
+              setFocused(true);
+              onInputFocus?.(true);
+            }}
+            onBlur={() => {
+              setFocused(false);
+              onInputFocus?.(false);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
