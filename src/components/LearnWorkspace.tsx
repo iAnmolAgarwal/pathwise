@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence } from "motion/react";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
 import type { NovaState } from "@/schemas";
@@ -266,8 +267,10 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
             </section>
           )}
 
-          <section className={`flex h-full flex-col gap-5 ${tab === "path" ? "" : "hidden"}`} data-testid="path-section">
-            {diff && <PathDiffBanner diff={diff.diff} version={diff.version} catalog={catalog} onDismiss={() => setDiff(null)} />}
+          <section className={`flex flex-col gap-5 ${tab === "path" ? "" : "hidden"}`} data-testid="path-section">
+            <AnimatePresence>
+              {diff && <PathDiffBanner key={diff.version} diff={diff.diff} version={diff.version} catalog={catalog} onDismiss={() => setDiff(null)} />}
+            </AnimatePresence>
             {feedbackError && (
               <p className="rounded-card border border-coral-line bg-coral-soft px-3 py-2 text-[13px] text-coral" role="alert">
                 {feedbackError}
@@ -286,23 +289,25 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
                     </p>
                   )}
                 </div>
-                {selectedItem && (
-                  <ExplainPanel
-                    key={selectedItem.catalogId}
-                    learnerId={learnerId}
-                    catalogId={selectedItem.catalogId}
-                    evidence={selectedItem.evidence}
-                    catalog={catalog}
-                    skillName={skillName}
-                    onClose={() => setExplaining(null)}
-                  />
-                )}
                 <PathView
                   path={pathState.path}
                   catalog={catalog}
                   skillName={skillName}
-                  onExplain={setExplaining}
+                  onExplain={(id) => setExplaining((cur) => (cur === id ? null : id))}
                   selectedId={explaining}
+                  explainSlot={
+                    selectedItem ? (
+                      <ExplainPanel
+                        key={selectedItem.catalogId}
+                        learnerId={learnerId}
+                        catalogId={selectedItem.catalogId}
+                        evidence={selectedItem.evidence}
+                        catalog={catalog}
+                        skillName={skillName}
+                        onClose={() => setExplaining(null)}
+                      />
+                    ) : null
+                  }
                   onFeedback={sendFeedback}
                   pendingFeedback={pendingFeedback}
                   onShowInGraph={showInGraph}
