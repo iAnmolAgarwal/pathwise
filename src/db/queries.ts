@@ -1,3 +1,4 @@
+import type { ProfileCard } from "@/schemas/profileCard";
 import { desc, eq, sql } from "drizzle-orm";
 import { chatMessages, db, feedbackEvents, learners, paths, profiles, tokenUsage } from "./index";
 import type { FeedbackEvent, Path, PathDiff, Profile } from "../schemas";
@@ -81,7 +82,7 @@ export async function listFeedbackDays(learnerId: string): Promise<string[]> {
 export type StoredChatMessage = {
   id: string;
   role: "user" | "assistant";
-  content: { text: string; toolCalls?: string[]; degraded?: boolean };
+  content: { text: string; toolCalls?: string[]; degraded?: boolean; card?: ProfileCard };
   createdAt: Date;
 };
 

@@ -15,6 +15,8 @@ import {
   type Profile,
   type ProfileOp,
 } from "@/schemas";
+import { buildProfileCard } from "@/lib/profileCard";
+import type { ProfileCard } from "@/schemas/profileCard";
 import { mapCustomGoal } from "./mapGoal";
 import { filterOpsToVocabulary } from "./extract";
 
@@ -36,7 +38,8 @@ export interface ChatContext {
 
 export type ToolSideEffect =
   | { type: "profile_updated"; profile: Profile; ops: ProfileOp[] }
-  | { type: "path_updated"; version: number; path: Path; diff: PathDiff | null };
+  | { type: "path_updated"; version: number; path: Path; diff: PathDiff | null }
+  | { type: "ui_card"; card: ProfileCard };
 
 export type ToolOutcome = {
   result: unknown;
@@ -114,6 +117,12 @@ export const CHAT_TOOLS: Anthropic.Tool[] = [
       "Summarise the learner's progress: items done versus planned, skills recorded, and the next best action. Call this for progress or 'what should I do next' questions.",
     input_schema: inputSchema(Empty),
   },
+  {
+    name: "propose_profile_card",
+    description:
+      "Show the learner an interactive check-in card inside the chat: the skills their goal needs (with a level chooser for each) plus hours per week, pace, budget and formats. Call this right after recording a goal when the learner has stated no skills yet, instead of generate_path, and then end your turn with one short sentence inviting them to fill it in. Their answer arrives as their next message; generate the path then. Do not call it if they already told you what they know.",
+    input_schema: inputSchema(Empty),
+  },
 ];
 
 export async function executeTool(
@@ -145,6 +154,8 @@ export async function executeTool(
         const skillName = (id: string) => ctx.data.skills.find((s) => s.id === id)?.name ?? id;
         return { result: { ...summary, openGap: gap.map((g) => `${skillName(g.skillId)} ${g.currentLevel}→${g.targetLevel}`) }, effects: [] };
       }
+      case "propose_profile_card":
+        return proposeCard(ctx);
       default:
         return { result: { error: `Unknown tool ${name}` }, isError: true, effects: [] };
     }
@@ -152,6 +163,16 @@ export async function executeTool(
     const message = err instanceof z.ZodError ? z.prettifyError(err) : err instanceof Error ? err.message : String(err);
     return { result: { error: message }, isError: true, effects: [] };
   }
+}
+
+async function proposeCard(ctx: ChatContext): Promise<ToolOutcome> {
+  const profile = await ctx.getProfile();
+  const card = buildProfileCard(`card-${ctx.now().getTime().toString(36)}`, profile, ctx.data);
+  if ("error" in card) return { result: card, isError: true, effects: [] };
+  return {
+    result: { shown: true, goal: card.goal.label, skills: card.skills.length, note: "The card is on screen. End the turn with one inviting sentence; the answer arrives as the learner's next message." },
+    effects: [{ type: "ui_card", card }],
+  };
 }
 
 async function applyOps(ctx: ChatContext, ops: ProfileOp[]): Promise<ToolOutcome> {

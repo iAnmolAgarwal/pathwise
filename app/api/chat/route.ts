@@ -1,6 +1,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { addTokenUsage, getLearner, insertChatMessage, listChatMessages } from "@/db/queries";
+import type { ProfileCard } from "@/schemas/profileCard";
 import { jsonError, parseBody } from "@/lib/api";
 import { dbChatContext } from "@/lib/chatContext";
 import { SSE_HEADERS, sseStream } from "@/lib/sse";
@@ -50,15 +51,18 @@ export async function POST(request: Request) {
         return;
       }
       const toolCalls: string[] = [];
+      let card: ProfileCard | undefined;
       const result = await runChatTurn(llm(), dbChatContext(learnerId), { history, message }, (event) => {
         if (event.type === "tool_call" && event.status !== "start") toolCalls.push(event.name);
+        if (event.type === "ui_card") card = event.card;
         emit(event);
       });
       const text = result.text || (result.degradation ? result.degradation.message : "");
-      if (text) {
+      if (text || card) {
         await insertChatMessage(learnerId, "assistant", {
           text,
           toolCalls,
+          ...(card ? { card } : {}),
           ...(result.degradation ? { degraded: true } : {}),
         });
       }

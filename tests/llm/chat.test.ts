@@ -49,6 +49,33 @@ describe("runChatTurn", () => {
     expect(Array.isArray(second.content) && second.content.length).toBe(2);
   });
 
+  it("shows the intake card as a ui_card event and refuses it without a goal", async () => {
+    const { events, state } = await run([
+      {
+        stop_reason: "tool_use",
+        content: [
+          toolUse("t1", "apply_profile_ops", { ops: [{ op: "add_goal", goal: { type: "role", templateId: "frontend-developer" } }] }),
+          toolUse("t2", "propose_profile_card", {}),
+        ],
+      },
+      { stop_reason: "end_turn", content: [text("Tick what you already know and I'll build from there.")] },
+    ]);
+    const card = events.find((e) => e.type === "ui_card");
+    expect(card).toBeDefined();
+    if (card?.type !== "ui_card") return;
+    expect(card.card.goal).toEqual({ label: "Frontend Developer", templateId: "frontend-developer" });
+    expect(card.card.skills.some((s) => s.skillId === "html")).toBe(true);
+    expect(state.paths).toHaveLength(0);
+
+    const { events: bare, requests } = await run([
+      { stop_reason: "tool_use", content: [toolUse("t1", "propose_profile_card", {})] },
+      { stop_reason: "end_turn", content: [text("ok")] },
+    ]);
+    expect(bare.some((e) => e.type === "ui_card")).toBe(false);
+    const toolResult = requests[1].messages.at(-1)!.content as { is_error?: boolean }[];
+    expect(toolResult[0].is_error).toBe(true);
+  });
+
   it("uses the frozen system prompt with a cache breakpoint and a stable tool list", async () => {
     const { requests } = await run([{ stop_reason: "end_turn", content: [text("hi")] }], "hello");
     const system = requests[0].system as { text: string; cache_control?: unknown }[];
@@ -63,6 +90,7 @@ describe("runChatTurn", () => {
       "explain_item",
       "search_catalog",
       "get_dashboard_summary",
+      "propose_profile_card",
     ]);
     // Dynamic learner state lives in the message turn, not the system prompt.
     const user = requests[0].messages[0].content as string;
