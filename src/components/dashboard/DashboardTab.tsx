@@ -1,165 +1,237 @@
 "use client";
 
-import { Legend, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
-import type { DashboardSummary } from "@/engine/dashboard";
+import { ArrowRight, Check, Flame } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 
-// Categorical slots 1 and 3 of the reference palette (validated adjacent pair, light surface).
-const SERIES = { required: "#2a78d6", known: "#1baf7a" };
+import type { DashboardSummary } from "@/engine/dashboard";
+import { Badge } from "@/components/ui/badge";
+import { Orb } from "@/components/ui/orb";
+import { cn } from "@/lib/utils";
+
+import styles from "./dashboard.module.css";
+
+// Emphasis form: one hue for "you", the de-emphasis gray for "the goal" (validated on surface-1).
+const VIZ = { known: "#8f7cff", required: "#6b6b70", grid: "rgba(255,255,255,0.09)", tick: "rgba(255,255,255,0.6)" };
 
 type Props = {
   summary: DashboardSummary | null;
   onOpenItem?: (catalogId: string) => void;
 };
 
-/** Dashboard tab (§9.3): radar, timeline, progress, next-best-action, streak — all engine-computed. */
-export function DashboardTab({ summary, onOpenItem }: Props) {
-  if (!summary) return <p className="text-sm text-neutral-600">Computing your dashboard…</p>;
-  const { progress, radar, timeline, nextAction, streak } = summary;
-  return (
-    <div className="grid gap-4 md:grid-cols-2" data-testid="dashboard">
-      <section className="rounded border p-4 md:col-span-2">
-        <div className="flex flex-wrap items-end gap-6">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-neutral-500">Progress toward your goal</p>
-            <p className="text-4xl font-semibold tabular-nums" data-testid="progress-percent">{progress.percent}%</p>
-            <p className="text-xs text-neutral-600">
-              {progress.attainedLevels} of {progress.requiredLevels} required skill levels · {progress.itemsDone}/{progress.itemsTotal} items done
-            </p>
-          </div>
-          <div className="min-w-[12rem] flex-1">
-            <div className="h-2 w-full overflow-hidden rounded bg-neutral-200" role="progressbar" aria-valuenow={progress.percent} aria-valuemin={0} aria-valuemax={100}>
-              <div className="h-full rounded" style={{ width: `${progress.percent}%`, background: SERIES.known }} />
-            </div>
-          </div>
-          <div>
-            <p className="text-xs uppercase tracking-wide text-neutral-500">Activity streak</p>
-            <p className="text-2xl font-semibold tabular-nums" data-testid="streak">
-              {streak.current} day{streak.current === 1 ? "" : "s"}
-              <span className="ml-2 text-xs font-normal text-neutral-500">best {streak.longest}</span>
-            </p>
-            <StreakDots activeDays={streak.activeDays} today={summary.today} />
-          </div>
-        </div>
-      </section>
+const ENTER = { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const };
 
-      <section className="rounded border p-4" data-testid="next-action">
-        <p className="text-xs uppercase tracking-wide text-neutral-500">Next best action</p>
+/** Dashboard tab (§9.3): hero progress, stat tiles, radar, timeline, streak, next-best-action — all engine-computed. */
+export function DashboardTab({ summary, onOpenItem }: Props) {
+  const reduce = useReducedMotion() ?? false;
+  if (!summary) {
+    return (
+      <div className={styles.loading}>
+        <Orb state="working" size={20} label="Computing your dashboard" />
+        Computing your dashboard…
+      </div>
+    );
+  }
+  const { progress, radar, timeline, nextAction, streak } = summary;
+  const skillsKnown = radar.reduce((n, r) => n + r.known, 0);
+  const skillsRequired = radar.reduce((n, r) => n + r.required, 0);
+  const rise = (i: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    transition: { ...ENTER, delay: reduce ? 0 : i * 0.06 },
+  });
+
+  return (
+    <div className={styles.grid} data-testid="dashboard">
+      {/* Hero: the one number the view leads with. */}
+      <motion.section className={cn(styles.card, styles.hero)} {...rise(0)}>
+        <div className={styles.heroText}>
+          <p className={styles.label}>Progress toward your goal</p>
+          <p className={styles.heroValue} data-testid="progress-percent">
+            {progress.percent}
+            <span className={styles.heroUnit}>%</span>
+          </p>
+          <p className={styles.heroSub}>
+            {progress.attainedLevels} of {progress.requiredLevels} required skill levels reached
+          </p>
+        </div>
+        <div className={styles.meter} role="progressbar" aria-valuenow={progress.percent} aria-valuemin={0} aria-valuemax={100} aria-label="Progress toward your goal">
+          <motion.span className={styles.meterFill} initial={reduce ? false : { width: 0 }} animate={{ width: `${progress.percent}%` }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }} />
+        </div>
+      </motion.section>
+
+      {/* KPI row */}
+      <motion.ul className={styles.tiles} aria-label="Key figures" {...rise(1)}>
+        <Tile label="Items done" value={progress.itemsDone} of={progress.itemsTotal} testId="tile-items" />
+        <Tile label="Skill levels" value={progress.attainedLevels} of={progress.requiredLevels} />
+        <Tile label="Domains touched" value={radar.filter((r) => r.known > 0).length} of={radar.length} />
+        <li className={cn(styles.tile, streak.current > 0 && styles.tileHot)} data-testid="streak">
+          <p className={styles.label}>Streak</p>
+          <p className={styles.tileValue}>
+            {streak.current > 0 && <Flame className={styles.flame} aria-hidden />}
+            {streak.current}
+            <span className={styles.tileOf}> {streak.current === 1 ? "day" : "days"} · best {streak.longest}</span>
+          </p>
+          <StreakDots activeDays={streak.activeDays} today={summary.today} />
+        </li>
+      </motion.ul>
+
+      {/* Radar */}
+      <motion.section className={styles.card} data-testid="skill-radar" {...rise(2)}>
+        <header className={styles.cardHead}>
+          <div>
+            <p className={styles.label}>Skills by domain</p>
+            <p className={styles.cardHint}>
+              {skillsKnown} of {skillsRequired} required levels — the outer ring is the goal, the filled shape is you.
+            </p>
+          </div>
+          <ul className={styles.legend} aria-label="Legend">
+            <li>
+              <i style={{ background: VIZ.known }} /> You
+            </li>
+            <li>
+              <i style={{ borderColor: VIZ.required }} className={styles.legendRing} /> Goal
+            </li>
+          </ul>
+        </header>
+        {radar.length === 0 ? (
+          <p className={styles.empty}>Add a goal to see which domains it needs.</p>
+        ) : radar.length < 3 ? (
+          <DomainBars radar={radar} />
+        ) : (
+          <div className={styles.radar}>
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart data={radar.map((r) => ({ ...r, requiredPct: 100, knownPct: Math.round((r.known / r.required) * 100) }))} outerRadius="66%">
+                <PolarGrid stroke={VIZ.grid} />
+                <PolarAngleAxis dataKey="label" tick={{ fontSize: 11, fill: VIZ.tick, fontFamily: "inherit" }} />
+                <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                <Radar name="Goal" dataKey="requiredPct" stroke={VIZ.required} fill={VIZ.required} fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="4 4" isAnimationActive={!reduce} />
+                <Radar name="You" dataKey="knownPct" stroke={VIZ.known} fill={VIZ.known} fillOpacity={0.28} strokeWidth={2} dot={{ r: 3, fill: VIZ.known, strokeWidth: 0 }} isAnimationActive={!reduce} />
+                <Tooltip
+                  cursor={false}
+                  contentStyle={{ background: "rgb(8 8 10 / 88%)", border: "1px solid rgb(255 255 255 / 18%)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f5f5f7", backdropFilter: "blur(14px)" }}
+                  itemStyle={{ color: "#f5f5f7" }}
+                  labelStyle={{ color: "rgb(255 255 255 / 60%)", marginBottom: 4 }}
+                  formatter={(value, name, entry) => {
+                    const r = entry.payload as { known: number; required: number };
+                    return [name === "You" ? `${value}% (${r.known} of ${r.required} levels)` : `${r.required} levels`, name];
+                  }}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+        {radar.length > 0 && (
+          <details className={styles.table}>
+            <summary>Table view</summary>
+            <table>
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>You</th>
+                  <th>Goal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {radar.map((r) => (
+                  <tr key={r.domain}>
+                    <td>{r.label}</td>
+                    <td>{r.known}</td>
+                    <td>{r.required}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </details>
+        )}
+      </motion.section>
+
+      {/* Next best action */}
+      <motion.section className={cn(styles.card, styles.next)} data-testid="next-action" {...rise(3)}>
+        <p className={styles.label}>Next best action</p>
         {nextAction.catalogId ? (
           <>
-            <p className="mt-1 text-lg font-medium">
-              {nextAction.title}
-              <span className="ml-2 text-xs font-normal uppercase text-neutral-500">{nextAction.kind}{nextAction.hours ? ` · ${nextAction.hours}h` : ""}</span>
-            </p>
-            <p className="mt-1 text-sm text-neutral-700">{nextAction.why}</p>
+            <div className={styles.nextMeta}>
+              {nextAction.kind && <Badge variant="kind">{nextAction.kind}</Badge>}
+              {nextAction.hours ? <span className={styles.mono}>{nextAction.hours}h</span> : null}
+              {nextAction.phase && <span className={styles.nextPhase}>{nextAction.phase}</span>}
+            </div>
+            <h3 className={styles.nextTitle}>{nextAction.title}</h3>
+            <p className={styles.nextWhy}>{nextAction.why}</p>
             {onOpenItem && (
-              <button type="button" className="mt-2 rounded border px-3 py-1 text-sm hover:bg-neutral-100" onClick={() => onOpenItem(nextAction.catalogId!)}>
-                Open on path
+              <button type="button" className={styles.nextButton} onClick={() => onOpenItem(nextAction.catalogId!)}>
+                Open on path <ArrowRight aria-hidden />
               </button>
             )}
           </>
         ) : (
-          <p className="mt-1 text-sm">{nextAction.why}</p>
+          <p className={styles.nextWhy}>{nextAction.why}</p>
         )}
-      </section>
+      </motion.section>
 
-      <section className="rounded border p-4" data-testid="skill-radar">
-        <p className="text-xs uppercase tracking-wide text-neutral-500">Skills: known vs required, by domain</p>
-        {radar.length === 0 ? (
-          <p className="mt-2 text-sm text-neutral-600">Add a goal to see which domains it needs.</p>
-        ) : radar.length < 3 ? (
-          // A radar needs three axes to be a shape; with fewer domains, paired bars are the honest form.
-          <DomainBars radar={radar} />
-        ) : (
-          <>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={radar.map((r) => ({ ...r, requiredPct: 100, knownPct: Math.round((r.known / r.required) * 100) }))} outerRadius="75%">
-                  <PolarGrid stroke="#e5e5e5" />
-                  <PolarAngleAxis dataKey="label" tick={{ fontSize: 11, fill: "#52514e" }} />
-                  <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                  <Radar name="Required by goal" dataKey="requiredPct" stroke={SERIES.required} fill={SERIES.required} fillOpacity={0.08} strokeWidth={2} />
-                  <Radar name="You know" dataKey="knownPct" stroke={SERIES.known} fill={SERIES.known} fillOpacity={0.35} strokeWidth={2} />
-                  <Tooltip
-                    formatter={(value, name, entry) => {
-                      const r = entry.payload as { known: number; required: number };
-                      return [name === "You know" ? `${value}% (${r.known} of ${r.required} levels)` : `${r.required} levels`, name];
-                    }}
-                  />
-                  <Legend wrapperStyle={{ fontSize: 12 }} />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="text-xs text-neutral-500">Each axis is one domain the goal needs; the outer edge is the goal, the filled shape is how far you are.</p>
-            <details className="mt-1 text-xs">
-              <summary className="cursor-pointer text-neutral-600">Table view</summary>
-              <table className="mt-1 w-full text-left">
-                <thead>
-                  <tr className="text-neutral-500"><th>Domain</th><th>You know</th><th>Required</th></tr>
-                </thead>
-                <tbody>
-                  {radar.map((r) => (
-                    <tr key={r.domain}><td>{r.label}</td><td className="tabular-nums">{r.known}</td><td className="tabular-nums">{r.required}</td></tr>
-                  ))}
-                </tbody>
-              </table>
-            </details>
-          </>
-        )}
-      </section>
-
-      <section className="rounded border p-4 md:col-span-2" data-testid="timeline">
-        <p className="text-xs uppercase tracking-wide text-neutral-500">Path timeline</p>
+      {/* Timeline */}
+      <motion.section className={cn(styles.card, styles.timelineCard)} data-testid="timeline" {...rise(4)}>
+        <p className={styles.label}>Path timeline</p>
         {timeline.length === 0 ? (
-          <p className="mt-2 text-sm text-neutral-600">No path yet.</p>
+          <p className={styles.empty}>No path yet.</p>
         ) : (
-          <ol className="mt-2 flex flex-col gap-2 sm:flex-row sm:gap-0">
+          <ol className={styles.timeline}>
             {timeline.map((t, i) => (
-              <li key={t.title} className="relative flex-1 sm:pr-3" data-complete={t.complete} data-active={t.active}>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 text-xs"
-                    style={{ borderColor: t.complete ? "#0ca30c" : t.active ? SERIES.required : "#c3c2b7", background: t.complete ? "#0ca30c" : "white", color: t.complete ? "white" : undefined }}
-                    aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}
-                  >
-                    {t.complete ? "✓" : i + 1}
+              <li key={t.title} className={cn(styles.step, t.complete && styles.stepDone, t.active && styles.stepActive)} data-complete={t.complete} data-active={t.active}>
+                <div className={styles.stepRail}>
+                  <span className={styles.stepNode} aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}>
+                    {t.complete ? <Check aria-hidden /> : <span>{i + 1}</span>}
                   </span>
-                  {i < timeline.length - 1 && <span className="hidden h-0.5 flex-1 sm:block" style={{ background: t.complete ? "#0ca30c" : "#e5e5e5" }} aria-hidden />}
+                  {i < timeline.length - 1 && <span className={styles.stepLine} aria-hidden />}
                 </div>
-                <p className="mt-1 text-sm font-medium">{t.title}</p>
-                <p className="text-xs text-neutral-600">{t.milestone}</p>
-                <p className="text-xs tabular-nums text-neutral-500">{t.itemsDone}/{t.itemsTotal} done</p>
+                <p className={styles.stepTitle}>{t.title}</p>
+                <p className={styles.stepMilestone}>{t.milestone}</p>
+                <div className={styles.stepBar} aria-hidden>
+                  <span style={{ width: `${t.itemsTotal ? (t.itemsDone / t.itemsTotal) * 100 : 0}%` }} />
+                </div>
+                <p className={styles.stepCount}>
+                  {t.itemsDone}/{t.itemsTotal} done
+                </p>
               </li>
             ))}
           </ol>
         )}
-      </section>
+      </motion.section>
     </div>
+  );
+}
+
+function Tile({ label, value, of, testId }: { label: string; value: number; of: number; testId?: string }) {
+  return (
+    <li className={styles.tile} data-testid={testId}>
+      <p className={styles.label}>{label}</p>
+      <p className={styles.tileValue}>
+        {value}
+        <span className={styles.tileOf}> / {of}</span>
+      </p>
+      <div className={styles.tileBar} aria-hidden>
+        <span style={{ width: `${of ? (value / of) * 100 : 0}%` }} />
+      </div>
+    </li>
   );
 }
 
 function DomainBars({ radar }: { radar: DashboardSummary["radar"] }) {
   const max = Math.max(...radar.map((r) => r.required));
   return (
-    <div className="mt-2 flex flex-col gap-3">
+    <div className={styles.bars}>
       {radar.map((r) => (
-        <div key={r.domain}>
-          <p className="text-sm">{r.label}</p>
-          <div className="mt-1 flex flex-col gap-0.5">
-            <div className="flex items-center gap-2 text-xs">
-              <span className="h-2.5 rounded-r" style={{ width: `${(r.required / max) * 100}%`, background: SERIES.required, opacity: 0.35 }} />
-              <span className="tabular-nums text-neutral-600">{r.required} required</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs">
-              <span className="h-2.5 rounded-r" style={{ width: `${(r.known / max) * 100}%`, background: SERIES.known }} />
-              <span className="tabular-nums text-neutral-600">{r.known} known</span>
-            </div>
+        <div key={r.domain} className={styles.barRow}>
+          <p className={styles.barLabel}>{r.label}</p>
+          <div className={styles.barTrack}>
+            <span className={styles.barGoal} style={{ width: `${(r.required / max) * 100}%` }} />
+            <span className={styles.barYou} style={{ width: `${(r.known / max) * 100}%` }} />
           </div>
+          <p className={styles.barValue}>
+            {r.known} / {r.required}
+          </p>
         </div>
       ))}
-      <p className="text-xs text-neutral-500">
-        <span className="mr-1 inline-block h-2 w-2" style={{ background: SERIES.required, opacity: 0.35 }} /> Required by goal
-        <span className="ml-3 mr-1 inline-block h-2 w-2" style={{ background: SERIES.known }} /> You know
-      </p>
     </div>
   );
 }
@@ -172,9 +244,9 @@ function StreakDots({ activeDays, today }: { activeDays: string[]; today: string
     return { d, on: active.has(d) };
   });
   return (
-    <div className="mt-1 flex gap-1" aria-label="last fourteen days">
-      {days.map(({ d, on }) => (
-        <span key={d} title={d} className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: on ? "#0ca30c" : "#e5e5e5" }} />
+    <div className={styles.dots} aria-label="Last fourteen days">
+      {days.map(({ d, on }, i) => (
+        <span key={d} title={d} className={cn(styles.dot, on && styles.dotOn, i === 13 && styles.dotToday)} />
       ))}
     </div>
   );

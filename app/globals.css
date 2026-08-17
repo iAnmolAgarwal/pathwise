@@ -59,6 +59,12 @@
   --color-status-unrelated-soft: rgb(255 255 255 / 3%);
   --color-status-unrelated-line: var(--color-line);
 
+  /* semantic: dashboard marks (validated on surface-1: L band, ≥3:1, ΔE vs the gray ≥ 21) */
+  --color-viz: #8f7cff;
+  --color-viz-soft: rgb(143 124 255 / 22%);
+  --color-viz-muted: #6b6b70;
+  --color-viz-track: rgb(255 255 255 / 8%);
+
   /* semantic: path-diff banner */
   --color-diff: var(--color-violet);
   --color-diff-soft: rgb(167 139 250 / 9%);
