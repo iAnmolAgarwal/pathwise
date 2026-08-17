@@ -225,8 +225,8 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
           {tab === "graph" && (
             <section data-testid="graph-section">
               <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Skill graph</h2>
-              <p className="mt-1 text-body text-ink-2">
-                Every skill in the taxonomy, coloured by where you stand. Press “Show in graph” on a path item to trace the chain of prerequisites it closes.
+              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">
+                Every skill in the taxonomy, coloured by where you stand. Press “Show in graph” on a path item to light up the chain of prerequisites it closes.
               </p>
               <div className="mt-4">
                 <SkillGraph skills={skills} skillStatus={dashboard?.skillStatus ?? {}} levels={levels} highlight={highlight} />
