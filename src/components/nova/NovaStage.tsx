@@ -11,7 +11,6 @@ import { NOVA_LABEL, NOVA_ORB, type NovaStageProps } from "@/nova/stage";
 import { cn } from "@/lib/utils";
 
 import styles from "./stage.module.css";
-import { useNovaMotion } from "./useNovaMotion";
 
 export type NovaReaction = { text: string; tone: "greet" | "cheer" | "nudge" | "info" | "rest" };
 
@@ -19,17 +18,16 @@ const ENTER = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
 /**
  * Nova's stage inside the app: the Spline scene framed for a pane, the orb standing in
- * until it loads, code-driven motion per state (§9.2), and a reaction bubble for the
- * moment you arrive.
+ * until it loads, and a reaction bubble for the moment you arrive. Reads `state` /
+ * `transitions` (§9.2) for the caption; scene motion stays the scene's own.
  */
-export function NovaStage({ state, transitions, placement, reducedMotion = false, className, reaction }: NovaStageProps & { reaction?: NovaReaction | null }) {
+export function NovaStage({ state, placement, reducedMotion = false, className, reaction }: NovaStageProps & { reaction?: NovaReaction | null }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [app, setApp] = useState<Application | null>(null);
   const [hover, setHover] = useState(false);
   // A reaction is "fresh" until the viewer has sat with it.
   const [seenReaction, setSeenReaction] = useState<string | null>(null);
   const inView = useInView(rootRef, "0px");
-  const running = !!app && inView && !reducedMotion;
 
   // The scene renders at 60 fps: run it only while the stage is on screen.
   useEffect(() => {
@@ -37,8 +35,6 @@ export function NovaStage({ state, transitions, placement, reducedMotion = false
     if (inView && !reducedMotion) app.play();
     else app.stop();
   }, [app, inView, reducedMotion]);
-
-  useNovaMotion(app, state, transitions, reducedMotion, running);
 
   // A reaction shows when the stage appears or the reaction changes, then fades; hover brings it back.
   const freshReaction = !!reaction && reaction.text !== seenReaction;

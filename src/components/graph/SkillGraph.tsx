@@ -327,15 +327,17 @@ function SkillGraphInner({ skills, skillStatus, levels, highlight, onSelectSkill
 const LAYOUT_ICON: Record<GraphLayout, typeof MoveRight> = { lr: MoveRight, domains: LayoutGrid, focus: Crosshair };
 
 /** Skill-graph explorer (§7 rendering 1): gap colouring plus click-to-highlight evidence paths. */
-export function SkillGraph({ defaultLayout = "lr", ...props }: Props) {
+export function SkillGraph({ defaultLayout, ...props }: Props) {
   const { skills, skillStatus } = props;
   const [selected, setSelected] = useState<string | null>(null);
-  const [layout, setLayout] = useState<GraphLayout>(defaultLayout);
+  // Default: the learner's own subgraph once a path exists, the domain map before that; a manual pick sticks.
+  const [picked, setPicked] = useState<GraphLayout | null>(defaultLayout ?? null);
   const skill = selected ? skills.find((s) => s.id === selected) : null;
   const status = skill ? (skillStatus[skill.id] ?? "unrelated") : null;
   const counts: Record<SkillStatus, number> = { acquired: 0, "in-progress": 0, gap: 0, unrelated: 0 };
   for (const s of skills) counts[skillStatus[s.id] ?? "unrelated"]++;
   const hasPath = counts.acquired + counts["in-progress"] + counts.gap > 0;
+  const layout: GraphLayout = picked ?? (hasPath ? "focus" : "domains");
 
   return (
     <div className={styles.wrap}>
@@ -350,7 +352,7 @@ export function SkillGraph({ defaultLayout = "lr", ...props }: Props) {
             </li>
           ))}
         </ul>
-        <Tabs value={layout} onValueChange={(v) => setLayout(v as GraphLayout)}>
+        <Tabs value={layout} onValueChange={(v) => setPicked(v as GraphLayout)}>
           <TabsList variant="pill" aria-label="Layout">
             {LAYOUTS.map((l) => {
               const Icon = LAYOUT_ICON[l.id];
