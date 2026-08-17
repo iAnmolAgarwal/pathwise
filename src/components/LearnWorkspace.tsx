@@ -1,23 +1,37 @@
 "use client";
 
 import { AnimatePresence } from "motion/react";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
 import type { NovaState } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
 import { Badge } from "@/components/ui/badge";
+import { Orb } from "@/components/ui/orb";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
-import { DashboardTab } from "./dashboard/DashboardTab";
-import { SkillGraph, type GraphHighlight } from "./graph/SkillGraph";
+import type { GraphHighlight } from "./graph/SkillGraph";
 import { NovaStage, type NovaReaction } from "./nova/NovaStage";
-import type { CatalogLite, GenerateMeta, SkillLite } from "./path/PathBuilder";
+import type { CatalogLite, SkillLite } from "./path/types";
 import { PathDiffBanner, diffHeadline } from "./path/PathDiffBanner";
 import { ExplainPanel } from "./path/ExplainPanel";
 import { PathView, type ItemFeedbackType } from "./path/PathView";
 import { ProfileDrawer, type ProfileChange } from "./profile/ProfileDrawer";
 import { AppShell, type PaneTab } from "./shell/AppShell";
 import { EmptyPath } from "./shell/EmptyPath";
+
+// The graph (React Flow + dagre) and dashboard (Recharts) only load when their tab opens.
+const SkillGraph = dynamic(() => import("./graph/SkillGraph").then((m) => m.SkillGraph), { ssr: false, loading: () => <TabLoading label="Loading the skill graph" /> });
+const DashboardTab = dynamic(() => import("./dashboard/DashboardTab").then((m) => m.DashboardTab), { ssr: false, loading: () => <TabLoading label="Loading your dashboard" /> });
+
+function TabLoading({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3 py-10 text-[13.5px] text-ink-3" role="status">
+      <Orb state="working" size={20} label={label} />
+      {label}
+    </div>
+  );
+}
 
 type Tab = "nova" | "path" | "graph" | "dashboard";
 const TABS: PaneTab[] = [
@@ -45,7 +59,6 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
-  const [meta, setMeta] = useState<GenerateMeta | null>(null);
   const [nova, dispatchNova] = useReducer(novaReducer, initialNova);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [explaining, setExplaining] = useState<string | null>(null);
@@ -87,7 +100,6 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
 
   const onPathUpdated = useCallback((version: number, path: Path, pathDiff?: PathDiff | null) => {
     setPathState({ version, path });
-    setMeta(null);
     setExplaining(null);
     setHighlight(null);
     setDiff(pathDiff ? { diff: pathDiff, version } : null);
@@ -294,12 +306,6 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
                 <div>
                   <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Your path</h2>
                   <p className="mt-1 text-[13px] text-ink-3">Tell Pathwise how each item went — Done, Too hard, Too easy or Not for me — and the path adapts with a stated reason.</p>
-                  {meta && (
-                    <p className="mt-1 text-[13px] text-ink-2">
-                      {meta.usedHours} of {meta.budgetHours} budgeted hours planned · stopped because: {meta.stoppedBecause}
-                      {meta.uncovered.length > 0 && <> · still uncovered: {meta.uncovered.map((u) => `${skillName(u.skillId)} (${u.levelsMissing})`).join(", ")}</>}
-                    </p>
-                  )}
                 </div>
                 <PathView
                   path={pathState.path}

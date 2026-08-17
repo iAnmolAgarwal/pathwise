@@ -1,11 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLearner, getLatestPath, getProfile, listChatMessages } from "@/db/queries";
 import { loadEngineData } from "@/lib/engineData";
 import { UuidSchema } from "@/lib/api";
 import { LearnWorkspace } from "@/components/LearnWorkspace";
-import type { CatalogLite, SkillLite } from "@/components/path/PathBuilder";
+import type { CatalogLite, SkillLite } from "@/components/path/types";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: PageProps<"/learn/[learnerId]">): Promise<Metadata> {
+  const { learnerId } = await params;
+  if (!UuidSchema.safeParse(learnerId).success) return { title: "Workspace" };
+  const learner = await getLearner(learnerId);
+  return { title: learner ? `${learner.displayName}'s workspace` : "Workspace", robots: { index: false } };
+}
 
 export default async function LearnPage({ params }: PageProps<"/learn/[learnerId]">) {
   const { learnerId } = await params;

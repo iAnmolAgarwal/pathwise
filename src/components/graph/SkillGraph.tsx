@@ -27,7 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-import type { SkillLite } from "../path/PathBuilder";
+import type { SkillLite } from "../path/types";
 import styles from "./graph.module.css";
 
 /** Status language: identity is never colour alone — every status has a glyph and a label. */

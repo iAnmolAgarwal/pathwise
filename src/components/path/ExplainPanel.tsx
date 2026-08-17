@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import type { Evidence } from "@/schemas";
 import { Orb } from "@/components/ui/orb";
 
-import type { CatalogLite } from "./PathBuilder";
+import type { CatalogLite } from "./types";
 import { EvidenceBlock } from "./PathView";
 import styles from "./explain.module.css";
 

@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import type { PathDiff } from "@/schemas";
 
-import type { CatalogLite } from "./PathBuilder";
+import type { CatalogLite } from "./types";
 import styles from "./diff.module.css";
 
 type Props = {

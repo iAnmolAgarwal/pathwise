@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 import { cn } from "@/lib/utils";
 
-import type { CatalogLite } from "./PathBuilder";
+import type { CatalogLite } from "./types";
 import styles from "./path.module.css";
 
 export type ItemFeedbackType = Exclude<FeedbackEventType, "quiz_result">;

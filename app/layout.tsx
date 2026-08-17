@@ -17,8 +17,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pathwise",
-  description: "AI-powered personalized learning path recommender",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://pathwise-psi-blond.vercel.app"),
+  title: { default: "Pathwise — learn what matters", template: "%s · Pathwise" },
+  description: "Nova, an AI learning mentor, maps your skill gap and builds a personalised path from real courses — then rewrites it when you push back.",
+  applicationName: "Pathwise",
+  openGraph: {
+    title: "Pathwise — learn what matters",
+    description: "An AI mentor that maps your skill gap, sequences real courses, and adapts the path to your feedback.",
+    siteName: "Pathwise",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: "Pathwise — learn what matters" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

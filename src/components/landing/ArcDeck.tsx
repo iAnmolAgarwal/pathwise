@@ -32,6 +32,7 @@ const CARDS: CardData[] = [
 const STEPS = CARDS.length - 1;
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+const r3 = (n: number) => Math.round(n * 1000) / 1000;
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 function CardArt({ card }: { card: CardData }) {
@@ -212,17 +213,18 @@ function ArcCard({
       onMouseLeave={() => onHoverChange(false)}
       onClick={onChoose}
       style={{
-        opacity: visible ? clamp(1 - edge * 0.52, 0, 1) : 0,
-        filter: `blur(${edge * (2.5 + Math.abs(travel) * 1.4)}px)`,
+        // Rounded so server and client serialise the same strings (the CSSOM trims long floats).
+        opacity: visible ? r3(clamp(1 - edge * 0.52, 0, 1)) : 0,
+        filter: `blur(${r3(edge * (2.5 + Math.abs(travel) * 1.4))}px)`,
         pointerEvents: visible ? "auto" : "none",
         zIndex: isHovered ? 1000 : Math.round((slot + 3) * 10),
-        transform: `translate3d(${x}px,${y}px,0) translate(-50%,-50%) rotate(${theta}rad)`,
+        transform: `translate3d(${r3(x)}px,${r3(y)}px,0) translate(-50%,-50%) rotate(${r3(theta)}rad)`,
       }}
     >
       <div
         className={styles.cardMotion}
         style={{
-          transform: `translate3d(${slipX}px,${peelY}px,0) rotate(${counterRotation}deg) scale(${travelScale})`,
+          transform: `translate3d(${r3(slipX)}px,${r3(peelY)}px,0) rotate(${r3(counterRotation)}deg) scale(${r3(travelScale)})`,
         }}
       >
         <div className={styles.cardSurface}>
