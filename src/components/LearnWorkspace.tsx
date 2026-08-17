@@ -13,7 +13,7 @@ import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import { DashboardTab } from "./dashboard/DashboardTab";
 import { SkillGraph, type GraphHighlight } from "./graph/SkillGraph";
 import { NovaStage } from "./nova/NovaStage";
-import { PathBuilder, type CatalogLite, type GenerateMeta, type SkillLite } from "./path/PathBuilder";
+import type { CatalogLite, GenerateMeta, SkillLite } from "./path/PathBuilder";
 import { PathDiffBanner } from "./path/PathDiffBanner";
 import { ExplainPanel } from "./path/ExplainPanel";
 import { PathView, type ItemFeedbackType } from "./path/PathView";
@@ -59,7 +59,6 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
   const [dashboard, setDashboard] = useState<DashboardSummary | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
-  const manualRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -157,12 +156,6 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
     chatInputRef.current?.focus();
   }, []);
 
-  const openManual = useCallback(() => {
-    const el = manualRef.current;
-    if (!el) return;
-    el.open = true;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
 
   const selectedItem = pathState && explaining ? pathState.path.phases.flatMap((p) => p.items).find((i) => i.catalogId === explaining) ?? null : null;
   const justAdded = useMemo(() => new Set(diff?.diff.added.map((d) => d.catalogId) ?? []), [diff]);
@@ -315,26 +308,9 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
                 />
               </>
             ) : (
-              <EmptyPath displayName={displayName} returning={initialMessages.length > 0} onTalk={talkToNova} onManual={openManual} />
+              <EmptyPath displayName={displayName} returning={initialMessages.length > 0} onTalk={talkToNova} />
             )}
 
-            <details ref={manualRef} className="rounded-card border border-line bg-surface-2 p-4">
-              <summary className="cursor-pointer text-[13px] font-[550] text-ink-2 hover:text-ink-1">Set up manually (no chat needed)</summary>
-              <div className="mt-3">
-                <PathBuilder
-                  key={changes.length}
-                  learnerId={learnerId}
-                  initialProfile={profile}
-                  goals={goals}
-                  skills={skills}
-                  onProfileSaved={(next) => onProfileUpdated(next, [])}
-                  onPathGenerated={(version, path, m) => {
-                    onPathUpdated(version, path);
-                    setMeta(m);
-                  }}
-                />
-              </div>
-            </details>
           </section>
         </>
       }
