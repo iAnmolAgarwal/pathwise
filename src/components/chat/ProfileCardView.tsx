@@ -16,7 +16,6 @@ const BUDGETS: { value: ProfileCard["preferences"]["budget"]; label: string }[] 
   { value: "free-only", label: "Free only" },
   { value: "any", label: "Paid is fine" },
 ];
-const FORMATS: ProfileCard["preferences"]["formats"][number][] = ["video", "interactive", "text", "project"];
 
 const DOMAIN_LABEL: Record<string, string> = {
   foundations: "Foundations",
@@ -46,7 +45,6 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
   const [hours, setHours] = useState(card.preferences.hoursPerWeek);
   const [pace, setPace] = useState(card.preferences.pace);
   const [budget, setBudget] = useState(card.preferences.budget);
-  const [formats, setFormats] = useState<ProfileCard["preferences"]["formats"]>(card.preferences.formats);
 
   const groups = useMemo(() => {
     const m = new Map<string, ProfileCard["skills"]>();
@@ -55,7 +53,12 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
   }, [card.skills]);
 
   const stated = Object.values(levels).filter((l) => l > 0).length;
-  const answer = (): ProfileCardAnswer => ({ cardId: card.id, skills: levels, hoursPerWeek: hours, pace, budget, formats });
+  const dirty =
+    card.skills.some((s) => (levels[s.skillId] ?? 0) !== s.current) ||
+    hours !== card.preferences.hoursPerWeek ||
+    pace !== card.preferences.pace ||
+    budget !== card.preferences.budget;
+  const answer = (): ProfileCardAnswer => ({ cardId: card.id, skills: levels, hoursPerWeek: hours, pace, budget, formats: card.preferences.formats });
 
   if (answered) {
     return (
@@ -91,7 +94,7 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
                   <li key={s.skillId}>
                     <button
                       type="button"
-                      className={cn(styles.chip, level > 0 && styles.chipOn)}
+                      className={styles.chip}
                       data-level={level}
                       aria-label={`${s.name}: ${LEVEL_LABEL[level]}. Press to change.`}
                       title={`${s.name} — ${LEVEL_LABEL[level]}`}
@@ -146,30 +149,27 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
             ))}
           </div>
         </div>
-        <div className={styles.pref}>
-          <span className={styles.prefLabel}>Formats <em>(optional)</em></span>
-          <div className={styles.seg} role="group" aria-label="Formats">
-            {FORMATS.map((f) => {
-              const on = formats.includes(f);
-              return (
-                <button key={f} type="button" className={cn(styles.segItem, on && styles.segOn)} aria-pressed={on} disabled={busy} onClick={() => setFormats((prev) => (on ? prev.filter((x) => x !== f) : [...prev, f]))}>
-                  {f}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </div>
 
       <footer className={styles.foot}>
-        <button type="button" className={styles.build} disabled={busy} onClick={() => onSubmit(answer())} data-testid="profile-card-build">
-          {busy ? <Orb state="working" size={20} label="Building" /> : null}
-          {busy ? "Building" : "Build my path"}
-          {!busy && <ArrowRight data-icon="inline-end" />}
-        </button>
-        <button type="button" className={styles.skip} disabled={busy} onClick={() => onSkip(answer())} data-testid="profile-card-skip">
-          Skip — just build it
-        </button>
+        {dirty ? (
+          <>
+            <button type="button" className={styles.build} disabled={busy} onClick={() => onSubmit(answer())} data-testid="profile-card-build">
+              {busy ? <Orb state="working" size={20} label="Building" /> : null}
+              {busy ? "Building" : "Build my path"}
+              {!busy && <ArrowRight data-icon="inline-end" />}
+            </button>
+            <button type="button" className={styles.skip} disabled={busy} onClick={() => onSkip(answer())} data-testid="profile-card-skip">
+              Skip — just build it
+            </button>
+          </>
+        ) : (
+          <button type="button" className={styles.build} disabled={busy} onClick={() => onSkip(answer())} data-testid="profile-card-skip">
+            {busy ? <Orb state="working" size={20} label="Building" /> : null}
+            {busy ? "Building" : "Skip — just build it"}
+            {!busy && <ArrowRight data-icon="inline-end" />}
+          </button>
+        )}
         <span className={styles.count} aria-live="polite">
           {stated} {stated === 1 ? "skill" : "skills"} stated
         </span>
