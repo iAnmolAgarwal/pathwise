@@ -25,7 +25,7 @@
 
   --color-ink-1: #f5f5f7;
   --color-ink-2: rgb(255 255 255 / 60%);
-  --color-ink-3: rgb(255 255 255 / 38%);
+  --color-ink-3: rgb(255 255 255 / 46%); /* ≥4.5:1 on every surface for 10–13px text */
   --color-ink-4: rgb(255 255 255 / 24%);
 
   --color-brand: #f5f5f7;

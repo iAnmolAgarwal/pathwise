@@ -3,7 +3,7 @@
 import { MessageSquare, PanelRight } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,7 @@ export function AppShell({ rail, chatHeader, chat, tabs, tab, onTabChange, paneA
 
   return (
     <TooltipProvider>
-      <div className={styles.shell} data-view={view}>
+      <main className={styles.shell} data-view={view}>
         <Rail {...rail}>
           <div className={styles.viewSwitch} role="group" aria-label="Show">
             <button
@@ -67,8 +67,8 @@ export function AppShell({ rail, chatHeader, chat, tabs, tab, onTabChange, paneA
         </section>
 
         <section className={styles.paneColumn} aria-label="Workspace">
-          <header className={cn(styles.columnHeader, styles.paneHeader)}>
-            <Tabs value={tab} onValueChange={onTabChange} className={styles.tabs}>
+          <Tabs value={tab} onValueChange={onTabChange} className="contents">
+            <header className={cn(styles.columnHeader, styles.paneHeader)}>
               <TabsList variant="line" className={styles.tabsList}>
                 {tabs.map((t) => (
                   <TabsTrigger key={t.id} value={t.id} data-testid={`tab-${t.id}`}>
@@ -76,14 +76,19 @@ export function AppShell({ rail, chatHeader, chat, tabs, tab, onTabChange, paneA
                   </TabsTrigger>
                 ))}
               </TabsList>
-            </Tabs>
-            {paneAside && <div className={styles.paneAside}>{paneAside}</div>}
-          </header>
-          <div className={styles.paneBody}>{pane}</div>
+              {paneAside && <div className={styles.paneAside}>{paneAside}</div>}
+            </header>
+            {/* Every trigger's aria-controls resolves; only the active panel carries content. */}
+            {tabs.map((t) => (
+              <TabsContent key={t.id} value={t.id} forceMount className={cn(styles.paneBody, t.id !== tab && "hidden")}>
+                {t.id === tab ? pane : null}
+              </TabsContent>
+            ))}
+          </Tabs>
         </section>
 
         {children}
-      </div>
+      </main>
     </TooltipProvider>
   );
 }

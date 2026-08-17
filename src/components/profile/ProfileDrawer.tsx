@@ -40,6 +40,7 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
       className={`fixed inset-y-3 right-3 z-40 w-[340px] max-w-[calc(100vw-24px)] transform overflow-y-auto rounded-panel border border-line bg-[rgb(8_8_10/88%)] p-5 text-[13.5px] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
       aria-label="Learner profile"
       aria-hidden={!open}
+      inert={!open}
       data-testid="profile-drawer"
     >
       <div className="flex items-center justify-between">
