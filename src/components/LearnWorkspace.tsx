@@ -144,7 +144,8 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
     (catalogId: string) => {
       const item = pathState?.path.phases.flatMap((p) => p.items).find((i) => i.catalogId === catalogId);
       if (!item) return;
-      setHighlight({ catalogId, title: catalog[catalogId]?.title ?? catalogId, evidence: item.evidence });
+      // Tracing the item that is already traced clears the trace.
+      setHighlight((cur) => (cur?.catalogId === catalogId ? null : { catalogId, title: catalog[catalogId]?.title ?? catalogId, evidence: item.evidence }));
       setTab("graph");
     },
     [pathState, catalog],
@@ -250,6 +251,7 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
                         key={i.catalogId}
                         type="button"
                         onClick={() => showInGraph(i.catalogId)}
+                        aria-pressed={highlight?.catalogId === i.catalogId}
                         className={`rounded-pill border px-2.5 py-1 text-[12px] transition-colors ${highlight?.catalogId === i.catalogId ? "border-transparent bg-brand text-brand-foreground" : "border-line text-ink-2 hover:border-line-strong hover:text-ink-1"}`}
                         data-testid="graph-trace-item"
                       >
