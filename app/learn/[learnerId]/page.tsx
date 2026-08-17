@@ -12,7 +12,11 @@ export async function generateMetadata({ params }: PageProps<"/learn/[learnerId]
   const { learnerId } = await params;
   if (!UuidSchema.safeParse(learnerId).success) return { title: "Workspace" };
   const learner = await getLearner(learnerId);
-  return { title: learner ? `${learner.displayName}'s workspace` : "Workspace", robots: { index: false } };
+  return {
+    title: learner ? `${learner.displayName}'s workspace` : "Workspace",
+    description: "Chat with Nova, follow your learning path, trace skills on the graph, and track progress.",
+    robots: { index: false },
+  };
 }
 
 export default async function LearnPage({ params }: PageProps<"/learn/[learnerId]">) {

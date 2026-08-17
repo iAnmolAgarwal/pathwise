@@ -145,8 +145,12 @@
   border-color: var(--color-violet-line);
   background: var(--color-violet-haze);
 }
-.itemSettled .itemBody {
-  opacity: 0.6;
+.itemSettled .title,
+.itemSettled .provider {
+  color: var(--color-ink-3);
+}
+.itemSettled .node {
+  opacity: 0.8;
 }
 .itemAdded {
   animation: added-halo 2.4s var(--ease-enter) 1;
