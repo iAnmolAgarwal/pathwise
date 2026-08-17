@@ -1,0 +1,177 @@
+/* App shell: rail · chat · pane. Each column scrolls on its own; the page never does. */
+
+.shell {
+  display: grid;
+  grid-template-columns: 56px minmax(360px, 5fr) minmax(0, 6fr);
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-ink-1);
+}
+
+/* --- rail ------------------------------------------------------------- */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 0 16px;
+  border-right: 1px solid var(--color-line);
+  background: var(--color-surface-1);
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 14px;
+  color: var(--color-ink-1);
+  border-radius: 8px;
+  transition: background-color var(--dur-fast) ease-out;
+}
+.mark svg {
+  width: 18px;
+  height: 18px;
+}
+.mark:hover {
+  background: var(--color-glass-strong);
+}
+
+.railGroup,
+.viewSwitch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewSwitch {
+  display: none;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-line);
+}
+
+.railButton {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-ink-3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease-out,
+    color var(--dur-fast) ease-out;
+}
+.railButton svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.8;
+}
+.railButton:hover {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+}
+.railButtonActive,
+.railButtonActive:hover {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+  box-shadow: inset 0 0 0 1px var(--color-line-strong);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-brand-foreground);
+  background: var(--color-brand);
+  border-radius: 999px;
+}
+
+/* --- columns ---------------------------------------------------------- */
+
+.chatColumn,
+.paneColumn {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.chatColumn {
+  border-right: 1px solid var(--color-line);
+}
+
+.paneColumn {
+  background: var(--color-surface-1);
+}
+
+.columnHeader {
+  display: flex;
+  min-height: 56px;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.paneHeader {
+  padding-bottom: 0;
+}
+
+.tabs {
+  align-self: stretch;
+  justify-content: flex-end;
+}
+
+.tabsList {
+  gap: 24px;
+  border-bottom: 0;
+}
+
+.paneAside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.chatBody,
+.paneBody {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.paneBody {
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* --- narrow screens: one column at a time, the rail switches ----------- */
+
+@media (max-width: 1023px) {
+  .shell {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .viewSwitch {
+    display: flex;
+  }
+  .shell[data-view="chat"] .paneColumn,
+  .shell[data-view="pane"] .chatColumn {
+    display: none;
+  }
+  .chatColumn {
+    border-right: 0;
+  }
+}
