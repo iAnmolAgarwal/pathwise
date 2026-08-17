@@ -1,0 +1,532 @@
+/* Path view: a timeline of numbered phases, quiet item cards, and the evidence
+   ("Why this?") panel with score bars whose total glows violet. */
+
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* --- summary strip -------------------------------------------------- */
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 7px 12px 7px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+}
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink-1);
+}
+.statLabel {
+  font-size: 12px;
+  color: var(--color-ink-3);
+}
+.statViolet {
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-soft);
+}
+.statViolet .statValue {
+  color: var(--color-violet);
+}
+
+/* --- phases ----------------------------------------------------------- */
+
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.phase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.phaseHeader {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.phaseIndex {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-ink-2);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 12px;
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-inset-top);
+}
+
+.phaseText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.phaseTitle {
+  font-size: 19px;
+  font-weight: 540;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.milestone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--color-ink-2);
+  font-size: 13.5px;
+}
+.milestone .label-caps {
+  color: var(--color-violet);
+}
+
+/* --- items ------------------------------------------------------------ */
+
+.items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 0;
+}
+/* the timeline rail runs behind the status nodes */
+.items::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 21px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--color-line-strong), var(--color-line) 60%, transparent);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 16px 14px 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-card);
+  transition:
+    background-color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out;
+}
+.item:hover {
+  background: var(--color-glass);
+  border-color: var(--color-line);
+}
+.itemSelected,
+.itemSelected:hover {
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-haze);
+}
+.itemSettled .itemBody {
+  opacity: 0.6;
+}
+.itemAdded {
+  animation: added-halo 2.4s var(--ease-enter) 1;
+}
+@keyframes added-halo {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-violet-glow);
+    border-color: var(--color-violet-line);
+  }
+  40% {
+    box-shadow: 0 0 0 10px transparent;
+    border-color: var(--color-violet-line);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0 13px;
+  place-items: center;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-surface-1);
+}
+.node svg {
+  width: 10px;
+  height: 10px;
+  stroke-width: 3;
+}
+.node_in_progress {
+  border-color: var(--color-violet);
+  box-shadow: var(--shadow-glow-dot);
+  background: var(--color-violet);
+}
+.node_done {
+  border-color: var(--color-ink-1);
+  background: var(--color-ink-1);
+  color: var(--color-brand-foreground);
+}
+.node_skipped {
+  border-style: dashed;
+  border-color: var(--color-ink-4);
+}
+
+.itemBody {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+  transition: opacity var(--dur-fast) ease-out;
+}
+
+.itemMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+.provider {
+  color: var(--color-ink-2);
+}
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-ink-4);
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.status {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 550;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-2);
+}
+.status_done {
+  border-color: var(--color-status-acquired-line);
+  background: var(--color-status-acquired-soft);
+  color: var(--color-ink-1);
+}
+.status_in_progress {
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-soft);
+  color: var(--color-violet);
+}
+.status_skipped {
+  color: var(--color-ink-3);
+}
+
+.difficulty {
+  display: inline-flex;
+  gap: 3px;
+}
+.difficulty i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-line-strong);
+}
+.difficulty .difficultyOn {
+  background: var(--color-ink-2);
+}
+
+.title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  color: var(--color-ink-1);
+  font-size: 15.5px;
+  font-weight: 540;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.title svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-ink-3);
+  opacity: 0;
+  transform: translate(-2px, 2px);
+  transition:
+    opacity var(--dur-fast) ease-out,
+    transform var(--dur-fast) ease-out;
+}
+.title:hover svg {
+  opacity: 1;
+  transform: none;
+}
+.title::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-base) var(--ease-enter);
+}
+.title:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.titleSkipped {
+  text-decoration: line-through;
+  color: var(--color-ink-3);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.skill {
+  padding: 3px 9px;
+  color: var(--color-ink-2);
+  font-size: 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+}
+.skillMore {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.feedback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  color: var(--color-ink-2);
+  font-size: 12.5px;
+  font-weight: 550;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out,
+    transform var(--dur-fast) ease-out;
+}
+.chip svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.4;
+}
+.chip:hover:not(:disabled) {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+  transform: translateY(-1px);
+}
+.chip:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.chipDone {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+}
+.chipDone:hover:not(:disabled) {
+  background: var(--color-brand);
+  color: var(--color-brand-foreground);
+  border-color: transparent;
+}
+.chipPending,
+.chipPending:disabled {
+  opacity: 1;
+  border-color: var(--color-violet-line);
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out;
+}
+.link svg {
+  width: 14px;
+  height: 14px;
+}
+.link:hover {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+}
+.linkActive {
+  color: var(--color-violet);
+}
+
+.explain {
+  margin-top: 6px;
+}
+
+/* --- evidence --------------------------------------------------------- */
+
+.evidence {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+.evidenceCol {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--color-ink-2);
+}
+.evidenceCol .label-caps {
+  color: var(--color-ink-3);
+}
+.evidenceSub {
+  margin-top: 6px;
+}
+
+.gapList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gapRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 13px;
+}
+.gapSkill {
+  color: var(--color-ink-1);
+  font-weight: 540;
+}
+.gapReason {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.scoreRow {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+.scoreLabel {
+  color: var(--color-ink-2);
+}
+.scoreTrack {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-glass-strong);
+}
+.scoreFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-ink-2);
+  transition: width var(--dur-slow) var(--ease-enter);
+}
+.scoreValue {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  text-align: right;
+}
+.scoreTotal {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-line);
+}
+.scoreTotal .scoreLabel {
+  color: var(--color-ink-1);
+  font-weight: 550;
+}
+.scoreTotal .scoreTrack {
+  height: 8px;
+}
+.scoreTotal .scoreFill {
+  background: linear-gradient(90deg, var(--color-violet-2), var(--color-violet));
+  box-shadow: 0 0 12px var(--color-violet-glow);
+}
+.scoreTotal .scoreValue {
+  color: var(--color-violet);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itemAdded {
+    animation: none;
+    border-color: var(--color-violet-line);
+  }
+  .scoreFill {
+    transition: none;
+  }
+}

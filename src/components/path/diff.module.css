@@ -1,0 +1,186 @@
+/* Path diff banner: violet, glowing, on top of the path. */
+
+.banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  padding: 16px 18px 16px 22px;
+  border: 1px solid var(--color-diff-line);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(90% 120% at 0% 0%, var(--color-diff-halo), transparent 60%),
+    var(--color-diff-soft);
+  box-shadow:
+    0 0 0 6px var(--color-diff-halo),
+    0 18px 45px rgb(0 0 0 / 35%);
+  animation: diff-halo 2.6s var(--ease-enter) 1;
+}
+@keyframes diff-halo {
+  0% {
+    box-shadow:
+      0 0 0 0 var(--color-violet-glow),
+      0 18px 45px rgb(0 0 0 / 35%);
+  }
+  45% {
+    box-shadow:
+      0 0 0 14px transparent,
+      0 18px 45px rgb(0 0 0 / 35%);
+  }
+  100% {
+    box-shadow:
+      0 0 0 6px var(--color-diff-halo),
+      0 18px 45px rgb(0 0 0 / 35%);
+  }
+}
+
+.beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--color-violet), var(--color-violet-2));
+  box-shadow: 0 0 14px var(--color-violet-glow);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-violet);
+  font-size: var(--text-label);
+  font-weight: 650;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+.kickerDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-violet);
+  box-shadow: var(--shadow-glow-dot);
+  animation: var(--animate-glow-dot);
+}
+.version,
+.count {
+  padding: 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-ink-2);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-chip);
+}
+.count {
+  color: var(--color-violet);
+  border-color: var(--color-violet-line);
+}
+
+.dismiss {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  color: var(--color-ink-3);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease-out,
+    color var(--dur-fast) ease-out;
+}
+.dismiss svg {
+  width: 15px;
+  height: 15px;
+}
+.dismiss:hover {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+}
+
+.headline {
+  max-width: 70ch;
+  color: var(--color-ink-1);
+  font-size: 17px;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.changes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 4px;
+}
+.changeCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.changeHeading {
+  color: var(--color-ink-3);
+  font-size: var(--text-label);
+  font-weight: 650;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+.changeList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.change {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  column-gap: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: rgb(8 8 10 / 40%);
+}
+.sign {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-ink-1);
+}
+.change[data-kind="removed"] .sign {
+  color: var(--color-coral);
+}
+.change[data-kind="removed"] .changeTitle {
+  color: var(--color-ink-2);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-ink-4);
+}
+.changeTitle {
+  color: var(--color-ink-1);
+  font-weight: 540;
+}
+.changeReason {
+  grid-column: 2;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+
+.footnote {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner,
+  .kickerDot {
+    animation: none;
+  }
+}

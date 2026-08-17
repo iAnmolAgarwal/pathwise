@@ -1,7 +1,12 @@
 "use client";
 
+import { X } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+
 import type { PathDiff } from "@/schemas";
+
 import type { CatalogLite } from "./PathBuilder";
+import styles from "./diff.module.css";
 
 type Props = {
   diff: PathDiff;
@@ -29,47 +34,65 @@ export function diffHeadline(diff: PathDiff, title: (id: string) => string): str
   return `${sentence[0].toUpperCase()}${sentence.slice(1)}${diff.reordered ? ", and reordered the rest," : ""} ${because}.`;
 }
 
-/** The path diff is a first-class UI object (§5.5): shown on top of the path, never buried. */
+/** The path diff is a first-class UI object (§5.5): the loudest thing on the screen, never buried. */
 export function PathDiffBanner({ diff, version, catalog, onDismiss }: Props) {
+  const reduce = useReducedMotion() ?? false;
   const title = (id: string) => catalog[id]?.title ?? id;
+  const changed = diff.added.length + diff.removed.length;
+
   return (
-    <section
-      className="rounded border-2 border-amber-400 bg-amber-50 p-4 text-sm"
+    <motion.section
+      className={styles.banner}
       role="status"
       aria-live="polite"
       data-testid="path-diff"
+      initial={reduce ? false : { opacity: 0, y: -14, scale: 0.985 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.985, transition: { duration: 0.25 } }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">Path updated · version {version}</p>
-          <p className="mt-1 text-base font-medium">{diffHeadline(diff, title)}</p>
-        </div>
-        <button type="button" onClick={onDismiss} className="rounded border px-2 py-0.5 text-xs" aria-label="Dismiss path update">
-          ×
+      <div className={styles.beam} aria-hidden />
+      <div className={styles.head}>
+        <p className={styles.kicker}>
+          <span className={styles.kickerDot} aria-hidden />
+          Path updated
+          <span className={styles.version}>v{version}</span>
+          {changed > 0 && (
+            <span className={styles.count}>
+              {changed} {changed === 1 ? "change" : "changes"}
+            </span>
+          )}
+        </p>
+        <button type="button" onClick={onDismiss} className={styles.dismiss} aria-label="Dismiss path update">
+          <X />
         </button>
       </div>
+      <p className={styles.headline}>{diffHeadline(diff, title)}</p>
+
       {(diff.added.length > 0 || diff.removed.length > 0) && (
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          <ChangeList heading="Added" tone="text-green-800" items={diff.added} title={title} sign="+" />
-          <ChangeList heading="Removed" tone="text-red-800" items={diff.removed} title={title} sign="−" />
+        <div className={styles.changes}>
+          <ChangeList heading="Added" kind="added" items={diff.added} title={title} />
+          <ChangeList heading="Removed" kind="removed" items={diff.removed} title={title} />
         </div>
       )}
-      {diff.reordered && <p className="mt-2 text-xs text-neutral-600">Some remaining items were reordered to respect prerequisites.</p>}
-    </section>
+      {diff.reordered && <p className={styles.footnote}>Some remaining items were reordered to respect prerequisites.</p>}
+    </motion.section>
   );
 }
 
-function ChangeList({ heading, tone, items, title, sign }: { heading: string; tone: string; items: PathDiff["added"]; title: (id: string) => string; sign: string }) {
+function ChangeList({ heading, kind, items, title }: { heading: string; kind: "added" | "removed"; items: PathDiff["added"]; title: (id: string) => string }) {
   if (items.length === 0) return null;
   return (
-    <div>
-      <p className={`text-xs font-semibold ${tone}`}>{heading}</p>
-      <ul className="mt-1 flex flex-col gap-1">
+    <div className={styles.changeCol}>
+      <p className={styles.changeHeading}>{heading}</p>
+      <ul className={styles.changeList}>
         {items.map((d) => (
-          <li key={d.catalogId} className="rounded border bg-white px-2 py-1">
-            <span className={`mr-1 font-mono ${tone}`}>{sign}</span>
-            <span className="font-medium">{title(d.catalogId)}</span>
-            <span className="text-neutral-600"> — {d.reason}</span>
+          <li key={d.catalogId} className={styles.change} data-kind={kind}>
+            <span className={styles.sign} aria-hidden>
+              {kind === "added" ? "+" : "−"}
+            </span>
+            <span className={styles.changeTitle}>{title(d.catalogId)}</span>
+            <span className={styles.changeReason}>{d.reason}</span>
           </li>
         ))}
       </ul>

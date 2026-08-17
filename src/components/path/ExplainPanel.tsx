@@ -1,9 +1,15 @@
 "use client";
 
+import { X } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
+
 import type { Evidence } from "@/schemas";
+import { Orb } from "@/components/ui/orb";
+
 import type { CatalogLite } from "./PathBuilder";
 import { EvidenceBlock } from "./PathView";
+import styles from "./explain.module.css";
 
 type Props = {
   learnerId: string;
@@ -22,6 +28,7 @@ export function ExplainPanel({ learnerId, catalogId, evidence, catalog, skillNam
   const [narration, setNarration] = useState<string | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "degraded" | "error">("loading");
   const [note, setNote] = useState<string | null>(null);
+  const reduce = useReducedMotion() ?? false;
   const item = catalog[catalogId];
 
   // The parent keys this component by catalogId, so each item starts from the loading state.
@@ -60,32 +67,51 @@ export function ExplainPanel({ learnerId, catalogId, evidence, catalog, skillNam
   }, [learnerId, catalogId]);
 
   return (
-    <section className="rounded border bg-neutral-50 p-4 text-sm" aria-label="Why this item" data-testid="explain-panel">
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="text-xs uppercase text-neutral-500">Why this is on your path</p>
-          <h3 className="font-semibold">{item?.title ?? catalogId}</h3>
+    <motion.section
+      className={styles.panel}
+      aria-label="Why this item"
+      data-testid="explain-panel"
+      initial={reduce ? false : { opacity: 0, y: -6, scale: 0.995 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <header className={styles.header}>
+        <div className={styles.heading}>
+          <span className="label-caps">Why this is on your path</span>
+          <h4 className={styles.title}>{item?.title ?? catalogId}</h4>
         </div>
-        <button type="button" className="rounded border px-2 py-0.5 text-xs" onClick={onClose}>
-          Close
+        <button type="button" className={styles.close} onClick={onClose} aria-label="Close explanation">
+          <X />
         </button>
-      </div>
-      <div className="mt-3 grid gap-4 md:grid-cols-2">
-        <div>
-          <p className="text-xs font-medium text-neutral-500">Nova says</p>
-          {status === "loading" && <p className="mt-1 text-neutral-400" data-testid="narration-loading">Reading the evidence…</p>}
+      </header>
+
+      <div className={styles.grid}>
+        <div className={styles.narration}>
+          <p className={styles.narrationLabel}>
+            <span className={styles.novaMark} aria-hidden>
+              <span />
+            </span>
+            Nova says
+          </p>
+          {status === "loading" && (
+            <p className={styles.loading} data-testid="narration-loading">
+              <Orb state="searching" size={20} label="Reading the evidence" paused={reduce} />
+              Reading the evidence…
+            </p>
+          )}
           {status === "ready" && (
-            <p className="mt-1 whitespace-pre-wrap" data-testid="narration">
+            <p className={styles.text} data-testid="narration">
               {narration}
             </p>
           )}
-          {(status === "degraded" || status === "error") && <p className="mt-1 text-amber-800">{note}</p>}
+          {(status === "degraded" || status === "error") && <p className={styles.note}>{note}</p>}
         </div>
-        <div>
-          <p className="text-xs font-medium text-neutral-500">The evidence</p>
+
+        <div className={styles.evidence}>
+          <p className={styles.evidenceLabel}>The evidence</p>
           <EvidenceBlock evidence={evidence} catalog={catalog} skillName={skillName} />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
