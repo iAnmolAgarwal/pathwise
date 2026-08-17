@@ -69,33 +69,42 @@ export function PathDiffBanner({ diff, version, catalog, onDismiss }: Props) {
       </div>
       <p className={styles.headline}>{diffHeadline(diff, title)}</p>
 
-      {(diff.added.length > 0 || diff.removed.length > 0) && (
-        <div className={styles.changes}>
-          <ChangeList heading="Added" kind="added" items={diff.added} title={title} />
-          <ChangeList heading="Removed" kind="removed" items={diff.removed} title={title} />
-        </div>
-      )}
+      {(diff.added.length > 0 || diff.removed.length > 0) && <ChangeGrid added={diff.added} removed={diff.removed} title={title} />}
       {diff.reordered && <p className={styles.footnote}>Some remaining items were reordered to respect prerequisites.</p>}
     </motion.section>
   );
 }
 
-function ChangeList({ heading, kind, items, title }: { heading: string; kind: "added" | "removed"; items: PathDiff["added"]; title: (id: string) => string }) {
-  if (items.length === 0) return null;
+/** Added and removed side by side, row-aligned so the two columns always match. */
+function ChangeGrid({ added, removed, title }: { added: PathDiff["added"]; removed: PathDiff["removed"]; title: (id: string) => string }) {
+  const rows = Math.max(added.length, removed.length);
   return (
-    <div className={styles.changeCol}>
-      <p className={styles.changeHeading}>{heading}</p>
-      <ul className={styles.changeList}>
-        {items.map((d) => (
-          <li key={d.catalogId} className={styles.change} data-kind={kind}>
-            <span className={styles.sign} aria-hidden>
-              {kind === "added" ? "+" : "−"}
-            </span>
-            <span className={styles.changeTitle}>{title(d.catalogId)}</span>
-            <span className={styles.changeReason}>{d.reason}</span>
-          </li>
-        ))}
-      </ul>
+    <div className={styles.changes} role="table" aria-label="Changes to your path">
+      <p className={styles.changeHeading} role="columnheader">
+        Added <span className={styles.changeCount}>{added.length}</span>
+      </p>
+      <p className={styles.changeHeading} role="columnheader">
+        Removed <span className={styles.changeCount}>{removed.length}</span>
+      </p>
+      {Array.from({ length: rows }, (_, i) => (
+        <div key={i} className={styles.changeRow} role="row">
+          <ChangeCell kind="added" item={added[i]} title={title} />
+          <ChangeCell kind="removed" item={removed[i]} title={title} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ChangeCell({ kind, item, title }: { kind: "added" | "removed"; item?: PathDiff["added"][number]; title: (id: string) => string }) {
+  if (!item) return <div className={styles.changeEmpty} role="cell" aria-hidden />;
+  return (
+    <div className={styles.change} data-kind={kind} role="cell">
+      <span className={styles.sign} aria-hidden>
+        {kind === "added" ? "+" : "−"}
+      </span>
+      <span className={styles.changeTitle}>{title(item.catalogId)}</span>
+      <span className={styles.changeReason}>{item.reason}</span>
     </div>
   );
 }
