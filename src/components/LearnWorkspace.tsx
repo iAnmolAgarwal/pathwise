@@ -181,9 +181,17 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
     return { tone: "greet", text: `Hi ${first}. Tell me what you want to become and I'll check what you already know, then build your path.` };
   }, [nova.state, diff, dashboard, pathState, first, catalog]);
 
+  const goalLabel = (() => {
+    const g = profile.goals.at(-1);
+    if (!g) return "Workspace";
+    return g.type === "role" ? templateTitle(g.templateId) : g.text;
+  })();
+
   const chatHeader = (
     <div className="flex min-w-0 flex-col gap-1">
-      <span className="label-caps text-ink-3">Conversation</span>
+      <span className="label-caps truncate text-ink-3" title={goalLabel}>
+        {goalLabel}
+      </span>
       <span className="truncate text-[17px] font-[540] tracking-[-0.02em] text-ink-1 [text-shadow:0_0_18px_rgb(167_139_250/45%),0_0_2px_rgb(255_255_255/60%)]" data-testid="learner-name">
         {displayName}
       </span>
