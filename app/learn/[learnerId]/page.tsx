@@ -34,7 +34,7 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
       displayName={learner.displayName}
       initialProfile={profile}
       initialPath={latest ? { version: latest.version, path: latest.data } : null}
-      initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded }))}
+      initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded, card: m.content.card }))}
       goals={goals}
       skills={skills}
       catalog={catalog}

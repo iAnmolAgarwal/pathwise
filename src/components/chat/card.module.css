@@ -1,0 +1,294 @@
+/* Intake card inside Nova's message: skills as cycling chips, week settings, one white button. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 16px 14px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(90% 60% at 0% 0%, var(--color-violet-haze), transparent 70%),
+    var(--color-surface-2);
+  box-shadow: var(--shadow-float), var(--shadow-inset-top);
+}
+
+.cardDone {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-color: var(--color-line);
+  background: var(--color-glass);
+  box-shadow: none;
+}
+.doneIcon {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  color: var(--color-brand-foreground);
+  border-radius: 50%;
+  background: var(--color-ink-1);
+}
+.doneIcon svg {
+  width: 11px;
+  height: 11px;
+  stroke-width: 3;
+}
+.doneText {
+  color: var(--color-ink-2);
+  font-size: 13px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.head .label-caps {
+  color: var(--color-violet);
+}
+.title {
+  font-size: 17px;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.hint {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.groupLabel {
+  color: var(--color-ink-3);
+  font-size: var(--text-label);
+  font-weight: 650;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px 0 11px;
+  color: var(--color-ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out,
+    transform var(--dur-fast) ease-out;
+}
+.chip:hover:not(:disabled) {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+  transform: translateY(-1px);
+}
+.chip:active:not(:disabled) {
+  transform: translateY(0);
+}
+.chipOn {
+  color: var(--color-ink-1);
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-soft);
+}
+.chip[data-level="3"] {
+  border-color: var(--color-violet);
+  box-shadow: 0 0 12px rgb(167 139 250 / 25%);
+}
+.chip:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+.meter {
+  display: inline-flex;
+  gap: 3px;
+}
+.meter i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-line-strong);
+  transition: background-color var(--dur-fast) ease-out;
+}
+.meter .meterOn {
+  background: var(--color-violet);
+  box-shadow: 0 0 6px var(--color-violet-glow);
+}
+
+.prefs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line);
+}
+.pref {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prefLabel {
+  color: var(--color-ink-3);
+  font-size: 12px;
+}
+.prefLabel em {
+  font-style: normal;
+  color: var(--color-ink-4);
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+}
+.stepper button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  color: var(--color-ink-2);
+  cursor: pointer;
+  border-radius: 999px;
+}
+.stepper button svg {
+  width: 13px;
+  height: 13px;
+}
+.stepper button:hover:not(:disabled) {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+}
+.stepper button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.stepperValue {
+  min-width: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-ink-1);
+}
+
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: fit-content;
+  padding: 3px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+}
+.segItem {
+  height: 24px;
+  padding: 0 10px;
+  color: var(--color-ink-2);
+  font-size: 12px;
+  font-weight: 550;
+  text-transform: capitalize;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out;
+}
+.segItem:hover:not(:disabled) {
+  color: var(--color-ink-1);
+}
+.segOn,
+.segOn:hover:not(:disabled) {
+  color: var(--color-brand-foreground);
+  background: var(--color-brand);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 4px;
+}
+.build {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  color: var(--color-brand-foreground);
+  font-size: 13.5px;
+  font-weight: 650;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand);
+  box-shadow: var(--shadow-brand);
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) ease-out,
+    box-shadow var(--dur-fast) ease-out;
+}
+.build svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--dur-fast) ease-out;
+}
+.build:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-brand-hover);
+}
+.build:hover:not(:disabled) svg[data-icon="inline-end"] {
+  transform: translateX(3px);
+}
+.build:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.skip {
+  height: 40px;
+  padding: 0 12px;
+  color: var(--color-ink-3);
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    background-color var(--dur-fast) ease-out;
+}
+.skip:hover:not(:disabled) {
+  color: var(--color-ink-1);
+  background: var(--color-glass-strong);
+}
+.count {
+  margin-left: auto;
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}

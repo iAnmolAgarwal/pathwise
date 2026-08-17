@@ -7,10 +7,13 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 import type { ChatEvent } from "@/llm/chat";
 import type { NovaState } from "@/schemas";
 import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
+import type { ProfileCard, ProfileCardAnswer } from "@/schemas/profileCard";
+import { profileCardAnswerToOps, profileCardFollowUp } from "@/lib/profileCard";
 import { readSse } from "@/lib/sseClient";
 import { Orb } from "@/components/ui/orb";
 import { cn } from "@/lib/utils";
 
+import { ProfileCardView } from "./ProfileCardView";
 import styles from "./chat.module.css";
 
 export type ChatMessageView = {
@@ -20,6 +23,8 @@ export type ChatMessageView = {
   toolCalls?: string[];
   degraded?: boolean;
   streaming?: boolean;
+  /** Structured intake card (D-13) shown inside this assistant message. */
+  card?: ProfileCard;
 };
 
 type Props = {
@@ -47,6 +52,7 @@ export const TOOL_LABEL: Record<string, string> = {
   explain_item: "Looking up the evidence",
   search_catalog: "Searching the catalog",
   get_dashboard_summary: "Checking your progress",
+  propose_profile_card: "Preparing your check-in",
 };
 
 const SUGGESTIONS = [
@@ -79,6 +85,9 @@ export function ChatPanel({
   const textareaRef = inputRef ?? localRef;
   const seq = useRef(initialMessages.length);
   const reduce = useReducedMotion() ?? false;
+  // Cards answered this session (by card id); older cards count as answered once anything follows them.
+  const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number }>>({});
+  const [cardBusy, setCardBusy] = useState<string | null>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" });
@@ -133,6 +142,9 @@ export function ChatPanel({
           case "path_updated":
             onPathUpdated(event.version, event.path, event.diff);
             break;
+          case "ui_card":
+            patch((m) => ({ ...m, card: event.card }));
+            break;
           case "degraded":
             patch((m) => ({ ...m, degraded: true, text: m.text || event.degradation.message }));
             break;
@@ -151,6 +163,34 @@ export function ChatPanel({
       setActivity(null);
       setBusy(false);
       patch((m) => ({ ...m, streaming: false }));
+    }
+  }
+
+  async function answerCard(card: ProfileCard, answer: ProfileCardAnswer, skipped: boolean) {
+    if (busy || cardBusy) return;
+    setCardBusy(card.id);
+    setError(null);
+    try {
+      const ops = skipped ? [] : profileCardAnswerToOps(answer, card);
+      if (ops.length > 0) {
+        const res = await fetch(`/api/learners/${learnerId}/profile`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ ops }),
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error ?? `Could not save your answers (${res.status})`);
+        }
+        onProfileUpdated((await res.json()) as Profile, ops);
+      }
+      const stated = Object.values(answer.skills).filter((l) => l > 0).length;
+      setAnsweredCards((prev) => ({ ...prev, [card.id]: { skipped, stated } }));
+      setCardBusy(null);
+      await send(profileCardFollowUp(answer, card, skipped));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+      setCardBusy(null);
     }
   }
 
@@ -192,7 +232,7 @@ export function ChatPanel({
         )}
 
         <AnimatePresence initial={false}>
-          {messages.map((m) => (
+          {messages.map((m, index) => (
             <motion.div
               key={m.id}
               className={cn(styles.row, m.role === "user" ? styles.rowUser : styles.rowNova)}
@@ -204,7 +244,15 @@ export function ChatPanel({
               {m.role === "user" ? (
                 <div className={styles.userBubble}>{m.text}</div>
               ) : (
-                <NovaMessage message={m} activity={m.streaming ? activity : null} reduce={reduce} />
+                <NovaMessage
+                  message={m}
+                  activity={m.streaming ? activity : null}
+                  reduce={reduce}
+                  cardAnswered={m.card ? (answeredCards[m.card.id] ?? (index < messages.length - 1 ? { skipped: false, stated: 0 } : null)) : null}
+                  cardBusy={m.card ? cardBusy === m.card.id : false}
+                  onCardSubmit={(answer) => m.card && answerCard(m.card, answer, false)}
+                  onCardSkip={(answer) => m.card && answerCard(m.card, answer, true)}
+                />
               )}
             </motion.div>
           ))}
@@ -276,7 +324,23 @@ export function ChatPanel({
   );
 }
 
-function NovaMessage({ message, activity, reduce }: { message: ChatMessageView; activity: string | null; reduce: boolean }) {
+function NovaMessage({
+  message,
+  activity,
+  reduce,
+  cardAnswered,
+  cardBusy,
+  onCardSubmit,
+  onCardSkip,
+}: {
+  message: ChatMessageView;
+  activity: string | null;
+  reduce: boolean;
+  cardAnswered: { skipped: boolean; stated: number } | null;
+  cardBusy: boolean;
+  onCardSubmit: (answer: ProfileCardAnswer) => void;
+  onCardSkip: (answer: ProfileCardAnswer) => void;
+}) {
   const done = message.toolCalls ?? [];
   const showChecklist = done.length > 0 || activity;
   const thinking = message.streaming && !message.text && !activity;
@@ -321,6 +385,8 @@ function NovaMessage({ message, activity, reduce }: { message: ChatMessageView; 
             {message.streaming && <span className={styles.caret} aria-hidden />}
           </p>
         )}
+
+        {message.card && <ProfileCardView card={message.card} answered={cardAnswered} busy={cardBusy} onSubmit={onCardSubmit} onSkip={onCardSkip} />}
 
         {message.degraded && !message.streaming && (
           <span className={styles.degradedTag}>answered without the model</span>
