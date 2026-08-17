@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Check, Minus, Plus } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useMemo, useState } from "react";
 
 import type { ProfileCard, ProfileCardAnswer } from "@/schemas/profileCard";
@@ -45,6 +46,7 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
   const [hours, setHours] = useState(card.preferences.hoursPerWeek);
   const [pace, setPace] = useState(card.preferences.pace);
   const [budget, setBudget] = useState(card.preferences.budget);
+  const reduce = useReducedMotion() ?? false;
 
   const groups = useMemo(() => {
     const m = new Map<string, ProfileCard["skills"]>();
@@ -129,24 +131,28 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
             </button>
           </div>
         </div>
-        <div className={styles.pref}>
-          <span className={styles.prefLabel}>Pace</span>
-          <div className={styles.seg} role="group" aria-label="Pace">
-            {PACES.map((p) => (
-              <button key={p} type="button" className={cn(styles.segItem, pace === p && styles.segOn)} aria-pressed={pace === p} disabled={busy} onClick={() => setPace(p)}>
-                {p}
-              </button>
-            ))}
+        <div className={styles.prefRow}>
+          <div className={styles.pref}>
+            <span className={styles.prefLabel}>Pace</span>
+            <Segmented
+              name={`pace-${card.id}`}
+              options={PACES.map((p) => ({ value: p, label: p }))}
+              value={pace}
+              onChange={setPace}
+              disabled={busy}
+              reduce={reduce}
+            />
           </div>
-        </div>
-        <div className={styles.pref}>
-          <span className={styles.prefLabel}>Budget</span>
-          <div className={styles.seg} role="group" aria-label="Budget">
-            {BUDGETS.map((b) => (
-              <button key={b.value} type="button" className={cn(styles.segItem, budget === b.value && styles.segOn)} aria-pressed={budget === b.value} disabled={busy} onClick={() => setBudget(b.value)}>
-                {b.label}
-              </button>
-            ))}
+          <div className={styles.pref}>
+            <span className={styles.prefLabel}>Budget</span>
+            <Segmented
+              name={`budget-${card.id}`}
+              options={BUDGETS}
+              value={budget}
+              onChange={setBudget}
+              disabled={busy}
+              reduce={reduce}
+            />
           </div>
         </div>
       </div>
@@ -174,6 +180,48 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
           {stated} {stated === 1 ? "skill" : "skills"} stated
         </span>
       </footer>
+    </div>
+  );
+}
+
+/** A segmented pill: the white thumb slides to the chosen option, a soft thumb follows the pointer. */
+function Segmented<T extends string>({
+  name,
+  options,
+  value,
+  onChange,
+  disabled,
+  reduce,
+}: {
+  name: string;
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (v: T) => void;
+  disabled?: boolean;
+  reduce: boolean;
+}) {
+  const [hovered, setHovered] = useState<T | null>(null);
+  const spring = reduce ? { duration: 0 } : { type: "spring" as const, stiffness: 420, damping: 34, mass: 0.6 };
+  return (
+    <div className={styles.seg} role="group" aria-label={name} onPointerLeave={() => setHovered(null)}>
+      {options.map((o) => {
+        const on = o.value === value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            className={cn(styles.segItem, on && styles.segOn)}
+            aria-pressed={on}
+            disabled={disabled}
+            onPointerEnter={() => setHovered(o.value)}
+            onClick={() => onChange(o.value)}
+          >
+            {hovered === o.value && !on && <motion.span layoutId={`${name}-hover`} className={styles.segHover} transition={spring} aria-hidden />}
+            {on && <motion.span layoutId={`${name}-thumb`} className={styles.segThumb} transition={spring} aria-hidden />}
+            <span className={styles.segLabel}>{o.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

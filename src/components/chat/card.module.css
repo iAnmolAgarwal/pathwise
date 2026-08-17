@@ -166,8 +166,14 @@
 }
 .pref {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 6px;
+}
+.prefRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 .prefLabel {
   color: var(--color-ink-3);
@@ -218,7 +224,7 @@
 .seg {
   display: flex;
   flex-wrap: nowrap;
-  gap: 4px;
+  gap: 2px;
   width: 100%;
   padding: 3px;
   border: 1px solid var(--color-line);
@@ -226,19 +232,20 @@
   background: var(--color-glass);
 }
 .segItem {
+  position: relative;
   flex: 1;
-  height: 28px;
-  padding: 0 10px;
-  text-align: center;
+  height: 26px;
+  min-width: 0;
+  padding: 0 8px;
   color: var(--color-ink-2);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 550;
+  text-align: center;
   text-transform: capitalize;
+  white-space: nowrap;
   border-radius: 999px;
   cursor: pointer;
-  transition:
-    color var(--dur-fast) ease-out,
-    background-color var(--dur-fast) ease-out;
+  transition: color var(--dur-fast) ease-out;
 }
 .segItem:hover:not(:disabled) {
   color: var(--color-ink-1);
@@ -246,7 +253,27 @@
 .segOn,
 .segOn:hover:not(:disabled) {
   color: var(--color-brand-foreground);
+}
+.segLabel {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.segThumb,
+.segHover {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+.segThumb {
+  z-index: 1;
   background: var(--color-brand);
+  box-shadow: 0 6px 16px rgb(255 255 255 / 12%);
+}
+.segHover {
+  z-index: 0;
+  background: var(--color-glass-strong);
 }
 
 .foot {
