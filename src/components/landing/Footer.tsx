@@ -16,7 +16,7 @@ const NAV = [
 /** Team row: names link to LinkedIn where a profile has been provided. */
 const TEAM: Array<{ label: string; href?: string }> = [
   { label: "Anmol Agarwal", href: "https://www.linkedin.com/in/anmolagarwal26" },
-  { label: "Riyan Garg" },
+  { label: "Riyan Garg", href: "https://www.linkedin.com/in/riyan-garg-b0221a320/" },
   { label: "Sansriti Mishra" },
 ];
 
