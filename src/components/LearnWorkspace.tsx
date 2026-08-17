@@ -6,15 +6,13 @@ import type { DashboardSummary } from "@/engine/dashboard";
 import type { NovaState } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
-import { NOVA_LABEL, NOVA_ORB } from "@/nova/stage";
 import { Badge } from "@/components/ui/badge";
-import { Orb } from "@/components/ui/orb";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import { DashboardTab } from "./dashboard/DashboardTab";
 import { SkillGraph, type GraphHighlight } from "./graph/SkillGraph";
-import { NovaStage } from "./nova/NovaStage";
+import { NovaStage, type NovaReaction } from "./nova/NovaStage";
 import type { CatalogLite, GenerateMeta, SkillLite } from "./path/PathBuilder";
-import { PathDiffBanner } from "./path/PathDiffBanner";
+import { PathDiffBanner, diffHeadline } from "./path/PathDiffBanner";
 import { ExplainPanel } from "./path/ExplainPanel";
 import { PathView, type ItemFeedbackType } from "./path/PathView";
 import { ProfileDrawer, type ProfileChange } from "./profile/ProfileDrawer";
@@ -161,24 +159,35 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
   const justAdded = useMemo(() => new Set(diff?.diff.added.map((d) => d.catalogId) ?? []), [diff]);
   const levels = useMemo(() => Object.fromEntries(Object.entries(profile.skills).map(([id, s]) => [id, s.level])), [profile]);
 
+  const first = displayName.trim().split(/\s+/)[0] || displayName;
+
+  // What Nova says when you open her tab: the moment matters more than the pose.
+  const reaction = useMemo<NovaReaction>(() => {
+    if (nova.state === "resting") return { tone: "rest", text: "I'm resting — the model is off for now, but your path, graph and dashboard still work." };
+    if (nova.state === "celebrating") return { tone: "cheer", text: `That's a milestone, ${first}. Nicely done — the path just moved to make room for what's next.` };
+    if (diff) return { tone: "info", text: `I've reworked your path (v${diff.version}). ${diffHeadline(diff.diff, (id) => catalog[id]?.title ?? id)}` };
+    const done = dashboard?.progress.itemsDone ?? 0;
+    const total = dashboard?.progress.itemsTotal ?? 0;
+    const streak = dashboard?.streak.current ?? 0;
+    const next = dashboard?.nextAction.title;
+    if (pathState && done > 0) {
+      const streakBit = streak > 1 ? ` and a ${streak}-day streak` : "";
+      return { tone: "cheer", text: `${done} of ${total} done${streakBit} — keep going, ${first}.${next ? ` Next up: ${next}.` : ""}` };
+    }
+    if (pathState) {
+      const items = pathState.path.phases.reduce((n, p) => n + p.items.length, 0);
+      return { tone: "nudge", text: `Your path is ready — ${items} items over ${pathState.path.phases.length} phases.${next ? ` Start with ${next}.` : ""} Tell me when something feels off and I'll rework it.` };
+    }
+    return { tone: "greet", text: `Hi ${first}. Tell me what you want to become and I'll check what you already know, then build your path.` };
+  }, [nova.state, diff, dashboard, pathState, first, catalog]);
+
   const chatHeader = (
-    <>
-      <div className="flex min-w-0 flex-col gap-1">
-        <span className="label-caps text-ink-3">Conversation</span>
-        <span className="truncate text-[15px] font-[540] tracking-[-0.02em] text-ink-1">Nova · {displayName}</span>
-      </div>
-      <button
-        type="button"
-        className="ml-auto inline-flex h-8 shrink-0 items-center gap-2 rounded-pill border border-line bg-glass px-3 pl-2 text-[12px] text-ink-2 backdrop-blur-[14px] transition-colors hover:border-line-strong hover:text-ink-1"
-        onClick={() => setTab("nova")}
-        data-testid="nova-state"
-        data-state={nova.state}
-        aria-label={`${NOVA_LABEL[nova.state]} — open Nova`}
-      >
-        <Orb state={NOVA_ORB[nova.state]} size={20} paused={reducedMotion} />
-        {NOVA_LABEL[nova.state]}
-      </button>
-    </>
+    <div className="flex min-w-0 flex-col gap-1">
+      <span className="label-caps text-ink-3">Conversation</span>
+      <span className="truncate text-[17px] font-[540] tracking-[-0.02em] text-ink-1 [text-shadow:0_0_18px_rgb(167_139_250/45%),0_0_2px_rgb(255_255_255/60%)]" data-testid="learner-name">
+        {displayName}
+      </span>
+    </div>
   );
 
   return (
@@ -211,7 +220,7 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
         <>
           {tab === "nova" && (
             <div className="h-full min-h-[360px]" data-testid="nova-section">
-              <NovaStage state={nova.state} transitions={nova.transitions} placement="dock" reducedMotion={reducedMotion} />
+              <NovaStage state={nova.state} transitions={nova.transitions} placement="dock" reducedMotion={reducedMotion} reaction={reaction} />
             </div>
           )}
 
