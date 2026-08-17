@@ -83,7 +83,7 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <button type="button" onClick={quickChat.open} className={styles.liveLabel} aria-label="Talk to Nova — start a quick chat">
+            <button type="button" onClick={quickChat.open} className={styles.liveLabel}>
               <span className={styles.liveIcon}>
                 <span />
               </span>

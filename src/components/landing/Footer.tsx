@@ -83,7 +83,7 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
 
       <div className={`${styles.contact} ${styles.reveal} ${styles.delayThree}`}>
         <span className={styles.contactLabel}>Write to the team at:</span>
-        <a href={`mailto:${email}`} className={styles.email} aria-label="Email the Pathwise team">
+        <a href={`mailto:${email}`} className={styles.email} aria-label={`Email ${email}`}>
           <span>{email}</span>
           <span className={styles.emailArrow} aria-hidden>
             ↗
