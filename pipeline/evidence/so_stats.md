@@ -9,51 +9,51 @@ Produced by `python pipeline/mine_so.py emit`; every number below is computed, n
 ## Coverage
 
 - usersWithQuestions: 4657919
-- usersWithAnyMappedSkill: 3543231
-- usersEligible: 2153482
+- usersWithAnyMappedSkill: 3536377
+- usersEligible: 2137848
 - skillsMapped: 153
-- skillsObserved: 148
-- skillsObservedMirror: 148
+- skillsObserved: 146
+- skillsObservedMirror: 146
 - skillsObservedSede: 0
-- skillsInKeptEdges: 146
-- pairsSeen: 10476
-- pairsAtFloor: 8555
+- skillsInKeptEdges: 144
+- pairsSeen: 10174
+- pairsAtFloor: 8260
 - authoredEdges: 193
-- authoredEdgesEndpointsObserved: 177
-- authoredEdgesAtFloor: 165
+- authoredEdgesEndpointsObserved: 176
+- authoredEdgesAtFloor: 164
 - authoredEdgesReverseWins: 31
 - skillsNoDataByConstruction (6): data-storytelling, incident-response, llm-evaluation, open-source-contribution, prompt-engineering, threat-modeling
-- skillsMappedButUnobserved (5): ai-agents, fine-tuning, llm-apis, local-llms, rag
+- skillsMappedButUnobserved (7): ai-agents, ai-app-development, fine-tuning, llm-apis, local-llms, multimodal-ai, rag
 
 ## Cohort filter effect (12-month rule)
 
-- pairs at floor (n ≥ 20): 9008 before → 8555 after
-- ordered observations: 26786310 before → 24071670 after; same-day ties dropped: 3458873
+- pairs at floor (n ≥ 20): 8709 before → 8260 after
+- ordered observations: 26404750 before → 23707403 after; same-day ties dropped: 3413791
 
 ## Top 20 edges by support
 
 | from | to | support | reverse | conf | n |
 |---|---|---|---|---|---|
-| javascript | css | 115187 | 57063 | 0.669 | 172250 |
-| javascript | html | 114778 | 67398 | 0.630 | 182176 |
-| javascript | sql | 83949 | 64572 | 0.565 | 148521 |
-| java | javascript | 83760 | 62689 | 0.572 | 146449 |
-| javascript | mysql | 74618 | 58865 | 0.559 | 133483 |
-| javascript | nodejs | 70910 | 22078 | 0.763 | 92988 |
-| javascript | api-integration | 66691 | 10764 | 0.861 | 77455 |
-| javascript | python | 64478 | 62237 | 0.509 | 126715 |
-| java | sql | 58751 | 35152 | 0.626 | 93903 |
-| javascript | web-servers | 55439 | 26073 | 0.680 | 81512 |
-| html | css | 55352 | 32608 | 0.629 | 87960 |
-| java | html | 55236 | 38994 | 0.586 | 94230 |
-| java | python | 53192 | 35650 | 0.599 | 88842 |
-| python | python-data-analysis | 52736 | 5888 | 0.900 | 58624 |
-| html | sql | 52511 | 46536 | 0.530 | 99047 |
-| javascript | react | 50394 | 14175 | 0.780 | 64569 |
-| html | mysql | 48034 | 43793 | 0.523 | 91827 |
-| javascript | regex | 46805 | 20340 | 0.697 | 67145 |
-| javascript | nosql-databases | 46376 | 17480 | 0.726 | 63856 |
-| python | html | 43662 | 41177 | 0.515 | 84839 |
+| javascript | css | 115217 | 57080 | 0.669 | 172297 |
+| javascript | html | 114805 | 67420 | 0.630 | 182225 |
+| javascript | sql | 83980 | 64596 | 0.565 | 148576 |
+| java | javascript | 83780 | 62715 | 0.572 | 146495 |
+| javascript | mysql | 74640 | 58889 | 0.559 | 133529 |
+| javascript | nodejs | 70944 | 22082 | 0.763 | 93026 |
+| javascript | api-integration | 66730 | 10767 | 0.861 | 77497 |
+| javascript | python | 64514 | 62244 | 0.509 | 126758 |
+| java | sql | 58775 | 35170 | 0.626 | 93945 |
+| javascript | web-servers | 55470 | 26089 | 0.680 | 81559 |
+| html | css | 55372 | 32623 | 0.629 | 87995 |
+| java | html | 55261 | 39014 | 0.586 | 94275 |
+| java | python | 53215 | 35658 | 0.599 | 88873 |
+| html | sql | 52538 | 46565 | 0.530 | 99103 |
+| python | python-data-analysis | 51421 | 2646 | 0.951 | 54067 |
+| javascript | react | 50419 | 14176 | 0.781 | 64595 |
+| html | mysql | 48052 | 43821 | 0.523 | 91873 |
+| javascript | regex | 46836 | 20351 | 0.697 | 67187 |
+| javascript | nosql-databases | 46415 | 17487 | 0.726 | 63902 |
+| python | html | 43669 | 41211 | 0.514 | 84880 |
 
 ## 20 lowest-confidence authored edges (the noise, not hidden)
 
@@ -61,25 +61,25 @@ Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 m
 
 | authored from | authored to | support | reverse | conf | n | sample |
 |---|---|---|---|---|---|---|
-| statistics-fundamentals | r-programming | 756 | 4780 | 0.137 | 5536 | full-mirror |
-| deep-learning | tensorflow | 1258 | 3383 | 0.271 | 4641 | full-mirror |
-| javascript-advanced | api-integration | 2604 | 6623 | 0.282 | 9227 | full-mirror |
-| javascript-advanced | nodejs | 5091 | 9572 | 0.347 | 14663 | full-mirror |
-| programming-basics | java | 11706 | 19506 | 0.375 | 31212 | full-mirror |
-| programming-basics | python | 16508 | 26780 | 0.381 | 43288 | full-mirror |
-| programming-basics | javascript | 20670 | 32911 | 0.386 | 53581 | full-mirror |
-| networking-basics | api-integration | 6085 | 8891 | 0.406 | 14976 | full-mirror |
-| deep-learning | computer-vision | 1440 | 2064 | 0.411 | 3504 | full-mirror |
-| data-structures | algorithms | 4752 | 6804 | 0.411 | 11556 | full-mirror |
-| sql | mysql | 26293 | 36325 | 0.420 | 62618 | full-mirror |
-| javascript-advanced | web-animations | 608 | 806 | 0.430 | 1414 | full-mirror |
-| math-for-ml | neural-networks | 236 | 298 | 0.442 | 534 | full-mirror |
+| statistics-fundamentals | r-programming | 756 | 4783 | 0.136 | 5539 | full-mirror |
+| deep-learning | tensorflow | 1260 | 3385 | 0.271 | 4645 | full-mirror |
+| javascript-advanced | api-integration | 2612 | 6640 | 0.282 | 9252 | full-mirror |
+| javascript-advanced | nodejs | 5095 | 9588 | 0.347 | 14683 | full-mirror |
+| programming-basics | java | 11715 | 19516 | 0.375 | 31231 | full-mirror |
+| programming-basics | python | 16519 | 26788 | 0.381 | 43307 | full-mirror |
+| programming-basics | javascript | 20676 | 32933 | 0.386 | 53609 | full-mirror |
+| networking-basics | api-integration | 6093 | 8915 | 0.406 | 15008 | full-mirror |
+| deep-learning | computer-vision | 1441 | 2066 | 0.411 | 3507 | full-mirror |
+| data-structures | algorithms | 4760 | 6808 | 0.411 | 11568 | full-mirror |
+| sql | mysql | 26307 | 36343 | 0.420 | 62650 | full-mirror |
+| javascript-advanced | web-animations | 610 | 807 | 0.430 | 1417 | full-mirror |
+| math-for-ml | neural-networks | 236 | 299 | 0.441 | 535 | full-mirror |
 | model-deployment | mlops | 28 | 35 | 0.444 | 63 | full-mirror |
 | network-security | ethical-hacking-basics | 63 | 77 | 0.450 | 140 | full-mirror |
-| neural-networks | deep-learning | 1011 | 1224 | 0.452 | 2235 | full-mirror |
-| supervised-learning | scikit-learn | 819 | 974 | 0.457 | 1793 | full-mirror |
+| neural-networks | deep-learning | 1012 | 1224 | 0.453 | 2236 | full-mirror |
+| supervised-learning | scikit-learn | 819 | 975 | 0.457 | 1794 | full-mirror |
+| networking-basics | web-servers | 8543 | 9991 | 0.461 | 18534 | full-mirror |
 | docker | model-deployment | 65 | 76 | 0.461 | 141 | full-mirror |
-| networking-basics | web-servers | 8534 | 9968 | 0.461 | 18502 | full-mirror |
 | web-security | ethical-hacking-basics | 40 | 46 | 0.465 | 86 | full-mirror |
 
 ## LLM-era top-up (Stack Exchange Data Explorer, current data)
@@ -88,6 +88,6 @@ Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 m
 
 ## Branches
 
-- {"fromSkills": 147, "fromSkillsMinSupportMet": 144, "fromSkillsWithListed": 145, "listedTransitions": 15572}
+- {"fromSkills": 145, "fromSkillsMinSupportMet": 141, "fromSkillsWithListed": 142, "listedTransitions": 15105}
 
 _Stack Overflow content is CC BY-SA 4.0 (https://stackoverflow.com/help/licensing); aggregate counts only._

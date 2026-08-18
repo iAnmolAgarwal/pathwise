@@ -1404,6 +1404,12 @@
       "soQuestions": 5167
     },
     {
+      "tag": "amazon-cloudfront",
+      "skillId": "caching",
+      "soQuestions": 5017,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): moved from cloud-networking for consistency"
+    },
+    {
       "tag": "cdn",
       "skillId": "caching",
       "soQuestions": 3052
@@ -2338,11 +2344,6 @@
       "soQuestions": 288856
     },
     {
-      "tag": "dataframe",
-      "skillId": "python-data-analysis",
-      "soQuestions": 148581
-    },
-    {
       "tag": "numpy",
       "skillId": "python-data-analysis",
       "soQuestions": 115130
@@ -2478,29 +2479,9 @@
       "soQuestions": 72732
     },
     {
-      "tag": "d3.js",
-      "skillId": "data-visualization",
-      "soQuestions": 39114
-    },
-    {
-      "tag": "charts",
-      "skillId": "data-visualization",
-      "soQuestions": 26738
-    },
-    {
-      "tag": "highcharts",
-      "skillId": "data-visualization",
-      "soQuestions": 26161
-    },
-    {
       "tag": "plotly",
       "skillId": "data-visualization",
       "soQuestions": 15649
-    },
-    {
-      "tag": "chart.js",
-      "skillId": "data-visualization",
-      "soQuestions": 12339
     },
     {
       "tag": "seaborn",
@@ -2508,9 +2489,28 @@
       "soQuestions": 9761
     },
     {
-      "tag": "bar-chart",
+      "tag": "data-visualization",
       "skillId": "data-visualization",
-      "soQuestions": 8398
+      "soQuestions": 7356,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "bokeh",
+      "skillId": "data-visualization",
+      "soQuestions": 4733,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "plotly-dash",
+      "skillId": "data-visualization",
+      "soQuestions": 4567,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "altair",
+      "skillId": "data-visualization",
+      "soQuestions": 1421,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
     },
     {
       "tag": "tableau-api",
@@ -3119,11 +3119,6 @@
       "note": "independent review 2026-08-19: added"
     },
     {
-      "tag": "cosine-similarity",
-      "skillId": "embeddings-vector-search",
-      "soQuestions": 1013
-    },
-    {
       "tag": "sentence-transformers",
       "skillId": "embeddings-vector-search",
       "soQuestions": 231
@@ -3132,6 +3127,18 @@
       "tag": "faiss",
       "skillId": "embeddings-vector-search",
       "soQuestions": 136
+    },
+    {
+      "tag": "vector-search",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 89,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "semantic-search",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 53,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
     },
     {
       "tag": "vector-database",
@@ -3251,21 +3258,6 @@
       "soQuestions": 32
     },
     {
-      "tag": "speech-recognition",
-      "skillId": "multimodal-ai",
-      "soQuestions": 5337
-    },
-    {
-      "tag": "text-to-speech",
-      "skillId": "multimodal-ai",
-      "soQuestions": 3741
-    },
-    {
-      "tag": "speech-to-text",
-      "skillId": "multimodal-ai",
-      "soQuestions": 2411
-    },
-    {
       "tag": "openai-whisper",
       "skillId": "multimodal-ai",
       "soQuestions": 254,
@@ -3278,10 +3270,16 @@
       "note": "independent review 2026-08-19: added"
     },
     {
-      "tag": "chatbot",
+      "tag": "vercel-ai",
       "skillId": "ai-app-development",
-      "soQuestions": 4247,
-      "note": "conversational apps; includes pre-LLM bots"
+      "soQuestions": 25,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "chainlit",
+      "skillId": "ai-app-development",
+      "soQuestions": 14,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
     },
     {
       "tag": "heroku",
@@ -3318,12 +3316,6 @@
       "tag": "aws-sdk",
       "skillId": "aws-fundamentals",
       "soQuestions": 6328
-    },
-    {
-      "tag": "amazon-ecs",
-      "skillId": "aws-fundamentals",
-      "soQuestions": 5425,
-      "note": "AWS container service"
     },
     {
       "tag": "aws-cli",
@@ -3369,11 +3361,6 @@
       "tag": "gcloud",
       "skillId": "gcp-fundamentals",
       "soQuestions": 4590
-    },
-    {
-      "tag": "amazon-cloudfront",
-      "skillId": "cloud-networking",
-      "soQuestions": 5017
     },
     {
       "tag": "amazon-elb",
@@ -3606,6 +3593,12 @@
       "tag": "dockerfile",
       "skillId": "docker",
       "soQuestions": 16088
+    },
+    {
+      "tag": "amazon-ecs",
+      "skillId": "docker",
+      "soQuestions": 5425,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): moved from aws-fundamentals for consistency"
     },
     {
       "tag": "docker-swarm",
@@ -4172,7 +4165,7 @@
     }
   ],
   "signoffNotes": {
-    "anmol": "owner delegated the check to an independent reviewer on 2026-08-19; its verdict (11 moves, 27 strikes, 52 adds; 739 rows accepted) is applied row by row with notes",
+    "anmol": "owner delegated the check to an independent reviewer on 2026-08-19; its verdict (11 moves, 27 strikes, 52 adds; 739 rows accepted) is applied row by row with notes; owner then struck pre-LLM speech/chatbot tags, dataframe and JS charting tags, and fixed two conventions (no-noise decision)",
     "riyan": "pending"
   }
 }
