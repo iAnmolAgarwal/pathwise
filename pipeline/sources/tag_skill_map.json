@@ -1,0 +1,4171 @@
+{
+  "description": "Hand-built map from Stack Overflow tags to Pathwise skill ids (closed vocabulary = src/data/skills.json). Used by pipeline/mine_so.py. A skill's first date for a user is the earliest question carrying any of its tags. soQuestions = the tag's total question count from the Stack Exchange API on the draft date, shown for review only.",
+  "draftedOn": "2026-08-18",
+  "signoff": {
+    "anmol": "2026-08-19",
+    "riyan": "2026-08-19"
+  },
+  "rows": [
+    {
+      "tag": "loops",
+      "skillId": "programming-basics",
+      "soQuestions": 96506,
+      "note": "beginner control-flow tag"
+    },
+    {
+      "tag": "for-loop",
+      "skillId": "programming-basics",
+      "soQuestions": 71939,
+      "note": "beginner control-flow tag; language-agnostic"
+    },
+    {
+      "tag": "if-statement",
+      "skillId": "programming-basics",
+      "soQuestions": 62044,
+      "note": "beginner control-flow tag"
+    },
+    {
+      "tag": "variables",
+      "skillId": "programming-basics",
+      "soQuestions": 53759,
+      "note": "beginner tag"
+    },
+    {
+      "tag": "while-loop",
+      "skillId": "programming-basics",
+      "soQuestions": 26425,
+      "note": "beginner control-flow tag"
+    },
+    {
+      "tag": "conditional-statements",
+      "skillId": "programming-basics",
+      "soQuestions": 19415,
+      "note": "beginner control-flow tag"
+    },
+    {
+      "tag": "python",
+      "skillId": "python",
+      "soQuestions": 2204998
+    },
+    {
+      "tag": "python-3.x",
+      "skillId": "python",
+      "soQuestions": 340694
+    },
+    {
+      "tag": "python-2.7",
+      "skillId": "python",
+      "soQuestions": 94485
+    },
+    {
+      "tag": "java",
+      "skillId": "java",
+      "soQuestions": 1914657
+    },
+    {
+      "tag": "java-8",
+      "skillId": "java",
+      "soQuestions": 23159
+    },
+    {
+      "tag": "linux",
+      "skillId": "command-line",
+      "soQuestions": 226984,
+      "note": "first Linux question = command-line/Linux-basics encounter; server administration tags map to linux-administration"
+    },
+    {
+      "tag": "ubuntu",
+      "skillId": "command-line",
+      "soQuestions": 60370,
+      "note": "independent review 2026-08-19: moved from linux-administration"
+    },
+    {
+      "tag": "unix",
+      "skillId": "command-line",
+      "soQuestions": 47517
+    },
+    {
+      "tag": "terminal",
+      "skillId": "command-line",
+      "soQuestions": 24384
+    },
+    {
+      "tag": "command-line",
+      "skillId": "command-line",
+      "soQuestions": 23343
+    },
+    {
+      "tag": "command-line-interface",
+      "skillId": "command-line",
+      "soQuestions": 9635
+    },
+    {
+      "tag": "git",
+      "skillId": "version-control-git",
+      "soQuestions": 153619
+    },
+    {
+      "tag": "github",
+      "skillId": "version-control-git",
+      "soQuestions": 58089
+    },
+    {
+      "tag": "gitlab",
+      "skillId": "version-control-git",
+      "soQuestions": 18310
+    },
+    {
+      "tag": "bitbucket",
+      "skillId": "version-control-git",
+      "soQuestions": 8460
+    },
+    {
+      "tag": "debugging",
+      "skillId": "debugging",
+      "soQuestions": 52676
+    },
+    {
+      "tag": "gdb",
+      "skillId": "debugging",
+      "soQuestions": 11660
+    },
+    {
+      "tag": "breakpoints",
+      "skillId": "debugging",
+      "soQuestions": 2969
+    },
+    {
+      "tag": "http",
+      "skillId": "networking-basics",
+      "soQuestions": 67906
+    },
+    {
+      "tag": "sockets",
+      "skillId": "networking-basics",
+      "soQuestions": 66227,
+      "note": "socket programming = how the network works"
+    },
+    {
+      "tag": "tcp",
+      "skillId": "networking-basics",
+      "soQuestions": 23699
+    },
+    {
+      "tag": "dns",
+      "skillId": "networking-basics",
+      "soQuestions": 17108
+    },
+    {
+      "tag": "http-headers",
+      "skillId": "networking-basics",
+      "soQuestions": 11954
+    },
+    {
+      "tag": "agile",
+      "skillId": "agile-methodologies",
+      "soQuestions": 1022,
+      "note": "thin on SO; expected to fall below the support floor"
+    },
+    {
+      "tag": "scrum",
+      "skillId": "agile-methodologies",
+      "soQuestions": 754
+    },
+    {
+      "tag": "kanban",
+      "skillId": "agile-methodologies",
+      "soQuestions": 251
+    },
+    {
+      "tag": "oop",
+      "skillId": "oop",
+      "soQuestions": 62220
+    },
+    {
+      "tag": "inheritance",
+      "skillId": "oop",
+      "soQuestions": 42865
+    },
+    {
+      "tag": "polymorphism",
+      "skillId": "oop",
+      "soQuestions": 10426
+    },
+    {
+      "tag": "abstract-class",
+      "skillId": "oop",
+      "soQuestions": 5343
+    },
+    {
+      "tag": "data-structures",
+      "skillId": "data-structures",
+      "soQuestions": 34086
+    },
+    {
+      "tag": "linked-list",
+      "skillId": "data-structures",
+      "soQuestions": 19916
+    },
+    {
+      "tag": "hashmap",
+      "skillId": "data-structures",
+      "soQuestions": 15303
+    },
+    {
+      "tag": "binary-tree",
+      "skillId": "data-structures",
+      "soQuestions": 6829
+    },
+    {
+      "tag": "hashtable",
+      "skillId": "data-structures",
+      "soQuestions": 5511
+    },
+    {
+      "tag": "algorithm",
+      "skillId": "algorithms",
+      "soQuestions": 121433
+    },
+    {
+      "tag": "sorting",
+      "skillId": "algorithms",
+      "soQuestions": 77244
+    },
+    {
+      "tag": "recursion",
+      "skillId": "algorithms",
+      "soQuestions": 47393
+    },
+    {
+      "tag": "time-complexity",
+      "skillId": "algorithms",
+      "soQuestions": 10325
+    },
+    {
+      "tag": "big-o",
+      "skillId": "algorithms",
+      "soQuestions": 6873
+    },
+    {
+      "tag": "dynamic-programming",
+      "skillId": "algorithms",
+      "soQuestions": 5709
+    },
+    {
+      "tag": "binary-search",
+      "skillId": "algorithms",
+      "soQuestions": 3027
+    },
+    {
+      "tag": "python-typing",
+      "skillId": "python-advanced",
+      "soQuestions": 4343
+    },
+    {
+      "tag": "python-decorators",
+      "skillId": "python-advanced",
+      "soQuestions": 2522
+    },
+    {
+      "tag": "metaclass",
+      "skillId": "python-advanced",
+      "soQuestions": 1225
+    },
+    {
+      "tag": "haskell",
+      "skillId": "functional-programming",
+      "soQuestions": 51838,
+      "note": "FP language: first question = FP encounter"
+    },
+    {
+      "tag": "functional-programming",
+      "skillId": "functional-programming",
+      "soQuestions": 19247
+    },
+    {
+      "tag": "clojure",
+      "skillId": "functional-programming",
+      "soQuestions": 17769,
+      "note": "FP language"
+    },
+    {
+      "tag": "elixir",
+      "skillId": "functional-programming",
+      "soQuestions": 9641,
+      "note": "FP language"
+    },
+    {
+      "tag": "ocaml",
+      "skillId": "functional-programming",
+      "soQuestions": 7664,
+      "note": "FP language"
+    },
+    {
+      "tag": "monads",
+      "skillId": "functional-programming",
+      "soQuestions": 3547
+    },
+    {
+      "tag": "regex",
+      "skillId": "regex",
+      "soQuestions": 260971
+    },
+    {
+      "tag": "regex-lookarounds",
+      "skillId": "regex",
+      "soQuestions": 3344
+    },
+    {
+      "tag": "regex-group",
+      "skillId": "regex",
+      "soQuestions": 2767
+    },
+    {
+      "tag": "bash",
+      "skillId": "shell-scripting",
+      "soQuestions": 156577
+    },
+    {
+      "tag": "shell",
+      "skillId": "shell-scripting",
+      "soQuestions": 92836
+    },
+    {
+      "tag": "awk",
+      "skillId": "shell-scripting",
+      "soQuestions": 33263
+    },
+    {
+      "tag": "sed",
+      "skillId": "shell-scripting",
+      "soQuestions": 28989
+    },
+    {
+      "tag": "sh",
+      "skillId": "shell-scripting",
+      "soQuestions": 8570
+    },
+    {
+      "tag": "zsh",
+      "skillId": "shell-scripting",
+      "soQuestions": 6213
+    },
+    {
+      "tag": "unit-testing",
+      "skillId": "unit-testing",
+      "soQuestions": 85643
+    },
+    {
+      "tag": "junit",
+      "skillId": "unit-testing",
+      "soQuestions": 28015
+    },
+    {
+      "tag": "rspec",
+      "skillId": "unit-testing",
+      "soQuestions": 18265
+    },
+    {
+      "tag": "mocking",
+      "skillId": "unit-testing",
+      "soQuestions": 15942
+    },
+    {
+      "tag": "mockito",
+      "skillId": "unit-testing",
+      "soQuestions": 13899
+    },
+    {
+      "tag": "pytest",
+      "skillId": "unit-testing",
+      "soQuestions": 10510
+    },
+    {
+      "tag": "phpunit",
+      "skillId": "unit-testing",
+      "soQuestions": 10081
+    },
+    {
+      "tag": "nunit",
+      "skillId": "unit-testing",
+      "soQuestions": 7536
+    },
+    {
+      "tag": "sonarqube",
+      "skillId": "clean-code",
+      "soQuestions": 11905,
+      "note": "code-quality tooling; also does security scanning"
+    },
+    {
+      "tag": "refactoring",
+      "skillId": "clean-code",
+      "soQuestions": 7978
+    },
+    {
+      "tag": "coding-style",
+      "skillId": "clean-code",
+      "soQuestions": 7720
+    },
+    {
+      "tag": "naming-conventions",
+      "skillId": "clean-code",
+      "soQuestions": 4014
+    },
+    {
+      "tag": "static-analysis",
+      "skillId": "clean-code",
+      "soQuestions": 2237,
+      "note": "independent review 2026-08-19: moved from secure-coding"
+    },
+    {
+      "tag": "pull-request",
+      "skillId": "git-collaboration",
+      "soQuestions": 2267
+    },
+    {
+      "tag": "git-rebase",
+      "skillId": "git-collaboration",
+      "soQuestions": 1775
+    },
+    {
+      "tag": "git-flow",
+      "skillId": "git-collaboration",
+      "soQuestions": 1103
+    },
+    {
+      "tag": "git-merge-conflict",
+      "skillId": "git-collaboration",
+      "soQuestions": 573
+    },
+    {
+      "tag": "documentation",
+      "skillId": "technical-writing",
+      "soQuestions": 4684,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "python-sphinx",
+      "skillId": "technical-writing",
+      "soQuestions": 3830,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "doxygen",
+      "skillId": "technical-writing",
+      "soQuestions": 3218,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "javadoc",
+      "skillId": "technical-writing",
+      "soQuestions": 2981,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "restructuredtext",
+      "skillId": "technical-writing",
+      "soQuestions": 1327,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "docusaurus",
+      "skillId": "technical-writing",
+      "soQuestions": 517,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "asciidoc",
+      "skillId": "technical-writing",
+      "soQuestions": 513,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "mkdocs",
+      "skillId": "technical-writing",
+      "soQuestions": 305,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "design-patterns",
+      "skillId": "design-patterns",
+      "soQuestions": 32145
+    },
+    {
+      "tag": "dependency-injection",
+      "skillId": "design-patterns",
+      "soQuestions": 27045
+    },
+    {
+      "tag": "singleton",
+      "skillId": "design-patterns",
+      "soQuestions": 8652
+    },
+    {
+      "tag": "domain-driven-design",
+      "skillId": "design-patterns",
+      "soQuestions": 6933
+    },
+    {
+      "tag": "inversion-of-control",
+      "skillId": "design-patterns",
+      "soQuestions": 4386
+    },
+    {
+      "tag": "repository-pattern",
+      "skillId": "design-patterns",
+      "soQuestions": 3225
+    },
+    {
+      "tag": "software-design",
+      "skillId": "design-patterns",
+      "soQuestions": 1979,
+      "note": "independent review 2026-08-19: moved from system-design"
+    },
+    {
+      "tag": "multithreading",
+      "skillId": "concurrency",
+      "soQuestions": 140916
+    },
+    {
+      "tag": "concurrency",
+      "skillId": "concurrency",
+      "soQuestions": 23555
+    },
+    {
+      "tag": "parallel-processing",
+      "skillId": "concurrency",
+      "soQuestions": 21919
+    },
+    {
+      "tag": "thread-safety",
+      "skillId": "concurrency",
+      "soQuestions": 9550
+    },
+    {
+      "tag": "python-asyncio",
+      "skillId": "concurrency",
+      "soQuestions": 7940,
+      "note": "independent review 2026-08-19: moved from python-advanced"
+    },
+    {
+      "tag": "mutex",
+      "skillId": "concurrency",
+      "soQuestions": 4820
+    },
+    {
+      "tag": "threadpool",
+      "skillId": "concurrency",
+      "soQuestions": 4733
+    },
+    {
+      "tag": "deadlock",
+      "skillId": "concurrency",
+      "soQuestions": 3551
+    },
+    {
+      "tag": "semaphore",
+      "skillId": "concurrency",
+      "soQuestions": 3400,
+      "note": "the concurrency primitive, not Semaphore CI"
+    },
+    {
+      "tag": "html",
+      "skillId": "html",
+      "soQuestions": 1185251
+    },
+    {
+      "tag": "html-table",
+      "skillId": "html",
+      "soQuestions": 23049
+    },
+    {
+      "tag": "css",
+      "skillId": "css",
+      "soQuestions": 805679
+    },
+    {
+      "tag": "twitter-bootstrap",
+      "skillId": "css",
+      "soQuestions": 102674,
+      "note": "CSS framework -> CSS encounter"
+    },
+    {
+      "tag": "bootstrap-4",
+      "skillId": "css",
+      "soQuestions": 28744,
+      "note": "CSS framework"
+    },
+    {
+      "tag": "flexbox",
+      "skillId": "css",
+      "soQuestions": 22708
+    },
+    {
+      "tag": "css-selectors",
+      "skillId": "css",
+      "soQuestions": 15478
+    },
+    {
+      "tag": "bootstrap-5",
+      "skillId": "css",
+      "soQuestions": 6466,
+      "note": "CSS framework"
+    },
+    {
+      "tag": "css-position",
+      "skillId": "css",
+      "soQuestions": 6331
+    },
+    {
+      "tag": "javascript",
+      "skillId": "javascript",
+      "soQuestions": 2522061
+    },
+    {
+      "tag": "jquery",
+      "skillId": "javascript",
+      "soQuestions": 1030002,
+      "note": "jQuery-era JS encounter; huge, dated tag"
+    },
+    {
+      "tag": "dom",
+      "skillId": "javascript",
+      "soQuestions": 41727,
+      "note": "independent review 2026-08-19: moved from html"
+    },
+    {
+      "tag": "dom-events",
+      "skillId": "javascript",
+      "soQuestions": 12515
+    },
+    {
+      "tag": "responsive-design",
+      "skillId": "responsive-design",
+      "soQuestions": 17421
+    },
+    {
+      "tag": "media-queries",
+      "skillId": "responsive-design",
+      "soQuestions": 8038
+    },
+    {
+      "tag": "google-chrome-devtools",
+      "skillId": "browser-devtools",
+      "soQuestions": 8855
+    },
+    {
+      "tag": "firefox-developer-tools",
+      "skillId": "browser-devtools",
+      "soQuestions": 731
+    },
+    {
+      "tag": "sass",
+      "skillId": "css-advanced",
+      "soQuestions": 27654
+    },
+    {
+      "tag": "less",
+      "skillId": "css-advanced",
+      "soQuestions": 7264
+    },
+    {
+      "tag": "css-grid",
+      "skillId": "css-advanced",
+      "soQuestions": 6432
+    },
+    {
+      "tag": "styled-components",
+      "skillId": "css-advanced",
+      "soQuestions": 4554
+    },
+    {
+      "tag": "ecmascript-6",
+      "skillId": "javascript-advanced",
+      "soQuestions": 29911
+    },
+    {
+      "tag": "promise",
+      "skillId": "javascript-advanced",
+      "soQuestions": 22729
+    },
+    {
+      "tag": "closures",
+      "skillId": "javascript-advanced",
+      "soQuestions": 9036
+    },
+    {
+      "tag": "prototype",
+      "skillId": "javascript-advanced",
+      "soQuestions": 5440
+    },
+    {
+      "tag": "es6-promise",
+      "skillId": "javascript-advanced",
+      "soQuestions": 5289
+    },
+    {
+      "tag": "typescript",
+      "skillId": "typescript",
+      "soQuestions": 234164
+    },
+    {
+      "tag": "typescript-generics",
+      "skillId": "typescript",
+      "soQuestions": 4913
+    },
+    {
+      "tag": "typescript-typings",
+      "skillId": "typescript",
+      "soQuestions": 4822
+    },
+    {
+      "tag": "reactjs",
+      "skillId": "react",
+      "soQuestions": 473907
+    },
+    {
+      "tag": "react-hooks",
+      "skillId": "react",
+      "soQuestions": 30519
+    },
+    {
+      "tag": "react-router",
+      "skillId": "react",
+      "soQuestions": 20543
+    },
+    {
+      "tag": "jsx",
+      "skillId": "react",
+      "soQuestions": 9286
+    },
+    {
+      "tag": "react-router-dom",
+      "skillId": "react",
+      "soQuestions": 7806
+    },
+    {
+      "tag": "create-react-app",
+      "skillId": "react",
+      "soQuestions": 5839
+    },
+    {
+      "tag": "use-effect",
+      "skillId": "react",
+      "soQuestions": 3491
+    },
+    {
+      "tag": "react-props",
+      "skillId": "react",
+      "soQuestions": 3362
+    },
+    {
+      "tag": "vue.js",
+      "skillId": "vue",
+      "soQuestions": 107926
+    },
+    {
+      "tag": "vuejs2",
+      "skillId": "vue",
+      "soQuestions": 26252
+    },
+    {
+      "tag": "vuejs3",
+      "skillId": "vue",
+      "soQuestions": 13571
+    },
+    {
+      "tag": "nuxt.js",
+      "skillId": "vue",
+      "soQuestions": 12981
+    },
+    {
+      "tag": "vue-component",
+      "skillId": "vue",
+      "soQuestions": 10657
+    },
+    {
+      "tag": "vue-router",
+      "skillId": "vue",
+      "soQuestions": 6197
+    },
+    {
+      "tag": "redux",
+      "skillId": "state-management",
+      "soQuestions": 35316
+    },
+    {
+      "tag": "react-redux",
+      "skillId": "state-management",
+      "soQuestions": 23152
+    },
+    {
+      "tag": "vuex",
+      "skillId": "state-management",
+      "soQuestions": 7712
+    },
+    {
+      "tag": "ngrx",
+      "skillId": "state-management",
+      "soQuestions": 4645
+    },
+    {
+      "tag": "redux-toolkit",
+      "skillId": "state-management",
+      "soQuestions": 3624
+    },
+    {
+      "tag": "react-context",
+      "skillId": "state-management",
+      "soQuestions": 3016
+    },
+    {
+      "tag": "tailwind-css",
+      "skillId": "tailwind-css",
+      "soQuestions": 10557
+    },
+    {
+      "tag": "webpack",
+      "skillId": "frontend-build-tools",
+      "soQuestions": 42351
+    },
+    {
+      "tag": "gulp",
+      "skillId": "frontend-build-tools",
+      "soQuestions": 12624
+    },
+    {
+      "tag": "babeljs",
+      "skillId": "frontend-build-tools",
+      "soQuestions": 9683
+    },
+    {
+      "tag": "gruntjs",
+      "skillId": "frontend-build-tools",
+      "soQuestions": 9019
+    },
+    {
+      "tag": "vite",
+      "skillId": "frontend-build-tools",
+      "soQuestions": 6820
+    },
+    {
+      "tag": "ajax",
+      "skillId": "api-integration",
+      "soQuestions": 220339
+    },
+    {
+      "tag": "axios",
+      "skillId": "api-integration",
+      "soQuestions": 24374
+    },
+    {
+      "tag": "cors",
+      "skillId": "api-integration",
+      "soQuestions": 14644
+    },
+    {
+      "tag": "xmlhttprequest",
+      "skillId": "api-integration",
+      "soQuestions": 11877
+    },
+    {
+      "tag": "fetch-api",
+      "skillId": "api-integration",
+      "soQuestions": 6195
+    },
+    {
+      "tag": "accessibility",
+      "skillId": "web-accessibility",
+      "soQuestions": 8273
+    },
+    {
+      "tag": "wai-aria",
+      "skillId": "web-accessibility",
+      "soQuestions": 1506
+    },
+    {
+      "tag": "screen-readers",
+      "skillId": "web-accessibility",
+      "soQuestions": 973
+    },
+    {
+      "tag": "higher-order-components",
+      "skillId": "react-advanced",
+      "soQuestions": 486
+    },
+    {
+      "tag": "react-server-components",
+      "skillId": "react-advanced",
+      "soQuestions": 249
+    },
+    {
+      "tag": "react-suspense",
+      "skillId": "react-advanced",
+      "soQuestions": 244
+    },
+    {
+      "tag": "react-custom-hooks",
+      "skillId": "react-advanced",
+      "soQuestions": 160
+    },
+    {
+      "tag": "react-usememo",
+      "skillId": "react-advanced",
+      "soQuestions": 147
+    },
+    {
+      "tag": "react-error-boundary",
+      "skillId": "react-advanced",
+      "soQuestions": 113
+    },
+    {
+      "tag": "react-portal",
+      "skillId": "react-advanced",
+      "soQuestions": 101
+    },
+    {
+      "tag": "next.js",
+      "skillId": "nextjs",
+      "soQuestions": 41559
+    },
+    {
+      "tag": "vercel",
+      "skillId": "nextjs",
+      "soQuestions": 3310
+    },
+    {
+      "tag": "next.js13",
+      "skillId": "nextjs",
+      "soQuestions": 2840
+    },
+    {
+      "tag": "jestjs",
+      "skillId": "frontend-testing",
+      "soQuestions": 22867
+    },
+    {
+      "tag": "cypress",
+      "skillId": "frontend-testing",
+      "soQuestions": 9695,
+      "note": "browser E2E for web apps; Selenium-class tools map to test-automation"
+    },
+    {
+      "tag": "enzyme",
+      "skillId": "frontend-testing",
+      "soQuestions": 4279
+    },
+    {
+      "tag": "react-testing-library",
+      "skillId": "frontend-testing",
+      "soQuestions": 3717
+    },
+    {
+      "tag": "playwright",
+      "skillId": "frontend-testing",
+      "soQuestions": 3511,
+      "note": "browser E2E for web apps"
+    },
+    {
+      "tag": "pagespeed",
+      "skillId": "web-performance",
+      "soQuestions": 1476
+    },
+    {
+      "tag": "lighthouse",
+      "skillId": "web-performance",
+      "soQuestions": 784
+    },
+    {
+      "tag": "pagespeed-insights",
+      "skillId": "web-performance",
+      "soQuestions": 509
+    },
+    {
+      "tag": "page-load-time",
+      "skillId": "web-performance",
+      "soQuestions": 289
+    },
+    {
+      "tag": "web-performance",
+      "skillId": "web-performance",
+      "soQuestions": 233
+    },
+    {
+      "tag": "core-web-vitals",
+      "skillId": "web-performance",
+      "soQuestions": 174
+    },
+    {
+      "tag": "css-animations",
+      "skillId": "web-animations",
+      "soQuestions": 7701
+    },
+    {
+      "tag": "css-transitions",
+      "skillId": "web-animations",
+      "soQuestions": 6311
+    },
+    {
+      "tag": "gsap",
+      "skillId": "web-animations",
+      "soQuestions": 1945
+    },
+    {
+      "tag": "react-native",
+      "skillId": "react-native",
+      "soQuestions": 136959
+    },
+    {
+      "tag": "expo",
+      "skillId": "react-native",
+      "soQuestions": 16725
+    },
+    {
+      "tag": "react-navigation",
+      "skillId": "react-native",
+      "soQuestions": 8546
+    },
+    {
+      "tag": "node.js",
+      "skillId": "nodejs",
+      "soQuestions": 469706
+    },
+    {
+      "tag": "npm",
+      "skillId": "nodejs",
+      "soQuestions": 49774
+    },
+    {
+      "tag": "node-modules",
+      "skillId": "nodejs",
+      "soQuestions": 6591
+    },
+    {
+      "tag": "npm-install",
+      "skillId": "nodejs",
+      "soQuestions": 5396
+    },
+    {
+      "tag": "package.json",
+      "skillId": "nodejs",
+      "soQuestions": 3437
+    },
+    {
+      "tag": "express",
+      "skillId": "express",
+      "soQuestions": 94744
+    },
+    {
+      "tag": "ejs",
+      "skillId": "express",
+      "soQuestions": 6456
+    },
+    {
+      "tag": "multer",
+      "skillId": "express",
+      "soQuestions": 3194
+    },
+    {
+      "tag": "go",
+      "skillId": "go",
+      "soQuestions": 74463
+    },
+    {
+      "tag": "goroutine",
+      "skillId": "go",
+      "soQuestions": 1793
+    },
+    {
+      "tag": "go-gin",
+      "skillId": "go",
+      "soQuestions": 932
+    },
+    {
+      "tag": "django",
+      "skillId": "django",
+      "soQuestions": 311163
+    },
+    {
+      "tag": "django-models",
+      "skillId": "django",
+      "soQuestions": 43668
+    },
+    {
+      "tag": "django-rest-framework",
+      "skillId": "django",
+      "soQuestions": 31678
+    },
+    {
+      "tag": "django-views",
+      "skillId": "django",
+      "soQuestions": 24246
+    },
+    {
+      "tag": "django-forms",
+      "skillId": "django",
+      "soQuestions": 20080
+    },
+    {
+      "tag": "django-templates",
+      "skillId": "django",
+      "soQuestions": 19593
+    },
+    {
+      "tag": "django-admin",
+      "skillId": "django",
+      "soQuestions": 10187
+    },
+    {
+      "tag": "django-queryset",
+      "skillId": "django",
+      "soQuestions": 6855
+    },
+    {
+      "tag": "fastapi",
+      "skillId": "fastapi",
+      "soQuestions": 7300
+    },
+    {
+      "tag": "pydantic",
+      "skillId": "fastapi",
+      "soQuestions": 2391
+    },
+    {
+      "tag": "uvicorn",
+      "skillId": "fastapi",
+      "soQuestions": 639
+    },
+    {
+      "tag": "spring",
+      "skillId": "spring-boot",
+      "soQuestions": 211646
+    },
+    {
+      "tag": "spring-boot",
+      "skillId": "spring-boot",
+      "soQuestions": 150310
+    },
+    {
+      "tag": "spring-mvc",
+      "skillId": "spring-boot",
+      "soQuestions": 58297
+    },
+    {
+      "tag": "thymeleaf",
+      "skillId": "spring-boot",
+      "soQuestions": 9278
+    },
+    {
+      "tag": "spring-webflux",
+      "skillId": "spring-boot",
+      "soQuestions": 6399
+    },
+    {
+      "tag": "rest",
+      "skillId": "rest-api-design",
+      "soQuestions": 91830
+    },
+    {
+      "tag": "api-design",
+      "skillId": "rest-api-design",
+      "soQuestions": 2335
+    },
+    {
+      "tag": "http-status-codes",
+      "skillId": "rest-api-design",
+      "soQuestions": 1706
+    },
+    {
+      "tag": "hibernate",
+      "skillId": "orm-data-access",
+      "soQuestions": 94936
+    },
+    {
+      "tag": "entity-framework",
+      "skillId": "orm-data-access",
+      "soQuestions": 91652
+    },
+    {
+      "tag": "jpa",
+      "skillId": "orm-data-access",
+      "soQuestions": 52052
+    },
+    {
+      "tag": "activerecord",
+      "skillId": "orm-data-access",
+      "soQuestions": 28676
+    },
+    {
+      "tag": "eloquent",
+      "skillId": "orm-data-access",
+      "soQuestions": 27331
+    },
+    {
+      "tag": "sqlalchemy",
+      "skillId": "orm-data-access",
+      "soQuestions": 23620
+    },
+    {
+      "tag": "entity-framework-core",
+      "skillId": "orm-data-access",
+      "soQuestions": 23555
+    },
+    {
+      "tag": "spring-data-jpa",
+      "skillId": "orm-data-access",
+      "soQuestions": 23210
+    },
+    {
+      "tag": "authentication",
+      "skillId": "authentication",
+      "soQuestions": 75519
+    },
+    {
+      "tag": "spring-security",
+      "skillId": "authentication",
+      "soQuestions": 29086
+    },
+    {
+      "tag": "oauth-2.0",
+      "skillId": "authentication",
+      "soQuestions": 24533
+    },
+    {
+      "tag": "firebase-authentication",
+      "skillId": "authentication",
+      "soQuestions": 22308,
+      "note": "app-level auth; SSO/federation products map to identity-access-management"
+    },
+    {
+      "tag": "oauth",
+      "skillId": "authentication",
+      "soQuestions": 20258
+    },
+    {
+      "tag": "jwt",
+      "skillId": "authentication",
+      "soQuestions": 18208
+    },
+    {
+      "tag": "authorization",
+      "skillId": "authentication",
+      "soQuestions": 10488
+    },
+    {
+      "tag": "asp.net-identity",
+      "skillId": "authentication",
+      "soQuestions": 9032
+    },
+    {
+      "tag": "amazon-cognito",
+      "skillId": "authentication",
+      "soQuestions": 7277,
+      "note": "independent review 2026-08-19: moved from identity-access-management"
+    },
+    {
+      "tag": "swagger",
+      "skillId": "api-documentation",
+      "soQuestions": 12401
+    },
+    {
+      "tag": "openapi",
+      "skillId": "api-documentation",
+      "soQuestions": 4789
+    },
+    {
+      "tag": "swagger-ui",
+      "skillId": "api-documentation",
+      "soQuestions": 4556
+    },
+    {
+      "tag": "swagger-2.0",
+      "skillId": "api-documentation",
+      "soQuestions": 1658
+    },
+    {
+      "tag": "swashbuckle",
+      "skillId": "api-documentation",
+      "soQuestions": 1402
+    },
+    {
+      "tag": "postman",
+      "skillId": "api-testing",
+      "soQuestions": 12565
+    },
+    {
+      "tag": "karate",
+      "skillId": "api-testing",
+      "soQuestions": 4727
+    },
+    {
+      "tag": "rest-assured",
+      "skillId": "api-testing",
+      "soQuestions": 2227
+    },
+    {
+      "tag": "apache",
+      "skillId": "web-servers",
+      "soQuestions": 91488
+    },
+    {
+      "tag": ".htaccess",
+      "skillId": "web-servers",
+      "soQuestions": 72630
+    },
+    {
+      "tag": "nginx",
+      "skillId": "web-servers",
+      "soQuestions": 54494
+    },
+    {
+      "tag": "tomcat",
+      "skillId": "web-servers",
+      "soQuestions": 42800
+    },
+    {
+      "tag": "iis",
+      "skillId": "web-servers",
+      "soQuestions": 39377
+    },
+    {
+      "tag": "mod-rewrite",
+      "skillId": "web-servers",
+      "soQuestions": 33031
+    },
+    {
+      "tag": "apache2",
+      "skillId": "web-servers",
+      "soQuestions": 7846
+    },
+    {
+      "tag": "reverse-proxy",
+      "skillId": "web-servers",
+      "soQuestions": 5084
+    },
+    {
+      "tag": "graphql",
+      "skillId": "graphql",
+      "soQuestions": 20778
+    },
+    {
+      "tag": "apollo",
+      "skillId": "graphql",
+      "soQuestions": 4520
+    },
+    {
+      "tag": "apollo-client",
+      "skillId": "graphql",
+      "soQuestions": 3364
+    },
+    {
+      "tag": "react-apollo",
+      "skillId": "graphql",
+      "soQuestions": 2306
+    },
+    {
+      "tag": "apollo-server",
+      "skillId": "graphql",
+      "soQuestions": 2113
+    },
+    {
+      "tag": "websocket",
+      "skillId": "websockets",
+      "soQuestions": 28149
+    },
+    {
+      "tag": "socket.io",
+      "skillId": "websockets",
+      "soQuestions": 20511
+    },
+    {
+      "tag": "signalr",
+      "skillId": "websockets",
+      "soQuestions": 9817
+    },
+    {
+      "tag": "webrtc",
+      "skillId": "websockets",
+      "soQuestions": 9015,
+      "note": "realtime media; borderline"
+    },
+    {
+      "tag": "caching",
+      "skillId": "caching",
+      "soQuestions": 38283
+    },
+    {
+      "tag": "redis",
+      "skillId": "caching",
+      "soQuestions": 25415
+    },
+    {
+      "tag": "memcached",
+      "skillId": "caching",
+      "soQuestions": 5167
+    },
+    {
+      "tag": "amazon-cloudfront",
+      "skillId": "caching",
+      "soQuestions": 5017,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): moved from cloud-networking for consistency"
+    },
+    {
+      "tag": "cdn",
+      "skillId": "caching",
+      "soQuestions": 3052
+    },
+    {
+      "tag": "rabbitmq",
+      "skillId": "message-queues",
+      "soQuestions": 14319
+    },
+    {
+      "tag": "celery",
+      "skillId": "message-queues",
+      "soQuestions": 8990
+    },
+    {
+      "tag": "jms",
+      "skillId": "message-queues",
+      "soQuestions": 7632
+    },
+    {
+      "tag": "amazon-sqs",
+      "skillId": "message-queues",
+      "soQuestions": 4294
+    },
+    {
+      "tag": "message-queue",
+      "skillId": "message-queues",
+      "soQuestions": 3980
+    },
+    {
+      "tag": "zeromq",
+      "skillId": "message-queues",
+      "soQuestions": 3333
+    },
+    {
+      "tag": "google-cloud-pubsub",
+      "skillId": "message-queues",
+      "soQuestions": 3142
+    },
+    {
+      "tag": "cqrs",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 1996
+    },
+    {
+      "tag": "event-sourcing",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 1255
+    },
+    {
+      "tag": "aws-event-bridge",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 814
+    },
+    {
+      "tag": "axon",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 621
+    },
+    {
+      "tag": "saga",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 501
+    },
+    {
+      "tag": "event-driven-design",
+      "skillId": "event-driven-architecture",
+      "soQuestions": 257
+    },
+    {
+      "tag": "microservices",
+      "skillId": "microservices",
+      "soQuestions": 9282
+    },
+    {
+      "tag": "protocol-buffers",
+      "skillId": "microservices",
+      "soQuestions": 7862
+    },
+    {
+      "tag": "grpc",
+      "skillId": "microservices",
+      "soQuestions": 6786
+    },
+    {
+      "tag": "spring-cloud",
+      "skillId": "microservices",
+      "soQuestions": 5174
+    },
+    {
+      "tag": "istio",
+      "skillId": "microservices",
+      "soQuestions": 2625
+    },
+    {
+      "tag": "architecture",
+      "skillId": "system-design",
+      "soQuestions": 17247,
+      "note": "SO's tag is software architecture"
+    },
+    {
+      "tag": "load-balancing",
+      "skillId": "system-design",
+      "soQuestions": 5202
+    },
+    {
+      "tag": "replication",
+      "skillId": "system-design",
+      "soQuestions": 3893,
+      "note": "independent review 2026-08-19: moved from database-performance"
+    },
+    {
+      "tag": "distributed-computing",
+      "skillId": "system-design",
+      "soQuestions": 2854
+    },
+    {
+      "tag": "scalability",
+      "skillId": "system-design",
+      "soQuestions": 2302
+    },
+    {
+      "tag": "database-replication",
+      "skillId": "system-design",
+      "soQuestions": 1851,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "sql",
+      "skillId": "sql",
+      "soQuestions": 673627
+    },
+    {
+      "tag": "sql-server",
+      "skillId": "sql",
+      "soQuestions": 336285,
+      "note": "product tag -> SQL encounter"
+    },
+    {
+      "tag": "oracle",
+      "skillId": "sql",
+      "soQuestions": 152380,
+      "note": "name of oracle-database in the 2022 BigQuery mirror; count shown is the current tag's"
+    },
+    {
+      "tag": "oracle-database",
+      "skillId": "sql",
+      "soQuestions": 152380,
+      "note": "product tag -> SQL encounter"
+    },
+    {
+      "tag": "sqlite",
+      "skillId": "sql",
+      "soQuestions": 94947
+    },
+    {
+      "tag": "t-sql",
+      "skillId": "sql",
+      "soQuestions": 73602
+    },
+    {
+      "tag": "tsql",
+      "skillId": "sql",
+      "soQuestions": 73602,
+      "note": "name of t-sql in the 2022 BigQuery mirror; count shown is the current tag's"
+    },
+    {
+      "tag": "join",
+      "skillId": "sql",
+      "soQuestions": 43962
+    },
+    {
+      "tag": "plsql",
+      "skillId": "sql",
+      "soQuestions": 29155
+    },
+    {
+      "tag": "isnull",
+      "skillId": "sql",
+      "soQuestions": 703,
+      "note": "independent review 2026-08-19: moved from data-cleaning"
+    },
+    {
+      "tag": "database-design",
+      "skillId": "data-modeling",
+      "soQuestions": 24067
+    },
+    {
+      "tag": "foreign-keys",
+      "skillId": "data-modeling",
+      "soQuestions": 11388
+    },
+    {
+      "tag": "many-to-many",
+      "skillId": "data-modeling",
+      "soQuestions": 8773
+    },
+    {
+      "tag": "relational-database",
+      "skillId": "data-modeling",
+      "soQuestions": 6805
+    },
+    {
+      "tag": "primary-key",
+      "skillId": "data-modeling",
+      "soQuestions": 4573
+    },
+    {
+      "tag": "one-to-many",
+      "skillId": "data-modeling",
+      "soQuestions": 3749
+    },
+    {
+      "tag": "data-modeling",
+      "skillId": "data-modeling",
+      "soQuestions": 3105
+    },
+    {
+      "tag": "database-schema",
+      "skillId": "data-modeling",
+      "soQuestions": 2930,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "database-normalization",
+      "skillId": "data-modeling",
+      "soQuestions": 1471,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "erd",
+      "skillId": "data-modeling",
+      "soQuestions": 1180,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "postgresql",
+      "skillId": "postgresql",
+      "soQuestions": 178812
+    },
+    {
+      "tag": "postgis",
+      "skillId": "postgresql",
+      "soQuestions": 4702
+    },
+    {
+      "tag": "psycopg2",
+      "skillId": "postgresql",
+      "soQuestions": 4522
+    },
+    {
+      "tag": "plpgsql",
+      "skillId": "postgresql",
+      "soQuestions": 4444
+    },
+    {
+      "tag": "psql",
+      "skillId": "postgresql",
+      "soQuestions": 3752
+    },
+    {
+      "tag": "mysql",
+      "skillId": "mysql",
+      "soQuestions": 657208
+    },
+    {
+      "tag": "mysqli",
+      "skillId": "mysql",
+      "soQuestions": 22217
+    },
+    {
+      "tag": "phpmyadmin",
+      "skillId": "mysql",
+      "soQuestions": 15764
+    },
+    {
+      "tag": "mariadb",
+      "skillId": "mysql",
+      "soQuestions": 14595
+    },
+    {
+      "tag": "mysql-workbench",
+      "skillId": "mysql",
+      "soQuestions": 6929
+    },
+    {
+      "tag": "innodb",
+      "skillId": "mysql",
+      "soQuestions": 4446
+    },
+    {
+      "tag": "mysql-python",
+      "skillId": "mysql",
+      "soQuestions": 3171
+    },
+    {
+      "tag": "mongodb",
+      "skillId": "nosql-databases",
+      "soQuestions": 175187
+    },
+    {
+      "tag": "mongoose",
+      "skillId": "nosql-databases",
+      "soQuestions": 46585
+    },
+    {
+      "tag": "google-cloud-firestore",
+      "skillId": "nosql-databases",
+      "soQuestions": 42625,
+      "note": "managed document store; large mobile-dev population"
+    },
+    {
+      "tag": "firebase-realtime-database",
+      "skillId": "nosql-databases",
+      "soQuestions": 39991,
+      "note": "managed document store; large mobile-dev population"
+    },
+    {
+      "tag": "neo4j",
+      "skillId": "nosql-databases",
+      "soQuestions": 23007
+    },
+    {
+      "tag": "cassandra",
+      "skillId": "nosql-databases",
+      "soQuestions": 20870
+    },
+    {
+      "tag": "mongodb-query",
+      "skillId": "nosql-databases",
+      "soQuestions": 17485
+    },
+    {
+      "tag": "amazon-dynamodb",
+      "skillId": "nosql-databases",
+      "soQuestions": 14312,
+      "note": "managed key-value/document store -> NoSQL encounter"
+    },
+    {
+      "tag": "cypher",
+      "skillId": "nosql-databases",
+      "soQuestions": 9917,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "couchdb",
+      "skillId": "nosql-databases",
+      "soQuestions": 6126,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "couchbase",
+      "skillId": "nosql-databases",
+      "soQuestions": 4093,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "arangodb",
+      "skillId": "nosql-databases",
+      "soQuestions": 1961,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "ssis",
+      "skillId": "etl-pipelines",
+      "soQuestions": 21173
+    },
+    {
+      "tag": "azure-data-factory",
+      "skillId": "etl-pipelines",
+      "soQuestions": 9824
+    },
+    {
+      "tag": "etl",
+      "skillId": "etl-pipelines",
+      "soQuestions": 5942
+    },
+    {
+      "tag": "google-cloud-dataflow",
+      "skillId": "etl-pipelines",
+      "soQuestions": 5536
+    },
+    {
+      "tag": "apache-nifi",
+      "skillId": "etl-pipelines",
+      "soQuestions": 5267
+    },
+    {
+      "tag": "apache-beam",
+      "skillId": "etl-pipelines",
+      "soQuestions": 4857
+    },
+    {
+      "tag": "aws-glue",
+      "skillId": "etl-pipelines",
+      "soQuestions": 4176
+    },
+    {
+      "tag": "pentaho",
+      "skillId": "etl-pipelines",
+      "soQuestions": 3840,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "luigi",
+      "skillId": "etl-pipelines",
+      "soQuestions": 342,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "change-data-capture",
+      "skillId": "etl-pipelines",
+      "soQuestions": 295,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "prefect",
+      "skillId": "etl-pipelines",
+      "soQuestions": 213,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "dagster",
+      "skillId": "etl-pipelines",
+      "soQuestions": 173,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "hadoop",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 44125
+    },
+    {
+      "tag": "hive",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 21743
+    },
+    {
+      "tag": "mapreduce",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 12093
+    },
+    {
+      "tag": "hdfs",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 8245
+    },
+    {
+      "tag": "bigdata",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 7932
+    },
+    {
+      "tag": "apache-flink",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 7861
+    },
+    {
+      "tag": "hbase",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 6895
+    },
+    {
+      "tag": "apache-pig",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 5168
+    },
+    {
+      "tag": "apache-storm",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 2562,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "impala",
+      "skillId": "big-data-fundamentals",
+      "soQuestions": 2067,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "stored-procedures",
+      "skillId": "advanced-sql",
+      "soQuestions": 37096
+    },
+    {
+      "tag": "pivot",
+      "skillId": "advanced-sql",
+      "soQuestions": 11604
+    },
+    {
+      "tag": "subquery",
+      "skillId": "advanced-sql",
+      "soQuestions": 11470
+    },
+    {
+      "tag": "user-defined-functions",
+      "skillId": "advanced-sql",
+      "soQuestions": 4984
+    },
+    {
+      "tag": "window-functions",
+      "skillId": "advanced-sql",
+      "soQuestions": 4370
+    },
+    {
+      "tag": "common-table-expression",
+      "skillId": "advanced-sql",
+      "soQuestions": 4330
+    },
+    {
+      "tag": "greatest-n-per-group",
+      "skillId": "advanced-sql",
+      "soQuestions": 4301
+    },
+    {
+      "tag": "database-trigger",
+      "skillId": "advanced-sql",
+      "soQuestions": 1646,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "query-optimization",
+      "skillId": "database-performance",
+      "soQuestions": 8290
+    },
+    {
+      "tag": "connection-pooling",
+      "skillId": "database-performance",
+      "soQuestions": 3281
+    },
+    {
+      "tag": "database-partitioning",
+      "skillId": "database-performance",
+      "soQuestions": 1107,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "database-indexes",
+      "skillId": "database-performance",
+      "soQuestions": 595,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "ssas",
+      "skillId": "data-warehousing",
+      "soQuestions": 5642
+    },
+    {
+      "tag": "teradata",
+      "skillId": "data-warehousing",
+      "soQuestions": 5604
+    },
+    {
+      "tag": "mdx",
+      "skillId": "data-warehousing",
+      "soQuestions": 3953
+    },
+    {
+      "tag": "data-warehouse",
+      "skillId": "data-warehousing",
+      "soQuestions": 2808
+    },
+    {
+      "tag": "business-intelligence",
+      "skillId": "data-warehousing",
+      "soQuestions": 2033
+    },
+    {
+      "tag": "olap",
+      "skillId": "data-warehousing",
+      "soQuestions": 1692
+    },
+    {
+      "tag": "snowflake-schema",
+      "skillId": "data-warehousing",
+      "soQuestions": 968,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "dimensional-modeling",
+      "skillId": "data-warehousing",
+      "soQuestions": 468,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "star-schema",
+      "skillId": "data-warehousing",
+      "soQuestions": 373,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "databricks",
+      "skillId": "data-lakes",
+      "soQuestions": 8442
+    },
+    {
+      "tag": "azure-databricks",
+      "skillId": "data-lakes",
+      "soQuestions": 5040
+    },
+    {
+      "tag": "parquet",
+      "skillId": "data-lakes",
+      "soQuestions": 4116,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "amazon-athena",
+      "skillId": "data-lakes",
+      "soQuestions": 3617
+    },
+    {
+      "tag": "presto",
+      "skillId": "data-lakes",
+      "soQuestions": 3240,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "azure-data-lake",
+      "skillId": "data-lakes",
+      "soQuestions": 1931
+    },
+    {
+      "tag": "delta-lake",
+      "skillId": "data-lakes",
+      "soQuestions": 1421
+    },
+    {
+      "tag": "trino",
+      "skillId": "data-lakes",
+      "soQuestions": 893,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "apache-iceberg",
+      "skillId": "data-lakes",
+      "soQuestions": 316,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "apache-hudi",
+      "skillId": "data-lakes",
+      "soQuestions": 184,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "google-bigquery",
+      "skillId": "cloud-data-platforms",
+      "soQuestions": 26159
+    },
+    {
+      "tag": "snowflake-cloud-data-platform",
+      "skillId": "cloud-data-platforms",
+      "soQuestions": 12244
+    },
+    {
+      "tag": "amazon-redshift",
+      "skillId": "cloud-data-platforms",
+      "soQuestions": 8774
+    },
+    {
+      "tag": "azure-synapse",
+      "skillId": "cloud-data-platforms",
+      "soQuestions": 3015
+    },
+    {
+      "tag": "apache-spark",
+      "skillId": "apache-spark",
+      "soQuestions": 82517
+    },
+    {
+      "tag": "pyspark",
+      "skillId": "apache-spark",
+      "soQuestions": 40920
+    },
+    {
+      "tag": "apache-spark-sql",
+      "skillId": "apache-spark",
+      "soQuestions": 26904
+    },
+    {
+      "tag": "spark-streaming",
+      "skillId": "apache-spark",
+      "soQuestions": 5582
+    },
+    {
+      "tag": "rdd",
+      "skillId": "apache-spark",
+      "soQuestions": 4062
+    },
+    {
+      "tag": "apache-kafka",
+      "skillId": "apache-kafka",
+      "soQuestions": 33208
+    },
+    {
+      "tag": "spring-kafka",
+      "skillId": "apache-kafka",
+      "soQuestions": 4589
+    },
+    {
+      "tag": "kafka-consumer-api",
+      "skillId": "apache-kafka",
+      "soQuestions": 4315
+    },
+    {
+      "tag": "apache-kafka-streams",
+      "skillId": "apache-kafka",
+      "soQuestions": 4003
+    },
+    {
+      "tag": "apache-kafka-connect",
+      "skillId": "apache-kafka",
+      "soQuestions": 3834
+    },
+    {
+      "tag": "debezium",
+      "skillId": "apache-kafka",
+      "soQuestions": 1132,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "airflow",
+      "skillId": "apache-airflow",
+      "soQuestions": 10652
+    },
+    {
+      "tag": "google-cloud-composer",
+      "skillId": "apache-airflow",
+      "soQuestions": 1268
+    },
+    {
+      "tag": "airflow-2.x",
+      "skillId": "apache-airflow",
+      "soQuestions": 758
+    },
+    {
+      "tag": "dbt",
+      "skillId": "dbt",
+      "soQuestions": 1573
+    },
+    {
+      "tag": "elasticsearch",
+      "skillId": "elasticsearch",
+      "soQuestions": 58165
+    },
+    {
+      "tag": "solr",
+      "skillId": "elasticsearch",
+      "soQuestions": 20476
+    },
+    {
+      "tag": "lucene",
+      "skillId": "elasticsearch",
+      "soQuestions": 11942
+    },
+    {
+      "tag": "logstash",
+      "skillId": "elasticsearch",
+      "soQuestions": 8560,
+      "note": "ELK stack"
+    },
+    {
+      "tag": "full-text-search",
+      "skillId": "elasticsearch",
+      "soQuestions": 8050
+    },
+    {
+      "tag": "kibana",
+      "skillId": "elasticsearch",
+      "soQuestions": 6297,
+      "note": "ELK stack"
+    },
+    {
+      "tag": "elastic-stack",
+      "skillId": "elasticsearch",
+      "soQuestions": 3676,
+      "note": "ELK stack"
+    },
+    {
+      "tag": "nest",
+      "skillId": "elasticsearch",
+      "soQuestions": 3143
+    },
+    {
+      "tag": "elk",
+      "skillId": "elasticsearch",
+      "soQuestions": 1074,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "great-expectations",
+      "skillId": "data-quality",
+      "soQuestions": 147
+    },
+    {
+      "tag": "data-quality",
+      "skillId": "data-quality",
+      "soQuestions": 134,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "excel",
+      "skillId": "spreadsheets",
+      "soQuestions": 288701
+    },
+    {
+      "tag": "vba",
+      "skillId": "spreadsheets",
+      "soQuestions": 215977
+    },
+    {
+      "tag": "google-sheets",
+      "skillId": "spreadsheets",
+      "soQuestions": 56253
+    },
+    {
+      "tag": "google-apps-script",
+      "skillId": "spreadsheets",
+      "soQuestions": 55521
+    },
+    {
+      "tag": "excel-formula",
+      "skillId": "spreadsheets",
+      "soQuestions": 32628
+    },
+    {
+      "tag": "google-sheets-formula",
+      "skillId": "spreadsheets",
+      "soQuestions": 12412
+    },
+    {
+      "tag": "pivot-table",
+      "skillId": "spreadsheets",
+      "soQuestions": 8272
+    },
+    {
+      "tag": "excel-2010",
+      "skillId": "spreadsheets",
+      "soQuestions": 6226
+    },
+    {
+      "tag": "statistics",
+      "skillId": "statistics-fundamentals",
+      "soQuestions": 16232
+    },
+    {
+      "tag": "histogram",
+      "skillId": "statistics-fundamentals",
+      "soQuestions": 6770
+    },
+    {
+      "tag": "correlation",
+      "skillId": "statistics-fundamentals",
+      "soQuestions": 3648
+    },
+    {
+      "tag": "boxplot",
+      "skillId": "statistics-fundamentals",
+      "soQuestions": 3452
+    },
+    {
+      "tag": "probability",
+      "skillId": "probability",
+      "soQuestions": 4042
+    },
+    {
+      "tag": "combinatorics",
+      "skillId": "probability",
+      "soQuestions": 2407
+    },
+    {
+      "tag": "bayesian",
+      "skillId": "probability",
+      "soQuestions": 1757
+    },
+    {
+      "tag": "poisson",
+      "skillId": "probability",
+      "soQuestions": 716
+    },
+    {
+      "tag": "probability-density",
+      "skillId": "probability",
+      "soQuestions": 622
+    },
+    {
+      "tag": "markov-chains",
+      "skillId": "probability",
+      "soQuestions": 567
+    },
+    {
+      "tag": "cdf",
+      "skillId": "probability",
+      "soQuestions": 345
+    },
+    {
+      "tag": "probability-theory",
+      "skillId": "probability",
+      "soQuestions": 207
+    },
+    {
+      "tag": "regression",
+      "skillId": "inferential-statistics",
+      "soQuestions": 9385,
+      "note": "statistical modelling; ML-flavoured regressors map to supervised-learning"
+    },
+    {
+      "tag": "linear-regression",
+      "skillId": "inferential-statistics",
+      "soQuestions": 6498,
+      "note": "statistical modelling roots (R lm); arbitration vs supervised-learning"
+    },
+    {
+      "tag": "statsmodels",
+      "skillId": "inferential-statistics",
+      "soQuestions": 2837
+    },
+    {
+      "tag": "glm",
+      "skillId": "inferential-statistics",
+      "soQuestions": 2001
+    },
+    {
+      "tag": "lme4",
+      "skillId": "inferential-statistics",
+      "soQuestions": 1786
+    },
+    {
+      "tag": "pandas",
+      "skillId": "python-data-analysis",
+      "soQuestions": 288856
+    },
+    {
+      "tag": "numpy",
+      "skillId": "python-data-analysis",
+      "soQuestions": 115130
+    },
+    {
+      "tag": "pandas-groupby",
+      "skillId": "python-data-analysis",
+      "soQuestions": 8677
+    },
+    {
+      "tag": "dask",
+      "skillId": "python-data-analysis",
+      "soQuestions": 4629
+    },
+    {
+      "tag": "numpy-ndarray",
+      "skillId": "python-data-analysis",
+      "soQuestions": 3929
+    },
+    {
+      "tag": "r",
+      "skillId": "r-programming",
+      "soQuestions": 510407
+    },
+    {
+      "tag": "ggplot2",
+      "skillId": "r-programming",
+      "soQuestions": 57685
+    },
+    {
+      "tag": "dplyr",
+      "skillId": "r-programming",
+      "soQuestions": 37602
+    },
+    {
+      "tag": "shiny",
+      "skillId": "r-programming",
+      "soQuestions": 29392
+    },
+    {
+      "tag": "data.table",
+      "skillId": "r-programming",
+      "soQuestions": 13821
+    },
+    {
+      "tag": "r-markdown",
+      "skillId": "r-programming",
+      "soQuestions": 10822
+    },
+    {
+      "tag": "tidyverse",
+      "skillId": "r-programming",
+      "soQuestions": 10255
+    },
+    {
+      "tag": "rstudio",
+      "skillId": "r-programming",
+      "soQuestions": 7822
+    },
+    {
+      "tag": "devtools",
+      "skillId": "r-programming",
+      "soQuestions": 1537,
+      "note": "independent review 2026-08-19: moved from browser-devtools"
+    },
+    {
+      "tag": "data-cleaning",
+      "skillId": "data-cleaning",
+      "soQuestions": 3569
+    },
+    {
+      "tag": "missing-data",
+      "skillId": "data-cleaning",
+      "soQuestions": 2866
+    },
+    {
+      "tag": "data-wrangling",
+      "skillId": "data-cleaning",
+      "soQuestions": 1342
+    },
+    {
+      "tag": "imputation",
+      "skillId": "data-cleaning",
+      "soQuestions": 941
+    },
+    {
+      "tag": "fillna",
+      "skillId": "data-cleaning",
+      "soQuestions": 549
+    },
+    {
+      "tag": "data-preprocessing",
+      "skillId": "data-cleaning",
+      "soQuestions": 490
+    },
+    {
+      "tag": "jupyter-notebook",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 24990,
+      "note": "notebook tooling as EDA proxy"
+    },
+    {
+      "tag": "data-science",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 8590
+    },
+    {
+      "tag": "jupyter",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 8015,
+      "note": "notebook tooling"
+    },
+    {
+      "tag": "google-colaboratory",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 7674,
+      "note": "notebook tooling"
+    },
+    {
+      "tag": "ipython",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 7201,
+      "note": "notebook tooling"
+    },
+    {
+      "tag": "data-analysis",
+      "skillId": "exploratory-data-analysis",
+      "soQuestions": 4822
+    },
+    {
+      "tag": "matplotlib",
+      "skillId": "data-visualization",
+      "soQuestions": 72732
+    },
+    {
+      "tag": "plotly",
+      "skillId": "data-visualization",
+      "soQuestions": 15649
+    },
+    {
+      "tag": "seaborn",
+      "skillId": "data-visualization",
+      "soQuestions": 9761
+    },
+    {
+      "tag": "data-visualization",
+      "skillId": "data-visualization",
+      "soQuestions": 7356,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "bokeh",
+      "skillId": "data-visualization",
+      "soQuestions": 4733,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "plotly-dash",
+      "skillId": "data-visualization",
+      "soQuestions": 4567,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "altair",
+      "skillId": "data-visualization",
+      "soQuestions": 1421,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "tableau-api",
+      "skillId": "tableau",
+      "soQuestions": 5352
+    },
+    {
+      "tag": "tableau-desktop",
+      "skillId": "tableau",
+      "soQuestions": 784
+    },
+    {
+      "tag": "powerbi",
+      "skillId": "power-bi",
+      "soQuestions": 20534
+    },
+    {
+      "tag": "dax",
+      "skillId": "power-bi",
+      "soQuestions": 9708
+    },
+    {
+      "tag": "powerquery",
+      "skillId": "power-bi",
+      "soQuestions": 6562
+    },
+    {
+      "tag": "powerbi-desktop",
+      "skillId": "power-bi",
+      "soQuestions": 4487
+    },
+    {
+      "tag": "ab-testing",
+      "skillId": "ab-testing",
+      "soQuestions": 426,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "multivariate-testing",
+      "skillId": "ab-testing",
+      "soQuestions": 255
+    },
+    {
+      "tag": "google-optimize",
+      "skillId": "ab-testing",
+      "soQuestions": 165
+    },
+    {
+      "tag": "optimizely",
+      "skillId": "ab-testing",
+      "soQuestions": 157
+    },
+    {
+      "tag": "time-series",
+      "skillId": "time-series-analysis",
+      "soQuestions": 15349
+    },
+    {
+      "tag": "forecasting",
+      "skillId": "time-series-analysis",
+      "soQuestions": 2261
+    },
+    {
+      "tag": "arima",
+      "skillId": "time-series-analysis",
+      "soQuestions": 1188
+    },
+    {
+      "tag": "rolling-computation",
+      "skillId": "time-series-analysis",
+      "soQuestions": 1155
+    },
+    {
+      "tag": "machine-learning",
+      "skillId": "ml-fundamentals",
+      "soQuestions": 55589
+    },
+    {
+      "tag": "artificial-intelligence",
+      "skillId": "ml-fundamentals",
+      "soQuestions": 8895,
+      "note": "generic AI encounter"
+    },
+    {
+      "tag": "training-data",
+      "skillId": "ml-fundamentals",
+      "soQuestions": 1716
+    },
+    {
+      "tag": "linear-algebra",
+      "skillId": "math-for-ml",
+      "soQuestions": 4639
+    },
+    {
+      "tag": "matrix-multiplication",
+      "skillId": "math-for-ml",
+      "soQuestions": 3009
+    },
+    {
+      "tag": "gradient-descent",
+      "skillId": "math-for-ml",
+      "soQuestions": 1457
+    },
+    {
+      "tag": "matrix-factorization",
+      "skillId": "math-for-ml",
+      "soQuestions": 185,
+      "note": "independent review 2026-08-19: moved from recommender-systems"
+    },
+    {
+      "tag": "neural-network",
+      "skillId": "neural-networks",
+      "soQuestions": 19956
+    },
+    {
+      "tag": "loss-function",
+      "skillId": "neural-networks",
+      "soQuestions": 1712
+    },
+    {
+      "tag": "classification",
+      "skillId": "supervised-learning",
+      "soQuestions": 7741
+    },
+    {
+      "tag": "svm",
+      "skillId": "supervised-learning",
+      "soQuestions": 4477
+    },
+    {
+      "tag": "logistic-regression",
+      "skillId": "supervised-learning",
+      "soQuestions": 3713,
+      "note": "classification; arbitration vs inferential-statistics"
+    },
+    {
+      "tag": "random-forest",
+      "skillId": "supervised-learning",
+      "soQuestions": 3634
+    },
+    {
+      "tag": "xgboost",
+      "skillId": "supervised-learning",
+      "soQuestions": 2809
+    },
+    {
+      "tag": "decision-tree",
+      "skillId": "supervised-learning",
+      "soQuestions": 2505
+    },
+    {
+      "tag": "knn",
+      "skillId": "supervised-learning",
+      "soQuestions": 1751
+    },
+    {
+      "tag": "cluster-analysis",
+      "skillId": "unsupervised-learning",
+      "soQuestions": 6149
+    },
+    {
+      "tag": "k-means",
+      "skillId": "unsupervised-learning",
+      "soQuestions": 3454
+    },
+    {
+      "tag": "pca",
+      "skillId": "unsupervised-learning",
+      "soQuestions": 2707
+    },
+    {
+      "tag": "hierarchical-clustering",
+      "skillId": "unsupervised-learning",
+      "soQuestions": 1174
+    },
+    {
+      "tag": "scikit-learn",
+      "skillId": "scikit-learn",
+      "soQuestions": 28178
+    },
+    {
+      "tag": "sklearn-pandas",
+      "skillId": "scikit-learn",
+      "soQuestions": 1311
+    },
+    {
+      "tag": "hyperparameters",
+      "skillId": "scikit-learn",
+      "soQuestions": 859
+    },
+    {
+      "tag": "categorical-data",
+      "skillId": "feature-engineering",
+      "soQuestions": 1772
+    },
+    {
+      "tag": "feature-extraction",
+      "skillId": "feature-engineering",
+      "soQuestions": 1630
+    },
+    {
+      "tag": "feature-selection",
+      "skillId": "feature-engineering",
+      "soQuestions": 1462
+    },
+    {
+      "tag": "one-hot-encoding",
+      "skillId": "feature-engineering",
+      "soQuestions": 1221
+    },
+    {
+      "tag": "data-augmentation",
+      "skillId": "feature-engineering",
+      "soQuestions": 463
+    },
+    {
+      "tag": "feature-engineering",
+      "skillId": "feature-engineering",
+      "soQuestions": 454
+    },
+    {
+      "tag": "imbalanced-data",
+      "skillId": "feature-engineering",
+      "soQuestions": 328
+    },
+    {
+      "tag": "smote",
+      "skillId": "feature-engineering",
+      "soQuestions": 170
+    },
+    {
+      "tag": "cross-validation",
+      "skillId": "model-evaluation",
+      "soQuestions": 2538
+    },
+    {
+      "tag": "confusion-matrix",
+      "skillId": "model-evaluation",
+      "soQuestions": 1094
+    },
+    {
+      "tag": "roc",
+      "skillId": "model-evaluation",
+      "soQuestions": 1058
+    },
+    {
+      "tag": "auc",
+      "skillId": "model-evaluation",
+      "soQuestions": 529
+    },
+    {
+      "tag": "precision-recall",
+      "skillId": "model-evaluation",
+      "soQuestions": 425
+    },
+    {
+      "tag": "k-fold",
+      "skillId": "model-evaluation",
+      "soQuestions": 272
+    },
+    {
+      "tag": "mse",
+      "skillId": "model-evaluation",
+      "soQuestions": 228
+    },
+    {
+      "tag": "mean-square-error",
+      "skillId": "model-evaluation",
+      "soQuestions": 114
+    },
+    {
+      "tag": "deep-learning",
+      "skillId": "deep-learning",
+      "soQuestions": 27172
+    },
+    {
+      "tag": "conv-neural-network",
+      "skillId": "deep-learning",
+      "soQuestions": 10328
+    },
+    {
+      "tag": "lstm",
+      "skillId": "deep-learning",
+      "soQuestions": 6101
+    },
+    {
+      "tag": "recurrent-neural-network",
+      "skillId": "deep-learning",
+      "soQuestions": 3271
+    },
+    {
+      "tag": "pytorch",
+      "skillId": "pytorch",
+      "soQuestions": 23827
+    },
+    {
+      "tag": "torch",
+      "skillId": "pytorch",
+      "soQuestions": 2143
+    },
+    {
+      "tag": "torchvision",
+      "skillId": "pytorch",
+      "soQuestions": 673
+    },
+    {
+      "tag": "tensorflow",
+      "skillId": "tensorflow",
+      "soQuestions": 82097
+    },
+    {
+      "tag": "keras",
+      "skillId": "tensorflow",
+      "soQuestions": 42092
+    },
+    {
+      "tag": "tensorflow2.0",
+      "skillId": "tensorflow",
+      "soQuestions": 5602
+    },
+    {
+      "tag": "opencv",
+      "skillId": "computer-vision",
+      "soQuestions": 72699
+    },
+    {
+      "tag": "image-processing",
+      "skillId": "computer-vision",
+      "soQuestions": 42101
+    },
+    {
+      "tag": "computer-vision",
+      "skillId": "computer-vision",
+      "soQuestions": 15862
+    },
+    {
+      "tag": "ocr",
+      "skillId": "computer-vision",
+      "soQuestions": 6211
+    },
+    {
+      "tag": "object-detection",
+      "skillId": "computer-vision",
+      "soQuestions": 4485
+    },
+    {
+      "tag": "tesseract",
+      "skillId": "computer-vision",
+      "soQuestions": 4413
+    },
+    {
+      "tag": "nlp",
+      "skillId": "nlp",
+      "soQuestions": 20255
+    },
+    {
+      "tag": "nltk",
+      "skillId": "nlp",
+      "soQuestions": 7074
+    },
+    {
+      "tag": "spacy",
+      "skillId": "nlp",
+      "soQuestions": 3792
+    },
+    {
+      "tag": "huggingface-transformers",
+      "skillId": "nlp",
+      "soQuestions": 3358
+    },
+    {
+      "tag": "stanford-nlp",
+      "skillId": "nlp",
+      "soQuestions": 3280
+    },
+    {
+      "tag": "huggingface",
+      "skillId": "nlp",
+      "soQuestions": 906,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "recommendation-engine",
+      "skillId": "recommender-systems",
+      "soQuestions": 1411
+    },
+    {
+      "tag": "collaborative-filtering",
+      "skillId": "recommender-systems",
+      "soQuestions": 357
+    },
+    {
+      "tag": "mahout-recommender",
+      "skillId": "recommender-systems",
+      "soQuestions": 269
+    },
+    {
+      "tag": "reinforcement-learning",
+      "skillId": "reinforcement-learning",
+      "soQuestions": 2579
+    },
+    {
+      "tag": "openai-gym",
+      "skillId": "reinforcement-learning",
+      "soQuestions": 1003
+    },
+    {
+      "tag": "q-learning",
+      "skillId": "reinforcement-learning",
+      "soQuestions": 441
+    },
+    {
+      "tag": "stable-baselines",
+      "skillId": "reinforcement-learning",
+      "soQuestions": 267
+    },
+    {
+      "tag": "dqn",
+      "skillId": "reinforcement-learning",
+      "soQuestions": 186
+    },
+    {
+      "tag": "shap",
+      "skillId": "model-interpretability",
+      "soQuestions": 483,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "lime",
+      "skillId": "model-interpretability",
+      "soQuestions": 96
+    },
+    {
+      "tag": "amazon-sagemaker",
+      "skillId": "mlops",
+      "soQuestions": 3032,
+      "note": "managed ML platform"
+    },
+    {
+      "tag": "azure-machine-learning-service",
+      "skillId": "mlops",
+      "soQuestions": 2010,
+      "note": "managed ML platform"
+    },
+    {
+      "tag": "google-cloud-ml",
+      "skillId": "mlops",
+      "soQuestions": 1007,
+      "note": "managed ML platform (legacy)"
+    },
+    {
+      "tag": "google-cloud-vertex-ai",
+      "skillId": "mlops",
+      "soQuestions": 987,
+      "note": "managed ML platform"
+    },
+    {
+      "tag": "mlflow",
+      "skillId": "mlops",
+      "soQuestions": 771
+    },
+    {
+      "tag": "kubeflow",
+      "skillId": "mlops",
+      "soQuestions": 420
+    },
+    {
+      "tag": "kubeflow-pipelines",
+      "skillId": "mlops",
+      "soQuestions": 277
+    },
+    {
+      "tag": "mlops",
+      "skillId": "mlops",
+      "soQuestions": 260
+    },
+    {
+      "tag": "dvc",
+      "skillId": "mlops",
+      "soQuestions": 165,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "wandb",
+      "skillId": "mlops",
+      "soQuestions": 140,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "streamlit",
+      "skillId": "model-deployment",
+      "soQuestions": 2268,
+      "note": "model demo/serving apps"
+    },
+    {
+      "tag": "tensorflow-serving",
+      "skillId": "model-deployment",
+      "soQuestions": 1247
+    },
+    {
+      "tag": "coreml",
+      "skillId": "model-deployment",
+      "soQuestions": 943
+    },
+    {
+      "tag": "onnx",
+      "skillId": "model-deployment",
+      "soQuestions": 863
+    },
+    {
+      "tag": "openvino",
+      "skillId": "model-deployment",
+      "soQuestions": 391
+    },
+    {
+      "tag": "tensorrt",
+      "skillId": "model-deployment",
+      "soQuestions": 365
+    },
+    {
+      "tag": "onnxruntime",
+      "skillId": "model-deployment",
+      "soQuestions": 345
+    },
+    {
+      "tag": "tflite",
+      "skillId": "model-deployment",
+      "soQuestions": 299
+    },
+    {
+      "tag": "gradio",
+      "skillId": "model-deployment",
+      "soQuestions": 199,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "large-language-model",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 1605
+    },
+    {
+      "tag": "llama",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 363
+    },
+    {
+      "tag": "gpt-3",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 285
+    },
+    {
+      "tag": "gpt-2",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 190
+    },
+    {
+      "tag": "gpt-4",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 129
+    },
+    {
+      "tag": "claude",
+      "skillId": "llm-fundamentals",
+      "soQuestions": 117
+    },
+    {
+      "tag": "openai-api",
+      "skillId": "llm-apis",
+      "soQuestions": 2554
+    },
+    {
+      "tag": "azure-openai",
+      "skillId": "llm-apis",
+      "soQuestions": 527
+    },
+    {
+      "tag": "chatgpt-api",
+      "skillId": "llm-apis",
+      "soQuestions": 501
+    },
+    {
+      "tag": "google-gemini",
+      "skillId": "llm-apis",
+      "soQuestions": 381
+    },
+    {
+      "tag": "amazon-bedrock",
+      "skillId": "llm-apis",
+      "soQuestions": 165
+    },
+    {
+      "tag": "spring-ai",
+      "skillId": "llm-apis",
+      "soQuestions": 100
+    },
+    {
+      "tag": "aif360",
+      "skillId": "responsible-ai",
+      "soQuestions": 14,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "fairlearn",
+      "skillId": "responsible-ai",
+      "soQuestions": 11,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "sentence-transformers",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 231
+    },
+    {
+      "tag": "faiss",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 136
+    },
+    {
+      "tag": "vector-search",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 89,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "semantic-search",
+      "skillId": "embeddings-vector-search",
+      "soQuestions": 53,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "vector-database",
+      "skillId": "vector-databases",
+      "soQuestions": 290
+    },
+    {
+      "tag": "chromadb",
+      "skillId": "vector-databases",
+      "soQuestions": 266
+    },
+    {
+      "tag": "milvus",
+      "skillId": "vector-databases",
+      "soQuestions": 211
+    },
+    {
+      "tag": "weaviate",
+      "skillId": "vector-databases",
+      "soQuestions": 160
+    },
+    {
+      "tag": "azure-ai-search",
+      "skillId": "vector-databases",
+      "soQuestions": 140
+    },
+    {
+      "tag": "pinecone",
+      "skillId": "vector-databases",
+      "soQuestions": 117
+    },
+    {
+      "tag": "pgvector",
+      "skillId": "vector-databases",
+      "soQuestions": 90
+    },
+    {
+      "tag": "langchain",
+      "skillId": "rag",
+      "soQuestions": 1981
+    },
+    {
+      "tag": "py-langchain",
+      "skillId": "rag",
+      "soQuestions": 386
+    },
+    {
+      "tag": "llama-index",
+      "skillId": "rag",
+      "soQuestions": 320
+    },
+    {
+      "tag": "rag",
+      "skillId": "rag",
+      "soQuestions": 144,
+      "note": "short tag; check it is the RAG tag"
+    },
+    {
+      "tag": "retrieval-augmented-generation",
+      "skillId": "rag",
+      "soQuestions": 95
+    },
+    {
+      "tag": "langchain-js",
+      "skillId": "rag",
+      "soQuestions": 59,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "model-context-protocol",
+      "skillId": "ai-agents",
+      "soQuestions": 180
+    },
+    {
+      "tag": "langgraph",
+      "skillId": "ai-agents",
+      "soQuestions": 144
+    },
+    {
+      "tag": "semantic-kernel",
+      "skillId": "ai-agents",
+      "soQuestions": 58
+    },
+    {
+      "tag": "crewai",
+      "skillId": "ai-agents",
+      "soQuestions": 41
+    },
+    {
+      "tag": "openai-assistants-api",
+      "skillId": "ai-agents",
+      "soQuestions": 29
+    },
+    {
+      "tag": "fine-tuning",
+      "skillId": "fine-tuning",
+      "soQuestions": 244
+    },
+    {
+      "tag": "peft",
+      "skillId": "fine-tuning",
+      "soQuestions": 64
+    },
+    {
+      "tag": "ollama",
+      "skillId": "local-llms",
+      "soQuestions": 261
+    },
+    {
+      "tag": "llama-cpp-python",
+      "skillId": "local-llms",
+      "soQuestions": 59
+    },
+    {
+      "tag": "vllm",
+      "skillId": "local-llms",
+      "soQuestions": 32
+    },
+    {
+      "tag": "openai-whisper",
+      "skillId": "multimodal-ai",
+      "soQuestions": 254,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "stable-diffusion",
+      "skillId": "multimodal-ai",
+      "soQuestions": 238,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "vercel-ai",
+      "skillId": "ai-app-development",
+      "soQuestions": 25,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "chainlit",
+      "skillId": "ai-app-development",
+      "soQuestions": 14,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): added"
+    },
+    {
+      "tag": "heroku",
+      "skillId": "cloud-fundamentals",
+      "soQuestions": 43263,
+      "note": "PaaS hosting; first cloud-hosting encounter for many"
+    },
+    {
+      "tag": "cloud",
+      "skillId": "cloud-fundamentals",
+      "soQuestions": 9058
+    },
+    {
+      "tag": "digital-ocean",
+      "skillId": "cloud-fundamentals",
+      "soQuestions": 3963
+    },
+    {
+      "tag": "amazon-web-services",
+      "skillId": "aws-fundamentals",
+      "soQuestions": 158647
+    },
+    {
+      "tag": "amazon-ec2",
+      "skillId": "aws-fundamentals",
+      "soQuestions": 36647
+    },
+    {
+      "tag": "boto3",
+      "skillId": "aws-fundamentals",
+      "soQuestions": 7830
+    },
+    {
+      "tag": "aws-sdk",
+      "skillId": "aws-fundamentals",
+      "soQuestions": 6328
+    },
+    {
+      "tag": "aws-cli",
+      "skillId": "aws-fundamentals",
+      "soQuestions": 4484
+    },
+    {
+      "tag": "azure",
+      "skillId": "azure-fundamentals",
+      "soQuestions": 144997
+    },
+    {
+      "tag": "azure-web-app-service",
+      "skillId": "azure-fundamentals",
+      "soQuestions": 12528
+    },
+    {
+      "tag": "azure-resource-manager",
+      "skillId": "azure-fundamentals",
+      "soQuestions": 3150
+    },
+    {
+      "tag": "azure-powershell",
+      "skillId": "azure-fundamentals",
+      "soQuestions": 3053
+    },
+    {
+      "tag": "google-cloud-platform",
+      "skillId": "gcp-fundamentals",
+      "soQuestions": 50315
+    },
+    {
+      "tag": "google-app-engine",
+      "skillId": "gcp-fundamentals",
+      "soQuestions": 46896
+    },
+    {
+      "tag": "google-compute-engine",
+      "skillId": "gcp-fundamentals",
+      "soQuestions": 6705
+    },
+    {
+      "tag": "gcloud",
+      "skillId": "gcp-fundamentals",
+      "soQuestions": 4590
+    },
+    {
+      "tag": "amazon-elb",
+      "skillId": "cloud-networking",
+      "soQuestions": 2687
+    },
+    {
+      "tag": "amazon-vpc",
+      "skillId": "cloud-networking",
+      "soQuestions": 2662
+    },
+    {
+      "tag": "amazon-route53",
+      "skillId": "cloud-networking",
+      "soQuestions": 2625
+    },
+    {
+      "tag": "azure-virtual-network",
+      "skillId": "cloud-networking",
+      "soQuestions": 1380
+    },
+    {
+      "tag": "aws-application-load-balancer",
+      "skillId": "cloud-networking",
+      "soQuestions": 1097
+    },
+    {
+      "tag": "amazon-s3",
+      "skillId": "cloud-storage",
+      "soQuestions": 50784
+    },
+    {
+      "tag": "google-cloud-storage",
+      "skillId": "cloud-storage",
+      "soQuestions": 11241
+    },
+    {
+      "tag": "azure-blob-storage",
+      "skillId": "cloud-storage",
+      "soQuestions": 9179
+    },
+    {
+      "tag": "azure-storage",
+      "skillId": "cloud-storage",
+      "soQuestions": 6619
+    },
+    {
+      "tag": "azure-sql-database",
+      "skillId": "cloud-databases",
+      "soQuestions": 10114
+    },
+    {
+      "tag": "amazon-rds",
+      "skillId": "cloud-databases",
+      "soQuestions": 7017
+    },
+    {
+      "tag": "google-cloud-sql",
+      "skillId": "cloud-databases",
+      "soQuestions": 3868
+    },
+    {
+      "tag": "supabase",
+      "skillId": "cloud-databases",
+      "soQuestions": 2145
+    },
+    {
+      "tag": "amazon-aurora",
+      "skillId": "cloud-databases",
+      "soQuestions": 1641
+    },
+    {
+      "tag": "aws-lambda",
+      "skillId": "serverless",
+      "soQuestions": 31952
+    },
+    {
+      "tag": "google-cloud-functions",
+      "skillId": "serverless",
+      "soQuestions": 18442
+    },
+    {
+      "tag": "azure-functions",
+      "skillId": "serverless",
+      "soQuestions": 17503
+    },
+    {
+      "tag": "aws-api-gateway",
+      "skillId": "serverless",
+      "soQuestions": 7761
+    },
+    {
+      "tag": "serverless",
+      "skillId": "serverless",
+      "soQuestions": 3542
+    },
+    {
+      "tag": "google-cloud-run",
+      "skillId": "serverless",
+      "soQuestions": 3136
+    },
+    {
+      "tag": "serverless-framework",
+      "skillId": "serverless",
+      "soQuestions": 3093
+    },
+    {
+      "tag": "amazon-iam",
+      "skillId": "cloud-security",
+      "soQuestions": 5630
+    },
+    {
+      "tag": "azure-keyvault",
+      "skillId": "cloud-security",
+      "soQuestions": 3063
+    },
+    {
+      "tag": "aws-secrets-manager",
+      "skillId": "cloud-security",
+      "soQuestions": 922
+    },
+    {
+      "tag": "google-cloud-iam",
+      "skillId": "cloud-security",
+      "soQuestions": 747
+    },
+    {
+      "tag": "amazon-kms",
+      "skillId": "cloud-security",
+      "soQuestions": 745
+    },
+    {
+      "tag": "autoscaling",
+      "skillId": "cloud-architecture",
+      "soQuestions": 1851
+    },
+    {
+      "tag": "failover",
+      "skillId": "cloud-architecture",
+      "soQuestions": 856
+    },
+    {
+      "tag": "aws-auto-scaling",
+      "skillId": "cloud-architecture",
+      "soQuestions": 390
+    },
+    {
+      "tag": "disaster-recovery",
+      "skillId": "cloud-architecture",
+      "soQuestions": 277
+    },
+    {
+      "tag": "aws-billing",
+      "skillId": "cloud-cost-optimization",
+      "soQuestions": 145,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "google-cloud-billing",
+      "skillId": "cloud-cost-optimization",
+      "soQuestions": 112
+    },
+    {
+      "tag": "aws-cost-explorer",
+      "skillId": "cloud-cost-optimization",
+      "soQuestions": 54
+    },
+    {
+      "tag": "deployment",
+      "skillId": "devops-fundamentals",
+      "soQuestions": 26315,
+      "note": "generic deployment questions = devops encounter"
+    },
+    {
+      "tag": "devops",
+      "skillId": "devops-fundamentals",
+      "soQuestions": 8111
+    },
+    {
+      "tag": "artifactory",
+      "skillId": "devops-fundamentals",
+      "soQuestions": 4371
+    },
+    {
+      "tag": "nexus",
+      "skillId": "devops-fundamentals",
+      "soQuestions": 3113
+    },
+    {
+      "tag": "ssh",
+      "skillId": "linux-administration",
+      "soQuestions": 29981
+    },
+    {
+      "tag": "cron",
+      "skillId": "linux-administration",
+      "soQuestions": 19426
+    },
+    {
+      "tag": "centos",
+      "skillId": "linux-administration",
+      "soQuestions": 12211
+    },
+    {
+      "tag": "debian",
+      "skillId": "linux-administration",
+      "soQuestions": 10175
+    },
+    {
+      "tag": "redhat",
+      "skillId": "linux-administration",
+      "soQuestions": 3825
+    },
+    {
+      "tag": "file-permissions",
+      "skillId": "linux-administration",
+      "soQuestions": 3099
+    },
+    {
+      "tag": "docker",
+      "skillId": "docker",
+      "soQuestions": 138970
+    },
+    {
+      "tag": "docker-compose",
+      "skillId": "docker",
+      "soQuestions": 32228
+    },
+    {
+      "tag": "dockerfile",
+      "skillId": "docker",
+      "soQuestions": 16088
+    },
+    {
+      "tag": "amazon-ecs",
+      "skillId": "docker",
+      "soQuestions": 5425,
+      "note": "owner decision 2026-08-19 (no pre-LLM / generic noise): moved from aws-fundamentals for consistency"
+    },
+    {
+      "tag": "docker-swarm",
+      "skillId": "docker",
+      "soQuestions": 3192
+    },
+    {
+      "tag": "jenkins",
+      "skillId": "ci-cd",
+      "soQuestions": 50473
+    },
+    {
+      "tag": "azure-devops",
+      "skillId": "ci-cd",
+      "soQuestions": 33355,
+      "note": "mostly Pipelines questions"
+    },
+    {
+      "tag": "continuous-integration",
+      "skillId": "ci-cd",
+      "soQuestions": 14027
+    },
+    {
+      "tag": "azure-pipelines",
+      "skillId": "ci-cd",
+      "soQuestions": 13191
+    },
+    {
+      "tag": "jenkins-pipeline",
+      "skillId": "ci-cd",
+      "soQuestions": 12791
+    },
+    {
+      "tag": "github-actions",
+      "skillId": "ci-cd",
+      "soQuestions": 11215
+    },
+    {
+      "tag": "gitlab-ci",
+      "skillId": "ci-cd",
+      "soQuestions": 8884
+    },
+    {
+      "tag": "jenkins-plugins",
+      "skillId": "ci-cd",
+      "soQuestions": 7209
+    },
+    {
+      "tag": "terraform",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 20188
+    },
+    {
+      "tag": "amazon-cloudformation",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 8365,
+      "note": "name of aws-cloudformation in the 2022 BigQuery mirror; count shown is the current tag's"
+    },
+    {
+      "tag": "aws-cloudformation",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 8365
+    },
+    {
+      "tag": "terraform-provider-aws",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 4275
+    },
+    {
+      "tag": "aws-cdk",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 3880
+    },
+    {
+      "tag": "terraform-provider-azure",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 2535
+    },
+    {
+      "tag": "kubernetes",
+      "skillId": "kubernetes",
+      "soQuestions": 57730
+    },
+    {
+      "tag": "openshift",
+      "skillId": "kubernetes",
+      "soQuestions": 7643
+    },
+    {
+      "tag": "google-kubernetes-engine",
+      "skillId": "kubernetes",
+      "soQuestions": 6978
+    },
+    {
+      "tag": "kubernetes-helm",
+      "skillId": "kubernetes",
+      "soQuestions": 6369
+    },
+    {
+      "tag": "kubernetes-ingress",
+      "skillId": "kubernetes",
+      "soQuestions": 3909
+    },
+    {
+      "tag": "amazon-eks",
+      "skillId": "kubernetes",
+      "soQuestions": 3725
+    },
+    {
+      "tag": "azure-aks",
+      "skillId": "kubernetes",
+      "soQuestions": 3684
+    },
+    {
+      "tag": "kubectl",
+      "skillId": "kubernetes",
+      "soQuestions": 3675
+    },
+    {
+      "tag": "ansible",
+      "skillId": "configuration-management",
+      "soQuestions": 22927
+    },
+    {
+      "tag": "chef-infra",
+      "skillId": "configuration-management",
+      "soQuestions": 6480
+    },
+    {
+      "tag": "puppet",
+      "skillId": "configuration-management",
+      "soQuestions": 4103
+    },
+    {
+      "tag": "prometheus",
+      "skillId": "monitoring-observability",
+      "soQuestions": 6970
+    },
+    {
+      "tag": "grafana",
+      "skillId": "monitoring-observability",
+      "soQuestions": 5844
+    },
+    {
+      "tag": "monitoring",
+      "skillId": "monitoring-observability",
+      "soQuestions": 4725
+    },
+    {
+      "tag": "amazon-cloudwatch",
+      "skillId": "monitoring-observability",
+      "soQuestions": 4168
+    },
+    {
+      "tag": "splunk",
+      "skillId": "monitoring-observability",
+      "soQuestions": 2330,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "sentry",
+      "skillId": "monitoring-observability",
+      "soQuestions": 1549,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "datadog",
+      "skillId": "monitoring-observability",
+      "soQuestions": 1105,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "jaeger",
+      "skillId": "monitoring-observability",
+      "soQuestions": 441,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "distributed-tracing",
+      "skillId": "monitoring-observability",
+      "soQuestions": 256,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "selenium",
+      "skillId": "test-automation",
+      "soQuestions": 99937
+    },
+    {
+      "tag": "selenium-webdriver",
+      "skillId": "test-automation",
+      "soQuestions": 57376
+    },
+    {
+      "tag": "selenium-chromedriver",
+      "skillId": "test-automation",
+      "soQuestions": 14907
+    },
+    {
+      "tag": "automated-tests",
+      "skillId": "test-automation",
+      "soQuestions": 13204
+    },
+    {
+      "tag": "webdriver",
+      "skillId": "test-automation",
+      "soQuestions": 12268
+    },
+    {
+      "tag": "protractor",
+      "skillId": "test-automation",
+      "soQuestions": 11301
+    },
+    {
+      "tag": "cucumber",
+      "skillId": "test-automation",
+      "soQuestions": 10995
+    },
+    {
+      "tag": "testng",
+      "skillId": "test-automation",
+      "soQuestions": 8403
+    },
+    {
+      "tag": "argocd",
+      "skillId": "gitops",
+      "soQuestions": 605,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "gitops",
+      "skillId": "gitops",
+      "soQuestions": 133
+    },
+    {
+      "tag": "fluxcd",
+      "skillId": "gitops",
+      "soQuestions": 66
+    },
+    {
+      "tag": "runbook",
+      "skillId": "sre-fundamentals",
+      "soQuestions": 119
+    },
+    {
+      "tag": "pagerduty",
+      "skillId": "sre-fundamentals",
+      "soQuestions": 63
+    },
+    {
+      "tag": "sre",
+      "skillId": "sre-fundamentals",
+      "soQuestions": 39,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "security",
+      "skillId": "security-fundamentals",
+      "soQuestions": 56269,
+      "note": "generic security encounter"
+    },
+    {
+      "tag": "malware",
+      "skillId": "security-fundamentals",
+      "soQuestions": 856
+    },
+    {
+      "tag": "csrf",
+      "skillId": "web-security",
+      "soQuestions": 4711
+    },
+    {
+      "tag": "xss",
+      "skillId": "web-security",
+      "soQuestions": 4467
+    },
+    {
+      "tag": "sql-injection",
+      "skillId": "web-security",
+      "soQuestions": 3802
+    },
+    {
+      "tag": "content-security-policy",
+      "skillId": "web-security",
+      "soQuestions": 2925
+    },
+    {
+      "tag": "owasp",
+      "skillId": "web-security",
+      "soQuestions": 1139
+    },
+    {
+      "tag": "samesite",
+      "skillId": "web-security",
+      "soQuestions": 469
+    },
+    {
+      "tag": "hsts",
+      "skillId": "web-security",
+      "soQuestions": 335
+    },
+    {
+      "tag": "httponly",
+      "skillId": "web-security",
+      "soQuestions": 318
+    },
+    {
+      "tag": "ssl",
+      "skillId": "network-security",
+      "soQuestions": 50931,
+      "note": "TLS in transit; certificate/crypto tags map to cryptography-basics"
+    },
+    {
+      "tag": "https",
+      "skillId": "network-security",
+      "soQuestions": 24955,
+      "note": "TLS in transit"
+    },
+    {
+      "tag": "vpn",
+      "skillId": "network-security",
+      "soQuestions": 3200
+    },
+    {
+      "tag": "wireshark",
+      "skillId": "network-security",
+      "soQuestions": 3011
+    },
+    {
+      "tag": "encryption",
+      "skillId": "cryptography-basics",
+      "soQuestions": 37081
+    },
+    {
+      "tag": "openssl",
+      "skillId": "cryptography-basics",
+      "soQuestions": 16623
+    },
+    {
+      "tag": "cryptography",
+      "skillId": "cryptography-basics",
+      "soQuestions": 15219
+    },
+    {
+      "tag": "ssl-certificate",
+      "skillId": "cryptography-basics",
+      "soQuestions": 10689,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "aes",
+      "skillId": "cryptography-basics",
+      "soQuestions": 7332
+    },
+    {
+      "tag": "rsa",
+      "skillId": "cryptography-basics",
+      "soQuestions": 6936
+    },
+    {
+      "tag": "digital-signature",
+      "skillId": "cryptography-basics",
+      "soQuestions": 3585
+    },
+    {
+      "tag": "x509certificate",
+      "skillId": "cryptography-basics",
+      "soQuestions": 3196
+    },
+    {
+      "tag": "code-injection",
+      "skillId": "secure-coding",
+      "soQuestions": 2441
+    },
+    {
+      "tag": "buffer-overflow",
+      "skillId": "secure-coding",
+      "soQuestions": 1536
+    },
+    {
+      "tag": "hashicorp-vault",
+      "skillId": "secure-coding",
+      "soQuestions": 1257
+    },
+    {
+      "tag": "sanitization",
+      "skillId": "secure-coding",
+      "soQuestions": 1181
+    },
+    {
+      "tag": "secure-coding",
+      "skillId": "secure-coding",
+      "soQuestions": 217
+    },
+    {
+      "tag": "dependabot",
+      "skillId": "secure-coding",
+      "soQuestions": 190
+    },
+    {
+      "tag": "azure-active-directory",
+      "skillId": "identity-access-management",
+      "soQuestions": 18451
+    },
+    {
+      "tag": "active-directory",
+      "skillId": "identity-access-management",
+      "soQuestions": 16251
+    },
+    {
+      "tag": "ldap",
+      "skillId": "identity-access-management",
+      "soQuestions": 11614
+    },
+    {
+      "tag": "keycloak",
+      "skillId": "identity-access-management",
+      "soQuestions": 7905
+    },
+    {
+      "tag": "single-sign-on",
+      "skillId": "identity-access-management",
+      "soQuestions": 7639
+    },
+    {
+      "tag": "openid",
+      "skillId": "identity-access-management",
+      "soQuestions": 3697
+    },
+    {
+      "tag": "kerberos",
+      "skillId": "identity-access-management",
+      "soQuestions": 3556
+    },
+    {
+      "tag": "rbac",
+      "skillId": "identity-access-management",
+      "soQuestions": 1163,
+      "note": "independent review 2026-08-19: added"
+    },
+    {
+      "tag": "multi-factor-authentication",
+      "skillId": "identity-access-management",
+      "soQuestions": 642,
+      "note": "independent review 2026-08-19: moved from security-fundamentals"
+    },
+    {
+      "tag": "privacy",
+      "skillId": "compliance-privacy",
+      "soQuestions": 1158
+    },
+    {
+      "tag": "pci-compliance",
+      "skillId": "compliance-privacy",
+      "soQuestions": 317
+    },
+    {
+      "tag": "audit-trail",
+      "skillId": "compliance-privacy",
+      "soQuestions": 312
+    },
+    {
+      "tag": "data-protection",
+      "skillId": "compliance-privacy",
+      "soQuestions": 307
+    },
+    {
+      "tag": "pci-dss",
+      "skillId": "compliance-privacy",
+      "soQuestions": 207
+    },
+    {
+      "tag": "privacy-policy",
+      "skillId": "compliance-privacy",
+      "soQuestions": 171
+    },
+    {
+      "tag": "exploit",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 800
+    },
+    {
+      "tag": "nmap",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 703
+    },
+    {
+      "tag": "penetration-testing",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 400
+    },
+    {
+      "tag": "kali-linux",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 236
+    },
+    {
+      "tag": "metasploit",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 220
+    },
+    {
+      "tag": "port-scanning",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 182
+    },
+    {
+      "tag": "ctf",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 171
+    },
+    {
+      "tag": "sqlmap",
+      "skillId": "ethical-hacking-basics",
+      "soQuestions": 119
+    },
+    {
+      "tag": "azure-sentinel",
+      "skillId": "security-operations",
+      "soQuestions": 241,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "yara",
+      "skillId": "security-operations",
+      "soQuestions": 61
+    },
+    {
+      "tag": "computer-forensics",
+      "skillId": "digital-forensics",
+      "soQuestions": 195,
+      "note": "thin on SO; expected below floor"
+    },
+    {
+      "tag": "volatility",
+      "skillId": "digital-forensics",
+      "soQuestions": 168
+    }
+  ],
+  "noDataSkills": [
+    {
+      "skillId": "open-source-contribution",
+      "reason": "no Stack Overflow tag denotes contributing to open source"
+    },
+    {
+      "skillId": "data-storytelling",
+      "reason": "no Stack Overflow tag denotes presenting analysis (report/dashboard/presentation tags are generic)"
+    },
+    {
+      "skillId": "prompt-engineering",
+      "reason": "no Stack Overflow tag (prompt is the command-prompt/dialog tag)"
+    },
+    {
+      "skillId": "llm-evaluation",
+      "reason": "no established Stack Overflow tag (eval/metrics tags are generic; ragas/langsmith are single-digit)"
+    },
+    {
+      "skillId": "threat-modeling",
+      "reason": "no Stack Overflow tag (stride is the array-stride tag)"
+    },
+    {
+      "skillId": "incident-response",
+      "reason": "no Stack Overflow tag denotes security incident response"
+    }
+  ],
+  "signoffNotes": {
+    "anmol": "owner delegated the check to an independent reviewer on 2026-08-19; its verdict (11 moves, 27 strikes, 52 adds; 739 rows accepted) is applied row by row with notes; owner then struck pre-LLM speech/chatbot tags, dataframe and JS charting tags, and fixed two conventions (no-noise decision)",
+    "riyan": "approved 2026-08-19 (relayed by the owner)"
+  }
+}

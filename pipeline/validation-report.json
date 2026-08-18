@@ -9,6 +9,15 @@
     "assessments": 27,
     "embeddings": 405
   },
+  "evidence": {
+    "stackoverflow": {
+      "edges": 8342,
+      "branches": 278,
+      "mapSignedOff": true,
+      "usersEligible": 2137848,
+      "pairsAtFloor": 8260
+    }
+  },
   "errors": [],
   "warnings": [],
   "dataHashes": {
