@@ -11,11 +11,11 @@
   },
   "evidence": {
     "stackoverflow": {
-      "edges": 8881,
-      "branches": 290,
+      "edges": 8555,
+      "branches": 147,
       "mapSignedOff": false,
-      "usersEligible": 2168095,
-      "pairsAtFloor": 8586
+      "usersEligible": 2153482,
+      "pairsAtFloor": 8555
     }
   },
   "errors": [],
