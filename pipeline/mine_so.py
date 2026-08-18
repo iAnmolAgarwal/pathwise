@@ -235,8 +235,12 @@ def read_skills_csv() -> tuple[dict[str, dict], dict[str, int]]:
     return per_skill, totals
 
 
+SEDE_PARAMS_PATH = BUILD_DIR / "sede_params.json"
+
+
 def cmd_render_sede(args) -> int:
     doc = load_map()
+    sample_mod = args.sample_mod
     per_skill, _ = read_skills_csv()
     rows = sorted(doc["rows"], key=lambda r: (r["tag"], r["skillId"]))
     map_values = ",\n    ".join(f"({tsql_str(r['tag'])}, {tsql_str(r['skillId'])})" for r in rows)
@@ -255,7 +259,7 @@ def cmd_render_sede(args) -> int:
             .replace("{{MIN_SKILLS}}", str(PARAMS["minSkills"]))
             .replace("{{MAX_SKILLS}}", str(PARAMS["maxSkills"]))
             .replace("{{COHORT_MONTHS}}", str(PARAMS["cohortMonths"]))
-            .replace("{{SAMPLE_MOD}}", str(PARAMS["sedeSampleMod"]))
+            .replace("{{SAMPLE_MOD}}", str(sample_mod))
             .replace("{{MIN_POST_ID}}", str(PARAMS["sedeMinPostId"]))
         )
         if "{{" in text:
@@ -264,6 +268,8 @@ def cmd_render_sede(args) -> int:
         out.write_text(text)
         print(f"wrote {out.relative_to(REPO_ROOT)} ({len(text)} chars); paste into data.stackexchange.com/stackoverflow "
               f"and download the CSV to pipeline/build/so/sede_llm_{name}.csv")
+    SEDE_PARAMS_PATH.write_text(json.dumps({"sampleMod": sample_mod, "minPostId": PARAMS["sedeMinPostId"]}, indent=2) + "\n")
+    print(f"sample: OwnerUserId % {sample_mod} = 0 ({100 / sample_mod:g} % of users); recorded in {SEDE_PARAMS_PATH.relative_to(REPO_ROOT)}")
     return 0
 
 
@@ -526,9 +532,14 @@ def cmd_emit(args) -> int:
     llm = llm_era_skills()
     sede_pairs_csv = BUILD_DIR / "sede_llm_pairs.csv"
     sede_branches_csv = BUILD_DIR / "sede_llm_branches.csv"
+    sede_params = json.loads(SEDE_PARAMS_PATH.read_text()) if SEDE_PARAMS_PATH.exists() else {"sampleMod": PARAMS["sedeSampleMod"], "minPostId": PARAMS["sedeMinPostId"]}
+    sede_label = "sede-current"
+    sede_rule = (f"Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= "
+                 f"{sede_params['minPostId']}, OwnerUserId % {sede_params['sampleMod']} = 0 ({100 / sede_params['sampleMod']:g} % of users), "
+                 f"full history per user; pairs with an LLM-era endpoint only")
     if sede_pairs_csv.exists():
         sede_pairs = read_pairs_csv(sede_pairs_csv)
-        sede_edges = build_edges(sede_pairs, tags, "sede-5pct")
+        sede_edges = build_edges(sede_pairs, tags, sede_label)
         edges = sorted(edges + sede_edges, key=lambda e: (e["from"], e["to"], e["sample"]))
         inputs["sede_llm_pairs.csv"] = sha256_file(sede_pairs_csv)
         top_up = {
@@ -536,13 +547,14 @@ def cmd_emit(args) -> int:
             "llmEraSkills": llm,
             "pairsSeen": sum(1 for p in sede_pairs if p["supportAll"] + p["reverseAll"] >= 1),
             "pairsAtFloor": len(sede_edges),
-            "sample": f"OwnerUserId % {PARAMS['sedeSampleMod']} = 0 (5 %), users with >= 1 LLM-era question",
+            "sample": sede_rule,
+            "orderedObservations": sum(p["supportAll"] + p["reverseAll"] for p in sede_pairs),
         }
     else:
         top_up = {"status": "pending", "llmEraSkills": llm,
                   "note": "run `mine_so.py render-sede`, execute the query on data.stackexchange.com, save the CSV to pipeline/build/so/sede_llm_pairs.csv, re-run emit"}
     if sede_branches_csv.exists():
-        branches = branches + build_branches(sede_branches_csv, taught, "sede-5pct")
+        branches = branches + build_branches(sede_branches_csv, taught, sede_label)
         branches.sort(key=lambda b: (b["from"], b["sample"]))
         inputs["sede_llm_branches.csv"] = sha256_file(sede_branches_csv)
 
@@ -560,7 +572,7 @@ def cmd_emit(args) -> int:
                        "n = support + reverse after the cohort filter; `unfiltered` keeps the pre-filter counts",
         "samples": {
             "full-mirror": f"BigQuery {BQ_DATASET} (ends 2022)",
-            "sede-5pct": "Stack Exchange Data Explorer, current data, 5 % user sample, pairs with an LLM-era endpoint",
+            sede_label: sede_rule,
         },
         "skills": {sid: {**per_skill[sid], "tags": tags.get(sid, [])} for sid in sorted(per_skill)},
         "edgeFields": "from, to, support, reverse, confidence, n, unfiltered{support,reverse,ties}, sample; the tags behind "
@@ -581,6 +593,7 @@ def cmd_emit(args) -> int:
                      "next-skills; shares sum to 1 over all observed successors, the listed subset (n >= branchMinListed) sums to less",
         "mapSignedOff": signed,
         "inputs": {k: v for k, v in inputs.items() if "branches" in k},
+        "samples": {"full-mirror": f"BigQuery {BQ_DATASET} (ends 2022)", sede_label: sede_rule},
         "stats": branch_stats(branches),
         "branches": branches,
     }
@@ -662,7 +675,9 @@ def main() -> int:
         p = sub.add_parser(name)
         p.add_argument("--project", default=os.environ.get("BQ_PROJECT"), required=not os.environ.get("BQ_PROJECT"),
                        help="GCP project id (sandbox is fine); or set BQ_PROJECT")
-    sub.add_parser("render-sede")
+    p = sub.add_parser("render-sede")
+    p.add_argument("--sample-mod", type=int, default=PARAMS["sedeSampleMod"],
+                   help="OwnerUserId %% N = 0 user sample for the SEDE queries (20 = 5 %%, 1 = everyone)")
     p = sub.add_parser("emit")
     p.add_argument("--allow-unsigned", action="store_true", help="emit from a map that both humans have not signed yet (draft stats)")
     sub.add_parser("check-schema")
