@@ -10,7 +10,13 @@
     "embeddings": 405
   },
   "evidence": {
-    "stackoverflow": null
+    "stackoverflow": {
+      "edges": 8586,
+      "branches": 148,
+      "mapSignedOff": false,
+      "usersEligible": 2168095,
+      "pairsAtFloor": 8586
+    }
   },
   "errors": [],
   "warnings": [],

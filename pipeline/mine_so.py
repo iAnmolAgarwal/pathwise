@@ -327,8 +327,6 @@ def build_edges(pairs: list[dict], tags: dict[str, list[str]], sample: str) -> l
                 "reverse": o["reverse"],
                 "confidence": round(o["support"] / n, 6),
                 "n": n,
-                "tagsFrom": tags.get(o["from"], []),
-                "tagsTo": tags.get(o["to"], []),
                 "unfiltered": {
                     "support": o["supportAll"],
                     "reverse": o["reverseAll"],
@@ -456,8 +454,15 @@ def branch_stats(branches: list[dict]) -> dict:
     }
 
 
-def dump(path: Path, obj) -> None:
-    path.write_text(json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+def dump(path: Path, obj: dict, list_key: str) -> None:
+    """Pretty header, then one compact line per element of obj[list_key] (diff-friendly, ~4x smaller)."""
+    head = {k: v for k, v in obj.items() if k != list_key}
+    text = json.dumps(head, indent=2, sort_keys=True, ensure_ascii=False)
+    assert text.endswith("\n}")
+    lines = [json.dumps(item, sort_keys=True, ensure_ascii=False, separators=(",", ":")) for item in obj[list_key]]
+    body = ",\n    ".join(lines)
+    text = text[:-2] + f',\n  "{list_key}": [\n    ' + body + "\n  ]\n}\n"
+    path.write_text(text)
 
 
 def write_stats_md(path: Path, edges_doc: dict, branches_doc: dict) -> None:
@@ -556,6 +561,8 @@ def cmd_emit(args) -> int:
             "sede-5pct": "Stack Exchange Data Explorer, current data, 5 % user sample, pairs with an LLM-era endpoint",
         },
         "skills": {sid: {**per_skill[sid], "tags": tags.get(sid, [])} for sid in sorted(per_skill)},
+        "edgeFields": "from, to, support, reverse, confidence, n, unfiltered{support,reverse,ties}, sample; the tags behind "
+                      "each endpoint are skills[<id>].tags",
         "noDataSkills": sorted(doc.get("noDataSkills", []), key=lambda d: d["skillId"]),
         "llmEraTopUp": top_up,
         "stats": stats_block(pairs, edges, per_skill, totals, tags, doc),
@@ -576,8 +583,8 @@ def cmd_emit(args) -> int:
         "branches": branches,
     }
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
-    dump(EVIDENCE_DIR / "edges_so.json", edges_doc)
-    dump(EVIDENCE_DIR / "branches_so.json", branches_doc)
+    dump(EVIDENCE_DIR / "edges_so.json", edges_doc, "edges")
+    dump(EVIDENCE_DIR / "branches_so.json", branches_doc, "branches")
     write_stats_md(EVIDENCE_DIR / "so_stats.md", edges_doc, branches_doc)
     print(json.dumps({k: v for k, v in edges_doc["stats"].items() if not k.startswith(("top20", "lowest20"))}, indent=2))
     print(f"edges: {len(edges)}  branches: {len(branches)}  -> {EVIDENCE_DIR.relative_to(REPO_ROOT)}/")
@@ -616,7 +623,7 @@ def check_schema() -> int:
         _require(edge.get("n", 0) >= PARAMS["minPairSupport"], f"edges_so.json: {key} below floor", errors)
         _require(edge.get("support", 0) >= edge.get("reverse", 0), f"edges_so.json: {key} not oriented", errors)
         _require(abs(edge.get("confidence", -1) - edge["support"] / edge["n"]) < 1e-5, f"edges_so.json: {key} confidence", errors)
-        _require(isinstance(edge.get("tagsFrom"), list) and isinstance(edge.get("tagsTo"), list), f"edges_so.json: {key} tags", errors)
+        _require(edge.get("from") in e.get("skills", {}) and edge.get("to") in e.get("skills", {}), f"edges_so.json: {key} endpoint missing from skills block (tags)", errors)
         _require(edge.get("sample") in e.get("samples", {}), f"edges_so.json: {key} unknown sample", errors)
     b = load_json(EVIDENCE_DIR / "branches_so.json")
     for key in ("source", "caveat", "cohortRule", "branchRule", "params", "stats", "branches"):
