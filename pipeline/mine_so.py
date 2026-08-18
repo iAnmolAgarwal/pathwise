@@ -64,6 +64,7 @@ PARAMS = {
     "branchMinTotal": 50,  # nTotal >= 50 -> minSupportMet
     "branchMinListed": 5,  # a successor is listed only if n >= 5
     "sedeSampleMod": 20,  # OwnerUserId % 20 = 0 -> 5 % user sample
+    "sedeMinPostId": 73000000,  # Posts.Id range seek: ~Aug 2022, just before the BigQuery mirror ends (2022-09-25)
     "llmEraDomain": "ai-engineering",
 }
 COHORT_RULE = (
@@ -255,6 +256,7 @@ def cmd_render_sede(args) -> int:
             .replace("{{MAX_SKILLS}}", str(PARAMS["maxSkills"]))
             .replace("{{COHORT_MONTHS}}", str(PARAMS["cohortMonths"]))
             .replace("{{SAMPLE_MOD}}", str(PARAMS["sedeSampleMod"]))
+            .replace("{{MIN_POST_ID}}", str(PARAMS["sedeMinPostId"]))
         )
         if "{{" in text:
             raise SystemExit(f"unrendered placeholder in sede {name}")

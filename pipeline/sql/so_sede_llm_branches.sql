@@ -1,7 +1,11 @@
 -- SEDE companion of so_sede_llm_pairs.sql: immediate successors (next distinct date) for the
 -- same sampled LLM-era users, kept only where the FROM or TO skill is LLM-era.
 -- CSV download goes to pipeline/build/so/sede_llm_branches.csv.
--- Rendered by: python pipeline/mine_so.py --render-sede
+-- Cost control (SEDE time limit): LLM-era users and LLM-era births are found only among posts
+-- with Id >= MIN_POST_ID (the clustered key; ~Aug 2022, just before the mirror ends), which
+-- is a range seek instead of a full PostTags scan; each such user's full history is then read
+-- through the OwnerUserId index. Only the LLM-era tag ids are matched in that first step.
+-- Rendered by: python pipeline/mine_so.py render-sede
 WITH map(tag, skill_id) AS (
   SELECT tag, skill_id FROM (VALUES {{TAG_SKILL_MAP_VALUES}}) v(tag, skill_id)
 ),
@@ -14,13 +18,20 @@ bq_birth(skill_id, birth_d) AS (
 tagids AS (
   SELECT t.Id AS TagId, m.skill_id FROM Tags t JOIN map m ON m.tag = t.TagName
 ),
-llm_users AS (
-  SELECT DISTINCT p.OwnerUserId AS uid
+llm_tagids AS (
+  SELECT ti.TagId, ti.skill_id FROM tagids ti JOIN llm_skills ls ON ls.skill_id = ti.skill_id
+),
+recent AS (
+  SELECT p.Id, p.OwnerUserId, p.CreationDate
   FROM Posts p
-  JOIN PostTags pt ON pt.PostId = p.Id
-  JOIN tagids ti ON ti.TagId = pt.TagId
-  JOIN llm_skills ls ON ls.skill_id = ti.skill_id
-  WHERE p.PostTypeId = 1 AND p.OwnerUserId IS NOT NULL AND p.OwnerUserId % {{SAMPLE_MOD}} = 0
+  WHERE p.Id >= {{MIN_POST_ID}} AND p.PostTypeId = 1 AND p.OwnerUserId IS NOT NULL
+),
+llm_users AS (
+  SELECT DISTINCT r.OwnerUserId AS uid
+  FROM recent r
+  JOIN PostTags pt ON pt.PostId = r.Id
+  JOIN llm_tagids ti ON ti.TagId = pt.TagId
+  WHERE r.OwnerUserId % {{SAMPLE_MOD}} = 0
 ),
 m AS (
   SELECT p.OwnerUserId AS uid, ti.skill_id, MIN(CAST(p.CreationDate AS DATE)) AS first_d
@@ -38,12 +49,10 @@ u0 AS (
   GROUP BY p.OwnerUserId
 ),
 sede_birth AS (
-  SELECT ti.skill_id, MIN(CAST(p.CreationDate AS DATE)) AS birth_d
-  FROM Posts p
-  JOIN PostTags pt ON pt.PostId = p.Id
-  JOIN tagids ti ON ti.TagId = pt.TagId
-  JOIN llm_skills ls ON ls.skill_id = ti.skill_id
-  WHERE p.PostTypeId = 1
+  SELECT ti.skill_id, MIN(CAST(r.CreationDate AS DATE)) AS birth_d
+  FROM recent r
+  JOIN PostTags pt ON pt.PostId = r.Id
+  JOIN llm_tagids ti ON ti.TagId = pt.TagId
   GROUP BY ti.skill_id
 ),
 birth AS (
