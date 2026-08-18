@@ -1487,6 +1487,12 @@
       "note": "product tag -> SQL encounter"
     },
     {
+      "tag": "oracle",
+      "skillId": "sql",
+      "soQuestions": 152380,
+      "note": "name of oracle-database in the 2022 BigQuery mirror; count shown is the current tag's"
+    },
+    {
       "tag": "oracle-database",
       "skillId": "sql",
       "soQuestions": 152380,
@@ -1501,6 +1507,12 @@
       "tag": "t-sql",
       "skillId": "sql",
       "soQuestions": 73602
+    },
+    {
+      "tag": "tsql",
+      "skillId": "sql",
+      "soQuestions": 73602,
+      "note": "name of t-sql in the 2022 BigQuery mirror; count shown is the current tag's"
     },
     {
       "tag": "join",
@@ -3477,6 +3489,12 @@
       "tag": "terraform",
       "skillId": "infrastructure-as-code",
       "soQuestions": 20188
+    },
+    {
+      "tag": "amazon-cloudformation",
+      "skillId": "infrastructure-as-code",
+      "soQuestions": 8365,
+      "note": "name of aws-cloudformation in the 2022 BigQuery mirror; count shown is the current tag's"
     },
     {
       "tag": "aws-cloudformation",
