@@ -5,6 +5,8 @@
   "inputs": {
     "branches.csv": "08465cd827a267b3d50b9e61c7f8a5bb08b9f45c8188d166e46ab5418f899ff8",
     "pairs.csv": "d16d87a6ef2eba4cd42f49e4e69cb43962858dcc42078886310c6881827be0e3",
+    "sede_llm_branches.csv": "bcb2114a4ad359fa5e9db603d82be860d02e7c45ae7ed88eb8853e5c725e8540",
+    "sede_llm_pairs.csv": "443cf0141164abe9237a8015d75db69f6277da6662c80ee9b8c743a79e57a7c6",
     "skills.csv": "e742782efe4fa483776b0038c39d1c4b8bcd94f7121d00e16916c282c7df5ddd"
   },
   "licence": "Stack Overflow content is CC BY-SA 4.0 (https://stackoverflow.com/help/licensing); aggregate counts only",
@@ -24,8 +26,11 @@
       "responsible-ai",
       "vector-databases"
     ],
-    "note": "run `mine_so.py render-sede`, execute the query on data.stackexchange.com, save the CSV to pipeline/build/so/sede_llm_pairs.csv, re-run emit",
-    "status": "pending"
+    "orderedObservations": 56192,
+    "pairsAtFloor": 82,
+    "pairsSeen": 1339,
+    "sample": "Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= 73000000, OwnerUserId % 1 = 0 (100 % of users), full history per user; pairs with an LLM-era endpoint only",
+    "status": "ingested"
   },
   "mapDraftedOn": "2026-08-18",
   "mapSignedOff": false,
@@ -83,7 +88,7 @@
         "usersAll": 798,
         "usersEligible": 697
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 3,
       "tags": [
         "ab-testing",
         "google-optimize",
@@ -97,7 +102,7 @@
         "usersAll": 54967,
         "usersEligible": 53407
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 74,
       "tags": [
         "common-table-expression",
         "database-trigger",
@@ -115,7 +120,7 @@
         "usersAll": 1437,
         "usersEligible": 1222
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1,
       "tags": [
         "agile",
         "kanban",
@@ -124,7 +129,7 @@
     },
     "ai-agents": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 212,
       "tags": [
         "crewai",
         "langgraph",
@@ -135,7 +140,7 @@
     },
     "ai-app-development": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 19,
       "tags": [
         "chainlit",
         "vercel-ai"
@@ -147,7 +152,7 @@
         "usersAll": 161756,
         "usersEligible": 141386
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 214,
       "tags": [
         "algorithm",
         "big-o",
@@ -164,7 +169,7 @@
         "usersAll": 5463,
         "usersEligible": 4909
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 30,
       "tags": [
         "airflow",
         "airflow-2.x",
@@ -177,7 +182,7 @@
         "usersAll": 18492,
         "usersEligible": 16351
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 58,
       "tags": [
         "apache-kafka",
         "apache-kafka-connect",
@@ -193,7 +198,7 @@
         "usersAll": 39872,
         "usersEligible": 34854
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 122,
       "tags": [
         "apache-spark",
         "apache-spark-sql",
@@ -208,7 +213,7 @@
         "usersAll": 11839,
         "usersEligible": 10575
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 57,
       "tags": [
         "openapi",
         "swagger",
@@ -223,7 +228,7 @@
         "usersAll": 166311,
         "usersEligible": 159692
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 282,
       "tags": [
         "ajax",
         "axios",
@@ -238,7 +243,7 @@
         "usersAll": 12575,
         "usersEligible": 10690
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 48,
       "tags": [
         "karate",
         "postman",
@@ -251,7 +256,7 @@
         "usersAll": 131360,
         "usersEligible": 117263
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 325,
       "tags": [
         "amazon-cognito",
         "asp.net-identity",
@@ -270,7 +275,7 @@
         "usersAll": 94110,
         "usersEligible": 88773
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 358,
       "tags": [
         "amazon-ec2",
         "amazon-web-services",
@@ -285,7 +290,7 @@
         "usersAll": 67023,
         "usersEligible": 57777
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 457,
       "tags": [
         "azure",
         "azure-powershell",
@@ -299,7 +304,7 @@
         "usersAll": 42787,
         "usersEligible": 36818
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 75,
       "tags": [
         "apache-flink",
         "apache-pig",
@@ -319,7 +324,7 @@
         "usersAll": 7482,
         "usersEligible": 6826
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 27,
       "tags": [
         "firefox-developer-tools",
         "google-chrome-devtools"
@@ -331,7 +336,7 @@
         "usersAll": 53519,
         "usersEligible": 48660
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 143,
       "tags": [
         "amazon-cloudfront",
         "caching",
@@ -346,7 +351,7 @@
         "usersAll": 63235,
         "usersEligible": 55467
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 193,
       "tags": [
         "azure-devops",
         "azure-pipelines",
@@ -364,7 +369,7 @@
         "usersAll": 24471,
         "usersEligible": 21703
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 46,
       "tags": [
         "coding-style",
         "naming-conventions",
@@ -379,7 +384,7 @@
         "usersAll": 2789,
         "usersEligible": 2614
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 6,
       "tags": [
         "autoscaling",
         "aws-auto-scaling",
@@ -393,7 +398,7 @@
         "usersAll": 267,
         "usersEligible": 251
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 2,
       "tags": [
         "aws-billing",
         "aws-cost-explorer",
@@ -406,7 +411,7 @@
         "usersAll": 21231,
         "usersEligible": 18128
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 92,
       "tags": [
         "amazon-redshift",
         "azure-synapse",
@@ -420,7 +425,7 @@
         "usersAll": 15340,
         "usersEligible": 14614
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 90,
       "tags": [
         "amazon-aurora",
         "amazon-rds",
@@ -435,7 +440,7 @@
         "usersAll": 40366,
         "usersEligible": 37244
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 97,
       "tags": [
         "cloud",
         "digital-ocean",
@@ -448,7 +453,7 @@
         "usersAll": 6748,
         "usersEligible": 6445
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 36,
       "tags": [
         "amazon-elb",
         "amazon-route53",
@@ -463,7 +468,7 @@
         "usersAll": 6899,
         "usersEligible": 6555
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 71,
       "tags": [
         "amazon-iam",
         "amazon-kms",
@@ -478,7 +483,7 @@
         "usersAll": 49466,
         "usersEligible": 47035
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 220,
       "tags": [
         "amazon-s3",
         "azure-blob-storage",
@@ -492,7 +497,7 @@
         "usersAll": 215302,
         "usersEligible": 187870
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 262,
       "tags": [
         "command-line",
         "command-line-interface",
@@ -508,7 +513,7 @@
         "usersAll": 2104,
         "usersEligible": 1821
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 3,
       "tags": [
         "audit-trail",
         "data-protection",
@@ -524,7 +529,7 @@
         "usersAll": 70010,
         "usersEligible": 58439
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 153,
       "tags": [
         "computer-vision",
         "image-processing",
@@ -540,7 +545,7 @@
         "usersAll": 124618,
         "usersEligible": 110921
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 196,
       "tags": [
         "concurrency",
         "deadlock",
@@ -559,7 +564,7 @@
         "usersAll": 17480,
         "usersEligible": 14382
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 29,
       "tags": [
         "ansible",
         "chef-infra",
@@ -572,7 +577,7 @@
         "usersAll": 61438,
         "usersEligible": 54135
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 130,
       "tags": [
         "aes",
         "cryptography",
@@ -590,7 +595,7 @@
         "usersAll": 391612,
         "usersEligible": 369731
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 475,
       "tags": [
         "bootstrap-4",
         "bootstrap-5",
@@ -607,7 +612,7 @@
         "usersAll": 30247,
         "usersEligible": 28951
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 63,
       "tags": [
         "css-grid",
         "less",
@@ -621,7 +626,7 @@
         "usersAll": 6188,
         "usersEligible": 5983
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 38,
       "tags": [
         "data-cleaning",
         "data-preprocessing",
@@ -637,7 +642,7 @@
         "usersAll": 10653,
         "usersEligible": 10142
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 82,
       "tags": [
         "amazon-athena",
         "apache-hudi",
@@ -657,7 +662,7 @@
         "usersAll": 45467,
         "usersEligible": 42824
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 77,
       "tags": [
         "data-modeling",
         "database-design",
@@ -677,7 +682,7 @@
         "usersAll": 152,
         "usersEligible": 135
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 2,
       "tags": [
         "data-quality",
         "great-expectations"
@@ -689,7 +694,7 @@
         "usersAll": 54096,
         "usersEligible": 48078
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 64,
       "tags": [
         "binary-tree",
         "data-structures",
@@ -704,7 +709,7 @@
         "usersAll": 57318,
         "usersEligible": 55809
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 197,
       "tags": [
         "altair",
         "bokeh",
@@ -721,7 +726,7 @@
         "usersAll": 11128,
         "usersEligible": 9705
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 25,
       "tags": [
         "business-intelligence",
         "data-warehouse",
@@ -740,7 +745,7 @@
         "usersAll": 10141,
         "usersEligible": 9763
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 22,
       "tags": [
         "connection-pooling",
         "database-indexes",
@@ -754,7 +759,7 @@
         "usersAll": 498,
         "usersEligible": 427
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 6,
       "tags": [
         "dbt"
       ]
@@ -765,7 +770,7 @@
         "usersAll": 45388,
         "usersEligible": 38840
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 92,
       "tags": [
         "breakpoints",
         "debugging",
@@ -778,7 +783,7 @@
         "usersAll": 24623,
         "usersEligible": 23966
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 184,
       "tags": [
         "conv-neural-network",
         "deep-learning",
@@ -792,7 +797,7 @@
         "usersAll": 50768,
         "usersEligible": 46108
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 108,
       "tags": [
         "dependency-injection",
         "design-patterns",
@@ -809,7 +814,7 @@
         "usersAll": 30724,
         "usersEligible": 28049
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 86,
       "tags": [
         "artifactory",
         "deployment",
@@ -823,7 +828,7 @@
         "usersAll": 316,
         "usersEligible": 273
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1,
       "tags": [
         "computer-forensics",
         "volatility"
@@ -835,7 +840,7 @@
         "usersAll": 98643,
         "usersEligible": 90497
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 155,
       "tags": [
         "django",
         "django-admin",
@@ -853,7 +858,7 @@
         "usersAll": 80449,
         "usersEligible": 73532
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 265,
       "tags": [
         "amazon-ecs",
         "docker",
@@ -868,7 +873,7 @@
         "usersAll": 54423,
         "usersEligible": 46014
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 112,
       "tags": [
         "elastic-stack",
         "elasticsearch",
@@ -887,7 +892,7 @@
         "usersAll": 113,
         "usersEligible": 109
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 245,
       "tags": [
         "faiss",
         "semantic-search",
@@ -901,7 +906,7 @@
         "usersAll": 2384,
         "usersEligible": 2129
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 6,
       "tags": [
         "ctf",
         "exploit",
@@ -919,7 +924,7 @@
         "usersAll": 26997,
         "usersEligible": 24035
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 70,
       "tags": [
         "apache-beam",
         "apache-nifi",
@@ -941,7 +946,7 @@
         "usersAll": 2653,
         "usersEligible": 2429
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 6,
       "tags": [
         "aws-event-bridge",
         "axon",
@@ -957,7 +962,7 @@
         "usersAll": 35861,
         "usersEligible": 34051
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 185,
       "tags": [
         "data-analysis",
         "data-science",
@@ -973,7 +978,7 @@
         "usersAll": 57198,
         "usersEligible": 56132
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 147,
       "tags": [
         "ejs",
         "express",
@@ -986,7 +991,7 @@
         "usersAll": 3192,
         "usersEligible": 3089
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 127,
       "tags": [
         "fastapi",
         "pydantic",
@@ -999,7 +1004,7 @@
         "usersAll": 5714,
         "usersEligible": 5517
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 43,
       "tags": [
         "categorical-data",
         "data-augmentation",
@@ -1013,7 +1018,7 @@
     },
     "fine-tuning": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 134,
       "tags": [
         "fine-tuning",
         "peft"
@@ -1025,7 +1030,7 @@
         "usersAll": 46618,
         "usersEligible": 44177
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 116,
       "tags": [
         "babeljs",
         "gruntjs",
@@ -1040,7 +1045,7 @@
         "usersAll": 20180,
         "usersEligible": 18816
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 59,
       "tags": [
         "cypress",
         "enzyme",
@@ -1055,7 +1060,7 @@
         "usersAll": 36810,
         "usersEligible": 29031
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 43,
       "tags": [
         "clojure",
         "elixir",
@@ -1071,7 +1076,7 @@
         "usersAll": 47679,
         "usersEligible": 42549
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 216,
       "tags": [
         "gcloud",
         "google-app-engine",
@@ -1085,7 +1090,7 @@
         "usersAll": 4348,
         "usersEligible": 4089
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 16,
       "tags": [
         "git-flow",
         "git-merge-conflict",
@@ -1099,7 +1104,7 @@
         "usersAll": 301,
         "usersEligible": 280
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 4,
       "tags": [
         "argocd",
         "fluxcd",
@@ -1112,7 +1117,7 @@
         "usersAll": 32559,
         "usersEligible": 27239
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 59,
       "tags": [
         "go",
         "go-gin",
@@ -1125,7 +1130,7 @@
         "usersAll": 14912,
         "usersEligible": 13642
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 49,
       "tags": [
         "apollo",
         "apollo-client",
@@ -1140,7 +1145,7 @@
         "usersAll": 539199,
         "usersEligible": 509207
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 587,
       "tags": [
         "html",
         "html-table"
@@ -1152,7 +1157,7 @@
         "usersAll": 42865,
         "usersEligible": 36978
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 117,
       "tags": [
         "active-directory",
         "azure-active-directory",
@@ -1171,7 +1176,7 @@
         "usersAll": 14796,
         "usersEligible": 14332
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 50,
       "tags": [
         "glm",
         "linear-regression",
@@ -1186,7 +1191,7 @@
         "usersAll": 14204,
         "usersEligible": 13106
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 70,
       "tags": [
         "amazon-cloudformation",
         "aws-cdk",
@@ -1202,7 +1207,7 @@
         "usersAll": 689888,
         "usersEligible": 494485
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 504,
       "tags": [
         "java",
         "java-8"
@@ -1214,7 +1219,7 @@
         "usersAll": 976613,
         "usersEligible": 810129
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1010,
       "tags": [
         "dom",
         "dom-events",
@@ -1228,7 +1233,7 @@
         "usersAll": 44448,
         "usersEligible": 42737
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 84,
       "tags": [
         "closures",
         "ecmascript-6",
@@ -1243,7 +1248,7 @@
         "usersAll": 34903,
         "usersEligible": 30756
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 89,
       "tags": [
         "amazon-eks",
         "azure-aks",
@@ -1261,7 +1266,7 @@
         "usersAll": 59822,
         "usersEligible": 55417
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 117,
       "tags": [
         "centos",
         "cron",
@@ -1273,7 +1278,7 @@
     },
     "llm-apis": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1542,
       "tags": [
         "amazon-bedrock",
         "azure-openai",
@@ -1289,7 +1294,7 @@
         "usersAll": 168,
         "usersEligible": 158
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1220,
       "tags": [
         "claude",
         "gpt-2",
@@ -1301,7 +1306,7 @@
     },
     "local-llms": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 184,
       "tags": [
         "llama-cpp-python",
         "ollama",
@@ -1314,7 +1319,7 @@
         "usersAll": 7032,
         "usersEligible": 6324
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 27,
       "tags": [
         "gradient-descent",
         "linear-algebra",
@@ -1328,7 +1333,7 @@
         "usersAll": 28995,
         "usersEligible": 26631
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 72,
       "tags": [
         "amazon-sqs",
         "celery",
@@ -1345,7 +1350,7 @@
         "usersAll": 19715,
         "usersEligible": 17909
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 48,
       "tags": [
         "grpc",
         "istio",
@@ -1360,7 +1365,7 @@
         "usersAll": 41364,
         "usersEligible": 39892
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 411,
       "tags": [
         "artificial-intelligence",
         "machine-learning",
@@ -1373,7 +1378,7 @@
         "usersAll": 3927,
         "usersEligible": 3595
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 145,
       "tags": [
         "amazon-sagemaker",
         "azure-machine-learning-service",
@@ -1393,7 +1398,7 @@
         "usersAll": 3525,
         "usersEligible": 3224
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 120,
       "tags": [
         "coreml",
         "gradio",
@@ -1412,7 +1417,7 @@
         "usersAll": 4557,
         "usersEligible": 4392
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 34,
       "tags": [
         "auc",
         "confusion-matrix",
@@ -1430,7 +1435,7 @@
         "usersAll": 388,
         "usersEligible": 360
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 13,
       "tags": [
         "lime",
         "shap"
@@ -1442,7 +1447,7 @@
         "usersAll": 16535,
         "usersEligible": 14768
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 54,
       "tags": [
         "amazon-cloudwatch",
         "datadog",
@@ -1461,7 +1466,7 @@
         "usersAll": 1,
         "usersEligible": 0
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 304,
       "tags": [
         "openai-whisper",
         "stable-diffusion"
@@ -1473,7 +1478,7 @@
         "usersAll": 339248,
         "usersEligible": 288359
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 279,
       "tags": [
         "innodb",
         "mariadb",
@@ -1490,7 +1495,7 @@
         "usersAll": 60604,
         "usersEligible": 55505
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 128,
       "tags": [
         "https",
         "ssl",
@@ -1504,7 +1509,7 @@
         "usersAll": 123403,
         "usersEligible": 111027
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 180,
       "tags": [
         "dns",
         "http",
@@ -1519,7 +1524,7 @@
         "usersAll": 15024,
         "usersEligible": 14425
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 80,
       "tags": [
         "loss-function",
         "neural-network"
@@ -1531,7 +1536,7 @@
         "usersAll": 13480,
         "usersEligible": 12913
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 183,
       "tags": [
         "next.js",
         "next.js13",
@@ -1544,7 +1549,7 @@
         "usersAll": 19219,
         "usersEligible": 17852
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 578,
       "tags": [
         "huggingface",
         "huggingface-transformers",
@@ -1560,7 +1565,7 @@
         "usersAll": 229090,
         "usersEligible": 214874
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 566,
       "tags": [
         "node-modules",
         "node.js",
@@ -1575,7 +1580,7 @@
         "usersAll": 168176,
         "usersEligible": 146733
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 370,
       "tags": [
         "amazon-dynamodb",
         "arangodb",
@@ -1597,7 +1602,7 @@
         "usersAll": 76591,
         "usersEligible": 68408
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 95,
       "tags": [
         "abstract-class",
         "inheritance",
@@ -1611,7 +1616,7 @@
         "usersAll": 155606,
         "usersEligible": 141048
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 234,
       "tags": [
         "activerecord",
         "eloquent",
@@ -1629,7 +1634,7 @@
         "usersAll": 90931,
         "usersEligible": 83086
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 192,
       "tags": [
         "plpgsql",
         "postgis",
@@ -1644,7 +1649,7 @@
         "usersAll": 12216,
         "usersEligible": 9571
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 37,
       "tags": [
         "dax",
         "powerbi",
@@ -1658,7 +1663,7 @@
         "usersAll": 8271,
         "usersEligible": 7626
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 26,
       "tags": [
         "bayesian",
         "cdf",
@@ -1676,7 +1681,7 @@
         "usersAll": 197028,
         "usersEligible": 175585
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 209,
       "tags": [
         "conditional-statements",
         "for-loop",
@@ -1692,7 +1697,7 @@
         "usersAll": 804262,
         "usersEligible": 596465
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1542,
       "tags": [
         "python",
         "python-2.7",
@@ -1705,7 +1710,7 @@
         "usersAll": 3907,
         "usersEligible": 3734
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 23,
       "tags": [
         "metaclass",
         "python-decorators",
@@ -1718,7 +1723,7 @@
         "usersAll": 145433,
         "usersEligible": 142589
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 390,
       "tags": [
         "dask",
         "numpy",
@@ -1733,7 +1738,7 @@
         "usersAll": 12539,
         "usersEligible": 11724
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 264,
       "tags": [
         "pytorch",
         "torch",
@@ -1746,7 +1751,7 @@
         "usersAll": 140764,
         "usersEligible": 83450
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 172,
       "tags": [
         "data.table",
         "devtools",
@@ -1761,7 +1766,7 @@
     },
     "rag": {
       "mirror": null,
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1446,
       "tags": [
         "langchain",
         "langchain-js",
@@ -1777,7 +1782,7 @@
         "usersAll": 168226,
         "usersEligible": 154192
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 431,
       "tags": [
         "create-react-app",
         "jsx",
@@ -1795,7 +1800,7 @@
         "usersAll": 914,
         "usersEligible": 873
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 5,
       "tags": [
         "higher-order-components",
         "react-custom-hooks",
@@ -1812,7 +1817,7 @@
         "usersAll": 53423,
         "usersEligible": 44257
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 138,
       "tags": [
         "expo",
         "react-native",
@@ -1825,7 +1830,7 @@
         "usersAll": 1372,
         "usersEligible": 1259
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 7,
       "tags": [
         "collaborative-filtering",
         "mahout-recommender",
@@ -1838,7 +1843,7 @@
         "usersAll": 163892,
         "usersEligible": 147696
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 262,
       "tags": [
         "regex",
         "regex-group",
@@ -1851,7 +1856,7 @@
         "usersAll": 2295,
         "usersEligible": 2111
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 26,
       "tags": [
         "dqn",
         "openai-gym",
@@ -1866,7 +1871,7 @@
         "usersAll": 17,
         "usersEligible": 14
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 8,
       "tags": [
         "aif360",
         "fairlearn"
@@ -1878,7 +1883,7 @@
         "usersAll": 18213,
         "usersEligible": 17544
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 30,
       "tags": [
         "media-queries",
         "responsive-design"
@@ -1890,7 +1895,7 @@
         "usersAll": 68498,
         "usersEligible": 62377
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 130,
       "tags": [
         "api-design",
         "http-status-codes",
@@ -1903,7 +1908,7 @@
         "usersAll": 19186,
         "usersEligible": 18735
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 127,
       "tags": [
         "hyperparameters",
         "scikit-learn",
@@ -1916,7 +1921,7 @@
         "usersAll": 5542,
         "usersEligible": 4970
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 14,
       "tags": [
         "buffer-overflow",
         "code-injection",
@@ -1932,7 +1937,7 @@
         "usersAll": 43811,
         "usersEligible": 40154
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 88,
       "tags": [
         "malware",
         "security"
@@ -1944,7 +1949,7 @@
         "usersAll": 136,
         "usersEligible": 114
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1,
       "tags": [
         "azure-sentinel",
         "yara"
@@ -1956,7 +1961,7 @@
         "usersAll": 40419,
         "usersEligible": 38770
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 278,
       "tags": [
         "aws-api-gateway",
         "aws-lambda",
@@ -1973,7 +1978,7 @@
         "usersAll": 132529,
         "usersEligible": 115970
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 150,
       "tags": [
         "awk",
         "bash",
@@ -1989,7 +1994,7 @@
         "usersAll": 214913,
         "usersEligible": 129097
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 232,
       "tags": [
         "excel",
         "excel-2010",
@@ -2007,7 +2012,7 @@
         "usersAll": 125934,
         "usersEligible": 117732
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 178,
       "tags": [
         "spring",
         "spring-boot",
@@ -2022,7 +2027,7 @@
         "usersAll": 484932,
         "usersEligible": 388886
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 491,
       "tags": [
         "isnull",
         "join",
@@ -2042,7 +2047,7 @@
         "usersAll": 188,
         "usersEligible": 176
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 1,
       "tags": [
         "pagerduty",
         "runbook",
@@ -2055,7 +2060,7 @@
         "usersAll": 34897,
         "usersEligible": 33834
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 78,
       "tags": [
         "ngrx",
         "react-context",
@@ -2071,7 +2076,7 @@
         "usersAll": 21902,
         "usersEligible": 20783
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 62,
       "tags": [
         "boxplot",
         "correlation",
@@ -2085,7 +2090,7 @@
         "usersAll": 18434,
         "usersEligible": 17692
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 105,
       "tags": [
         "classification",
         "decision-tree",
@@ -2102,7 +2107,7 @@
         "usersAll": 25332,
         "usersEligible": 23512
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 44,
       "tags": [
         "architecture",
         "database-replication",
@@ -2118,7 +2123,7 @@
         "usersAll": 4189,
         "usersEligible": 3473
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 9,
       "tags": [
         "tableau-api",
         "tableau-desktop"
@@ -2130,7 +2135,7 @@
         "usersAll": 3789,
         "usersEligible": 3603
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 44,
       "tags": [
         "tailwind-css"
       ]
@@ -2141,7 +2146,7 @@
         "usersAll": 11540,
         "usersEligible": 10142
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 27,
       "tags": [
         "asciidoc",
         "documentation",
@@ -2159,7 +2164,7 @@
         "usersAll": 54263,
         "usersEligible": 50285
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 243,
       "tags": [
         "keras",
         "tensorflow",
@@ -2172,7 +2177,7 @@
         "usersAll": 84359,
         "usersEligible": 73286
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 140,
       "tags": [
         "automated-tests",
         "cucumber",
@@ -2190,7 +2195,7 @@
         "usersAll": 12435,
         "usersEligible": 12006
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 64,
       "tags": [
         "arima",
         "forecasting",
@@ -2204,7 +2209,7 @@
         "usersAll": 92473,
         "usersEligible": 83312
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 269,
       "tags": [
         "typescript",
         "typescript-generics",
@@ -2217,7 +2222,7 @@
         "usersAll": 93543,
         "usersEligible": 84840
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 164,
       "tags": [
         "junit",
         "mocking",
@@ -2235,7 +2240,7 @@
         "usersAll": 9074,
         "usersEligible": 8579
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 42,
       "tags": [
         "cluster-analysis",
         "hierarchical-clustering",
@@ -2249,7 +2254,7 @@
         "usersAll": 42,
         "usersEligible": 29
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 440,
       "tags": [
         "azure-ai-search",
         "chromadb",
@@ -2266,7 +2271,7 @@
         "usersAll": 118783,
         "usersEligible": 104044
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 286,
       "tags": [
         "bitbucket",
         "git",
@@ -2280,7 +2285,7 @@
         "usersAll": 47596,
         "usersEligible": 42976
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 89,
       "tags": [
         "nuxt.js",
         "vue-component",
@@ -2296,7 +2301,7 @@
         "usersAll": 6082,
         "usersEligible": 5101
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 12,
       "tags": [
         "accessibility",
         "screen-readers",
@@ -2309,7 +2314,7 @@
         "usersAll": 11323,
         "usersEligible": 10994
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 27,
       "tags": [
         "css-animations",
         "css-transitions",
@@ -2322,7 +2327,7 @@
         "usersAll": 2482,
         "usersEligible": 2046
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 10,
       "tags": [
         "core-web-vitals",
         "lighthouse",
@@ -2338,7 +2343,7 @@
         "usersAll": 14170,
         "usersEligible": 13175
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 35,
       "tags": [
         "content-security-policy",
         "csrf",
@@ -2356,7 +2361,7 @@
         "usersAll": 184817,
         "usersEligible": 159968
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 248,
       "tags": [
         ".htaccess",
         "apache",
@@ -2374,7 +2379,7 @@
         "usersAll": 43833,
         "usersEligible": 40147
       },
-      "sedeUsersInPairs": null,
+      "sedeUsersInPairs": 111,
       "tags": [
         "signalr",
         "socket.io",
@@ -2386,8 +2391,8 @@
   "source": "stackoverflow",
   "stats": {
     "authoredEdges": 193,
-    "authoredEdgesAtFloor": 164,
-    "authoredEdgesEndpointsObserved": 176,
+    "authoredEdgesAtFloor": 165,
+    "authoredEdgesEndpointsObserved": 186,
     "authoredEdgesReverseWins": 31,
     "cohortFilterEffect": {
       "orderedObservationsAfter": 23707403,
@@ -2580,17 +2585,9 @@
     ],
     "pairsAtFloor": 8260,
     "pairsSeen": 10174,
-    "skillsInKeptEdges": 144,
+    "skillsInKeptEdges": 147,
     "skillsMapped": 153,
-    "skillsMappedButUnobserved": [
-      "ai-agents",
-      "ai-app-development",
-      "fine-tuning",
-      "llm-apis",
-      "local-llms",
-      "multimodal-ai",
-      "rag"
-    ],
+    "skillsMappedButUnobserved": [],
     "skillsNoDataByConstruction": [
       "data-storytelling",
       "incident-response",
@@ -2599,9 +2596,9 @@
       "prompt-engineering",
       "threat-modeling"
     ],
-    "skillsObserved": 146,
+    "skillsObserved": 153,
     "skillsObservedMirror": 146,
-    "skillsObservedSede": 0,
+    "skillsObservedSede": 153,
     "top20EdgesBySupport": [
       {
         "confidence": 0.668712,
@@ -2991,6 +2988,7 @@
     {"confidence":0.654699,"from":"algorithms","n":6991,"reverse":2414,"sample":"full-mirror","support":4577,"to":"javascript-advanced","unfiltered":{"reverse":2518,"support":4899,"ties":380}},
     {"confidence":0.79654,"from":"algorithms","n":1445,"reverse":294,"sample":"full-mirror","support":1151,"to":"kubernetes","unfiltered":{"reverse":419,"support":2117,"ties":4}},
     {"confidence":0.588796,"from":"algorithms","n":6926,"reverse":2848,"sample":"full-mirror","support":4078,"to":"linux-administration","unfiltered":{"reverse":3031,"support":4368,"ties":39}},
+    {"confidence":0.9,"from":"algorithms","n":40,"reverse":4,"sample":"sede-current","support":36,"to":"llm-fundamentals","unfiltered":{"reverse":6,"support":150,"ties":0}},
     {"confidence":0.665138,"from":"algorithms","n":1526,"reverse":511,"sample":"full-mirror","support":1015,"to":"math-for-ml","unfiltered":{"reverse":529,"support":1067,"ties":267}},
     {"confidence":0.690407,"from":"algorithms","n":3117,"reverse":965,"sample":"full-mirror","support":2152,"to":"message-queues","unfiltered":{"reverse":1049,"support":2405,"ties":18}},
     {"confidence":0.784853,"from":"algorithms","n":2073,"reverse":446,"sample":"full-mirror","support":1627,"to":"microservices","unfiltered":{"reverse":470,"support":1717,"ties":8}},
@@ -3120,6 +3118,7 @@
     {"confidence":0.549096,"from":"apache-spark","n":774,"reverse":349,"sample":"full-mirror","support":425,"to":"identity-access-management","unfiltered":{"reverse":541,"support":537,"ties":82}},
     {"confidence":0.70674,"from":"apache-spark","n":549,"reverse":161,"sample":"full-mirror","support":388,"to":"infrastructure-as-code","unfiltered":{"reverse":212,"support":497,"ties":7}},
     {"confidence":0.707424,"from":"apache-spark","n":1145,"reverse":335,"sample":"full-mirror","support":810,"to":"kubernetes","unfiltered":{"reverse":441,"support":1057,"ties":233}},
+    {"confidence":0.888889,"from":"apache-spark","n":27,"reverse":3,"sample":"sede-current","support":24,"to":"llm-fundamentals","unfiltered":{"reverse":4,"support":107,"ties":2}},
     {"confidence":0.5,"from":"apache-spark","n":810,"reverse":405,"sample":"full-mirror","support":405,"to":"message-queues","unfiltered":{"reverse":727,"support":516,"ties":46}},
     {"confidence":0.592346,"from":"apache-spark","n":601,"reverse":245,"sample":"full-mirror","support":356,"to":"microservices","unfiltered":{"reverse":345,"support":491,"ties":28}},
     {"confidence":0.655039,"from":"apache-spark","n":258,"reverse":89,"sample":"full-mirror","support":169,"to":"mlops","unfiltered":{"reverse":131,"support":378,"ties":55}},
@@ -3215,6 +3214,7 @@
     {"confidence":0.717683,"from":"api-integration","n":9252,"reverse":2612,"sample":"full-mirror","support":6640,"to":"javascript-advanced","unfiltered":{"reverse":2724,"support":6971,"ties":1064}},
     {"confidence":0.781189,"from":"api-integration","n":1531,"reverse":335,"sample":"full-mirror","support":1196,"to":"kubernetes","unfiltered":{"reverse":435,"support":2255,"ties":39}},
     {"confidence":0.641968,"from":"api-integration","n":8597,"reverse":3078,"sample":"full-mirror","support":5519,"to":"linux-administration","unfiltered":{"reverse":3234,"support":5785,"ties":72}},
+    {"confidence":0.8,"from":"api-integration","n":20,"reverse":4,"sample":"sede-current","support":16,"to":"llm-fundamentals","unfiltered":{"reverse":5,"support":82,"ties":4}},
     {"confidence":0.542416,"from":"api-integration","n":389,"reverse":178,"sample":"full-mirror","support":211,"to":"math-for-ml","unfiltered":{"reverse":184,"support":223,"ties":0}},
     {"confidence":0.730575,"from":"api-integration","n":3166,"reverse":853,"sample":"full-mirror","support":2313,"to":"message-queues","unfiltered":{"reverse":922,"support":2507,"ties":31}},
     {"confidence":0.830399,"from":"api-integration","n":1704,"reverse":289,"sample":"full-mirror","support":1415,"to":"microservices","unfiltered":{"reverse":300,"support":1476,"ties":35}},
@@ -3360,6 +3360,7 @@
     {"confidence":0.586636,"from":"authentication","n":6914,"reverse":2858,"sample":"full-mirror","support":4056,"to":"javascript-advanced","unfiltered":{"reverse":2976,"support":4282,"ties":92}},
     {"confidence":0.689261,"from":"authentication","n":2449,"reverse":761,"sample":"full-mirror","support":1688,"to":"kubernetes","unfiltered":{"reverse":1025,"support":2962,"ties":184}},
     {"confidence":0.516562,"from":"authentication","n":6551,"reverse":3167,"sample":"full-mirror","support":3384,"to":"linux-administration","unfiltered":{"reverse":3350,"support":3593,"ties":364}},
+    {"confidence":0.730769,"from":"authentication","n":26,"reverse":7,"sample":"sede-current","support":19,"to":"llm-fundamentals","unfiltered":{"reverse":9,"support":122,"ties":0}},
     {"confidence":0.508982,"from":"authentication","n":334,"reverse":164,"sample":"full-mirror","support":170,"to":"math-for-ml","unfiltered":{"reverse":170,"support":182,"ties":0}},
     {"confidence":0.60396,"from":"authentication","n":4141,"reverse":1640,"sample":"full-mirror","support":2501,"to":"message-queues","unfiltered":{"reverse":1753,"support":2691,"ties":60}},
     {"confidence":0.691754,"from":"authentication","n":3056,"reverse":942,"sample":"full-mirror","support":2114,"to":"microservices","unfiltered":{"reverse":967,"support":2189,"ties":519}},
@@ -3394,6 +3395,7 @@
     {"confidence":0.579327,"from":"authentication","n":416,"reverse":175,"sample":"full-mirror","support":241,"to":"time-series-analysis","unfiltered":{"reverse":188,"support":257,"ties":0}},
     {"confidence":0.601823,"from":"authentication","n":8446,"reverse":3363,"sample":"full-mirror","support":5083,"to":"typescript","unfiltered":{"reverse":4027,"support":7492,"ties":426}},
     {"confidence":0.519667,"from":"authentication","n":12610,"reverse":6057,"sample":"full-mirror","support":6553,"to":"unit-testing","unfiltered":{"reverse":6672,"support":7077,"ties":318}},
+    {"confidence":0.772727,"from":"authentication","n":22,"reverse":5,"sample":"sede-current","support":17,"to":"vector-databases","unfiltered":{"reverse":5,"support":64,"ties":2}},
     {"confidence":0.523937,"from":"authentication","n":13849,"reverse":6593,"sample":"full-mirror","support":7256,"to":"version-control-git","unfiltered":{"reverse":6951,"support":7834,"ties":641}},
     {"confidence":0.633333,"from":"authentication","n":660,"reverse":242,"sample":"full-mirror","support":418,"to":"web-accessibility","unfiltered":{"reverse":274,"support":480,"ties":1}},
     {"confidence":0.547328,"from":"authentication","n":1310,"reverse":593,"sample":"full-mirror","support":717,"to":"web-animations","unfiltered":{"reverse":638,"support":799,"ties":1}},
@@ -3423,6 +3425,7 @@
     {"confidence":0.609774,"from":"aws-fundamentals","n":1371,"reverse":535,"sample":"full-mirror","support":836,"to":"graphql","unfiltered":{"reverse":646,"support":1210,"ties":291}},
     {"confidence":0.787703,"from":"aws-fundamentals","n":3448,"reverse":732,"sample":"full-mirror","support":2716,"to":"infrastructure-as-code","unfiltered":{"reverse":816,"support":3220,"ties":4683}},
     {"confidence":0.591872,"from":"aws-fundamentals","n":3494,"reverse":1426,"sample":"full-mirror","support":2068,"to":"kubernetes","unfiltered":{"reverse":1829,"support":2870,"ties":1124}},
+    {"confidence":0.642857,"from":"aws-fundamentals","n":42,"reverse":15,"sample":"sede-current","support":27,"to":"llm-fundamentals","unfiltered":{"reverse":24,"support":146,"ties":28}},
     {"confidence":0.536274,"from":"aws-fundamentals","n":3763,"reverse":1745,"sample":"full-mirror","support":2018,"to":"message-queues","unfiltered":{"reverse":1864,"support":2086,"ties":1511}},
     {"confidence":0.582168,"from":"aws-fundamentals","n":2288,"reverse":956,"sample":"full-mirror","support":1332,"to":"microservices","unfiltered":{"reverse":982,"support":1360,"ties":265}},
     {"confidence":0.675585,"from":"aws-fundamentals","n":299,"reverse":97,"sample":"full-mirror","support":202,"to":"mlops","unfiltered":{"reverse":150,"support":417,"ties":695}},
@@ -3434,6 +3437,7 @@
     {"confidence":0.73736,"from":"aws-fundamentals","n":5696,"reverse":1496,"sample":"full-mirror","support":4200,"to":"serverless","unfiltered":{"reverse":1786,"support":5416,"ties":10687}},
     {"confidence":0.597826,"from":"aws-fundamentals","n":92,"reverse":37,"sample":"full-mirror","support":55,"to":"tailwind-css","unfiltered":{"reverse":62,"support":218,"ties":2}},
     {"confidence":0.518322,"from":"aws-fundamentals","n":5076,"reverse":2445,"sample":"full-mirror","support":2631,"to":"typescript","unfiltered":{"reverse":3057,"support":3606,"ties":262}},
+    {"confidence":0.73913,"from":"aws-fundamentals","n":23,"reverse":6,"sample":"sede-current","support":17,"to":"vector-databases","unfiltered":{"reverse":6,"support":64,"ties":4}},
     {"confidence":0.513043,"from":"aws-fundamentals","n":345,"reverse":168,"sample":"full-mirror","support":177,"to":"web-accessibility","unfiltered":{"reverse":186,"support":186,"ties":1}},
     {"confidence":0.545024,"from":"aws-fundamentals","n":211,"reverse":96,"sample":"full-mirror","support":115,"to":"web-performance","unfiltered":{"reverse":101,"support":121,"ties":13}},
     {"confidence":0.625,"from":"azure-fundamentals","n":32,"reverse":12,"sample":"full-mirror","support":20,"to":"ab-testing","unfiltered":{"reverse":14,"support":21,"ties":1}},
@@ -3465,6 +3469,7 @@
     {"confidence":0.603998,"from":"azure-fundamentals","n":4952,"reverse":1961,"sample":"full-mirror","support":2991,"to":"identity-access-management","unfiltered":{"reverse":2228,"support":3158,"ties":4327}},
     {"confidence":0.674584,"from":"azure-fundamentals","n":1263,"reverse":411,"sample":"full-mirror","support":852,"to":"infrastructure-as-code","unfiltered":{"reverse":464,"support":1050,"ties":632}},
     {"confidence":0.602854,"from":"azure-fundamentals","n":2032,"reverse":807,"sample":"full-mirror","support":1225,"to":"kubernetes","unfiltered":{"reverse":1018,"support":1793,"ties":838}},
+    {"confidence":0.707317,"from":"azure-fundamentals","n":41,"reverse":12,"sample":"sede-current","support":29,"to":"llm-fundamentals","unfiltered":{"reverse":17,"support":93,"ties":32}},
     {"confidence":0.591304,"from":"azure-fundamentals","n":1150,"reverse":470,"sample":"full-mirror","support":680,"to":"microservices","unfiltered":{"reverse":489,"support":720,"ties":130}},
     {"confidence":0.640523,"from":"azure-fundamentals","n":153,"reverse":55,"sample":"full-mirror","support":98,"to":"mlops","unfiltered":{"reverse":78,"support":211,"ties":242}},
     {"confidence":0.5,"from":"azure-fundamentals","n":54,"reverse":27,"sample":"full-mirror","support":27,"to":"model-deployment","unfiltered":{"reverse":36,"support":71,"ties":6}},
@@ -3476,6 +3481,7 @@
     {"confidence":0.522727,"from":"azure-fundamentals","n":44,"reverse":21,"sample":"full-mirror","support":23,"to":"reinforcement-learning","unfiltered":{"reverse":21,"support":23,"ties":1}},
     {"confidence":0.74039,"from":"azure-fundamentals","n":3278,"reverse":851,"sample":"full-mirror","support":2427,"to":"serverless","unfiltered":{"reverse":1041,"support":3453,"ties":3280}},
     {"confidence":1.0,"from":"azure-fundamentals","n":20,"reverse":0,"sample":"full-mirror","support":20,"to":"sre-fundamentals","unfiltered":{"reverse":3,"support":45,"ties":52}},
+    {"confidence":0.727273,"from":"azure-fundamentals","n":33,"reverse":9,"sample":"sede-current","support":24,"to":"vector-databases","unfiltered":{"reverse":14,"support":55,"ties":67}},
     {"confidence":0.617978,"from":"azure-fundamentals","n":89,"reverse":34,"sample":"full-mirror","support":55,"to":"web-performance","unfiltered":{"reverse":41,"support":57,"ties":6}},
     {"confidence":0.541667,"from":"big-data-fundamentals","n":24,"reverse":11,"sample":"full-mirror","support":13,"to":"ab-testing","unfiltered":{"reverse":15,"support":16,"ties":0}},
     {"confidence":0.556782,"from":"big-data-fundamentals","n":1902,"reverse":843,"sample":"full-mirror","support":1059,"to":"advanced-sql","unfiltered":{"reverse":892,"support":1085,"ties":239}},
@@ -3688,6 +3694,7 @@
     {"confidence":0.541857,"from":"ci-cd","n":657,"reverse":301,"sample":"full-mirror","support":356,"to":"graphql","unfiltered":{"reverse":396,"support":568,"ties":7}},
     {"confidence":0.611547,"from":"ci-cd","n":2165,"reverse":841,"sample":"full-mirror","support":1324,"to":"infrastructure-as-code","unfiltered":{"reverse":955,"support":1652,"ties":342}},
     {"confidence":0.581946,"from":"ci-cd","n":3423,"reverse":1431,"sample":"full-mirror","support":1992,"to":"kubernetes","unfiltered":{"reverse":1833,"support":2826,"ties":904}},
+    {"confidence":0.75,"from":"ci-cd","n":20,"reverse":5,"sample":"sede-current","support":15,"to":"llm-fundamentals","unfiltered":{"reverse":6,"support":66,"ties":1}},
     {"confidence":0.574263,"from":"ci-cd","n":1865,"reverse":794,"sample":"full-mirror","support":1071,"to":"microservices","unfiltered":{"reverse":818,"support":1109,"ties":61}},
     {"confidence":0.535714,"from":"ci-cd","n":112,"reverse":52,"sample":"full-mirror","support":60,"to":"mlops","unfiltered":{"reverse":95,"support":142,"ties":44}},
     {"confidence":0.620277,"from":"ci-cd","n":2091,"reverse":794,"sample":"full-mirror","support":1297,"to":"monitoring-observability","unfiltered":{"reverse":845,"support":1348,"ties":58}},
@@ -4009,6 +4016,7 @@
     {"confidence":0.654127,"from":"command-line","n":7257,"reverse":2510,"sample":"full-mirror","support":4747,"to":"javascript-advanced","unfiltered":{"reverse":2627,"support":5048,"ties":23}},
     {"confidence":0.717572,"from":"command-line","n":3608,"reverse":1019,"sample":"full-mirror","support":2589,"to":"kubernetes","unfiltered":{"reverse":1259,"support":4259,"ties":453}},
     {"confidence":0.664694,"from":"command-line","n":13349,"reverse":4476,"sample":"full-mirror","support":8873,"to":"linux-administration","unfiltered":{"reverse":4692,"support":9337,"ties":10718}},
+    {"confidence":0.846154,"from":"command-line","n":39,"reverse":6,"sample":"sede-current","support":33,"to":"llm-fundamentals","unfiltered":{"reverse":11,"support":190,"ties":4}},
     {"confidence":0.606682,"from":"command-line","n":1317,"reverse":518,"sample":"full-mirror","support":799,"to":"math-for-ml","unfiltered":{"reverse":544,"support":840,"ties":13}},
     {"confidence":0.6674,"from":"command-line","n":5003,"reverse":1664,"sample":"full-mirror","support":3339,"to":"message-queues","unfiltered":{"reverse":1763,"support":3671,"ties":335}},
     {"confidence":0.771104,"from":"command-line","n":3080,"reverse":705,"sample":"full-mirror","support":2375,"to":"microservices","unfiltered":{"reverse":731,"support":2491,"ties":114}},
@@ -4161,6 +4169,7 @@
     {"confidence":0.618239,"from":"computer-vision","n":1590,"reverse":607,"sample":"full-mirror","support":983,"to":"javascript-advanced","unfiltered":{"reverse":646,"support":1065,"ties":3}},
     {"confidence":0.773124,"from":"computer-vision","n":573,"reverse":130,"sample":"full-mirror","support":443,"to":"kubernetes","unfiltered":{"reverse":181,"support":728,"ties":10}},
     {"confidence":0.55794,"from":"computer-vision","n":2563,"reverse":1133,"sample":"full-mirror","support":1430,"to":"linux-administration","unfiltered":{"reverse":1221,"support":1514,"ties":59}},
+    {"confidence":0.944444,"from":"computer-vision","n":36,"reverse":2,"sample":"sede-current","support":34,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":116,"ties":4}},
     {"confidence":0.606161,"from":"computer-vision","n":909,"reverse":358,"sample":"full-mirror","support":551,"to":"math-for-ml","unfiltered":{"reverse":367,"support":569,"ties":95}},
     {"confidence":0.664721,"from":"computer-vision","n":1199,"reverse":402,"sample":"full-mirror","support":797,"to":"message-queues","unfiltered":{"reverse":431,"support":862,"ties":16}},
     {"confidence":0.747292,"from":"computer-vision","n":831,"reverse":210,"sample":"full-mirror","support":621,"to":"microservices","unfiltered":{"reverse":218,"support":643,"ties":23}},
@@ -4274,6 +4283,7 @@
     {"confidence":0.666382,"from":"concurrency","n":4688,"reverse":1564,"sample":"full-mirror","support":3124,"to":"javascript-advanced","unfiltered":{"reverse":1659,"support":3432,"ties":166}},
     {"confidence":0.748874,"from":"concurrency","n":1776,"reverse":446,"sample":"full-mirror","support":1330,"to":"kubernetes","unfiltered":{"reverse":616,"support":2600,"ties":44}},
     {"confidence":0.567446,"from":"concurrency","n":6457,"reverse":2793,"sample":"full-mirror","support":3664,"to":"linux-administration","unfiltered":{"reverse":2975,"support":3956,"ties":199}},
+    {"confidence":0.823529,"from":"concurrency","n":34,"reverse":6,"sample":"sede-current","support":28,"to":"llm-fundamentals","unfiltered":{"reverse":9,"support":140,"ties":10}},
     {"confidence":0.572705,"from":"concurrency","n":1231,"reverse":526,"sample":"full-mirror","support":705,"to":"math-for-ml","unfiltered":{"reverse":546,"support":745,"ties":114}},
     {"confidence":0.65143,"from":"concurrency","n":4441,"reverse":1548,"sample":"full-mirror","support":2893,"to":"message-queues","unfiltered":{"reverse":1656,"support":3210,"ties":608}},
     {"confidence":0.769423,"from":"concurrency","n":2806,"reverse":647,"sample":"full-mirror","support":2159,"to":"microservices","unfiltered":{"reverse":682,"support":2287,"ties":99}},
@@ -4512,6 +4522,7 @@
     {"confidence":0.73895,"from":"css","n":16629,"reverse":4341,"sample":"full-mirror","support":12288,"to":"javascript-advanced","unfiltered":{"reverse":4495,"support":12770,"ties":142}},
     {"confidence":0.801139,"from":"css","n":2635,"reverse":524,"sample":"full-mirror","support":2111,"to":"kubernetes","unfiltered":{"reverse":695,"support":3736,"ties":14}},
     {"confidence":0.653028,"from":"css","n":13687,"reverse":4749,"sample":"full-mirror","support":8938,"to":"linux-administration","unfiltered":{"reverse":4994,"support":9320,"ties":51}},
+    {"confidence":0.9,"from":"css","n":70,"reverse":7,"sample":"sede-current","support":63,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":235,"ties":0}},
     {"confidence":0.557609,"from":"css","n":920,"reverse":407,"sample":"full-mirror","support":513,"to":"math-for-ml","unfiltered":{"reverse":425,"support":538,"ties":8}},
     {"confidence":0.714807,"from":"css","n":4930,"reverse":1406,"sample":"full-mirror","support":3524,"to":"message-queues","unfiltered":{"reverse":1526,"support":3833,"ties":4}},
     {"confidence":0.825419,"from":"css","n":2801,"reverse":489,"sample":"full-mirror","support":2312,"to":"microservices","unfiltered":{"reverse":509,"support":2410,"ties":3}},
@@ -4564,6 +4575,7 @@
     {"confidence":0.71003,"from":"css","n":20009,"reverse":5802,"sample":"full-mirror","support":14207,"to":"typescript","unfiltered":{"reverse":6415,"support":19290,"ties":1208}},
     {"confidence":0.649221,"from":"css","n":20349,"reverse":7138,"sample":"full-mirror","support":13211,"to":"unit-testing","unfiltered":{"reverse":7912,"support":14111,"ties":74}},
     {"confidence":0.533333,"from":"css","n":960,"reverse":448,"sample":"full-mirror","support":512,"to":"unsupervised-learning","unfiltered":{"reverse":469,"support":537,"ties":2}},
+    {"confidence":0.964286,"from":"css","n":28,"reverse":1,"sample":"sede-current","support":27,"to":"vector-databases","unfiltered":{"reverse":2,"support":94,"ties":0}},
     {"confidence":0.665934,"from":"css","n":28674,"reverse":9579,"sample":"full-mirror","support":19095,"to":"version-control-git","unfiltered":{"reverse":10063,"support":20191,"ties":432}},
     {"confidence":0.648408,"from":"css","n":7540,"reverse":2651,"sample":"full-mirror","support":4889,"to":"vue","unfiltered":{"reverse":3127,"support":9745,"ties":1642}},
     {"confidence":0.803339,"from":"css","n":1917,"reverse":377,"sample":"full-mirror","support":1540,"to":"web-accessibility","unfiltered":{"reverse":435,"support":1659,"ties":297}},
@@ -4960,6 +4972,7 @@
     {"confidence":0.541226,"from":"data-visualization","n":946,"reverse":434,"sample":"full-mirror","support":512,"to":"javascript-advanced","unfiltered":{"reverse":450,"support":526,"ties":4}},
     {"confidence":0.752515,"from":"data-visualization","n":497,"reverse":123,"sample":"full-mirror","support":374,"to":"kubernetes","unfiltered":{"reverse":166,"support":524,"ties":6}},
     {"confidence":0.50628,"from":"data-visualization","n":2070,"reverse":1022,"sample":"full-mirror","support":1048,"to":"linux-administration","unfiltered":{"reverse":1057,"support":1082,"ties":49}},
+    {"confidence":0.897959,"from":"data-visualization","n":49,"reverse":5,"sample":"sede-current","support":44,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":179,"ties":1}},
     {"confidence":0.542522,"from":"data-visualization","n":1023,"reverse":468,"sample":"full-mirror","support":555,"to":"math-for-ml","unfiltered":{"reverse":478,"support":569,"ties":26}},
     {"confidence":0.61313,"from":"data-visualization","n":853,"reverse":330,"sample":"full-mirror","support":523,"to":"message-queues","unfiltered":{"reverse":350,"support":548,"ties":7}},
     {"confidence":0.656751,"from":"data-visualization","n":437,"reverse":150,"sample":"full-mirror","support":287,"to":"microservices","unfiltered":{"reverse":158,"support":291,"ties":0}},
@@ -5262,6 +5275,7 @@
     {"confidence":0.721154,"from":"deep-learning","n":104,"reverse":29,"sample":"full-mirror","support":75,"to":"graphql","unfiltered":{"reverse":31,"support":82,"ties":0}},
     {"confidence":0.788462,"from":"deep-learning","n":104,"reverse":22,"sample":"full-mirror","support":82,"to":"infrastructure-as-code","unfiltered":{"reverse":24,"support":92,"ties":0}},
     {"confidence":0.713816,"from":"deep-learning","n":304,"reverse":87,"sample":"full-mirror","support":217,"to":"kubernetes","unfiltered":{"reverse":104,"support":255,"ties":4}},
+    {"confidence":0.903846,"from":"deep-learning","n":52,"reverse":5,"sample":"sede-current","support":47,"to":"llm-fundamentals","unfiltered":{"reverse":6,"support":151,"ties":27}},
     {"confidence":0.520947,"from":"deep-learning","n":549,"reverse":263,"sample":"full-mirror","support":286,"to":"math-for-ml","unfiltered":{"reverse":286,"support":291,"ties":137}},
     {"confidence":0.633562,"from":"deep-learning","n":292,"reverse":107,"sample":"full-mirror","support":185,"to":"microservices","unfiltered":{"reverse":118,"support":195,"ties":23}},
     {"confidence":0.715556,"from":"deep-learning","n":225,"reverse":64,"sample":"full-mirror","support":161,"to":"mlops","unfiltered":{"reverse":104,"support":277,"ties":43}},
@@ -5504,6 +5518,7 @@
     {"confidence":0.677092,"from":"django","n":2366,"reverse":764,"sample":"full-mirror","support":1602,"to":"javascript-advanced","unfiltered":{"reverse":806,"support":1701,"ties":14}},
     {"confidence":0.795,"from":"django","n":1200,"reverse":246,"sample":"full-mirror","support":954,"to":"kubernetes","unfiltered":{"reverse":317,"support":1524,"ties":125}},
     {"confidence":0.598425,"from":"django","n":3810,"reverse":1530,"sample":"full-mirror","support":2280,"to":"linux-administration","unfiltered":{"reverse":1634,"support":2401,"ties":233}},
+    {"confidence":0.75,"from":"django","n":32,"reverse":8,"sample":"sede-current","support":24,"to":"llm-fundamentals","unfiltered":{"reverse":9,"support":83,"ties":1}},
     {"confidence":0.570201,"from":"django","n":349,"reverse":150,"sample":"full-mirror","support":199,"to":"math-for-ml","unfiltered":{"reverse":156,"support":205,"ties":0}},
     {"confidence":0.832249,"from":"django","n":3535,"reverse":593,"sample":"full-mirror","support":2942,"to":"message-queues","unfiltered":{"reverse":626,"support":3107,"ties":999}},
     {"confidence":0.805988,"from":"django","n":835,"reverse":162,"sample":"full-mirror","support":673,"to":"microservices","unfiltered":{"reverse":166,"support":705,"ties":40}},
@@ -5551,6 +5566,7 @@
     {"confidence":0.755578,"from":"django","n":2913,"reverse":712,"sample":"full-mirror","support":2201,"to":"typescript","unfiltered":{"reverse":799,"support":2942,"ties":22}},
     {"confidence":0.673002,"from":"django","n":5367,"reverse":1755,"sample":"full-mirror","support":3612,"to":"unit-testing","unfiltered":{"reverse":1956,"support":3878,"ties":646}},
     {"confidence":0.501266,"from":"django","n":395,"reverse":197,"sample":"full-mirror","support":198,"to":"unsupervised-learning","unfiltered":{"reverse":205,"support":211,"ties":5}},
+    {"confidence":0.916667,"from":"django","n":24,"reverse":2,"sample":"sede-current","support":22,"to":"vector-databases","unfiltered":{"reverse":2,"support":41,"ties":4}},
     {"confidence":0.611495,"from":"django","n":7377,"reverse":2866,"sample":"full-mirror","support":4511,"to":"version-control-git","unfiltered":{"reverse":3037,"support":4825,"ties":323}},
     {"confidence":0.704218,"from":"django","n":1802,"reverse":533,"sample":"full-mirror","support":1269,"to":"vue","unfiltered":{"reverse":664,"support":2063,"ties":242}},
     {"confidence":0.675824,"from":"django","n":182,"reverse":59,"sample":"full-mirror","support":123,"to":"web-accessibility","unfiltered":{"reverse":68,"support":142,"ties":1}},
@@ -5577,6 +5593,7 @@
     {"confidence":0.578625,"from":"docker","n":1469,"reverse":619,"sample":"full-mirror","support":850,"to":"graphql","unfiltered":{"reverse":773,"support":1176,"ties":59}},
     {"confidence":0.66382,"from":"docker","n":2576,"reverse":866,"sample":"full-mirror","support":1710,"to":"infrastructure-as-code","unfiltered":{"reverse":1012,"support":2068,"ties":396}},
     {"confidence":0.648578,"from":"docker","n":5381,"reverse":1891,"sample":"full-mirror","support":3490,"to":"kubernetes","unfiltered":{"reverse":2438,"support":4645,"ties":3886}},
+    {"confidence":0.705882,"from":"docker","n":51,"reverse":15,"sample":"sede-current","support":36,"to":"llm-fundamentals","unfiltered":{"reverse":26,"support":168,"ties":16}},
     {"confidence":0.578965,"from":"docker","n":2976,"reverse":1253,"sample":"full-mirror","support":1723,"to":"microservices","unfiltered":{"reverse":1366,"support":1852,"ties":642}},
     {"confidence":0.603175,"from":"docker","n":252,"reverse":100,"sample":"full-mirror","support":152,"to":"mlops","unfiltered":{"reverse":166,"support":298,"ties":126}},
     {"confidence":0.625,"from":"docker","n":24,"reverse":9,"sample":"full-mirror","support":15,"to":"model-interpretability","unfiltered":{"reverse":9,"support":16,"ties":1}},
@@ -5585,6 +5602,7 @@
     {"confidence":0.534398,"from":"docker","n":814,"reverse":379,"sample":"full-mirror","support":435,"to":"pytorch","unfiltered":{"reverse":386,"support":454,"ties":77}},
     {"confidence":0.547072,"from":"docker","n":3654,"reverse":1655,"sample":"full-mirror","support":1999,"to":"serverless","unfiltered":{"reverse":2106,"support":2644,"ties":518}},
     {"confidence":0.557143,"from":"docker","n":140,"reverse":62,"sample":"full-mirror","support":78,"to":"tailwind-css","unfiltered":{"reverse":112,"support":269,"ties":7}},
+    {"confidence":0.666667,"from":"docker","n":36,"reverse":12,"sample":"sede-current","support":24,"to":"vector-databases","unfiltered":{"reverse":14,"support":75,"ties":24}},
     {"confidence":0.657143,"from":"elasticsearch","n":35,"reverse":12,"sample":"full-mirror","support":23,"to":"ab-testing","unfiltered":{"reverse":14,"support":32,"ties":2}},
     {"confidence":0.656,"from":"elasticsearch","n":125,"reverse":43,"sample":"full-mirror","support":82,"to":"apache-airflow","unfiltered":{"reverse":86,"support":285,"ties":8}},
     {"confidence":0.578947,"from":"elasticsearch","n":1634,"reverse":688,"sample":"full-mirror","support":946,"to":"apache-kafka","unfiltered":{"reverse":831,"support":1351,"ties":246}},
@@ -5763,6 +5781,7 @@
     {"confidence":0.652778,"from":"exploratory-data-analysis","n":144,"reverse":50,"sample":"full-mirror","support":94,"to":"graphql","unfiltered":{"reverse":65,"support":133,"ties":1}},
     {"confidence":0.682403,"from":"exploratory-data-analysis","n":233,"reverse":74,"sample":"full-mirror","support":159,"to":"infrastructure-as-code","unfiltered":{"reverse":84,"support":192,"ties":4}},
     {"confidence":0.659229,"from":"exploratory-data-analysis","n":493,"reverse":168,"sample":"full-mirror","support":325,"to":"kubernetes","unfiltered":{"reverse":214,"support":414,"ties":41}},
+    {"confidence":0.87931,"from":"exploratory-data-analysis","n":58,"reverse":7,"sample":"sede-current","support":51,"to":"llm-fundamentals","unfiltered":{"reverse":10,"support":156,"ties":19}},
     {"confidence":0.544828,"from":"exploratory-data-analysis","n":580,"reverse":264,"sample":"full-mirror","support":316,"to":"message-queues","unfiltered":{"reverse":283,"support":331,"ties":15}},
     {"confidence":0.617143,"from":"exploratory-data-analysis","n":350,"reverse":134,"sample":"full-mirror","support":216,"to":"microservices","unfiltered":{"reverse":137,"support":221,"ties":8}},
     {"confidence":0.702479,"from":"exploratory-data-analysis","n":242,"reverse":72,"sample":"full-mirror","support":170,"to":"mlops","unfiltered":{"reverse":117,"support":320,"ties":174}},
@@ -5787,6 +5806,7 @@
     {"confidence":0.538903,"from":"exploratory-data-analysis","n":1221,"reverse":563,"sample":"full-mirror","support":658,"to":"time-series-analysis","unfiltered":{"reverse":574,"support":665,"ties":246}},
     {"confidence":0.610092,"from":"exploratory-data-analysis","n":654,"reverse":255,"sample":"full-mirror","support":399,"to":"typescript","unfiltered":{"reverse":303,"support":471,"ties":5}},
     {"confidence":0.503739,"from":"exploratory-data-analysis","n":1471,"reverse":730,"sample":"full-mirror","support":741,"to":"unit-testing","unfiltered":{"reverse":794,"support":774,"ties":18}},
+    {"confidence":0.9,"from":"exploratory-data-analysis","n":20,"reverse":2,"sample":"sede-current","support":18,"to":"vector-databases","unfiltered":{"reverse":2,"support":39,"ties":2}},
     {"confidence":0.56746,"from":"exploratory-data-analysis","n":252,"reverse":109,"sample":"full-mirror","support":143,"to":"vue","unfiltered":{"reverse":152,"support":243,"ties":1}},
     {"confidence":0.530612,"from":"exploratory-data-analysis","n":49,"reverse":23,"sample":"full-mirror","support":26,"to":"web-accessibility","unfiltered":{"reverse":26,"support":27,"ties":0}},
     {"confidence":0.636364,"from":"express","n":22,"reverse":8,"sample":"full-mirror","support":14,"to":"ab-testing","unfiltered":{"reverse":15,"support":18,"ties":2}},
@@ -5874,6 +5894,7 @@
     {"confidence":0.569944,"from":"express","n":3753,"reverse":1614,"sample":"full-mirror","support":2139,"to":"websockets","unfiltered":{"reverse":1815,"support":2317,"ties":1686}},
     {"confidence":0.55,"from":"fastapi","n":60,"reverse":27,"sample":"full-mirror","support":33,"to":"authentication","unfiltered":{"reverse":218,"support":78,"ties":65}},
     {"confidence":0.648649,"from":"fastapi","n":37,"reverse":13,"sample":"full-mirror","support":24,"to":"caching","unfiltered":{"reverse":110,"support":62,"ties":15}},
+    {"confidence":0.535714,"from":"fastapi","n":28,"reverse":13,"sample":"sede-current","support":15,"to":"llm-fundamentals","unfiltered":{"reverse":17,"support":35,"ties":18}},
     {"confidence":0.521739,"from":"fastapi","n":23,"reverse":11,"sample":"full-mirror","support":12,"to":"nextjs","unfiltered":{"reverse":28,"support":28,"ties":7}},
     {"confidence":0.555556,"from":"fastapi","n":90,"reverse":40,"sample":"full-mirror","support":50,"to":"orm-data-access","unfiltered":{"reverse":254,"support":125,"ties":269}},
     {"confidence":0.641791,"from":"fastapi","n":67,"reverse":24,"sample":"full-mirror","support":43,"to":"unit-testing","unfiltered":{"reverse":233,"support":105,"ties":70}},
@@ -6077,6 +6098,7 @@
     {"confidence":0.569124,"from":"gcp-fundamentals","n":434,"reverse":187,"sample":"full-mirror","support":247,"to":"graphql","unfiltered":{"reverse":232,"support":383,"ties":15}},
     {"confidence":0.632019,"from":"gcp-fundamentals","n":837,"reverse":308,"sample":"full-mirror","support":529,"to":"infrastructure-as-code","unfiltered":{"reverse":348,"support":683,"ties":397}},
     {"confidence":0.527849,"from":"gcp-fundamentals","n":1957,"reverse":924,"sample":"full-mirror","support":1033,"to":"kubernetes","unfiltered":{"reverse":1184,"support":1565,"ties":1708}},
+    {"confidence":0.761905,"from":"gcp-fundamentals","n":21,"reverse":5,"sample":"sede-current","support":16,"to":"llm-fundamentals","unfiltered":{"reverse":10,"support":80,"ties":16}},
     {"confidence":0.615718,"from":"gcp-fundamentals","n":1845,"reverse":709,"sample":"full-mirror","support":1136,"to":"message-queues","unfiltered":{"reverse":761,"support":1203,"ties":649}},
     {"confidence":0.610124,"from":"gcp-fundamentals","n":1126,"reverse":439,"sample":"full-mirror","support":687,"to":"microservices","unfiltered":{"reverse":455,"support":716,"ties":168}},
     {"confidence":0.648649,"from":"gcp-fundamentals","n":185,"reverse":65,"sample":"full-mirror","support":120,"to":"mlops","unfiltered":{"reverse":108,"support":273,"ties":366}},
@@ -6225,6 +6247,7 @@
     {"confidence":0.768447,"from":"html","n":17374,"reverse":4023,"sample":"full-mirror","support":13351,"to":"javascript-advanced","unfiltered":{"reverse":4169,"support":13892,"ties":361}},
     {"confidence":0.832517,"from":"html","n":3266,"reverse":547,"sample":"full-mirror","support":2719,"to":"kubernetes","unfiltered":{"reverse":691,"support":4669,"ties":14}},
     {"confidence":0.68027,"from":"html","n":16711,"reverse":5343,"sample":"full-mirror","support":11368,"to":"linux-administration","unfiltered":{"reverse":5611,"support":11840,"ties":143}},
+    {"confidence":0.905882,"from":"html","n":85,"reverse":8,"sample":"sede-current","support":77,"to":"llm-fundamentals","unfiltered":{"reverse":13,"support":301,"ties":4}},
     {"confidence":0.587429,"from":"html","n":1241,"reverse":512,"sample":"full-mirror","support":729,"to":"math-for-ml","unfiltered":{"reverse":530,"support":763,"ties":4}},
     {"confidence":0.752003,"from":"html","n":5992,"reverse":1486,"sample":"full-mirror","support":4506,"to":"message-queues","unfiltered":{"reverse":1616,"support":4870,"ties":12}},
     {"confidence":0.842745,"from":"html","n":3453,"reverse":543,"sample":"full-mirror","support":2910,"to":"microservices","unfiltered":{"reverse":565,"support":3038,"ties":8}},
@@ -6280,6 +6303,7 @@
     {"confidence":0.745706,"from":"html","n":21424,"reverse":5448,"sample":"full-mirror","support":15976,"to":"typescript","unfiltered":{"reverse":5954,"support":21422,"ties":2816}},
     {"confidence":0.681449,"from":"html","n":23249,"reverse":7406,"sample":"full-mirror","support":15843,"to":"unit-testing","unfiltered":{"reverse":8264,"support":16899,"ties":138}},
     {"confidence":0.590188,"from":"html","n":1386,"reverse":568,"sample":"full-mirror","support":818,"to":"unsupervised-learning","unfiltered":{"reverse":586,"support":854,"ties":8}},
+    {"confidence":0.913043,"from":"html","n":46,"reverse":4,"sample":"sede-current","support":42,"to":"vector-databases","unfiltered":{"reverse":5,"support":121,"ties":1}},
     {"confidence":0.693519,"from":"html","n":32374,"reverse":9922,"sample":"full-mirror","support":22452,"to":"version-control-git","unfiltered":{"reverse":10408,"support":23771,"ties":650}},
     {"confidence":0.704483,"from":"html","n":7986,"reverse":2360,"sample":"full-mirror","support":5626,"to":"vue","unfiltered":{"reverse":2710,"support":10692,"ties":1908}},
     {"confidence":0.852701,"from":"html","n":1962,"reverse":289,"sample":"full-mirror","support":1673,"to":"web-accessibility","unfiltered":{"reverse":334,"support":1810,"ties":942}},
@@ -6487,6 +6511,7 @@
     {"confidence":0.775535,"from":"java","n":10848,"reverse":2435,"sample":"full-mirror","support":8413,"to":"javascript-advanced","unfiltered":{"reverse":2546,"support":8854,"ties":138}},
     {"confidence":0.834263,"from":"java","n":6812,"reverse":1129,"sample":"full-mirror","support":5683,"to":"kubernetes","unfiltered":{"reverse":1305,"support":8577,"ties":513}},
     {"confidence":0.718104,"from":"java","n":15190,"reverse":4282,"sample":"full-mirror","support":10908,"to":"linux-administration","unfiltered":{"reverse":4490,"support":11409,"ties":1274}},
+    {"confidence":0.884058,"from":"java","n":69,"reverse":8,"sample":"sede-current","support":61,"to":"llm-fundamentals","unfiltered":{"reverse":8,"support":289,"ties":5}},
     {"confidence":0.72842,"from":"java","n":1506,"reverse":409,"sample":"full-mirror","support":1097,"to":"math-for-ml","unfiltered":{"reverse":421,"support":1146,"ties":123}},
     {"confidence":0.822858,"from":"java","n":9896,"reverse":1753,"sample":"full-mirror","support":8143,"to":"message-queues","unfiltered":{"reverse":1842,"support":8689,"ties":1671}},
     {"confidence":0.871946,"from":"java","n":7450,"reverse":954,"sample":"full-mirror","support":6496,"to":"microservices","unfiltered":{"reverse":980,"support":6674,"ties":1260}},
@@ -6544,6 +6569,7 @@
     {"confidence":0.797786,"from":"java","n":15449,"reverse":3124,"sample":"full-mirror","support":12325,"to":"typescript","unfiltered":{"reverse":3431,"support":16551,"ties":143}},
     {"confidence":0.805444,"from":"java","n":29760,"reverse":5790,"sample":"full-mirror","support":23970,"to":"unit-testing","unfiltered":{"reverse":6419,"support":25377,"ties":7803}},
     {"confidence":0.706417,"from":"java","n":1761,"reverse":517,"sample":"full-mirror","support":1244,"to":"unsupervised-learning","unfiltered":{"reverse":524,"support":1298,"ties":121}},
+    {"confidence":0.857143,"from":"java","n":35,"reverse":5,"sample":"sede-current","support":30,"to":"vector-databases","unfiltered":{"reverse":5,"support":114,"ties":4}},
     {"confidence":0.73725,"from":"java","n":32255,"reverse":8475,"sample":"full-mirror","support":23780,"to":"version-control-git","unfiltered":{"reverse":8879,"support":25085,"ties":1155}},
     {"confidence":0.736648,"from":"java","n":4063,"reverse":1070,"sample":"full-mirror","support":2993,"to":"vue","unfiltered":{"reverse":1260,"support":5999,"ties":80}},
     {"confidence":0.804572,"from":"java","n":1356,"reverse":265,"sample":"full-mirror","support":1091,"to":"web-accessibility","unfiltered":{"reverse":303,"support":1189,"ties":90}},
@@ -6602,6 +6628,7 @@
     {"confidence":0.503826,"from":"javascript","n":30058,"reverse":14914,"sample":"full-mirror","support":15144,"to":"django","unfiltered":{"reverse":15436,"support":15796,"ties":3690}},
     {"confidence":0.832517,"from":"javascript","n":26958,"reverse":4515,"sample":"full-mirror","support":22443,"to":"docker","unfiltered":{"reverse":4644,"support":25049,"ties":296}},
     {"confidence":0.744988,"from":"javascript","n":19203,"reverse":4897,"sample":"full-mirror","support":14306,"to":"elasticsearch","unfiltered":{"reverse":5166,"support":15187,"ties":372}},
+    {"confidence":0.875,"from":"javascript","n":24,"reverse":3,"sample":"sede-current","support":21,"to":"embeddings-vector-search","unfiltered":{"reverse":3,"support":68,"ties":0}},
     {"confidence":0.665639,"from":"javascript","n":649,"reverse":217,"sample":"full-mirror","support":432,"to":"ethical-hacking-basics","unfiltered":{"reverse":223,"support":458,"ties":36}},
     {"confidence":0.730031,"from":"javascript","n":5734,"reverse":1548,"sample":"full-mirror","support":4186,"to":"etl-pipelines","unfiltered":{"reverse":1711,"support":4484,"ties":84}},
     {"confidence":0.845842,"from":"javascript","n":986,"reverse":152,"sample":"full-mirror","support":834,"to":"event-driven-architecture","unfiltered":{"reverse":176,"support":963,"ties":15}},
@@ -6623,6 +6650,8 @@
     {"confidence":0.936571,"from":"javascript","n":25572,"reverse":1622,"sample":"full-mirror","support":23950,"to":"javascript-advanced","unfiltered":{"reverse":1703,"support":24751,"ties":11778}},
     {"confidence":0.826975,"from":"javascript","n":6317,"reverse":1093,"sample":"full-mirror","support":5224,"to":"kubernetes","unfiltered":{"reverse":1302,"support":8428,"ties":77}},
     {"confidence":0.708085,"from":"javascript","n":24007,"reverse":7008,"sample":"full-mirror","support":16999,"to":"linux-administration","unfiltered":{"reverse":7336,"support":17683,"ties":313}},
+    {"confidence":0.763158,"from":"javascript","n":38,"reverse":9,"sample":"sede-current","support":29,"to":"llm-apis","unfiltered":{"reverse":30,"support":843,"ties":137}},
+    {"confidence":0.87234,"from":"javascript","n":141,"reverse":18,"sample":"sede-current","support":123,"to":"llm-fundamentals","unfiltered":{"reverse":23,"support":408,"ties":19}},
     {"confidence":0.602723,"from":"javascript","n":1616,"reverse":642,"sample":"full-mirror","support":974,"to":"math-for-ml","unfiltered":{"reverse":673,"support":1014,"ties":32}},
     {"confidence":0.759711,"from":"javascript","n":10375,"reverse":2493,"sample":"full-mirror","support":7882,"to":"message-queues","unfiltered":{"reverse":2661,"support":8435,"ties":168}},
     {"confidence":0.834095,"from":"javascript","n":6130,"reverse":1017,"sample":"full-mirror","support":5113,"to":"microservices","unfiltered":{"reverse":1049,"support":5283,"ties":145}},
@@ -6679,6 +6708,7 @@
     {"confidence":0.810485,"from":"javascript","n":37063,"reverse":7024,"sample":"full-mirror","support":30039,"to":"typescript","unfiltered":{"reverse":7443,"support":38238,"ties":13722}},
     {"confidence":0.706643,"from":"javascript","n":38189,"reverse":11203,"sample":"full-mirror","support":26986,"to":"unit-testing","unfiltered":{"reverse":12324,"support":28783,"ties":1961}},
     {"confidence":0.596571,"from":"javascript","n":1750,"reverse":706,"sample":"full-mirror","support":1044,"to":"unsupervised-learning","unfiltered":{"reverse":721,"support":1098,"ties":18}},
+    {"confidence":0.892308,"from":"javascript","n":65,"reverse":7,"sample":"sede-current","support":58,"to":"vector-databases","unfiltered":{"reverse":9,"support":168,"ties":9}},
     {"confidence":0.718129,"from":"javascript","n":49136,"reverse":13850,"sample":"full-mirror","support":35286,"to":"version-control-git","unfiltered":{"reverse":14473,"support":37269,"ties":757}},
     {"confidence":0.763476,"from":"javascript","n":14210,"reverse":3361,"sample":"full-mirror","support":10849,"to":"vue","unfiltered":{"reverse":3718,"support":18457,"ties":10910}},
     {"confidence":0.836344,"from":"javascript","n":2768,"reverse":453,"sample":"full-mirror","support":2315,"to":"web-accessibility","unfiltered":{"reverse":517,"support":2497,"ties":385}},
@@ -6836,6 +6866,7 @@
     {"confidence":0.58427,"from":"linux-administration","n":178,"reverse":74,"sample":"full-mirror","support":104,"to":"web-performance","unfiltered":{"reverse":80,"support":115,"ties":3}},
     {"confidence":0.547788,"from":"linux-administration","n":1130,"reverse":511,"sample":"full-mirror","support":619,"to":"web-security","unfiltered":{"reverse":561,"support":672,"ties":10}},
     {"confidence":0.570035,"from":"linux-administration","n":2256,"reverse":970,"sample":"full-mirror","support":1286,"to":"websockets","unfiltered":{"reverse":1056,"support":1477,"ties":58}},
+    {"confidence":0.65,"from":"llm-fundamentals","n":20,"reverse":7,"sample":"sede-current","support":13,"to":"vector-databases","unfiltered":{"reverse":13,"support":21,"ties":70}},
     {"confidence":0.534653,"from":"math-for-ml","n":202,"reverse":94,"sample":"full-mirror","support":108,"to":"advanced-sql","unfiltered":{"reverse":97,"support":114,"ties":2}},
     {"confidence":0.71875,"from":"math-for-ml","n":32,"reverse":9,"sample":"full-mirror","support":23,"to":"apache-kafka","unfiltered":{"reverse":9,"support":32,"ties":1}},
     {"confidence":0.524017,"from":"math-for-ml","n":229,"reverse":109,"sample":"full-mirror","support":120,"to":"apache-spark","unfiltered":{"reverse":131,"support":166,"ties":24}},
@@ -6974,6 +7005,7 @@
     {"confidence":0.589159,"from":"ml-fundamentals","n":3819,"reverse":1569,"sample":"full-mirror","support":2250,"to":"deep-learning","unfiltered":{"reverse":1586,"support":2323,"ties":5280}},
     {"confidence":0.704833,"from":"ml-fundamentals","n":2131,"reverse":629,"sample":"full-mirror","support":1502,"to":"docker","unfiltered":{"reverse":672,"support":1597,"ties":62}},
     {"confidence":0.545649,"from":"ml-fundamentals","n":1402,"reverse":637,"sample":"full-mirror","support":765,"to":"elasticsearch","unfiltered":{"reverse":672,"support":798,"ties":41}},
+    {"confidence":0.85,"from":"ml-fundamentals","n":20,"reverse":3,"sample":"sede-current","support":17,"to":"embeddings-vector-search","unfiltered":{"reverse":5,"support":43,"ties":11}},
     {"confidence":0.641538,"from":"ml-fundamentals","n":650,"reverse":233,"sample":"full-mirror","support":417,"to":"etl-pipelines","unfiltered":{"reverse":242,"support":428,"ties":15}},
     {"confidence":0.560976,"from":"ml-fundamentals","n":41,"reverse":18,"sample":"full-mirror","support":23,"to":"event-driven-architecture","unfiltered":{"reverse":20,"support":30,"ties":1}},
     {"confidence":0.532483,"from":"ml-fundamentals","n":3371,"reverse":1576,"sample":"full-mirror","support":1795,"to":"exploratory-data-analysis","unfiltered":{"reverse":1586,"support":1820,"ties":1621}},
@@ -6991,6 +7023,7 @@
     {"confidence":0.517674,"from":"ml-fundamentals","n":877,"reverse":423,"sample":"full-mirror","support":454,"to":"javascript-advanced","unfiltered":{"reverse":444,"support":482,"ties":1}},
     {"confidence":0.746269,"from":"ml-fundamentals","n":536,"reverse":136,"sample":"full-mirror","support":400,"to":"kubernetes","unfiltered":{"reverse":174,"support":537,"ties":12}},
     {"confidence":0.50581,"from":"ml-fundamentals","n":1463,"reverse":723,"sample":"full-mirror","support":740,"to":"linux-administration","unfiltered":{"reverse":758,"support":773,"ties":3}},
+    {"confidence":0.861111,"from":"ml-fundamentals","n":72,"reverse":10,"sample":"sede-current","support":62,"to":"llm-fundamentals","unfiltered":{"reverse":16,"support":208,"ties":187}},
     {"confidence":0.598549,"from":"ml-fundamentals","n":827,"reverse":332,"sample":"full-mirror","support":495,"to":"math-for-ml","unfiltered":{"reverse":337,"support":505,"ties":524}},
     {"confidence":0.577994,"from":"ml-fundamentals","n":718,"reverse":303,"sample":"full-mirror","support":415,"to":"message-queues","unfiltered":{"reverse":326,"support":440,"ties":4}},
     {"confidence":0.692884,"from":"ml-fundamentals","n":534,"reverse":164,"sample":"full-mirror","support":370,"to":"microservices","unfiltered":{"reverse":173,"support":381,"ties":25}},
@@ -7023,12 +7056,14 @@
     {"confidence":0.665622,"from":"ml-fundamentals","n":957,"reverse":320,"sample":"full-mirror","support":637,"to":"typescript","unfiltered":{"reverse":384,"support":822,"ties":5}},
     {"confidence":0.532571,"from":"ml-fundamentals","n":1750,"reverse":818,"sample":"full-mirror","support":932,"to":"unit-testing","unfiltered":{"reverse":893,"support":988,"ties":5}},
     {"confidence":0.57837,"from":"ml-fundamentals","n":1276,"reverse":538,"sample":"full-mirror","support":738,"to":"unsupervised-learning","unfiltered":{"reverse":546,"support":745,"ties":971}},
+    {"confidence":0.833333,"from":"ml-fundamentals","n":24,"reverse":4,"sample":"sede-current","support":20,"to":"vector-databases","unfiltered":{"reverse":7,"support":51,"ties":28}},
     {"confidence":0.522453,"from":"ml-fundamentals","n":2984,"reverse":1425,"sample":"full-mirror","support":1559,"to":"version-control-git","unfiltered":{"reverse":1491,"support":1635,"ties":29}},
     {"confidence":0.583072,"from":"ml-fundamentals","n":319,"reverse":133,"sample":"full-mirror","support":186,"to":"vue","unfiltered":{"reverse":182,"support":317,"ties":0}},
     {"confidence":0.661765,"from":"ml-fundamentals","n":68,"reverse":23,"sample":"full-mirror","support":45,"to":"web-accessibility","unfiltered":{"reverse":29,"support":52,"ties":0}},
     {"confidence":0.64,"from":"ml-fundamentals","n":25,"reverse":9,"sample":"full-mirror","support":16,"to":"web-performance","unfiltered":{"reverse":10,"support":19,"ties":0}},
     {"confidence":0.527778,"from":"mlops","n":36,"reverse":17,"sample":"full-mirror","support":19,"to":"identity-access-management","unfiltered":{"reverse":54,"support":26,"ties":9}},
     {"confidence":0.506024,"from":"mlops","n":83,"reverse":41,"sample":"full-mirror","support":42,"to":"infrastructure-as-code","unfiltered":{"reverse":74,"support":75,"ties":21}},
+    {"confidence":0.904762,"from":"mlops","n":21,"reverse":2,"sample":"sede-current","support":19,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":61,"ties":59}},
     {"confidence":0.552632,"from":"mlops","n":38,"reverse":17,"sample":"full-mirror","support":21,"to":"microservices","unfiltered":{"reverse":44,"support":36,"ties":20}},
     {"confidence":0.555556,"from":"mlops","n":63,"reverse":28,"sample":"full-mirror","support":35,"to":"model-deployment","unfiltered":{"reverse":52,"support":60,"ties":73}},
     {"confidence":0.510204,"from":"mlops","n":49,"reverse":24,"sample":"full-mirror","support":25,"to":"typescript","unfiltered":{"reverse":76,"support":51,"ties":2}},
@@ -7042,6 +7077,7 @@
     {"confidence":0.539007,"from":"model-deployment","n":141,"reverse":65,"sample":"full-mirror","support":76,"to":"docker","unfiltered":{"reverse":159,"support":127,"ties":105}},
     {"confidence":0.52,"from":"model-deployment","n":25,"reverse":12,"sample":"full-mirror","support":13,"to":"elasticsearch","unfiltered":{"reverse":70,"support":25,"ties":1}},
     {"confidence":0.615385,"from":"model-deployment","n":52,"reverse":20,"sample":"full-mirror","support":32,"to":"kubernetes","unfiltered":{"reverse":48,"support":62,"ties":11}},
+    {"confidence":0.633333,"from":"model-deployment","n":30,"reverse":11,"sample":"sede-current","support":19,"to":"llm-fundamentals","unfiltered":{"reverse":16,"support":38,"ties":36}},
     {"confidence":0.545455,"from":"model-deployment","n":22,"reverse":10,"sample":"full-mirror","support":12,"to":"message-queues","unfiltered":{"reverse":40,"support":27,"ties":0}},
     {"confidence":0.583333,"from":"model-deployment","n":36,"reverse":15,"sample":"full-mirror","support":21,"to":"microservices","unfiltered":{"reverse":44,"support":53,"ties":59}},
     {"confidence":0.642857,"from":"model-deployment","n":42,"reverse":15,"sample":"full-mirror","support":27,"to":"orm-data-access","unfiltered":{"reverse":92,"support":42,"ties":2}},
@@ -7170,6 +7206,7 @@
     {"confidence":0.754378,"from":"mysql","n":9193,"reverse":2258,"sample":"full-mirror","support":6935,"to":"javascript-advanced","unfiltered":{"reverse":2352,"support":7220,"ties":125}},
     {"confidence":0.75104,"from":"mysql","n":2884,"reverse":718,"sample":"full-mirror","support":2166,"to":"kubernetes","unfiltered":{"reverse":888,"support":3659,"ties":379}},
     {"confidence":0.695416,"from":"mysql","n":14748,"reverse":4492,"sample":"full-mirror","support":10256,"to":"linux-administration","unfiltered":{"reverse":4672,"support":10701,"ties":1652}},
+    {"confidence":0.931034,"from":"mysql","n":29,"reverse":2,"sample":"sede-current","support":27,"to":"llm-fundamentals","unfiltered":{"reverse":4,"support":160,"ties":0}},
     {"confidence":0.632987,"from":"mysql","n":673,"reverse":247,"sample":"full-mirror","support":426,"to":"math-for-ml","unfiltered":{"reverse":259,"support":445,"ties":4}},
     {"confidence":0.726188,"from":"mysql","n":5029,"reverse":1377,"sample":"full-mirror","support":3652,"to":"message-queues","unfiltered":{"reverse":1462,"support":3914,"ties":86}},
     {"confidence":0.799281,"from":"mysql","n":2780,"reverse":558,"sample":"full-mirror","support":2222,"to":"microservices","unfiltered":{"reverse":583,"support":2290,"ties":45}},
@@ -7354,6 +7391,7 @@
     {"confidence":0.620668,"from":"networking-basics","n":6319,"reverse":2397,"sample":"full-mirror","support":3922,"to":"javascript-advanced","unfiltered":{"reverse":2513,"support":4246,"ties":156}},
     {"confidence":0.681009,"from":"networking-basics","n":2022,"reverse":645,"sample":"full-mirror","support":1377,"to":"kubernetes","unfiltered":{"reverse":860,"support":2576,"ties":377}},
     {"confidence":0.540463,"from":"networking-basics","n":7686,"reverse":3532,"sample":"full-mirror","support":4154,"to":"linux-administration","unfiltered":{"reverse":3742,"support":4466,"ties":452}},
+    {"confidence":0.933333,"from":"networking-basics","n":30,"reverse":2,"sample":"sede-current","support":28,"to":"llm-fundamentals","unfiltered":{"reverse":2,"support":104,"ties":2}},
     {"confidence":0.562832,"from":"networking-basics","n":565,"reverse":247,"sample":"full-mirror","support":318,"to":"math-for-ml","unfiltered":{"reverse":260,"support":344,"ties":2}},
     {"confidence":0.63127,"from":"networking-basics","n":3748,"reverse":1382,"sample":"full-mirror","support":2366,"to":"message-queues","unfiltered":{"reverse":1505,"support":2652,"ties":345}},
     {"confidence":0.752373,"from":"networking-basics","n":2423,"reverse":600,"sample":"full-mirror","support":1823,"to":"microservices","unfiltered":{"reverse":625,"support":1929,"ties":222}},
@@ -7479,11 +7517,14 @@
     {"confidence":0.517413,"from":"nextjs","n":201,"reverse":97,"sample":"full-mirror","support":104,"to":"caching","unfiltered":{"reverse":434,"support":177,"ties":62}},
     {"confidence":0.631579,"from":"nextjs","n":76,"reverse":28,"sample":"full-mirror","support":48,"to":"cloud-databases","unfiltered":{"reverse":91,"support":78,"ties":29}},
     {"confidence":0.506173,"from":"nextjs","n":81,"reverse":40,"sample":"full-mirror","support":41,"to":"identity-access-management","unfiltered":{"reverse":166,"support":60,"ties":17}},
+    {"confidence":0.545455,"from":"nextjs","n":22,"reverse":10,"sample":"sede-current","support":12,"to":"llm-apis","unfiltered":{"reverse":34,"support":88,"ties":61}},
+    {"confidence":0.777778,"from":"nextjs","n":27,"reverse":6,"sample":"sede-current","support":21,"to":"llm-fundamentals","unfiltered":{"reverse":9,"support":38,"ties":7}},
     {"confidence":0.566667,"from":"nextjs","n":60,"reverse":26,"sample":"full-mirror","support":34,"to":"microservices","unfiltered":{"reverse":85,"support":63,"ties":8}},
     {"confidence":0.574074,"from":"nextjs","n":54,"reverse":23,"sample":"full-mirror","support":31,"to":"monitoring-observability","unfiltered":{"reverse":74,"support":65,"ties":21}},
     {"confidence":0.551724,"from":"nextjs","n":29,"reverse":13,"sample":"full-mirror","support":16,"to":"nlp","unfiltered":{"reverse":53,"support":22,"ties":0}},
     {"confidence":0.641509,"from":"nextjs","n":53,"reverse":19,"sample":"full-mirror","support":34,"to":"react-advanced","unfiltered":{"reverse":48,"support":64,"ties":15}},
     {"confidence":0.633333,"from":"nextjs","n":300,"reverse":110,"sample":"full-mirror","support":190,"to":"tailwind-css","unfiltered":{"reverse":161,"support":281,"ties":302}},
+    {"confidence":0.7,"from":"nextjs","n":20,"reverse":6,"sample":"sede-current","support":14,"to":"vector-databases","unfiltered":{"reverse":6,"support":23,"ties":5}},
     {"confidence":0.545455,"from":"nextjs","n":33,"reverse":15,"sample":"full-mirror","support":18,"to":"web-accessibility","unfiltered":{"reverse":68,"support":37,"ties":1}},
     {"confidence":0.515625,"from":"nextjs","n":64,"reverse":31,"sample":"full-mirror","support":33,"to":"web-security","unfiltered":{"reverse":135,"support":59,"ties":26}},
     {"confidence":0.710843,"from":"nlp","n":83,"reverse":24,"sample":"full-mirror","support":59,"to":"apache-airflow","unfiltered":{"reverse":44,"support":123,"ties":0}},
@@ -7510,6 +7551,7 @@
     {"confidence":0.54,"from":"nlp","n":300,"reverse":138,"sample":"full-mirror","support":162,"to":"devops-fundamentals","unfiltered":{"reverse":166,"support":183,"ties":6}},
     {"confidence":0.658559,"from":"nlp","n":1069,"reverse":365,"sample":"full-mirror","support":704,"to":"docker","unfiltered":{"reverse":374,"support":777,"ties":41}},
     {"confidence":0.522952,"from":"nlp","n":1111,"reverse":530,"sample":"full-mirror","support":581,"to":"elasticsearch","unfiltered":{"reverse":554,"support":618,"ties":133}},
+    {"confidence":0.863636,"from":"nlp","n":22,"reverse":3,"sample":"sede-current","support":19,"to":"embeddings-vector-search","unfiltered":{"reverse":6,"support":43,"ties":67}},
     {"confidence":0.622807,"from":"nlp","n":342,"reverse":129,"sample":"full-mirror","support":213,"to":"etl-pipelines","unfiltered":{"reverse":132,"support":221,"ties":12}},
     {"confidence":0.52381,"from":"nlp","n":21,"reverse":10,"sample":"full-mirror","support":11,"to":"event-driven-architecture","unfiltered":{"reverse":10,"support":17,"ties":0}},
     {"confidence":0.771429,"from":"nlp","n":35,"reverse":8,"sample":"full-mirror","support":27,"to":"fastapi","unfiltered":{"reverse":17,"support":122,"ties":5}},
@@ -7525,6 +7567,7 @@
     {"confidence":0.509709,"from":"nlp","n":412,"reverse":202,"sample":"full-mirror","support":210,"to":"javascript-advanced","unfiltered":{"reverse":216,"support":227,"ties":0}},
     {"confidence":0.709434,"from":"nlp","n":265,"reverse":77,"sample":"full-mirror","support":188,"to":"kubernetes","unfiltered":{"reverse":107,"support":286,"ties":5}},
     {"confidence":0.857143,"from":"nlp","n":21,"reverse":3,"sample":"full-mirror","support":18,"to":"llm-fundamentals","unfiltered":{"reverse":4,"support":32,"ties":55}},
+    {"confidence":0.743902,"from":"nlp","n":82,"reverse":21,"sample":"sede-current","support":61,"to":"llm-fundamentals","unfiltered":{"reverse":36,"support":183,"ties":359}},
     {"confidence":0.506579,"from":"nlp","n":304,"reverse":150,"sample":"full-mirror","support":154,"to":"math-for-ml","unfiltered":{"reverse":152,"support":160,"ties":7}},
     {"confidence":0.565657,"from":"nlp","n":396,"reverse":172,"sample":"full-mirror","support":224,"to":"message-queues","unfiltered":{"reverse":191,"support":251,"ties":7}},
     {"confidence":0.693277,"from":"nlp","n":238,"reverse":73,"sample":"full-mirror","support":165,"to":"microservices","unfiltered":{"reverse":80,"support":174,"ties":5}},
@@ -7549,6 +7592,7 @@
     {"confidence":0.505455,"from":"nlp","n":550,"reverse":272,"sample":"full-mirror","support":278,"to":"time-series-analysis","unfiltered":{"reverse":274,"support":282,"ties":7}},
     {"confidence":0.654912,"from":"nlp","n":397,"reverse":137,"sample":"full-mirror","support":260,"to":"typescript","unfiltered":{"reverse":167,"support":373,"ties":0}},
     {"confidence":0.502398,"from":"nlp","n":834,"reverse":415,"sample":"full-mirror","support":419,"to":"unit-testing","unfiltered":{"reverse":471,"support":466,"ties":0}},
+    {"confidence":0.826087,"from":"nlp","n":23,"reverse":4,"sample":"sede-current","support":19,"to":"vector-databases","unfiltered":{"reverse":5,"support":39,"ties":26}},
     {"confidence":0.646617,"from":"nlp","n":133,"reverse":47,"sample":"full-mirror","support":86,"to":"vue","unfiltered":{"reverse":68,"support":168,"ties":1}},
     {"confidence":0.633333,"from":"nlp","n":30,"reverse":11,"sample":"full-mirror","support":19,"to":"web-accessibility","unfiltered":{"reverse":17,"support":23,"ties":2}},
     {"confidence":0.625,"from":"nodejs","n":96,"reverse":36,"sample":"full-mirror","support":60,"to":"ab-testing","unfiltered":{"reverse":50,"support":72,"ties":2}},
@@ -7596,6 +7640,7 @@
     {"confidence":0.773445,"from":"nodejs","n":2026,"reverse":459,"sample":"full-mirror","support":1567,"to":"infrastructure-as-code","unfiltered":{"reverse":552,"support":2012,"ties":66}},
     {"confidence":0.653,"from":"nodejs","n":14683,"reverse":5095,"sample":"full-mirror","support":9588,"to":"javascript-advanced","unfiltered":{"reverse":5680,"support":10395,"ties":4017}},
     {"confidence":0.729773,"from":"nodejs","n":3745,"reverse":1012,"sample":"full-mirror","support":2733,"to":"kubernetes","unfiltered":{"reverse":1336,"support":4020,"ties":570}},
+    {"confidence":0.867925,"from":"nodejs","n":53,"reverse":7,"sample":"sede-current","support":46,"to":"llm-fundamentals","unfiltered":{"reverse":10,"support":186,"ties":16}},
     {"confidence":0.615605,"from":"nodejs","n":3832,"reverse":1473,"sample":"full-mirror","support":2359,"to":"message-queues","unfiltered":{"reverse":1824,"support":2651,"ties":539}},
     {"confidence":0.740307,"from":"nodejs","n":2734,"reverse":710,"sample":"full-mirror","support":2024,"to":"microservices","unfiltered":{"reverse":792,"support":2187,"ties":429}},
     {"confidence":0.507906,"from":"nodejs","n":3162,"reverse":1556,"sample":"full-mirror","support":1606,"to":"ml-fundamentals","unfiltered":{"reverse":1696,"support":1730,"ties":58}},
@@ -7629,6 +7674,7 @@
     {"confidence":0.552783,"from":"nodejs","n":521,"reverse":233,"sample":"full-mirror","support":288,"to":"time-series-analysis","unfiltered":{"reverse":271,"support":321,"ties":11}},
     {"confidence":0.649644,"from":"nodejs","n":19777,"reverse":6929,"sample":"full-mirror","support":12848,"to":"typescript","unfiltered":{"reverse":8090,"support":16113,"ties":5964}},
     {"confidence":0.527333,"from":"nodejs","n":13354,"reverse":6312,"sample":"full-mirror","support":7042,"to":"unit-testing","unfiltered":{"reverse":8053,"support":7670,"ties":956}},
+    {"confidence":0.909091,"from":"nodejs","n":33,"reverse":3,"sample":"sede-current","support":30,"to":"vector-databases","unfiltered":{"reverse":4,"support":77,"ties":9}},
     {"confidence":0.503746,"from":"nodejs","n":19089,"reverse":9473,"sample":"full-mirror","support":9616,"to":"version-control-git","unfiltered":{"reverse":11313,"support":10524,"ties":1829}},
     {"confidence":0.537606,"from":"nodejs","n":6741,"reverse":3117,"sample":"full-mirror","support":3624,"to":"vue","unfiltered":{"reverse":3993,"support":6401,"ties":2106}},
     {"confidence":0.610638,"from":"nodejs","n":940,"reverse":366,"sample":"full-mirror","support":574,"to":"web-accessibility","unfiltered":{"reverse":463,"support":635,"ties":9}},
@@ -7682,6 +7728,7 @@
     {"confidence":0.749187,"from":"nosql-databases","n":1846,"reverse":463,"sample":"full-mirror","support":1383,"to":"infrastructure-as-code","unfiltered":{"reverse":528,"support":1795,"ties":157}},
     {"confidence":0.570243,"from":"nosql-databases","n":8919,"reverse":3833,"sample":"full-mirror","support":5086,"to":"javascript-advanced","unfiltered":{"reverse":3981,"support":5223,"ties":715}},
     {"confidence":0.697571,"from":"nosql-databases","n":3376,"reverse":1021,"sample":"full-mirror","support":2355,"to":"kubernetes","unfiltered":{"reverse":1334,"support":3582,"ties":424}},
+    {"confidence":0.723404,"from":"nosql-databases","n":47,"reverse":13,"sample":"sede-current","support":34,"to":"llm-fundamentals","unfiltered":{"reverse":18,"support":152,"ties":7}},
     {"confidence":0.584672,"from":"nosql-databases","n":4919,"reverse":2043,"sample":"full-mirror","support":2876,"to":"message-queues","unfiltered":{"reverse":2181,"support":3004,"ties":155}},
     {"confidence":0.682293,"from":"nosql-databases","n":3157,"reverse":1003,"sample":"full-mirror","support":2154,"to":"microservices","unfiltered":{"reverse":1036,"support":2209,"ties":142}},
     {"confidence":0.52328,"from":"nosql-databases","n":3329,"reverse":1587,"sample":"full-mirror","support":1742,"to":"ml-fundamentals","unfiltered":{"reverse":1634,"support":1773,"ties":17}},
@@ -7713,6 +7760,7 @@
     {"confidence":0.600217,"from":"nosql-databases","n":2759,"reverse":1103,"sample":"full-mirror","support":1656,"to":"tensorflow","unfiltered":{"reverse":1209,"support":2106,"ties":12}},
     {"confidence":0.577982,"from":"nosql-databases","n":763,"reverse":322,"sample":"full-mirror","support":441,"to":"time-series-analysis","unfiltered":{"reverse":334,"support":454,"ties":122}},
     {"confidence":0.626343,"from":"nosql-databases","n":11358,"reverse":4244,"sample":"full-mirror","support":7114,"to":"typescript","unfiltered":{"reverse":4967,"support":9140,"ties":1494}},
+    {"confidence":0.857143,"from":"nosql-databases","n":28,"reverse":4,"sample":"sede-current","support":24,"to":"vector-databases","unfiltered":{"reverse":4,"support":67,"ties":5}},
     {"confidence":0.533968,"from":"nosql-databases","n":3783,"reverse":1763,"sample":"full-mirror","support":2020,"to":"vue","unfiltered":{"reverse":2334,"support":3702,"ties":489}},
     {"confidence":0.582734,"from":"nosql-databases","n":556,"reverse":232,"sample":"full-mirror","support":324,"to":"web-accessibility","unfiltered":{"reverse":258,"support":337,"ties":1}},
     {"confidence":0.587549,"from":"nosql-databases","n":257,"reverse":106,"sample":"full-mirror","support":151,"to":"web-performance","unfiltered":{"reverse":113,"support":154,"ties":2}},
@@ -7974,6 +8022,7 @@
     {"confidence":0.525183,"from":"postgresql","n":2601,"reverse":1235,"sample":"full-mirror","support":1366,"to":"identity-access-management","unfiltered":{"reverse":1371,"support":1438,"ties":99}},
     {"confidence":0.680812,"from":"postgresql","n":1084,"reverse":346,"sample":"full-mirror","support":738,"to":"infrastructure-as-code","unfiltered":{"reverse":415,"support":978,"ties":54}},
     {"confidence":0.604059,"from":"postgresql","n":2119,"reverse":839,"sample":"full-mirror","support":1280,"to":"kubernetes","unfiltered":{"reverse":1118,"support":2012,"ties":329}},
+    {"confidence":0.83871,"from":"postgresql","n":31,"reverse":5,"sample":"sede-current","support":26,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":98,"ties":5}},
     {"confidence":0.545244,"from":"postgresql","n":3448,"reverse":1568,"sample":"full-mirror","support":1880,"to":"message-queues","unfiltered":{"reverse":1681,"support":1997,"ties":78}},
     {"confidence":0.620939,"from":"postgresql","n":1939,"reverse":735,"sample":"full-mirror","support":1204,"to":"microservices","unfiltered":{"reverse":762,"support":1243,"ties":43}},
     {"confidence":0.577982,"from":"postgresql","n":109,"reverse":46,"sample":"full-mirror","support":63,"to":"mlops","unfiltered":{"reverse":80,"support":155,"ties":7}},
@@ -8162,6 +8211,7 @@
     {"confidence":0.748601,"from":"programming-basics","n":5541,"reverse":1393,"sample":"full-mirror","support":4148,"to":"javascript-advanced","unfiltered":{"reverse":1445,"support":4313,"ties":598}},
     {"confidence":0.785178,"from":"programming-basics","n":1066,"reverse":229,"sample":"full-mirror","support":837,"to":"kubernetes","unfiltered":{"reverse":274,"support":1358,"ties":16}},
     {"confidence":0.648468,"from":"programming-basics","n":6594,"reverse":2318,"sample":"full-mirror","support":4276,"to":"linux-administration","unfiltered":{"reverse":2404,"support":4414,"ties":182}},
+    {"confidence":0.875,"from":"programming-basics","n":40,"reverse":5,"sample":"sede-current","support":35,"to":"llm-fundamentals","unfiltered":{"reverse":5,"support":140,"ties":0}},
     {"confidence":0.674734,"from":"programming-basics","n":1033,"reverse":336,"sample":"full-mirror","support":697,"to":"math-for-ml","unfiltered":{"reverse":344,"support":718,"ties":51}},
     {"confidence":0.765281,"from":"programming-basics","n":1636,"reverse":384,"sample":"full-mirror","support":1252,"to":"message-queues","unfiltered":{"reverse":411,"support":1334,"ties":12}},
     {"confidence":0.831276,"from":"programming-basics","n":972,"reverse":164,"sample":"full-mirror","support":808,"to":"microservices","unfiltered":{"reverse":177,"support":836,"ties":6}},
@@ -8275,6 +8325,7 @@
     {"confidence":0.784296,"from":"python","n":22721,"reverse":4901,"sample":"full-mirror","support":17820,"to":"docker","unfiltered":{"reverse":5138,"support":19268,"ties":2994}},
     {"confidence":0.662516,"from":"python","n":12128,"reverse":4093,"sample":"full-mirror","support":8035,"to":"elasticsearch","unfiltered":{"reverse":4289,"support":8358,"ties":987}},
     {"confidence":0.918919,"from":"python","n":37,"reverse":3,"sample":"full-mirror","support":34,"to":"embeddings-vector-search","unfiltered":{"reverse":4,"support":61,"ties":20}},
+    {"confidence":0.923913,"from":"python","n":92,"reverse":7,"sample":"sede-current","support":85,"to":"embeddings-vector-search","unfiltered":{"reverse":8,"support":165,"ties":72}},
     {"confidence":0.679837,"from":"python","n":734,"reverse":235,"sample":"full-mirror","support":499,"to":"ethical-hacking-basics","unfiltered":{"reverse":243,"support":511,"ties":286}},
     {"confidence":0.649448,"from":"python","n":5885,"reverse":2063,"sample":"full-mirror","support":3822,"to":"etl-pipelines","unfiltered":{"reverse":2132,"support":3904,"ties":1103}},
     {"confidence":0.775785,"from":"python","n":446,"reverse":100,"sample":"full-mirror","support":346,"to":"event-driven-architecture","unfiltered":{"reverse":117,"support":372,"ties":13}},
@@ -8296,7 +8347,9 @@
     {"confidence":0.660345,"from":"python","n":9807,"reverse":3331,"sample":"full-mirror","support":6476,"to":"javascript-advanced","unfiltered":{"reverse":3461,"support":6779,"ties":196}},
     {"confidence":0.7727,"from":"python","n":6630,"reverse":1507,"sample":"full-mirror","support":5123,"to":"kubernetes","unfiltered":{"reverse":1815,"support":7060,"ties":511}},
     {"confidence":0.658775,"from":"python","n":17106,"reverse":5837,"sample":"full-mirror","support":11269,"to":"linux-administration","unfiltered":{"reverse":6097,"support":11656,"ties":2869}},
+    {"confidence":0.8125,"from":"python","n":64,"reverse":12,"sample":"sede-current","support":52,"to":"llm-apis","unfiltered":{"reverse":60,"support":936,"ties":546}},
     {"confidence":0.945946,"from":"python","n":37,"reverse":2,"sample":"full-mirror","support":35,"to":"llm-fundamentals","unfiltered":{"reverse":4,"support":80,"ties":26}},
+    {"confidence":0.917582,"from":"python","n":364,"reverse":30,"sample":"sede-current","support":334,"to":"llm-fundamentals","unfiltered":{"reverse":42,"support":774,"ties":404}},
     {"confidence":0.759293,"from":"python","n":3282,"reverse":790,"sample":"full-mirror","support":2492,"to":"math-for-ml","unfiltered":{"reverse":809,"support":2538,"ties":946}},
     {"confidence":0.790769,"from":"python","n":8775,"reverse":1836,"sample":"full-mirror","support":6939,"to":"message-queues","unfiltered":{"reverse":1965,"support":7283,"ties":2169}},
     {"confidence":0.768248,"from":"python","n":4384,"reverse":1016,"sample":"full-mirror","support":3368,"to":"microservices","unfiltered":{"reverse":1052,"support":3469,"ties":602}},
@@ -8322,6 +8375,7 @@
     {"confidence":0.987705,"from":"python","n":2440,"reverse":30,"sample":"full-mirror","support":2410,"to":"python-advanced","unfiltered":{"reverse":32,"support":2504,"ties":1068}},
     {"confidence":0.951061,"from":"python","n":54067,"reverse":2646,"sample":"full-mirror","support":51421,"to":"python-data-analysis","unfiltered":{"reverse":2654,"support":51892,"ties":85476}},
     {"confidence":0.901178,"from":"python","n":6284,"reverse":621,"sample":"full-mirror","support":5663,"to":"pytorch","unfiltered":{"reverse":623,"support":5709,"ties":3644}},
+    {"confidence":0.8,"from":"python","n":30,"reverse":6,"sample":"sede-current","support":24,"to":"rag","unfiltered":{"reverse":34,"support":831,"ties":581}},
     {"confidence":0.720501,"from":"python","n":26086,"reverse":7291,"sample":"full-mirror","support":18795,"to":"react","unfiltered":{"reverse":7488,"support":20102,"ties":429}},
     {"confidence":0.769231,"from":"python","n":65,"reverse":15,"sample":"full-mirror","support":50,"to":"react-advanced","unfiltered":{"reverse":37,"support":166,"ties":0}},
     {"confidence":0.656998,"from":"python","n":4551,"reverse":1561,"sample":"full-mirror","support":2990,"to":"react-native","unfiltered":{"reverse":2153,"support":5622,"ties":74}},
@@ -8353,6 +8407,7 @@
     {"confidence":0.71925,"from":"python","n":12057,"reverse":3385,"sample":"full-mirror","support":8672,"to":"typescript","unfiltered":{"reverse":3886,"support":11148,"ties":68}},
     {"confidence":0.684713,"from":"python","n":20429,"reverse":6441,"sample":"full-mirror","support":13988,"to":"unit-testing","unfiltered":{"reverse":7109,"support":14784,"ties":4136}},
     {"confidence":0.757146,"from":"python","n":4163,"reverse":1011,"sample":"full-mirror","support":3152,"to":"unsupervised-learning","unfiltered":{"reverse":1023,"support":3195,"ties":1246}},
+    {"confidence":0.87574,"from":"python","n":169,"reverse":21,"sample":"sede-current","support":148,"to":"vector-databases","unfiltered":{"reverse":30,"support":266,"ties":144}},
     {"confidence":0.645788,"from":"python","n":32904,"reverse":11655,"sample":"full-mirror","support":21249,"to":"version-control-git","unfiltered":{"reverse":12175,"support":22249,"ties":1760}},
     {"confidence":0.69301,"from":"python","n":5365,"reverse":1647,"sample":"full-mirror","support":3718,"to":"vue","unfiltered":{"reverse":2113,"support":6044,"ties":103}},
     {"confidence":0.663529,"from":"python","n":850,"reverse":286,"sample":"full-mirror","support":564,"to":"web-accessibility","unfiltered":{"reverse":320,"support":621,"ties":16}},
@@ -8409,6 +8464,7 @@
     {"confidence":0.560976,"from":"python-data-analysis","n":41,"reverse":18,"sample":"full-mirror","support":23,"to":"digital-forensics","unfiltered":{"reverse":18,"support":23,"ties":3}},
     {"confidence":0.678669,"from":"python-data-analysis","n":5860,"reverse":1883,"sample":"full-mirror","support":3977,"to":"docker","unfiltered":{"reverse":1983,"support":4180,"ties":83}},
     {"confidence":0.513216,"from":"python-data-analysis","n":2724,"reverse":1326,"sample":"full-mirror","support":1398,"to":"elasticsearch","unfiltered":{"reverse":1387,"support":1424,"ties":32}},
+    {"confidence":0.945946,"from":"python-data-analysis","n":37,"reverse":2,"sample":"sede-current","support":35,"to":"embeddings-vector-search","unfiltered":{"reverse":3,"support":85,"ties":4}},
     {"confidence":0.590278,"from":"python-data-analysis","n":2160,"reverse":885,"sample":"full-mirror","support":1275,"to":"etl-pipelines","unfiltered":{"reverse":903,"support":1283,"ties":77}},
     {"confidence":0.787234,"from":"python-data-analysis","n":94,"reverse":20,"sample":"full-mirror","support":74,"to":"event-driven-architecture","unfiltered":{"reverse":24,"support":76,"ties":0}},
     {"confidence":0.645843,"from":"python-data-analysis","n":10549,"reverse":3736,"sample":"full-mirror","support":6813,"to":"exploratory-data-analysis","unfiltered":{"reverse":3775,"support":6888,"ties":4221}},
@@ -8425,6 +8481,7 @@
     {"confidence":0.755735,"from":"python-data-analysis","n":741,"reverse":181,"sample":"full-mirror","support":560,"to":"infrastructure-as-code","unfiltered":{"reverse":213,"support":649,"ties":0}},
     {"confidence":0.742519,"from":"python-data-analysis","n":1437,"reverse":370,"sample":"full-mirror","support":1067,"to":"kubernetes","unfiltered":{"reverse":478,"support":1360,"ties":30}},
     {"confidence":0.505699,"from":"python-data-analysis","n":4036,"reverse":1995,"sample":"full-mirror","support":2041,"to":"linux-administration","unfiltered":{"reverse":2061,"support":2076,"ties":42}},
+    {"confidence":0.913669,"from":"python-data-analysis","n":139,"reverse":12,"sample":"sede-current","support":127,"to":"llm-fundamentals","unfiltered":{"reverse":15,"support":354,"ties":11}},
     {"confidence":0.658149,"from":"python-data-analysis","n":1761,"reverse":602,"sample":"full-mirror","support":1159,"to":"math-for-ml","unfiltered":{"reverse":617,"support":1178,"ties":716}},
     {"confidence":0.581454,"from":"python-data-analysis","n":1995,"reverse":835,"sample":"full-mirror","support":1160,"to":"message-queues","unfiltered":{"reverse":879,"support":1186,"ties":12}},
     {"confidence":0.649505,"from":"python-data-analysis","n":1010,"reverse":354,"sample":"full-mirror","support":656,"to":"microservices","unfiltered":{"reverse":367,"support":666,"ties":6}},
@@ -8461,6 +8518,7 @@
     {"confidence":0.641414,"from":"python-data-analysis","n":2178,"reverse":781,"sample":"full-mirror","support":1397,"to":"typescript","unfiltered":{"reverse":952,"support":1688,"ties":1}},
     {"confidence":0.542137,"from":"python-data-analysis","n":4604,"reverse":2108,"sample":"full-mirror","support":2496,"to":"unit-testing","unfiltered":{"reverse":2269,"support":2548,"ties":67}},
     {"confidence":0.611219,"from":"python-data-analysis","n":2567,"reverse":998,"sample":"full-mirror","support":1569,"to":"unsupervised-learning","unfiltered":{"reverse":1009,"support":1579,"ties":297}},
+    {"confidence":0.979592,"from":"python-data-analysis","n":49,"reverse":1,"sample":"sede-current","support":48,"to":"vector-databases","unfiltered":{"reverse":1,"support":103,"ties":1}},
     {"confidence":0.530754,"from":"python-data-analysis","n":7934,"reverse":3723,"sample":"full-mirror","support":4211,"to":"version-control-git","unfiltered":{"reverse":3883,"support":4292,"ties":57}},
     {"confidence":0.605779,"from":"python-data-analysis","n":969,"reverse":382,"sample":"full-mirror","support":587,"to":"vue","unfiltered":{"reverse":552,"support":939,"ties":2}},
     {"confidence":0.570248,"from":"python-data-analysis","n":121,"reverse":52,"sample":"full-mirror","support":69,"to":"web-accessibility","unfiltered":{"reverse":61,"support":73,"ties":0}},
@@ -8477,6 +8535,7 @@
     {"confidence":0.528302,"from":"pytorch","n":53,"reverse":25,"sample":"full-mirror","support":28,"to":"graphql","unfiltered":{"reverse":27,"support":35,"ties":1}},
     {"confidence":0.708333,"from":"pytorch","n":48,"reverse":14,"sample":"full-mirror","support":34,"to":"infrastructure-as-code","unfiltered":{"reverse":18,"support":37,"ties":1}},
     {"confidence":0.520958,"from":"pytorch","n":167,"reverse":80,"sample":"full-mirror","support":87,"to":"kubernetes","unfiltered":{"reverse":100,"support":103,"ties":7}},
+    {"confidence":0.80303,"from":"pytorch","n":66,"reverse":13,"sample":"sede-current","support":53,"to":"llm-fundamentals","unfiltered":{"reverse":22,"support":134,"ties":108}},
     {"confidence":0.633094,"from":"pytorch","n":139,"reverse":51,"sample":"full-mirror","support":88,"to":"mlops","unfiltered":{"reverse":88,"support":142,"ties":86}},
     {"confidence":0.570552,"from":"pytorch","n":163,"reverse":70,"sample":"full-mirror","support":93,"to":"model-deployment","unfiltered":{"reverse":109,"support":142,"ties":177}},
     {"confidence":0.727273,"from":"pytorch","n":22,"reverse":6,"sample":"full-mirror","support":16,"to":"model-interpretability","unfiltered":{"reverse":6,"support":16,"ties":7}},
@@ -8550,6 +8609,7 @@
     {"confidence":0.635347,"from":"r-programming","n":894,"reverse":326,"sample":"full-mirror","support":568,"to":"javascript-advanced","unfiltered":{"reverse":359,"support":589,"ties":43}},
     {"confidence":0.813906,"from":"r-programming","n":489,"reverse":91,"sample":"full-mirror","support":398,"to":"kubernetes","unfiltered":{"reverse":130,"support":583,"ties":8}},
     {"confidence":0.651658,"from":"r-programming","n":2021,"reverse":704,"sample":"full-mirror","support":1317,"to":"linux-administration","unfiltered":{"reverse":764,"support":1353,"ties":161}},
+    {"confidence":1.0,"from":"r-programming","n":27,"reverse":0,"sample":"sede-current","support":27,"to":"llm-fundamentals","unfiltered":{"reverse":0,"support":150,"ties":0}},
     {"confidence":0.731441,"from":"r-programming","n":916,"reverse":246,"sample":"full-mirror","support":670,"to":"math-for-ml","unfiltered":{"reverse":254,"support":684,"ties":143}},
     {"confidence":0.677165,"from":"r-programming","n":635,"reverse":205,"sample":"full-mirror","support":430,"to":"message-queues","unfiltered":{"reverse":236,"support":454,"ties":4}},
     {"confidence":0.781915,"from":"r-programming","n":376,"reverse":82,"sample":"full-mirror","support":294,"to":"microservices","unfiltered":{"reverse":87,"support":310,"ties":6}},
@@ -8636,6 +8696,8 @@
     {"confidence":0.72686,"from":"react","n":1102,"reverse":301,"sample":"full-mirror","support":801,"to":"infrastructure-as-code","unfiltered":{"reverse":377,"support":954,"ties":6}},
     {"confidence":0.528733,"from":"react","n":10580,"reverse":4986,"sample":"full-mirror","support":5594,"to":"javascript-advanced","unfiltered":{"reverse":5631,"support":5884,"ties":2515}},
     {"confidence":0.640055,"from":"react","n":2192,"reverse":789,"sample":"full-mirror","support":1403,"to":"kubernetes","unfiltered":{"reverse":1078,"support":1864,"ties":81}},
+    {"confidence":0.6,"from":"react","n":30,"reverse":12,"sample":"sede-current","support":18,"to":"llm-apis","unfiltered":{"reverse":44,"support":334,"ties":53}},
+    {"confidence":0.838235,"from":"react","n":68,"reverse":11,"sample":"sede-current","support":57,"to":"llm-fundamentals","unfiltered":{"reverse":15,"support":146,"ties":7}},
     {"confidence":0.610097,"from":"react","n":1644,"reverse":641,"sample":"full-mirror","support":1003,"to":"microservices","unfiltered":{"reverse":715,"support":1078,"ties":57}},
     {"confidence":0.587629,"from":"react","n":97,"reverse":40,"sample":"full-mirror","support":57,"to":"mlops","unfiltered":{"reverse":72,"support":116,"ties":2}},
     {"confidence":0.672971,"from":"react","n":1269,"reverse":415,"sample":"full-mirror","support":854,"to":"monitoring-observability","unfiltered":{"reverse":478,"support":929,"ties":54}},
@@ -8649,6 +8711,7 @@
     {"confidence":0.86921,"from":"react","n":7707,"reverse":1008,"sample":"full-mirror","support":6699,"to":"state-management","unfiltered":{"reverse":1749,"support":10631,"ties":13429}},
     {"confidence":0.845963,"from":"react","n":805,"reverse":124,"sample":"full-mirror","support":681,"to":"tailwind-css","unfiltered":{"reverse":173,"support":1103,"ties":555}},
     {"confidence":0.637527,"from":"react","n":15317,"reverse":5552,"sample":"full-mirror","support":9765,"to":"typescript","unfiltered":{"reverse":6686,"support":11211,"ties":8016}},
+    {"confidence":0.87234,"from":"react","n":47,"reverse":6,"sample":"sede-current","support":41,"to":"vector-databases","unfiltered":{"reverse":7,"support":78,"ties":4}},
     {"confidence":0.500939,"from":"react","n":4793,"reverse":2392,"sample":"full-mirror","support":2401,"to":"vue","unfiltered":{"reverse":3214,"support":3444,"ties":285}},
     {"confidence":0.601036,"from":"react","n":772,"reverse":308,"sample":"full-mirror","support":464,"to":"web-accessibility","unfiltered":{"reverse":388,"support":507,"ties":102}},
     {"confidence":0.584906,"from":"react","n":318,"reverse":132,"sample":"full-mirror","support":186,"to":"web-performance","unfiltered":{"reverse":160,"support":192,"ties":28}},
@@ -8823,6 +8886,7 @@
     {"confidence":0.67233,"from":"regex","n":8182,"reverse":2681,"sample":"full-mirror","support":5501,"to":"javascript-advanced","unfiltered":{"reverse":2793,"support":5850,"ties":95}},
     {"confidence":0.767031,"from":"regex","n":1923,"reverse":448,"sample":"full-mirror","support":1475,"to":"kubernetes","unfiltered":{"reverse":580,"support":2798,"ties":18}},
     {"confidence":0.587655,"from":"regex","n":10142,"reverse":4182,"sample":"full-mirror","support":5960,"to":"linux-administration","unfiltered":{"reverse":4404,"support":6310,"ties":114}},
+    {"confidence":0.925926,"from":"regex","n":27,"reverse":2,"sample":"sede-current","support":25,"to":"llm-fundamentals","unfiltered":{"reverse":4,"support":160,"ties":0}},
     {"confidence":0.568828,"from":"regex","n":879,"reverse":379,"sample":"full-mirror","support":500,"to":"math-for-ml","unfiltered":{"reverse":395,"support":528,"ties":2}},
     {"confidence":0.693093,"from":"regex","n":3721,"reverse":1142,"sample":"full-mirror","support":2579,"to":"message-queues","unfiltered":{"reverse":1231,"support":2827,"ties":6}},
     {"confidence":0.791707,"from":"regex","n":2074,"reverse":432,"sample":"full-mirror","support":1642,"to":"microservices","unfiltered":{"reverse":454,"support":1726,"ties":5}},
@@ -9110,6 +9174,7 @@
     {"confidence":0.504863,"from":"scikit-learn","n":1131,"reverse":560,"sample":"full-mirror","support":571,"to":"inferential-statistics","unfiltered":{"reverse":611,"support":602,"ties":1059}},
     {"confidence":0.790698,"from":"scikit-learn","n":129,"reverse":27,"sample":"full-mirror","support":102,"to":"infrastructure-as-code","unfiltered":{"reverse":30,"support":115,"ties":0}},
     {"confidence":0.790698,"from":"scikit-learn","n":301,"reverse":63,"sample":"full-mirror","support":238,"to":"kubernetes","unfiltered":{"reverse":82,"support":288,"ties":3}},
+    {"confidence":0.896552,"from":"scikit-learn","n":29,"reverse":3,"sample":"sede-current","support":26,"to":"llm-fundamentals","unfiltered":{"reverse":3,"support":112,"ties":2}},
     {"confidence":0.59633,"from":"scikit-learn","n":327,"reverse":132,"sample":"full-mirror","support":195,"to":"message-queues","unfiltered":{"reverse":187,"support":223,"ties":5}},
     {"confidence":0.664706,"from":"scikit-learn","n":170,"reverse":57,"sample":"full-mirror","support":113,"to":"microservices","unfiltered":{"reverse":71,"support":126,"ties":3}},
     {"confidence":0.716418,"from":"scikit-learn","n":201,"reverse":57,"sample":"full-mirror","support":144,"to":"mlops","unfiltered":{"reverse":88,"support":281,"ties":100}},
@@ -9312,11 +9377,13 @@
     {"confidence":0.550777,"from":"serverless","n":837,"reverse":376,"sample":"full-mirror","support":461,"to":"graphql","unfiltered":{"reverse":484,"support":593,"ties":125}},
     {"confidence":0.577273,"from":"serverless","n":1980,"reverse":837,"sample":"full-mirror","support":1143,"to":"infrastructure-as-code","unfiltered":{"reverse":1008,"support":1473,"ties":1140}},
     {"confidence":0.525389,"from":"serverless","n":1477,"reverse":701,"sample":"full-mirror","support":776,"to":"kubernetes","unfiltered":{"reverse":948,"support":1055,"ties":126}},
+    {"confidence":0.655172,"from":"serverless","n":29,"reverse":10,"sample":"sede-current","support":19,"to":"llm-fundamentals","unfiltered":{"reverse":17,"support":81,"ties":4}},
     {"confidence":0.552885,"from":"serverless","n":208,"reverse":93,"sample":"full-mirror","support":115,"to":"mlops","unfiltered":{"reverse":158,"support":222,"ties":75}},
     {"confidence":0.604801,"from":"serverless","n":1083,"reverse":428,"sample":"full-mirror","support":655,"to":"monitoring-observability","unfiltered":{"reverse":590,"support":799,"ties":527}},
     {"confidence":0.586957,"from":"serverless","n":322,"reverse":133,"sample":"full-mirror","support":189,"to":"nextjs","unfiltered":{"reverse":253,"support":442,"ties":127}},
     {"confidence":0.583333,"from":"serverless","n":24,"reverse":10,"sample":"full-mirror","support":14,"to":"react-advanced","unfiltered":{"reverse":24,"support":39,"ties":0}},
     {"confidence":0.6,"from":"serverless","n":60,"reverse":24,"sample":"full-mirror","support":36,"to":"tailwind-css","unfiltered":{"reverse":41,"support":126,"ties":1}},
+    {"confidence":0.791667,"from":"serverless","n":24,"reverse":5,"sample":"sede-current","support":19,"to":"vector-databases","unfiltered":{"reverse":7,"support":45,"ties":5}},
     {"confidence":0.686567,"from":"shell-scripting","n":67,"reverse":21,"sample":"full-mirror","support":46,"to":"ab-testing","unfiltered":{"reverse":26,"support":56,"ties":0}},
     {"confidence":0.500123,"from":"shell-scripting","n":4067,"reverse":2033,"sample":"full-mirror","support":2034,"to":"advanced-sql","unfiltered":{"reverse":2195,"support":2170,"ties":33}},
     {"confidence":0.654762,"from":"shell-scripting","n":252,"reverse":87,"sample":"full-mirror","support":165,"to":"apache-airflow","unfiltered":{"reverse":149,"support":475,"ties":52}},
@@ -9478,6 +9545,7 @@
     {"confidence":0.650065,"from":"spreadsheets","n":3072,"reverse":1075,"sample":"full-mirror","support":1997,"to":"javascript-advanced","unfiltered":{"reverse":1141,"support":2130,"ties":27}},
     {"confidence":0.773196,"from":"spreadsheets","n":776,"reverse":176,"sample":"full-mirror","support":600,"to":"kubernetes","unfiltered":{"reverse":257,"support":1084,"ties":1}},
     {"confidence":0.548585,"from":"spreadsheets","n":4559,"reverse":2058,"sample":"full-mirror","support":2501,"to":"linux-administration","unfiltered":{"reverse":2175,"support":2637,"ties":36}},
+    {"confidence":0.8,"from":"spreadsheets","n":30,"reverse":6,"sample":"sede-current","support":24,"to":"llm-fundamentals","unfiltered":{"reverse":7,"support":119,"ties":1}},
     {"confidence":0.537313,"from":"spreadsheets","n":536,"reverse":248,"sample":"full-mirror","support":288,"to":"math-for-ml","unfiltered":{"reverse":255,"support":298,"ties":14}},
     {"confidence":0.664362,"from":"spreadsheets","n":1591,"reverse":534,"sample":"full-mirror","support":1057,"to":"message-queues","unfiltered":{"reverse":581,"support":1168,"ties":13}},
     {"confidence":0.78882,"from":"spreadsheets","n":805,"reverse":170,"sample":"full-mirror","support":635,"to":"microservices","unfiltered":{"reverse":186,"support":678,"ties":6}},
@@ -9679,6 +9747,7 @@
     {"confidence":0.508284,"from":"sql","n":13943,"reverse":6856,"sample":"full-mirror","support":7087,"to":"django","unfiltered":{"reverse":7219,"support":7577,"ties":1950}},
     {"confidence":0.78388,"from":"sql","n":15459,"reverse":3341,"sample":"full-mirror","support":12118,"to":"docker","unfiltered":{"reverse":3481,"support":14070,"ties":593}},
     {"confidence":0.703258,"from":"sql","n":12617,"reverse":3744,"sample":"full-mirror","support":8873,"to":"elasticsearch","unfiltered":{"reverse":3916,"support":9736,"ties":1230}},
+    {"confidence":0.809524,"from":"sql","n":21,"reverse":4,"sample":"sede-current","support":17,"to":"embeddings-vector-search","unfiltered":{"reverse":5,"support":62,"ties":3}},
     {"confidence":0.638677,"from":"sql","n":393,"reverse":142,"sample":"full-mirror","support":251,"to":"ethical-hacking-basics","unfiltered":{"reverse":147,"support":277,"ties":45}},
     {"confidence":0.768706,"from":"sql","n":9382,"reverse":2170,"sample":"full-mirror","support":7212,"to":"etl-pipelines","unfiltered":{"reverse":2244,"support":7674,"ties":3977}},
     {"confidence":0.79972,"from":"sql","n":714,"reverse":143,"sample":"full-mirror","support":571,"to":"event-driven-architecture","unfiltered":{"reverse":159,"support":697,"ties":10}},
@@ -9699,6 +9768,7 @@
     {"confidence":0.707985,"from":"sql","n":11109,"reverse":3244,"sample":"full-mirror","support":7865,"to":"javascript-advanced","unfiltered":{"reverse":3375,"support":8431,"ties":89}},
     {"confidence":0.775601,"from":"sql","n":3828,"reverse":859,"sample":"full-mirror","support":2969,"to":"kubernetes","unfiltered":{"reverse":1060,"support":5172,"ties":82}},
     {"confidence":0.640119,"from":"sql","n":15180,"reverse":5463,"sample":"full-mirror","support":9717,"to":"linux-administration","unfiltered":{"reverse":5713,"support":10332,"ties":394}},
+    {"confidence":0.880597,"from":"sql","n":67,"reverse":8,"sample":"sede-current","support":59,"to":"llm-fundamentals","unfiltered":{"reverse":10,"support":284,"ties":4}},
     {"confidence":0.588602,"from":"sql","n":1123,"reverse":462,"sample":"full-mirror","support":661,"to":"math-for-ml","unfiltered":{"reverse":479,"support":701,"ties":9}},
     {"confidence":0.709183,"from":"sql","n":7503,"reverse":2182,"sample":"full-mirror","support":5321,"to":"message-queues","unfiltered":{"reverse":2310,"support":5875,"ties":105}},
     {"confidence":0.786118,"from":"sql","n":4250,"reverse":909,"sample":"full-mirror","support":3341,"to":"microservices","unfiltered":{"reverse":947,"support":3514,"ties":43}},
@@ -9751,6 +9821,7 @@
     {"confidence":0.719823,"from":"sql","n":13131,"reverse":3679,"sample":"full-mirror","support":9452,"to":"typescript","unfiltered":{"reverse":4133,"support":14458,"ties":197}},
     {"confidence":0.644502,"from":"sql","n":24498,"reverse":8709,"sample":"full-mirror","support":15789,"to":"unit-testing","unfiltered":{"reverse":9691,"support":17555,"ties":450}},
     {"confidence":0.582738,"from":"sql","n":1819,"reverse":759,"sample":"full-mirror","support":1060,"to":"unsupervised-learning","unfiltered":{"reverse":776,"support":1107,"ties":17}},
+    {"confidence":0.85,"from":"sql","n":40,"reverse":6,"sample":"sede-current","support":34,"to":"vector-databases","unfiltered":{"reverse":8,"support":113,"ties":13}},
     {"confidence":0.655004,"from":"sql","n":28325,"reverse":9772,"sample":"full-mirror","support":18553,"to":"version-control-git","unfiltered":{"reverse":10242,"support":20250,"ties":209}},
     {"confidence":0.651741,"from":"sql","n":4422,"reverse":1540,"sample":"full-mirror","support":2882,"to":"vue","unfiltered":{"reverse":1914,"support":6745,"ties":47}},
     {"confidence":0.739715,"from":"sql","n":1191,"reverse":310,"sample":"full-mirror","support":881,"to":"web-accessibility","unfiltered":{"reverse":373,"support":1025,"ties":5}},
@@ -9972,6 +10043,7 @@
     {"confidence":0.611684,"from":"supervised-learning","n":291,"reverse":113,"sample":"full-mirror","support":178,"to":"javascript-advanced","unfiltered":{"reverse":118,"support":185,"ties":2}},
     {"confidence":0.776119,"from":"supervised-learning","n":201,"reverse":45,"sample":"full-mirror","support":156,"to":"kubernetes","unfiltered":{"reverse":53,"support":225,"ties":2}},
     {"confidence":0.515198,"from":"supervised-learning","n":658,"reverse":319,"sample":"full-mirror","support":339,"to":"linux-administration","unfiltered":{"reverse":332,"support":345,"ties":3}},
+    {"confidence":0.904762,"from":"supervised-learning","n":21,"reverse":2,"sample":"sede-current","support":19,"to":"llm-fundamentals","unfiltered":{"reverse":5,"support":97,"ties":3}},
     {"confidence":0.536748,"from":"supervised-learning","n":449,"reverse":208,"sample":"full-mirror","support":241,"to":"math-for-ml","unfiltered":{"reverse":210,"support":244,"ties":97}},
     {"confidence":0.59589,"from":"supervised-learning","n":292,"reverse":118,"sample":"full-mirror","support":174,"to":"message-queues","unfiltered":{"reverse":128,"support":180,"ties":0}},
     {"confidence":0.660099,"from":"supervised-learning","n":203,"reverse":69,"sample":"full-mirror","support":134,"to":"microservices","unfiltered":{"reverse":70,"support":137,"ties":0}},
@@ -10199,6 +10271,7 @@
     {"confidence":0.728741,"from":"tensorflow","n":4645,"reverse":1260,"sample":"full-mirror","support":3385,"to":"deep-learning","unfiltered":{"reverse":1350,"support":3598,"ties":11529}},
     {"confidence":0.551532,"from":"tensorflow","n":359,"reverse":161,"sample":"full-mirror","support":198,"to":"devops-fundamentals","unfiltered":{"reverse":292,"support":216,"ties":34}},
     {"confidence":0.6375,"from":"tensorflow","n":2400,"reverse":870,"sample":"full-mirror","support":1530,"to":"docker","unfiltered":{"reverse":1058,"support":1736,"ties":311}},
+    {"confidence":0.818182,"from":"tensorflow","n":22,"reverse":4,"sample":"sede-current","support":18,"to":"embeddings-vector-search","unfiltered":{"reverse":4,"support":45,"ties":3}},
     {"confidence":0.576336,"from":"tensorflow","n":524,"reverse":222,"sample":"full-mirror","support":302,"to":"etl-pipelines","unfiltered":{"reverse":261,"support":361,"ties":25}},
     {"confidence":0.7,"from":"tensorflow","n":40,"reverse":12,"sample":"full-mirror","support":28,"to":"event-driven-architecture","unfiltered":{"reverse":18,"support":29,"ties":0}},
     {"confidence":0.523488,"from":"tensorflow","n":3555,"reverse":1694,"sample":"full-mirror","support":1861,"to":"exploratory-data-analysis","unfiltered":{"reverse":1887,"support":2029,"ties":1506}},
@@ -10212,6 +10285,7 @@
     {"confidence":0.552542,"from":"tensorflow","n":295,"reverse":132,"sample":"full-mirror","support":163,"to":"identity-access-management","unfiltered":{"reverse":221,"support":190,"ties":0}},
     {"confidence":0.770563,"from":"tensorflow","n":231,"reverse":53,"sample":"full-mirror","support":178,"to":"infrastructure-as-code","unfiltered":{"reverse":65,"support":214,"ties":2}},
     {"confidence":0.701513,"from":"tensorflow","n":727,"reverse":217,"sample":"full-mirror","support":510,"to":"kubernetes","unfiltered":{"reverse":300,"support":630,"ties":35}},
+    {"confidence":0.885246,"from":"tensorflow","n":61,"reverse":7,"sample":"sede-current","support":54,"to":"llm-fundamentals","unfiltered":{"reverse":11,"support":218,"ties":14}},
     {"confidence":0.53183,"from":"tensorflow","n":754,"reverse":353,"sample":"full-mirror","support":401,"to":"math-for-ml","unfiltered":{"reverse":464,"support":444,"ties":201}},
     {"confidence":0.532125,"from":"tensorflow","n":607,"reverse":284,"sample":"full-mirror","support":323,"to":"message-queues","unfiltered":{"reverse":420,"support":370,"ties":13}},
     {"confidence":0.666667,"from":"tensorflow","n":564,"reverse":188,"sample":"full-mirror","support":376,"to":"microservices","unfiltered":{"reverse":256,"support":437,"ties":167}},
@@ -10236,6 +10310,7 @@
     {"confidence":0.535817,"from":"tensorflow","n":1047,"reverse":486,"sample":"full-mirror","support":561,"to":"time-series-analysis","unfiltered":{"reverse":565,"support":593,"ties":363}},
     {"confidence":0.583255,"from":"tensorflow","n":1063,"reverse":443,"sample":"full-mirror","support":620,"to":"typescript","unfiltered":{"reverse":536,"support":716,"ties":14}},
     {"confidence":0.525409,"from":"tensorflow","n":1161,"reverse":551,"sample":"full-mirror","support":610,"to":"unit-testing","unfiltered":{"reverse":922,"support":676,"ties":8}},
+    {"confidence":0.903226,"from":"tensorflow","n":31,"reverse":3,"sample":"sede-current","support":28,"to":"vector-databases","unfiltered":{"reverse":3,"support":61,"ties":0}},
     {"confidence":0.561743,"from":"tensorflow","n":413,"reverse":181,"sample":"full-mirror","support":232,"to":"vue","unfiltered":{"reverse":248,"support":338,"ties":2}},
     {"confidence":0.578947,"from":"tensorflow","n":38,"reverse":16,"sample":"full-mirror","support":22,"to":"web-accessibility","unfiltered":{"reverse":29,"support":29,"ties":0}},
     {"confidence":0.578947,"from":"test-automation","n":38,"reverse":16,"sample":"full-mirror","support":22,"to":"ab-testing","unfiltered":{"reverse":17,"support":27,"ties":0}},
@@ -10286,6 +10361,7 @@
     {"confidence":0.603084,"from":"test-automation","n":2464,"reverse":978,"sample":"full-mirror","support":1486,"to":"javascript-advanced","unfiltered":{"reverse":1033,"support":1565,"ties":126}},
     {"confidence":0.737688,"from":"test-automation","n":995,"reverse":261,"sample":"full-mirror","support":734,"to":"kubernetes","unfiltered":{"reverse":340,"support":1211,"ties":30}},
     {"confidence":0.513411,"from":"test-automation","n":3169,"reverse":1542,"sample":"full-mirror","support":1627,"to":"linux-administration","unfiltered":{"reverse":1626,"support":1713,"ties":161}},
+    {"confidence":0.866667,"from":"test-automation","n":30,"reverse":4,"sample":"sede-current","support":26,"to":"llm-fundamentals","unfiltered":{"reverse":5,"support":89,"ties":0}},
     {"confidence":0.606138,"from":"test-automation","n":1564,"reverse":616,"sample":"full-mirror","support":948,"to":"message-queues","unfiltered":{"reverse":671,"support":1023,"ties":27}},
     {"confidence":0.745011,"from":"test-automation","n":902,"reverse":230,"sample":"full-mirror","support":672,"to":"microservices","unfiltered":{"reverse":241,"support":696,"ties":14}},
     {"confidence":0.509571,"from":"test-automation","n":1515,"reverse":743,"sample":"full-mirror","support":772,"to":"ml-fundamentals","unfiltered":{"reverse":756,"support":787,"ties":9}},
@@ -10398,6 +10474,7 @@
     {"confidence":0.52094,"from":"typescript","n":1958,"reverse":938,"sample":"full-mirror","support":1020,"to":"identity-access-management","unfiltered":{"reverse":1696,"support":1368,"ties":55}},
     {"confidence":0.659328,"from":"typescript","n":863,"reverse":294,"sample":"full-mirror","support":569,"to":"infrastructure-as-code","unfiltered":{"reverse":396,"support":775,"ties":208}},
     {"confidence":0.61157,"from":"typescript","n":1694,"reverse":658,"sample":"full-mirror","support":1036,"to":"kubernetes","unfiltered":{"reverse":925,"support":1462,"ties":18}},
+    {"confidence":0.852941,"from":"typescript","n":34,"reverse":5,"sample":"sede-current","support":29,"to":"llm-fundamentals","unfiltered":{"reverse":10,"support":88,"ties":6}},
     {"confidence":0.587227,"from":"typescript","n":1284,"reverse":530,"sample":"full-mirror","support":754,"to":"microservices","unfiltered":{"reverse":743,"support":967,"ties":67}},
     {"confidence":0.516129,"from":"typescript","n":31,"reverse":15,"sample":"full-mirror","support":16,"to":"model-deployment","unfiltered":{"reverse":45,"support":41,"ties":0}},
     {"confidence":0.641086,"from":"typescript","n":847,"reverse":304,"sample":"full-mirror","support":543,"to":"monitoring-observability","unfiltered":{"reverse":448,"support":710,"ties":40}},
@@ -10408,6 +10485,7 @@
     {"confidence":0.580146,"from":"typescript","n":3556,"reverse":1493,"sample":"full-mirror","support":2063,"to":"serverless","unfiltered":{"reverse":1907,"support":2690,"ties":575}},
     {"confidence":0.52381,"from":"typescript","n":63,"reverse":30,"sample":"full-mirror","support":33,"to":"tableau","unfiltered":{"reverse":39,"support":36,"ties":0}},
     {"confidence":0.5975,"from":"typescript","n":400,"reverse":161,"sample":"full-mirror","support":239,"to":"tailwind-css","unfiltered":{"reverse":241,"support":487,"ties":72}},
+    {"confidence":0.769231,"from":"typescript","n":26,"reverse":6,"sample":"sede-current","support":20,"to":"vector-databases","unfiltered":{"reverse":6,"support":49,"ties":5}},
     {"confidence":0.539683,"from":"unit-testing","n":63,"reverse":29,"sample":"full-mirror","support":34,"to":"ab-testing","unfiltered":{"reverse":34,"support":49,"ties":1}},
     {"confidence":0.563559,"from":"unit-testing","n":236,"reverse":103,"sample":"full-mirror","support":133,"to":"agile-methodologies","unfiltered":{"reverse":181,"support":204,"ties":20}},
     {"confidence":0.580153,"from":"unit-testing","n":131,"reverse":55,"sample":"full-mirror","support":76,"to":"apache-airflow","unfiltered":{"reverse":102,"support":303,"ties":16}},
@@ -10606,6 +10684,7 @@
     {"confidence":0.562517,"from":"version-control-git","n":7550,"reverse":3303,"sample":"full-mirror","support":4247,"to":"javascript-advanced","unfiltered":{"reverse":3486,"support":4498,"ties":29}},
     {"confidence":0.629606,"from":"version-control-git","n":3121,"reverse":1156,"sample":"full-mirror","support":1965,"to":"kubernetes","unfiltered":{"reverse":1482,"support":3369,"ties":557}},
     {"confidence":0.536377,"from":"version-control-git","n":8563,"reverse":3970,"sample":"full-mirror","support":4593,"to":"linux-administration","unfiltered":{"reverse":4233,"support":4849,"ties":3398}},
+    {"confidence":0.8125,"from":"version-control-git","n":32,"reverse":6,"sample":"sede-current","support":26,"to":"llm-fundamentals","unfiltered":{"reverse":12,"support":152,"ties":4}},
     {"confidence":0.588114,"from":"version-control-git","n":3887,"reverse":1601,"sample":"full-mirror","support":2286,"to":"message-queues","unfiltered":{"reverse":1748,"support":2481,"ties":16}},
     {"confidence":0.695652,"from":"version-control-git","n":2645,"reverse":805,"sample":"full-mirror","support":1840,"to":"microservices","unfiltered":{"reverse":842,"support":1911,"ties":81}},
     {"confidence":0.666667,"from":"version-control-git","n":144,"reverse":48,"sample":"full-mirror","support":96,"to":"mlops","unfiltered":{"reverse":89,"support":253,"ties":29}},

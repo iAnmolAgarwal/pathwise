@@ -12,18 +12,18 @@ Produced by `python pipeline/mine_so.py emit`; every number below is computed, n
 - usersWithAnyMappedSkill: 3536377
 - usersEligible: 2137848
 - skillsMapped: 153
-- skillsObserved: 146
+- skillsObserved: 153
 - skillsObservedMirror: 146
-- skillsObservedSede: 0
-- skillsInKeptEdges: 144
+- skillsObservedSede: 153
+- skillsInKeptEdges: 147
 - pairsSeen: 10174
 - pairsAtFloor: 8260
 - authoredEdges: 193
-- authoredEdgesEndpointsObserved: 176
-- authoredEdgesAtFloor: 164
+- authoredEdgesEndpointsObserved: 186
+- authoredEdgesAtFloor: 165
 - authoredEdgesReverseWins: 31
 - skillsNoDataByConstruction (6): data-storytelling, incident-response, llm-evaluation, open-source-contribution, prompt-engineering, threat-modeling
-- skillsMappedButUnobserved (7): ai-agents, ai-app-development, fine-tuning, llm-apis, local-llms, multimodal-ai, rag
+- skillsMappedButUnobserved (0): —
 
 ## Cohort filter effect (12-month rule)
 
@@ -84,10 +84,10 @@ Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 m
 
 ## LLM-era top-up (Stack Exchange Data Explorer, current data)
 
-- {"llmEraSkills": ["ai-agents", "ai-app-development", "embeddings-vector-search", "fine-tuning", "llm-apis", "llm-evaluation", "llm-fundamentals", "local-llms", "multimodal-ai", "prompt-engineering", "rag", "responsible-ai", "vector-databases"], "note": "run `mine_so.py render-sede`, execute the query on data.stackexchange.com, save the CSV to pipeline/build/so/sede_llm_pairs.csv, re-run emit", "status": "pending"}
+- {"llmEraSkills": ["ai-agents", "ai-app-development", "embeddings-vector-search", "fine-tuning", "llm-apis", "llm-evaluation", "llm-fundamentals", "local-llms", "multimodal-ai", "prompt-engineering", "rag", "responsible-ai", "vector-databases"], "orderedObservations": 56192, "pairsAtFloor": 82, "pairsSeen": 1339, "sample": "Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= 73000000, OwnerUserId % 1 = 0 (100 % of users), full history per user; pairs with an LLM-era endpoint only", "status": "ingested"}
 
 ## Branches
 
-- {"fromSkills": 145, "fromSkillsMinSupportMet": 141, "fromSkillsWithListed": 142, "listedTransitions": 15105}
+- {"fromSkills": 278, "fromSkillsMinSupportMet": 150, "fromSkillsWithListed": 201, "listedTransitions": 15243}
 
 _Stack Overflow content is CC BY-SA 4.0 (https://stackoverflow.com/help/licensing); aggregate counts only._
