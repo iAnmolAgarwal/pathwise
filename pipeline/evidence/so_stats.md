@@ -12,16 +12,18 @@ Produced by `python pipeline/mine_so.py emit`; every number below is computed, n
 - usersWithAnyMappedSkill: 3548262
 - usersEligible: 2168095
 - skillsMapped: 151
-- skillsObserved: 148
-- skillsInKeptEdges: 146
+- skillsObserved: 151
+- skillsObservedMirror: 148
+- skillsObservedSede: 151
+- skillsInKeptEdges: 149
 - pairsSeen: 10547
 - pairsAtFloor: 8586
 - authoredEdges: 193
-- authoredEdgesEndpointsObserved: 180
-- authoredEdgesAtFloor: 166
+- authoredEdgesEndpointsObserved: 185
+- authoredEdgesAtFloor: 167
 - authoredEdgesReverseWins: 31
 - skillsNoDataByConstruction (8): data-storytelling, incident-response, llm-evaluation, open-source-contribution, prompt-engineering, responsible-ai, technical-writing, threat-modeling
-- skillsMappedButUnobserved (3): ai-agents, local-llms, rag
+- skillsMappedButUnobserved (0): —
 
 ## Cohort filter effect (12-month rule)
 
@@ -57,35 +59,35 @@ Produced by `python pipeline/mine_so.py emit`; every number below is computed, n
 
 Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 means learners asked in the opposite order more often.
 
-| authored from | authored to | support | reverse | conf | n |
-|---|---|---|---|---|---|
-| statistics-fundamentals | r-programming | 750 | 4770 | 0.136 | 5520 |
-| deep-learning | tensorflow | 1257 | 3381 | 0.271 | 4638 |
-| javascript-advanced | api-integration | 2596 | 6581 | 0.283 | 9177 |
-| javascript-advanced | nodejs | 5078 | 9540 | 0.347 | 14618 |
-| programming-basics | java | 11694 | 19471 | 0.375 | 31165 |
-| programming-basics | python | 16482 | 26745 | 0.381 | 43227 |
-| programming-basics | javascript | 20620 | 32719 | 0.387 | 53339 |
-| networking-basics | api-integration | 6054 | 8857 | 0.406 | 14911 |
-| deep-learning | computer-vision | 1438 | 2062 | 0.411 | 3500 |
-| data-structures | algorithms | 4747 | 6772 | 0.412 | 11519 |
-| sql | mysql | 27188 | 36897 | 0.424 | 64085 |
-| javascript-advanced | web-animations | 601 | 801 | 0.429 | 1402 |
-| model-deployment | mlops | 26 | 34 | 0.433 | 60 |
-| network-security | ethical-hacking-basics | 63 | 77 | 0.450 | 140 |
-| neural-networks | deep-learning | 1019 | 1223 | 0.455 | 2242 |
-| supervised-learning | scikit-learn | 814 | 968 | 0.457 | 1782 |
-| networking-basics | web-servers | 8487 | 9941 | 0.461 | 18428 |
-| web-security | ethical-hacking-basics | 40 | 46 | 0.465 | 86 |
-| docker | model-deployment | 68 | 77 | 0.469 | 145 |
-| javascript-advanced | react | 4965 | 5575 | 0.471 | 10540 |
+| authored from | authored to | support | reverse | conf | n | sample |
+|---|---|---|---|---|---|---|
+| statistics-fundamentals | r-programming | 750 | 4770 | 0.136 | 5520 | full-mirror |
+| deep-learning | tensorflow | 1257 | 3381 | 0.271 | 4638 | full-mirror |
+| javascript-advanced | api-integration | 2596 | 6581 | 0.283 | 9177 | full-mirror |
+| javascript-advanced | nodejs | 5078 | 9540 | 0.347 | 14618 | full-mirror |
+| programming-basics | java | 11694 | 19471 | 0.375 | 31165 | full-mirror |
+| programming-basics | python | 16482 | 26745 | 0.381 | 43227 | full-mirror |
+| programming-basics | javascript | 20620 | 32719 | 0.387 | 53339 | full-mirror |
+| networking-basics | api-integration | 6054 | 8857 | 0.406 | 14911 | full-mirror |
+| deep-learning | computer-vision | 1438 | 2062 | 0.411 | 3500 | full-mirror |
+| data-structures | algorithms | 4747 | 6772 | 0.412 | 11519 | full-mirror |
+| sql | mysql | 27188 | 36897 | 0.424 | 64085 | full-mirror |
+| javascript-advanced | web-animations | 601 | 801 | 0.429 | 1402 | full-mirror |
+| model-deployment | mlops | 26 | 34 | 0.433 | 60 | full-mirror |
+| network-security | ethical-hacking-basics | 63 | 77 | 0.450 | 140 | full-mirror |
+| neural-networks | deep-learning | 1019 | 1223 | 0.455 | 2242 | full-mirror |
+| supervised-learning | scikit-learn | 814 | 968 | 0.457 | 1782 | full-mirror |
+| networking-basics | web-servers | 8487 | 9941 | 0.461 | 18428 | full-mirror |
+| web-security | ethical-hacking-basics | 40 | 46 | 0.465 | 86 | full-mirror |
+| docker | model-deployment | 68 | 77 | 0.469 | 145 | full-mirror |
+| javascript-advanced | react | 4965 | 5575 | 0.471 | 10540 | full-mirror |
 
 ## LLM-era top-up (SEDE, 5 % user sample)
 
-- {"llmEraSkills": ["ai-agents", "ai-app-development", "embeddings-vector-search", "fine-tuning", "llm-apis", "llm-evaluation", "llm-fundamentals", "local-llms", "multimodal-ai", "prompt-engineering", "rag", "responsible-ai", "vector-databases"], "note": "run `mine_so.py render-sede`, execute the query on data.stackexchange.com, save the CSV to pipeline/build/so/sede_llm_pairs.csv, re-run emit", "status": "pending"}
+- {"llmEraSkills": ["ai-agents", "ai-app-development", "embeddings-vector-search", "fine-tuning", "llm-apis", "llm-evaluation", "llm-fundamentals", "local-llms", "multimodal-ai", "prompt-engineering", "rag", "responsible-ai", "vector-databases"], "orderedObservations": 67850, "pairsAtFloor": 295, "pairsSeen": 1368, "sample": "Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= 73000000, OwnerUserId % 1 = 0 (100 % of users), full history per user; pairs with an LLM-era endpoint only", "status": "ingested"}
 
 ## Branches
 
-- {"fromSkills": 148, "fromSkillsMinSupportMet": 145, "fromSkillsWithListed": 145, "listedTransitions": 15745}
+- {"fromSkills": 290, "fromSkillsMinSupportMet": 175, "fromSkillsWithListed": 227, "listedTransitions": 16112}
 
 _Stack Overflow content is CC BY-SA 4.0 (https://stackoverflow.com/help/licensing); aggregate counts only._

@@ -11,8 +11,8 @@
   },
   "evidence": {
     "stackoverflow": {
-      "edges": 8586,
-      "branches": 148,
+      "edges": 8881,
+      "branches": 290,
       "mapSignedOff": false,
       "usersEligible": 2168095,
       "pairsAtFloor": 8586

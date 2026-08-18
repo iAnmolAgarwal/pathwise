@@ -402,7 +402,7 @@ def pair_index(pairs: list[dict]) -> dict[tuple[str, str], dict]:
     return idx
 
 
-def stats_block(pairs: list[dict], edges: list[dict], per_skill: dict, totals: dict, tags: dict, doc: dict) -> dict:
+def stats_block(pairs: list[dict], sede_pairs: list[dict], edges: list[dict], per_skill: dict, totals: dict, tags: dict, doc: dict) -> dict:
     floor = PARAMS["minPairSupport"]
     seen = [p for p in pairs if p["supportAll"] + p["reverseAll"] >= 1]
     after = [p for p in pairs if p["support"] + p["reverse"] >= floor]
@@ -410,15 +410,20 @@ def stats_block(pairs: list[dict], edges: list[dict], per_skill: dict, totals: d
     skills_observed = sorted(s for s, v in per_skill.items() if v["usersEligible"] >= 1)
     skills_in_edges = sorted({e["from"] for e in edges} | {e["to"] for e in edges})
     idx = pair_index(pairs)
+    sede_idx = pair_index(sede_pairs)
+    sede_skills = {p["a"] for p in sede_pairs} | {p["b"] for p in sede_pairs}
+    observed_any = set(skills_observed) | sede_skills
     authored = authored_edges()
-    endpoints_observed = [(p, s) for p, s in authored if p in per_skill and s in per_skill]
+    endpoints_observed = [(p, s) for p, s in authored if p in observed_any and s in observed_any]
     at_floor = []
     for p, s in authored:
-        d = idx.get((p, s))
-        if d and d["support"] + d["reverse"] >= floor:
-            n = d["support"] + d["reverse"]
-            at_floor.append({"from": p, "to": s, "support": d["support"], "reverse": d["reverse"], "n": n,
-                             "confidence": round(d["support"] / n, 6)})
+        for src, name in ((idx, "full-mirror"), (sede_idx, "sede-current")):
+            d = src.get((p, s))
+            if d and d["support"] + d["reverse"] >= floor:
+                n = d["support"] + d["reverse"]
+                at_floor.append({"from": p, "to": s, "support": d["support"], "reverse": d["reverse"], "n": n,
+                                 "confidence": round(d["support"] / n, 6), "sample": name})
+                break
     lowest = sorted(at_floor, key=lambda e: (e["confidence"], -e["n"], e["from"], e["to"]))[:20]
     top = sorted(edges, key=lambda e: (-e["support"], e["from"], e["to"]))[:20]
     n_all_before = sum(p["supportAll"] + p["reverseAll"] for p in pairs)
@@ -429,9 +434,11 @@ def stats_block(pairs: list[dict], edges: list[dict], per_skill: dict, totals: d
         "usersEligible": totals.get("_users_eligible"),
         "skillsMapped": len(tags),
         "skillsNoDataByConstruction": sorted(nd["skillId"] for nd in doc.get("noDataSkills", [])),
-        "skillsObserved": len(skills_observed),
+        "skillsObserved": len(observed_any),
+        "skillsObservedMirror": len(skills_observed),
+        "skillsObservedSede": len(sede_skills),
         "skillsInKeptEdges": len(skills_in_edges),
-        "skillsMappedButUnobserved": sorted(set(tags) - set(skills_observed)),
+        "skillsMappedButUnobserved": sorted(set(tags) - observed_any),
         "pairsSeen": len(seen),
         "pairsAtFloor": len(after),
         "authoredEdges": len(authored),
@@ -483,7 +490,7 @@ def write_stats_md(path: Path, edges_doc: dict, branches_doc: dict) -> None:
     L.append(f"- Caveat on every number: {CAVEAT}\n")
     L.append("## Coverage\n")
     for k in ("usersWithQuestions", "usersWithAnyMappedSkill", "usersEligible", "skillsMapped", "skillsObserved",
-              "skillsInKeptEdges", "pairsSeen", "pairsAtFloor", "authoredEdges", "authoredEdgesEndpointsObserved",
+              "skillsObservedMirror", "skillsObservedSede", "skillsInKeptEdges", "pairsSeen", "pairsAtFloor", "authoredEdges", "authoredEdgesEndpointsObserved",
               "authoredEdgesAtFloor", "authoredEdgesReverseWins"):
         L.append(f"- {k}: {s[k]}")
     L.append(f"- skillsNoDataByConstruction ({len(s['skillsNoDataByConstruction'])}): {', '.join(s['skillsNoDataByConstruction'])}")
@@ -498,9 +505,9 @@ def write_stats_md(path: Path, edges_doc: dict, branches_doc: dict) -> None:
         L.append(f"| {e['from']} | {e['to']} | {e['support']} | {e['reverse']} | {e['confidence']:.3f} | {e['n']} |")
     L.append("\n## 20 lowest-confidence authored edges (the noise, not hidden)\n")
     L.append("Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 means learners asked in the opposite order more often.\n")
-    L.append("| authored from | authored to | support | reverse | conf | n |\n|---|---|---|---|---|---|")
+    L.append("| authored from | authored to | support | reverse | conf | n | sample |\n|---|---|---|---|---|---|---|")
     for e in s["lowest20ConfidenceAuthoredEdges"]:
-        L.append(f"| {e['from']} | {e['to']} | {e['support']} | {e['reverse']} | {e['confidence']:.3f} | {e['n']} |")
+        L.append(f"| {e['from']} | {e['to']} | {e['support']} | {e['reverse']} | {e['confidence']:.3f} | {e['n']} | {e['sample']} |")
     L.append("\n## LLM-era top-up (SEDE, 5 % user sample)\n")
     L.append(f"- {json.dumps(edges_doc['llmEraTopUp'], sort_keys=True)}\n")
     L.append("## Branches\n")
@@ -537,8 +544,13 @@ def cmd_emit(args) -> int:
     sede_rule = (f"Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= "
                  f"{sede_params['minPostId']}, OwnerUserId % {sede_params['sampleMod']} = 0 ({100 / sede_params['sampleMod']:g} % of users), "
                  f"full history per user; pairs with an LLM-era endpoint only")
+    sede_pairs: list[dict] = []
+    sede_users: dict[str, int] = {}
     if sede_pairs_csv.exists():
         sede_pairs = read_pairs_csv(sede_pairs_csv)
+        for p in sede_pairs:  # rough per-skill presence in the SEDE data: max ordered observations over its pairs
+            for sid in (p["a"], p["b"]):
+                sede_users[sid] = max(sede_users.get(sid, 0), p["supportAll"] + p["reverseAll"] + p["tiesAll"])
         sede_edges = build_edges(sede_pairs, tags, sede_label)
         edges = sorted(edges + sede_edges, key=lambda e: (e["from"], e["to"], e["sample"]))
         inputs["sede_llm_pairs.csv"] = sha256_file(sede_pairs_csv)
@@ -574,12 +586,20 @@ def cmd_emit(args) -> int:
             "full-mirror": f"BigQuery {BQ_DATASET} (ends 2022)",
             sede_label: sede_rule,
         },
-        "skills": {sid: {**per_skill[sid], "tags": tags.get(sid, [])} for sid in sorted(per_skill)},
+        "skills": {
+            sid: {
+                "tags": tags.get(sid, []),
+                "mirror": per_skill.get(sid),
+                "sedeUsersInPairs": sede_users.get(sid),
+            }
+            for sid in sorted(set(tags) | set(per_skill))
+        },
         "edgeFields": "from, to, support, reverse, confidence, n, unfiltered{support,reverse,ties}, sample; the tags behind "
-                      "each endpoint are skills[<id>].tags",
+                      "each endpoint are skills[<id>].tags; skills[<id>].mirror = birth/users in the BigQuery mirror (null "
+                      "if unobserved there); skills[<id>].sedeUsersInPairs = largest pair observation count in the SEDE data",
         "noDataSkills": sorted(doc.get("noDataSkills", []), key=lambda d: d["skillId"]),
         "llmEraTopUp": top_up,
-        "stats": stats_block(pairs, edges, per_skill, totals, tags, doc),
+        "stats": stats_block(pairs, sede_pairs, edges, per_skill, totals, tags, doc),
         "edges": edges,
     }
     branches_doc = {
@@ -639,6 +659,9 @@ def check_schema() -> int:
         _require(edge.get("support", 0) >= edge.get("reverse", 0), f"edges_so.json: {key} not oriented", errors)
         _require(abs(edge.get("confidence", -1) - edge["support"] / edge["n"]) < 1e-5, f"edges_so.json: {key} confidence", errors)
         _require(edge.get("from") in e.get("skills", {}) and edge.get("to") in e.get("skills", {}), f"edges_so.json: {key} endpoint missing from skills block (tags)", errors)
+    for sid, info in e.get("skills", {}).items():
+        _require(sid in skills, f"edges_so.json: skills block has unknown skill {sid}", errors)
+        _require(isinstance(info.get("tags"), list) and len(info["tags"]) >= 1, f"edges_so.json: skills[{sid}] has no tags", errors)
         _require(edge.get("sample") in e.get("samples", {}), f"edges_so.json: {key} unknown sample", errors)
     b = load_json(EVIDENCE_DIR / "branches_so.json")
     for key in ("source", "caveat", "cohortRule", "branchRule", "params", "stats", "branches"):
