@@ -2991,6 +2991,11 @@
       "note": "short tag; check it is the RAG tag"
     },
     {
+      "tag": "retrieval-augmented-generation",
+      "skillId": "rag",
+      "soQuestions": 95
+    },
+    {
       "tag": "model-context-protocol",
       "skillId": "ai-agents",
       "soQuestions": 180
