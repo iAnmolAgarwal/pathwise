@@ -2,7 +2,7 @@
 
 Produced by `python pipeline/mine_so.py emit`; every number below is computed, none is typed in.
 
-- Map signed off by both humans: **False** ({"anmol": "2026-08-19", "riyan": null})
+- Map signed off by both humans: **True** ({"anmol": "2026-08-19", "riyan": "2026-08-19"})
 - Cohort rule: For pair (A,B) count only users whose first-ever question is >= 12 months after both technologies existed (birth = first appearance of any of the skill's tags on the site); same-day ties dropped; users with 2-40 mapped skills only
 - Caveat on every number: Stack Overflow question order (first question per tag), users who started after both technologies existed; asking ≠ completing
 

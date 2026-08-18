@@ -3,7 +3,7 @@
   "draftedOn": "2026-08-18",
   "signoff": {
     "anmol": "2026-08-19",
-    "riyan": null
+    "riyan": "2026-08-19"
   },
   "rows": [
     {
@@ -4166,6 +4166,6 @@
   ],
   "signoffNotes": {
     "anmol": "owner delegated the check to an independent reviewer on 2026-08-19; its verdict (11 moves, 27 strikes, 52 adds; 739 rows accepted) is applied row by row with notes; owner then struck pre-LLM speech/chatbot tags, dataframe and JS charting tags, and fixed two conventions (no-noise decision)",
-    "riyan": "pending"
+    "riyan": "approved 2026-08-19 (relayed by the owner)"
   }
 }

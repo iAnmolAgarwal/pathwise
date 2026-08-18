@@ -13,7 +13,7 @@
     "stackoverflow": {
       "edges": 8342,
       "branches": 278,
-      "mapSignedOff": false,
+      "mapSignedOff": true,
       "usersEligible": 2137848,
       "pairsAtFloor": 8260
     }

@@ -7,7 +7,7 @@
     "sede_llm_branches.csv": "bcb2114a4ad359fa5e9db603d82be860d02e7c45ae7ed88eb8853e5c725e8540"
   },
   "licence": "Stack Overflow content is CC BY-SA 4.0 (https://stackoverflow.com/help/licensing); aggregate counts only",
-  "mapSignedOff": false,
+  "mapSignedOff": true,
   "params": {
     "branchAlpha": 20,
     "branchMinListed": 5,

@@ -33,10 +33,10 @@
     "status": "ingested"
   },
   "mapDraftedOn": "2026-08-18",
-  "mapSignedOff": false,
+  "mapSignedOff": true,
   "mapSignoff": {
     "anmol": "2026-08-19",
-    "riyan": null
+    "riyan": "2026-08-19"
   },
   "noDataSkills": [
     {
