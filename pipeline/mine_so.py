@@ -508,7 +508,7 @@ def write_stats_md(path: Path, edges_doc: dict, branches_doc: dict) -> None:
     L.append("| authored from | authored to | support | reverse | conf | n | sample |\n|---|---|---|---|---|---|---|")
     for e in s["lowest20ConfidenceAuthoredEdges"]:
         L.append(f"| {e['from']} | {e['to']} | {e['support']} | {e['reverse']} | {e['confidence']:.3f} | {e['n']} | {e['sample']} |")
-    L.append("\n## LLM-era top-up (SEDE, 5 % user sample)\n")
+    L.append("\n## LLM-era top-up (Stack Exchange Data Explorer, current data)\n")
     L.append(f"- {json.dumps(edges_doc['llmEraTopUp'], sort_keys=True)}\n")
     L.append("## Branches\n")
     L.append(f"- {json.dumps(branches_doc['stats'], sort_keys=True)}\n")

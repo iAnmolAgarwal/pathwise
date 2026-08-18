@@ -82,7 +82,7 @@ Confidence here is for the AUTHORED direction (prereq before dependent); < 0.5 m
 | docker | model-deployment | 68 | 77 | 0.469 | 145 | full-mirror |
 | javascript-advanced | react | 4965 | 5575 | 0.471 | 10540 | full-mirror |
 
-## LLM-era top-up (SEDE, 5 % user sample)
+## LLM-era top-up (Stack Exchange Data Explorer, current data)
 
 - {"llmEraSkills": ["ai-agents", "ai-app-development", "embeddings-vector-search", "fine-tuning", "llm-apis", "llm-evaluation", "llm-fundamentals", "local-llms", "multimodal-ai", "prompt-engineering", "rag", "responsible-ai", "vector-databases"], "orderedObservations": 67850, "pairsAtFloor": 295, "pairsSeen": 1368, "sample": "Stack Exchange Data Explorer, current data: users with >= 1 LLM-era question among posts with Id >= 73000000, OwnerUserId % 1 = 0 (100 % of users), full history per user; pairs with an LLM-era endpoint only", "status": "ingested"}
 
