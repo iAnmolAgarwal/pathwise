@@ -5,6 +5,8 @@ Checks, mirroring the Zod schemas in src/schemas/:
   2. Skill prerequisite edges form a DAG.
   3. Referential integrity: every skillId referenced anywhere exists.
   4. Embedding coverage: every skill and catalog item has a 384-dim vector, no extras.
+  5. Evidence files under pipeline/evidence/ (when present) pass mine_so.py's schema check
+     (a pipeline-side mirror of the Zod evidence schema); their counts land in the report.
 
 Writes pipeline/validation-report.json (committed) containing the outcome, entity
 counts, coverage warnings, and sha256 hashes of the four data files; the Vitest
@@ -158,6 +160,30 @@ def coverage_warnings(skills: list[dict], catalog: list[dict]) -> list[str]:
     return [f"skill '{s}' has no catalog item teaching it" for s in untaught]
 
 
+def validate_evidence(errors: list[str]) -> dict:
+    """Stack Overflow evidence (pipeline/evidence/edges_so.json, branches_so.json), if emitted."""
+    edges_path = PIPELINE_DIR / "evidence" / "edges_so.json"
+    branches_path = PIPELINE_DIR / "evidence" / "branches_so.json"
+    if not (edges_path.exists() and branches_path.exists()):
+        return {"stackoverflow": None}
+    sys.path.insert(0, str(PIPELINE_DIR))
+    import mine_so  # noqa: E402  (same directory; no third-party imports)
+
+    if mine_so.check_schema() != 0:
+        errors.append("pipeline/evidence: Stack Overflow files failed mine_so.py check-schema")
+    edges = json.loads(edges_path.read_text())
+    branches = json.loads(branches_path.read_text())
+    return {
+        "stackoverflow": {
+            "edges": len(edges["edges"]),
+            "branches": len(branches["branches"]),
+            "mapSignedOff": edges.get("mapSignedOff"),
+            "usersEligible": edges["stats"].get("usersEligible"),
+            "pairsAtFloor": edges["stats"].get("pairsAtFloor"),
+        }
+    }
+
+
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -175,6 +201,7 @@ def main() -> int:
     validate_catalog(catalog, skill_ids, errors)
     validate_embeddings(embeddings, skill_ids, {c["id"] for c in catalog}, errors)
     warnings = coverage_warnings(skills, catalog)
+    evidence = validate_evidence(errors)
 
     report = {
         "passed": not errors,
@@ -187,6 +214,7 @@ def main() -> int:
             "assessments": sum(1 for c in catalog if c["kind"] == "assessment"),
             "embeddings": len(embeddings),
         },
+        "evidence": evidence,
         "errors": errors,
         "warnings": warnings,
         "dataHashes": {name: sha256_file(DATA_DIR / name) for name in DATA_FILES},
