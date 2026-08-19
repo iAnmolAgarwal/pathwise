@@ -37,7 +37,7 @@
   },
   "contradicted": {
     "count": 6,
-    "resolved": 0,
+    "resolved": 6,
     "edges": [
       {
         "from": "css",
@@ -45,7 +45,14 @@
         "sources": [
           "coursera"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "css",
+          "to": "web-accessibility",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair (introcss → html); Stack Overflow confirms the authored direction (0.803, n 1917)",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       },
       {
         "from": "programming-basics",
@@ -53,7 +60,14 @@
         "sources": [
           "coursera"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "programming-basics",
+          "to": "javascript",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair inside one specialization (java-programming → duke-programming-web); Stack Overflow is inconclusive at large n",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       },
       {
         "from": "security-fundamentals",
@@ -61,7 +75,14 @@
         "sources": [
           "coursera"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "security-fundamentals",
+          "to": "identity-access-management",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; two Coursera course pairs inside the Google IT Support certificate order; Stack Overflow is inconclusive",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       },
       {
         "from": "security-fundamentals",
@@ -69,7 +90,14 @@
         "sources": [
           "coursera"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "security-fundamentals",
+          "to": "network-security",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair inside the IBM cybersecurity chain order; Stack Overflow is inconclusive",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       },
       {
         "from": "sql",
@@ -77,7 +105,14 @@
         "sources": [
           "coursera"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "sql",
+          "to": "advanced-sql",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair (applied-data-science-capstone → sql-data-science, 2 vs 86); Stack Overflow confirms the authored direction (0.869, n 21160)",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       },
       {
         "from": "statistics-fundamentals",
@@ -85,7 +120,14 @@
         "sources": [
           "stackoverflow"
         ],
-        "resolution": null
+        "resolution": {
+          "from": "statistics-fundamentals",
+          "to": "r-programming",
+          "decision": "keep-authored",
+          "note": "owner decision: keep the authored graph unchanged this block; Stack Overflow shows R questions before statistics questions (0.136, n 5539); asking order is not completion order and the authored ordering is a curriculum choice — authored graph kept unchanged",
+          "date": "2026-08-19",
+          "by": "anmol"
+        }
       }
     ]
   },
@@ -133,6 +175,6 @@
     "pairsAtFloorBefore": 8709,
     "tiesDropped": 3413791
   },
-  "headline": "Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 0 resolved; 0 novel edges were promoted after human review.",
+  "headline": "Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 6 resolved; 0 novel edges were promoted after human review.",
   "history": []
 }

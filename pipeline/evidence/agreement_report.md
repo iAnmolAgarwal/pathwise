@@ -2,7 +2,7 @@
 
 Produced by `python pipeline/merge_edges.py run`; every number is computed by the pipeline, none is typed in. Thresholds and definitions are printed below the tables.
 
-> Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 0 resolved; 0 novel edges were promoted after human review.
+> Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 6 resolved; 0 novel edges were promoted after human review.
 
 | Metric | Stack Overflow | Coursera | ≥ 1 source | both |
 |---|---|---|---|---|
@@ -41,12 +41,12 @@ The 12-month rule (count only users whose first-ever question is ≥ 12 months a
 
 | authored edge | contradicting source(s) | resolution |
 |---|---|---|
-| CSS → Web Accessibility | coursera | open |
-| Programming Basics → JavaScript | coursera | open |
-| Security Fundamentals → Identity & Access Management | coursera | open |
-| Security Fundamentals → Network Security | coursera | open |
-| SQL → Advanced SQL | coursera | open |
-| Statistics Fundamentals → R Programming | stackoverflow | open |
+| CSS → Web Accessibility | coursera | keep-authored — owner decision: keep the authored graph unchanged this block; one Coursera course pair (introcss → html); Stack Overflow confirms the authored direction (0.803, n 1917) (anmol, 2026-08-19) |
+| Programming Basics → JavaScript | coursera | keep-authored — owner decision: keep the authored graph unchanged this block; one Coursera course pair inside one specialization (java-programming → duke-programming-web); Stack Overflow is inconclusive at large n (anmol, 2026-08-19) |
+| Security Fundamentals → Identity & Access Management | coursera | keep-authored — owner decision: keep the authored graph unchanged this block; two Coursera course pairs inside the Google IT Support certificate order; Stack Overflow is inconclusive (anmol, 2026-08-19) |
+| Security Fundamentals → Network Security | coursera | keep-authored — owner decision: keep the authored graph unchanged this block; one Coursera course pair inside the IBM cybersecurity chain order; Stack Overflow is inconclusive (anmol, 2026-08-19) |
+| SQL → Advanced SQL | coursera | keep-authored — owner decision: keep the authored graph unchanged this block; one Coursera course pair (applied-data-science-capstone → sql-data-science, 2 vs 86); Stack Overflow confirms the authored direction (0.869, n 21160) (anmol, 2026-08-19) |
+| Statistics Fundamentals → R Programming | stackoverflow | keep-authored — owner decision: keep the authored graph unchanged this block; Stack Overflow shows R questions before statistics questions (0.136, n 5539); asking order is not completion order and the authored ordering is a curriculum choice — authored graph kept unchanged (anmol, 2026-08-19) |
 
 ## Coverage
 

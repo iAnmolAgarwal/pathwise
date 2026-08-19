@@ -1,5 +1,54 @@
 {
   "description": "Human decisions on the evidence queues, read by pipeline/merge_edges.py. contradictions: one entry per authored edge listed in contradictions.md (decision keep-authored | flip | remove | both-valid-drop-edge); a flip/remove/both-valid-drop-edge decision is applied by editing the taxonomy source files (pipeline/sources/<domain>.json), re-running the taxonomy validation, then the merge. promotions: one entry per candidate listed in promotions.md (decision promote | keep-candidate); promote takes effect only if the edge still meets the thresholds, levelBand(from) <= levelBand(to) and the path-driving graph stays acyclic. Every entry carries from, to, decision, note, date, by.",
-  "contradictions": [],
+  "contradictions": [
+    {
+      "from": "css",
+      "to": "web-accessibility",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair (introcss → html); Stack Overflow confirms the authored direction (0.803, n 1917)",
+      "date": "2026-08-19",
+      "by": "anmol"
+    },
+    {
+      "from": "programming-basics",
+      "to": "javascript",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair inside one specialization (java-programming → duke-programming-web); Stack Overflow is inconclusive at large n",
+      "date": "2026-08-19",
+      "by": "anmol"
+    },
+    {
+      "from": "security-fundamentals",
+      "to": "identity-access-management",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; two Coursera course pairs inside the Google IT Support certificate order; Stack Overflow is inconclusive",
+      "date": "2026-08-19",
+      "by": "anmol"
+    },
+    {
+      "from": "security-fundamentals",
+      "to": "network-security",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair inside the IBM cybersecurity chain order; Stack Overflow is inconclusive",
+      "date": "2026-08-19",
+      "by": "anmol"
+    },
+    {
+      "from": "sql",
+      "to": "advanced-sql",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; one Coursera course pair (applied-data-science-capstone → sql-data-science, 2 vs 86); Stack Overflow confirms the authored direction (0.869, n 21160)",
+      "date": "2026-08-19",
+      "by": "anmol"
+    },
+    {
+      "from": "statistics-fundamentals",
+      "to": "r-programming",
+      "decision": "keep-authored",
+      "note": "owner decision: keep the authored graph unchanged this block; Stack Overflow shows R questions before statistics questions (0.136, n 5539); asking order is not completion order and the authored ordering is a curriculum choice — authored graph kept unchanged",
+      "date": "2026-08-19",
+      "by": "anmol"
+    }
+  ],
   "promotions": []
 }
