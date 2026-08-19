@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { generatePath } from "@/engine";
+import { generatePath, prereqMap } from "@/engine";
 import { achievedLevels, unmetRequirements } from "@/engine/select";
 import { loadEngineData } from "@/lib/engineData";
 import type { CatalogItem, Profile } from "@/schemas";
@@ -175,8 +175,8 @@ describe("engine properties (§5.6)", () => {
     }
   });
 
-  it("the skill DAG is acyclic (engine precondition)", () => {
-    const prereqs = new Map(data.skills.map((s) => [s.id, s.prereqs]));
+  it("the path-driving skill DAG is acyclic (engine precondition)", () => {
+    const prereqs = prereqMap(data.skillEdges);
     const state = new Map<string, 1 | 2>();
     const visit = (id: string): boolean => {
       if (state.get(id) === 1) return false;
@@ -198,6 +198,25 @@ describe("evidence score consistency", () => {
         const expected = coverageOf(catalogById.get(item.catalogId)!, result.working.evidenceGap).coverage;
         expect(item.evidence.scoreBreakdown.coverage, `${name}: ${item.catalogId}`).toBeCloseTo(expected, 6);
       }
+    }
+  });
+});
+
+describe("engine module boundary (§3)", () => {
+  it("src/engine imports nothing from llm/, db/, or app/ and reads no files", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const dir = join(__dirname, "..", "..", "src", "engine");
+    for (const file of readdirSync(dir).filter((f) => f.endsWith(".ts"))) {
+      const src = readFileSync(join(dir, file), "utf8");
+      const imports = [...src.matchAll(/from\s+"([^"]+)"/g)].map((m) => m[1]);
+      expect(imports.filter((i) => /(^|\/)(llm|db|app)(\/|$)/.test(i) || /^node:|^fs$|^path$/.test(i)), file).toEqual([]);
+    }
+  });
+
+  it("the path-driving edge set is authored ∪ promoted only (N-4)", () => {
+    for (const e of data.skillEdges) {
+      expect(e.drivesPath, `${e.from}>${e.to}`).toBe(e.origin === "authored" || e.status === "promoted");
     }
   });
 });

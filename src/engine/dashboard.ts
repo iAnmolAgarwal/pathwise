@@ -91,7 +91,7 @@ export function dashboardSummary(input: DashboardInput): DashboardSummary {
   const level = (id: string) => profile.skills[id]?.level ?? 0;
 
   const required = requiredSkillsForGoals(profile.goals, data.goals);
-  const gap = computeGap(profile, required, data.skills);
+  const gap = computeGap(profile, required, data.skillEdges);
   const gapIds = new Set(gap.map((g) => g.skillId));
 
   // Progress and radar: level-weighted over goal-required skills, grouped by domain.

@@ -4,6 +4,7 @@ import type {
   GoalTemplate,
   ScoreBreakdown,
   Skill,
+  SkillEdge,
   SkillLevel,
 } from "../schemas";
 
@@ -13,6 +14,8 @@ export type EngineData = {
   goals: GoalTemplate[];
   catalog: CatalogItem[];
   embeddings: Record<string, number[]>;
+  /** The merged, tiered edge set (skill_edges.json); the engine walks only the path-driving edges. */
+  skillEdges: SkillEdge[];
 };
 
 export type ProfileLevel = 0 | 1 | 2 | 3;

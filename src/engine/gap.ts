@@ -1,4 +1,5 @@
-import type { Profile, Skill, SkillLevel } from "../schemas";
+import type { Profile, SkillLevel } from "../schemas";
+import { prereqMap, type PathEdge } from "./edges";
 import type { Gap, ProfileLevel } from "./types";
 
 type SkillRef = { skillId: string; level: SkillLevel };
@@ -36,11 +37,11 @@ export function prereqLevelFor(dependentTarget: SkillLevel): SkillLevel {
 
 /**
  * Skill-gap analysis (§5.1): direct goal gaps first, then transitive prerequisites
- * discovered by BFS over the skill DAG. Each gap carries a graphPath from the nearest
- * known skill through itself to the goal skill it ultimately serves.
+ * discovered by BFS over the path-driving edges of the skill DAG. Each gap carries a
+ * graphPath from the nearest known skill through itself to the goal skill it serves.
  */
-export function computeGap(profile: Profile, required: SkillRef[], skills: Skill[]): Gap[] {
-  const skillById = new Map(skills.map((s) => [s.id, s]));
+export function computeGap(profile: Profile, required: SkillRef[], edges: readonly PathEdge[]): Gap[] {
+  const prereqsOf = prereqMap(edges);
   const gaps = new Map<string, Gap>();
 
   const direct = required.filter(({ skillId, level }) => currentLevel(profile, skillId) < level);
@@ -61,7 +62,7 @@ export function computeGap(profile: Profile, required: SkillRef[], skills: Skill
   while (queue.length > 0) {
     const { skillId, chainToGoal, targetLevel } = queue.shift()!;
     const needed = prereqLevelFor(targetLevel);
-    for (const prereqId of skillById.get(skillId)?.prereqs ?? []) {
+    for (const prereqId of prereqsOf.get(skillId) ?? []) {
       const have = currentLevel(profile, prereqId);
       if (have >= needed) continue;
       const existing = gaps.get(prereqId);
@@ -83,7 +84,7 @@ export function computeGap(profile: Profile, required: SkillRef[], skills: Skill
 
   // Prepend the nearest known prerequisite so the UI can say "you know X → this unlocks Y".
   for (const gap of gaps.values()) {
-    const known = (skillById.get(gap.skillId)?.prereqs ?? []).find(
+    const known = (prereqsOf.get(gap.skillId) ?? []).find(
       (p) => currentLevel(profile, p) >= 1,
     );
     if (known) gap.graphPath = [known, ...gap.graphPath];

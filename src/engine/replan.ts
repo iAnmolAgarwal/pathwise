@@ -195,7 +195,7 @@ export function diffPaths(before: Path, after: Path, cause: PathDiff["cause"], r
 
 function gapSignature(profile: Profile, data: EngineData): string {
   const required = requiredSkillsForGoals(profile.goals, data.goals);
-  return computeGap(profile, required, data.skills)
+  return computeGap(profile, required, data.skillEdges)
     .map((g) => `${g.skillId}:${g.currentLevel}->${g.targetLevel}`)
     .sort()
     .join("|");
