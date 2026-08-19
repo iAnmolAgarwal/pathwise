@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { generatePath } from "@/engine";
+import { generatePath, prereqMap } from "@/engine";
 import { achievedLevels, unmetRequirements } from "@/engine/select";
 import { loadEngineData } from "@/lib/engineData";
 import type { CatalogItem, Profile } from "@/schemas";
@@ -175,8 +175,8 @@ describe("engine properties (§5.6)", () => {
     }
   });
 
-  it("the skill DAG is acyclic (engine precondition)", () => {
-    const prereqs = new Map(data.skills.map((s) => [s.id, s.prereqs]));
+  it("the path-driving skill DAG is acyclic (engine precondition)", () => {
+    const prereqs = prereqMap(data.skillEdges);
     const state = new Map<string, 1 | 2>();
     const visit = (id: string): boolean => {
       if (state.get(id) === 1) return false;
@@ -197,6 +197,75 @@ describe("evidence score consistency", () => {
       for (const item of result.path.phases.flatMap((p) => p.items)) {
         const expected = coverageOf(catalogById.get(item.catalogId)!, result.working.evidenceGap).coverage;
         expect(item.evidence.scoreBreakdown.coverage, `${name}: ${item.catalogId}`).toBeCloseTo(expected, 6);
+      }
+    }
+  });
+});
+
+describe("engine module boundary (§3)", () => {
+  it("src/engine imports nothing from llm/, db/, or app/ and reads no files", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const dir = join(__dirname, "..", "..", "src", "engine");
+    for (const file of readdirSync(dir).filter((f) => f.endsWith(".ts"))) {
+      const src = readFileSync(join(dir, file), "utf8");
+      const imports = [...src.matchAll(/from\s+"([^"]+)"/g)].map((m) => m[1]);
+      expect(imports.filter((i) => /(^|\/)(llm|db|app)(\/|$)/.test(i) || /^node:|^fs$|^path$/.test(i)), file).toEqual([]);
+    }
+  });
+
+  it("the path-driving edge set is authored ∪ promoted only (N-4)", () => {
+    for (const e of data.skillEdges) {
+      expect(e.drivesPath, `${e.from}>${e.to}`).toBe(e.origin === "authored" || e.status === "promoted");
+    }
+  });
+});
+
+describe("learner evidence on path items (§5.6, N-2)", () => {
+  const byPair = new Map(data.skillEdges.map((e) => [`${e.from}>${e.to}`, e]));
+
+  it("never cites an edge that is not in skill_edges.json, and copies that edge's numbers exactly", () => {
+    let cited = 0;
+    for (const { name, result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          cited++;
+          const edge = byPair.get(`${le.from}>${le.to}`);
+          expect(edge, `${name}: ${item.catalogId} cites ${le.from}>${le.to}`).toBeDefined();
+          expect(edge!.drivesPath, `${name}: ${le.from}>${le.to} is not path-driving`).toBe(true);
+          const stat = edge!.sources[le.source];
+          expect(stat, `${name}: ${le.from}>${le.to} has no ${le.source} data`).toBeDefined();
+          expect({ support: le.support, reverse: le.reverse, confidence: le.confidence, n: le.n, caveat: le.caveat }).toEqual({
+            support: stat!.support, reverse: stat!.reverse, confidence: stat!.confidence, n: stat!.n, caveat: stat!.caveat,
+          });
+          expect(le.n).toBe(le.support + le.reverse);
+        }
+      }
+    }
+    expect(cited).toBeGreaterThan(0);
+  });
+
+  it("cites only edges the covered gap skill sits on, within its own graphPath", () => {
+    for (const { name, result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          const onPath = item.evidence.gapSkillsCovered.some((g) => {
+            if (g.skillId !== le.from && g.skillId !== le.to) return false;
+            const i = g.graphPath.indexOf(le.from);
+            return i >= 0 && g.graphPath[i + 1] === le.to;
+          });
+          expect(onPath, `${name}: ${item.catalogId} cites ${le.from}>${le.to}`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("carries no satisfaction wording in any caveat (N-5)", () => {
+    for (const { result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          expect(le.caveat).not.toMatch(/satisf|struggl|liked|\bhard\b/i);
+        }
       }
     }
   });

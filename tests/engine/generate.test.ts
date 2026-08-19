@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { authoredEdges } from "./helpers";
 import { ENGINE_VERSION, generatePath } from "@/engine";
 import { PACE_HORIZON_WEEKS } from "@/engine/select";
 import type { EngineData } from "@/engine/types";
@@ -22,12 +23,15 @@ function item(over: Partial<CatalogItem> & { id: string }): CatalogItem {
   };
 }
 
+const skills: EngineData["skills"] = [
+  { id: "js", name: "JavaScript", domain: "web-frontend", description: "x", levelBand: 1, prereqs: [] },
+  { id: "react", name: "React", domain: "web-frontend", description: "x", levelBand: 2, prereqs: ["js"] },
+  { id: "testing", name: "Testing", domain: "web-frontend", description: "x", levelBand: 2, prereqs: ["js"] },
+];
+
 const data: EngineData = {
-  skills: [
-    { id: "js", name: "JavaScript", domain: "web-frontend", description: "x", levelBand: 1, prereqs: [] },
-    { id: "react", name: "React", domain: "web-frontend", description: "x", levelBand: 2, prereqs: ["js"] },
-    { id: "testing", name: "Testing", domain: "web-frontend", description: "x", levelBand: 2, prereqs: ["js"] },
-  ],
+  skills,
+  skillEdges: authoredEdges(skills),
   goals: [
     {
       id: "fe",

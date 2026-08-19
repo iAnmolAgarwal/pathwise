@@ -51,7 +51,7 @@ export function generatePath(
   options: GenerateOptions,
 ): { path: Path; working: Working } {
   const required = requiredSkillsForGoals(profile.goals, data.goals);
-  const gap = computeGap(profile, required, data.skills);
+  const gap = computeGap(profile, required, data.skillEdges);
   const candidates = scoreCandidates(gap, profile, data);
 
   const budgetHours = Math.max(0, timeBudgetHours(profile.preferences) - (options.spentHours ?? 0));
@@ -79,7 +79,7 @@ export function generatePath(
   const byId = new Map(kept.map((c) => [c.item.id, c]));
   const sequenced = sequenceItems(
     kept.map((c) => c.item),
-    data.skills,
+    data.skillEdges,
   );
   const coursePhases = sequenced.phases.map((phase) => phase.map((i) => byId.get(i.id)!));
   const courseHours = kept.reduce((h, c) => h + c.item.durationHours, 0);
@@ -103,7 +103,7 @@ export function generatePath(
     ...consistent(extras.phases[i].assessment),
   ]);
   const allItems: CatalogItem[] = phaseCandidates.flat().map((c) => c.item);
-  const edges = precedenceEdges(allItems, data.skills);
+  const edges = precedenceEdges(allItems, data.skillEdges);
 
   const seen: string[] = [];
   const phases: Path["phases"] = phaseCandidates.map((cands, i) => {
@@ -113,7 +113,7 @@ export function generatePath(
       data.skills,
     );
     const items = cands.map((c) => {
-      const evidence = buildEvidence(c, evidenceGap, edges, seen);
+      const evidence = buildEvidence(c, evidenceGap, edges, seen, data.skillEdges);
       seen.push(c.item.id);
       return { catalogId: c.item.id, status: "todo" as const, evidence };
     });
@@ -149,4 +149,6 @@ function dedupeGaps(gaps: Gap[]): Gap[] {
 
 export { ENGINE_WEIGHTS } from "./score";
 export { computeGap, requiredSkillsForGoals } from "./gap";
+export { pathDrivingEdges, prereqMap } from "./edges";
+export type { PathEdge, PrereqMap } from "./edges";
 export type { Candidate, EngineData, Gap, SequenceEdge } from "./types";

@@ -234,7 +234,10 @@ def resolution_obj(r: dict) -> dict:
 def merge(skills: list[dict], lookups: dict[str, dict], observed_skills: dict[str, set[str]], resolutions: dict, so_tags: dict[str, list[str]]) -> tuple[list[dict], dict]:
     skill_ids = {s["id"] for s in skills}
     level = {s["id"]: s["levelBand"] for s in skills}
-    authored = sorted((p, s["id"]) for s in skills for p in s.get("prereqs", []))
+    # Authored order is kept (skills.json order, then each skill's prereq order): the engine walks
+    # path-driving edges in file order, so this is what keeps its behaviour identical to reading
+    # skills.json.prereqs directly. Mined candidates are sorted after them.
+    authored = [(p, s["id"]) for s in skills for p in s.get("prereqs", [])]
     authored_set = set(authored)
     contradiction_res = {(r["from"], r["to"]): r for r in resolutions["contradictions"]}
     promotion_res = {(r["from"], r["to"]): r for r in resolutions["promotions"]}
@@ -323,8 +326,12 @@ def merge(skills: list[dict], lookups: dict[str, dict], observed_skills: dict[st
             if e["origin"] == "authored" and (e["from"], e["to"]) == (r["to"], r["from"]) and "resolution" not in e:
                 e["resolution"] = resolution_obj(r)
 
+    authored_index = {pair: i for i, pair in enumerate(authored)}
+
     def sort_key(e: dict):
-        return (0 if e["origin"] == "authored" else 1, e["from"], e["to"])
+        if e["origin"] == "authored":
+            return (0, authored_index[(e["from"], e["to"])], "", "")
+        return (1, 0, e["from"], e["to"])
 
     edges.sort(key=sort_key)
     return edges, {"authoredRows": authored_rows, "candidateRows": candidate_rows, "history": history, "skillIds": skill_ids}
@@ -369,7 +376,7 @@ def build_report(edges: list[dict], info: dict, so_doc: dict, cr_doc: dict, tags
     confirmed_by = {src: sum(1 for r in rows if r["verdicts"][src] == "confirm") for src in SOURCES}
     confirmed_any = sum(1 for r in rows if "confirm" in r["verdicts"].values())
     confirmed_both = sum(1 for r in rows if all(v == "confirm" for v in r["verdicts"].values()))
-    contradicted = [r for r in rows if r["status"] == "contradicted-in-review"]
+    contradicted = sorted((r for r in rows if r["status"] == "contradicted-in-review"), key=lambda r: (r["from"], r["to"]))
     unobserved = sum(1 for r in rows if not any(r["hasData"].values()))
     inconclusive = sum(1 for r in rows if any(r["hasData"].values()) and r["status"] == "no-data")
     by_status = Counter(r["status"] for r in rows)
@@ -536,7 +543,7 @@ def fmt_stat(src: str, st: dict) -> str:
 
 
 def write_contradictions_md(path: Path, edges: list[dict], info: dict, names: dict) -> None:
-    rows = [r for r in info["authoredRows"] if r["status"] == "contradicted-in-review"]
+    rows = sorted((r for r in info["authoredRows"] if r["status"] == "contradicted-in-review"), key=lambda r: (r["from"], r["to"]))
     by_key = {(e["from"], e["to"]): e for e in edges if e["origin"] == "authored"}
     L = [
         "# Contradictions — authored edges a source opposes",

@@ -1,4 +1,5 @@
 import type { CatalogItem, Domain, Skill } from "../schemas";
+import { prereqMap, type PathEdge } from "./edges";
 import type { SequenceEdge } from "./types";
 
 /** Antichains larger than this are split into consecutive phases so each stays digestible. */
@@ -14,11 +15,11 @@ export type Sequenced = {
 
 /**
  * Item A precedes item B when A teaches a skill that B requires, or a skill that is a
- * prerequisite (in the skill DAG) of something B teaches and B does not teach itself.
- * Assessments are never treated as teachers.
+ * prerequisite (over the path-driving skill edges) of something B teaches and B does not
+ * teach itself. Assessments are never treated as teachers.
  */
-export function precedenceEdges(items: CatalogItem[], skills: Skill[]): SequenceEdge[] {
-  const prereqsOf = new Map(skills.map((s) => [s.id, s.prereqs]));
+export function precedenceEdges(items: CatalogItem[], skillEdges: readonly PathEdge[]): SequenceEdge[] {
+  const prereqsOf = prereqMap(skillEdges);
   const edges: SequenceEdge[] = [];
   for (const a of items) {
     // Assessments validate skills rather than teach them, so they never precede anything by teaching.
@@ -59,9 +60,9 @@ function tieBreak(a: CatalogItem, b: CatalogItem): number {
  * edges over one whose hard skillsRequired would be violated, easiest first; so every
  * item is always placed exactly once and hard constraints give way last.
  */
-export function sequenceItems(items: CatalogItem[], skills: Skill[]): Sequenced {
+export function sequenceItems(items: CatalogItem[], skillEdges: readonly PathEdge[]): Sequenced {
   const byId = new Map(items.map((i) => [i.id, i]));
-  const allEdges = precedenceEdges(items, skills);
+  const allEdges = precedenceEdges(items, skillEdges);
   const incoming = new Map<string, Set<string>>(items.map((i) => [i.id, new Set()]));
   const outgoing = new Map<string, Set<string>>(items.map((i) => [i.id, new Set()]));
   for (const e of allEdges) {
