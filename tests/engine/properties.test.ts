@@ -220,3 +220,53 @@ describe("engine module boundary (§3)", () => {
     }
   });
 });
+
+describe("learner evidence on path items (§5.6, N-2)", () => {
+  const byPair = new Map(data.skillEdges.map((e) => [`${e.from}>${e.to}`, e]));
+
+  it("never cites an edge that is not in skill_edges.json, and copies that edge's numbers exactly", () => {
+    let cited = 0;
+    for (const { name, result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          cited++;
+          const edge = byPair.get(`${le.from}>${le.to}`);
+          expect(edge, `${name}: ${item.catalogId} cites ${le.from}>${le.to}`).toBeDefined();
+          expect(edge!.drivesPath, `${name}: ${le.from}>${le.to} is not path-driving`).toBe(true);
+          const stat = edge!.sources[le.source];
+          expect(stat, `${name}: ${le.from}>${le.to} has no ${le.source} data`).toBeDefined();
+          expect({ support: le.support, reverse: le.reverse, confidence: le.confidence, n: le.n, caveat: le.caveat }).toEqual({
+            support: stat!.support, reverse: stat!.reverse, confidence: stat!.confidence, n: stat!.n, caveat: stat!.caveat,
+          });
+          expect(le.n).toBe(le.support + le.reverse);
+        }
+      }
+    }
+    expect(cited).toBeGreaterThan(0);
+  });
+
+  it("cites only edges the covered gap skill sits on, within its own graphPath", () => {
+    for (const { name, result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          const onPath = item.evidence.gapSkillsCovered.some((g) => {
+            if (g.skillId !== le.from && g.skillId !== le.to) return false;
+            const i = g.graphPath.indexOf(le.from);
+            return i >= 0 && g.graphPath[i + 1] === le.to;
+          });
+          expect(onPath, `${name}: ${item.catalogId} cites ${le.from}>${le.to}`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("carries no satisfaction wording in any caveat (N-5)", () => {
+    for (const { result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
+          expect(le.caveat).not.toMatch(/satisf|struggl|liked|\bhard\b/i);
+        }
+      }
+    }
+  });
+});

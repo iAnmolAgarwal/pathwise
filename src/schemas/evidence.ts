@@ -15,6 +15,23 @@ export const ScoreBreakdownSchema = z.object({
   total: z.number(),
 });
 
+export const EvidenceSourceSchema = z.enum(["stackoverflow", "coursera"]);
+
+/**
+ * One source's numbers for one path-driving edge a covered gap skill sits on (§7 rendering 3).
+ * Copied from skill_edges.json at generation time; every number travels with its caveat (N-2).
+ */
+export const LearnerEvidenceEdgeSchema = z.object({
+  from: z.string().min(1),
+  to: z.string().min(1),
+  source: EvidenceSourceSchema,
+  support: z.number().int().nonnegative(),
+  reverse: z.number().int().nonnegative(),
+  confidence: z.number().min(0).max(1),
+  n: z.number().int().positive(),
+  caveat: z.string().min(1),
+});
+
 export const EvidenceSchema = z.object({
   catalogId: z.string().min(1),
   gapSkillsCovered: z.array(
@@ -29,10 +46,13 @@ export const EvidenceSchema = z.object({
     z.object({ catalogId: z.string().min(1), becauseSkill: z.string().min(1) }),
   ),
   provenance: z.url(),
+  /** Present only when a covered gap skill sits on an edge with learner-sequence data. */
+  learnerEvidence: z.object({ edges: z.array(LearnerEvidenceEdgeSchema).min(1) }).optional(),
 });
 
 export type GapReason = z.infer<typeof GapReasonSchema>;
 export type ScoreBreakdown = z.infer<typeof ScoreBreakdownSchema>;
+export type LearnerEvidenceEdge = z.infer<typeof LearnerEvidenceEdgeSchema>;
 export type Evidence = z.infer<typeof EvidenceSchema>;
 
 // ---------------------------------------------------------------------------
@@ -40,8 +60,6 @@ export type Evidence = z.infer<typeof EvidenceSchema>;
 // src/data/branches.json, pipeline/evidence/course_skill_tags.json,
 // pipeline/sources/tag_skill_map.json). Percentages are transition shares only;
 // every rendered number carries its source caveat.
-
-export const EvidenceSourceSchema = z.enum(["stackoverflow", "coursera"]);
 
 export const SourceStatSchema = z.object({
   support: z.number().int().nonnegative(),

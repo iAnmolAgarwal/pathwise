@@ -113,7 +113,7 @@ export function generatePath(
       data.skills,
     );
     const items = cands.map((c) => {
-      const evidence = buildEvidence(c, evidenceGap, edges, seen);
+      const evidence = buildEvidence(c, evidenceGap, edges, seen, data.skillEdges);
       seen.push(c.item.id);
       return { catalogId: c.item.id, status: "todo" as const, evidence };
     });
