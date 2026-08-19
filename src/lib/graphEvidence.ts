@@ -37,15 +37,18 @@ export type GraphEvidence = {
   caveats: Record<EvidenceSource, string>;
   /** Stack Overflow tags behind each skill (the hand-built tag → skill map, §15.2). */
   soTags: Record<string, string[]>;
-  thresholds: PromotionThresholds;
+  thresholds: EvidenceThresholds;
 };
 
 export type PromotionThresholds = { promoteConfidence: number; promoteSupport: number; promoteCorroboration: number };
+export type EvidenceThresholds = PromotionThresholds & { confirmConfidence: number; confirmN: number };
 
 const HeaderSchema = z.object({
   caveats: z.object({ stackoverflow: z.string(), coursera: z.string() }),
   stackoverflow: z.object({ tags: z.record(z.string(), z.array(z.string())) }),
   thresholds: z.object({
+    confirmConfidence: z.number(),
+    confirmN: z.number().int(),
     promoteConfidence: z.number(),
     promoteSupport: z.number(),
     promoteCorroboration: z.number().int(),

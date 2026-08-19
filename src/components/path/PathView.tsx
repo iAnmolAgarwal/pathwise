@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import type { Evidence, FeedbackEventType, Path, PathItemStatus } from "@/schemas";
 import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
+import { SOURCE_NAME, formatCount, formatPct, learnerEvidenceLine } from "@/lib/learnerEvidence";
 import { cn } from "@/lib/utils";
 
 import type { CatalogLite } from "./types";
@@ -255,6 +256,43 @@ export function EvidenceBlock({ evidence, catalog, skillName }: { evidence: Evid
           ))}
           <ScoreBar label="Total" hint="Weighted sum the engine ranked by" value={b.total} total />
         </dl>
+      </div>
+
+      <LearnerEvidenceLine evidence={evidence} skillName={skillName} />
+    </div>
+  );
+}
+
+/**
+ * Provenance line (§7 rendering 3): one sentence built from the largest source behind the
+ * prerequisite links this item's skills sit on; hovering lists every source with its numbers and
+ * caveat. Rendered only when the engine attached learnerEvidence — nothing else on the card moves.
+ */
+function LearnerEvidenceLine({ evidence, skillName }: { evidence: Evidence; skillName: (id: string) => string }) {
+  const line = learnerEvidenceLine(evidence.learnerEvidence);
+  if (!line) return null;
+  const edges = evidence.learnerEvidence!.edges;
+  return (
+    <div className={styles.learnerLine} data-testid="learner-evidence">
+      <span className={styles.learnerText} tabIndex={0} aria-describedby={`learner-evidence-${evidence.catalogId}`}>
+        <GitBranch aria-hidden />
+        {line.text}
+      </span>
+      <div className={styles.learnerTip} role="tooltip" id={`learner-evidence-${evidence.catalogId}`}>
+        <p className="label-caps">Learner sequences behind this item&apos;s prerequisites</p>
+        <ul className={styles.learnerTipList}>
+          {edges.map((e) => (
+            <li key={`${e.from}>${e.to}:${e.source}`} className={styles.learnerTipRow}>
+              <span className={styles.learnerTipEdge}>
+                {skillName(e.from)} → {skillName(e.to)}
+              </span>
+              <span className={styles.learnerTipStat}>
+                {SOURCE_NAME[e.source]}: {formatCount(e.support)} took them in this order, {formatCount(e.reverse)} the other way ({formatPct(e.confidence)}, n {formatCount(e.n)})
+              </span>
+              <span className={styles.learnerTipCaveat}>{e.caveat}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

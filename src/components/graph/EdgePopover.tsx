@@ -23,7 +23,7 @@ export const TIER_OF: Record<SkillEdge["status"], EdgeTier> = {
 export const TIER_STYLE: Record<EdgeTier, { label: string; hint: string; marker: string }> = {
   both: { label: "Confirmed by both sources", hint: "Stack Overflow and Coursera both show learners taking these in this order", marker: "rgba(255,255,255,0.42)" },
   one: { label: "Confirmed by one source", hint: "One source shows this order; the other has no data on the pair or is inconclusive", marker: "rgba(255,255,255,0.30)" },
-  none: { label: "No learner data yet", hint: "Hand-built prerequisite; neither source observed the pair above the support floor", marker: "rgba(255,255,255,0.16)" },
+  none: { label: "No confirming data yet", hint: "Hand-built prerequisite; no source observed the pair above the support floor, or what it saw is inconclusive", marker: "rgba(255,255,255,0.16)" },
   review: { label: "Contradicted, in review", hint: "A source shows the opposite order at high confidence; a human reviews it, the authored link still drives paths", marker: "rgba(242,181,68,0.85)" },
   promoted: { label: "Promoted from learner data", hint: "A mined link a human promoted; it drives paths like an authored one", marker: "rgba(255,255,255,0.42)" },
   candidate: { label: "Mined candidate", hint: "Suggested by learner sequences above the promotion thresholds; display and evidence only, never used to build a path", marker: "rgba(255,255,255,0.30)" },
@@ -37,13 +37,18 @@ const SOURCE_LABEL: Record<EvidenceSource, { name: string; attribution: string }
 const fmt = new Intl.NumberFormat("en-US");
 const pct = (x: number) => `${Math.round(x * 100)} %`;
 
-function statusLine(edge: GraphEdge): string {
+function statusLine(edge: GraphEdge, t: GraphEvidence["thresholds"]): string {
   const base = TIER_STYLE[TIER_OF[edge.status]].label;
   if (edge.status === "contradicted-in-review" && edge.resolution) {
     const d = edge.resolution.decision.replace(/-/g, " ");
     return `Contradicted by a source · reviewed: ${d}`;
   }
   if (edge.status === "candidate") return "Mined candidate · not used to build paths";
+  if (edge.status === "no-data") {
+    return Object.keys(edge.sources).length > 0
+      ? `Observed, but below the confirm floor (${Math.round(t.confirmConfidence * 100)} % with n ≥ ${t.confirmN})`
+      : "No learner data yet";
+  }
   return base;
 }
 
@@ -106,11 +111,11 @@ export function EdgePopover({ edge, evidence, nameOf, x, y, pinned, canvasWidth,
         <svg className={styles.swatch} width="28" height="8" viewBox="0 0 28 8" aria-hidden>
           <line x1="1" y1="4" x2="27" y2="4" className={cn(styles.swatchLine, styles[`tier_${tier}`])} />
         </svg>
-        {statusLine(edge)}
+        {statusLine(edge, evidence.thresholds)}
       </p>
 
       {sources.length === 0 ? (
-        <p className={styles.popoverEmpty}>Neither source observed these two skills together above the support floor. The link is a hand-built prerequisite.</p>
+        <p className={styles.popoverEmpty}>Neither source observed these two skills together above its support floor. The link is a hand-built prerequisite.</p>
       ) : (
         <ul className={styles.popoverSources}>
           {sources.map((s) => (
