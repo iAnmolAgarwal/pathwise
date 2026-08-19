@@ -58,7 +58,7 @@ python pipeline/validate.py              # schema, DAG over path-driving edges, 
 ```
 
 **What the evidence says today** (`pipeline/evidence/agreement_report.md`, computed, not typed):
-> Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 0 resolved; 0 novel edges were promoted after human review.
+> Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 6 resolved; 0 novel edges were promoted after human review.
 
 ### Learner-sequence evidence — Stack Overflow
 
@@ -175,3 +175,10 @@ rendered from the queues plus those decisions, and a recorded promotion is appli
 edge still meets the thresholds, keeps level bands monotone and keeps the path-driving graph
 acyclic (the merge refuses otherwise). Outputs: `src/data/skill_edges.json`,
 `src/data/branches.json`, `pipeline/evidence/agreement_report.md/.json`.
+
+## Data sources and attribution
+
+- **Stack Overflow** question metadata via the BigQuery public dataset (`bigquery-public-data.stackoverflow`) and the Stack Exchange Data Explorer, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Pathwise publishes aggregate counts only, with this attribution wherever they are shown.
+- **Coursera** review order from the Kaggle dataset [Course Reviews on Coursera](https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera) (imuhammad), CC0 — only review order is used; review text never leaves the gitignored build directory.
+- The learner-sequence mining method, its measured validation (successes and failures shown side by side) and the "neither graph is strictly superior — use both and say which" conclusion are **Riyan Garg's**; Pathwise reproduces his method in the repository and credits it wherever the Coursera numbers appear.
+- Catalog items link to their original providers (Coursera, edX, freeCodeCamp, Kaggle, official documentation, YouTube); Pathwise stores titles, URLs and its own annotations, never course content.
