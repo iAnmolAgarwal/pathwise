@@ -5,9 +5,9 @@ Checks, mirroring the Zod schemas in src/schemas/:
   2. Skill prerequisite edges form a DAG.
   3. Referential integrity: every skillId referenced anywhere exists.
   4. Embedding coverage: every skill and catalog item has a 384-dim vector, no extras.
-  5. Evidence files under pipeline/evidence/ (when present) pass mine_so.py's and
-     mine_coursera.py's schema checks (pipeline-side mirrors of the Zod evidence schema);
-     their counts land in the report.
+  5. Evidence files under pipeline/evidence/ (when present) pass the schema checks of
+     mine_so.py, mine_coursera.py and tag_courses.py (pipeline-side mirrors of the Zod
+     evidence schema); their counts land in the report.
 
 Writes pipeline/validation-report.json (committed) containing the outcome, entity
 counts, coverage warnings, and sha256 hashes of the four data files; the Vitest
@@ -198,7 +198,22 @@ def validate_evidence(errors: list[str]) -> dict:
             "namesInBand": doc["stats"].get("namesInBand"),
             "pairsAtSupportFloor": doc["stats"].get("pairsAtSupportFloor"),
             "baselineReproduced": doc.get("baseline", {}).get("reproducesPublished"),
+            "courseSkillTags": None,
         }
+        tags_path = PIPELINE_DIR / "evidence" / "course_skill_tags.json"
+        if tags_path.exists():
+            import tag_courses  # noqa: E402  (schema check only; no network, no model calls)
+
+            if tag_courses.check_schema() != 0:
+                errors.append("pipeline/evidence: course_skill_tags.json failed tag_courses.py check-schema")
+            tags = json.loads(tags_path.read_text())
+            report["coursera"]["courseSkillTags"] = {
+                "courses": len(tags["tags"]),
+                "tags": tags["stats"].get("tagsTotal"),
+                "byConfidence": tags["stats"].get("byConfidence"),
+                "promptVersion": tags.get("promptVersion"),
+                "spotCheck": tags.get("spotCheck", {}).get("status"),
+            }
     return report
 
 

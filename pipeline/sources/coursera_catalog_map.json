@@ -1,0 +1,233 @@
+{
+  "description": "Hand-built map from Coursera courses in a mined edge (Ring 1 of pipeline/evidence/edges_coursera_course.json) to the Pathwise catalog items they belong to (src/data/catalog.json; specializations and certificates are many-to-one). Used by tag_courses.py to fill catalogItemId, and by pool.py so an edge inside a specialization the catalog already carries shows as evidence on that item. Courses not listed here belong to no catalog item.",
+  "draftedOn": "2026-08-19",
+  "signoff": {
+    "anmol": null,
+    "riyan": null
+  },
+  "relations": {
+    "member": "the course is one of the item's courses",
+    "predecessor": "the course was retired and replaced by the item",
+    "shared-course": "the course belongs to the item and to another programme that is not in the catalog"
+  },
+  "rows": [
+    {
+      "courseId": "python",
+      "courseName": "Programming for Everybody (Getting Started with Python)",
+      "catalogItemId": "python-for-everybody",
+      "catalogItemTitle": "Python for Everybody Specialization",
+      "relation": "member",
+      "note": "the five courses of the Python for Everybody Specialization (course 5 is the capstone)"
+    },
+    {
+      "courseId": "python-data",
+      "courseName": "Python Data Structures",
+      "catalogItemId": "python-for-everybody",
+      "catalogItemTitle": "Python for Everybody Specialization",
+      "relation": "member",
+      "note": "the five courses of the Python for Everybody Specialization (course 5 is the capstone)"
+    },
+    {
+      "courseId": "python-network-data",
+      "courseName": "Using Python to Access Web Data",
+      "catalogItemId": "python-for-everybody",
+      "catalogItemTitle": "Python for Everybody Specialization",
+      "relation": "member",
+      "note": "the five courses of the Python for Everybody Specialization (course 5 is the capstone)"
+    },
+    {
+      "courseId": "python-databases",
+      "courseName": "Using Databases with Python",
+      "catalogItemId": "python-for-everybody",
+      "catalogItemTitle": "Python for Everybody Specialization",
+      "relation": "member",
+      "note": "the five courses of the Python for Everybody Specialization (course 5 is the capstone)"
+    },
+    {
+      "courseId": "python-data-visualization",
+      "courseName": "Capstone: Retrieving, Processing, and Visualizing Data with Python",
+      "catalogItemId": "python-for-everybody",
+      "catalogItemTitle": "Python for Everybody Specialization",
+      "relation": "member",
+      "note": "the five courses of the Python for Everybody Specialization (course 5 is the capstone)"
+    },
+    {
+      "courseId": "excel-essentials",
+      "courseName": "Excel Skills for Business: Essentials",
+      "catalogItemId": "coursera-excel",
+      "catalogItemTitle": "Excel Skills for Business Specialization",
+      "relation": "member",
+      "note": "the four courses of the Excel Skills for Business Specialization"
+    },
+    {
+      "courseId": "excel-intermediate-1",
+      "courseName": "Excel Skills for Business: Intermediate I",
+      "catalogItemId": "coursera-excel",
+      "catalogItemTitle": "Excel Skills for Business Specialization",
+      "relation": "member",
+      "note": "the four courses of the Excel Skills for Business Specialization"
+    },
+    {
+      "courseId": "excel-intermediate-2",
+      "courseName": "Excel Skills for Business: Intermediate II",
+      "catalogItemId": "coursera-excel",
+      "catalogItemTitle": "Excel Skills for Business Specialization",
+      "relation": "member",
+      "note": "the four courses of the Excel Skills for Business Specialization"
+    },
+    {
+      "courseId": "excel-advanced",
+      "courseName": "Excel Skills for Business: Advanced",
+      "catalogItemId": "coursera-excel",
+      "catalogItemTitle": "Excel Skills for Business Specialization",
+      "relation": "member",
+      "note": "the four courses of the Excel Skills for Business Specialization"
+    },
+    {
+      "courseId": "neural-networks-deep-learning",
+      "courseName": "Neural Networks and Deep Learning",
+      "catalogItemId": "dl-spec",
+      "catalogItemTitle": "Deep Learning Specialization",
+      "relation": "member",
+      "note": "the five courses of the Deep Learning Specialization"
+    },
+    {
+      "courseId": "deep-neural-network",
+      "courseName": "Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization",
+      "catalogItemId": "dl-spec",
+      "catalogItemTitle": "Deep Learning Specialization",
+      "relation": "member",
+      "note": "the five courses of the Deep Learning Specialization"
+    },
+    {
+      "courseId": "machine-learning-projects",
+      "courseName": "Structuring Machine Learning Projects",
+      "catalogItemId": "dl-spec",
+      "catalogItemTitle": "Deep Learning Specialization",
+      "relation": "member",
+      "note": "the five courses of the Deep Learning Specialization"
+    },
+    {
+      "courseId": "convolutional-neural-networks",
+      "courseName": "Convolutional Neural Networks",
+      "catalogItemId": "dl-spec",
+      "catalogItemTitle": "Deep Learning Specialization",
+      "relation": "member",
+      "note": "the five courses of the Deep Learning Specialization"
+    },
+    {
+      "courseId": "nlp-sequence-models",
+      "courseName": "Sequence Models",
+      "catalogItemId": "dl-spec",
+      "catalogItemTitle": "Deep Learning Specialization",
+      "relation": "member",
+      "note": "the five courses of the Deep Learning Specialization"
+    },
+    {
+      "courseId": "introduction-tensorflow",
+      "courseName": "Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning",
+      "catalogItemId": "tf-developer-cert",
+      "catalogItemTitle": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+      "relation": "member",
+      "note": "the four courses of the TensorFlow Developer Professional Certificate (formerly TensorFlow in Practice)"
+    },
+    {
+      "courseId": "convolutional-neural-networks-tensorflow",
+      "courseName": "Convolutional Neural Networks in TensorFlow",
+      "catalogItemId": "tf-developer-cert",
+      "catalogItemTitle": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+      "relation": "member",
+      "note": "the four courses of the TensorFlow Developer Professional Certificate (formerly TensorFlow in Practice)"
+    },
+    {
+      "courseId": "natural-language-processing-tensorflow",
+      "courseName": "Natural Language Processing in TensorFlow",
+      "catalogItemId": "tf-developer-cert",
+      "catalogItemTitle": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+      "relation": "member",
+      "note": "the four courses of the TensorFlow Developer Professional Certificate (formerly TensorFlow in Practice)"
+    },
+    {
+      "courseId": "tensorflow-sequences-time-series-and-prediction",
+      "courseName": "Sequences, Time Series and Prediction",
+      "catalogItemId": "tf-developer-cert",
+      "catalogItemTitle": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+      "relation": "member",
+      "note": "the four courses of the TensorFlow Developer Professional Certificate (formerly TensorFlow in Practice)"
+    },
+    {
+      "courseId": "linear-algebra-machine-learning",
+      "courseName": "Mathematics for Machine Learning: Linear Algebra",
+      "catalogItemId": "imperial-math-ml",
+      "catalogItemTitle": "Mathematics for Machine Learning Specialization",
+      "relation": "member",
+      "note": "the three courses of the Mathematics for Machine Learning Specialization"
+    },
+    {
+      "courseId": "multivariate-calculus-machine-learning",
+      "courseName": "Mathematics for Machine Learning: Multivariate Calculus",
+      "catalogItemId": "imperial-math-ml",
+      "catalogItemTitle": "Mathematics for Machine Learning Specialization",
+      "relation": "member",
+      "note": "the three courses of the Mathematics for Machine Learning Specialization"
+    },
+    {
+      "courseId": "pca-machine-learning",
+      "courseName": "Mathematics for Machine Learning: PCA",
+      "catalogItemId": "imperial-math-ml",
+      "catalogItemTitle": "Mathematics for Machine Learning Specialization",
+      "relation": "member",
+      "note": "the three courses of the Mathematics for Machine Learning Specialization"
+    },
+    {
+      "courseId": "gcp-fundamentals",
+      "courseName": "Google Cloud Platform Fundamentals: Core Infrastructure",
+      "catalogItemId": "coursera-gcp-core",
+      "catalogItemTitle": "Google Cloud Fundamentals: Core Infrastructure",
+      "relation": "member",
+      "note": "same course; renamed 'Google Cloud Fundamentals: Core Infrastructure' since the corpus was scraped"
+    },
+    {
+      "courseId": "duke-programming-web",
+      "courseName": "Programming Foundations with JavaScript, HTML and CSS",
+      "catalogItemId": "coursera-duke-java",
+      "catalogItemTitle": "Java Programming and Software Engineering Fundamentals",
+      "relation": "member",
+      "note": "courses 1 and 2 of Duke's Java Programming and Software Engineering Fundamentals Specialization"
+    },
+    {
+      "courseId": "java-programming",
+      "courseName": "Java Programming: Solving Problems with Software",
+      "catalogItemId": "coursera-duke-java",
+      "catalogItemTitle": "Java Programming and Software Engineering Fundamentals",
+      "relation": "member",
+      "note": "courses 1 and 2 of Duke's Java Programming and Software Engineering Fundamentals Specialization"
+    },
+    {
+      "courseId": "machine-learning",
+      "courseName": "Machine Learning",
+      "catalogItemId": "ng-ml-spec",
+      "catalogItemTitle": "Machine Learning Specialization",
+      "relation": "predecessor",
+      "note": "Andrew Ng's original Stanford course, retired in 2022 and replaced by the Machine Learning Specialization; mapped as its predecessor — strike if 'belongs to' should mean membership only"
+    },
+    {
+      "courseId": "python-for-applied-data-science-ai",
+      "courseName": "Python for Data Science and AI",
+      "catalogItemId": "ibm-data-engineering",
+      "catalogItemTitle": "IBM Data Engineering Professional Certificate",
+      "relation": "shared-course",
+      "note": "these two courses sit in both the IBM Data Science and the IBM Data Engineering Professional Certificates; only the latter is in the catalog — strike if the shared-course reading is too loose"
+    },
+    {
+      "courseId": "sql-data-science",
+      "courseName": "Databases and SQL for Data Science",
+      "catalogItemId": "ibm-data-engineering",
+      "catalogItemTitle": "IBM Data Engineering Professional Certificate",
+      "relation": "shared-course",
+      "note": "these two courses sit in both the IBM Data Science and the IBM Data Engineering Professional Certificates; only the latter is in the catalog — strike if the shared-course reading is too loose"
+    }
+  ],
+  "ring1CoursesUnmapped": 143,
+  "ring1CoursesMapped": 27
+}

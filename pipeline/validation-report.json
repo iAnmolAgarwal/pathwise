@@ -22,7 +22,8 @@
       "ring1Courses": 170,
       "namesInBand": 75593,
       "pairsAtSupportFloor": 2939,
-      "baselineReproduced": true
+      "baselineReproduced": true,
+      "courseSkillTags": null
     }
   },
   "errors": [],

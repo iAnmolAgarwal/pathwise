@@ -103,3 +103,32 @@ for the duplicate check and never leaves `pipeline/build/`. The output is course
 (`fromCourseId → toCourseId` with support, reverse, n, confidence) and byte-identical for
 identical inputs; the caveat "sequences reconstructed from review order; pseudo-users by
 reviewer name" travels with every number.
+
+### Course → skill tags — Coursera Ring 1
+
+Course-level edges only become skill evidence through a course → skill table, so that table is
+made inspectable. `pipeline/tag_courses.py` tags Ring 1 (every course in a mined edge) with
+skills from the closed vocabulary in `src/data/skills.json` — the skill id is an enum in the
+structured-output schema, the same mechanism the app's goal mapper uses — using
+`claude-sonnet-5` at low effort in two passes with different objectives: pass A names the
+skills a course teaches and at what level, pass B sees only the course text and A's list and
+tries to refute each claim. A tag survives only if B does not refute it; any disagreement marks
+the course `low` confidence for a mandatory human look. A granularity guard then drops a
+direct prerequisite carried at the same level as its dependent unless the course text names it
+or B judged it taught in its own right. Inputs are the course name, institution, URL and the
+public description read from the Coursera page (name and institution alone when the page is
+gone). Model calls are cached under `pipeline/build/`, token usage is summed into the output,
+and `pipeline/sources/coursera_catalog_map.json` (hand-built) links each mined course to the
+catalog item it belongs to.
+
+```
+python pipeline/tag_courses.py fetch       # course pages -> pipeline/build/coursera/descriptions.json
+python pipeline/tag_courses.py tag         # two passes + guard -> pipeline/evidence/course_skill_tags.json
+python pipeline/tag_courses.py spotcheck   # stratified 20 % blind sample -> pipeline/build/spotcheck_v2.md
+python pipeline/tag_courses.py score pipeline/build/spotcheck_v2.md   # Jaccard + exact-level agreement vs the gates
+```
+
+The tags are gated, not assumed: two people each tag a blind half of a stratified 20 % sample
+(with an overlap both tag), and the file ships only if mean human–model skill-set agreement is
+≥ 0.85 and human–human ≥ 0.90; below the gate the prompts or guard are fixed and the ring is
+re-run and re-sampled.
