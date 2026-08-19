@@ -2,8 +2,8 @@
   "description": "Hand-built map from Coursera courses in a mined edge (Ring 1 of pipeline/evidence/edges_coursera_course.json) to the Pathwise catalog items they belong to (src/data/catalog.json; specializations and certificates are many-to-one). Used by tag_courses.py to fill catalogItemId, and by pool.py so an edge inside a specialization the catalog already carries shows as evidence on that item. Courses not listed here belong to no catalog item.",
   "draftedOn": "2026-08-19",
   "signoff": {
-    "anmol": null,
-    "riyan": null
+    "anmol": "2026-08-19",
+    "riyan": "2026-08-19"
   },
   "relations": {
     "member": "the course is one of the item's courses",
@@ -229,5 +229,6 @@
     }
   ],
   "ring1CoursesUnmapped": 143,
-  "ring1CoursesMapped": 27
+  "ring1CoursesMapped": 27,
+  "signoffNotes": "Both reviewers signed on 2026-08-19 (recorded on the owner's instruction). Rows with relation 'predecessor' and 'shared-course' were kept as flagged."
 }
