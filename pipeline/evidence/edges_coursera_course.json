@@ -1,0 +1,1766 @@
+{
+  "baseline": {
+    "at0.70": {
+      "confidenceFloor": 0.7,
+      "distinctCourses": 171,
+      "edgesKept": 287,
+      "orderedPairsSeen": 58939,
+      "pairsAtSupportFloor": 714
+    },
+    "at0.85": {
+      "confidenceFloor": 0.85,
+      "distinctCourses": 137,
+      "edgesKept": 172,
+      "orderedPairsSeen": 58939,
+      "pairsAtSupportFloor": 714
+    },
+    "namesAboveBandRaw": 10816,
+    "namesInBand": 253344,
+    "namesOneReviewRaw": 23647,
+    "procedure": "no literal-duplicate drop; 'By Deleted A' dropped; names with 2-15 raw rows; per name the first review date of each distinct course; ordered pairs once per name; same-day pairs kept in file order",
+    "publishedByRiyan": {
+      "confidenceFloor": 0.7,
+      "distinctCourses": 171,
+      "edgesKept": 287,
+      "orderedPairsSeen": 58939,
+      "pairsAtSupportFloor": 714,
+      "rowsUsed": 1054450
+    },
+    "reproducesPublished": true,
+    "rowsUsed": 1054450
+  },
+  "caveat": "Coursera learners 2015–2020; sequences reconstructed from review order; pseudo-users by reviewer name",
+  "chains": {
+    "allSuccessSurvive": true,
+    "noNonsenseSurvives": true,
+    "nonsense": {
+      "customer-analytics-deep-learning": {
+        "courses": [
+          "wharton-customer-analytics",
+          "neural-networks-deep-learning"
+        ],
+        "steps": [
+          {
+            "confidence": 0.6211,
+            "from": "wharton-customer-analytics",
+            "kept": false,
+            "reverse": 36,
+            "support": 59,
+            "to": "neural-networks-deep-learning"
+          }
+        ],
+        "survives": false
+      },
+      "food-health-python-css": {
+        "courses": [
+          "food-and-health",
+          "python-data",
+          "introcss"
+        ],
+        "steps": [
+          {
+            "confidence": 0.4954,
+            "from": "food-and-health",
+            "kept": false,
+            "reverse": 55,
+            "support": 54,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.5781,
+            "from": "python-data",
+            "kept": false,
+            "reverse": 54,
+            "support": 74,
+            "to": "introcss"
+          }
+        ],
+        "survives": false
+      },
+      "python-css": {
+        "courses": [
+          "python",
+          "python-data",
+          "introcss"
+        ],
+        "steps": [
+          {
+            "confidence": 0.8882,
+            "from": "python",
+            "kept": true,
+            "reverse": 235,
+            "support": 1867,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.5781,
+            "from": "python-data",
+            "kept": false,
+            "reverse": 54,
+            "support": 74,
+            "to": "introcss"
+          }
+        ],
+        "survives": false
+      }
+    },
+    "nonsenseOnBaselineRowsAt0.70": {
+      "customer-analytics-deep-learning": {
+        "courses": [
+          "wharton-customer-analytics",
+          "neural-networks-deep-learning"
+        ],
+        "steps": [
+          {
+            "confidence": 0.7241,
+            "from": "wharton-customer-analytics",
+            "kept": true,
+            "reverse": 8,
+            "support": 21,
+            "to": "neural-networks-deep-learning"
+          }
+        ],
+        "survives": true
+      },
+      "food-health-python-css": {
+        "courses": [
+          "food-and-health",
+          "python-data",
+          "introcss"
+        ],
+        "steps": [
+          {
+            "confidence": 0.7059,
+            "from": "food-and-health",
+            "kept": true,
+            "reverse": 10,
+            "support": 24,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.7,
+            "from": "python-data",
+            "kept": true,
+            "reverse": 18,
+            "support": 42,
+            "to": "introcss"
+          }
+        ],
+        "survives": true
+      },
+      "python-css": {
+        "courses": [
+          "python",
+          "python-data",
+          "introcss"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9359,
+            "from": "python",
+            "kept": true,
+            "reverse": 105,
+            "support": 1534,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.7,
+            "from": "python-data",
+            "kept": true,
+            "reverse": 18,
+            "support": 42,
+            "to": "introcss"
+          }
+        ],
+        "survives": true
+      }
+    },
+    "success": {
+      "ibm-cybersecurity": {
+        "courses": [
+          "introduction-cybersecurity-cyber-attacks",
+          "cybersecurity-roles-processes-operating-system-security",
+          "cybersecurity-compliance-framework-system-administration"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9369,
+            "from": "introduction-cybersecurity-cyber-attacks",
+            "kept": true,
+            "reverse": 7,
+            "support": 104,
+            "to": "cybersecurity-roles-processes-operating-system-security"
+          },
+          {
+            "confidence": 0.9362,
+            "from": "cybersecurity-roles-processes-operating-system-security",
+            "kept": true,
+            "reverse": 3,
+            "support": 44,
+            "to": "cybersecurity-compliance-framework-system-administration"
+          }
+        ],
+        "survives": true
+      },
+      "ml-to-tensorflow": {
+        "courses": [
+          "machine-learning",
+          "convolutional-neural-networks-tensorflow",
+          "tensorflow-sequences-time-series-and-prediction"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9104,
+            "from": "machine-learning",
+            "kept": true,
+            "reverse": 6,
+            "support": 61,
+            "to": "convolutional-neural-networks-tensorflow"
+          },
+          {
+            "confidence": 0.9352,
+            "from": "convolutional-neural-networks-tensorflow",
+            "kept": true,
+            "reverse": 7,
+            "support": 101,
+            "to": "tensorflow-sequences-time-series-and-prediction"
+          }
+        ],
+        "survives": true
+      },
+      "python-for-everybody": {
+        "courses": [
+          "python",
+          "python-data",
+          "python-network-data",
+          "python-data-visualization"
+        ],
+        "steps": [
+          {
+            "confidence": 0.8882,
+            "from": "python",
+            "kept": true,
+            "reverse": 235,
+            "support": 1867,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.9149,
+            "from": "python-data",
+            "kept": true,
+            "reverse": 148,
+            "support": 1592,
+            "to": "python-network-data"
+          },
+          {
+            "confidence": 0.9463,
+            "from": "python-network-data",
+            "kept": true,
+            "reverse": 22,
+            "support": 388,
+            "to": "python-data-visualization"
+          }
+        ],
+        "survives": true
+      },
+      "uci-project-management": {
+        "courses": [
+          "project-planning",
+          "schedule-projects",
+          "project-risk-management"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9317,
+            "from": "project-planning",
+            "kept": true,
+            "reverse": 19,
+            "support": 259,
+            "to": "schedule-projects"
+          },
+          {
+            "confidence": 0.8981,
+            "from": "schedule-projects",
+            "kept": true,
+            "reverse": 16,
+            "support": 141,
+            "to": "project-risk-management"
+          }
+        ],
+        "survives": true
+      }
+    },
+    "successOnBaselineRows": {
+      "ibm-cybersecurity": {
+        "courses": [
+          "introduction-cybersecurity-cyber-attacks",
+          "cybersecurity-roles-processes-operating-system-security",
+          "cybersecurity-compliance-framework-system-administration"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9412,
+            "from": "introduction-cybersecurity-cyber-attacks",
+            "kept": true,
+            "reverse": 5,
+            "support": 80,
+            "to": "cybersecurity-roles-processes-operating-system-security"
+          },
+          {
+            "confidence": 0.9474,
+            "from": "cybersecurity-roles-processes-operating-system-security",
+            "kept": true,
+            "reverse": 2,
+            "support": 36,
+            "to": "cybersecurity-compliance-framework-system-administration"
+          }
+        ],
+        "survives": true
+      },
+      "ml-to-tensorflow": {
+        "courses": [
+          "machine-learning",
+          "convolutional-neural-networks-tensorflow",
+          "tensorflow-sequences-time-series-and-prediction"
+        ],
+        "steps": [
+          {
+            "confidence": 1.0,
+            "from": "machine-learning",
+            "kept": true,
+            "reverse": 0,
+            "support": 25,
+            "to": "convolutional-neural-networks-tensorflow"
+          },
+          {
+            "confidence": 0.9474,
+            "from": "convolutional-neural-networks-tensorflow",
+            "kept": true,
+            "reverse": 3,
+            "support": 54,
+            "to": "tensorflow-sequences-time-series-and-prediction"
+          }
+        ],
+        "survives": true
+      },
+      "python-for-everybody": {
+        "courses": [
+          "python",
+          "python-data",
+          "python-network-data",
+          "python-data-visualization"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9359,
+            "from": "python",
+            "kept": true,
+            "reverse": 105,
+            "support": 1534,
+            "to": "python-data"
+          },
+          {
+            "confidence": 0.9518,
+            "from": "python-data",
+            "kept": true,
+            "reverse": 65,
+            "support": 1283,
+            "to": "python-network-data"
+          },
+          {
+            "confidence": 0.9565,
+            "from": "python-network-data",
+            "kept": true,
+            "reverse": 12,
+            "support": 264,
+            "to": "python-data-visualization"
+          }
+        ],
+        "survives": true
+      },
+      "uci-project-management": {
+        "courses": [
+          "project-planning",
+          "schedule-projects",
+          "project-risk-management"
+        ],
+        "steps": [
+          {
+            "confidence": 0.9574,
+            "from": "project-planning",
+            "kept": true,
+            "reverse": 12,
+            "support": 270,
+            "to": "schedule-projects"
+          },
+          {
+            "confidence": 0.9286,
+            "from": "schedule-projects",
+            "kept": true,
+            "reverse": 13,
+            "support": 169,
+            "to": "project-risk-management"
+          }
+        ],
+        "survives": true
+      }
+    }
+  },
+  "courses": {
+    "accounting-analytics": {
+      "institution": "University of Pennsylvania",
+      "name": "Accounting Analytics",
+      "url": "https://www.coursera.org/learn/accounting-analytics"
+    },
+    "addiction-and-the-brain": {
+      "institution": "Emory University",
+      "name": "The Addicted Brain",
+      "url": "https://www.coursera.org/learn/addiction-and-the-brain"
+    },
+    "ai-for-everyone": {
+      "institution": "DeepLearning.AI",
+      "name": "AI For Everyone",
+      "url": "https://www.coursera.org/learn/ai-for-everyone"
+    },
+    "ai-for-medical-diagnosis": {
+      "institution": "DeepLearning.AI",
+      "name": "AI for Medical Diagnosis",
+      "url": "https://www.coursera.org/learn/ai-for-medical-diagnosis"
+    },
+    "ai-for-medical-prognosis": {
+      "institution": "DeepLearning.AI",
+      "name": "AI for Medical Prognosis",
+      "url": "https://www.coursera.org/learn/ai-for-medical-prognosis"
+    },
+    "applied-data-science-capstone": {
+      "institution": "IBM",
+      "name": "Applied Data Science Capstone",
+      "url": "https://www.coursera.org/learn/applied-data-science-capstone"
+    },
+    "aws-fundamentals-addressing-security-risk": {
+      "institution": "Amazon Web Services",
+      "name": "AWS Fundamentals: Addressing Security Risk",
+      "url": "https://www.coursera.org/learn/aws-fundamentals-addressing-security-risk"
+    },
+    "aws-fundamentals-going-cloud-native": {
+      "institution": "Amazon Web Services",
+      "name": "AWS Fundamentals: Going Cloud-Native",
+      "url": "https://www.coursera.org/learn/aws-fundamentals-going-cloud-native"
+    },
+    "batch-data-pipelines-gcp": {
+      "institution": "Google Cloud",
+      "name": "Building Batch Data Pipelines on GCP",
+      "url": "https://www.coursera.org/learn/batch-data-pipelines-gcp"
+    },
+    "bayesian-statistics": {
+      "institution": "University of California, Santa Cruz",
+      "name": "Bayesian Statistics: From Concept to Data Analysis",
+      "url": "https://www.coursera.org/learn/bayesian-statistics"
+    },
+    "big-data-introduction": {
+      "institution": "University of California San Diego",
+      "name": "Introduction to Big Data",
+      "url": "https://www.coursera.org/learn/big-data-introduction"
+    },
+    "bootstrap-4": {
+      "institution": "The Hong Kong University of Science and Technology",
+      "name": "Front-End Web UI Frameworks and Tools: Bootstrap 4",
+      "url": "https://www.coursera.org/learn/bootstrap-4"
+    },
+    "build-a-computer": {
+      "institution": "Hebrew University of Jerusalem",
+      "name": "Build a Modern Computer from First Principles: From Nand to Tetris (Project-Centered Course)",
+      "url": "https://www.coursera.org/learn/build-a-computer"
+    },
+    "business": {
+      "institution": "University of Pennsylvania",
+      "name": "English for Business and Entrepreneurship",
+      "url": "https://www.coursera.org/learn/business"
+    },
+    "childnutrition": {
+      "institution": "Stanford University",
+      "name": "Child Nutrition and Cooking",
+      "url": "https://www.coursera.org/learn/childnutrition"
+    },
+    "classification-vector-spaces-in-nlp": {
+      "institution": "DeepLearning.AI",
+      "name": "Natural Language Processing with Classification and Vector Spaces",
+      "url": "https://www.coursera.org/learn/classification-vector-spaces-in-nlp"
+    },
+    "cloud-infrastructure-design-process": {
+      "institution": "Google Cloud",
+      "name": "Reliable Google Cloud Infrastructure: Design and Process",
+      "url": "https://www.coursera.org/learn/cloud-infrastructure-design-process"
+    },
+    "competencias-digitales-ofimatica": {
+      "institution": "Universitat Autònoma de Barcelona",
+      "name": "Competencias digitales. Herramientas de ofimática (Microsoft Word, Excel, Power Point)",
+      "url": "https://www.coursera.org/learn/competencias-digitales-ofimatica"
+    },
+    "computer-networking": {
+      "institution": "Google",
+      "name": "The Bits and Bytes of Computer Networking",
+      "url": "https://www.coursera.org/learn/computer-networking"
+    },
+    "convolutional-neural-networks": {
+      "institution": "DeepLearning.AI",
+      "name": "Convolutional Neural Networks",
+      "url": "https://www.coursera.org/learn/convolutional-neural-networks"
+    },
+    "convolutional-neural-networks-tensorflow": {
+      "institution": "DeepLearning.AI",
+      "name": "Convolutional Neural Networks in TensorFlow",
+      "url": "https://www.coursera.org/learn/convolutional-neural-networks-tensorflow"
+    },
+    "cs-fundamentals-1": {
+      "institution": "University of Illinois at Urbana-Champaign",
+      "name": "Object-Oriented Data Structures in C++",
+      "url": "https://www.coursera.org/learn/cs-fundamentals-1"
+    },
+    "cs-fundamentals-2": {
+      "institution": "University of Illinois at Urbana-Champaign",
+      "name": "Ordered Data Structures",
+      "url": "https://www.coursera.org/learn/cs-fundamentals-2"
+    },
+    "cybersecurity-compliance-framework-system-administration": {
+      "institution": "IBM",
+      "name": "Cybersecurity Compliance Framework & System Administration",
+      "url": "https://www.coursera.org/learn/cybersecurity-compliance-framework-system-administration"
+    },
+    "cybersecurity-roles-processes-operating-system-security": {
+      "institution": "IBM",
+      "name": "Cybersecurity Roles, Processes & Operating System Security",
+      "url": "https://www.coursera.org/learn/cybersecurity-roles-processes-operating-system-security"
+    },
+    "data-analysis-with-python": {
+      "institution": "IBM",
+      "name": "Data Analysis with Python",
+      "url": "https://www.coursera.org/learn/data-analysis-with-python"
+    },
+    "data-lakes-data-warehouses-gcp": {
+      "institution": "Google Cloud",
+      "name": "Modernizing Data Lakes and Data Warehouses with GCP",
+      "url": "https://www.coursera.org/learn/data-lakes-data-warehouses-gcp"
+    },
+    "data-science-methodology": {
+      "institution": "IBM",
+      "name": "Data Science Methodology",
+      "url": "https://www.coursera.org/learn/data-science-methodology"
+    },
+    "data-scientists-tools": {
+      "institution": "Johns Hopkins University",
+      "name": "The Data Scientist’s Toolbox",
+      "url": "https://www.coursera.org/learn/data-scientists-tools"
+    },
+    "data-visualization-tableau": {
+      "institution": "University of California, Davis",
+      "name": "Fundamentals of Visualization with Tableau",
+      "url": "https://www.coursera.org/learn/data-visualization-tableau"
+    },
+    "decision-making": {
+      "institution": "PwC",
+      "name": "Data-driven Decision Making",
+      "url": "https://www.coursera.org/learn/decision-making"
+    },
+    "deep-neural-network": {
+      "institution": "DeepLearning.AI",
+      "name": "Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization",
+      "url": "https://www.coursera.org/learn/deep-neural-network"
+    },
+    "drug-commercialization": {
+      "institution": "University of California San Diego",
+      "name": "Drug Commercialization",
+      "url": "https://www.coursera.org/learn/drug-commercialization"
+    },
+    "drug-development": {
+      "institution": "University of California San Diego",
+      "name": "Drug Development",
+      "url": "https://www.coursera.org/learn/drug-development"
+    },
+    "drug-discovery": {
+      "institution": "University of California San Diego",
+      "name": "Drug Discovery",
+      "url": "https://www.coursera.org/learn/drug-discovery"
+    },
+    "duke-programming-web": {
+      "institution": "Duke University",
+      "name": "Programming Foundations with JavaScript, HTML and CSS",
+      "url": "https://www.coursera.org/learn/duke-programming-web"
+    },
+    "english-principles": {
+      "institution": "Arizona State University",
+      "name": "Teach English Now! Foundational Principles",
+      "url": "https://www.coursera.org/learn/english-principles"
+    },
+    "etudier-en-france": {
+      "institution": "École Polytechnique",
+      "name": "Étudier en France: French Intermediate course B1-B2",
+      "url": "https://www.coursera.org/learn/etudier-en-france"
+    },
+    "everyday-excel-part-1": {
+      "institution": "University of Colorado Boulder",
+      "name": "Everyday Excel, Part 1",
+      "url": "https://www.coursera.org/learn/everyday-excel-part-1"
+    },
+    "excel-advanced": {
+      "institution": "Macquarie University",
+      "name": "Excel Skills for Business: Advanced",
+      "url": "https://www.coursera.org/learn/excel-advanced"
+    },
+    "excel-essentials": {
+      "institution": "Macquarie University",
+      "name": "Excel Skills for Business: Essentials",
+      "url": "https://www.coursera.org/learn/excel-essentials"
+    },
+    "excel-intermediate-1": {
+      "institution": "Macquarie University",
+      "name": "Excel Skills for Business: Intermediate I",
+      "url": "https://www.coursera.org/learn/excel-intermediate-1"
+    },
+    "excel-intermediate-2": {
+      "institution": "Macquarie University",
+      "name": "Excel Skills for Business: Intermediate II",
+      "url": "https://www.coursera.org/learn/excel-intermediate-2"
+    },
+    "financial-markets-global": {
+      "institution": "Yale University",
+      "name": "Financial Markets",
+      "url": "https://www.coursera.org/learn/financial-markets-global"
+    },
+    "finanzas-personales": {
+      "institution": "Universidad Nacional Autónoma de México",
+      "name": "Finanzas personales",
+      "url": "https://www.coursera.org/learn/finanzas-personales"
+    },
+    "food-and-health": {
+      "institution": "Stanford University",
+      "name": "Stanford Introduction to Food and Health",
+      "url": "https://www.coursera.org/learn/food-and-health"
+    },
+    "front-end-react": {
+      "institution": "The Hong Kong University of Science and Technology",
+      "name": "Front-End Web Development with React",
+      "url": "https://www.coursera.org/learn/front-end-react"
+    },
+    "fundamentals-of-graphic-design": {
+      "institution": "California Institute of the Arts",
+      "name": "Fundamentals of Graphic Design",
+      "url": "https://www.coursera.org/learn/fundamentals-of-graphic-design"
+    },
+    "fundamentals-of-reinforcement-learning": {
+      "institution": "Alberta Machine Intelligence Institute",
+      "name": "Fundamentals of Reinforcement Learning",
+      "url": "https://www.coursera.org/learn/fundamentals-of-reinforcement-learning"
+    },
+    "game-development": {
+      "institution": "Michigan State University",
+      "name": "Introduction to Game Development",
+      "url": "https://www.coursera.org/learn/game-development"
+    },
+    "gcp-big-data-ml-fundamentals": {
+      "institution": "Google Cloud",
+      "name": "Google Cloud Platform Big Data and Machine Learning Fundamentals",
+      "url": "https://www.coursera.org/learn/gcp-big-data-ml-fundamentals"
+    },
+    "gcp-fundamentals": {
+      "institution": "Google Cloud",
+      "name": "Google Cloud Platform Fundamentals: Core Infrastructure",
+      "url": "https://www.coursera.org/learn/gcp-fundamentals"
+    },
+    "gcp-infrastructure-core-services": {
+      "institution": "Google Cloud",
+      "name": "Essential Google Cloud Infrastructure: Core Services",
+      "url": "https://www.coursera.org/learn/gcp-infrastructure-core-services"
+    },
+    "gcp-infrastructure-foundation": {
+      "institution": "Google Cloud",
+      "name": "Essential Google Cloud Infrastructure: Foundation",
+      "url": "https://www.coursera.org/learn/gcp-infrastructure-foundation"
+    },
+    "gcp-infrastructure-scaling-automation": {
+      "institution": "Google Cloud",
+      "name": "Elastic Google Cloud Infrastructure: Scaling and Automation",
+      "url": "https://www.coursera.org/learn/gcp-infrastructure-scaling-automation"
+    },
+    "getting-started-with-essay-writing": {
+      "institution": "University of California, Irvine",
+      "name": "Getting Started with Essay Writing",
+      "url": "https://www.coursera.org/learn/getting-started-with-essay-writing"
+    },
+    "grammar-punctuation": {
+      "institution": "University of California, Irvine",
+      "name": "Grammar and Punctuation",
+      "url": "https://www.coursera.org/learn/grammar-punctuation"
+    },
+    "html": {
+      "institution": "University of Michigan",
+      "name": "Introduction to HTML5",
+      "url": "https://www.coursera.org/learn/html"
+    },
+    "html-css-javascript-for-web-developers": {
+      "institution": "Johns Hopkins University",
+      "name": "HTML, CSS, and Javascript for Web Developers",
+      "url": "https://www.coursera.org/learn/html-css-javascript-for-web-developers"
+    },
+    "iiot-google-cloud-platform": {
+      "institution": "Google Cloud",
+      "name": "Industrial IoT on Google Cloud Platform",
+      "url": "https://www.coursera.org/learn/iiot-google-cloud-platform"
+    },
+    "indigenous-canada": {
+      "institution": "University of Alberta",
+      "name": "Indigenous Canada",
+      "url": "https://www.coursera.org/learn/indigenous-canada"
+    },
+    "intro-data-science-programacion-estadistica-r": {
+      "institution": "Universidad Nacional Autónoma de México",
+      "name": "Introducción a Data Science: Programación Estadística con R",
+      "url": "https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r"
+    },
+    "intro-self-driving-cars": {
+      "institution": "University of Toronto",
+      "name": "Introduction to Self-Driving Cars",
+      "url": "https://www.coursera.org/learn/intro-self-driving-cars"
+    },
+    "introcss": {
+      "institution": "University of Michigan",
+      "name": "Introduction to CSS3",
+      "url": "https://www.coursera.org/learn/introcss"
+    },
+    "introduction-cybersecurity-cyber-attacks": {
+      "institution": "IBM",
+      "name": "Introduction to Cybersecurity Tools & Cyber Attacks",
+      "url": "https://www.coursera.org/learn/introduction-cybersecurity-cyber-attacks"
+    },
+    "introduction-git-github": {
+      "institution": "Google",
+      "name": "Introduction to Git and GitHub",
+      "url": "https://www.coursera.org/learn/introduction-git-github"
+    },
+    "introduction-psychology": {
+      "institution": "Yale University",
+      "name": "Introduction to Psychology",
+      "url": "https://www.coursera.org/learn/introduction-psychology"
+    },
+    "introduction-tensorflow": {
+      "institution": "DeepLearning.AI",
+      "name": "Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning",
+      "url": "https://www.coursera.org/learn/introduction-tensorflow"
+    },
+    "introduction-to-ai": {
+      "institution": "IBM",
+      "name": "Introduction to Artificial Intelligence (AI)",
+      "url": "https://www.coursera.org/learn/introduction-to-ai"
+    },
+    "introduction-to-calculus": {
+      "institution": "The University of Sydney",
+      "name": "Introduction to Calculus",
+      "url": "https://www.coursera.org/learn/introduction-to-calculus"
+    },
+    "introduction-to-software-product-management": {
+      "institution": "University of Alberta",
+      "name": "Introduction to Software Product Management",
+      "url": "https://www.coursera.org/learn/introduction-to-software-product-management"
+    },
+    "it-security": {
+      "institution": "Google",
+      "name": "IT Security: Defense against the digital dark arts",
+      "url": "https://www.coursera.org/learn/it-security"
+    },
+    "java-programming": {
+      "institution": "Duke University",
+      "name": "Java Programming: Solving Problems with Software",
+      "url": "https://www.coursera.org/learn/java-programming"
+    },
+    "kotlin-for-java-developers": {
+      "institution": "JetBrains",
+      "name": "Kotlin for Java Developers",
+      "url": "https://www.coursera.org/learn/kotlin-for-java-developers"
+    },
+    "learn-speak-korean1": {
+      "institution": "Yonsei University",
+      "name": "Learn to Speak Korean 1",
+      "url": "https://www.coursera.org/learn/learn-speak-korean1"
+    },
+    "learn-to-program": {
+      "institution": "University of Toronto",
+      "name": "Learn to Program: The Fundamentals",
+      "url": "https://www.coursera.org/learn/learn-to-program"
+    },
+    "learning-how-to-learn": {
+      "institution": "University of California San Diego",
+      "name": "Learning How to Learn: Powerful mental tools to help you master tough subjects",
+      "url": "https://www.coursera.org/learn/learning-how-to-learn"
+    },
+    "linear-algebra-machine-learning": {
+      "institution": "Imperial College London",
+      "name": "Mathematics for Machine Learning: Linear Algebra",
+      "url": "https://www.coursera.org/learn/linear-algebra-machine-learning"
+    },
+    "machine-learning": {
+      "institution": "Stanford University",
+      "name": "Machine Learning",
+      "url": "https://www.coursera.org/learn/machine-learning"
+    },
+    "machine-learning-business-professionals": {
+      "institution": "Google Cloud",
+      "name": "Machine Learning for Business Professionals",
+      "url": "https://www.coursera.org/learn/machine-learning-business-professionals"
+    },
+    "machine-learning-projects": {
+      "institution": "DeepLearning.AI",
+      "name": "Structuring Machine Learning Projects",
+      "url": "https://www.coursera.org/learn/machine-learning-projects"
+    },
+    "machine-learning-with-python": {
+      "institution": "IBM",
+      "name": "Machine Learning with Python",
+      "url": "https://www.coursera.org/learn/machine-learning-with-python"
+    },
+    "manage-health-covid-19": {
+      "institution": "University of Toronto",
+      "name": "Mind Control: Managing Your Mental Health During COVID-19",
+      "url": "https://www.coursera.org/learn/manage-health-covid-19"
+    },
+    "managing-human-resources": {
+      "institution": "University of Minnesota",
+      "name": "Preparing to Manage Human Resources",
+      "url": "https://www.coursera.org/learn/managing-human-resources"
+    },
+    "mcmc-bayesian-statistics": {
+      "institution": "University of California, Santa Cruz",
+      "name": "Bayesian Statistics: Techniques and Models",
+      "url": "https://www.coursera.org/learn/mcmc-bayesian-statistics"
+    },
+    "mindshift": {
+      "institution": "McMaster University",
+      "name": "Mindshift: Break Through Obstacles to Learning and Discover Your Hidden Potential",
+      "url": "https://www.coursera.org/learn/mindshift"
+    },
+    "ml-foundations": {
+      "institution": "University of Washington",
+      "name": "Machine Learning Foundations: A Case Study Approach",
+      "url": "https://www.coursera.org/learn/ml-foundations"
+    },
+    "modern-world": {
+      "institution": "University of Virginia",
+      "name": "The Modern World, Part One: Global History from 1760 to 1910",
+      "url": "https://www.coursera.org/learn/modern-world"
+    },
+    "modern-world-2": {
+      "institution": "University of Virginia",
+      "name": "The Modern World, Part Two: Global History since 1910",
+      "url": "https://www.coursera.org/learn/modern-world-2"
+    },
+    "motivate-people-teams": {
+      "institution": "University of Michigan",
+      "name": "Inspiring and Motivating Individuals",
+      "url": "https://www.coursera.org/learn/motivate-people-teams"
+    },
+    "multivariate-calculus-machine-learning": {
+      "institution": "Imperial College London",
+      "name": "Mathematics for Machine Learning: Multivariate Calculus",
+      "url": "https://www.coursera.org/learn/multivariate-calculus-machine-learning"
+    },
+    "nand2tetris2": {
+      "institution": "Hebrew University of Jerusalem",
+      "name": "Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)",
+      "url": "https://www.coursera.org/learn/nand2tetris2"
+    },
+    "natural-language-processing-tensorflow": {
+      "institution": "DeepLearning.AI",
+      "name": "Natural Language Processing in TensorFlow",
+      "url": "https://www.coursera.org/learn/natural-language-processing-tensorflow"
+    },
+    "neural-networks-deep-learning": {
+      "institution": "DeepLearning.AI",
+      "name": "Neural Networks and Deep Learning",
+      "url": "https://www.coursera.org/learn/neural-networks-deep-learning"
+    },
+    "nlp-sequence-models": {
+      "institution": "DeepLearning.AI",
+      "name": "Sequence Models",
+      "url": "https://www.coursera.org/learn/nlp-sequence-models"
+    },
+    "nutricion-obesidad-sobrepeso": {
+      "institution": "Universidad Nacional Autónoma de México",
+      "name": "Nutrición y obesidad: control de sobrepeso",
+      "url": "https://www.coursera.org/learn/nutricion-obesidad-sobrepeso"
+    },
+    "open-source-tools-for-data-science": {
+      "institution": "IBM",
+      "name": "Tools for Data Science",
+      "url": "https://www.coursera.org/learn/open-source-tools-for-data-science"
+    },
+    "os-power-user": {
+      "institution": "Google",
+      "name": "Operating Systems and You: Becoming a Power User",
+      "url": "https://www.coursera.org/learn/os-power-user"
+    },
+    "pca-machine-learning": {
+      "institution": "Imperial College London",
+      "name": "Mathematics for Machine Learning: PCA",
+      "url": "https://www.coursera.org/learn/pca-machine-learning"
+    },
+    "people-management": {
+      "institution": "Birkbeck, University of London",
+      "name": "The Manager's Toolkit: A Practical Guide to Managing People at Work",
+      "url": "https://www.coursera.org/learn/people-management"
+    },
+    "positive-psychology-applications": {
+      "institution": "University of Pennsylvania",
+      "name": "Positive Psychology: Applications and Interventions",
+      "url": "https://www.coursera.org/learn/positive-psychology-applications"
+    },
+    "positive-psychology-resilience": {
+      "institution": "University of Pennsylvania",
+      "name": "Positive Psychology: Resilience Skills",
+      "url": "https://www.coursera.org/learn/positive-psychology-resilience"
+    },
+    "positive-psychology-visionary-science": {
+      "institution": "University of Pennsylvania",
+      "name": "Positive Psychology: Martin E. P. Seligman’s Visionary Science",
+      "url": "https://www.coursera.org/learn/positive-psychology-visionary-science"
+    },
+    "powerpoint-presentations": {
+      "institution": "PwC",
+      "name": "Effective Business Presentations with Powerpoint",
+      "url": "https://www.coursera.org/learn/powerpoint-presentations"
+    },
+    "preparing-cloud-associate-cloud-engineer-exam": {
+      "institution": "Google Cloud",
+      "name": "Preparing for the Google Cloud Associate Cloud Engineer Exam",
+      "url": "https://www.coursera.org/learn/preparing-cloud-associate-cloud-engineer-exam"
+    },
+    "preparing-cloud-professional-cloud-architect-exam": {
+      "institution": "Google Cloud",
+      "name": "Preparing for the Google Cloud Professional Cloud Architect Exam",
+      "url": "https://www.coursera.org/learn/preparing-cloud-professional-cloud-architect-exam"
+    },
+    "private-equity": {
+      "institution": "Università Bocconi",
+      "name": "Private Equity and Venture Capital",
+      "url": "https://www.coursera.org/learn/private-equity"
+    },
+    "probabilistic-models-in-nlp": {
+      "institution": "DeepLearning.AI",
+      "name": "Natural Language Processing with Probabilistic Models",
+      "url": "https://www.coursera.org/learn/probabilistic-models-in-nlp"
+    },
+    "probability-intro": {
+      "institution": "Duke University",
+      "name": "Introduction to Probability and Data with R",
+      "url": "https://www.coursera.org/learn/probability-intro"
+    },
+    "producing-music": {
+      "institution": "Berklee College of Music",
+      "name": "The Art of Music Production",
+      "url": "https://www.coursera.org/learn/producing-music"
+    },
+    "progfun1": {
+      "institution": "École Polytechnique Fédérale de Lausanne",
+      "name": "Functional Programming Principles in Scala",
+      "url": "https://www.coursera.org/learn/progfun1"
+    },
+    "project-planning": {
+      "institution": "University of California, Irvine",
+      "name": "Initiating and Planning Projects",
+      "url": "https://www.coursera.org/learn/project-planning"
+    },
+    "project-risk-management": {
+      "institution": "University of California, Irvine",
+      "name": "Managing Project Risks and Changes",
+      "url": "https://www.coursera.org/learn/project-risk-management"
+    },
+    "python": {
+      "institution": "University of Michigan",
+      "name": "Programming for Everybody (Getting Started with Python)",
+      "url": "https://www.coursera.org/learn/python"
+    },
+    "python-basics": {
+      "institution": "University of Michigan",
+      "name": "Python Basics",
+      "url": "https://www.coursera.org/learn/python-basics"
+    },
+    "python-crash-course": {
+      "institution": "Google",
+      "name": "Crash Course on Python",
+      "url": "https://www.coursera.org/learn/python-crash-course"
+    },
+    "python-data": {
+      "institution": "University of Michigan",
+      "name": "Python Data Structures",
+      "url": "https://www.coursera.org/learn/python-data"
+    },
+    "python-data-analysis": {
+      "institution": "University of Michigan",
+      "name": "Introduction to Data Science in Python",
+      "url": "https://www.coursera.org/learn/python-data-analysis"
+    },
+    "python-data-visualization": {
+      "institution": "University of Michigan",
+      "name": "Capstone: Retrieving, Processing, and Visualizing Data with Python",
+      "url": "https://www.coursera.org/learn/python-data-visualization"
+    },
+    "python-databases": {
+      "institution": "University of Michigan",
+      "name": "Using Databases with Python",
+      "url": "https://www.coursera.org/learn/python-databases"
+    },
+    "python-for-applied-data-science-ai": {
+      "institution": "IBM",
+      "name": "Python for Data Science and AI",
+      "url": "https://www.coursera.org/learn/python-for-applied-data-science-ai"
+    },
+    "python-for-data-visualization": {
+      "institution": "IBM",
+      "name": "Data Visualization with Python",
+      "url": "https://www.coursera.org/learn/python-for-data-visualization"
+    },
+    "python-functions-files-dictionaries": {
+      "institution": "University of Michigan",
+      "name": "Python Functions, Files, and Dictionaries",
+      "url": "https://www.coursera.org/learn/python-functions-files-dictionaries"
+    },
+    "python-machine-learning": {
+      "institution": "University of Michigan",
+      "name": "Applied Machine Learning in Python",
+      "url": "https://www.coursera.org/learn/python-machine-learning"
+    },
+    "python-network-data": {
+      "institution": "University of Michigan",
+      "name": "Using Python to Access Web Data",
+      "url": "https://www.coursera.org/learn/python-network-data"
+    },
+    "python-operating-system": {
+      "institution": "Google",
+      "name": "Using Python to Interact with the Operating System",
+      "url": "https://www.coursera.org/learn/python-operating-system"
+    },
+    "python-plotting": {
+      "institution": "University of Michigan",
+      "name": "Applied Plotting, Charting & Data Representation in Python",
+      "url": "https://www.coursera.org/learn/python-plotting"
+    },
+    "python-programming-introduction": {
+      "institution": "Wesleyan University",
+      "name": "Python Programming: A Concise Introduction",
+      "url": "https://www.coursera.org/learn/python-programming-introduction"
+    },
+    "python-statistics-financial-analysis": {
+      "institution": "The Hong Kong University of Science and Technology",
+      "name": "Python and Statistics for Financial Analysis",
+      "url": "https://www.coursera.org/learn/python-statistics-financial-analysis"
+    },
+    "r-programming": {
+      "institution": "Johns Hopkins University",
+      "name": "R Programming",
+      "url": "https://www.coursera.org/learn/r-programming"
+    },
+    "recruiting-hiring-onboarding-employees": {
+      "institution": "University of Minnesota",
+      "name": "Recruiting, Hiring, and Onboarding Employees",
+      "url": "https://www.coursera.org/learn/recruiting-hiring-onboarding-employees"
+    },
+    "sample-based-learning-methods": {
+      "institution": "Alberta Machine Intelligence Institute",
+      "name": "Sample-based Learning Methods",
+      "url": "https://www.coursera.org/learn/sample-based-learning-methods"
+    },
+    "schedule-projects": {
+      "institution": "University of California, Irvine",
+      "name": "Budgeting and Scheduling Projects",
+      "url": "https://www.coursera.org/learn/schedule-projects"
+    },
+    "search-engine-optimization": {
+      "institution": "University of California, Davis",
+      "name": "Introduction to Search Engine Optimization",
+      "url": "https://www.coursera.org/learn/search-engine-optimization"
+    },
+    "seo-fundamentals": {
+      "institution": "University of California, Davis",
+      "name": "Search Engine Optimization Fundamentals",
+      "url": "https://www.coursera.org/learn/seo-fundamentals"
+    },
+    "six-sigma-organization-advanced": {
+      "institution": "University System of Georgia",
+      "name": "Six Sigma and the Organization (Advanced)",
+      "url": "https://www.coursera.org/learn/six-sigma-organization-advanced"
+    },
+    "six-sigma-principles": {
+      "institution": "University System of Georgia",
+      "name": "Six Sigma Principles",
+      "url": "https://www.coursera.org/learn/six-sigma-principles"
+    },
+    "social-psychology": {
+      "institution": "Wesleyan University",
+      "name": "Social Psychology",
+      "url": "https://www.coursera.org/learn/social-psychology"
+    },
+    "software-processes-and-agile-practices": {
+      "institution": "University of Alberta",
+      "name": "Software Processes and Agile Practices",
+      "url": "https://www.coursera.org/learn/software-processes-and-agile-practices"
+    },
+    "sql-data-science": {
+      "institution": "IBM",
+      "name": "Databases and SQL for Data Science",
+      "url": "https://www.coursera.org/learn/sql-data-science"
+    },
+    "sql-for-data-science": {
+      "institution": "University of California, Davis",
+      "name": "SQL for Data Science",
+      "url": "https://www.coursera.org/learn/sql-for-data-science"
+    },
+    "system-administration-it-infrastructure-services": {
+      "institution": "Google",
+      "name": "System Administration and IT Infrastructure Services",
+      "url": "https://www.coursera.org/learn/system-administration-it-infrastructure-services"
+    },
+    "teamwork-skills-effective-communication": {
+      "institution": "University of Colorado Boulder",
+      "name": "Teamwork Skills: Communicating Effectively in Groups",
+      "url": "https://www.coursera.org/learn/teamwork-skills-effective-communication"
+    },
+    "technical-support-fundamentals": {
+      "institution": "Google",
+      "name": "Technical Support Fundamentals",
+      "url": "https://www.coursera.org/learn/technical-support-fundamentals"
+    },
+    "technology-of-music-production": {
+      "institution": "Berklee College of Music",
+      "name": "The Technology of Music Production",
+      "url": "https://www.coursera.org/learn/technology-of-music-production"
+    },
+    "tensorflow-sequences-time-series-and-prediction": {
+      "institution": "DeepLearning.AI",
+      "name": "Sequences, Time Series and Prediction",
+      "url": "https://www.coursera.org/learn/tensorflow-sequences-time-series-and-prediction"
+    },
+    "the-science-of-well-being": {
+      "institution": "Yale University",
+      "name": "The Science of Well-Being",
+      "url": "https://www.coursera.org/learn/the-science-of-well-being"
+    },
+    "troubleshooting-debugging-techniques": {
+      "institution": "Google",
+      "name": "Troubleshooting and Debugging Techniques",
+      "url": "https://www.coursera.org/learn/troubleshooting-debugging-techniques"
+    },
+    "typography": {
+      "institution": "California Institute of the Arts",
+      "name": "Introduction to Typography",
+      "url": "https://www.coursera.org/learn/typography"
+    },
+    "uva-darden-agile-team-management": {
+      "institution": "University of Virginia",
+      "name": "Managing an Agile Team",
+      "url": "https://www.coursera.org/learn/uva-darden-agile-team-management"
+    },
+    "uva-darden-agile-testing": {
+      "institution": "University of Virginia",
+      "name": "Hypothesis-Driven Development",
+      "url": "https://www.coursera.org/learn/uva-darden-agile-testing"
+    },
+    "uva-darden-digital-product-management": {
+      "institution": "University of Virginia",
+      "name": "Digital Product Management: Modern Fundamentals",
+      "url": "https://www.coursera.org/learn/uva-darden-digital-product-management"
+    },
+    "uva-darden-getting-started-agile": {
+      "institution": "University of Virginia",
+      "name": "Agile Meets Design Thinking",
+      "url": "https://www.coursera.org/learn/uva-darden-getting-started-agile"
+    },
+    "ux-design-fundamentals": {
+      "institution": "California Institute of the Arts",
+      "name": "UX Design Fundamentals",
+      "url": "https://www.coursera.org/learn/ux-design-fundamentals"
+    },
+    "visual-elements-user-interface-design": {
+      "institution": "California Institute of the Arts",
+      "name": "Visual Elements of User Interface Design",
+      "url": "https://www.coursera.org/learn/visual-elements-user-interface-design"
+    },
+    "wharton-accounting": {
+      "institution": "University of Pennsylvania",
+      "name": "Introduction to Financial Accounting",
+      "url": "https://www.coursera.org/learn/wharton-accounting"
+    },
+    "wharton-cryptocurrency-blockchain-introduction-digital-currency": {
+      "institution": "University of Pennsylvania",
+      "name": "Cryptocurrency and Blockchain: An Introduction to Digital Currencies",
+      "url": "https://www.coursera.org/learn/wharton-cryptocurrency-blockchain-introduction-digital-currency"
+    },
+    "wharton-customer-analytics": {
+      "institution": "University of Pennsylvania",
+      "name": "Customer Analytics",
+      "url": "https://www.coursera.org/learn/wharton-customer-analytics"
+    },
+    "wharton-entrepreneurship-opportunity": {
+      "institution": "University of Pennsylvania",
+      "name": "Entrepreneurship 1: Developing the Opportunity",
+      "url": "https://www.coursera.org/learn/wharton-entrepreneurship-opportunity"
+    },
+    "wharton-financial-accounting": {
+      "institution": "University of Pennsylvania",
+      "name": "More Introduction to Financial Accounting",
+      "url": "https://www.coursera.org/learn/wharton-financial-accounting"
+    },
+    "wharton-fintech-overview-payments-regulations": {
+      "institution": "University of Pennsylvania",
+      "name": "FinTech: Foundations, Payments, and Regulations",
+      "url": "https://www.coursera.org/learn/wharton-fintech-overview-payments-regulations"
+    },
+    "wharton-introduction-spreadsheets-models": {
+      "institution": "University of Pennsylvania",
+      "name": "Introduction to Spreadsheets and Models",
+      "url": "https://www.coursera.org/learn/wharton-introduction-spreadsheets-models"
+    },
+    "wharton-launching-startup": {
+      "institution": "University of Pennsylvania",
+      "name": "Entrepreneurship 2: Launching your Start-Up",
+      "url": "https://www.coursera.org/learn/wharton-launching-startup"
+    },
+    "wharton-marketing": {
+      "institution": "University of Pennsylvania",
+      "name": "Introduction to Marketing",
+      "url": "https://www.coursera.org/learn/wharton-marketing"
+    },
+    "wharton-operations": {
+      "institution": "University of Pennsylvania",
+      "name": "Introduction to Operations Management",
+      "url": "https://www.coursera.org/learn/wharton-operations"
+    },
+    "wharton-operations-analytics": {
+      "institution": "University of Pennsylvania",
+      "name": "Operations Analytics",
+      "url": "https://www.coursera.org/learn/wharton-operations-analytics"
+    },
+    "wharton-people-analytics": {
+      "institution": "University of Pennsylvania",
+      "name": "People Analytics",
+      "url": "https://www.coursera.org/learn/wharton-people-analytics"
+    },
+    "wharton-quantitative-modeling": {
+      "institution": "University of Pennsylvania",
+      "name": "Fundamentals of Quantitative Modeling",
+      "url": "https://www.coursera.org/learn/wharton-quantitative-modeling"
+    },
+    "what-is-datascience": {
+      "institution": "IBM",
+      "name": "What is Data Science?",
+      "url": "https://www.coursera.org/learn/what-is-datascience"
+    },
+    "what-is-social": {
+      "institution": "Northwestern University",
+      "name": "What is Social?",
+      "url": "https://www.coursera.org/learn/what-is-social"
+    }
+  },
+  "datasetUrl": "https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera",
+  "edgeFields": "fromCourseId, toCourseId, support (names reviewing from before to), reverse, n, confidence = support/n; course names/institutions/urls for every course in an edge are in courses",
+  "inputs": {
+    "Coursera_courses.csv": "23fc0417a6304bedc97f561e51527e9fe9036b474b5e17478264549b634bbab3",
+    "Coursera_reviews.csv": "a8db44269ab9b75af45ce55a2c40f14deed143f14792ca9d0c10274741d9eabb"
+  },
+  "licence": "Kaggle dataset 'Course Reviews on Coursera' (imuhammad), CC0: Public Domain; aggregate counts only, no review text leaves pipeline/build/",
+  "method": "literal duplicate rows dropped on (reviewer, course, date, rating, text); 'By Deleted A' dropped; names with 2-15 distinct reviews; per name the first review date of each distinct course; every ordered pair of distinct courses counted once per name; same-day pairs dropped; support >= 20; confidence = AB/(AB+BA) >= 0.85",
+  "params": {
+    "baselineConfidence": 0.7,
+    "dedupLiteralRows": true,
+    "maxReviews": 15,
+    "minConfidence": 0.85,
+    "minReviews": 2,
+    "minSupport": 20,
+    "sameDayTies": "dropped"
+  },
+  "source": "coursera",
+  "stats": {
+    "atBaselineConfidence": {
+      "confidenceFloor": 0.7,
+      "distinctCourses": 268,
+      "edgesKept": 967,
+      "orderedPairsSeen": 109413,
+      "pairsAtSupportFloor": 2939
+    },
+    "confidenceFloor": 0.85,
+    "coursesInCorpus": 623,
+    "distinctCourses": 170,
+    "edgesKept": 290,
+    "ifSameDayTiesKept": {
+      "confidenceFloor": 0.85,
+      "distinctCourses": 176,
+      "edgesKept": 290,
+      "orderedPairsSeen": 110126,
+      "pairsAtSupportFloor": 2986
+    },
+    "namesAboveBand": 2036,
+    "namesDistinct": 287807,
+    "namesInBand": 75593,
+    "namesOneReview": 210178,
+    "namesWithPairs": 72774,
+    "orderedPairsSeen": 109413,
+    "pairsAtSupportFloor": 2939,
+    "rowsDeletedName": 5412,
+    "rowsDistinct": 518017,
+    "rowsLiteralDuplicates": 931282,
+    "rowsTotal": 1454711,
+    "rowsUsed": 251711,
+    "sameDayPairsDropped": 12402
+  },
+  "top20EdgesBySupport": [
+    {
+      "confidence": 0.94371,
+      "fromCourseId": "neural-networks-deep-learning",
+      "n": 2043,
+      "reverse": 115,
+      "support": 1928,
+      "toCourseId": "deep-neural-network"
+    },
+    {
+      "confidence": 0.888202,
+      "fromCourseId": "python",
+      "n": 2102,
+      "reverse": 235,
+      "support": 1867,
+      "toCourseId": "python-data"
+    },
+    {
+      "confidence": 0.914943,
+      "fromCourseId": "python-data",
+      "n": 1740,
+      "reverse": 148,
+      "support": 1592,
+      "toCourseId": "python-network-data"
+    },
+    {
+      "confidence": 0.912292,
+      "fromCourseId": "deep-neural-network",
+      "n": 1619,
+      "reverse": 142,
+      "support": 1477,
+      "toCourseId": "machine-learning-projects"
+    },
+    {
+      "confidence": 0.918919,
+      "fromCourseId": "neural-networks-deep-learning",
+      "n": 1554,
+      "reverse": 126,
+      "support": 1428,
+      "toCourseId": "machine-learning-projects"
+    },
+    {
+      "confidence": 0.913699,
+      "fromCourseId": "technical-support-fundamentals",
+      "n": 1460,
+      "reverse": 126,
+      "support": 1334,
+      "toCourseId": "computer-networking"
+    },
+    {
+      "confidence": 0.858083,
+      "fromCourseId": "python",
+      "n": 1064,
+      "reverse": 151,
+      "support": 913,
+      "toCourseId": "python-network-data"
+    },
+    {
+      "confidence": 0.939825,
+      "fromCourseId": "what-is-datascience",
+      "n": 914,
+      "reverse": 55,
+      "support": 859,
+      "toCourseId": "open-source-tools-for-data-science"
+    },
+    {
+      "confidence": 0.934758,
+      "fromCourseId": "python-network-data",
+      "n": 889,
+      "reverse": 58,
+      "support": 831,
+      "toCourseId": "python-databases"
+    },
+    {
+      "confidence": 0.953737,
+      "fromCourseId": "deep-neural-network",
+      "n": 843,
+      "reverse": 39,
+      "support": 804,
+      "toCourseId": "nlp-sequence-models"
+    },
+    {
+      "confidence": 0.943038,
+      "fromCourseId": "neural-networks-deep-learning",
+      "n": 790,
+      "reverse": 45,
+      "support": 745,
+      "toCourseId": "nlp-sequence-models"
+    },
+    {
+      "confidence": 0.918367,
+      "fromCourseId": "python-data",
+      "n": 784,
+      "reverse": 64,
+      "support": 720,
+      "toCourseId": "python-databases"
+    },
+    {
+      "confidence": 0.953457,
+      "fromCourseId": "excel-essentials",
+      "n": 752,
+      "reverse": 35,
+      "support": 717,
+      "toCourseId": "excel-intermediate-1"
+    },
+    {
+      "confidence": 0.944223,
+      "fromCourseId": "machine-learning-projects",
+      "n": 753,
+      "reverse": 42,
+      "support": 711,
+      "toCourseId": "nlp-sequence-models"
+    },
+    {
+      "confidence": 0.917456,
+      "fromCourseId": "technical-support-fundamentals",
+      "n": 739,
+      "reverse": 61,
+      "support": 678,
+      "toCourseId": "os-power-user"
+    },
+    {
+      "confidence": 0.912732,
+      "fromCourseId": "computer-networking",
+      "n": 699,
+      "reverse": 61,
+      "support": 638,
+      "toCourseId": "os-power-user"
+    },
+    {
+      "confidence": 0.866667,
+      "fromCourseId": "data-scientists-tools",
+      "n": 735,
+      "reverse": 98,
+      "support": 637,
+      "toCourseId": "r-programming"
+    },
+    {
+      "confidence": 0.950963,
+      "fromCourseId": "what-is-datascience",
+      "n": 571,
+      "reverse": 28,
+      "support": 543,
+      "toCourseId": "data-science-methodology"
+    },
+    {
+      "confidence": 0.915371,
+      "fromCourseId": "technical-support-fundamentals",
+      "n": 579,
+      "reverse": 49,
+      "support": 530,
+      "toCourseId": "system-administration-it-infrastructure-services"
+    },
+    {
+      "confidence": 0.89071,
+      "fromCourseId": "what-is-datascience",
+      "n": 549,
+      "reverse": 60,
+      "support": 489,
+      "toCourseId": "python-for-applied-data-science-ai"
+    }
+  ],
+  "edges": [
+    {"confidence":0.851852,"fromCourseId":"addiction-and-the-brain","n":27,"reverse":4,"support":23,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.869565,"fromCourseId":"ai-for-everyone","n":23,"reverse":3,"support":20,"toCourseId":"introduction-git-github"},
+    {"confidence":0.970588,"fromCourseId":"ai-for-medical-diagnosis","n":34,"reverse":1,"support":33,"toCourseId":"ai-for-medical-prognosis"},
+    {"confidence":0.962264,"fromCourseId":"aws-fundamentals-going-cloud-native","n":53,"reverse":2,"support":51,"toCourseId":"aws-fundamentals-addressing-security-risk"},
+    {"confidence":0.952381,"fromCourseId":"bayesian-statistics","n":21,"reverse":1,"support":20,"toCourseId":"mcmc-bayesian-statistics"},
+    {"confidence":0.909091,"fromCourseId":"big-data-introduction","n":22,"reverse":2,"support":20,"toCourseId":"gcp-big-data-ml-fundamentals"},
+    {"confidence":0.869565,"fromCourseId":"big-data-introduction","n":23,"reverse":3,"support":20,"toCourseId":"sql-for-data-science"},
+    {"confidence":0.878788,"fromCourseId":"big-data-introduction","n":33,"reverse":4,"support":29,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.92623,"fromCourseId":"bootstrap-4","n":122,"reverse":9,"support":113,"toCourseId":"front-end-react"},
+    {"confidence":0.96875,"fromCourseId":"build-a-computer","n":32,"reverse":1,"support":31,"toCourseId":"nand2tetris2"},
+    {"confidence":0.851852,"fromCourseId":"childnutrition","n":27,"reverse":4,"support":23,"toCourseId":"excel-essentials"},
+    {"confidence":0.875,"fromCourseId":"childnutrition","n":32,"reverse":4,"support":28,"toCourseId":"indigenous-canada"},
+    {"confidence":1.0,"fromCourseId":"childnutrition","n":30,"reverse":0,"support":30,"toCourseId":"introduction-psychology"},
+    {"confidence":0.962963,"fromCourseId":"childnutrition","n":27,"reverse":1,"support":26,"toCourseId":"neural-networks-deep-learning"},
+    {"confidence":0.939394,"fromCourseId":"classification-vector-spaces-in-nlp","n":33,"reverse":2,"support":31,"toCourseId":"probabilistic-models-in-nlp"},
+    {"confidence":0.961538,"fromCourseId":"cloud-infrastructure-design-process","n":26,"reverse":1,"support":25,"toCourseId":"preparing-cloud-professional-cloud-architect-exam"},
+    {"confidence":0.934272,"fromCourseId":"computer-networking","n":426,"reverse":28,"support":398,"toCourseId":"it-security"},
+    {"confidence":0.912732,"fromCourseId":"computer-networking","n":699,"reverse":61,"support":638,"toCourseId":"os-power-user"},
+    {"confidence":0.887868,"fromCourseId":"computer-networking","n":544,"reverse":61,"support":483,"toCourseId":"system-administration-it-infrastructure-services"},
+    {"confidence":0.904762,"fromCourseId":"convolutional-neural-networks","n":189,"reverse":18,"support":171,"toCourseId":"nlp-sequence-models"},
+    {"confidence":0.929577,"fromCourseId":"convolutional-neural-networks-tensorflow","n":142,"reverse":10,"support":132,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.935185,"fromCourseId":"convolutional-neural-networks-tensorflow","n":108,"reverse":7,"support":101,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.939394,"fromCourseId":"cs-fundamentals-1","n":33,"reverse":2,"support":31,"toCourseId":"cs-fundamentals-2"},
+    {"confidence":0.93617,"fromCourseId":"cybersecurity-roles-processes-operating-system-security","n":47,"reverse":3,"support":44,"toCourseId":"cybersecurity-compliance-framework-system-administration"},
+    {"confidence":0.965217,"fromCourseId":"data-analysis-with-python","n":115,"reverse":4,"support":111,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.894495,"fromCourseId":"data-analysis-with-python","n":218,"reverse":23,"support":195,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.877953,"fromCourseId":"data-analysis-with-python","n":254,"reverse":31,"support":223,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.921053,"fromCourseId":"data-lakes-data-warehouses-gcp","n":38,"reverse":3,"support":35,"toCourseId":"batch-data-pipelines-gcp"},
+    {"confidence":0.989796,"fromCourseId":"data-science-methodology","n":98,"reverse":1,"support":97,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.939394,"fromCourseId":"data-science-methodology","n":231,"reverse":14,"support":217,"toCourseId":"data-analysis-with-python"},
+    {"confidence":0.935294,"fromCourseId":"data-science-methodology","n":170,"reverse":11,"support":159,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.869565,"fromCourseId":"data-science-methodology","n":23,"reverse":3,"support":20,"toCourseId":"python-crash-course"},
+    {"confidence":0.879121,"fromCourseId":"data-science-methodology","n":364,"reverse":44,"support":320,"toCourseId":"python-for-applied-data-science-ai"},
+    {"confidence":0.948187,"fromCourseId":"data-science-methodology","n":193,"reverse":10,"support":183,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.932203,"fromCourseId":"data-science-methodology","n":236,"reverse":16,"support":220,"toCourseId":"sql-data-science"},
+    {"confidence":0.90625,"fromCourseId":"data-science-methodology","n":32,"reverse":3,"support":29,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.882353,"fromCourseId":"data-scientists-tools","n":34,"reverse":4,"support":30,"toCourseId":"indigenous-canada"},
+    {"confidence":0.857143,"fromCourseId":"data-scientists-tools","n":42,"reverse":6,"support":36,"toCourseId":"introduction-psychology"},
+    {"confidence":0.853333,"fromCourseId":"data-scientists-tools","n":75,"reverse":11,"support":64,"toCourseId":"introduction-tensorflow"},
+    {"confidence":0.851852,"fromCourseId":"data-scientists-tools","n":27,"reverse":4,"support":23,"toCourseId":"introduction-to-ai"},
+    {"confidence":0.863636,"fromCourseId":"data-scientists-tools","n":44,"reverse":6,"support":38,"toCourseId":"os-power-user"},
+    {"confidence":0.875,"fromCourseId":"data-scientists-tools","n":32,"reverse":4,"support":28,"toCourseId":"python-machine-learning"},
+    {"confidence":0.866667,"fromCourseId":"data-scientists-tools","n":735,"reverse":98,"support":637,"toCourseId":"r-programming"},
+    {"confidence":0.868852,"fromCourseId":"data-scientists-tools","n":122,"reverse":16,"support":106,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.869565,"fromCourseId":"data-visualization-tableau","n":23,"reverse":3,"support":20,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.939394,"fromCourseId":"decision-making","n":33,"reverse":2,"support":31,"toCourseId":"powerpoint-presentations"},
+    {"confidence":0.976744,"fromCourseId":"deep-neural-network","n":43,"reverse":1,"support":42,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.95082,"fromCourseId":"deep-neural-network","n":305,"reverse":15,"support":290,"toCourseId":"convolutional-neural-networks"},
+    {"confidence":0.887931,"fromCourseId":"deep-neural-network","n":116,"reverse":13,"support":103,"toCourseId":"convolutional-neural-networks-tensorflow"},
+    {"confidence":0.862069,"fromCourseId":"deep-neural-network","n":29,"reverse":4,"support":25,"toCourseId":"fundamentals-of-reinforcement-learning"},
+    {"confidence":0.952381,"fromCourseId":"deep-neural-network","n":21,"reverse":1,"support":20,"toCourseId":"intro-self-driving-cars"},
+    {"confidence":0.912292,"fromCourseId":"deep-neural-network","n":1619,"reverse":142,"support":1477,"toCourseId":"machine-learning-projects"},
+    {"confidence":0.891566,"fromCourseId":"deep-neural-network","n":83,"reverse":9,"support":74,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.953737,"fromCourseId":"deep-neural-network","n":843,"reverse":39,"support":804,"toCourseId":"nlp-sequence-models"},
+    {"confidence":0.854545,"fromCourseId":"deep-neural-network","n":55,"reverse":8,"support":47,"toCourseId":"python-crash-course"},
+    {"confidence":0.858974,"fromCourseId":"deep-neural-network","n":78,"reverse":11,"support":67,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.884615,"fromCourseId":"drug-development","n":26,"reverse":3,"support":23,"toCourseId":"drug-commercialization"},
+    {"confidence":0.913043,"fromCourseId":"drug-discovery","n":23,"reverse":2,"support":21,"toCourseId":"drug-commercialization"},
+    {"confidence":0.898089,"fromCourseId":"duke-programming-web","n":157,"reverse":16,"support":141,"toCourseId":"java-programming"},
+    {"confidence":0.894737,"fromCourseId":"english-principles","n":38,"reverse":4,"support":34,"toCourseId":"excel-essentials"},
+    {"confidence":0.862069,"fromCourseId":"english-principles","n":29,"reverse":4,"support":25,"toCourseId":"introduction-psychology"},
+    {"confidence":0.866667,"fromCourseId":"english-principles","n":30,"reverse":4,"support":26,"toCourseId":"what-is-datascience"},
+    {"confidence":0.944444,"fromCourseId":"excel-essentials","n":198,"reverse":11,"support":187,"toCourseId":"excel-advanced"},
+    {"confidence":0.953457,"fromCourseId":"excel-essentials","n":752,"reverse":35,"support":717,"toCourseId":"excel-intermediate-1"},
+    {"confidence":0.955357,"fromCourseId":"excel-essentials","n":336,"reverse":15,"support":321,"toCourseId":"excel-intermediate-2"},
+    {"confidence":0.988506,"fromCourseId":"excel-intermediate-1","n":174,"reverse":2,"support":172,"toCourseId":"excel-advanced"},
+    {"confidence":0.984848,"fromCourseId":"excel-intermediate-1","n":330,"reverse":5,"support":325,"toCourseId":"excel-intermediate-2"},
+    {"confidence":0.982955,"fromCourseId":"excel-intermediate-2","n":176,"reverse":3,"support":173,"toCourseId":"excel-advanced"},
+    {"confidence":0.866667,"fromCourseId":"finanzas-personales","n":30,"reverse":4,"support":26,"toCourseId":"nutricion-obesidad-sobrepeso"},
+    {"confidence":0.875,"fromCourseId":"finanzas-personales","n":40,"reverse":5,"support":35,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.857143,"fromCourseId":"food-and-health","n":35,"reverse":5,"support":30,"toCourseId":"python-crash-course"},
+    {"confidence":0.894928,"fromCourseId":"fundamentals-of-graphic-design","n":276,"reverse":29,"support":247,"toCourseId":"typography"},
+    {"confidence":1.0,"fromCourseId":"fundamentals-of-reinforcement-learning","n":50,"reverse":0,"support":50,"toCourseId":"sample-based-learning-methods"},
+    {"confidence":0.852941,"fromCourseId":"game-development","n":34,"reverse":5,"support":29,"toCourseId":"deep-neural-network"},
+    {"confidence":0.888889,"fromCourseId":"game-development","n":27,"reverse":3,"support":24,"toCourseId":"gcp-fundamentals"},
+    {"confidence":0.88,"fromCourseId":"game-development","n":25,"reverse":3,"support":22,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.957447,"fromCourseId":"gcp-big-data-ml-fundamentals","n":47,"reverse":2,"support":45,"toCourseId":"batch-data-pipelines-gcp"},
+    {"confidence":0.974359,"fromCourseId":"gcp-big-data-ml-fundamentals","n":78,"reverse":2,"support":76,"toCourseId":"data-lakes-data-warehouses-gcp"},
+    {"confidence":0.938144,"fromCourseId":"gcp-fundamentals","n":194,"reverse":12,"support":182,"toCourseId":"cloud-infrastructure-design-process"},
+    {"confidence":0.898955,"fromCourseId":"gcp-fundamentals","n":287,"reverse":29,"support":258,"toCourseId":"gcp-infrastructure-core-services"},
+    {"confidence":0.886228,"fromCourseId":"gcp-fundamentals","n":501,"reverse":57,"support":444,"toCourseId":"gcp-infrastructure-foundation"},
+    {"confidence":0.938931,"fromCourseId":"gcp-fundamentals","n":262,"reverse":16,"support":246,"toCourseId":"gcp-infrastructure-scaling-automation"},
+    {"confidence":0.885714,"fromCourseId":"gcp-fundamentals","n":70,"reverse":8,"support":62,"toCourseId":"preparing-cloud-associate-cloud-engineer-exam"},
+    {"confidence":0.952381,"fromCourseId":"gcp-fundamentals","n":42,"reverse":2,"support":40,"toCourseId":"preparing-cloud-professional-cloud-architect-exam"},
+    {"confidence":0.93578,"fromCourseId":"gcp-infrastructure-core-services","n":109,"reverse":7,"support":102,"toCourseId":"cloud-infrastructure-design-process"},
+    {"confidence":0.975758,"fromCourseId":"gcp-infrastructure-core-services","n":165,"reverse":4,"support":161,"toCourseId":"gcp-infrastructure-scaling-automation"},
+    {"confidence":0.868421,"fromCourseId":"gcp-infrastructure-core-services","n":38,"reverse":5,"support":33,"toCourseId":"preparing-cloud-associate-cloud-engineer-exam"},
+    {"confidence":1.0,"fromCourseId":"gcp-infrastructure-core-services","n":23,"reverse":0,"support":23,"toCourseId":"preparing-cloud-professional-cloud-architect-exam"},
+    {"confidence":0.939597,"fromCourseId":"gcp-infrastructure-foundation","n":149,"reverse":9,"support":140,"toCourseId":"cloud-infrastructure-design-process"},
+    {"confidence":0.914414,"fromCourseId":"gcp-infrastructure-foundation","n":222,"reverse":19,"support":203,"toCourseId":"gcp-infrastructure-core-services"},
+    {"confidence":0.980769,"fromCourseId":"gcp-infrastructure-foundation","n":208,"reverse":4,"support":204,"toCourseId":"gcp-infrastructure-scaling-automation"},
+    {"confidence":0.95122,"fromCourseId":"gcp-infrastructure-foundation","n":41,"reverse":2,"support":39,"toCourseId":"preparing-cloud-associate-cloud-engineer-exam"},
+    {"confidence":1.0,"fromCourseId":"gcp-infrastructure-foundation","n":32,"reverse":0,"support":32,"toCourseId":"preparing-cloud-professional-cloud-architect-exam"},
+    {"confidence":0.963636,"fromCourseId":"gcp-infrastructure-scaling-automation","n":110,"reverse":4,"support":106,"toCourseId":"cloud-infrastructure-design-process"},
+    {"confidence":0.888889,"fromCourseId":"gcp-infrastructure-scaling-automation","n":36,"reverse":4,"support":32,"toCourseId":"preparing-cloud-associate-cloud-engineer-exam"},
+    {"confidence":1.0,"fromCourseId":"gcp-infrastructure-scaling-automation","n":25,"reverse":0,"support":25,"toCourseId":"preparing-cloud-professional-cloud-architect-exam"},
+    {"confidence":0.902655,"fromCourseId":"grammar-punctuation","n":226,"reverse":22,"support":204,"toCourseId":"getting-started-with-essay-writing"},
+    {"confidence":0.857143,"fromCourseId":"grammar-punctuation","n":28,"reverse":4,"support":24,"toCourseId":"indigenous-canada"},
+    {"confidence":0.918182,"fromCourseId":"html","n":110,"reverse":9,"support":101,"toCourseId":"introcss"},
+    {"confidence":0.857143,"fromCourseId":"html","n":35,"reverse":5,"support":30,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.903226,"fromCourseId":"html","n":31,"reverse":3,"support":28,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.851064,"fromCourseId":"html-css-javascript-for-web-developers","n":47,"reverse":7,"support":40,"toCourseId":"bootstrap-4"},
+    {"confidence":0.866667,"fromCourseId":"intro-data-science-programacion-estadistica-r","n":30,"reverse":4,"support":26,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.927273,"fromCourseId":"introduction-cybersecurity-cyber-attacks","n":55,"reverse":4,"support":51,"toCourseId":"cybersecurity-compliance-framework-system-administration"},
+    {"confidence":0.936937,"fromCourseId":"introduction-cybersecurity-cyber-attacks","n":111,"reverse":7,"support":104,"toCourseId":"cybersecurity-roles-processes-operating-system-security"},
+    {"confidence":0.946429,"fromCourseId":"introduction-git-github","n":56,"reverse":3,"support":53,"toCourseId":"troubleshooting-debugging-techniques"},
+    {"confidence":0.916667,"fromCourseId":"introduction-tensorflow","n":24,"reverse":2,"support":22,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.958861,"fromCourseId":"introduction-tensorflow","n":316,"reverse":13,"support":303,"toCourseId":"convolutional-neural-networks-tensorflow"},
+    {"confidence":0.93,"fromCourseId":"introduction-tensorflow","n":200,"reverse":14,"support":186,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.94,"fromCourseId":"introduction-tensorflow","n":150,"reverse":9,"support":141,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.898204,"fromCourseId":"introduction-to-software-product-management","n":167,"reverse":17,"support":150,"toCourseId":"software-processes-and-agile-practices"},
+    {"confidence":0.851852,"fromCourseId":"introduction-to-software-product-management","n":27,"reverse":4,"support":23,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.878049,"fromCourseId":"learn-to-program","n":41,"reverse":5,"support":36,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.861111,"fromCourseId":"learning-how-to-learn","n":36,"reverse":5,"support":31,"toCourseId":"business"},
+    {"confidence":0.884615,"fromCourseId":"learning-how-to-learn","n":26,"reverse":3,"support":23,"toCourseId":"competencias-digitales-ofimatica"},
+    {"confidence":0.877551,"fromCourseId":"learning-how-to-learn","n":98,"reverse":12,"support":86,"toCourseId":"indigenous-canada"},
+    {"confidence":0.913043,"fromCourseId":"learning-how-to-learn","n":23,"reverse":2,"support":21,"toCourseId":"kotlin-for-java-developers"},
+    {"confidence":0.857143,"fromCourseId":"learning-how-to-learn","n":28,"reverse":4,"support":24,"toCourseId":"learn-speak-korean1"},
+    {"confidence":0.928571,"fromCourseId":"learning-how-to-learn","n":28,"reverse":2,"support":26,"toCourseId":"manage-health-covid-19"},
+    {"confidence":0.86692,"fromCourseId":"learning-how-to-learn","n":263,"reverse":35,"support":228,"toCourseId":"mindshift"},
+    {"confidence":0.875,"fromCourseId":"learning-how-to-learn","n":24,"reverse":3,"support":21,"toCourseId":"people-management"},
+    {"confidence":0.892473,"fromCourseId":"learning-how-to-learn","n":93,"reverse":10,"support":83,"toCourseId":"python-crash-course"},
+    {"confidence":0.869565,"fromCourseId":"learning-how-to-learn","n":23,"reverse":3,"support":20,"toCourseId":"teamwork-skills-effective-communication"},
+    {"confidence":0.88,"fromCourseId":"learning-how-to-learn","n":25,"reverse":3,"support":22,"toCourseId":"visual-elements-user-interface-design"},
+    {"confidence":0.923729,"fromCourseId":"linear-algebra-machine-learning","n":236,"reverse":18,"support":218,"toCourseId":"multivariate-calculus-machine-learning"},
+    {"confidence":0.973856,"fromCourseId":"linear-algebra-machine-learning","n":153,"reverse":4,"support":149,"toCourseId":"pca-machine-learning"},
+    {"confidence":1.0,"fromCourseId":"machine-learning","n":30,"reverse":0,"support":30,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.910448,"fromCourseId":"machine-learning","n":67,"reverse":6,"support":61,"toCourseId":"convolutional-neural-networks-tensorflow"},
+    {"confidence":1.0,"fromCourseId":"machine-learning","n":26,"reverse":0,"support":26,"toCourseId":"etudier-en-france"},
+    {"confidence":0.971429,"fromCourseId":"machine-learning","n":35,"reverse":1,"support":34,"toCourseId":"fundamentals-of-reinforcement-learning"},
+    {"confidence":0.92,"fromCourseId":"machine-learning","n":25,"reverse":2,"support":23,"toCourseId":"iiot-google-cloud-platform"},
+    {"confidence":0.853659,"fromCourseId":"machine-learning","n":41,"reverse":6,"support":35,"toCourseId":"introduction-cybersecurity-cyber-attacks"},
+    {"confidence":0.862069,"fromCourseId":"machine-learning","n":29,"reverse":4,"support":25,"toCourseId":"introduction-git-github"},
+    {"confidence":0.882353,"fromCourseId":"machine-learning","n":68,"reverse":8,"support":60,"toCourseId":"introduction-psychology"},
+    {"confidence":0.865385,"fromCourseId":"machine-learning","n":208,"reverse":28,"support":180,"toCourseId":"introduction-tensorflow"},
+    {"confidence":0.857143,"fromCourseId":"machine-learning","n":28,"reverse":4,"support":24,"toCourseId":"introduction-to-calculus"},
+    {"confidence":0.861111,"fromCourseId":"machine-learning","n":36,"reverse":5,"support":31,"toCourseId":"machine-learning-business-professionals"},
+    {"confidence":0.954545,"fromCourseId":"machine-learning","n":22,"reverse":1,"support":21,"toCourseId":"manage-health-covid-19"},
+    {"confidence":0.859375,"fromCourseId":"machine-learning","n":64,"reverse":9,"support":55,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.857143,"fromCourseId":"machine-learning","n":77,"reverse":11,"support":66,"toCourseId":"os-power-user"},
+    {"confidence":0.886179,"fromCourseId":"machine-learning","n":123,"reverse":14,"support":109,"toCourseId":"python-crash-course"},
+    {"confidence":0.892857,"fromCourseId":"machine-learning","n":28,"reverse":3,"support":25,"toCourseId":"python-statistics-financial-analysis"},
+    {"confidence":1.0,"fromCourseId":"machine-learning","n":21,"reverse":0,"support":21,"toCourseId":"sample-based-learning-methods"},
+    {"confidence":0.944444,"fromCourseId":"machine-learning","n":36,"reverse":2,"support":34,"toCourseId":"social-psychology"},
+    {"confidence":0.892857,"fromCourseId":"machine-learning","n":56,"reverse":6,"support":50,"toCourseId":"system-administration-it-infrastructure-services"},
+    {"confidence":0.887097,"fromCourseId":"machine-learning","n":62,"reverse":7,"support":55,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.880952,"fromCourseId":"machine-learning","n":42,"reverse":5,"support":37,"toCourseId":"uva-darden-digital-product-management"},
+    {"confidence":0.875,"fromCourseId":"machine-learning","n":24,"reverse":3,"support":21,"toCourseId":"visual-elements-user-interface-design"},
+    {"confidence":0.969697,"fromCourseId":"machine-learning-projects","n":33,"reverse":1,"support":32,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.937956,"fromCourseId":"machine-learning-projects","n":274,"reverse":17,"support":257,"toCourseId":"convolutional-neural-networks"},
+    {"confidence":0.9,"fromCourseId":"machine-learning-projects","n":30,"reverse":3,"support":27,"toCourseId":"fundamentals-of-reinforcement-learning"},
+    {"confidence":0.925926,"fromCourseId":"machine-learning-projects","n":27,"reverse":2,"support":25,"toCourseId":"introduction-psychology"},
+    {"confidence":0.866667,"fromCourseId":"machine-learning-projects","n":75,"reverse":10,"support":65,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.944223,"fromCourseId":"machine-learning-projects","n":753,"reverse":42,"support":711,"toCourseId":"nlp-sequence-models"},
+    {"confidence":0.852941,"fromCourseId":"machine-learning-projects","n":34,"reverse":5,"support":29,"toCourseId":"os-power-user"},
+    {"confidence":0.876923,"fromCourseId":"machine-learning-projects","n":65,"reverse":8,"support":57,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.935185,"fromCourseId":"machine-learning-with-python","n":108,"reverse":7,"support":101,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.979592,"fromCourseId":"managing-human-resources","n":49,"reverse":1,"support":48,"toCourseId":"recruiting-hiring-onboarding-employees"},
+    {"confidence":0.857143,"fromCourseId":"ml-foundations","n":42,"reverse":6,"support":36,"toCourseId":"introduction-tensorflow"},
+    {"confidence":0.898551,"fromCourseId":"ml-foundations","n":69,"reverse":7,"support":62,"toCourseId":"nlp-sequence-models"},
+    {"confidence":0.866667,"fromCourseId":"ml-foundations","n":30,"reverse":4,"support":26,"toCourseId":"python-for-applied-data-science-ai"},
+    {"confidence":0.928571,"fromCourseId":"ml-foundations","n":98,"reverse":7,"support":91,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.866667,"fromCourseId":"ml-foundations","n":45,"reverse":6,"support":39,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.898305,"fromCourseId":"modern-world","n":59,"reverse":6,"support":53,"toCourseId":"modern-world-2"},
+    {"confidence":0.9,"fromCourseId":"motivate-people-teams","n":30,"reverse":3,"support":27,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.976562,"fromCourseId":"multivariate-calculus-machine-learning","n":128,"reverse":3,"support":125,"toCourseId":"pca-machine-learning"},
+    {"confidence":0.946809,"fromCourseId":"natural-language-processing-tensorflow","n":94,"reverse":5,"support":89,"toCourseId":"tensorflow-sequences-time-series-and-prediction"},
+    {"confidence":0.888889,"fromCourseId":"neural-networks-deep-learning","n":36,"reverse":4,"support":32,"toCourseId":"ai-for-medical-diagnosis"},
+    {"confidence":0.96875,"fromCourseId":"neural-networks-deep-learning","n":64,"reverse":2,"support":62,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.939153,"fromCourseId":"neural-networks-deep-learning","n":378,"reverse":23,"support":355,"toCourseId":"convolutional-neural-networks"},
+    {"confidence":0.94371,"fromCourseId":"neural-networks-deep-learning","n":2043,"reverse":115,"support":1928,"toCourseId":"deep-neural-network"},
+    {"confidence":0.918919,"fromCourseId":"neural-networks-deep-learning","n":1554,"reverse":126,"support":1428,"toCourseId":"machine-learning-projects"},
+    {"confidence":0.92,"fromCourseId":"neural-networks-deep-learning","n":25,"reverse":2,"support":23,"toCourseId":"manage-health-covid-19"},
+    {"confidence":0.943038,"fromCourseId":"neural-networks-deep-learning","n":790,"reverse":45,"support":745,"toCourseId":"nlp-sequence-models"},
+    {"confidence":0.916667,"fromCourseId":"neural-networks-deep-learning","n":24,"reverse":2,"support":22,"toCourseId":"sample-based-learning-methods"},
+    {"confidence":0.885714,"fromCourseId":"neural-networks-deep-learning","n":35,"reverse":4,"support":31,"toCourseId":"social-psychology"},
+    {"confidence":0.964286,"fromCourseId":"nlp-sequence-models","n":28,"reverse":1,"support":27,"toCourseId":"classification-vector-spaces-in-nlp"},
+    {"confidence":0.873239,"fromCourseId":"nlp-sequence-models","n":71,"reverse":9,"support":62,"toCourseId":"natural-language-processing-tensorflow"},
+    {"confidence":0.939394,"fromCourseId":"nlp-sequence-models","n":33,"reverse":2,"support":31,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.990385,"fromCourseId":"open-source-tools-for-data-science","n":104,"reverse":1,"support":103,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.948,"fromCourseId":"open-source-tools-for-data-science","n":250,"reverse":13,"support":237,"toCourseId":"data-analysis-with-python"},
+    {"confidence":0.951782,"fromCourseId":"open-source-tools-for-data-science","n":477,"reverse":23,"support":454,"toCourseId":"data-science-methodology"},
+    {"confidence":0.927083,"fromCourseId":"open-source-tools-for-data-science","n":192,"reverse":14,"support":178,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.90625,"fromCourseId":"open-source-tools-for-data-science","n":32,"reverse":3,"support":29,"toCourseId":"python-crash-course"},
+    {"confidence":0.916473,"fromCourseId":"open-source-tools-for-data-science","n":431,"reverse":36,"support":395,"toCourseId":"python-for-applied-data-science-ai"},
+    {"confidence":0.947137,"fromCourseId":"open-source-tools-for-data-science","n":227,"reverse":12,"support":215,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.949821,"fromCourseId":"open-source-tools-for-data-science","n":279,"reverse":14,"support":265,"toCourseId":"sql-data-science"},
+    {"confidence":0.869565,"fromCourseId":"os-power-user","n":23,"reverse":3,"support":20,"toCourseId":"introduction-git-github"},
+    {"confidence":0.926027,"fromCourseId":"os-power-user","n":365,"reverse":27,"support":338,"toCourseId":"it-security"},
+    {"confidence":0.88196,"fromCourseId":"os-power-user","n":449,"reverse":53,"support":396,"toCourseId":"system-administration-it-infrastructure-services"},
+    {"confidence":0.923977,"fromCourseId":"positive-psychology-visionary-science","n":171,"reverse":13,"support":158,"toCourseId":"positive-psychology-applications"},
+    {"confidence":0.862595,"fromCourseId":"positive-psychology-visionary-science","n":131,"reverse":18,"support":113,"toCourseId":"positive-psychology-resilience"},
+    {"confidence":0.857143,"fromCourseId":"private-equity","n":28,"reverse":4,"support":24,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.9,"fromCourseId":"probability-intro","n":30,"reverse":3,"support":27,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.916667,"fromCourseId":"producing-music","n":48,"reverse":4,"support":44,"toCourseId":"technology-of-music-production"},
+    {"confidence":0.925926,"fromCourseId":"progfun1","n":27,"reverse":2,"support":25,"toCourseId":"ai-for-everyone"},
+    {"confidence":0.883721,"fromCourseId":"progfun1","n":43,"reverse":5,"support":38,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.956522,"fromCourseId":"progfun1","n":23,"reverse":1,"support":22,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.909091,"fromCourseId":"progfun1","n":22,"reverse":2,"support":20,"toCourseId":"what-is-datascience"},
+    {"confidence":0.927126,"fromCourseId":"project-planning","n":247,"reverse":18,"support":229,"toCourseId":"project-risk-management"},
+    {"confidence":0.931655,"fromCourseId":"project-planning","n":278,"reverse":19,"support":259,"toCourseId":"schedule-projects"},
+    {"confidence":0.916667,"fromCourseId":"python","n":24,"reverse":2,"support":22,"toCourseId":"everyday-excel-part-1"},
+    {"confidence":0.903226,"fromCourseId":"python","n":31,"reverse":3,"support":28,"toCourseId":"introduction-to-calculus"},
+    {"confidence":0.888202,"fromCourseId":"python","n":2102,"reverse":235,"support":1867,"toCourseId":"python-data"},
+    {"confidence":0.897674,"fromCourseId":"python","n":215,"reverse":22,"support":193,"toCourseId":"python-data-visualization"},
+    {"confidence":0.879386,"fromCourseId":"python","n":456,"reverse":55,"support":401,"toCourseId":"python-databases"},
+    {"confidence":0.858083,"fromCourseId":"python","n":1064,"reverse":151,"support":913,"toCourseId":"python-network-data"},
+    {"confidence":0.866667,"fromCourseId":"python","n":45,"reverse":6,"support":39,"toCourseId":"social-psychology"},
+    {"confidence":0.959799,"fromCourseId":"python-basics","n":199,"reverse":8,"support":191,"toCourseId":"python-functions-files-dictionaries"},
+    {"confidence":0.934783,"fromCourseId":"python-crash-course","n":138,"reverse":9,"support":129,"toCourseId":"introduction-git-github"},
+    {"confidence":0.984615,"fromCourseId":"python-crash-course","n":195,"reverse":3,"support":192,"toCourseId":"python-operating-system"},
+    {"confidence":0.957746,"fromCourseId":"python-crash-course","n":71,"reverse":3,"support":68,"toCourseId":"troubleshooting-debugging-techniques"},
+    {"confidence":0.931034,"fromCourseId":"python-data","n":29,"reverse":2,"support":27,"toCourseId":"manage-health-covid-19"},
+    {"confidence":0.955026,"fromCourseId":"python-data","n":378,"reverse":17,"support":361,"toCourseId":"python-data-visualization"},
+    {"confidence":0.918367,"fromCourseId":"python-data","n":784,"reverse":64,"support":720,"toCourseId":"python-databases"},
+    {"confidence":0.914943,"fromCourseId":"python-data","n":1740,"reverse":148,"support":1592,"toCourseId":"python-network-data"},
+    {"confidence":0.937294,"fromCourseId":"python-data-analysis","n":303,"reverse":19,"support":284,"toCourseId":"python-machine-learning"},
+    {"confidence":0.951662,"fromCourseId":"python-data-analysis","n":331,"reverse":16,"support":315,"toCourseId":"python-plotting"},
+    {"confidence":0.873239,"fromCourseId":"python-data-analysis","n":71,"reverse":9,"support":62,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.888889,"fromCourseId":"python-databases","n":27,"reverse":3,"support":24,"toCourseId":"python-plotting"},
+    {"confidence":0.880952,"fromCourseId":"python-databases","n":42,"reverse":5,"support":37,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.99187,"fromCourseId":"python-for-applied-data-science-ai","n":123,"reverse":1,"support":122,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.915205,"fromCourseId":"python-for-applied-data-science-ai","n":342,"reverse":29,"support":313,"toCourseId":"data-analysis-with-python"},
+    {"confidence":0.880383,"fromCourseId":"python-for-applied-data-science-ai","n":209,"reverse":25,"support":184,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.877551,"fromCourseId":"python-for-applied-data-science-ai","n":49,"reverse":6,"support":43,"toCourseId":"python-crash-course"},
+    {"confidence":0.938525,"fromCourseId":"python-for-applied-data-science-ai","n":244,"reverse":15,"support":229,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.992366,"fromCourseId":"python-for-data-visualization","n":131,"reverse":1,"support":130,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.903743,"fromCourseId":"python-for-data-visualization","n":187,"reverse":18,"support":169,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.869565,"fromCourseId":"python-machine-learning","n":23,"reverse":3,"support":20,"toCourseId":"introduction-tensorflow"},
+    {"confidence":1.0,"fromCourseId":"python-network-data","n":24,"reverse":0,"support":24,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.946341,"fromCourseId":"python-network-data","n":410,"reverse":22,"support":388,"toCourseId":"python-data-visualization"},
+    {"confidence":0.934758,"fromCourseId":"python-network-data","n":889,"reverse":58,"support":831,"toCourseId":"python-databases"},
+    {"confidence":0.911765,"fromCourseId":"python-network-data","n":34,"reverse":3,"support":31,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.952381,"fromCourseId":"python-network-data","n":21,"reverse":1,"support":20,"toCourseId":"social-psychology"},
+    {"confidence":0.892157,"fromCourseId":"python-operating-system","n":102,"reverse":11,"support":91,"toCourseId":"introduction-git-github"},
+    {"confidence":0.924528,"fromCourseId":"python-operating-system","n":53,"reverse":4,"support":49,"toCourseId":"troubleshooting-debugging-techniques"},
+    {"confidence":0.877301,"fromCourseId":"python-plotting","n":163,"reverse":20,"support":143,"toCourseId":"python-machine-learning"},
+    {"confidence":0.869565,"fromCourseId":"python-programming-introduction","n":46,"reverse":6,"support":40,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.875,"fromCourseId":"r-programming","n":64,"reverse":8,"support":56,"toCourseId":"computer-networking"},
+    {"confidence":0.916667,"fromCourseId":"r-programming","n":24,"reverse":2,"support":22,"toCourseId":"excel-intermediate-1"},
+    {"confidence":0.864865,"fromCourseId":"r-programming","n":37,"reverse":5,"support":32,"toCourseId":"financial-markets-global"},
+    {"confidence":0.956522,"fromCourseId":"r-programming","n":23,"reverse":1,"support":22,"toCourseId":"indigenous-canada"},
+    {"confidence":0.909091,"fromCourseId":"r-programming","n":22,"reverse":2,"support":20,"toCourseId":"it-security"},
+    {"confidence":0.857143,"fromCourseId":"r-programming","n":35,"reverse":5,"support":30,"toCourseId":"os-power-user"},
+    {"confidence":0.857143,"fromCourseId":"r-programming","n":42,"reverse":6,"support":36,"toCourseId":"python-crash-course"},
+    {"confidence":0.865385,"fromCourseId":"r-programming","n":52,"reverse":7,"support":45,"toCourseId":"python-for-applied-data-science-ai"},
+    {"confidence":0.875,"fromCourseId":"r-programming","n":32,"reverse":4,"support":28,"toCourseId":"python-machine-learning"},
+    {"confidence":0.882883,"fromCourseId":"r-programming","n":111,"reverse":13,"support":98,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.92,"fromCourseId":"r-programming","n":75,"reverse":6,"support":69,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.898089,"fromCourseId":"schedule-projects","n":157,"reverse":16,"support":141,"toCourseId":"project-risk-management"},
+    {"confidence":0.948052,"fromCourseId":"search-engine-optimization","n":154,"reverse":8,"support":146,"toCourseId":"seo-fundamentals"},
+    {"confidence":0.962963,"fromCourseId":"six-sigma-principles","n":27,"reverse":1,"support":26,"toCourseId":"six-sigma-organization-advanced"},
+    {"confidence":0.977273,"fromCourseId":"sql-data-science","n":88,"reverse":2,"support":86,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.921053,"fromCourseId":"sql-data-science","n":152,"reverse":12,"support":140,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.866667,"fromCourseId":"sql-data-science","n":180,"reverse":24,"support":156,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.920228,"fromCourseId":"system-administration-it-infrastructure-services","n":351,"reverse":28,"support":323,"toCourseId":"it-security"},
+    {"confidence":0.913699,"fromCourseId":"technical-support-fundamentals","n":1460,"reverse":126,"support":1334,"toCourseId":"computer-networking"},
+    {"confidence":0.932558,"fromCourseId":"technical-support-fundamentals","n":430,"reverse":29,"support":401,"toCourseId":"it-security"},
+    {"confidence":0.917456,"fromCourseId":"technical-support-fundamentals","n":739,"reverse":61,"support":678,"toCourseId":"os-power-user"},
+    {"confidence":0.915371,"fromCourseId":"technical-support-fundamentals","n":579,"reverse":49,"support":530,"toCourseId":"system-administration-it-infrastructure-services"},
+    {"confidence":0.857143,"fromCourseId":"typography","n":35,"reverse":5,"support":30,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.897436,"fromCourseId":"uva-darden-getting-started-agile","n":39,"reverse":4,"support":35,"toCourseId":"uva-darden-agile-team-management"},
+    {"confidence":0.909091,"fromCourseId":"uva-darden-getting-started-agile","n":33,"reverse":3,"support":30,"toCourseId":"uva-darden-agile-testing"},
+    {"confidence":0.896104,"fromCourseId":"visual-elements-user-interface-design","n":77,"reverse":8,"support":69,"toCourseId":"ux-design-fundamentals"},
+    {"confidence":0.931034,"fromCourseId":"wharton-accounting","n":29,"reverse":2,"support":27,"toCourseId":"excel-essentials"},
+    {"confidence":0.961538,"fromCourseId":"wharton-accounting","n":26,"reverse":1,"support":25,"toCourseId":"wharton-financial-accounting"},
+    {"confidence":0.857143,"fromCourseId":"wharton-accounting","n":35,"reverse":5,"support":30,"toCourseId":"what-is-datascience"},
+    {"confidence":0.913793,"fromCourseId":"wharton-customer-analytics","n":116,"reverse":10,"support":106,"toCourseId":"accounting-analytics"},
+    {"confidence":0.88,"fromCourseId":"wharton-customer-analytics","n":25,"reverse":3,"support":22,"toCourseId":"food-and-health"},
+    {"confidence":0.871795,"fromCourseId":"wharton-customer-analytics","n":39,"reverse":5,"support":34,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.872642,"fromCourseId":"wharton-customer-analytics","n":212,"reverse":27,"support":185,"toCourseId":"wharton-operations-analytics"},
+    {"confidence":0.863636,"fromCourseId":"wharton-customer-analytics","n":154,"reverse":21,"support":133,"toCourseId":"wharton-people-analytics"},
+    {"confidence":0.898734,"fromCourseId":"wharton-entrepreneurship-opportunity","n":79,"reverse":8,"support":71,"toCourseId":"wharton-launching-startup"},
+    {"confidence":0.885714,"fromCourseId":"wharton-fintech-overview-payments-regulations","n":35,"reverse":4,"support":31,"toCourseId":"wharton-cryptocurrency-blockchain-introduction-digital-currency"},
+    {"confidence":0.865385,"fromCourseId":"wharton-marketing","n":52,"reverse":7,"support":45,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.911111,"fromCourseId":"wharton-marketing","n":45,"reverse":4,"support":41,"toCourseId":"the-science-of-well-being"},
+    {"confidence":0.920635,"fromCourseId":"wharton-marketing","n":63,"reverse":5,"support":58,"toCourseId":"wharton-operations"},
+    {"confidence":0.921053,"fromCourseId":"wharton-marketing","n":38,"reverse":3,"support":35,"toCourseId":"what-is-datascience"},
+    {"confidence":0.861538,"fromCourseId":"wharton-people-analytics","n":65,"reverse":9,"support":56,"toCourseId":"accounting-analytics"},
+    {"confidence":0.853659,"fromCourseId":"wharton-quantitative-modeling","n":41,"reverse":6,"support":35,"toCourseId":"technical-support-fundamentals"},
+    {"confidence":0.917808,"fromCourseId":"wharton-quantitative-modeling","n":146,"reverse":12,"support":134,"toCourseId":"wharton-introduction-spreadsheets-models"},
+    {"confidence":0.963768,"fromCourseId":"what-is-datascience","n":138,"reverse":5,"support":133,"toCourseId":"applied-data-science-capstone"},
+    {"confidence":0.890966,"fromCourseId":"what-is-datascience","n":321,"reverse":35,"support":286,"toCourseId":"data-analysis-with-python"},
+    {"confidence":0.950963,"fromCourseId":"what-is-datascience","n":571,"reverse":28,"support":543,"toCourseId":"data-science-methodology"},
+    {"confidence":0.870293,"fromCourseId":"what-is-datascience","n":239,"reverse":31,"support":208,"toCourseId":"machine-learning-with-python"},
+    {"confidence":0.939825,"fromCourseId":"what-is-datascience","n":914,"reverse":55,"support":859,"toCourseId":"open-source-tools-for-data-science"},
+    {"confidence":0.89071,"fromCourseId":"what-is-datascience","n":549,"reverse":60,"support":489,"toCourseId":"python-for-applied-data-science-ai"},
+    {"confidence":0.929368,"fromCourseId":"what-is-datascience","n":269,"reverse":19,"support":250,"toCourseId":"python-for-data-visualization"},
+    {"confidence":0.913433,"fromCourseId":"what-is-datascience","n":335,"reverse":29,"support":306,"toCourseId":"sql-data-science"},
+    {"confidence":0.863636,"fromCourseId":"what-is-social","n":44,"reverse":6,"support":38,"toCourseId":"the-science-of-well-being"}
+  ]
+}

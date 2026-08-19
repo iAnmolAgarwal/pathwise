@@ -5,8 +5,9 @@ Checks, mirroring the Zod schemas in src/schemas/:
   2. Skill prerequisite edges form a DAG.
   3. Referential integrity: every skillId referenced anywhere exists.
   4. Embedding coverage: every skill and catalog item has a 384-dim vector, no extras.
-  5. Evidence files under pipeline/evidence/ (when present) pass mine_so.py's schema check
-     (a pipeline-side mirror of the Zod evidence schema); their counts land in the report.
+  5. Evidence files under pipeline/evidence/ (when present) pass mine_so.py's and
+     mine_coursera.py's schema checks (pipeline-side mirrors of the Zod evidence schema);
+     their counts land in the report.
 
 Writes pipeline/validation-report.json (committed) containing the outcome, entity
 counts, coverage warnings, and sha256 hashes of the four data files; the Vitest
@@ -161,27 +162,44 @@ def coverage_warnings(skills: list[dict], catalog: list[dict]) -> list[str]:
 
 
 def validate_evidence(errors: list[str]) -> dict:
-    """Stack Overflow evidence (pipeline/evidence/edges_so.json, branches_so.json), if emitted."""
+    """Mined evidence under pipeline/evidence/, if emitted: Stack Overflow (edges_so.json,
+    branches_so.json) and Coursera (edges_coursera_course.json)."""
+    sys.path.insert(0, str(PIPELINE_DIR))
+    report: dict = {"stackoverflow": None, "coursera": None}
     edges_path = PIPELINE_DIR / "evidence" / "edges_so.json"
     branches_path = PIPELINE_DIR / "evidence" / "branches_so.json"
-    if not (edges_path.exists() and branches_path.exists()):
-        return {"stackoverflow": None}
-    sys.path.insert(0, str(PIPELINE_DIR))
-    import mine_so  # noqa: E402  (same directory; no third-party imports)
+    if edges_path.exists() and branches_path.exists():
+        import mine_so  # noqa: E402  (same directory; no third-party imports)
 
-    if mine_so.check_schema() != 0:
-        errors.append("pipeline/evidence: Stack Overflow files failed mine_so.py check-schema")
-    edges = json.loads(edges_path.read_text())
-    branches = json.loads(branches_path.read_text())
-    return {
-        "stackoverflow": {
+        if mine_so.check_schema() != 0:
+            errors.append("pipeline/evidence: Stack Overflow files failed mine_so.py check-schema")
+        edges = json.loads(edges_path.read_text())
+        branches = json.loads(branches_path.read_text())
+        report["stackoverflow"] = {
             "edges": len(edges["edges"]),
             "branches": len(branches["branches"]),
             "mapSignedOff": edges.get("mapSignedOff"),
             "usersEligible": edges["stats"].get("usersEligible"),
             "pairsAtFloor": edges["stats"].get("pairsAtFloor"),
         }
-    }
+    coursera_path = PIPELINE_DIR / "evidence" / "edges_coursera_course.json"
+    if coursera_path.exists():
+        import mine_coursera  # noqa: E402
+
+        if mine_coursera.check_schema() != 0:
+            errors.append("pipeline/evidence: Coursera file failed mine_coursera.py check-schema")
+        doc = json.loads(coursera_path.read_text())
+        chains = doc.get("chains", {})
+        if not (chains.get("allSuccessSurvive") and chains.get("noNonsenseSurvives")):
+            errors.append("pipeline/evidence: Coursera chain checks failed (a success chain lost or a nonsense chain kept)")
+        report["coursera"] = {
+            "courseEdges": len(doc["edges"]),
+            "ring1Courses": len(doc["courses"]),
+            "namesInBand": doc["stats"].get("namesInBand"),
+            "pairsAtSupportFloor": doc["stats"].get("pairsAtSupportFloor"),
+            "baselineReproduced": doc.get("baseline", {}).get("reproducesPublished"),
+        }
+    return report
 
 
 def sha256_file(path: Path) -> str:
