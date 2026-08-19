@@ -1,0 +1,199 @@
+{
+  "description": "Human review of the Coursera Ring-1 spot-check sample (prompt v3 run). Each row is a per-course resolution applied by `python pipeline/tag_courses.py apply-review`: `keep` leaves the model tags, `set` replaces skillsTaught. Process (ARCHITECTURE decision D-25): the owner delegated the blind check to a single reviewer; an independent, context-free model pass tagged the sample blind under a different framing (curriculum-reviewer, learning-outcome framing; no access to the tags or the tagging prompts); the 10 courses where it disagreed with the pipeline's tags were adjudicated by the reviewer on the course text and module descriptions. The 24 courses where the two agreed on the skill set were accepted as-is. No human-human number exists for this sample.",
+  "reviewer": "anmol (delegated single-reviewer check, D-25)",
+  "date": "2026-08-19",
+  "sample": "pipeline/build/spotcheck_v2.manifest.json (34 courses, seed 42, strata = confidence x has-skills)",
+  "independentPass": {
+    "agentVsPipelineJaccard": 0.825,
+    "identicalSkillSets": 24,
+    "disagreements": 10,
+    "note": "agent-vs-agent number, not a human number"
+  },
+  "rows": [
+    {
+      "courseId": "cs-fundamentals-1",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "oop",
+          "level": 2
+        },
+        {
+          "skillId": "data-structures",
+          "level": 1
+        },
+        {
+          "skillId": "debugging",
+          "level": 1
+        }
+      ],
+      "note": "C++ classes and memory model with a debugging setup; data structures are only begun (the later courses cover them), so level 1; the course assumes prior programming."
+    },
+    {
+      "courseId": "excel-advanced",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "spreadsheets",
+          "level": 3
+        },
+        {
+          "skillId": "data-cleaning",
+          "level": 1
+        },
+        {
+          "skillId": "data-visualization",
+          "level": 1
+        }
+      ],
+      "note": "Advanced formulas, lookups and financial functions give strong spreadsheet command; one module cleans data in Excel and one builds dashboards, both at a basic level."
+    },
+    {
+      "courseId": "python-network-data",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "python",
+          "level": 2
+        },
+        {
+          "skillId": "api-integration",
+          "level": 1
+        },
+        {
+          "skillId": "regex",
+          "level": 1
+        },
+        {
+          "skillId": "networking-basics",
+          "level": 1
+        }
+      ],
+      "note": "Py4E course 3: the whole course is Python practice; regex, sockets/HTTP and REST/JSON are each one chapter, so basics."
+    },
+    {
+      "courseId": "applied-data-science-capstone",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "python-data-analysis",
+          "level": 2
+        },
+        {
+          "skillId": "data-cleaning",
+          "level": 1
+        },
+        {
+          "skillId": "exploratory-data-analysis",
+          "level": 2
+        },
+        {
+          "skillId": "data-visualization",
+          "level": 2
+        },
+        {
+          "skillId": "data-storytelling",
+          "level": 1
+        },
+        {
+          "skillId": "sql",
+          "level": 1
+        },
+        {
+          "skillId": "api-integration",
+          "level": 1
+        },
+        {
+          "skillId": "supervised-learning",
+          "level": 2
+        },
+        {
+          "skillId": "scikit-learn",
+          "level": 2
+        },
+        {
+          "skillId": "model-evaluation",
+          "level": 2
+        }
+      ],
+      "note": "SpaceX capstone: API and scraped collection, wrangling, EDA with SQL and pandas, Plotly Dash/Folium visuals, SVM/tree/KNN/logistic classifiers with grid search, stakeholder report."
+    },
+    {
+      "courseId": "data-science-methodology",
+      "decision": "set",
+      "tags": [],
+      "note": "CRISP-DM process course applied to a case study; no vocabulary skill is practised to the point of being able to do it (both the pipeline's data-cleaning:1 and the independent ml-fundamentals:1 are stretches)."
+    },
+    {
+      "courseId": "ml-foundations",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "ml-fundamentals",
+          "level": 2
+        },
+        {
+          "skillId": "supervised-learning",
+          "level": 1
+        },
+        {
+          "skillId": "unsupervised-learning",
+          "level": 1
+        },
+        {
+          "skillId": "recommender-systems",
+          "level": 1
+        },
+        {
+          "skillId": "model-evaluation",
+          "level": 1
+        },
+        {
+          "skillId": "python",
+          "level": 1
+        }
+      ],
+      "note": "Case studies run in Python notebooks with basic error/accuracy evaluation; the deep-learning module uses pretrained features as a black box, so it is not a taught outcome."
+    },
+    {
+      "courseId": "mcmc-bayesian-statistics",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "inferential-statistics",
+          "level": 3
+        },
+        {
+          "skillId": "r-programming",
+          "level": 2
+        }
+      ],
+      "note": "Every module fits models in R/JAGS hands-on, so R counts as a practised tool; probability is used, not taught."
+    },
+    {
+      "courseId": "python-functions-files-dictionaries",
+      "decision": "keep",
+      "note": "Dictionaries as a basic data structure plus Python functions/files; the course assumes the basics course before it."
+    },
+    {
+      "courseId": "preparing-cloud-associate-cloud-engineer-exam",
+      "decision": "keep",
+      "note": "A NotebookLM study-guide walkthrough; writing study prompts is not prompt-engineering as the vocabulary means it, and it does not teach GCP."
+    },
+    {
+      "courseId": "html",
+      "decision": "set",
+      "tags": [
+        {
+          "skillId": "html",
+          "level": 1
+        },
+        {
+          "skillId": "web-accessibility",
+          "level": 1
+        }
+      ],
+      "note": "Module three teaches validation and accessibility basics alongside hosting; the 'what happens when you click a link' theory is not networking practice."
+    }
+  ]
+}

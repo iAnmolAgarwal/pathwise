@@ -16,6 +16,24 @@
       "mapSignedOff": true,
       "usersEligible": 2137848,
       "pairsAtFloor": 8260
+    },
+    "coursera": {
+      "courseEdges": 290,
+      "ring1Courses": 170,
+      "namesInBand": 75593,
+      "pairsAtSupportFloor": 2939,
+      "baselineReproduced": true,
+      "courseSkillTags": {
+        "courses": 170,
+        "tags": 255,
+        "byConfidence": {
+          "high": 112,
+          "low": 41,
+          "medium": 17
+        },
+        "promptVersion": "v3",
+        "spotCheck": "reviewed"
+      }
     }
   },
   "errors": [],
