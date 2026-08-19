@@ -23,7 +23,17 @@
       "namesInBand": 75593,
       "pairsAtSupportFloor": 2939,
       "baselineReproduced": true,
-      "courseSkillTags": null
+      "courseSkillTags": {
+        "courses": 170,
+        "tags": 188,
+        "byConfidence": {
+          "high": 116,
+          "low": 43,
+          "medium": 11
+        },
+        "promptVersion": "v2",
+        "spotCheck": "pending"
+      }
     }
   },
   "errors": [],
