@@ -51,8 +51,10 @@ describe("graph evidence slice", () => {
     }
   });
 
-  it("is a small payload (the 8k weak candidates never reach the client)", () => {
+  it("is a small payload (the 8k weak candidates and the 19k branch transitions never reach the client)", () => {
     expect(graph.edges.length).toBeLessThan(600);
-    expect(JSON.stringify(graph).length).toBeLessThan(200_000);
+    const steps = Object.values(graph.branches).flatMap((bySource) => Object.values(bySource)).flatMap((o) => (o.minSupportMet ? o.steps : []));
+    expect(steps.length).toBeLessThanOrEqual(232 * 4);
+    expect(JSON.stringify(graph).length).toBeLessThan(300_000);
   });
 });
