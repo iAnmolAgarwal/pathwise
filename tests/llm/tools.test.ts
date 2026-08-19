@@ -149,8 +149,28 @@ describe("describeEvidence learner evidence (§7 rendering 2)", () => {
       },
       data,
     );
-    expect(withEvidence.learnerEvidence).toEqual([
-      { link: "JavaScript → React", source: "Stack Overflow question order", tookInThisOrder: 1617, tookTheOtherWay: 103, percentInThisOrder: 94, n: 1720, caveat: "asking ≠ completing" },
-    ]);
+    expect(withEvidence.learnerEvidence).toEqual({
+      links: [{ link: "JavaScript → React", source: "Stack Overflow question order", tookInThisOrder: 1617, tookTheOtherWay: 103, percentInThisOrder: 94, n: 1720, caveat: "asking ≠ completing" }],
+    });
+  });
+
+  it("passes the 'learners like you' branch as a transition share with population, source and caveat (§15.8)", () => {
+    const base = {
+      catalogId: data.catalog[0].id,
+      gapSkillsCovered: [],
+      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, total: 0 },
+      sequencedAfter: [],
+      provenance: "https://example.com/x",
+    };
+    const out = describeEvidence(
+      { ...base, learnerEvidence: { edges: [], branch: { from: "javascript", toThis: 1617, nTotal: 2280, shareShrunk: 0.7074, source: "coursera", caveat: "review order" } } },
+      data,
+    );
+    expect(out.learnerEvidence).toEqual({
+      whatLearnersDidNext: { fromSkillTheLearnerHas: "JavaScript", source: "Coursera review order", ofLearnersWhoLearnedIt: 2280, wentToThisSkillNext: 1617, percentWentHereNext: 71, caveat: "review order" },
+    });
+    const tiny = describeEvidence({ ...base, learnerEvidence: { edges: [], branch: { from: "javascript", toThis: 13, nTotal: 422784, shareShrunk: 0.00003, source: "stackoverflow", caveat: "c" } } }, data);
+    expect((tiny.learnerEvidence as { whatLearnersDidNext: { percentWentHereNext: unknown } }).whatLearnersDidNext.percentWentHereNext).toBe("<1");
+    expect(JSON.stringify(out)).not.toMatch(/satisf|struggl|liked|enjoy|\bhard\b/i);
   });
 });

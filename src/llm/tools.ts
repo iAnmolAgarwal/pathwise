@@ -262,18 +262,39 @@ export function describeEvidence(evidence: Evidence, data: EngineData) {
     })),
     scoreBreakdown: evidence.scoreBreakdown,
     // Learner-sequence numbers travel with the source name and caveat; the prompt allows
-    // citing numbers from this block only (§7 rendering 2, §8.2).
-    ...(evidence.learnerEvidence
+    // citing numbers from this block only (§7 rendering 2, §8.2, §15.8).
+    ...(evidence.learnerEvidence ? { learnerEvidence: describeLearnerEvidence(evidence.learnerEvidence, skillName) } : {}),
+  };
+}
+
+const SOURCE_PHRASE = { stackoverflow: "Stack Overflow question order", coursera: "Coursera review order" } as const;
+
+function describeLearnerEvidence(le: NonNullable<Evidence["learnerEvidence"]>, skillName: (id: string) => string) {
+  const links = le.edges.map((e) => ({
+    link: `${skillName(e.from)} → ${skillName(e.to)}`,
+    source: SOURCE_PHRASE[e.source],
+    tookInThisOrder: e.support,
+    tookTheOtherWay: e.reverse,
+    percentInThisOrder: Math.round(e.confidence * 100),
+    n: e.n,
+    caveat: e.caveat,
+  }));
+  const b = le.branch;
+  const pct = b ? Math.round(b.shareShrunk * 100) : 0;
+  return {
+    ...(links.length > 0 ? { links } : {}),
+    // "Learners like you": a transition share from a skill the learner has into this item's
+    // primary skill — what learners did next, never how they felt about it (N-5).
+    ...(b
       ? {
-          learnerEvidence: evidence.learnerEvidence.edges.map((e) => ({
-            link: `${skillName(e.from)} → ${skillName(e.to)}`,
-            source: e.source === "stackoverflow" ? "Stack Overflow question order" : "Coursera review order",
-            tookInThisOrder: e.support,
-            tookTheOtherWay: e.reverse,
-            percentInThisOrder: Math.round(e.confidence * 100),
-            n: e.n,
-            caveat: e.caveat,
-          })),
+          whatLearnersDidNext: {
+            fromSkillTheLearnerHas: skillName(b.from),
+            source: SOURCE_PHRASE[b.source],
+            ofLearnersWhoLearnedIt: b.nTotal,
+            wentToThisSkillNext: b.toThis,
+            percentWentHereNext: pct === 0 ? "<1" : pct,
+            caveat: b.caveat,
+          },
         }
       : {}),
   };

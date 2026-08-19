@@ -7,6 +7,9 @@ describe("frozen prompts: numbers only from learnerEvidence", () => {
   it("the explain prompt allows learnerEvidence numbers and forbids others", () => {
     expect(EXPLAIN_SYSTEM_PROMPT).toMatch(/learnerEvidence block, you may cite its n and percentages — and only those numbers/);
     expect(EXPLAIN_SYSTEM_PROMPT).toMatch(/without that block, cite no numbers/);
+    // The branch share is framed as where learners went, never how they felt (N-5).
+    expect(EXPLAIN_SYSTEM_PROMPT).toMatch(/whatLearnersDidNext entry as the share of learners who/);
+    expect(EXPLAIN_SYSTEM_PROMPT).not.toMatch(/satisf|struggl|liked|enjoy/i);
   });
 
   it("the chat prompt carries the same rule for explain_item", () => {
