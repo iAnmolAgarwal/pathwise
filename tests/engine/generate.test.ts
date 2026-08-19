@@ -32,6 +32,7 @@ const skills: EngineData["skills"] = [
 const data: EngineData = {
   skills,
   skillEdges: authoredEdges(skills),
+  branches: [],
   goals: [
     {
       id: "fe",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import skillEdgesJson from "@/data/skill_edges.json";
-import { CONFIRM_CONFIDENCE, CONFIRM_N, learnerEvidenceLine } from "@/lib/learnerEvidence";
+import { CONFIRM_CONFIDENCE, CONFIRM_N, branchLine, learnerEvidenceLine } from "@/lib/learnerEvidence";
 import type { LearnerEvidenceEdge } from "@/schemas";
 
 const so = (over: Partial<LearnerEvidenceEdge>): LearnerEvidenceEdge => ({
@@ -42,5 +42,37 @@ describe("evidence-card provenance line", () => {
     const line = learnerEvidenceLine({ edges: [big, small] });
     expect(line?.lead).toBe(small);
     expect(line?.text).toBe("Confirmed by 7,799 learner sequences (93 % took these in this order)");
+  });
+});
+
+describe("evidence-card 'learners like you' line (§15.8)", () => {
+  const branch = { from: "javascript", toThis: 1617, nTotal: 2280, shareShrunk: 0.7074, source: "stackoverflow" as const, caveat: "asking ≠ completing" };
+
+  it("is absent without a branch", () => {
+    expect(branchLine(undefined, (id) => id)).toBeNull();
+    expect(branchLine({ edges: [] }, (id) => id)).toBeNull();
+  });
+
+  it("reads 'Learners like you: <share> took this next (n = <toThis>)' and names the source, population and caveat", () => {
+    const line = branchLine({ edges: [], branch }, (id) => (id === "javascript" ? "JavaScript" : id));
+    expect(line?.text).toBe("Learners like you: 71 % took this next (n = 1,617)");
+    expect(line?.detail).toBe("Of 2,280 Stack Overflow users who learned JavaScript, 1,617 went to this skill next. Transition share, shrunk toward the observed next-skills.");
+    expect(line?.source).toBe("Stack Overflow");
+    expect(line?.caveat).toBe("asking ≠ completing");
+  });
+
+  it("never rounds a small share to 0 %", () => {
+    const line = branchLine({ edges: [], branch: { ...branch, toThis: 13, nTotal: 422784, shareShrunk: 0.00003 } }, (id) => id);
+    expect(line?.text).toBe("Learners like you: < 1 % took this next (n = 13)");
+  });
+
+  it("uses the Coursera population noun for Coursera branches", () => {
+    const line = branchLine({ edges: [], branch: { ...branch, source: "coursera", toThis: 40, nTotal: 120, shareShrunk: 0.3333 } }, (id) => id);
+    expect(line?.detail).toMatch(/^Of 120 Coursera learners who learned javascript, 40 went to this skill next\./);
+  });
+
+  it("the wording carries no satisfaction claim (N-5)", () => {
+    const line = branchLine({ edges: [], branch }, (id) => id)!;
+    expect(`${line.text} ${line.detail}`).not.toMatch(/satisf|struggl|liked|enjoy|\bhard\b/i);
   });
 });

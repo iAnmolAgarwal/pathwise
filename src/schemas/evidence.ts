@@ -32,6 +32,21 @@ export const LearnerEvidenceEdgeSchema = z.object({
   caveat: z.string().min(1),
 });
 
+/**
+ * "What learners did next" for the item's primary gap skill (§15.8, D-18): from a skill the
+ * learner already has, the transition share into this skill — per source, shrunk, shown only
+ * above the floors (nTotal ≥ 50, toThis ≥ 5). A transition share, never satisfaction (N-5).
+ */
+export const LearnerEvidenceBranchSchema = z.object({
+  from: z.string().min(1),
+  /** Learners who went from → this item's primary gap skill next. */
+  toThis: z.number().int().min(5),
+  nTotal: z.number().int().min(50),
+  shareShrunk: z.number().gt(0).max(1),
+  source: EvidenceSourceSchema,
+  caveat: z.string().min(1),
+});
+
 export const EvidenceSchema = z.object({
   catalogId: z.string().min(1),
   gapSkillsCovered: z.array(
@@ -46,13 +61,17 @@ export const EvidenceSchema = z.object({
     z.object({ catalogId: z.string().min(1), becauseSkill: z.string().min(1) }),
   ),
   provenance: z.url(),
-  /** Present only when a covered gap skill sits on an edge with learner-sequence data. */
-  learnerEvidence: z.object({ edges: z.array(LearnerEvidenceEdgeSchema).min(1) }).optional(),
+  /** Present only when there is learner-sequence data to show: an edge a covered skill sits on, or a branch into the primary skill. */
+  learnerEvidence: z
+    .object({ edges: z.array(LearnerEvidenceEdgeSchema), branch: LearnerEvidenceBranchSchema.optional() })
+    .refine((le) => le.edges.length > 0 || le.branch !== undefined, { message: "learnerEvidence without edges or branch" })
+    .optional(),
 });
 
 export type GapReason = z.infer<typeof GapReasonSchema>;
 export type ScoreBreakdown = z.infer<typeof ScoreBreakdownSchema>;
 export type LearnerEvidenceEdge = z.infer<typeof LearnerEvidenceEdgeSchema>;
+export type LearnerEvidenceBranch = z.infer<typeof LearnerEvidenceBranchSchema>;
 export type Evidence = z.infer<typeof EvidenceSchema>;
 
 // ---------------------------------------------------------------------------

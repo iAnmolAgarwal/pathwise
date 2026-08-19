@@ -461,17 +461,23 @@
 }
 .learnerText {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 7px;
   padding: 4px 0;
+  line-height: 1.45;
   border-bottom: 1px dashed var(--color-line-strong);
   cursor: help;
   outline: none;
 }
 .learnerText svg {
+  flex: none;
   width: 13px;
   height: 13px;
+  align-self: center;
   color: var(--color-violet);
+}
+.learnerLine + .learnerLine {
+  margin-top: -2px;
 }
 .learnerText:focus-visible {
   border-bottom-color: var(--color-violet);

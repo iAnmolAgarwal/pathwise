@@ -1,5 +1,7 @@
 import { z } from "zod";
+import branchesJson from "@/data/branches.json";
 import skillEdgesJson from "@/data/skill_edges.json";
+import { buildBranchOverlay, type BranchOverlay } from "@/lib/branchOverlay";
 import { loadEngineData } from "@/lib/engineData";
 import type { EvidenceSource, SkillEdge } from "@/schemas";
 
@@ -38,7 +40,18 @@ export type GraphEvidence = {
   /** Stack Overflow tags behind each skill (the hand-built tag → skill map, §15.2). */
   soTags: Record<string, string[]>;
   thresholds: EvidenceThresholds;
+  /** "What learners did next" per skill and source, top steps only (§15.8). */
+  branches: BranchOverlay;
+  /** The floors branches.json was built with: nTotal ≥ minTotal to show anything, n ≥ minListed per step, shrinkage alpha. */
+  branchFloors: BranchFloors;
 };
+
+export type BranchFloors = { minTotal: number; minListed: number; alpha: number };
+
+const BranchHeaderSchema = z.object({
+  caveats: z.object({ stackoverflow: z.string(), coursera: z.string() }),
+  params: z.object({ alpha: z.number(), minListed: z.number().int(), minTotal: z.number().int() }),
+});
 
 export type PromotionThresholds = { promoteConfidence: number; promoteSupport: number; promoteCorroboration: number };
 export type EvidenceThresholds = PromotionThresholds & { confirmConfidence: number; confirmN: number };
@@ -105,6 +118,14 @@ export function loadGraphEvidence(): GraphEvidence {
   // Only the tags of skills that appear on a rendered edge travel to the client.
   const onEdges = new Set(edges.flatMap((e) => [e.from, e.to]));
   const tags = Object.fromEntries(Object.entries(soTags).filter(([id]) => onEdges.has(id)));
-  cached = { edges, caveats: header.caveats, soTags: tags, thresholds: header.thresholds };
+  const branchHeader = BranchHeaderSchema.parse(branchesJson);
+  cached = {
+    edges,
+    caveats: header.caveats,
+    soTags: tags,
+    thresholds: header.thresholds,
+    branches: buildBranchOverlay(loadEngineData().branches),
+    branchFloors: branchHeader.params,
+  };
   return cached;
 }

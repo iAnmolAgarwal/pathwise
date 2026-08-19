@@ -44,3 +44,36 @@ export function learnerEvidenceLine(learner: Evidence["learnerEvidence"]): Learn
     : `Seen in ${formatCount(lead.n)} learner sequences (${pct} took these in this order)`;
   return { lead, confirmed, text };
 }
+
+/** What one unit of nTotal is, per source: Stack Overflow counts askers, Coursera counts pseudo-learners. */
+export const POPULATION_NOUN: Record<LearnerEvidenceEdge["source"], string> = {
+  stackoverflow: "Stack Overflow users",
+  coursera: "Coursera learners",
+};
+
+/** Share formatting for the card and the overlay: a share that rounds to 0 % is shown as "< 1 %", never as 0 %. */
+export const formatShare = (x: number) => (x > 0 && x < 0.005 ? "< 1 %" : formatPct(x));
+
+export type BranchLine = {
+  text: string;
+  /** Population and counts behind the share, spelled out for the tooltip. */
+  detail: string;
+  source: string;
+  caveat: string;
+};
+
+/**
+ * "Learners like you" (§15.8): the transition share into this item's primary gap skill from a
+ * skill the learner already has, with n. The engine attached it only above the floors
+ * (nTotal ≥ 50, n ≥ 5); the card always shows the source and its caveat next to the share (N-2, N-5).
+ */
+export function branchLine(learner: Evidence["learnerEvidence"], skillName: (id: string) => string): BranchLine | null {
+  const b = learner?.branch;
+  if (!b) return null;
+  return {
+    text: `Learners like you: ${formatShare(b.shareShrunk)} took this next (n = ${formatCount(b.toThis)})`,
+    detail: `Of ${formatCount(b.nTotal)} ${POPULATION_NOUN[b.source]} who learned ${skillName(b.from)}, ${formatCount(b.toThis)} went to this skill next. Transition share, shrunk toward the observed next-skills.`,
+    source: SOURCE_NAME[b.source],
+    caveat: b.caveat,
+  };
+}

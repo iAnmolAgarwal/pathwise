@@ -30,6 +30,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 import type { SkillLite } from "../path/types";
+import { BranchOverlay } from "./BranchOverlay";
 import { EdgePopover, TIER_OF, TIER_STYLE, type EdgeTier } from "./EdgePopover";
 import styles from "./graph.module.css";
 
@@ -535,6 +536,16 @@ export function SkillGraph({ defaultLayout, ...props }: Props) {
                 </>
               )}
             </p>
+            <BranchOverlay
+              skillId={skill.id}
+              evidence={evidence}
+              nameOf={nameOf}
+              onSelectSkill={(id) => {
+                setSelected(id);
+                closePopover();
+                props.onSelectSkill?.(id);
+              }}
+            />
           </div>
         )}
       </div>

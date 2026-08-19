@@ -1,13 +1,13 @@
 "use client";
 
-import { ArrowUpRight, Check, GitBranch, HelpCircle } from "lucide-react";
+import { ArrowUpRight, Check, GitBranch, HelpCircle, Users } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 import type { Evidence, FeedbackEventType, Path, PathItemStatus } from "@/schemas";
 import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
-import { SOURCE_NAME, formatCount, formatPct, learnerEvidenceLine } from "@/lib/learnerEvidence";
+import { SOURCE_NAME, branchLine, formatCount, formatPct, learnerEvidenceLine } from "@/lib/learnerEvidence";
 import { cn } from "@/lib/utils";
 
 import type { CatalogLite } from "./types";
@@ -259,6 +259,31 @@ export function EvidenceBlock({ evidence, catalog, skillName }: { evidence: Evid
       </div>
 
       <LearnerEvidenceLine evidence={evidence} skillName={skillName} />
+      <BranchLine evidence={evidence} skillName={skillName} />
+    </div>
+  );
+}
+
+/**
+ * "Learners like you" (§15.8): the transition share into this item's primary gap skill from a
+ * skill the learner already has, with n; the hover spells out the population, the source and its
+ * caveat. The engine attached the branch only above the floors (nTotal ≥ 50, n ≥ 5), so when the
+ * data is thin the line is simply absent.
+ */
+function BranchLine({ evidence, skillName }: { evidence: Evidence; skillName: (id: string) => string }) {
+  const line = branchLine(evidence.learnerEvidence, skillName);
+  if (!line) return null;
+  return (
+    <div className={styles.learnerLine} data-testid="learner-branch">
+      <span className={styles.learnerText} tabIndex={0} aria-describedby={`learner-branch-${evidence.catalogId}`}>
+        <Users aria-hidden />
+        {line.text}
+      </span>
+      <div className={styles.learnerTip} role="tooltip" id={`learner-branch-${evidence.catalogId}`}>
+        <p className="label-caps">What learners did next · {line.source}</p>
+        <p className={styles.learnerTipStat}>{line.detail}</p>
+        <p className={styles.learnerTipCaveat}>{line.caveat}</p>
+      </div>
     </div>
   );
 }

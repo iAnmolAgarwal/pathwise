@@ -263,9 +263,44 @@ describe("learner evidence on path items (§5.6, N-2)", () => {
   it("carries no satisfaction wording in any caveat (N-5)", () => {
     for (const { result } of cases) {
       for (const item of result.path.phases.flatMap((p) => p.items)) {
-        for (const le of item.evidence.learnerEvidence?.edges ?? []) {
-          expect(le.caveat).not.toMatch(/satisf|struggl|liked|\bhard\b/i);
-        }
+        const le = item.evidence.learnerEvidence;
+        for (const e of le?.edges ?? []) expect(e.caveat).not.toMatch(/satisf|struggl|liked|\bhard\b/i);
+        if (le?.branch) expect(le.branch.caveat).not.toMatch(/satisf|struggl|liked|\bhard\b/i);
+      }
+    }
+  });
+
+  it("a branch line comes only from a skill the learner has, above both floors, with branches.json's numbers verbatim (§15.8)", () => {
+    const byKey = new Map(data.branches.map((b) => [`${b.from}|${b.source}`, b]));
+    let cited = 0;
+    for (const { name, result, profile } of cases) {
+      const known = new Set(Object.entries(profile.skills).filter(([, v]) => v.level > 0).map(([id]) => id));
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        const br = item.evidence.learnerEvidence?.branch;
+        if (!br) continue;
+        cited++;
+        const label = `${name}: ${item.catalogId} branch ${br.from} → this (${br.source})`;
+        expect(known.has(br.from), label).toBe(true);
+        const entry = byKey.get(`${br.from}|${br.source}`);
+        expect(entry?.minSupportMet, label).toBe(true);
+        expect(br.nTotal, label).toBe(entry!.nTotal);
+        expect(br.nTotal).toBeGreaterThanOrEqual(50);
+        expect(br.toThis).toBeGreaterThanOrEqual(5);
+        expect(br.caveat).toBe(entry!.caveat);
+        // The step points at a skill the item teaches, and its numbers are the file's.
+        const covered = new Set(item.evidence.gapSkillsCovered.map((g) => g.skillId));
+        const step = entry!.next.find((x) => covered.has(x.to) && x.n === br.toThis && x.shareShrunk === br.shareShrunk);
+        expect(step, label).toBeDefined();
+      }
+    }
+    expect(cited).toBeGreaterThan(0);
+  });
+
+  it("learnerEvidence is never an empty shell", () => {
+    for (const { result } of cases) {
+      for (const item of result.path.phases.flatMap((p) => p.items)) {
+        const le = item.evidence.learnerEvidence;
+        if (le) expect(le.edges.length > 0 || le.branch !== undefined).toBe(true);
       }
     }
   });

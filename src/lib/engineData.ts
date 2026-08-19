@@ -1,11 +1,12 @@
 import { z } from "zod";
 import type { EngineData } from "@/engine/types";
+import branchesJson from "@/data/branches.json";
 import catalogJson from "@/data/catalog.json";
 import embeddingsJson from "@/data/embeddings.json";
 import goalsJson from "@/data/goals.json";
 import skillEdgesJson from "@/data/skill_edges.json";
 import skillsJson from "@/data/skills.json";
-import { CatalogItemSchema, GoalTemplateSchema, SkillEdgeSchema, SkillSchema } from "@/schemas";
+import { BranchSchema, CatalogItemSchema, GoalTemplateSchema, SkillEdgeSchema, SkillSchema } from "@/schemas";
 
 let cached: EngineData | null = null;
 
@@ -17,6 +18,7 @@ export function loadEngineData(): EngineData {
     catalog: z.array(CatalogItemSchema).parse(catalogJson),
     embeddings: z.record(z.string(), z.array(z.number())).parse(embeddingsJson),
     skillEdges: z.array(SkillEdgeSchema).parse(skillEdgesJson.edges),
+    branches: z.array(BranchSchema).parse(branchesJson.branches),
   };
   return cached;
 }
