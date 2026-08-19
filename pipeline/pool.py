@@ -125,8 +125,21 @@ def pool_edges(course_edges: list[dict], tags: dict[str, list[str]], item_of: di
         frm, to, sup, rev = (a, b, ab, ba) if ab >= ba else (b, a, ba, ab)
         n = sup + rev
         course_pairs = contributors.get((frm, to), {})
-        top = sorted(course_pairs.items(), key=lambda kv: (-kv[1], kv[0]))[: PARAMS["topCoursePairs"]]
-        all_pairs = {tuple(sorted(k)) for k in list(course_pairs) + list(contributors.get((to, frm), {}))}
+        reverse_pairs = contributors.get((to, frm), {})
+        all_pairs = {tuple(sorted(k)) for k in list(course_pairs) + list(reverse_pairs)}
+
+        def top(d: dict) -> list[dict]:
+            return [
+                {
+                    "fromCourseId": c1,
+                    "toCourseId": c2,
+                    "support": s,
+                    **({"fromItem": item_of[c1]} if c1 in item_of else {}),
+                    **({"toItem": item_of[c2]} if c2 in item_of else {}),
+                }
+                for (c1, c2), s in sorted(d.items(), key=lambda kv: (-kv[1], kv[0]))[: PARAMS["topCoursePairs"]]
+            ]
+
         edges.append(
             {
                 "from": frm,
@@ -136,16 +149,8 @@ def pool_edges(course_edges: list[dict], tags: dict[str, list[str]], item_of: di
                 "confidence": round(sup / n, 6),
                 "n": n,
                 "nCoursePairs": len(all_pairs),
-                "coursePairs": [
-                    {
-                        "fromCourseId": c1,
-                        "toCourseId": c2,
-                        "support": s,
-                        **({"fromItem": item_of[c1]} if c1 in item_of else {}),
-                        **({"toItem": item_of[c2]} if c2 in item_of else {}),
-                    }
-                    for (c1, c2), s in top
-                ],
+                "coursePairs": top(course_pairs),
+                "reverseCoursePairs": top(reverse_pairs),
             }
         )
     edges.sort(key=lambda e: (e["from"], e["to"]))
