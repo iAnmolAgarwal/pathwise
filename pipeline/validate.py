@@ -6,13 +6,17 @@ Checks, mirroring the Zod schemas in src/schemas/:
   3. Referential integrity: every skillId referenced anywhere exists.
   4. Embedding coverage: every skill and catalog item has a 384-dim vector, no extras.
   5. Evidence files under pipeline/evidence/ (when present) pass the schema checks of
-     mine_so.py, mine_coursera.py and tag_courses.py (pipeline-side mirrors of the Zod
-     evidence schema); their counts land in the report.
+     mine_so.py, mine_coursera.py, tag_courses.py and pool.py (pipeline-side mirrors of
+     the Zod evidence schema); their counts land in the report.
+  6. The merged evidence layer (src/data/skill_edges.json, branches.json): authored edges
+     equal skills.json.prereqs, path-driving edges (authored + human-promoted) are acyclic,
+     every source block carries support/reverse/confidence/n with the source caveat, branch
+     shares are consistent and sum to 1 over the observed successors, no satisfaction
+     wording in any caveat, every skill referenced exists (merge_edges.py check-schema).
 
 Writes pipeline/validation-report.json (committed) containing the outcome, entity
-counts, coverage warnings, and sha256 hashes of the four data files; the Vitest
-suite recomputes the hashes so `npm test` fails if data drifts from the last
-validated state.
+counts, coverage warnings, and sha256 hashes of the data files; the Vitest suite
+recomputes the hashes so `npm test` fails if data drifts from the last validated state.
 """
 
 from __future__ import annotations
@@ -41,7 +45,7 @@ DOMAINS = {
 KINDS = {"course", "project", "assessment"}
 FORMATS = {"video", "interactive", "text", "project"}
 COSTS = {"free", "freemium", "paid"}
-DATA_FILES = ["skills.json", "goals.json", "catalog.json", "embeddings.json"]
+DATA_FILES = ["skills.json", "goals.json", "catalog.json", "embeddings.json", "skill_edges.json", "branches.json"]
 
 
 def check_skill_refs(refs: list, skill_ids: set[str], owner: str, field: str, errors: list[str]) -> None:
@@ -165,7 +169,7 @@ def validate_evidence(errors: list[str]) -> dict:
     """Mined evidence under pipeline/evidence/, if emitted: Stack Overflow (edges_so.json,
     branches_so.json) and Coursera (edges_coursera_course.json)."""
     sys.path.insert(0, str(PIPELINE_DIR))
-    report: dict = {"stackoverflow": None, "coursera": None}
+    report: dict = {"stackoverflow": None, "coursera": None, "merged": None}
     edges_path = PIPELINE_DIR / "evidence" / "edges_so.json"
     branches_path = PIPELINE_DIR / "evidence" / "branches_so.json"
     if edges_path.exists() and branches_path.exists():
@@ -214,6 +218,42 @@ def validate_evidence(errors: list[str]) -> dict:
                 "promptVersion": tags.get("promptVersion"),
                 "spotCheck": tags.get("spotCheck", {}).get("status"),
             }
+        pooled_path = PIPELINE_DIR / "evidence" / "edges_coursera.json"
+        if pooled_path.exists():
+            import pool  # noqa: E402
+
+            if pool.check_schema() != 0:
+                errors.append("pipeline/evidence: pooled Coursera files failed pool.py check-schema")
+            pooled = json.loads(pooled_path.read_text())
+            report["coursera"]["pooled"] = {
+                "skillEdges": pooled["stats"].get("pooledEdges"),
+                "skillsCovered": pooled["stats"].get("skillsCovered"),
+                "crossDomainCandidates": pooled["stats"].get("relation", {}).get("unrelated"),
+                "branchFromSkillsAtFloor": json.loads((PIPELINE_DIR / "evidence" / "branches_coursera.json").read_text())["stats"].get("fromSkillsMinSupportMet"),
+            }
+    merged_path = DATA_DIR / "skill_edges.json"
+    if merged_path.exists():
+        import merge_edges  # noqa: E402
+
+        if merge_edges.check_schema() != 0:
+            errors.append("src/data: skill_edges.json / branches.json failed merge_edges.py check-schema")
+        merged = json.loads(merged_path.read_text())
+        branches = json.loads((DATA_DIR / "branches.json").read_text())
+        agreement_path = PIPELINE_DIR / "evidence" / "agreement_report.json"
+        agreement = json.loads(agreement_path.read_text()) if agreement_path.exists() else {}
+        report["merged"] = {
+            "edges": merged["stats"],
+            "branches": branches["stats"],
+            "agreement": {
+                "observableAnySource": agreement.get("observable", {}).get("anySource"),
+                "confirmedAnySource": agreement.get("confirmed", {}).get("anySource"),
+                "confirmedBoth": agreement.get("confirmed", {}).get("both"),
+                "contradicted": agreement.get("contradicted", {}).get("count"),
+                "promoted": agreement.get("mined", {}).get("promoted"),
+            },
+        }
+    else:
+        report["merged"] = None
     return report
 
 

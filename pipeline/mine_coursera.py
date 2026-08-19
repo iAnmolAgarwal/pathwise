@@ -18,8 +18,12 @@ Method (the parameters are printed into the output):
      pair of distinct courses once per name; same-day pairs carry no order and are dropped;
   5. keep support >= MIN_SUPPORT; confidence = AB / (AB + BA); keep confidence >= MIN_CONF.
 
-Course->skill lifting is not done here (tag_courses.py, then pool.py in the next block); this
-file is course-level and every number carries the fixed caveat below. Raw CSVs live in the
+Course->skill lifting is not done here (tag_courses.py, then pool.py); this file is
+course-level and every number carries the fixed caveat below. The same run also writes
+branches_coursera_course.json: per name, Ring-1 courses ordered by first review date; every
+course on the next distinct date is an immediate successor of every course on the current
+date (the rule mine_so.py uses); counts per (from, to) over Ring-1 courses only, so pool.py
+can lift them to skill-level transition shares without touching the raw CSV again. Raw CSVs live in the
 gitignored pipeline/build/coursera/ (Kaggle source, see README); output is deterministic
 (same CSVs -> byte-identical JSON) and no language model is involved.
 
@@ -47,6 +51,7 @@ BUILD_DIR = PIPELINE_DIR / "build" / "coursera"
 EVIDENCE_DIR = PIPELINE_DIR / "evidence"
 OUT_EDGES = EVIDENCE_DIR / "edges_coursera_course.json"
 OUT_STATS = EVIDENCE_DIR / "coursera_stats.md"
+OUT_BRANCHES = EVIDENCE_DIR / "branches_coursera_course.json"
 DEFAULT_REVIEWS = BUILD_DIR / "Coursera_reviews.csv"
 DEFAULT_COURSES = BUILD_DIR / "Coursera_courses.csv"
 
@@ -175,6 +180,35 @@ def count_pairs(banded: dict[str, list], drop_same_day: bool) -> tuple[Counter, 
                 counted = True
         names_with_pairs += counted
     return pairs, {"sameDayPairsDropped": ties, "namesWithPairs": names_with_pairs}
+
+
+def count_successors(banded: dict[str, list], keep: set[str]) -> tuple[Counter, dict]:
+    """Immediate-successor counts over the courses in `keep`: per name, first date per kept
+    course; courses grouped by date; every course on date d_{i+1} succeeds every course on d_i.
+    Same-day courses are never each other's successor."""
+    succ: Counter = Counter()
+    names_with_transition = 0
+    transitions = 0
+    for v in banded.values():
+        first: dict[str, int] = {}
+        for date, _order, course in sorted(v):
+            if course in keep and course not in first:
+                first[course] = date
+        if len(first) < 2:
+            continue
+        by_date: dict[int, list[str]] = defaultdict(list)
+        for course, date in first.items():
+            by_date[date].append(course)
+        dates = sorted(by_date)
+        counted = False
+        for d0, d1 in zip(dates, dates[1:]):
+            for a in by_date[d0]:
+                for b in by_date[d1]:
+                    succ[(a, b)] += 1
+                    transitions += 1
+                    counted = True
+        names_with_transition += counted
+    return succ, {"namesWithTransition": names_with_transition, "transitions": transitions}
 
 
 def edges_from(pairs: Counter, min_support: int, min_conf: float) -> list[dict]:
@@ -330,6 +364,36 @@ def run(reviews_path: Path, courses_path: Path) -> int:
     dump(OUT_EDGES, doc, "edges")
     write_stats_md(OUT_STATS, doc)
     print(f"wrote {OUT_EDGES.relative_to(REPO_ROOT)}: {len(edges)} edges over {len(ring1)} courses")
+
+    succ, succ_info = count_successors(banded, set(ring1))
+    successors = [{"fromCourseId": a, "toCourseId": b, "n": n} for (a, b), n in succ.items()]
+    successors.sort(key=lambda r: (r["fromCourseId"], r["toCourseId"]))
+    branches_doc = {
+        "source": SOURCE,
+        "caveat": CAVEAT,
+        "licence": LICENCE,
+        "datasetUrl": DATASET_URL,
+        "rule": (
+            "per name (same rows and band as the edges), Ring-1 courses ordered by first review date; every "
+            "course on the next distinct date is an immediate successor of every course on the current date; "
+            "same-day courses are never each other's successor; a review of a course outside Ring 1 is ignored "
+            "(the sequence runs over Ring-1 courses only)"
+        ),
+        "ring1": "the courses appearing in any edge of edges_coursera_course.json",
+        "params": {k: PARAMS[k] for k in ("minReviews", "maxReviews", "dedupLiteralRows")},
+        "inputs": doc["inputs"],
+        "stats": {
+            "ring1Courses": len(ring1),
+            "namesInBand": len(banded),
+            "namesWithTransition": succ_info["namesWithTransition"],
+            "transitions": succ_info["transitions"],
+            "successorPairs": len(successors),
+        },
+        "successorFields": "fromCourseId, toCourseId, n (names whose next Ring-1 course after from was to)",
+        "successors": successors,
+    }
+    dump(OUT_BRANCHES, branches_doc, "successors")
+    print(f"wrote {OUT_BRANCHES.relative_to(REPO_ROOT)}: {len(successors)} successor pairs, {succ_info['transitions']} transitions")
     print(f"wall {wall:.1f}s (read {t_read:.1f}s), max RSS {max_rss_mb} MB, python {sys.version.split()[0]}")
     print(f"success chains all survive: {chains['allSuccessSurvive']}; no nonsense chain survives: {chains['noNonsenseSurvives']}")
     return 0
@@ -424,12 +488,30 @@ def check_schema() -> int:
     ring1 = {c for k in seen for c in k}
     _require(ring1 == set(courses), "courses block is not exactly the set of courses in edges", errors)
     _require(e.get("stats", {}).get("edgesKept") == len(seen), "stats.edgesKept mismatch", errors)
+    n_succ = None
+    if OUT_BRANCHES.exists():
+        b = json.loads(OUT_BRANCHES.read_text())
+        for key in ("source", "caveat", "rule", "params", "inputs", "stats", "successors"):
+            _require(key in b, f"branches_coursera_course.json: missing {key}", errors)
+        _require(b.get("caveat") == CAVEAT, "branches_coursera_course.json: caveat text changed", errors)
+        _require(b.get("inputs") == e.get("inputs"), "branches_coursera_course.json: not produced from the same CSVs as the edges", errors)
+        seen_succ = set()
+        for r in b.get("successors", []):
+            key = (r.get("fromCourseId"), r.get("toCourseId"))
+            _require(key not in seen_succ, f"duplicate successor {key}", errors)
+            seen_succ.add(key)
+            _require(key[0] != key[1], f"self successor {key}", errors)
+            _require(key[0] in courses and key[1] in courses, f"successor {key}: course outside Ring 1", errors)
+            _require(isinstance(r.get("n"), int) and r["n"] >= 1, f"successor {key}: bad n", errors)
+        _require(b.get("stats", {}).get("successorPairs") == len(seen_succ), "branches stats.successorPairs mismatch", errors)
+        _require(b.get("stats", {}).get("transitions") == sum(r["n"] for r in b.get("successors", [])), "branches stats.transitions mismatch", errors)
+        n_succ = len(seen_succ)
     if errors:
         print("check-schema FAILED:")
         for m in errors[:30]:
             print(f"  - {m}")
         return 1
-    print(f"check-schema OK: {len(seen)} edges over {len(courses)} courses")
+    print(f"check-schema OK: {len(seen)} edges over {len(courses)} courses" + (f"; {n_succ} successor pairs" if n_succ is not None else ""))
     return 0
 
 

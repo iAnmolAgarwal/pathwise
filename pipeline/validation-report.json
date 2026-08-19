@@ -33,6 +33,46 @@
         },
         "promptVersion": "v3",
         "spotCheck": "reviewed"
+      },
+      "pooled": {
+        "skillEdges": 577,
+        "skillsCovered": 77,
+        "crossDomainCandidates": 471,
+        "branchFromSkillsAtFloor": 81
+      }
+    },
+    "merged": {
+      "edges": {
+        "authored": 193,
+        "byStatus": {
+          "candidate": 8219,
+          "confirmed-both": 11,
+          "confirmed-one-source": 61,
+          "contradicted-in-review": 6,
+          "no-data": 115
+        },
+        "drivesPath": 193,
+        "edges": 8412,
+        "mined": 8219
+      },
+      "branches": {
+        "bySource": {
+          "coursera": 81,
+          "stackoverflow": 151
+        },
+        "entries": 232,
+        "listedTransitions": 19128,
+        "minSupportMetBySource": {
+          "coursera": 81,
+          "stackoverflow": 146
+        }
+      },
+      "agreement": {
+        "observableAnySource": 188,
+        "confirmedAnySource": 74,
+        "confirmedBoth": 11,
+        "contradicted": 6,
+        "promoted": 0
       }
     }
   },
@@ -42,6 +82,8 @@
     "skills.json": "a6d3d2f4894f2e5cd5d47502dd79def203954270d90323eff0815baf7892c95d",
     "goals.json": "d10a8a4a3eabcf7ed046e90b880917e70adb8a3da906eec91cab11852e08fd7e",
     "catalog.json": "d488c76a36a239991e086f5787fbf19fee2a9573fc954abfc65c8aebf21fd6b4",
-    "embeddings.json": "5ab1bc6163cc9193e6d61a683e89288a6284bd4d9475cb3dfd37ac53ab5f799e"
+    "embeddings.json": "5ab1bc6163cc9193e6d61a683e89288a6284bd4d9475cb3dfd37ac53ab5f799e",
+    "skill_edges.json": "bd7c78fc19502616bb710aeb79bb74d68e3076f7d7a856f8215e999f9d3ae7be",
+    "branches.json": "fccc30d86b1da44dad0f3b10d15c76d2a426c6b318b2446317bd5a3d60142cf9"
   }
 }

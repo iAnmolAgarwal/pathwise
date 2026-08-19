@@ -45,6 +45,21 @@ JSON under `src/data/` and `pipeline/evidence/`, and nothing in it runs at reque
 `python pipeline/validate.py` re-checks the committed data and writes
 `pipeline/validation-report.json`, which the Vitest suite pins, so `npm test` fails on drift.
 
+The evidence stages run in this order (each is documented below; raw inputs never enter the
+repo, and a stage whose raw inputs are absent is skipped — its committed outputs stand):
+
+```
+python pipeline/mine_so.py run --project <gcp-project> && python pipeline/mine_so.py emit   # Stack Overflow -> evidence/edges_so.json, branches_so.json
+python pipeline/mine_coursera.py run     # Coursera -> evidence/edges_coursera_course.json, branches_coursera_course.json
+python pipeline/tag_courses.py tag       # Ring-1 course -> skill tags -> evidence/course_skill_tags.json (gated, see below)
+python pipeline/pool.py run              # course edges -> skill edges + branch shares -> evidence/edges_coursera.json, branches_coursera.json
+python pipeline/merge_edges.py run       # authored ∪ mined -> src/data/skill_edges.json, branches.json, evidence/agreement_report.md
+python pipeline/validate.py              # schema, DAG over path-driving edges, evidence integrity -> validation-report.json
+```
+
+**What the evidence says today** (`pipeline/evidence/agreement_report.md`, computed, not typed):
+> Of the 193 authored prerequisite edges, 188 were observable in real learner sequences (Stack Overflow question order for 186, Coursera review order for 84); 39.4 % of the observable edges were confirmed by at least one source and 5.9 % by both; 6 contradictions were raised and 6 resolved; 0 novel edges were promoted after human review.
+
 ### Learner-sequence evidence — Stack Overflow
 
 `pipeline/mine_so.py` mines the order in which real learners first asked about each skill on
@@ -136,3 +151,34 @@ on the full course pages). For the shipped file the check was done by one review
 independent, context-free model pass as a second opinion (`pipeline/sources/coursera_tag_resolutions.json`
 records every adjudication); the file states that process and its numbers in its `spotCheck`
 block — it does not claim a two-person human check.
+
+### Pooling and merge — the tiered skill graph
+
+`pipeline/pool.py` lifts the Coursera course edges to skill level through the Ring-1 tags: a
+course edge pools onto every (skill taught by the from-course, skill taught by the to-course)
+pair, both orientations are combined, and each pooled edge keeps support, reverse, confidence,
+the number of distinct course pairs behind it and the top-5 course pairs. Its first output is
+the measured histogram `pipeline/evidence/pooled_support_histogram.md`; pairs outside the
+authored prerequisite closure are listed in `cross_domain_candidates.md` rather than dropped.
+Course-level immediate-successor counts lift the same way into transition shares
+(`branches_coursera.json`), under the same floors as the Stack Overflow branches (listed at
+n ≥ 5, `minSupportMet` at nTotal ≥ 50, shrunk with α = 20).
+
+`pipeline/merge_edges.py` annotates every authored edge (`skills.json.prereqs`) with each
+source's numbers and gives it a status — `confirmed-both`, `confirmed-one-source`,
+`contradicted-in-review` (a source shows the opposite direction at confidence ≥ 0.85, n ≥ 50)
+or `no-data` — and writes every mined pair with no authored counterpart as a `candidate`
+(`drivesPath: false`). Authored edges drive paths; evidence annotates them; nothing automatic
+flips, removes or promotes an edge. Humans record decisions in
+`pipeline/sources/evidence_resolutions.json`; `contradictions.md` and `promotions.md` are
+rendered from the queues plus those decisions, and a recorded promotion is applied only if the
+edge still meets the thresholds, keeps level bands monotone and keeps the path-driving graph
+acyclic (the merge refuses otherwise). Outputs: `src/data/skill_edges.json`,
+`src/data/branches.json`, `pipeline/evidence/agreement_report.md/.json`.
+
+## Data sources and attribution
+
+- **Stack Overflow** question metadata via the BigQuery public dataset (`bigquery-public-data.stackoverflow`) and the Stack Exchange Data Explorer, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Pathwise publishes aggregate counts only, with this attribution wherever they are shown.
+- **Coursera** review order from the Kaggle dataset [Course Reviews on Coursera](https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera) (imuhammad), CC0 — only review order is used; review text never leaves the gitignored build directory.
+- The learner-sequence mining method, its measured validation (successes and failures shown side by side) and the "neither graph is strictly superior — use both and say which" conclusion are **Riyan Garg's**; Pathwise reproduces his method in the repository and credits it wherever the Coursera numbers appear.
+- Catalog items link to their original providers (Coursera, edX, freeCodeCamp, Kaggle, official documentation, YouTube); Pathwise stores titles, URLs and its own annotations, never course content.
