@@ -1,4 +1,5 @@
 import type {
+  Branch,
   CatalogItem,
   GapReason,
   GoalTemplate,
@@ -16,6 +17,8 @@ export type EngineData = {
   embeddings: Record<string, number[]>;
   /** The merged, tiered edge set (skill_edges.json); the engine walks only the path-driving edges. */
   skillEdges: SkillEdge[];
+  /** "What learners did next" per skill and source (branches.json); evidence only, never control. */
+  branches: Branch[];
 };
 
 export type ProfileLevel = 0 | 1 | 2 | 3;
