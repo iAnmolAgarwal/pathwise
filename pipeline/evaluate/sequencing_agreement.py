@@ -94,7 +94,10 @@ def transitive_closure(edges) -> dict[str, set[str]]:
 
 
 def ordered_pairs(path: dict) -> list[dict]:
-    """Every (a, b) with a first taught strictly before b; assessments do not teach."""
+    """Every (a, b) with a first taught strictly before b. Assessments do not teach, and an
+    item teaches a skill only above the level the learner already holds (a later project that
+    also covers a skill the learner came in with is not a sequencing decision)."""
+    held = {sid: v["level"] for sid, v in path["profile"]["skills"].items()}
     first_pos: dict[str, int] = {}
     first_phase: dict[str, int] = {}
     for item in path["items"]:
@@ -102,6 +105,8 @@ def ordered_pairs(path: dict) -> list[dict]:
             continue
         for t in item["skillsTaught"]:
             s = t["skillId"]
+            if t["level"] <= held.get(s, 0):
+                continue
             if s not in first_pos:
                 first_pos[s] = item["index"]
                 first_phase[s] = item["phaseIndex"]
@@ -145,7 +150,7 @@ def main() -> int:
     def evaluate(pairs: dict[tuple[str, str], dict], src: str, n_floor: int, margin: float) -> dict:
         observed = agree = ties = 0
         disagreeing = []
-        by_relation = {k: {"observed": 0, "agreeing": 0} for k in ("authored-edge", "graph-derived", "unrelated")}
+        by_relation = {k: {"observed": 0, "agreeing": 0} for k in ("authored-edge", "graph-derived", "graph-inverted", "unrelated")}
         weighted_obs = weighted_agree = 0
         for (a, b), rec in sorted(pairs.items()):
             o = lookup(obs[src], a, b)
@@ -158,9 +163,9 @@ def main() -> int:
             if max(share, 1 - share) < margin:
                 continue
             observed += 1
-            is_authored = (a, b) in authored or (b, a) in authored
-            relation = ("authored-edge" if is_authored
-                        else "graph-derived" if a in ancestors.get(b, set()) or b in ancestors.get(a, set())
+            relation = ("authored-edge" if (a, b) in authored
+                        else "graph-derived" if a in ancestors.get(b, set())
+                        else "graph-inverted" if (b, a) in authored or b in ancestors.get(a, set())
                         else "unrelated")
             ok = o["support"] > o["reverse"]
             w = len(rec["paths"])
@@ -195,15 +200,23 @@ def main() -> int:
         }
 
     cross_phase_only = {k: v for k, v in uniq.items() if v["crossPhaseIn"] == len(v["paths"])}
+    inverted = sorted(
+        (
+            {"from": a, "to": b, "fromName": skill_name.get(a, a), "toName": skill_name.get(b, b), "inPaths": sorted(set(v["paths"]))}
+            for (a, b), v in uniq.items()
+            if (b, a) in authored or b in ancestors.get(a, set())
+        ),
+        key=lambda d: (d["from"], d["to"]),
+    )
     per_path_counts = {p["name"]: len(ordered_pairs(p)) for p in corpus["paths"]}
     report = {
         "description": "Agreement between the engine's skill order in generated paths and the majority order observed in real learner sequences, per source. Computed by pipeline/evaluate/sequencing_agreement.py; nothing trained.",
         "method": {
             "corpus": "5 fixture learners + 15 goal templates x 3 canonical profiles (empty, partial, time-poor) = 50 generated paths",
-            "pair": "ordered pair (A, B) of taught skills where A's first teaching item precedes B's first teaching item in path order; assessments do not teach; ties (same item) are not pairs",
+            "pair": "ordered pair (A, B) of taught skills where A's first teaching item precedes B's first teaching item in path order; assessments do not teach, and an item teaches a skill only above the level the learner already holds; ties (same item) are not pairs",
             "observed": f"a source observed the pair with n >= {floor_n} (the file's confirm floor) and a strict majority; majority direction = support > reverse",
             "agreement": "the engine's order matches the observed majority direction",
-            "relation": "authored-edge: the pair is an authored prerequisite edge; graph-derived: one skill is a transitive prerequisite of the other through path-driving edges (the engine's order was forced by the graph); unrelated: no graph relation either way (the order came from scoring and phasing, not from a prerequisite claim)",
+            "relation": "authored-edge: A -> B is an authored prerequisite edge; graph-derived: A is a transitive prerequisite of B through path-driving edges (the engine's order follows the graph); graph-inverted: the graph says B before A yet the engine taught A first (a phase project covering a skill before its prerequisite course, or a cycle-broken soft edge) — an engine finding, not a learner-order one; unrelated: no graph relation either way (the order came from scoring and phasing, not from a prerequisite claim)",
             "confound": "the engine's order is partly derived from the authored prerequisite graph, and the authored edges are what the sources were already checked against in the agreement report; the unrelated split is the least confounded view and the authored-edge split the most",
         },
         "corpus": {
@@ -213,6 +226,7 @@ def main() -> int:
             "orderedPairOccurrences": occurrences,
             "uniqueOrderedPairs": len(uniq),
             "pairsSeenInBothOrdersAcrossPaths": both_orders,
+            "graphInvertedPairs": inverted,
             "pairsPerPath": per_path_counts,
         },
         "results": {
@@ -246,14 +260,18 @@ def render_md(report: dict) -> str:
         f"Corpus: {c['paths']} generated paths ({c['fixturePaths']} fixture learners, {c['templatePaths']} template x profile paths); "
         f"{c['uniqueOrderedPairs']} unique ordered skill pairs ({c['orderedPairOccurrences']} occurrences across paths).",
         "",
-        "| Source | View | Pairs observed | Agreeing | Agreement | Authored edges | Graph-derived | Unrelated |",
-        "|---|---|---|---|---|---|---|---|",
+        "| Source | View | Pairs observed | Agreeing | Agreement | Authored edges | Graph-derived | Graph-inverted | Unrelated |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for src, r in report["results"].items():
         for view, label in (("atFloor", f"n ≥ {r['atFloor']['floorN']}"), ("crossPhaseOnly", "cross-phase pairs only"), ("strict", f"n ≥ {r['strict']['floorN']}, majority ≥ {int(r['strict']['majorityMargin']*100)} %")):
             v = r[view]
             cells = " | ".join(f"{b['agreeing']} / {b['observed']} ({b['pctAgreement']} %)" for b in v["byRelation"].values())
             lines.append(f"| {r['label']} | {label} | {v['pairsObserved']} | {v['pairsAgreeing']} | {v['pctAgreement']} % | {cells} |")
+    inv = c["graphInvertedPairs"]
+    lines += ["", f"Pairs where the engine taught a skill before one of its own prerequisites (graph-inverted, any source): {len(inv)} of {c['uniqueOrderedPairs']}.", ""]
+    for d in inv:
+        lines.append(f"- {d['fromName']} before {d['toName']} — in {', '.join(d['inPaths'])}")
     lines += ["", "## Disagreeing pairs (at the floor)", ""]
     for src, r in report["results"].items():
         lines.append(f"### {r['label']}")

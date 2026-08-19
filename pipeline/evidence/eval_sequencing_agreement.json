@@ -1,45 +1,207 @@
 {
  "corpus": {
   "fixturePaths": 5,
-  "orderedPairOccurrences": 6330,
+  "graphInvertedPairs": [
+   {
+    "from": "api-integration",
+    "fromName": "Working with APIs",
+    "inPaths": [
+     "fixture:beginner-frontend",
+     "template:backend-developer:empty",
+     "template:frontend-developer:empty",
+     "template:full-stack-developer:empty"
+    ],
+    "to": "javascript-advanced",
+    "toName": "Modern JavaScript"
+   },
+   {
+    "from": "ci-cd",
+    "fromName": "CI/CD",
+    "inPaths": [
+     "template:machine-learning-engineer:partial",
+     "template:qa-automation-engineer:empty",
+     "template:qa-automation-engineer:partial"
+    ],
+    "to": "devops-fundamentals",
+    "toName": "DevOps Fundamentals"
+   },
+   {
+    "from": "computer-vision",
+    "fromName": "Computer Vision",
+    "inPaths": [
+     "template:machine-learning-engineer:empty"
+    ],
+    "to": "deep-learning",
+    "toName": "Deep Learning"
+   },
+   {
+    "from": "data-storytelling",
+    "fromName": "Data Storytelling",
+    "inPaths": [
+     "template:business-intelligence-analyst:time-poor",
+     "template:data-analyst:partial"
+    ],
+    "to": "data-visualization",
+    "toName": "Data Visualization"
+   },
+   {
+    "from": "data-storytelling",
+    "fromName": "Data Storytelling",
+    "inPaths": [
+     "template:data-analyst:empty"
+    ],
+    "to": "python-data-analysis",
+    "toName": "Python for Data Analysis"
+   },
+   {
+    "from": "data-visualization",
+    "fromName": "Data Visualization",
+    "inPaths": [
+     "template:data-analyst:empty"
+    ],
+    "to": "python-data-analysis",
+    "toName": "Python for Data Analysis"
+   },
+   {
+    "from": "dbt",
+    "fromName": "dbt",
+    "inPaths": [
+     "template:business-intelligence-analyst:empty",
+     "template:business-intelligence-analyst:partial",
+     "template:business-intelligence-analyst:time-poor"
+    ],
+    "to": "data-modeling",
+    "toName": "Data Modeling"
+   },
+   {
+    "from": "dbt",
+    "fromName": "dbt",
+    "inPaths": [
+     "template:business-intelligence-analyst:partial"
+    ],
+    "to": "data-warehousing",
+    "toName": "Data Warehousing"
+   },
+   {
+    "from": "dbt",
+    "fromName": "dbt",
+    "inPaths": [
+     "template:business-intelligence-analyst:partial"
+    ],
+    "to": "etl-pipelines",
+    "toName": "ETL & Data Pipelines"
+   },
+   {
+    "from": "devops-fundamentals",
+    "fromName": "DevOps Fundamentals",
+    "inPaths": [
+     "template:cloud-engineer:empty",
+     "template:devops-engineer:partial",
+     "template:devops-engineer:time-poor",
+     "template:machine-learning-engineer:time-poor",
+     "template:qa-automation-engineer:time-poor",
+     "template:site-reliability-engineer:empty",
+     "template:site-reliability-engineer:partial"
+    ],
+    "to": "version-control-git",
+    "toName": "Git & Version Control"
+   },
+   {
+    "from": "exploratory-data-analysis",
+    "fromName": "Exploratory Data Analysis",
+    "inPaths": [
+     "template:data-analyst:empty"
+    ],
+    "to": "python-data-analysis",
+    "toName": "Python for Data Analysis"
+   },
+   {
+    "from": "feature-engineering",
+    "fromName": "Feature Engineering",
+    "inPaths": [
+     "template:machine-learning-engineer:empty"
+    ],
+    "to": "ml-fundamentals",
+    "toName": "Machine Learning Fundamentals"
+   },
+   {
+    "from": "model-evaluation",
+    "fromName": "Model Evaluation",
+    "inPaths": [
+     "fixture:partial-skills-ml",
+     "template:data-scientist:empty",
+     "template:machine-learning-engineer:partial"
+    ],
+    "to": "inferential-statistics",
+    "toName": "Inferential Statistics"
+   },
+   {
+    "from": "rag",
+    "fromName": "Retrieval-Augmented Generation",
+    "inPaths": [
+     "fixture:custom-goal"
+    ],
+    "to": "embeddings-vector-search",
+    "toName": "Embeddings & Vector Search"
+   },
+   {
+    "from": "scikit-learn",
+    "fromName": "scikit-learn",
+    "inPaths": [
+     "template:machine-learning-engineer:empty"
+    ],
+    "to": "ml-fundamentals",
+    "toName": "Machine Learning Fundamentals"
+   },
+   {
+    "from": "supervised-learning",
+    "fromName": "Supervised Learning",
+    "inPaths": [
+     "template:machine-learning-engineer:empty"
+    ],
+    "to": "ml-fundamentals",
+    "toName": "Machine Learning Fundamentals"
+   }
+  ],
+  "orderedPairOccurrences": 6164,
   "pairsPerPath": {
    "fixture:beginner-frontend": 120,
    "fixture:career-switcher-to-ds": 175,
    "fixture:custom-goal": 110,
-   "fixture:partial-skills-ml": 242,
+   "fixture:partial-skills-ml": 200,
    "fixture:time-poor-cloud": 66,
    "template:ai-engineer:empty": 389,
    "template:ai-engineer:partial": 239,
    "template:ai-engineer:time-poor": 128,
    "template:backend-developer:empty": 233,
-   "template:backend-developer:partial": 121,
+   "template:backend-developer:partial": 105,
    "template:backend-developer:time-poor": 77,
    "template:business-intelligence-analyst:empty": 75,
-   "template:business-intelligence-analyst:partial": 113,
+   "template:business-intelligence-analyst:partial": 99,
    "template:business-intelligence-analyst:time-poor": 34,
    "template:cloud-engineer:empty": 198,
    "template:cloud-engineer:partial": 85,
    "template:cloud-engineer:time-poor": 93,
    "template:data-analyst:empty": 84,
-   "template:data-analyst:partial": 52,
+   "template:data-analyst:partial": 43,
    "template:data-analyst:time-poor": 42,
    "template:data-engineer:empty": 147,
    "template:data-engineer:partial": 75,
    "template:data-engineer:time-poor": 34,
    "template:data-scientist:empty": 127,
-   "template:data-scientist:partial": 94,
+   "template:data-scientist:partial": 82,
    "template:data-scientist:time-poor": 51,
    "template:devops-engineer:empty": 201,
-   "template:devops-engineer:partial": 143,
+   "template:devops-engineer:partial": 131,
    "template:devops-engineer:time-poor": 64,
    "template:frontend-developer:empty": 120,
-   "template:frontend-developer:partial": 90,
+   "template:frontend-developer:partial": 69,
    "template:frontend-developer:time-poor": 6,
    "template:full-stack-developer:empty": 214,
-   "template:full-stack-developer:partial": 127,
+   "template:full-stack-developer:partial": 114,
    "template:full-stack-developer:time-poor": 28,
    "template:machine-learning-engineer:empty": 289,
-   "template:machine-learning-engineer:partial": 176,
+   "template:machine-learning-engineer:partial": 160,
    "template:machine-learning-engineer:time-poor": 146,
    "template:qa-automation-engineer:empty": 153,
    "template:qa-automation-engineer:partial": 63,
@@ -48,16 +210,16 @@
    "template:security-analyst:partial": 57,
    "template:security-analyst:time-poor": 22,
    "template:site-reliability-engineer:empty": 290,
-   "template:site-reliability-engineer:partial": 124,
+   "template:site-reliability-engineer:partial": 113,
    "template:site-reliability-engineer:time-poor": 104,
    "template:solutions-architect:empty": 310,
    "template:solutions-architect:partial": 160,
    "template:solutions-architect:time-poor": 113
   },
-  "pairsSeenInBothOrdersAcrossPaths": 280,
+  "pairsSeenInBothOrdersAcrossPaths": 272,
   "paths": 50,
   "templatePaths": 45,
-  "uniqueOrderedPairs": 2473
+  "uniqueOrderedPairs": 2451
  },
  "description": "Agreement between the engine's skill order in generated paths and the majority order observed in real learner sequences, per source. Computed by pipeline/evaluate/sequencing_agreement.py; nothing trained.",
  "inputs": {
@@ -85,8 +247,8 @@
   "confound": "the engine's order is partly derived from the authored prerequisite graph, and the authored edges are what the sources were already checked against in the agreement report; the unrelated split is the least confounded view and the authored-edge split the most",
   "corpus": "5 fixture learners + 15 goal templates x 3 canonical profiles (empty, partial, time-poor) = 50 generated paths",
   "observed": "a source observed the pair with n >= 20 (the file's confirm floor) and a strict majority; majority direction = support > reverse",
-  "pair": "ordered pair (A, B) of taught skills where A's first teaching item precedes B's first teaching item in path order; assessments do not teach; ties (same item) are not pairs",
-  "relation": "authored-edge: the pair is an authored prerequisite edge; graph-derived: one skill is a transitive prerequisite of the other through path-driving edges (the engine's order was forced by the graph); unrelated: no graph relation either way (the order came from scoring and phasing, not from a prerequisite claim)"
+  "pair": "ordered pair (A, B) of taught skills where A's first teaching item precedes B's first teaching item in path order; assessments do not teach, and an item teaches a skill only above the level the learner already holds; ties (same item) are not pairs",
+  "relation": "authored-edge: A -> B is an authored prerequisite edge; graph-derived: A is a transitive prerequisite of B through path-driving edges (the engine's order follows the graph); graph-inverted: the graph says B before A yet the engine taught A first (a phase project covering a skill before its prerequisite course, or a cycle-broken soft edge) \u2014 an engine finding, not a learner-order one; unrelated: no graph relation either way (the order came from scoring and phasing, not from a prerequisite claim)"
  },
  "results": {
   "coursera": {
@@ -94,18 +256,23 @@
     "byRelation": {
      "authored-edge": {
       "agreeing": 26,
-      "observed": 37,
-      "pctAgreement": 70.3
+      "observed": 30,
+      "pctAgreement": 86.7
      },
      "graph-derived": {
-      "agreeing": 32,
-      "observed": 42,
-      "pctAgreement": 76.2
+      "agreeing": 31,
+      "observed": 39,
+      "pctAgreement": 79.5
+     },
+     "graph-inverted": {
+      "agreeing": 1,
+      "observed": 9,
+      "pctAgreement": 11.1
      },
      "unrelated": {
-      "agreeing": 151,
-      "observed": 253,
-      "pctAgreement": 59.7
+      "agreeing": 149,
+      "observed": 251,
+      "pctAgreement": 59.4
      }
     },
     "disagreeing": [
@@ -170,7 +337,7 @@
       "observedReverse": 1141,
       "observedShareThisOrder": 0.412,
       "observedThisOrder": 799,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "deep-learning",
       "toName": "Deep Learning"
      },
@@ -209,7 +376,7 @@
       "observedReverse": 1318,
       "observedShareThisOrder": 0.204,
       "observedThisOrder": 337,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -326,9 +493,22 @@
       "observedReverse": 686,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 181,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
+     },
+     {
+      "engineOrder": "debugging before version-control-git",
+      "from": "debugging",
+      "fromName": "Debugging",
+      "inPaths": 2,
+      "n": 791,
+      "observedReverse": 690,
+      "observedShareThisOrder": 0.128,
+      "observedThisOrder": 101,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
      },
      {
       "engineOrder": "ml-fundamentals before data-visualization",
@@ -352,7 +532,7 @@
       "observedReverse": 550,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 145,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -391,7 +571,7 @@
       "observedReverse": 465,
       "observedShareThisOrder": 0.263,
       "observedThisOrder": 166,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "data-visualization",
       "toName": "Data Visualization"
      },
@@ -451,7 +631,7 @@
       "engineOrder": "sql before programming-basics",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 579,
       "observedReverse": 523,
       "observedShareThisOrder": 0.097,
@@ -524,19 +704,6 @@
       "relation": "unrelated",
       "to": "exploratory-data-analysis",
       "toName": "Exploratory Data Analysis"
-     },
-     {
-      "engineOrder": "cloud-fundamentals before command-line",
-      "from": "cloud-fundamentals",
-      "fromName": "Cloud Fundamentals",
-      "inPaths": 2,
-      "n": 449,
-      "observedReverse": 396,
-      "observedShareThisOrder": 0.118,
-      "observedThisOrder": 53,
-      "relation": "unrelated",
-      "to": "command-line",
-      "toName": "Command Line & Linux Basics"
      },
      {
       "engineOrder": "cloud-fundamentals before linux-administration",
@@ -820,7 +987,7 @@
       "observedReverse": 284,
       "observedShareThisOrder": 0.063,
       "observedThisOrder": 19,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "inferential-statistics",
       "toName": "Inferential Statistics"
      },
@@ -867,7 +1034,7 @@
       "engineOrder": "sql before data-cleaning",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 203,
       "observedReverse": 113,
       "observedShareThisOrder": 0.443,
@@ -880,7 +1047,7 @@
       "engineOrder": "sql before exploratory-data-analysis",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 8,
+      "inPaths": 6,
       "n": 203,
       "observedReverse": 113,
       "observedShareThisOrder": 0.443,
@@ -893,7 +1060,7 @@
       "engineOrder": "command-line before programming-basics",
       "from": "command-line",
       "fromName": "Command Line & Linux Basics",
-      "inPaths": 8,
+      "inPaths": 7,
       "n": 195,
       "observedReverse": 192,
       "observedShareThisOrder": 0.015,
@@ -914,19 +1081,6 @@
       "relation": "unrelated",
       "to": "python",
       "toName": "Python"
-     },
-     {
-      "engineOrder": "unit-testing before programming-basics",
-      "from": "unit-testing",
-      "fromName": "Unit Testing",
-      "inPaths": 1,
-      "n": 195,
-      "observedReverse": 192,
-      "observedShareThisOrder": 0.015,
-      "observedThisOrder": 3,
-      "relation": "authored-edge",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
      },
      {
       "engineOrder": "feature-engineering before data-visualization",
@@ -1002,7 +1156,7 @@
       "observedReverse": 131,
       "observedShareThisOrder": 0.051,
       "observedThisOrder": 7,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -1010,7 +1164,7 @@
       "engineOrder": "programming-basics before feature-engineering",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 123,
       "observedReverse": 109,
       "observedShareThisOrder": 0.114,
@@ -1088,7 +1242,7 @@
       "engineOrder": "version-control-git before unit-testing",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 102,
       "observedReverse": 91,
       "observedShareThisOrder": 0.108,
@@ -1322,7 +1476,7 @@
       "engineOrder": "linux-administration before version-control-git",
       "from": "linux-administration",
       "fromName": "Linux Administration",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 67,
       "observedReverse": 41,
       "observedShareThisOrder": 0.388,
@@ -1426,7 +1580,7 @@
       "engineOrder": "programming-basics before deep-learning",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -1439,7 +1593,7 @@
       "engineOrder": "programming-basics before neural-networks",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 4,
+      "inPaths": 3,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -1600,7 +1754,7 @@
       "observedReverse": 30,
       "observedShareThisOrder": 0.0,
       "observedThisOrder": 0,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -1711,13 +1865,13 @@
     ],
     "floorN": 20,
     "majorityMargin": 0.5,
-    "pairsAgreeing": 209,
-    "pairsObserved": 332,
-    "pctAgreement": 63.0,
+    "pairsAgreeing": 207,
+    "pairsObserved": 329,
+    "pctAgreement": 62.9,
     "tiesExcluded": 5,
     "weightedByPathOccurrence": {
-     "agreeing": 776,
-     "observed": 1194,
+     "agreeing": 763,
+     "observed": 1173,
      "pctAgreement": 65.0
     }
    },
@@ -1725,18 +1879,23 @@
     "byRelation": {
      "authored-edge": {
       "agreeing": 14,
-      "observed": 22,
-      "pctAgreement": 63.6
+      "observed": 16,
+      "pctAgreement": 87.5
      },
      "graph-derived": {
-      "agreeing": 22,
-      "observed": 30,
-      "pctAgreement": 73.3
+      "agreeing": 21,
+      "observed": 27,
+      "pctAgreement": 77.8
+     },
+     "graph-inverted": {
+      "agreeing": 1,
+      "observed": 9,
+      "pctAgreement": 11.1
      },
      "unrelated": {
-      "agreeing": 74,
-      "observed": 138,
-      "pctAgreement": 53.6
+      "agreeing": 73,
+      "observed": 139,
+      "pctAgreement": 52.5
      }
     },
     "disagreeing": [
@@ -1775,7 +1934,7 @@
       "observedReverse": 1141,
       "observedShareThisOrder": 0.412,
       "observedThisOrder": 799,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "deep-learning",
       "toName": "Deep Learning"
      },
@@ -1801,7 +1960,7 @@
       "observedReverse": 1318,
       "observedShareThisOrder": 0.204,
       "observedThisOrder": 337,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -1879,9 +2038,22 @@
       "observedReverse": 686,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 181,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
+     },
+     {
+      "engineOrder": "debugging before version-control-git",
+      "from": "debugging",
+      "fromName": "Debugging",
+      "inPaths": 2,
+      "n": 791,
+      "observedReverse": 690,
+      "observedShareThisOrder": 0.128,
+      "observedThisOrder": 101,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
      },
      {
       "engineOrder": "ml-fundamentals before data-visualization",
@@ -1905,7 +2077,7 @@
       "observedReverse": 550,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 145,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -1931,7 +2103,7 @@
       "observedReverse": 465,
       "observedShareThisOrder": 0.263,
       "observedThisOrder": 166,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "data-visualization",
       "toName": "Data Visualization"
      },
@@ -1940,6 +2112,19 @@
       "from": "programming-basics",
       "fromName": "Programming Basics",
       "inPaths": 2,
+      "n": 601,
+      "observedReverse": 433,
+      "observedShareThisOrder": 0.28,
+      "observedThisOrder": 168,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
+     },
+     {
+      "engineOrder": "python before version-control-git",
+      "from": "python",
+      "fromName": "Python",
+      "inPaths": 6,
       "n": 601,
       "observedReverse": 433,
       "observedShareThisOrder": 0.28,
@@ -2165,7 +2350,7 @@
       "observedReverse": 284,
       "observedShareThisOrder": 0.063,
       "observedThisOrder": 19,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "inferential-statistics",
       "toName": "Inferential Statistics"
      },
@@ -2199,7 +2384,7 @@
       "engineOrder": "sql before data-cleaning",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 203,
       "observedReverse": 113,
       "observedShareThisOrder": 0.443,
@@ -2269,7 +2454,7 @@
       "observedReverse": 131,
       "observedShareThisOrder": 0.051,
       "observedThisOrder": 7,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -2277,7 +2462,7 @@
       "engineOrder": "programming-basics before feature-engineering",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 123,
       "observedReverse": 109,
       "observedShareThisOrder": 0.114,
@@ -2550,7 +2735,7 @@
       "engineOrder": "linux-administration before version-control-git",
       "from": "linux-administration",
       "fromName": "Linux Administration",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 67,
       "observedReverse": 41,
       "observedShareThisOrder": 0.388,
@@ -2641,7 +2826,7 @@
       "engineOrder": "programming-basics before deep-learning",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -2654,7 +2839,7 @@
       "engineOrder": "programming-basics before neural-networks",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 4,
+      "inPaths": 3,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -2737,7 +2922,7 @@
       "observedReverse": 30,
       "observedShareThisOrder": 0.0,
       "observedThisOrder": 0,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -2783,14 +2968,14 @@
     ],
     "floorN": 20,
     "majorityMargin": 0.5,
-    "pairsAgreeing": 110,
-    "pairsObserved": 190,
-    "pctAgreement": 57.9,
+    "pairsAgreeing": 109,
+    "pairsObserved": 191,
+    "pctAgreement": 57.1,
     "tiesExcluded": 1,
     "weightedByPathOccurrence": {
-     "agreeing": 392,
-     "observed": 625,
-     "pctAgreement": 62.7
+     "agreeing": 388,
+     "observed": 627,
+     "pctAgreement": 61.9
     }
    },
    "label": "Coursera review order",
@@ -2798,18 +2983,23 @@
     "byRelation": {
      "authored-edge": {
       "agreeing": 19,
-      "observed": 28,
-      "pctAgreement": 67.9
+      "observed": 22,
+      "pctAgreement": 86.4
      },
      "graph-derived": {
       "agreeing": 24,
-      "observed": 29,
-      "pctAgreement": 82.8
+      "observed": 28,
+      "pctAgreement": 85.7
+     },
+     "graph-inverted": {
+      "agreeing": 0,
+      "observed": 6,
+      "pctAgreement": 0.0
      },
      "unrelated": {
-      "agreeing": 109,
-      "observed": 174,
-      "pctAgreement": 62.6
+      "agreeing": 107,
+      "observed": 172,
+      "pctAgreement": 62.2
      }
     },
     "disagreeing": [
@@ -2874,7 +3064,7 @@
       "observedReverse": 1318,
       "observedShareThisOrder": 0.204,
       "observedThisOrder": 337,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -2939,9 +3129,22 @@
       "observedReverse": 686,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 181,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
+     },
+     {
+      "engineOrder": "debugging before version-control-git",
+      "from": "debugging",
+      "fromName": "Debugging",
+      "inPaths": 2,
+      "n": 791,
+      "observedReverse": 690,
+      "observedShareThisOrder": 0.128,
+      "observedThisOrder": 101,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
      },
      {
       "engineOrder": "ml-fundamentals before data-visualization",
@@ -2965,7 +3168,7 @@
       "observedReverse": 550,
       "observedShareThisOrder": 0.209,
       "observedThisOrder": 145,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -3004,7 +3207,7 @@
       "observedReverse": 465,
       "observedShareThisOrder": 0.263,
       "observedThisOrder": 166,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "data-visualization",
       "toName": "Data Visualization"
      },
@@ -3051,7 +3254,7 @@
       "engineOrder": "sql before programming-basics",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 579,
       "observedReverse": 523,
       "observedShareThisOrder": 0.097,
@@ -3072,19 +3275,6 @@
       "relation": "authored-edge",
       "to": "scikit-learn",
       "toName": "scikit-learn"
-     },
-     {
-      "engineOrder": "cloud-fundamentals before command-line",
-      "from": "cloud-fundamentals",
-      "fromName": "Cloud Fundamentals",
-      "inPaths": 2,
-      "n": 449,
-      "observedReverse": 396,
-      "observedShareThisOrder": 0.118,
-      "observedThisOrder": 53,
-      "relation": "unrelated",
-      "to": "command-line",
-      "toName": "Command Line & Linux Basics"
      },
      {
       "engineOrder": "cloud-fundamentals before linux-administration",
@@ -3277,7 +3467,7 @@
       "observedReverse": 284,
       "observedShareThisOrder": 0.063,
       "observedThisOrder": 19,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "inferential-statistics",
       "toName": "Inferential Statistics"
      },
@@ -3298,7 +3488,7 @@
       "engineOrder": "command-line before programming-basics",
       "from": "command-line",
       "fromName": "Command Line & Linux Basics",
-      "inPaths": 8,
+      "inPaths": 7,
       "n": 195,
       "observedReverse": 192,
       "observedShareThisOrder": 0.015,
@@ -3319,19 +3509,6 @@
       "relation": "unrelated",
       "to": "python",
       "toName": "Python"
-     },
-     {
-      "engineOrder": "unit-testing before programming-basics",
-      "from": "unit-testing",
-      "fromName": "Unit Testing",
-      "inPaths": 1,
-      "n": 195,
-      "observedReverse": 192,
-      "observedShareThisOrder": 0.015,
-      "observedThisOrder": 3,
-      "relation": "authored-edge",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
      },
      {
       "engineOrder": "feature-engineering before data-visualization",
@@ -3407,7 +3584,7 @@
       "observedReverse": 131,
       "observedShareThisOrder": 0.051,
       "observedThisOrder": 7,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -3415,7 +3592,7 @@
       "engineOrder": "programming-basics before feature-engineering",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 123,
       "observedReverse": 109,
       "observedShareThisOrder": 0.114,
@@ -3493,7 +3670,7 @@
       "engineOrder": "version-control-git before unit-testing",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 102,
       "observedReverse": 91,
       "observedShareThisOrder": 0.108,
@@ -3792,7 +3969,7 @@
       "engineOrder": "programming-basics before deep-learning",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -3805,7 +3982,7 @@
       "engineOrder": "programming-basics before neural-networks",
       "from": "programming-basics",
       "fromName": "Programming Basics",
-      "inPaths": 4,
+      "inPaths": 3,
       "n": 55,
       "observedReverse": 47,
       "observedShareThisOrder": 0.145,
@@ -3843,14 +4020,14 @@
     ],
     "floorN": 50,
     "majorityMargin": 0.7,
-    "pairsAgreeing": 152,
-    "pairsObserved": 231,
+    "pairsAgreeing": 150,
+    "pairsObserved": 228,
     "pctAgreement": 65.8,
     "tiesExcluded": 5,
     "weightedByPathOccurrence": {
-     "agreeing": 561,
-     "observed": 829,
-     "pctAgreement": 67.7
+     "agreeing": 556,
+     "observed": 817,
+     "pctAgreement": 68.1
     }
    }
   },
@@ -3858,35 +4035,27 @@
    "atFloor": {
     "byRelation": {
      "authored-edge": {
-      "agreeing": 86,
-      "observed": 106,
-      "pctAgreement": 81.1
+      "agreeing": 83,
+      "observed": 97,
+      "pctAgreement": 85.6
      },
      "graph-derived": {
       "agreeing": 154,
-      "observed": 163,
-      "pctAgreement": 94.5
+      "observed": 161,
+      "pctAgreement": 95.7
+     },
+     "graph-inverted": {
+      "agreeing": 3,
+      "observed": 10,
+      "pctAgreement": 30.0
      },
      "unrelated": {
-      "agreeing": 1091,
-      "observed": 1687,
-      "pctAgreement": 64.7
+      "agreeing": 1085,
+      "observed": 1666,
+      "pctAgreement": 65.1
      }
     },
     "disagreeing": [
-     {
-      "engineOrder": "html before javascript",
-      "from": "html",
-      "fromName": "HTML",
-      "inPaths": 2,
-      "n": 182225,
-      "observedReverse": 114805,
-      "observedShareThisOrder": 0.37,
-      "observedThisOrder": 67420,
-      "relation": "unrelated",
-      "to": "javascript",
-      "toName": "JavaScript"
-     },
      {
       "engineOrder": "css before javascript",
       "from": "css",
@@ -4047,7 +4216,7 @@
       "engineOrder": "sql before programming-basics",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 34762,
       "observedReverse": 17861,
       "observedShareThisOrder": 0.486,
@@ -4083,19 +4252,6 @@
       "toName": "JavaScript"
      },
      {
-      "engineOrder": "css before programming-basics",
-      "from": "css",
-      "fromName": "CSS",
-      "inPaths": 1,
-      "n": 33975,
-      "observedReverse": 17073,
-      "observedShareThisOrder": 0.497,
-      "observedThisOrder": 16902,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "networking-basics before html",
       "from": "networking-basics",
       "fromName": "Networking & How the Web Works",
@@ -4125,7 +4281,7 @@
       "engineOrder": "version-control-git before html",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 13,
+      "inPaths": 11,
       "n": 32374,
       "observedReverse": 22452,
       "observedShareThisOrder": 0.306,
@@ -4229,7 +4385,7 @@
       "engineOrder": "authentication before orm-data-access",
       "from": "authentication",
       "fromName": "Authentication & Authorization",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 22490,
       "observedReverse": 13250,
       "observedShareThisOrder": 0.411,
@@ -4237,19 +4393,6 @@
       "relation": "unrelated",
       "to": "orm-data-access",
       "toName": "ORMs & Data Access"
-     },
-     {
-      "engineOrder": "python-data-analysis before sql",
-      "from": "python-data-analysis",
-      "fromName": "Python for Data Analysis",
-      "inPaths": 2,
-      "n": 21835,
-      "observedReverse": 12054,
-      "observedShareThisOrder": 0.448,
-      "observedThisOrder": 9781,
-      "relation": "unrelated",
-      "to": "sql",
-      "toName": "SQL"
      },
      {
       "engineOrder": "networking-basics before command-line",
@@ -4325,7 +4468,7 @@
       "observedReverse": 12671,
       "observedShareThisOrder": 0.343,
       "observedThisOrder": 6609,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -4333,7 +4476,7 @@
       "engineOrder": "command-line before programming-basics",
       "from": "command-line",
       "fromName": "Command Line & Linux Basics",
-      "inPaths": 8,
+      "inPaths": 7,
       "n": 19189,
       "observedReverse": 10899,
       "observedShareThisOrder": 0.432,
@@ -4424,7 +4567,7 @@
       "engineOrder": "nodejs before orm-data-access",
       "from": "nodejs",
       "fromName": "Node.js",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 15681,
       "observedReverse": 9863,
       "observedShareThisOrder": 0.371,
@@ -4463,7 +4606,7 @@
       "engineOrder": "version-control-git before orm-data-access",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 15032,
       "observedReverse": 8696,
       "observedShareThisOrder": 0.422,
@@ -4476,7 +4619,7 @@
       "engineOrder": "unit-testing before version-control-git",
       "from": "unit-testing",
       "fromName": "Unit Testing",
-      "inPaths": 1,
+      "inPaths": 2,
       "n": 15021,
       "observedReverse": 7631,
       "observedShareThisOrder": 0.492,
@@ -4593,7 +4736,7 @@
       "engineOrder": "sql before r-programming",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 6,
+      "inPaths": 4,
       "n": 13639,
       "observedReverse": 7811,
       "observedShareThisOrder": 0.427,
@@ -4619,7 +4762,7 @@
       "engineOrder": "rest-api-design before orm-data-access",
       "from": "rest-api-design",
       "fromName": "REST API Design",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 13083,
       "observedReverse": 7657,
       "observedShareThisOrder": 0.415,
@@ -4640,19 +4783,6 @@
       "relation": "unrelated",
       "to": "command-line",
       "toName": "Command Line & Linux Basics"
-     },
-     {
-      "engineOrder": "postgresql before orm-data-access",
-      "from": "postgresql",
-      "fromName": "PostgreSQL",
-      "inPaths": 1,
-      "n": 12749,
-      "observedReverse": 7827,
-      "observedShareThisOrder": 0.386,
-      "observedThisOrder": 4922,
-      "relation": "unrelated",
-      "to": "orm-data-access",
-      "toName": "ORMs & Data Access"
      },
      {
       "engineOrder": "postgresql before nodejs",
@@ -4775,7 +4905,7 @@
       "engineOrder": "version-control-git before programming-basics",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 11066,
       "observedReverse": 7590,
       "observedShareThisOrder": 0.314,
@@ -4845,7 +4975,7 @@
       "observedReverse": 6813,
       "observedShareThisOrder": 0.354,
       "observedThisOrder": 3736,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -4967,19 +5097,6 @@
       "toName": "Authentication & Authorization"
      },
      {
-      "engineOrder": "caching before command-line",
-      "from": "caching",
-      "fromName": "Caching",
-      "inPaths": 1,
-      "n": 9576,
-      "observedReverse": 5829,
-      "observedShareThisOrder": 0.391,
-      "observedThisOrder": 3747,
-      "relation": "unrelated",
-      "to": "command-line",
-      "toName": "Command Line & Linux Basics"
-     },
-     {
       "engineOrder": "spreadsheets before r-programming",
       "from": "spreadsheets",
       "fromName": "Spreadsheets",
@@ -5035,7 +5152,7 @@
       "engineOrder": "statistics-fundamentals before python",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 8753,
       "observedReverse": 6354,
       "observedShareThisOrder": 0.274,
@@ -5061,7 +5178,7 @@
       "engineOrder": "linux-administration before version-control-git",
       "from": "linux-administration",
       "fromName": "Linux Administration",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 8563,
       "observedReverse": 4593,
       "observedShareThisOrder": 0.464,
@@ -5214,19 +5331,6 @@
       "toName": "Test Automation"
      },
      {
-      "engineOrder": "advanced-sql before orm-data-access",
-      "from": "advanced-sql",
-      "fromName": "Advanced SQL",
-      "inPaths": 1,
-      "n": 7756,
-      "observedReverse": 4073,
-      "observedShareThisOrder": 0.475,
-      "observedThisOrder": 3683,
-      "relation": "unrelated",
-      "to": "orm-data-access",
-      "toName": "ORMs & Data Access"
-     },
-     {
       "engineOrder": "data-visualization before r-programming",
       "from": "data-visualization",
       "fromName": "Data Visualization",
@@ -5277,19 +5381,6 @@
       "relation": "unrelated",
       "to": "debugging",
       "toName": "Debugging"
-     },
-     {
-      "engineOrder": "unit-testing before programming-basics",
-      "from": "unit-testing",
-      "fromName": "Unit Testing",
-      "inPaths": 1,
-      "n": 7041,
-      "observedReverse": 4922,
-      "observedShareThisOrder": 0.301,
-      "observedThisOrder": 2119,
-      "relation": "authored-edge",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
      },
      {
       "engineOrder": "javascript-advanced before authentication",
@@ -5542,7 +5633,7 @@
       "engineOrder": "javascript-advanced before orm-data-access",
       "from": "javascript-advanced",
       "fromName": "Modern JavaScript",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 5650,
       "observedReverse": 3821,
       "observedShareThisOrder": 0.324,
@@ -5594,7 +5685,7 @@
       "engineOrder": "statistics-fundamentals before r-programming",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 5539,
       "observedReverse": 4783,
       "observedShareThisOrder": 0.136,
@@ -5615,19 +5706,6 @@
       "relation": "unrelated",
       "to": "linux-administration",
       "toName": "Linux Administration"
-     },
-     {
-      "engineOrder": "websockets before orm-data-access",
-      "from": "websockets",
-      "fromName": "WebSockets & Realtime",
-      "inPaths": 1,
-      "n": 5436,
-      "observedReverse": 3443,
-      "observedShareThisOrder": 0.367,
-      "observedThisOrder": 1993,
-      "relation": "unrelated",
-      "to": "orm-data-access",
-      "toName": "ORMs & Data Access"
      },
      {
       "engineOrder": "azure-fundamentals before version-control-git",
@@ -5669,32 +5747,6 @@
       "toName": "NoSQL Databases"
      },
      {
-      "engineOrder": "cloud-fundamentals before command-line",
-      "from": "cloud-fundamentals",
-      "fromName": "Cloud Fundamentals",
-      "inPaths": 2,
-      "n": 5259,
-      "observedReverse": 2981,
-      "observedShareThisOrder": 0.433,
-      "observedThisOrder": 2278,
-      "relation": "unrelated",
-      "to": "command-line",
-      "toName": "Command Line & Linux Basics"
-     },
-     {
-      "engineOrder": "azure-fundamentals before command-line",
-      "from": "azure-fundamentals",
-      "fromName": "Azure Fundamentals",
-      "inPaths": 2,
-      "n": 5192,
-      "observedReverse": 3413,
-      "observedShareThisOrder": 0.343,
-      "observedThisOrder": 1779,
-      "relation": "unrelated",
-      "to": "command-line",
-      "toName": "Command Line & Linux Basics"
-     },
-     {
       "engineOrder": "cloud-fundamentals before version-control-git",
       "from": "cloud-fundamentals",
       "fromName": "Cloud Fundamentals",
@@ -5724,7 +5776,7 @@
       "engineOrder": "statistics-fundamentals before python-data-analysis",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 9,
+      "inPaths": 8,
       "n": 5146,
       "observedReverse": 3193,
       "observedShareThisOrder": 0.38,
@@ -5802,12 +5854,12 @@
       "engineOrder": "devops-fundamentals before version-control-git",
       "from": "devops-fundamentals",
       "fromName": "DevOps Fundamentals",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 4756,
       "observedReverse": 2585,
       "observedShareThisOrder": 0.456,
       "observedThisOrder": 2171,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "version-control-git",
       "toName": "Git & Version Control"
      },
@@ -5984,7 +6036,7 @@
       "engineOrder": "statistics-fundamentals before sql",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 9,
+      "inPaths": 7,
       "n": 4291,
       "observedReverse": 2442,
       "observedShareThisOrder": 0.431,
@@ -6036,7 +6088,7 @@
       "engineOrder": "statistics-fundamentals before programming-basics",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 4143,
       "observedReverse": 2501,
       "observedShareThisOrder": 0.396,
@@ -6358,19 +6410,6 @@
       "toName": "R Programming"
      },
      {
-      "engineOrder": "express before orm-data-access",
-      "from": "express",
-      "fromName": "Express.js",
-      "inPaths": 1,
-      "n": 3766,
-      "observedReverse": 2273,
-      "observedShareThisOrder": 0.396,
-      "observedThisOrder": 1493,
-      "relation": "unrelated",
-      "to": "orm-data-access",
-      "toName": "ORMs & Data Access"
-     },
-     {
       "engineOrder": "message-queues before aws-fundamentals",
       "from": "message-queues",
       "fromName": "Message Queues",
@@ -6527,6 +6566,19 @@
       "toName": "Frontend State Management"
      },
      {
+      "engineOrder": "go before version-control-git",
+      "from": "go",
+      "fromName": "Go",
+      "inPaths": 1,
+      "n": 3459,
+      "observedReverse": 2329,
+      "observedShareThisOrder": 0.327,
+      "observedThisOrder": 1130,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
+     },
+     {
       "engineOrder": "infrastructure-as-code before aws-fundamentals",
       "from": "infrastructure-as-code",
       "fromName": "Infrastructure as Code",
@@ -6556,7 +6608,7 @@
       "engineOrder": "statistics-fundamentals before data-visualization",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 7,
+      "inPaths": 6,
       "n": 3385,
       "observedReverse": 1819,
       "observedShareThisOrder": 0.463,
@@ -6699,7 +6751,7 @@
       "engineOrder": "statistics-fundamentals before command-line",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 6,
+      "inPaths": 5,
       "n": 3107,
       "observedReverse": 1715,
       "observedShareThisOrder": 0.448,
@@ -6826,19 +6878,6 @@
       "toName": "Debugging"
      },
      {
-      "engineOrder": "responsive-design before programming-basics",
-      "from": "responsive-design",
-      "fromName": "Responsive Design",
-      "inPaths": 1,
-      "n": 2951,
-      "observedReverse": 1813,
-      "observedShareThisOrder": 0.386,
-      "observedThisOrder": 1138,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "cloud-storage before cryptography-basics",
       "from": "cloud-storage",
       "fromName": "Cloud Storage",
@@ -6925,7 +6964,7 @@
       "observedReverse": 1621,
       "observedShareThisOrder": 0.426,
       "observedThisOrder": 1205,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -7107,7 +7146,7 @@
       "observedReverse": 1573,
       "observedShareThisOrder": 0.393,
       "observedThisOrder": 1017,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -7622,7 +7661,7 @@
       "engineOrder": "api-documentation before orm-data-access",
       "from": "api-documentation",
       "fromName": "API Documentation",
-      "inPaths": 2,
+      "inPaths": 1,
       "n": 1951,
       "observedReverse": 1422,
       "observedShareThisOrder": 0.271,
@@ -7734,19 +7773,6 @@
       "relation": "unrelated",
       "to": "data-modeling",
       "toName": "Data Modeling"
-     },
-     {
-      "engineOrder": "version-control-git before statistics-fundamentals",
-      "from": "version-control-git",
-      "fromName": "Git & Version Control",
-      "inPaths": 1,
-      "n": 1815,
-      "observedReverse": 1086,
-      "observedShareThisOrder": 0.402,
-      "observedThisOrder": 729,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "responsive-design before orm-data-access",
@@ -8012,7 +8038,7 @@
       "engineOrder": "probability before sql",
       "from": "probability",
       "fromName": "Probability",
-      "inPaths": 9,
+      "inPaths": 8,
       "n": 1589,
       "observedReverse": 889,
       "observedShareThisOrder": 0.441,
@@ -8064,7 +8090,7 @@
       "engineOrder": "statistics-fundamentals before computer-vision",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 3,
+      "inPaths": 1,
       "n": 1566,
       "observedReverse": 908,
       "observedShareThisOrder": 0.42,
@@ -8207,7 +8233,7 @@
       "engineOrder": "probability before programming-basics",
       "from": "probability",
       "fromName": "Probability",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 1450,
       "observedReverse": 933,
       "observedShareThisOrder": 0.357,
@@ -8589,7 +8615,7 @@
       "observedReverse": 785,
       "observedShareThisOrder": 0.315,
       "observedThisOrder": 361,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -8896,7 +8922,7 @@
       "engineOrder": "browser-devtools before orm-data-access",
       "from": "browser-devtools",
       "fromName": "Browser DevTools",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 978,
       "observedReverse": 668,
       "observedShareThisOrder": 0.317,
@@ -9125,19 +9151,6 @@
       "relation": "unrelated",
       "to": "computer-vision",
       "toName": "Computer Vision"
-     },
-     {
-      "engineOrder": "docker before statistics-fundamentals",
-      "from": "docker",
-      "fromName": "Docker & Containers",
-      "inPaths": 1,
-      "n": 862,
-      "observedReverse": 655,
-      "observedShareThisOrder": 0.24,
-      "observedThisOrder": 207,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "azure-fundamentals before configuration-management",
@@ -9868,19 +9881,6 @@
       "toName": "Express.js"
      },
      {
-      "engineOrder": "web-accessibility before programming-basics",
-      "from": "web-accessibility",
-      "fromName": "Web Accessibility",
-      "inPaths": 1,
-      "n": 567,
-      "observedReverse": 443,
-      "observedShareThisOrder": 0.219,
-      "observedThisOrder": 124,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "api-documentation before caching",
       "from": "api-documentation",
       "fromName": "API Documentation",
@@ -10084,7 +10084,7 @@
       "observedReverse": 312,
       "observedShareThisOrder": 0.37,
       "observedThisOrder": 183,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "inferential-statistics",
       "toName": "Inferential Statistics"
      },
@@ -10334,19 +10334,6 @@
       "relation": "unrelated",
       "to": "data-modeling",
       "toName": "Data Modeling"
-     },
-     {
-      "engineOrder": "ci-cd before statistics-fundamentals",
-      "from": "ci-cd",
-      "fromName": "CI/CD",
-      "inPaths": 1,
-      "n": 434,
-      "observedReverse": 331,
-      "observedShareThisOrder": 0.237,
-      "observedThisOrder": 103,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "api-testing before linux-administration",
@@ -10828,19 +10815,6 @@
       "relation": "unrelated",
       "to": "css",
       "toName": "CSS"
-     },
-     {
-      "engineOrder": "devops-fundamentals before statistics-fundamentals",
-      "from": "devops-fundamentals",
-      "fromName": "DevOps Fundamentals",
-      "inPaths": 1,
-      "n": 283,
-      "observedReverse": 154,
-      "observedShareThisOrder": 0.456,
-      "observedThisOrder": 129,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "tableau before etl-pipelines",
@@ -12002,32 +11976,37 @@
     ],
     "floorN": 20,
     "majorityMargin": 0.5,
-    "pairsAgreeing": 1331,
-    "pairsObserved": 1956,
-    "pctAgreement": 68.0,
+    "pairsAgreeing": 1325,
+    "pairsObserved": 1934,
+    "pctAgreement": 68.5,
     "tiesExcluded": 11,
     "weightedByPathOccurrence": {
-     "agreeing": 3764,
-     "observed": 5229,
-     "pctAgreement": 72.0
+     "agreeing": 3647,
+     "observed": 5071,
+     "pctAgreement": 71.9
     }
    },
    "crossPhaseOnly": {
     "byRelation": {
      "authored-edge": {
-      "agreeing": 53,
-      "observed": 68,
-      "pctAgreement": 77.9
+      "agreeing": 51,
+      "observed": 61,
+      "pctAgreement": 83.6
      },
      "graph-derived": {
-      "agreeing": 128,
-      "observed": 135,
-      "pctAgreement": 94.8
+      "agreeing": 134,
+      "observed": 139,
+      "pctAgreement": 96.4
+     },
+     "graph-inverted": {
+      "agreeing": 2,
+      "observed": 9,
+      "pctAgreement": 22.2
      },
      "unrelated": {
-      "agreeing": 786,
-      "observed": 1098,
-      "pctAgreement": 71.6
+      "agreeing": 784,
+      "observed": 1092,
+      "pctAgreement": 71.8
      }
     },
     "disagreeing": [
@@ -12097,19 +12076,6 @@
       "toName": "CSS"
      },
      {
-      "engineOrder": "css before programming-basics",
-      "from": "css",
-      "fromName": "CSS",
-      "inPaths": 1,
-      "n": 33975,
-      "observedReverse": 17073,
-      "observedShareThisOrder": 0.497,
-      "observedThisOrder": 16902,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "python before r-programming",
       "from": "python",
       "fromName": "Python",
@@ -12170,7 +12136,7 @@
       "observedReverse": 12671,
       "observedShareThisOrder": 0.343,
       "observedThisOrder": 6609,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -12243,7 +12209,7 @@
       "engineOrder": "version-control-git before orm-data-access",
       "from": "version-control-git",
       "fromName": "Git & Version Control",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 15032,
       "observedReverse": 8696,
       "observedShareThisOrder": 0.422,
@@ -12308,7 +12274,7 @@
       "engineOrder": "sql before r-programming",
       "from": "sql",
       "fromName": "SQL",
-      "inPaths": 6,
+      "inPaths": 4,
       "n": 13639,
       "observedReverse": 7811,
       "observedShareThisOrder": 0.427,
@@ -12318,14 +12284,14 @@
       "toName": "R Programming"
      },
      {
-      "engineOrder": "postgresql before orm-data-access",
-      "from": "postgresql",
-      "fromName": "PostgreSQL",
-      "inPaths": 1,
-      "n": 12749,
-      "observedReverse": 7827,
-      "observedShareThisOrder": 0.386,
-      "observedThisOrder": 4922,
+      "engineOrder": "rest-api-design before orm-data-access",
+      "from": "rest-api-design",
+      "fromName": "REST API Design",
+      "inPaths": 2,
+      "n": 13083,
+      "observedReverse": 7657,
+      "observedShareThisOrder": 0.415,
+      "observedThisOrder": 5426,
       "relation": "unrelated",
       "to": "orm-data-access",
       "toName": "ORMs & Data Access"
@@ -12378,7 +12344,7 @@
       "observedReverse": 6813,
       "observedShareThisOrder": 0.354,
       "observedThisOrder": 3736,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "python-data-analysis",
       "toName": "Python for Data Analysis"
      },
@@ -12490,7 +12456,7 @@
       "engineOrder": "linux-administration before version-control-git",
       "from": "linux-administration",
       "fromName": "Linux Administration",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 8563,
       "observedReverse": 4593,
       "observedShareThisOrder": 0.464,
@@ -12526,6 +12492,19 @@
       "toName": "Spreadsheets"
      },
      {
+      "engineOrder": "caching before version-control-git",
+      "from": "caching",
+      "fromName": "Caching",
+      "inPaths": 1,
+      "n": 7952,
+      "observedReverse": 4291,
+      "observedShareThisOrder": 0.46,
+      "observedThisOrder": 3661,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
+     },
+     {
       "engineOrder": "unit-testing before test-automation",
       "from": "unit-testing",
       "fromName": "Unit Testing",
@@ -12537,19 +12516,6 @@
       "relation": "authored-edge",
       "to": "test-automation",
       "toName": "Test Automation"
-     },
-     {
-      "engineOrder": "advanced-sql before orm-data-access",
-      "from": "advanced-sql",
-      "fromName": "Advanced SQL",
-      "inPaths": 1,
-      "n": 7756,
-      "observedReverse": 4073,
-      "observedShareThisOrder": 0.475,
-      "observedThisOrder": 3683,
-      "relation": "unrelated",
-      "to": "orm-data-access",
-      "toName": "ORMs & Data Access"
      },
      {
       "engineOrder": "command-line before r-programming",
@@ -12724,7 +12690,7 @@
       "engineOrder": "javascript-advanced before orm-data-access",
       "from": "javascript-advanced",
       "fromName": "Modern JavaScript",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 5650,
       "observedReverse": 3821,
       "observedShareThisOrder": 0.324,
@@ -12763,7 +12729,7 @@
       "engineOrder": "statistics-fundamentals before r-programming",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 5539,
       "observedReverse": 4783,
       "observedShareThisOrder": 0.136,
@@ -12841,12 +12807,12 @@
       "engineOrder": "devops-fundamentals before version-control-git",
       "from": "devops-fundamentals",
       "fromName": "DevOps Fundamentals",
-      "inPaths": 5,
+      "inPaths": 7,
       "n": 4756,
       "observedReverse": 2585,
       "observedShareThisOrder": 0.456,
       "observedThisOrder": 2171,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "version-control-git",
       "toName": "Git & Version Control"
      },
@@ -13254,6 +13220,19 @@
       "toName": "Network Security"
      },
      {
+      "engineOrder": "go before version-control-git",
+      "from": "go",
+      "fromName": "Go",
+      "inPaths": 1,
+      "n": 3459,
+      "observedReverse": 2329,
+      "observedShareThisOrder": 0.327,
+      "observedThisOrder": 1130,
+      "relation": "unrelated",
+      "to": "version-control-git",
+      "toName": "Git & Version Control"
+     },
+     {
       "engineOrder": "rest-api-design before advanced-sql",
       "from": "rest-api-design",
       "fromName": "REST API Design",
@@ -13371,19 +13350,6 @@
       "toName": "Machine Learning Fundamentals"
      },
      {
-      "engineOrder": "responsive-design before programming-basics",
-      "from": "responsive-design",
-      "fromName": "Responsive Design",
-      "inPaths": 1,
-      "n": 2951,
-      "observedReverse": 1813,
-      "observedShareThisOrder": 0.386,
-      "observedThisOrder": 1138,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "cloud-storage before cryptography-basics",
       "from": "cloud-storage",
       "fromName": "Cloud Storage",
@@ -13431,7 +13397,7 @@
       "observedReverse": 1621,
       "observedShareThisOrder": 0.426,
       "observedThisOrder": 1205,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -13522,7 +13488,7 @@
       "observedReverse": 1573,
       "observedShareThisOrder": 0.393,
       "observedThisOrder": 1017,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -13761,6 +13727,19 @@
       "toName": "Computer Vision"
      },
      {
+      "engineOrder": "api-documentation before orm-data-access",
+      "from": "api-documentation",
+      "fromName": "API Documentation",
+      "inPaths": 1,
+      "n": 1951,
+      "observedReverse": 1422,
+      "observedShareThisOrder": 0.271,
+      "observedThisOrder": 529,
+      "relation": "unrelated",
+      "to": "orm-data-access",
+      "toName": "ORMs & Data Access"
+     },
+     {
       "engineOrder": "cryptography-basics before system-design",
       "from": "cryptography-basics",
       "fromName": "Cryptography Basics",
@@ -13824,19 +13803,6 @@
       "relation": "unrelated",
       "to": "data-modeling",
       "toName": "Data Modeling"
-     },
-     {
-      "engineOrder": "version-control-git before statistics-fundamentals",
-      "from": "version-control-git",
-      "fromName": "Git & Version Control",
-      "inPaths": 1,
-      "n": 1815,
-      "observedReverse": 1086,
-      "observedShareThisOrder": 0.402,
-      "observedThisOrder": 729,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "responsive-design before orm-data-access",
@@ -13998,7 +13964,7 @@
       "engineOrder": "statistics-fundamentals before computer-vision",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 3,
+      "inPaths": 1,
       "n": 1566,
       "observedReverse": 908,
       "observedShareThisOrder": 0.42,
@@ -14263,7 +14229,7 @@
       "observedReverse": 785,
       "observedShareThisOrder": 0.315,
       "observedThisOrder": 361,
-      "relation": "graph-derived",
+      "relation": "graph-inverted",
       "to": "ml-fundamentals",
       "toName": "Machine Learning Fundamentals"
      },
@@ -14453,7 +14419,7 @@
       "engineOrder": "browser-devtools before orm-data-access",
       "from": "browser-devtools",
       "fromName": "Browser DevTools",
-      "inPaths": 3,
+      "inPaths": 2,
       "n": 978,
       "observedReverse": 668,
       "observedShareThisOrder": 0.317,
@@ -14565,19 +14531,6 @@
       "relation": "unrelated",
       "to": "cryptography-basics",
       "toName": "Cryptography Basics"
-     },
-     {
-      "engineOrder": "docker before statistics-fundamentals",
-      "from": "docker",
-      "fromName": "Docker & Containers",
-      "inPaths": 1,
-      "n": 862,
-      "observedReverse": 655,
-      "observedShareThisOrder": 0.24,
-      "observedThisOrder": 207,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "azure-fundamentals before configuration-management",
@@ -15035,19 +14988,6 @@
       "toName": "Express.js"
      },
      {
-      "engineOrder": "web-accessibility before programming-basics",
-      "from": "web-accessibility",
-      "fromName": "Web Accessibility",
-      "inPaths": 1,
-      "n": 567,
-      "observedReverse": 443,
-      "observedShareThisOrder": 0.219,
-      "observedThisOrder": 124,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "cloud-databases before system-design",
       "from": "cloud-databases",
       "fromName": "Cloud Databases",
@@ -15173,7 +15113,7 @@
       "observedReverse": 312,
       "observedShareThisOrder": 0.37,
       "observedThisOrder": 183,
-      "relation": "authored-edge",
+      "relation": "graph-inverted",
       "to": "inferential-statistics",
       "toName": "Inferential Statistics"
      },
@@ -15293,19 +15233,6 @@
       "relation": "unrelated",
       "to": "data-modeling",
       "toName": "Data Modeling"
-     },
-     {
-      "engineOrder": "ci-cd before statistics-fundamentals",
-      "from": "ci-cd",
-      "fromName": "CI/CD",
-      "inPaths": 1,
-      "n": 434,
-      "observedReverse": 331,
-      "observedShareThisOrder": 0.237,
-      "observedThisOrder": 103,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "api-testing before linux-administration",
@@ -16376,33 +16303,38 @@
     ],
     "floorN": 20,
     "majorityMargin": 0.5,
-    "pairsAgreeing": 967,
+    "pairsAgreeing": 971,
     "pairsObserved": 1301,
-    "pctAgreement": 74.3,
+    "pctAgreement": 74.6,
     "tiesExcluded": 6,
     "weightedByPathOccurrence": {
-     "agreeing": 2467,
-     "observed": 3144,
-     "pctAgreement": 78.5
+     "agreeing": 2420,
+     "observed": 3090,
+     "pctAgreement": 78.3
     }
    },
    "label": "Stack Overflow question order",
    "strict": {
     "byRelation": {
      "authored-edge": {
-      "agreeing": 35,
-      "observed": 36,
-      "pctAgreement": 97.2
+      "agreeing": 34,
+      "observed": 35,
+      "pctAgreement": 97.1
      },
      "graph-derived": {
       "agreeing": 74,
       "observed": 74,
       "pctAgreement": 100.0
      },
+     "graph-inverted": {
+      "agreeing": 1,
+      "observed": 1,
+      "pctAgreement": 100.0
+     },
      "unrelated": {
-      "agreeing": 232,
-      "observed": 301,
-      "pctAgreement": 77.1
+      "agreeing": 231,
+      "observed": 297,
+      "pctAgreement": 77.8
      }
     },
     "disagreeing": [
@@ -16540,7 +16472,7 @@
       "engineOrder": "statistics-fundamentals before python",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 8753,
       "observedReverse": 6354,
       "observedShareThisOrder": 0.274,
@@ -16592,7 +16524,7 @@
       "engineOrder": "statistics-fundamentals before r-programming",
       "from": "statistics-fundamentals",
       "fromName": "Statistics Fundamentals",
-      "inPaths": 5,
+      "inPaths": 4,
       "n": 5539,
       "observedReverse": 4783,
       "observedShareThisOrder": 0.136,
@@ -16852,7 +16784,7 @@
       "engineOrder": "api-documentation before orm-data-access",
       "from": "api-documentation",
       "fromName": "API Documentation",
-      "inPaths": 2,
+      "inPaths": 1,
       "n": 1951,
       "observedReverse": 1422,
       "observedShareThisOrder": 0.271,
@@ -16992,19 +16924,6 @@
       "toName": "Supervised Learning"
      },
      {
-      "engineOrder": "docker before statistics-fundamentals",
-      "from": "docker",
-      "fromName": "Docker & Containers",
-      "inPaths": 1,
-      "n": 862,
-      "observedReverse": 655,
-      "observedShareThisOrder": 0.24,
-      "observedThisOrder": 207,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
-     },
-     {
       "engineOrder": "docker before neural-networks",
       "from": "docker",
       "fromName": "Docker & Containers",
@@ -17070,19 +16989,6 @@
       "toName": "R Programming"
      },
      {
-      "engineOrder": "web-accessibility before programming-basics",
-      "from": "web-accessibility",
-      "fromName": "Web Accessibility",
-      "inPaths": 1,
-      "n": 567,
-      "observedReverse": 443,
-      "observedShareThisOrder": 0.219,
-      "observedThisOrder": 124,
-      "relation": "unrelated",
-      "to": "programming-basics",
-      "toName": "Programming Basics"
-     },
-     {
       "engineOrder": "docker before inferential-statistics",
       "from": "docker",
       "fromName": "Docker & Containers",
@@ -17107,19 +17013,6 @@
       "relation": "unrelated",
       "to": "test-automation",
       "toName": "Test Automation"
-     },
-     {
-      "engineOrder": "ci-cd before statistics-fundamentals",
-      "from": "ci-cd",
-      "fromName": "CI/CD",
-      "inPaths": 1,
-      "n": 434,
-      "observedReverse": 331,
-      "observedShareThisOrder": 0.237,
-      "observedThisOrder": 103,
-      "relation": "unrelated",
-      "to": "statistics-fundamentals",
-      "toName": "Statistics Fundamentals"
      },
      {
       "engineOrder": "docker before data-warehousing",
@@ -17319,14 +17212,14 @@
     ],
     "floorN": 50,
     "majorityMargin": 0.7,
-    "pairsAgreeing": 341,
-    "pairsObserved": 411,
-    "pctAgreement": 83.0,
+    "pairsAgreeing": 340,
+    "pairsObserved": 407,
+    "pctAgreement": 83.5,
     "tiesExcluded": 6,
     "weightedByPathOccurrence": {
-     "agreeing": 1046,
-     "observed": 1210,
-     "pctAgreement": 86.4
+     "agreeing": 998,
+     "observed": 1156,
+     "pctAgreement": 86.3
     }
    }
   }
