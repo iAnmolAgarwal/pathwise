@@ -59,6 +59,11 @@
   --color-status-unrelated-soft: rgb(255 255 255 / 3%);
   --color-status-unrelated-line: var(--color-line);
 
+  /* semantic: skill-graph edge tiers (learner evidence, §9.3); amber marks a link under human review */
+  --color-evidence-review: #f2b544;
+  --color-evidence-review-soft: rgb(242 181 68 / 12%);
+  --color-evidence-review-line: rgb(242 181 68 / 45%);
+
   /* semantic: dashboard marks (validated on surface-1: L band, ≥3:1, ΔE vs the gray ≥ 21) */
   --color-viz: #8f7cff;
   --color-viz-soft: rgb(143 124 255 / 22%);

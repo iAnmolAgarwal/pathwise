@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLearner, getLatestPath, getProfile, listChatMessages } from "@/db/queries";
 import { loadEngineData } from "@/lib/engineData";
+import { loadGraphEvidence } from "@/lib/graphEvidence";
 import { UuidSchema } from "@/lib/api";
 import { LearnWorkspace } from "@/components/LearnWorkspace";
 import type { CatalogLite, SkillLite } from "@/components/path/types";
@@ -37,7 +38,8 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
       { title: c.title, provider: c.provider, url: c.url, kind: c.kind, durationHours: c.durationHours, difficulty: c.difficulty },
     ]),
   );
-  const skills: SkillLite[] = data.skills.map((s) => ({ id: s.id, name: s.name, domain: s.domain, prereqs: s.prereqs }));
+  const skills: SkillLite[] = data.skills.map((s) => ({ id: s.id, name: s.name, domain: s.domain }));
+  const graphEvidence = loadGraphEvidence();
   const goals = data.goals.map((g) => ({ id: g.id, title: g.title, description: g.description, requiredSkills: g.requiredSkills }));
 
   return (
@@ -49,6 +51,7 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
       initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded, card: m.content.card }))}
       goals={goals}
       skills={skills}
+      graphEvidence={graphEvidence}
       catalog={catalog}
     />
   );

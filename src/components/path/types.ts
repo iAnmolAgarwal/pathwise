@@ -10,4 +10,4 @@ export type CatalogLite = {
   difficulty: number;
 };
 
-export type SkillLite = { id: string; name: string; domain: Domain; prereqs: string[] };
+export type SkillLite = { id: string; name: string; domain: Domain };

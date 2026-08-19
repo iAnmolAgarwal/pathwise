@@ -4,6 +4,7 @@ import { AnimatePresence } from "motion/react";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
+import type { GraphEvidence } from "@/lib/graphEvidence";
 import type { NovaState } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
@@ -51,11 +52,12 @@ type Props = {
   initialMessages: ChatMessageView[];
   goals: GoalLite[];
   skills: SkillLite[];
+  graphEvidence: GraphEvidence;
   catalog: Record<string, CatalogLite>;
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, initialProfile, initialPath, initialMessages, goals, skills, catalog }: Props) {
+export function LearnWorkspace({ learnerId, displayName, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
@@ -252,7 +254,7 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
                 Every skill in the taxonomy, coloured by where you stand. Press “Show in graph” on a path item to light up the chain of prerequisites it closes.
               </p>
               <div className="mt-4">
-                <SkillGraph skills={skills} skillStatus={dashboard?.skillStatus ?? {}} levels={levels} highlight={highlight} />
+                <SkillGraph skills={skills} evidence={graphEvidence} skillStatus={dashboard?.skillStatus ?? {}} levels={levels} highlight={highlight} />
               </div>
               {pathState && (
                 <div className="mt-4">
