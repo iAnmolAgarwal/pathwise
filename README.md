@@ -187,6 +187,17 @@ popover with each source's support, reverse, confidence, n, tags or course pairs
 and the narrator may cite numbers from that block only. Mined candidates that meet the
 promotion thresholds are drawn dotted around a selected skill; they never shape a path.
 
+`branches.json` answers "what did learners do next" per skill and per source, as transition
+shares only (never a rating): a share is listed at n ≥ 5 and a skill shows anything at all only
+when that source saw nTotal ≥ 50 learners, shrunk toward a uniform prior over the observed
+next-skills (α = 20). Selecting a skill in the graph opens the overlay — up to four next-skills
+per source with share and n, out-of-catalog steps greyed but never hidden, the caveat under each
+list, and "not enough learner data on this step" below the floor. On the evidence card, when a
+skill the learner already has lists the item's primary skill as a next step above those floors,
+the card adds "Learners like you: P % took this next (n = …)" with the population, source and
+caveat on hover, and the narrator may cite that share and n from the same block. Branch shares
+are evidence and display; they never reorder a path.
+
 ## Data sources and attribution
 
 - **Stack Overflow** question metadata via the BigQuery public dataset (`bigquery-public-data.stackoverflow`) and the Stack Exchange Data Explorer, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Pathwise publishes aggregate counts only, with this attribution wherever they are shown.
