@@ -1,0 +1,1954 @@
+{
+ "description": "Unsupported-claim rate of /api/explain narrations on a fixed 60-object sample: a second model pass flags every factual claim not traceable to the evidence object or profile summary. Computed by pipeline/evaluate/narration_groundedness.py; nothing trained.",
+ "method": {
+  "sample": "60 evidence objects: one per generated path (50) plus two more per fixture path (10); seed 42",
+  "narration": "pipeline/evaluate/narrate.ts: the same describeEvidence -> narrateEvidence pair, prompt, model and effort as POST /api/explain",
+  "checker": "claude-sonnet-5, effort medium, structured output; objective: list every factual claim not traceable to a field of the evidence object or the profile summary (paraphrase, arithmetic over fields and direct qualitative readings count as traceable; encouragement and framing are not claims)",
+  "rates": "narrations with >= 1 flagged claim / 60; flagged claims per narration; flagged claims per 100 sentences (sentences split on terminal punctuation); each flag is classed invented-fact (absent from every input), misstated-field (a field misquoted or misread) or interpretive-gloss (a qualitative reading beyond a field, no new fact)"
+ },
+ "sampleComposition": {
+  "fixturePaths": 15,
+  "templatePaths": 45,
+  "byKind": {
+   "course": 46,
+   "project": 9,
+   "assessment": 5
+  },
+  "withLearnerLinks": 27,
+  "withBranchShare": 26
+ },
+ "results": {
+  "narrations": 60,
+  "narrationsWithUnsupportedClaim": 37,
+  "unsupportedNarrationRate": 0.6167,
+  "narrationsWithInventedOrMisstatedFact": 15,
+  "inventedOrMisstatedRate": 0.25,
+  "claimsByKind": {
+   "invented-fact": 11,
+   "misstated-field": 7,
+   "interpretive-gloss": 42
+  },
+  "narrationsByClaimKind": {
+   "invented-fact": 9,
+   "misstated-field": 7,
+   "interpretive-gloss": 31
+  },
+  "unsupportedClaims": 60,
+  "claimsPerNarration": 1.0,
+  "sentences": 273,
+  "claimsPer100Sentences": 21.98,
+  "byKind": {
+   "course": {
+    "n": 46,
+    "flagged": 30
+   },
+   "project": {
+    "n": 9,
+    "flagged": 3
+   },
+   "assessment": {
+    "n": 5,
+    "flagged": 4
+   }
+  },
+  "withLearnerNumbers": {
+   "n": 37,
+   "flagged": 21
+  },
+  "meanNarrationWords": 126.8
+ },
+ "cost": {
+  "narration": {
+   "model": "claude-sonnet-5",
+   "effort": "low",
+   "input": 59324,
+   "output": 15133,
+   "cacheWrite": 0,
+   "cacheRead": 0,
+   "estimatedUsd": 0.27
+  },
+  "checker": {
+   "model": "claude-sonnet-5",
+   "effort": "medium",
+   "calls": 0,
+   "cached": 60,
+   "input": 54414,
+   "output": 67409,
+   "cacheWrite": 2604,
+   "cacheRead": 75516,
+   "estimatedUsd": 0.8045
+  },
+  "priceUsdPerMTok": {
+   "input": 2.0,
+   "output": 10.0,
+   "cacheWrite": 2.5,
+   "cacheRead": 0.2
+  },
+  "note": "token counts are summed from the API responses behind every narration and check (cached responses included); 'calls' is what the latest run spent"
+ },
+ "flagged": [
+  {
+   "key": "fixture:partial-skills-ml|seeing-theory",
+   "path": "fixture:partial-skills-ml",
+   "kind": "course",
+   "catalogId": "seeing-theory",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Seeing Theory is here to build your Probability, which sits right after Statistics Fundamentals on the path toward Inferential Statistics and Model Evaluation — skills that lead to your Machine Learning Engineer goal. It's not sequenced after any other path item, so it's a good early piece to slot in. On scoring, level fit and preference fit were the strongest matches: it's an easy, free course that fits your standard 8h/week pace, and quality is solid too. Coverage and similarity were more modest, since it targets just this one gap skill. For context, among Coursera learners who had Statistics Fundamentals, only 2% (16 of 1004) went to Probability-type content next, so this is a less common but still relevant next step for closing that gap.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after any other path item, so it's a good early piece to slot in.",
+     "claim": "Being unsequenced makes it 'a good early piece to slot in'",
+     "whyUntraceable": "sequencedAfter is an empty list; the evidence does not state or imply that this makes it a good early item to slot into the path",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:frontend-developer:time-poor|linux-journey",
+   "path": "template:frontend-developer:time-poor",
+   "kind": "course",
+   "catalogId": "linux-journey",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Linux Journey is here because it builds Command Line & Linux Basics, which sits directly before Git & Version Control on the way to your Frontend Developer goal — you can't comfortably manage version control without it.\n\nIt's not sequenced after anything else yet, since it's foundational. Its strongest score components are level fit and preference fit — the course matches a beginner starting point and fits your intense, 3 h/week pace, with decent quality too.\n\nOn real-world ordering: among Stack Overflow questioners, 60% of 22,774 learned Command Line before Git, and among Coursera reviewers, 69% of 169 did the same — supporting this as the natural next step.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' because sequencedAfter is empty",
+     "whyUntraceable": "sequencedAfter being an empty list only indicates no prior sequencing was recorded; it does not state or imply that the course is 'foundational'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:backend-developer:empty|app-ideas",
+   "path": "template:backend-developer:empty",
+   "kind": "project",
+   "catalogId": "app-ideas",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "App Ideas Collection is on your path because it gives you real practice with REST API Design, a skill your Backend Developer goal directly requires. It's placed after Networking Basics, MDN Learn Web Development, and JavaScript30 because those build up your understanding of how the web works, core JavaScript, and modern JavaScript — the foundation you need before designing APIs makes sense.\n\nLooking at the scoring, preference fit was the strongest factor: at 20 hours and difficulty level 2, it matches your 6 h/week pace nicely, and level fit was solid too, meaning it's pitched right for where you're starting from. Coverage and similarity were lower, since this is just one piece of a much larger skill set you still need to build.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit was the strongest factor: at 20 hours and difficulty level 2, it matches your 6 h/week pace nicely, and level fit was solid too, meaning it's pitched right for where you're starting from.",
+     "claim": "preference fit score is explained as matching the 6h/week pace based on 20 hours and difficulty 2",
+     "whyUntraceable": "the evidence only gives a preferenceFit score of 0.944 without explaining it in terms of hours/pace matching; this is an invented rationale",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were lower, since this is just one piece of a much larger skill set you still need to build.",
+     "claim": "coverage and similarity are low because this is one piece of a much larger skill set still needed",
+     "whyUntraceable": "the evidence gives numeric coverage and similarity scores but no explanation tying them to a 'much larger skill set'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:backend-developer:time-poor|ms-api-design",
+   "path": "template:backend-developer:time-poor",
+   "kind": "course",
+   "catalogId": "ms-api-design",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it builds your REST API Design skill, which your Backend Developer goal requires directly. It's placed after Networking Fundamentals and the REST API Tutorial, so you'll already have the groundwork in how the web works and basic API concepts before tackling best practices at this deeper level.\n\nLooking at the scoring, preference fit and quality stood out as the strongest factors — it fits comfortably into your 3 h/week intense pace, and it's a well-regarded resource from Microsoft Learn. Level fit was moderate, meaning it stretches you a bit beyond the basics without being out of reach. Coverage was modest since this one skill is just a piece of the bigger backend picture, but it's an important, required piece nonetheless.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Networking Fundamentals and the REST API Tutorial, so you'll already have the groundwork in how the web works and basic API concepts before tackling best practices at this deeper level.",
+     "claim": "tackling best practices at this deeper level",
+     "whyUntraceable": "difficulty is given as a raw value of 3 with no scale or comparison point provided, so calling it 'deeper' is an interpretive reading not directly supported by any field",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and quality stood out as the strongest factors — it fits comfortably into your 3 h/week intense pace, and it's a well-regarded resource from Microsoft Learn.",
+     "claim": "it's a well-regarded resource from Microsoft Learn",
+     "whyUntraceable": "the quality field is a numeric score (0.85) with no qualitative label or reputation data attached; 'well-regarded' is an invented qualitative gloss on a number",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage was modest since this one skill is just a piece of the bigger backend picture, but it's an important, required piece nonetheless.",
+     "claim": "Coverage was modest",
+     "whyUntraceable": "coverage is 0.1, a very low value; describing it as merely 'modest' glosses over how small the coverage score actually is beyond what the field itself conveys",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:full-stack-developer:empty|typescript-handbook",
+   "path": "template:full-stack-developer:empty",
+   "kind": "course",
+   "catalogId": "typescript-handbook",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's here because TypeScript is a skill your Full-Stack Developer path needs, and this Handbook directly closes that gap. It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial since both build the JavaScript foundation TypeScript builds on—learning it too early would be harder without that base.\n\nLooking at the scoring, your preference fit was strongest: at 10 hours and a light difficulty level, it fits your 6 h/week standard pace comfortably, and the source quality is solid as official documentation. Level fit is reasonably good too, meaning the difficulty matches where you're at. Coverage is smaller here since TypeScript is just one piece of the broader goal, but it's a necessary one.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial since both build the JavaScript foundation TypeScript builds on—learning it too early would be harder without that base.",
+     "claim": "learning TypeScript too early would be harder without the JavaScript foundation",
+     "whyUntraceable": "sequencedAfter only states 'becauseSkill: JavaScript'; no evidence field states that early learning would be harder",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, your preference fit was strongest: at 10 hours and a light difficulty level, it fits your 6 h/week standard pace comfortably, and the source quality is solid as official documentation.",
+     "claim": "a light difficulty level",
+     "whyUntraceable": "difficulty is given as a raw value of 2 with no scale or qualitative label provided in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Level fit is reasonably good too, meaning the difficulty matches where you're at.",
+     "claim": "the difficulty matches where you're at (the learner's current level)",
+     "whyUntraceable": "the profile summary records no skills or skill levels for the learner, so there is no basis to claim the difficulty matches their level",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:full-stack-developer:partial|learn-git-branching",
+   "path": "template:full-stack-developer:partial",
+   "kind": "course",
+   "catalogId": "learn-git-branching",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Learn Git Branching is here to close your gap in Git & Version Control, which the goal path requires, building on the Command Line & Linux Basics you're already comfortable with. In the evidence, your preference fit and quality scored strongest, meaning this short, low-difficulty course fits your 6 h/week standard pace and any-format setup nicely, and it's well-regarded. Level fit was moderate, so it's a gentle step up rather than a stretch.\n\nFor what it's worth, among Stack Overflow askers who covered both topics, 60% (of 22,774) went from Command Line to Git in that order, and among Coursera reviewers, 69% (of 169) did too. Separately, of Coursera learners who'd done Command Line, only 3% (of 2,882) moved to this particular Git skill next — a reminder these are just patterns of order, not endorsements.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "In the evidence, your preference fit and quality scored strongest, meaning this short, low-difficulty course fits your 6 h/week standard pace and any-format setup nicely, and it's well-regarded.",
+     "claim": "it's well-regarded",
+     "whyUntraceable": "The evidence only provides a numeric quality score (0.8); it does not state that the course is 'well-regarded' by anyone, nor does it identify preferenceFit and quality as jointly 'strongest' (preferenceFit=1 is the highest, quality=0.8 is second).",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-analyst:empty|khan-stats",
+   "path": "template:data-analyst:empty",
+   "kind": "course",
+   "catalogId": "khan-stats",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Khan Academy's Statistics and Probability course is here because it closes three real gaps on your way to becoming a Data Analyst: Statistics Fundamentals and Inferential Statistics, both required directly by the goal, and Probability, which acts as the stepping stone into Inferential Statistics. It isn't sequenced after anything else yet, since it's foundational.\n\nOn scoring, level fit was strongest — this matches where you're starting from — and quality was also solid, with preference fit reasonably good given your 6 h/week standard pace. Coverage and similarity were lower, meaning it's one piece among several needed, not a complete solution.\n\nOn the Probability-to-Inferential-Statistics order specifically, Coursera reviewers took that path 95% of the time (n=21), and Stack Overflow question order showed a near-even 49% (n=545) — a much noisier signal, so take it lightly.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' because sequencedAfter is empty",
+     "whyUntraceable": "sequencedAfter being an empty list only indicates no prerequisite sequencing was recorded; it does not support the qualitative claim that the course is 'foundational'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-analyst:partial|kaggle-datasets-eda",
+   "path": "template:data-analyst:partial",
+   "kind": "project",
+   "catalogId": "kaggle-datasets-eda",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This project is here to close two gaps your Data Analyst goal needs: Exploratory Data Analysis, which builds on your Statistics Fundamentals, and Data Storytelling, a skill required on its own. It's placed after Kaggle Learn: Pandas since that builds your Python for Data Analysis skills first, giving you the footing to handle a real dataset.\n\nYour preferences were a strong match here (6 h/week fits comfortably with this 10-hour project), and its level and quality also fit you well. Among learners who asked Stack Overflow questions, 54% of 1,704 tackled Exploratory Data Analysis after Statistics Fundamentals, similar to your path. And on Coursera, of 2,080 learners who had Advanced SQL like you, 8% went on to this kind of EDA work next — just one signal of where people go, not a verdict on the experience.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Your preferences were a strong match here (6 h/week fits comfortably with this 10-hour project), and its level and quality also fit you well.",
+     "claim": "its quality also fit you well",
+     "whyUntraceable": "The quality score (0.75) in scoreBreakdown reflects the item's general quality, not a personalized fit metric; conflating it with 'fit you well' misrepresents the field's meaning.",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:data-analyst:time-poor|pgexercises",
+   "path": "template:data-analyst:time-poor",
+   "kind": "assessment",
+   "catalogId": "pgexercises",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "PostgreSQL Exercises is here because SQL and Advanced SQL are both skills your Data Analyst goal requires, and this resource directly closes those gaps through hands-on practice. It's placed right after SQL Tutorial for Data Analysis, since that course builds the SQL foundation you need before tackling these more applied exercises.\n\nLooking at the scoring, preference fit stood out as the strongest match — with your 3 hours a week and intense pace, this fits well into a manageable rhythm. Quality also scored solidly, reflecting that it's a well-regarded resource. Level fit was reasonable too, suggesting the difficulty suits where you're starting from. Together, these made it a sensible next step toward strengthening your SQL skills.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "PostgreSQL Exercises is here because SQL and Advanced SQL are both skills your Data Analyst goal requires, and this resource directly closes those gaps through hands-on practice.",
+     "claim": "the resource involves 'hands-on practice'",
+     "whyUntraceable": "the evidence object does not describe the item's format or pedagogical style as hands-on practice; item.kind is 'assessment' with no such description",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:business-intelligence-analyst:empty|fcc-database-design",
+   "path": "template:business-intelligence-analyst:empty",
+   "kind": "course",
+   "catalogId": "fcc-database-design",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it closes your gap in Data Modeling, a skill that leads straight to your Business Intelligence Analyst goal. It's placed after SQL Tutorial for Data Analysis and the Google Data Analytics Professional Certificate, since both build the SQL foundation that Data Modeling naturally builds on.\n\nLooking at the scoring, preference fit was the strongest match — with 6 hours a week and an 8-hour course, the pace fits comfortably. Level fit was also solid, meaning the difficulty lines up well with where you're starting from. Quality came in decent too, reflecting a well-regarded resource. Coverage was modest here since this single course targets one specific gap rather than many, but that focus is exactly why it earns its place right after your SQL groundwork.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after SQL Tutorial for Data Analysis and the Google Data Analytics Professional Certificate, since both build the SQL foundation that Data Modeling naturally builds on.",
+     "claim": "the SQL foundation that Data Modeling naturally builds on",
+     "whyUntraceable": "the evidence only states sequencedAfter items 'becauseSkill: SQL' with no claim that Data Modeling builds upon SQL",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Quality came in decent too, reflecting a well-regarded resource.",
+     "claim": "a well-regarded resource",
+     "whyUntraceable": "quality score of 0.75 is a numeric field; calling it 'well-regarded' asserts an external reputation not present in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage was modest here since this single course targets one specific gap rather than many, but that focus is exactly why it earns its place right after your SQL groundwork.",
+     "claim": "Coverage was modest",
+     "whyUntraceable": "coverage field is 0.08, which is very low, not 'modest'; this misreads the magnitude of the coverage score",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:business-intelligence-analyst:time-poor|kaggle-python",
+   "path": "template:business-intelligence-analyst:time-poor",
+   "kind": "course",
+   "catalogId": "kaggle-python",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Kaggle Learn: Python is first up because Python is a building block you need before you can tackle ETL & Data Pipelines, which sits on your route toward becoming a Business Intelligence Analyst. It's not sequenced after anything else, since it's an entry point for you right now.\n\nLooking at the fit, the strongest signals here are level fit and preference fit — this course is well matched to a true beginner and fits your intense pace and flexible format preferences within your 3 hours a week. Quality also scored solidly. Coverage looks small simply because this is one narrow, foundational step in a bigger path.\n\nFor context, among Stack Overflow users who asked questions about both technologies, 65 percent (of 5,885) asked about Python before ETL & Data Pipelines — worth noting since that reflects order of asking, not proof of mastery.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else, since it's an entry point for you right now.",
+     "claim": "the course is 'an entry point for you right now'",
+     "whyUntraceable": "sequencedAfter is simply an empty list; the evidence does not characterize the course as an 'entry point' or describe timing relevance beyond the empty array",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:empty|guess-correlation",
+   "path": "template:data-scientist:empty",
+   "kind": "assessment",
+   "catalogId": "guess-correlation",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This item is on your path because it helps build Statistics Fundamentals, a skill required for your Data Scientist goal. It isn't sequenced after anything else yet, so it's a fine, low-stakes place to start building intuition for correlation before layering on more advanced statistics work.\n\nLooking at the scoring, level fit and preference fit were the strongest components: at just 1 hour and difficulty level 1, it fits comfortably within your 6 hours/week at a standard pace, with no format or budget conflicts. Quality was decent too. Coverage of the overall skill gap is small since this is just one narrow piece of a broader statistics foundation, but as an easy, well-matched starting point, it earns its place early on your path.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet, so it's a fine, low-stakes place to start building intuition for correlation before layering on more advanced statistics work.",
+     "claim": "before layering on more advanced statistics work",
+     "whyUntraceable": "No evidence field indicates any future or more advanced statistics coursework planned after this item; sequencedAfter is empty and no other items are referenced.",
+     "kind": "invented-fact"
+    },
+    {
+     "sentence": "Coverage of the overall skill gap is small since this is just one narrow piece of a broader statistics foundation, but as an easy, well-matched starting point, it earns its place early on your path.",
+     "claim": "it earns its place early on your path",
+     "whyUntraceable": "Neither the evidence object nor the profile summary indicates the item's position or ordering within the learner's overall path.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:partial|wes-mckinney-book",
+   "path": "template:data-scientist:partial",
+   "kind": "course",
+   "catalogId": "wes-mckinney-book",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course closes your gap in Python for Data Analysis, a skill directly required for your Data Scientist goal, building on the Python you've already learned. It's placed right after The Python Tutorial, since that's where your Python foundation comes from before moving into applied analysis work.\n\nLooking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.\n\nFor real-world context: among Stack Overflow question askers, 51,421 of 54,067 (95%) who touched both skills went Python before Python for Data Analysis, and on Coursera, 86% of 568 followed that same order. Separately, of learners who already knew Python, 7% of 422,784 moved to this skill next.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.",
+     "claim": "it's a well-regarded resource",
+     "whyUntraceable": "the quality field is a numeric score (0.9) with no descriptor; calling it 'well-regarded' is an interpretive label not present in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.",
+     "claim": "a decent similarity to what other learners in your position tend to study",
+     "whyUntraceable": "the similarity score (0.558) is a generic content-similarity metric; it does not measure or describe what 'other learners in your position' study",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:time-poor|stratascratch",
+   "path": "template:data-scientist:time-poor",
+   "kind": "assessment",
+   "catalogId": "stratascratch",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "StrataScratch is here to help you practice SQL and Python for Data Analysis, both of which are required for your Data Scientist goal. It's placed after Kaggle Learn: Python and SQLBolt, since those build the foundational Python and SQL skills that this item lets you apply in a more realistic, assessment-style setting.\n\nLooking at the scoring, preference fit was the strongest signal — with your intense pace and limited weekly hours, this fits well into a focused block of practice. Quality also scored solidly, reflecting that it's a well-regarded resource. Coverage and level fit were more modest, since it only touches two goal skills and sits at a moderate difficulty relative to where you're starting from, but it still gives you hands-on reinforcement right after the fundamentals.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Kaggle Learn: Python and SQLBolt, since those build the foundational Python and SQL skills that this item lets you apply in a more realistic, assessment-style setting.",
+     "claim": "the item lets you apply skills in a more realistic, assessment-style setting",
+     "whyUntraceable": "No field describes the item's setting as 'realistic' or elaborates on how it differs qualitatively from prior items beyond its 'assessment' kind label",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:empty|gcsb-data-engineer",
+   "path": "template:data-engineer:empty",
+   "kind": "course",
+   "catalogId": "gcsb-data-engineer",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it directly builds three skills your Data Engineer goal requires: Cloud Data Platforms, ETL & Data Pipelines, and Data Warehousing — each sits right on the graph path to that role. It's placed after you've built SQL (via the SQL Bootcamp and Python for Everybody), Cloud Fundamentals, and Data Modeling, since those foundations make this material accessible. Looking at the scoring, quality was the strongest factor, with preference fit also solid given your 6h/week standard pace, while similarity and level fit were moderate — reflecting that this is a substantial, credible course that's a reasonable but not perfect match for where you're starting from. Coverage is modest here since it's just one of several gap-closing steps ahead.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after you've built SQL (via the SQL Bootcamp and Python for Everybody), Cloud Fundamentals, and Data Modeling, since those foundations make this material accessible.",
+     "claim": "since those foundations make this material accessible",
+     "whyUntraceable": "The evidence only lists sequencedAfter relationships with becauseSkill tags; it does not state that these prior courses make the material 'accessible' or justify the ordering in that way.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:partial|postgresqltutorial",
+   "path": "template:data-engineer:partial",
+   "kind": "course",
+   "catalogId": "postgresqltutorial",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This PostgreSQL Tutorial is here to build directly on the SQL comfort you already have, growing it into PostgreSQL and Advanced SQL — both required for the Data Engineer path. It fits well with your current level and matches your pace and format preferences nicely, which were the strongest factors pulling it into your plan; quality is solid too, though it only covers a small slice of your overall remaining gaps, so more items will follow.\n\nOn Stack Overflow, of learners who asked about SQL first, 65% went on to ask about PostgreSQL next, and 87% moved on to Advanced SQL — suggesting this is a well-worn route from where you stand. Separately, among learners who had Cloud Fundamentals, only 3% went to PostgreSQL next, so this move is less about that skill and more about your strong SQL base.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "On Stack Overflow, of learners who asked about SQL first, 65% went on to ask about PostgreSQL next, and 87% moved on to Advanced SQL — suggesting this is a well-worn route from where you stand.",
+     "claim": "characterizing the SQL→Advanced SQL transition as a 'well-worn route' based solely on the 87% Stack Overflow figure",
+     "whyUntraceable": "the evidence also contains a separate Coursera review-order link for SQL→Advanced SQL showing only 2% took that order, directly contradicting the 'well-worn route' characterization; the narration selectively omits this conflicting data",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:time-poor|postgresqltutorial",
+   "path": "template:data-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "postgresqltutorial",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's on your path because it fills two gaps you need for Data Engineer: PostgreSQL and Advanced SQL, both required by that goal. It's placed right after SQLBolt, since it builds on the SQL foundation you'd get there before tackling PostgreSQL more deeply.\n\nLooking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule. Quality was solid too. Coverage was modest since it's just these two skills among your broader path, but they're both directly tied to your goal, which is why it earned its place here.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "preference fit and level fit stood out as the strongest matches",
+     "whyUntraceable": "levelFit (0.75) is tied with quality (0.75); only preferenceFit (0.806) is actually the highest score, so calling levelFit one of the two 'strongest' misstates the scoreBreakdown",
+     "kind": "misstated-field"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "the difficulty level suits where you are",
+     "whyUntraceable": "the profile lists no recorded skills or current level, so there is no basis to claim the difficulty level suits the learner's current standing",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "the format works within your intense-but-limited 3-hours-a-week schedule",
+     "whyUntraceable": "no format field exists in the evidence object; the item only has 'kind':'course' and 'hours':20, and preferences state formats 'any' with no specific format matching claim supported",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:machine-learning-engineer:time-poor|kaggle-intermediate-ml",
+   "path": "template:machine-learning-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "kaggle-intermediate-ml",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is here because it directly closes three gaps your Machine Learning Engineer path needs: scikit-learn, Feature Engineering, and Model Evaluation, each required to reach your goal. It's placed after Kaggle Learn: Pandas and Kaggle Learn: Intro to Machine Learning, since those build the Python for Data Analysis and Machine Learning Fundamentals skills this course leans on. In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level. Coverage and similarity were lower, but the specific skills it unlocks make it a well-placed next step.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level.",
+     "claim": "comes from a solid source",
+     "whyUntraceable": "The quality score (0.8) reflects a general quality metric, not a claim about the provider being a 'solid source'; this interpretation adds an unstated judgment about the source's reliability.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level.",
+     "claim": "given your current skill level",
+     "whyUntraceable": "The profile summary states skills: none recorded, so there is no basis for asserting a 'current skill level' that the level fit score is being matched against.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:ai-engineer:empty|seeing-theory",
+   "path": "template:ai-engineer:empty",
+   "kind": "course",
+   "catalogId": "seeing-theory",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Seeing Theory is on your path because it builds Statistics Fundamentals, a skill that sits right before Machine Learning Fundamentals and eventually LLM Fundamentals on the way to your AI Engineer goal — so this gives you a foundation stone for that whole chain. It's not sequenced after anything else yet, since you're starting fresh. Score-wise, it's a strong match on level fit and your preferences (fitting your 6h/week standard pace nicely), and quality is solid too, though it only covers a small slice of the overall skill gap. For context, on Stack Overflow, of 1,883 people whose question order covered both skills, 51% asked about Statistics Fundamentals before Machine Learning Fundamentals — a rough signal of common ordering, not a guarantee of the best path.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Seeing Theory is on your path because it builds Statistics Fundamentals, a skill that sits right before Machine Learning Fundamentals and eventually LLM Fundamentals on the way to your AI Engineer goal — so this gives you a foundation stone for that whole chain.",
+     "claim": "gives you a foundation stone for that whole chain",
+     "whyUntraceable": "The evidence only states a graphPath prerequisite relationship; calling it a 'foundation stone for that whole chain' adds an interpretive framing not directly supported by any field",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:ai-engineer:partial|gen-ai-for-everyone",
+   "path": "template:ai-engineer:partial",
+   "kind": "course",
+   "catalogId": "gen-ai-for-everyone",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course is here because it directly closes two gaps you still need for AI Engineer: LLM Fundamentals and Responsible AI — both required by your goal. It's sequenced right after Machine Learning Crash Course, since that course builds the Machine Learning Fundamentals this one builds on. On fit, it scores strongly on level fit and preference fit (matching your comfortable pace and format needs) and has solid quality, though coverage and similarity to your existing skills are modest, since this is genuinely new ground for you. For context, from Coursera review order, of 19,580 learners who had Programming Basics like you, only 54 (<1%) went on to this course next — so it's an uncommon next step, but a targeted one for your specific goal gaps.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "On fit, it scores strongly on level fit and preference fit (matching your comfortable pace and format needs) and has solid quality, though coverage and similarity to your existing skills are modest, since this is genuinely new ground for you.",
+     "claim": "matching your comfortable pace",
+     "whyUntraceable": "Profile states pace preference as 'standard', not 'comfortable'; 'comfortable' only describes skill proficiency levels, not pace",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:cloud-engineer:empty|maarek-saa",
+   "path": "template:cloud-engineer:empty",
+   "kind": "course",
+   "catalogId": "maarek-saa",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is placed here because it directly closes five skills your Cloud Engineer goal requires: AWS Fundamentals, Cloud Architecture, Cloud Networking, Cloud Storage, and Cloud Databases — each sits right on the graph path to that goal. It's sequenced after SQLBolt and the Cloud Fundamentals intro course, since those build the SQL and cloud-concepts groundwork this course assumes before going deeper. Looking at the score, preference fit and quality were the strongest components, meaning it suits your six-hours-a-week, standard-pace style well and is a well-regarded course. Coverage and level fit were moderate, reflecting that this is a broad, mid-difficulty course rather than a narrow perfect match — but given how many goal-critical gaps it closes at once, it earns its place early on your path.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced after SQLBolt and the Cloud Fundamentals intro course, since those build the SQL and cloud-concepts groundwork this course assumes before going deeper.",
+     "claim": "the course assumes groundwork before going deeper (implying a depth/difficulty progression)",
+     "whyUntraceable": "No field describes the course's depth or a 'deeper' progression beyond the sequencedAfter relationship and difficulty score",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and level fit were moderate, reflecting that this is a broad, mid-difficulty course rather than a narrow perfect match — but given how many goal-critical gaps it closes at once, it earns its place early on your path.",
+     "claim": "it earns its place early on your path",
+     "whyUntraceable": "No field indicates the course's position or ordering ('early') on the learner's overall path",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:cloud-engineer:partial|terraform-tutorials",
+   "path": "template:cloud-engineer:partial",
+   "kind": "course",
+   "catalogId": "terraform-tutorials",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Terraform Tutorials is here to close your gap in Infrastructure as Code, a skill your Cloud Engineer path requires, building directly on the Cloud Fundamentals you already have. That's why it's sequenced after your intro cloud concepts and DevOps groundwork — you need that foundation before tackling IaC itself. Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.\n\nAmong learners who already had Cloud Fundamentals, Stack Overflow question order shows 73% (of 394) went to Infrastructure as Code in this order, and Coursera review order shows 94% (of 262) did the same — though these reflect sequence, not difficulty or satisfaction. Separately, of 6,019 Coursera learners who had Cloud Fundamentals, only 2% moved to this specific skill next, so it's a common but not the most frequent follow-on step.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.",
+     "claim": "quality is described as making the course a 'well-regarded resource'",
+     "whyUntraceable": "the quality field is a numeric score (0.85) with no qualitative label like 'well-regarded' attached to it in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.",
+     "claim": "similarity to current skill level was 'moderate'",
+     "whyUntraceable": "similarity score of 0.589 has no defined threshold in the evidence for 'moderate'; this is an unsupported qualitative label",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Separately, of 6,019 Coursera learners who had Cloud Fundamentals, only 2% moved to this specific skill next, so it's a common but not the most frequent follow-on step.",
+     "claim": "describing the 2% follow-on rate as 'common'",
+     "whyUntraceable": "a 2% rate contradicts the characterization of 'common'; the evidence gives only the percentage, not a qualitative frequency judgment like this",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:devops-engineer:time-poor|docker-get-started",
+   "path": "template:devops-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "docker-get-started",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This item is on your path because it closes your gap in Docker & Containers, a skill that's required for the DevOps Engineer goal — that's a core piece of the puzzle you're missing. It's sequenced right after Linux Journey, since getting comfortable with the command line and Linux basics first gives you the footing you need before diving into containers.\n\nLooking at the scoring, preference fit and quality stood out as the strongest factors — this course matches your intense pace and limited weekly hours well, and it's a solidly rated resource straight from Docker's own documentation. Level fit was also solid, meaning the difficulty lines up reasonably with where you're starting from as a newcomer to this skill.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and quality stood out as the strongest factors — this course matches your intense pace and limited weekly hours well, and it's a solidly rated resource straight from Docker's own documentation.",
+     "claim": "it's a solidly rated resource",
+     "whyUntraceable": "The evidence only gives a numeric quality score (0.85) with no qualitative label like 'solidly rated'; this is an added interpretive characterization beyond the raw number.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Level fit was also solid, meaning the difficulty lines up reasonably with where you're starting from as a newcomer to this skill.",
+     "claim": "Level fit was also solid",
+     "whyUntraceable": "levelFit is a numeric score (0.75) with no qualitative descriptor in the evidence; calling it 'solid' is an interpretive gloss not directly stated.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:site-reliability-engineer:empty|practical-networking",
+   "path": "template:site-reliability-engineer:empty",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This course is here because it builds Networking & How the Web Works, a skill that's a direct stepping stone to Cloud Fundamentals on your way toward Site Reliability Engineer. It isn't sequenced after anything else yet — it's an early foundation piece. Looking at the scoring, your preferences (time, pace, budget, format) fit this perfectly, and the difficulty level matches well too, which is why it made the cut even though overall coverage of your skill gaps is still small this early on.\n\nFor context on ordering: among Stack Overflow question askers, learners moved from Networking to Cloud Fundamentals in that order about half the time (n=3938), while Coursera reviewers followed that same order 90% of the time (n=1123) — though both are indirect proxies, not completion records, so take them as directional rather than certain.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet — it's an early foundation piece.",
+     "claim": "the course is an 'early foundation piece'",
+     "whyUntraceable": "sequencedAfter is simply an empty list; nothing in the evidence characterizes the course as foundational or early",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:site-reliability-engineer:partial|redis-crash-course",
+   "path": "template:site-reliability-engineer:partial",
+   "kind": "course",
+   "catalogId": "redis-crash-course",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Here's why Redis Crash Course is on your path: it closes your gap in Caching, which sits on the graph route from REST API Design through Caching to System Design — a skill chain that matters for where you're headed as an SRE. It's not sequenced after another path item directly, but it fits your fundamentals well.\n\nLooking at the scoring, preference fit was the strongest match (it's a short, 1-hour course that suits your 6h/week pace), with level fit also solid given your basics-level standing. Coverage and similarity were lighter factors here.\n\nOn real learner patterns from Stack Overflow question order: among learners who asked about REST API Design, 56% (of 4,930) asked about Caching next in that order, and of those who asked about Caching, 49% (of 2,690) went on to System Design next — showing this is a well-worn path toward your goal, though asking a question isn't the same as completing the learning.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "On real learner patterns from Stack Overflow question order: among learners who asked about REST API Design, 56% (of 4,930) asked about Caching next in that order, and of those who asked about Caching, 49% (of 2,690) went on to System Design next — showing this is a well-worn path toward your goal, though asking a question isn't the same as completing the learning.",
+     "claim": "showing this is a well-worn path toward your goal",
+     "whyUntraceable": "The percentages (56% and 49%) are near even splits, not indicative of a dominant or 'well-worn' path; this framing overstates what the data shows",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:security-analyst:empty|cisco-networking-basics",
+   "path": "template:security-analyst:empty",
+   "kind": "course",
+   "catalogId": "cisco-networking-basics",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Networking Basics is on your path because it directly builds \"Networking & How the Web Works,\" a skill your goal of becoming a Security Analyst requires — you can't understand how attacks and defenses work without first knowing how networks and the web actually function. It isn't sequenced after anything else yet, since this is foundational ground-floor material given you have no recorded skills so far.\n\nLooking at the scoring, level fit and preference fit were the strongest components here — it matches a beginner starting point well, and fits comfortably into your 6 hours/week at a standard pace. Quality was solid too, reflecting a well-regarded provider. It's an easy on-ramp that sets you up for the deeper security skills ahead.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Networking Basics is on your path because it directly builds \"Networking & How the Web Works,\" a skill your goal of becoming a Security Analyst requires — you can't understand how attacks and defenses work without first knowing how networks and the web actually function.",
+     "claim": "you can't understand how attacks and defenses work without first knowing how networks and the web actually function",
+     "whyUntraceable": "No field in the evidence or profile discusses attacks, defenses, or the relationship between networking knowledge and security analysis reasoning; this causal justification is invented.",
+     "kind": "invented-fact"
+    },
+    {
+     "sentence": "It's an easy on-ramp that sets you up for the deeper security skills ahead.",
+     "claim": "sets you up for the deeper security skills ahead",
+     "whyUntraceable": "No evidence field (sequencedAfter, closesGapIn, graphPath) indicates any subsequent security-related skills or courses this item leads into; sequencedAfter is empty and no future path is specified.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:qa-automation-engineer:empty|github-pages-site",
+   "path": "template:qa-automation-engineer:empty",
+   "kind": "project",
+   "catalogId": "github-pages-site",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This project earns its spot because it gets you started on two things your goal needs: HTML, which opens the path toward CSS, React, and Frontend Testing, and Git & Version Control, which QA automation work requires directly. It's placed after Command Line & Linux Basics material like The Odin Project Foundations and the Missing Semester course, since knowing your way around the terminal makes this project easier to follow.\n\nOn fit, it scored well on level (matches where you're starting) and preference (fits your 6h/week standard pace), and quality is solid too. Coverage and similarity to your goal were lower, so it's a starting step rather than a core one. For context, among Stack Overflow askers, 63% learned HTML before CSS (n=87,995), and among Coursera reviewers, 92% did the same (n=110) — supporting this as a natural first move.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Command Line & Linux Basics material like The Odin Project Foundations and the Missing Semester course, since knowing your way around the terminal makes this project easier to follow.",
+     "claim": "knowing your way around the terminal makes this project easier to follow",
+     "whyUntraceable": "The evidence only states the sequencing is because of the 'Command Line & Linux Basics' skill; it gives no causal explanation about terminal familiarity making the project easier to follow.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:qa-automation-engineer:time-poor|postman-academy",
+   "path": "template:qa-automation-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "postman-academy",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Postman Academy is on your path because it directly builds API Testing, a skill your QA Automation Engineer goal requires — so this closes a real gap between where you are now and where the role needs you to be. It's placed right after REST API Tutorial, since understanding REST API Design first gives you the foundation to make sense of testing those APIs in Postman.\n\nLooking at the scoring, preference fit was the strongest match — it aligns well with your intense pace and time budget — with level fit and quality also solid given your starting point. Coverage and similarity were lower simply because this is an early, narrow step rather than a broad one, but it's an essential building block toward the bigger goal.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit was the strongest match — it aligns well with your intense pace and time budget — with level fit and quality also solid given your starting point.",
+     "claim": "level fit and quality solid 'given your starting point'",
+     "whyUntraceable": "Profile summary states skills: none recorded, so there is no documented 'starting point' to justify this qualitative claim; not derivable from evidence fields.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were lower simply because this is an early, narrow step rather than a broad one, but it's an essential building block toward the bigger goal.",
+     "claim": "Coverage and similarity were lower because it is 'an early, narrow step rather than a broad one'",
+     "whyUntraceable": "No field in scoreBreakdown or evidence explains the reason for low coverage/similarity scores; this causal explanation is invented.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:solutions-architect:empty|tutorials-dojo",
+   "path": "template:solutions-architect:empty",
+   "kind": "assessment",
+   "catalogId": "tutorials-dojo",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's on your path because it closes out two skills your Solutions Architect goal needs directly: AWS Fundamentals and Cloud Architecture. It's placed after your cloud fundamentals intro, the AWS Hands-On Tutorials, and the SAA-C03 course, since those build the AWS Fundamentals base that these practice exams test and reinforce.\n\nLooking at the scoring, preference fit was the strongest part — at 6 hours, it fits neatly into your weekly 6-hour budget with no strain. Quality also scored well, meaning it's a solidly rated resource. Coverage and similarity were more modest, since this is a narrower, exam-focused item rather than broad new material, and level fit sits right in the middle given its moderate difficulty. Together, it's a well-timed capstone check before you move further into architecture-specific work.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after your cloud fundamentals intro, the AWS Hands-On Tutorials, and the SAA-C03 course, since those build the AWS Fundamentals base that these practice exams test and reinforce.",
+     "claim": "all three prerequisite items build the 'AWS Fundamentals' base",
+     "whyUntraceable": "sequencedAfter lists the cloud fundamentals intro as tied to becauseSkill 'Cloud Fundamentals', not 'AWS Fundamentals'; only two of the three items are tied to AWS Fundamentals",
+     "kind": "misstated-field"
+    },
+    {
+     "sentence": "Quality also scored well, meaning it's a solidly rated resource.",
+     "claim": "the item is a 'solidly rated' resource, implying an external rating",
+     "whyUntraceable": "scoreBreakdown.quality is a numeric score (0.8) with no indication it derives from user ratings or reviews",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:solutions-architect:time-poor|redis-crash-course",
+   "path": "template:solutions-architect:time-poor",
+   "kind": "course",
+   "catalogId": "redis-crash-course",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Here's why Redis Crash Course is on your path toward Solutions Architect: it closes your gap in Caching, which is a prerequisite for System Design — a key step on your way to the goal. It's sequenced right after REST API Tutorial, since that course builds your REST API Design skill, which naturally leads into Caching next.\n\nOn the scoring side, your preference fit was strongest — this short, one-hour video suits your 3 h/week intense pace nicely, and quality and level fit were also solid, matching a straightforward difficulty for where you're at.\n\nFor context, among Stack Overflow question order, of 2,690 learners who touched both skills, 49% went Caching → System Design in that order — a rough signal of common sequencing, not a rating of how they found it.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced right after REST API Tutorial, since that course builds your REST API Design skill, which naturally leads into Caching next.",
+     "claim": "REST API Design skill naturally leads into Caching next",
+     "whyUntraceable": "The evidence only states sequencedAfter with becauseSkill 'REST API Design'; it does not state or imply that REST API Design leads into Caching",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "fixture:beginner-frontend|practical-networking",
+   "path": "fixture:beginner-frontend",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This module is here because it builds your understanding of Networking & How the Web Works, which is a prerequisite for Working with APIs — a key step toward your Frontend Developer goal. It's not sequenced after anything else yet, since it's foundational.\n\nLooking at the scoring, your preference fit was the strongest match (this fits your 6 h/week, standard pace, any format), with solid quality and a reasonable level fit for where you're starting from.\n\nOn real learner patterns: among Coursera reviewers, 94 out of 913 pseudo-users' sequences went from Networking & How the Web Works to Working with APIs in that order, and on Stack Overflow, 41% of 15,008 users asked about Networking before Working with APIs — suggesting this ordering is common, though these sources reflect asking or reviewing, not necessarily mastery.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' based on an empty sequencedAfter list",
+     "whyUntraceable": "sequencedAfter is simply empty; that does not itself establish that the item is foundational to other content",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "On real learner patterns: among Coursera reviewers, 94 out of 913 pseudo-users' sequences went from Networking & How the Web Works to Working with APIs in that order, and on Stack Overflow, 41% of 15,008 users asked about Networking before Working with APIs — suggesting this ordering is common, though these sources reflect asking or reviewing, not necessarily mastery.",
+     "claim": "94 out of 913 pseudo-users' sequences went in that order",
+     "whyUntraceable": "the evidence states 855 out of 913 (94%) took that order, not '94 out of 913'; 94 is the percentage, not a count",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "fixture:beginner-frontend|vite-guide",
+   "path": "fixture:beginner-frontend",
+   "kind": "course",
+   "catalogId": "vite-guide",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "The Vite Guide is here because it closes your gap in Frontend Build Tools, a skill your Frontend Developer path requires directly. It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial because both build up your JavaScript foundation first, and build tooling like Vite makes much more sense once you're comfortable with JavaScript itself. Looking at the scoring, this item fits your preferences well and comes from a solid-quality source (the official Vite docs), while its difficulty level sits comfortably close to where you are. Coverage and similarity were more modest, but the strong preference fit and quality made it a good next step to round out your foundational tooling knowledge.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial because both build up your JavaScript foundation first, and build tooling like Vite makes much more sense once you're comfortable with JavaScript itself.",
+     "claim": "build tooling like Vite makes much more sense once you're comfortable with JavaScript itself",
+     "whyUntraceable": "evidence only states sequencedAfter with becauseSkill JavaScript, not a rationale about tooling making more sense after JS comfort",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, this item fits your preferences well and comes from a solid-quality source (the official Vite docs), while its difficulty level sits comfortably close to where you are.",
+     "claim": "its difficulty level sits comfortably close to where you are",
+     "whyUntraceable": "profile records no skills or current level, so there is no basis to claim the difficulty is close to the learner's level",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were more modest, but the strong preference fit and quality made it a good next step to round out your foundational tooling knowledge.",
+     "claim": "round out your foundational tooling knowledge",
+     "whyUntraceable": "no evidence field states the learner has existing tooling knowledge being 'rounded out' or that this is foundational",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:career-switcher-to-ds|wes-mckinney-book",
+   "path": "fixture:career-switcher-to-ds",
+   "kind": "course",
+   "catalogId": "wes-mckinney-book",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This one's here because Python for Data Analysis directly closes a gap the Data Scientist path requires—it's a skill the goal needs, plain and simple. It's placed right after Python for Everybody, since you'll want that core Python foundation before diving into data analysis with it.\n\nLooking at the scoring, quality stands out as the strongest factor (this is a well-regarded resource), with level fit also solid given your current basics-level footing—it shouldn't feel like a stretch. Coverage and similarity to your existing skills were more modest, which is expected since this is genuinely new territory for you.\n\nOne more data point: among learners on Stack Overflow who had Statistics Fundamentals (14,499 of them), 5% went on to ask questions about this next—worth noting that reflects question-asking activity, not a rating, and comes with the usual caveats about that data source.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, quality stands out as the strongest factor (this is a well-regarded resource), with level fit also solid given your current basics-level footing—it shouldn't feel like a stretch.",
+     "claim": "this is a well-regarded resource",
+     "whyUntraceable": "The evidence only gives a numeric quality score (0.9); it does not state that the resource is 'well-regarded' by anyone, which is an added qualitative judgment beyond the raw score.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:career-switcher-to-ds|r4ds",
+   "path": "fixture:career-switcher-to-ds",
+   "kind": "course",
+   "catalogId": "r4ds",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This one's on your path because R for Data Science fills two gaps your goal needs: Data Visualization, and Exploratory Data Analysis, which builds right on the Statistics Fundamentals you already have. It's placed after your Khan Academy statistics work and Python for Data Analysis, so you'll arrive with the stats and coding grounding this course assumes. In the scoring, quality was the strongest factor, with level fit and preference fit (matching your 10 h/week, video/interactive style) also solid. On real-learner patterns, among Stack Overflow askers, 54% moved from Statistics Fundamentals to Exploratory Data Analysis in that order (n=1704, caveat: asking isn't completing), and on Coursera, 10% of learners who had Spreadsheets went on to this kind of skill next (n=3453).",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after your Khan Academy statistics work and Python for Data Analysis, so you'll arrive with the stats and coding grounding this course assumes.",
+     "claim": "that the learner has already completed or worked through Khan Academy Statistics and Python for Data Analysis, and that R for Data Science assumes such grounding",
+     "whyUntraceable": "sequencedAfter only lists recommended prerequisite courses by skill; it does not state the learner completed them, nor does the evidence say the course 'assumes' any prior grounding",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:partial-skills-ml|lakens-inference",
+   "path": "fixture:partial-skills-ml",
+   "kind": "course",
+   "catalogId": "lakens-inference",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course closes your gap in Inferential Statistics, which matters because it's a direct prerequisite for Model Evaluation, a key step toward Machine Learning Engineer. It's placed after Seeing Theory and StatQuest, both building on your existing Statistics Fundamentals comfort, so you'll ease into inference with a solid base already in place. Your preference fit was the strongest score here, since it's free and fits standard pacing well, with quality close behind. Among learners with Statistics Fundamentals, Stack Overflow question order shows only 3% moved to this skill next, so it's a less common next step, but the graph path and course sequencing still make it the right one to close that specific gap on your route to Model Evaluation.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "This course closes your gap in Inferential Statistics, which matters because it's a direct prerequisite for Model Evaluation, a key step toward Machine Learning Engineer.",
+     "claim": "Model Evaluation is described as 'a key step toward Machine Learning Engineer'",
+     "whyUntraceable": "The evidence only shows a graphPath linking Inferential Statistics to Model Evaluation and a goal of Machine Learning Engineer; it does not state that Model Evaluation is a key step toward that role",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:time-poor-cloud|practical-networking",
+   "path": "fixture:time-poor-cloud",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This one's on your path because it closes a gap in Networking & How the Web Works, a skill your Cloud Engineer goal directly requires. It's not sequenced after any other item, so it can slot in early alongside what you already know. On the scoring side, preference fit was the strongest match — 3 hours fits neatly into your 3 h/week intense pace, and the level fit is solid too, since a difficulty-2 course suits your comfortable foundation in command line, Python, and Git. Quality is decent as well. For context, among Coursera learners who had Command Line & Linux Basics, 17% (483 of 2,882) went on to a skill like this next, so it's a fairly common next step from where you stand — though that pattern is reconstructed from review order, not a guarantee.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after any other item, so it can slot in early alongside what you already know.",
+     "claim": "the course can slot in early alongside existing knowledge",
+     "whyUntraceable": "sequencedAfter being empty only means no prerequisite order was recorded; it does not support any claim about timing or ease of slotting in early",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "For context, among Coursera learners who had Command Line & Linux Basics, 17% (483 of 2,882) went on to a skill like this next, so it's a fairly common next step from where you stand — though that pattern is reconstructed from review order, not a guarantee.",
+     "claim": "17% represents a 'fairly common' next step",
+     "whyUntraceable": "the evidence gives the raw percentage and counts but does not characterize 17% as common or typical",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:custom-goal|dlai-prompt-eng",
+   "path": "fixture:custom-goal",
+   "kind": "course",
+   "catalogId": "dlai-prompt-eng",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course lands on your path because it directly closes two gaps your chatbot goal needs: Prompt Engineering and Working with LLM APIs. It's sequenced right after Intro to Large Language Models, since that's where you'd first build LLM Fundamentals — the foundation prompting skills build on.\n\nOn fit: it matches your relaxed 6h/week pace and any-format preference perfectly (preference fit was strongest), and the course quality is solid too. Level fit is good given where you're starting from, though coverage of the full goal is still partial — more items will fill that in.\n\nFor context, among 34,146 Coursera learners who'd learned Python, about 1% went on to this course next (Coursera review order, 2015–2020, reconstructed sequences) — a modest but real signal of this path.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced right after Intro to Large Language Models, since that's where you'd first build LLM Fundamentals — the foundation prompting skills build on.",
+     "claim": "LLM Fundamentals is described as 'the foundation prompting skills build on'",
+     "whyUntraceable": "The evidence's sequencedAfter field only states that this course comes after 'Intro to Large Large Models' because of the skill 'LLM Fundamentals'; it does not characterize that skill as the foundation for prompt engineering skills specifically.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  }
+ ],
+ "samples": [
+  {
+   "key": "fixture:beginner-frontend|react-dev-learn",
+   "path": "fixture:beginner-frontend",
+   "kind": "course",
+   "catalogId": "react-dev-learn",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Here's why Learn React is next on your path: it directly closes your gap in React, which is required for your Frontend Developer goal — a straightforward, single-step connection there.\n\nIt's sequenced after your CSS and Modern JavaScript work (MDN Learn Web Development, JavaScript30, The Modern JavaScript Tutorial, Frontend Mentor Challenges), since solid fundamentals in those areas set you up to actually understand React rather than fight through it.\n\nOn scoring, this one leans on strong preference fit (it matches your time and format setup nicely) and high quality, with a reasonable level fit too — it's pitched at a difficulty that suits where you're starting. Together, those made it a clear pick for this stage of your journey.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:career-switcher-to-ds|khan-stats",
+   "path": "fixture:career-switcher-to-ds",
+   "kind": "course",
+   "catalogId": "khan-stats",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course builds directly on the Statistics Fundamentals you already have, and it's the path to closing three gaps toward Data Scientist: it deepens Statistics Fundamentals itself, builds Probability as the stepping stone to Inferential Statistics, and delivers Inferential Statistics outright. Its fit with your level and your preference for video/interactive learning at a standard pace were the strongest scoring factors, with solid quality too. On Stack Overflow, among learners who asked about Probability and Inferential Statistics in some order, 49% went Probability-first, and Coursera reviewers who took Probability before Inferential Statistics did so 95% of the time (small sample, 21 people). Among Coursera learners who had Statistics Fundamentals, only 2% of 1,004 moved to this next, so it's less a common next step there but still the right structural fit for your goal.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:partial-skills-ml|seeing-theory",
+   "path": "fixture:partial-skills-ml",
+   "kind": "course",
+   "catalogId": "seeing-theory",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Seeing Theory is here to build your Probability, which sits right after Statistics Fundamentals on the path toward Inferential Statistics and Model Evaluation — skills that lead to your Machine Learning Engineer goal. It's not sequenced after any other path item, so it's a good early piece to slot in. On scoring, level fit and preference fit were the strongest matches: it's an easy, free course that fits your standard 8h/week pace, and quality is solid too. Coverage and similarity were more modest, since it targets just this one gap skill. For context, among Coursera learners who had Statistics Fundamentals, only 2% (16 of 1004) went to Probability-type content next, so this is a less common but still relevant next step for closing that gap.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after any other path item, so it's a good early piece to slot in.",
+     "claim": "Being unsequenced makes it 'a good early piece to slot in'",
+     "whyUntraceable": "sequencedAfter is an empty list; the evidence does not state or imply that this makes it a good early item to slot into the path",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:time-poor-cloud|finops-intro",
+   "path": "fixture:time-poor-cloud",
+   "kind": "course",
+   "catalogId": "finops-intro",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course closes your gap in Cloud Cost Optimization, a skill your Cloud Engineer goal requires directly. It's sequenced after Introduction to Cloud Infrastructure because that course builds your Cloud Fundamentals, which this one leans on.\n\nOn fit: it matched your preferences well (any format, light 3-hour load suits your 3h/week pace), and the level and quality checks were solid too, so it should feel approachable given where you're starting from.\n\nFor context, from Stack Overflow's question order data, of the 422,784 learners who worked with Python like you, fewer than 1% (13 people) went on to ask about this specific FinOps topic next — a small, early signal, not a popularity rating, and asking isn't the same as completing.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:custom-goal|karpathy-intro-llms",
+   "path": "fixture:custom-goal",
+   "kind": "course",
+   "catalogId": "karpathy-intro-llms",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This video is here to build your LLM Fundamentals, which is a stepping stone toward Prompt Engineering — one of the skills your chatbot goal needs. It's placed right after the Kaggle Intro to Machine Learning course, since that gives you the Machine Learning Fundamentals groundwork this builds on. The recommendation fits well with your comfortable beginner level and your relaxed 6h/week pace, and it's a solid-quality resource. For what it's worth, of the 19,580 learners who had Programming Basics like you, only a tiny fraction (under 1%, per Coursera review-order data from 2015–2020) went on to this exact skill next — so it's a less common next step, but the graph path still makes it a necessary bridge toward your goal.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:frontend-developer:empty|mdn-learn",
+   "path": "template:frontend-developer:empty",
+   "kind": "course",
+   "catalogId": "mdn-learn",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This one earns its place because it builds the whole foundation your goal needs at once: Programming Basics (which feeds into JavaScript), plus HTML, CSS, JavaScript, Working with APIs, and Web Accessibility — all required for Frontend Developer. It's sequenced right after Networking Fundamentals, since understanding how the web works first gives the rest of this content more context. On fit, your level match is strongest (this is a true beginner starting point), with solid quality and a reasonable preference match for your pace. Worth noting: for the Programming Basics → JavaScript order specifically, Stack Overflow question data shows only 39% of about 53,600 people went in that order, and Coursera review data (a much smaller, less certain sample) shows just 10% of 157 did — so plenty of learners tackle these in a different sequence than this path proposes.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:frontend-developer:partial|frontend-mentor",
+   "path": "template:frontend-developer:partial",
+   "kind": "project",
+   "catalogId": "frontend-mentor",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This project is here to close your remaining gaps in CSS and Responsive Design, both of which sit directly on the path to your Frontend Developer goal (HTML leads to CSS, and CSS leads to Responsive Design). It's placed after the Responsive Web Design Certification since that course builds the HTML foundation this challenge set depends on.\n\nOn fit, the strongest signals are level fit and preference fit — the difficulty matches where you are, and the time commitment suits your 6 h/week pace, with decent quality backing it too.\n\nFor context, of learners on Stack Overflow who went HTML then CSS, 63% did so in that order (out of 87,995), and among Coursera reviewers it was 92% of 110. From CSS, 93% of Stack Overflow askers moved to Responsive Design next.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:frontend-developer:time-poor|linux-journey",
+   "path": "template:frontend-developer:time-poor",
+   "kind": "course",
+   "catalogId": "linux-journey",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Linux Journey is here because it builds Command Line & Linux Basics, which sits directly before Git & Version Control on the way to your Frontend Developer goal — you can't comfortably manage version control without it.\n\nIt's not sequenced after anything else yet, since it's foundational. Its strongest score components are level fit and preference fit — the course matches a beginner starting point and fits your intense, 3 h/week pace, with decent quality too.\n\nOn real-world ordering: among Stack Overflow questioners, 60% of 22,774 learned Command Line before Git, and among Coursera reviewers, 69% of 169 did the same — supporting this as the natural next step.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' because sequencedAfter is empty",
+     "whyUntraceable": "sequencedAfter being an empty list only indicates no prior sequencing was recorded; it does not state or imply that the course is 'foundational'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:backend-developer:empty|app-ideas",
+   "path": "template:backend-developer:empty",
+   "kind": "project",
+   "catalogId": "app-ideas",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "App Ideas Collection is on your path because it gives you real practice with REST API Design, a skill your Backend Developer goal directly requires. It's placed after Networking Basics, MDN Learn Web Development, and JavaScript30 because those build up your understanding of how the web works, core JavaScript, and modern JavaScript — the foundation you need before designing APIs makes sense.\n\nLooking at the scoring, preference fit was the strongest factor: at 20 hours and difficulty level 2, it matches your 6 h/week pace nicely, and level fit was solid too, meaning it's pitched right for where you're starting from. Coverage and similarity were lower, since this is just one piece of a much larger skill set you still need to build.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit was the strongest factor: at 20 hours and difficulty level 2, it matches your 6 h/week pace nicely, and level fit was solid too, meaning it's pitched right for where you're starting from.",
+     "claim": "preference fit score is explained as matching the 6h/week pace based on 20 hours and difficulty 2",
+     "whyUntraceable": "the evidence only gives a preferenceFit score of 0.944 without explaining it in terms of hours/pace matching; this is an invented rationale",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were lower, since this is just one piece of a much larger skill set you still need to build.",
+     "claim": "coverage and similarity are low because this is one piece of a much larger skill set still needed",
+     "whyUntraceable": "the evidence gives numeric coverage and similarity scores but no explanation tying them to a 'much larger skill set'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:backend-developer:partial|postgresqltutorial",
+   "path": "template:backend-developer:partial",
+   "kind": "course",
+   "catalogId": "postgresqltutorial",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This PostgreSQL Tutorial is here to deepen your PostgreSQL skills, building on the SQL you're already comfortable with — that's a natural path toward your backend developer goal. It fits well with your current level and lines up nicely with your pace and format preferences, which were the strongest reasons it made the cut. Among learners on Stack Overflow, 65% (13,893 of 21,374) who asked about SQL went on to ask about PostgreSQL in that order, showing this is a common next step. Separately, of learners who picked up Docker & Containers, about 2% went on to PostgreSQL next — just a small signal, not a strong pull, but consistent with your path forward.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:backend-developer:time-poor|ms-api-design",
+   "path": "template:backend-developer:time-poor",
+   "kind": "course",
+   "catalogId": "ms-api-design",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it builds your REST API Design skill, which your Backend Developer goal requires directly. It's placed after Networking Fundamentals and the REST API Tutorial, so you'll already have the groundwork in how the web works and basic API concepts before tackling best practices at this deeper level.\n\nLooking at the scoring, preference fit and quality stood out as the strongest factors — it fits comfortably into your 3 h/week intense pace, and it's a well-regarded resource from Microsoft Learn. Level fit was moderate, meaning it stretches you a bit beyond the basics without being out of reach. Coverage was modest since this one skill is just a piece of the bigger backend picture, but it's an important, required piece nonetheless.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Networking Fundamentals and the REST API Tutorial, so you'll already have the groundwork in how the web works and basic API concepts before tackling best practices at this deeper level.",
+     "claim": "tackling best practices at this deeper level",
+     "whyUntraceable": "difficulty is given as a raw value of 3 with no scale or comparison point provided, so calling it 'deeper' is an interpretive reading not directly supported by any field",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and quality stood out as the strongest factors — it fits comfortably into your 3 h/week intense pace, and it's a well-regarded resource from Microsoft Learn.",
+     "claim": "it's a well-regarded resource from Microsoft Learn",
+     "whyUntraceable": "the quality field is a numeric score (0.85) with no qualitative label or reputation data attached; 'well-regarded' is an invented qualitative gloss on a number",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage was modest since this one skill is just a piece of the bigger backend picture, but it's an important, required piece nonetheless.",
+     "claim": "Coverage was modest",
+     "whyUntraceable": "coverage is 0.1, a very low value; describing it as merely 'modest' glosses over how small the coverage score actually is beyond what the field itself conveys",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:full-stack-developer:empty|typescript-handbook",
+   "path": "template:full-stack-developer:empty",
+   "kind": "course",
+   "catalogId": "typescript-handbook",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's here because TypeScript is a skill your Full-Stack Developer path needs, and this Handbook directly closes that gap. It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial since both build the JavaScript foundation TypeScript builds on—learning it too early would be harder without that base.\n\nLooking at the scoring, your preference fit was strongest: at 10 hours and a light difficulty level, it fits your 6 h/week standard pace comfortably, and the source quality is solid as official documentation. Level fit is reasonably good too, meaning the difficulty matches where you're at. Coverage is smaller here since TypeScript is just one piece of the broader goal, but it's a necessary one.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial since both build the JavaScript foundation TypeScript builds on—learning it too early would be harder without that base.",
+     "claim": "learning TypeScript too early would be harder without the JavaScript foundation",
+     "whyUntraceable": "sequencedAfter only states 'becauseSkill: JavaScript'; no evidence field states that early learning would be harder",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, your preference fit was strongest: at 10 hours and a light difficulty level, it fits your 6 h/week standard pace comfortably, and the source quality is solid as official documentation.",
+     "claim": "a light difficulty level",
+     "whyUntraceable": "difficulty is given as a raw value of 2 with no scale or qualitative label provided in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Level fit is reasonably good too, meaning the difficulty matches where you're at.",
+     "claim": "the difficulty matches where you're at (the learner's current level)",
+     "whyUntraceable": "the profile summary records no skills or skill levels for the learner, so there is no basis to claim the difficulty matches their level",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:full-stack-developer:partial|learn-git-branching",
+   "path": "template:full-stack-developer:partial",
+   "kind": "course",
+   "catalogId": "learn-git-branching",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Learn Git Branching is here to close your gap in Git & Version Control, which the goal path requires, building on the Command Line & Linux Basics you're already comfortable with. In the evidence, your preference fit and quality scored strongest, meaning this short, low-difficulty course fits your 6 h/week standard pace and any-format setup nicely, and it's well-regarded. Level fit was moderate, so it's a gentle step up rather than a stretch.\n\nFor what it's worth, among Stack Overflow askers who covered both topics, 60% (of 22,774) went from Command Line to Git in that order, and among Coursera reviewers, 69% (of 169) did too. Separately, of Coursera learners who'd done Command Line, only 3% (of 2,882) moved to this particular Git skill next — a reminder these are just patterns of order, not endorsements.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "In the evidence, your preference fit and quality scored strongest, meaning this short, low-difficulty course fits your 6 h/week standard pace and any-format setup nicely, and it's well-regarded.",
+     "claim": "it's well-regarded",
+     "whyUntraceable": "The evidence only provides a numeric quality score (0.8); it does not state that the course is 'well-regarded' by anyone, nor does it identify preferenceFit and quality as jointly 'strongest' (preferenceFit=1 is the highest, quality=0.8 is second).",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:full-stack-developer:time-poor|sqlbolt",
+   "path": "template:full-stack-developer:time-poor",
+   "kind": "course",
+   "catalogId": "sqlbolt",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "SQLBolt is on your path because it closes your gap in SQL, a skill your Full-Stack Developer goal requires directly. It's not sequenced after anything else yet, so it's a natural starting point since there's nothing else it depends on.\n\nLooking at the scoring, level fit and preference fit were both maxed out — meaning its difficulty matches where you're starting from, and it fits neatly into your 3 hours/week, intense-pace schedule at just 6 hours total. Quality also scored strongly. Coverage was modest since this single course only addresses one skill among the many you'll eventually need, but as a low-effort, well-matched entry point into SQL, it earns its place early on your path.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:data-analyst:empty|khan-stats",
+   "path": "template:data-analyst:empty",
+   "kind": "course",
+   "catalogId": "khan-stats",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Khan Academy's Statistics and Probability course is here because it closes three real gaps on your way to becoming a Data Analyst: Statistics Fundamentals and Inferential Statistics, both required directly by the goal, and Probability, which acts as the stepping stone into Inferential Statistics. It isn't sequenced after anything else yet, since it's foundational.\n\nOn scoring, level fit was strongest — this matches where you're starting from — and quality was also solid, with preference fit reasonably good given your 6 h/week standard pace. Coverage and similarity were lower, meaning it's one piece among several needed, not a complete solution.\n\nOn the Probability-to-Inferential-Statistics order specifically, Coursera reviewers took that path 95% of the time (n=21), and Stack Overflow question order showed a near-even 49% (n=545) — a much noisier signal, so take it lightly.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' because sequencedAfter is empty",
+     "whyUntraceable": "sequencedAfter being an empty list only indicates no prerequisite sequencing was recorded; it does not support the qualitative claim that the course is 'foundational'",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-analyst:partial|kaggle-datasets-eda",
+   "path": "template:data-analyst:partial",
+   "kind": "project",
+   "catalogId": "kaggle-datasets-eda",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This project is here to close two gaps your Data Analyst goal needs: Exploratory Data Analysis, which builds on your Statistics Fundamentals, and Data Storytelling, a skill required on its own. It's placed after Kaggle Learn: Pandas since that builds your Python for Data Analysis skills first, giving you the footing to handle a real dataset.\n\nYour preferences were a strong match here (6 h/week fits comfortably with this 10-hour project), and its level and quality also fit you well. Among learners who asked Stack Overflow questions, 54% of 1,704 tackled Exploratory Data Analysis after Statistics Fundamentals, similar to your path. And on Coursera, of 2,080 learners who had Advanced SQL like you, 8% went on to this kind of EDA work next — just one signal of where people go, not a verdict on the experience.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Your preferences were a strong match here (6 h/week fits comfortably with this 10-hour project), and its level and quality also fit you well.",
+     "claim": "its quality also fit you well",
+     "whyUntraceable": "The quality score (0.75) in scoreBreakdown reflects the item's general quality, not a personalized fit metric; conflating it with 'fit you well' misrepresents the field's meaning.",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:data-analyst:time-poor|pgexercises",
+   "path": "template:data-analyst:time-poor",
+   "kind": "assessment",
+   "catalogId": "pgexercises",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "PostgreSQL Exercises is here because SQL and Advanced SQL are both skills your Data Analyst goal requires, and this resource directly closes those gaps through hands-on practice. It's placed right after SQL Tutorial for Data Analysis, since that course builds the SQL foundation you need before tackling these more applied exercises.\n\nLooking at the scoring, preference fit stood out as the strongest match — with your 3 hours a week and intense pace, this fits well into a manageable rhythm. Quality also scored solidly, reflecting that it's a well-regarded resource. Level fit was reasonable too, suggesting the difficulty suits where you're starting from. Together, these made it a sensible next step toward strengthening your SQL skills.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "PostgreSQL Exercises is here because SQL and Advanced SQL are both skills your Data Analyst goal requires, and this resource directly closes those gaps through hands-on practice.",
+     "claim": "the resource involves 'hands-on practice'",
+     "whyUntraceable": "the evidence object does not describe the item's format or pedagogical style as hands-on practice; item.kind is 'assessment' with no such description",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:business-intelligence-analyst:empty|fcc-database-design",
+   "path": "template:business-intelligence-analyst:empty",
+   "kind": "course",
+   "catalogId": "fcc-database-design",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it closes your gap in Data Modeling, a skill that leads straight to your Business Intelligence Analyst goal. It's placed after SQL Tutorial for Data Analysis and the Google Data Analytics Professional Certificate, since both build the SQL foundation that Data Modeling naturally builds on.\n\nLooking at the scoring, preference fit was the strongest match — with 6 hours a week and an 8-hour course, the pace fits comfortably. Level fit was also solid, meaning the difficulty lines up well with where you're starting from. Quality came in decent too, reflecting a well-regarded resource. Coverage was modest here since this single course targets one specific gap rather than many, but that focus is exactly why it earns its place right after your SQL groundwork.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after SQL Tutorial for Data Analysis and the Google Data Analytics Professional Certificate, since both build the SQL foundation that Data Modeling naturally builds on.",
+     "claim": "the SQL foundation that Data Modeling naturally builds on",
+     "whyUntraceable": "the evidence only states sequencedAfter items 'becauseSkill: SQL' with no claim that Data Modeling builds upon SQL",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Quality came in decent too, reflecting a well-regarded resource.",
+     "claim": "a well-regarded resource",
+     "whyUntraceable": "quality score of 0.75 is a numeric field; calling it 'well-regarded' asserts an external reputation not present in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage was modest here since this single course targets one specific gap rather than many, but that focus is exactly why it earns its place right after your SQL groundwork.",
+     "claim": "Coverage was modest",
+     "whyUntraceable": "coverage field is 0.08, which is very low, not 'modest'; this misreads the magnitude of the coverage score",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:business-intelligence-analyst:partial|maven-challenges",
+   "path": "template:business-intelligence-analyst:partial",
+   "kind": "project",
+   "catalogId": "maven-challenges",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "Maven Analytics Data Challenges is on your path because it directly builds Data Visualization and Data Storytelling, two skills your Business Intelligence Analyst goal requires that you haven't developed yet. It's placed after Seeing Theory (which builds your statistics foundation) and Kaggle Learn: Pandas (which builds Python for data analysis), since those give you the groundwork needed to tackle these hands-on challenges effectively.\n\nLooking at the scoring, this project fits your available time and format preferences perfectly, and it matches well with your current skill level too. Its content quality is solid, and it's reasonably aligned with the overall shape of your learning path.\n\nWorth noting: among Coursera learners who had Advanced SQL like you do, about 12% (249 of 2,080) went on to something like this next — though that pattern reflects review-order sequencing, not a quality judgment.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:business-intelligence-analyst:time-poor|kaggle-python",
+   "path": "template:business-intelligence-analyst:time-poor",
+   "kind": "course",
+   "catalogId": "kaggle-python",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Kaggle Learn: Python is first up because Python is a building block you need before you can tackle ETL & Data Pipelines, which sits on your route toward becoming a Business Intelligence Analyst. It's not sequenced after anything else, since it's an entry point for you right now.\n\nLooking at the fit, the strongest signals here are level fit and preference fit — this course is well matched to a true beginner and fits your intense pace and flexible format preferences within your 3 hours a week. Quality also scored solidly. Coverage looks small simply because this is one narrow, foundational step in a bigger path.\n\nFor context, among Stack Overflow users who asked questions about both technologies, 65 percent (of 5,885) asked about Python before ETL & Data Pipelines — worth noting since that reflects order of asking, not proof of mastery.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else, since it's an entry point for you right now.",
+     "claim": "the course is 'an entry point for you right now'",
+     "whyUntraceable": "sequencedAfter is simply an empty list; the evidence does not characterize the course as an 'entry point' or describe timing relevance beyond the empty array",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:empty|guess-correlation",
+   "path": "template:data-scientist:empty",
+   "kind": "assessment",
+   "catalogId": "guess-correlation",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This item is on your path because it helps build Statistics Fundamentals, a skill required for your Data Scientist goal. It isn't sequenced after anything else yet, so it's a fine, low-stakes place to start building intuition for correlation before layering on more advanced statistics work.\n\nLooking at the scoring, level fit and preference fit were the strongest components: at just 1 hour and difficulty level 1, it fits comfortably within your 6 hours/week at a standard pace, with no format or budget conflicts. Quality was decent too. Coverage of the overall skill gap is small since this is just one narrow piece of a broader statistics foundation, but as an easy, well-matched starting point, it earns its place early on your path.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet, so it's a fine, low-stakes place to start building intuition for correlation before layering on more advanced statistics work.",
+     "claim": "before layering on more advanced statistics work",
+     "whyUntraceable": "No evidence field indicates any future or more advanced statistics coursework planned after this item; sequencedAfter is empty and no other items are referenced.",
+     "kind": "invented-fact"
+    },
+    {
+     "sentence": "Coverage of the overall skill gap is small since this is just one narrow piece of a broader statistics foundation, but as an easy, well-matched starting point, it earns its place early on your path.",
+     "claim": "it earns its place early on your path",
+     "whyUntraceable": "Neither the evidence object nor the profile summary indicates the item's position or ordering within the learner's overall path.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:partial|wes-mckinney-book",
+   "path": "template:data-scientist:partial",
+   "kind": "course",
+   "catalogId": "wes-mckinney-book",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course closes your gap in Python for Data Analysis, a skill directly required for your Data Scientist goal, building on the Python you've already learned. It's placed right after The Python Tutorial, since that's where your Python foundation comes from before moving into applied analysis work.\n\nLooking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.\n\nFor real-world context: among Stack Overflow question askers, 51,421 of 54,067 (95%) who touched both skills went Python before Python for Data Analysis, and on Coursera, 86% of 568 followed that same order. Separately, of learners who already knew Python, 7% of 422,784 moved to this skill next.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.",
+     "claim": "it's a well-regarded resource",
+     "whyUntraceable": "the quality field is a numeric score (0.9) with no descriptor; calling it 'well-regarded' is an interpretive label not present in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and quality were the strongest factors here — it fits your standard pace and 6h/week well, and it's a well-regarded resource, with a decent similarity to what other learners in your position tend to study.",
+     "claim": "a decent similarity to what other learners in your position tend to study",
+     "whyUntraceable": "the similarity score (0.558) is a generic content-similarity metric; it does not measure or describe what 'other learners in your position' study",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:data-scientist:time-poor|stratascratch",
+   "path": "template:data-scientist:time-poor",
+   "kind": "assessment",
+   "catalogId": "stratascratch",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "StrataScratch is here to help you practice SQL and Python for Data Analysis, both of which are required for your Data Scientist goal. It's placed after Kaggle Learn: Python and SQLBolt, since those build the foundational Python and SQL skills that this item lets you apply in a more realistic, assessment-style setting.\n\nLooking at the scoring, preference fit was the strongest signal — with your intense pace and limited weekly hours, this fits well into a focused block of practice. Quality also scored solidly, reflecting that it's a well-regarded resource. Coverage and level fit were more modest, since it only touches two goal skills and sits at a moderate difficulty relative to where you're starting from, but it still gives you hands-on reinforcement right after the fundamentals.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Kaggle Learn: Python and SQLBolt, since those build the foundational Python and SQL skills that this item lets you apply in a more realistic, assessment-style setting.",
+     "claim": "the item lets you apply skills in a more realistic, assessment-style setting",
+     "whyUntraceable": "No field describes the item's setting as 'realistic' or elaborates on how it differs qualitatively from prior items beyond its 'assessment' kind label",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:empty|gcsb-data-engineer",
+   "path": "template:data-engineer:empty",
+   "kind": "course",
+   "catalogId": "gcsb-data-engineer",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is on your path because it directly builds three skills your Data Engineer goal requires: Cloud Data Platforms, ETL & Data Pipelines, and Data Warehousing — each sits right on the graph path to that role. It's placed after you've built SQL (via the SQL Bootcamp and Python for Everybody), Cloud Fundamentals, and Data Modeling, since those foundations make this material accessible. Looking at the scoring, quality was the strongest factor, with preference fit also solid given your 6h/week standard pace, while similarity and level fit were moderate — reflecting that this is a substantial, credible course that's a reasonable but not perfect match for where you're starting from. Coverage is modest here since it's just one of several gap-closing steps ahead.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after you've built SQL (via the SQL Bootcamp and Python for Everybody), Cloud Fundamentals, and Data Modeling, since those foundations make this material accessible.",
+     "claim": "since those foundations make this material accessible",
+     "whyUntraceable": "The evidence only lists sequencedAfter relationships with becauseSkill tags; it does not state that these prior courses make the material 'accessible' or justify the ordering in that way.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:partial|postgresqltutorial",
+   "path": "template:data-engineer:partial",
+   "kind": "course",
+   "catalogId": "postgresqltutorial",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This PostgreSQL Tutorial is here to build directly on the SQL comfort you already have, growing it into PostgreSQL and Advanced SQL — both required for the Data Engineer path. It fits well with your current level and matches your pace and format preferences nicely, which were the strongest factors pulling it into your plan; quality is solid too, though it only covers a small slice of your overall remaining gaps, so more items will follow.\n\nOn Stack Overflow, of learners who asked about SQL first, 65% went on to ask about PostgreSQL next, and 87% moved on to Advanced SQL — suggesting this is a well-worn route from where you stand. Separately, among learners who had Cloud Fundamentals, only 3% went to PostgreSQL next, so this move is less about that skill and more about your strong SQL base.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "On Stack Overflow, of learners who asked about SQL first, 65% went on to ask about PostgreSQL next, and 87% moved on to Advanced SQL — suggesting this is a well-worn route from where you stand.",
+     "claim": "characterizing the SQL→Advanced SQL transition as a 'well-worn route' based solely on the 87% Stack Overflow figure",
+     "whyUntraceable": "the evidence also contains a separate Coursera review-order link for SQL→Advanced SQL showing only 2% took that order, directly contradicting the 'well-worn route' characterization; the narration selectively omits this conflicting data",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:data-engineer:time-poor|postgresqltutorial",
+   "path": "template:data-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "postgresqltutorial",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's on your path because it fills two gaps you need for Data Engineer: PostgreSQL and Advanced SQL, both required by that goal. It's placed right after SQLBolt, since it builds on the SQL foundation you'd get there before tackling PostgreSQL more deeply.\n\nLooking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule. Quality was solid too. Coverage was modest since it's just these two skills among your broader path, but they're both directly tied to your goal, which is why it earned its place here.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "preference fit and level fit stood out as the strongest matches",
+     "whyUntraceable": "levelFit (0.75) is tied with quality (0.75); only preferenceFit (0.806) is actually the highest score, so calling levelFit one of the two 'strongest' misstates the scoreBreakdown",
+     "kind": "misstated-field"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "the difficulty level suits where you are",
+     "whyUntraceable": "the profile lists no recorded skills or current level, so there is no basis to claim the difficulty level suits the learner's current standing",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, preference fit and level fit stood out as the strongest matches — the difficulty level suits where you are, and the format works within your intense-but-limited 3-hours-a-week schedule.",
+     "claim": "the format works within your intense-but-limited 3-hours-a-week schedule",
+     "whyUntraceable": "no format field exists in the evidence object; the item only has 'kind':'course' and 'hours':20, and preferences state formats 'any' with no specific format matching claim supported",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:machine-learning-engineer:empty|kaggle-digit-recognizer",
+   "path": "template:machine-learning-engineer:empty",
+   "kind": "project",
+   "catalogId": "kaggle-digit-recognizer",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Here's why the Digit Recognizer project shows up next on your path.\n\nYou're aiming for Machine Learning Engineer, and Neural Networks is a required skill for that goal—this hands-on Kaggle competition is there to close that exact gap. It's placed after StatQuest with Josh Starmer, which builds your Machine Learning Fundamentals, and after the 3Blue1Brown Neural Networks series, which gives you the Math for Machine Learning foundation you need before tackling a real neural network project.\n\nLooking at the scoring, preference fit is the standout strength—this project matches your 6 h/week, standard pace, any-budget, any-format setup very well. Level fit and quality are also solidly supportive, making this a well-matched, practical next step toward your goal.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:machine-learning-engineer:partial|kaggle-titanic",
+   "path": "template:machine-learning-engineer:partial",
+   "kind": "project",
+   "catalogId": "kaggle-titanic",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This project moves you into scikit-learn, Supervised Learning, and Feature Engineering — all skills your Machine Learning Engineer goal requires, so closing them is a direct step forward. It's placed after Kaggle Learn: Pandas and StatQuest with Josh Starmer, since those build the Python-for-data-analysis and ML-fundamentals base this project leans on. The match here is strong on level fit and preference fit — it suits your comfort level and fits your 6 hours/week nicely — with good quality too, though it only covers a small slice of the overall skill gaps. For context, among Coursera learners who had SQL like you, about 6% (316 of 5,694, per Coursera review order 2015–2020, reconstructed sequences) went on to this kind of skill next.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:machine-learning-engineer:time-poor|kaggle-intermediate-ml",
+   "path": "template:machine-learning-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "kaggle-intermediate-ml",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is here because it directly closes three gaps your Machine Learning Engineer path needs: scikit-learn, Feature Engineering, and Model Evaluation, each required to reach your goal. It's placed after Kaggle Learn: Pandas and Kaggle Learn: Intro to Machine Learning, since those build the Python for Data Analysis and Machine Learning Fundamentals skills this course leans on. In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level. Coverage and similarity were lower, but the specific skills it unlocks make it a well-placed next step.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level.",
+     "claim": "comes from a solid source",
+     "whyUntraceable": "The quality score (0.8) reflects a general quality metric, not a claim about the provider being a 'solid source'; this interpretation adds an unstated judgment about the source's reliability.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "In the scoring, preference fit and quality were the strongest contributors, showing it matches your intense-pace, any-format style well and comes from a solid source, while level fit was also solid given your current skill level.",
+     "claim": "given your current skill level",
+     "whyUntraceable": "The profile summary states skills: none recorded, so there is no basis for asserting a 'current skill level' that the level fit score is being matched against.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:ai-engineer:empty|seeing-theory",
+   "path": "template:ai-engineer:empty",
+   "kind": "course",
+   "catalogId": "seeing-theory",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Seeing Theory is on your path because it builds Statistics Fundamentals, a skill that sits right before Machine Learning Fundamentals and eventually LLM Fundamentals on the way to your AI Engineer goal — so this gives you a foundation stone for that whole chain. It's not sequenced after anything else yet, since you're starting fresh. Score-wise, it's a strong match on level fit and your preferences (fitting your 6h/week standard pace nicely), and quality is solid too, though it only covers a small slice of the overall skill gap. For context, on Stack Overflow, of 1,883 people whose question order covered both skills, 51% asked about Statistics Fundamentals before Machine Learning Fundamentals — a rough signal of common ordering, not a guarantee of the best path.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Seeing Theory is on your path because it builds Statistics Fundamentals, a skill that sits right before Machine Learning Fundamentals and eventually LLM Fundamentals on the way to your AI Engineer goal — so this gives you a foundation stone for that whole chain.",
+     "claim": "gives you a foundation stone for that whole chain",
+     "whyUntraceable": "The evidence only states a graphPath prerequisite relationship; calling it a 'foundation stone for that whole chain' adds an interpretive framing not directly supported by any field",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:ai-engineer:partial|gen-ai-for-everyone",
+   "path": "template:ai-engineer:partial",
+   "kind": "course",
+   "catalogId": "gen-ai-for-everyone",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course is here because it directly closes two gaps you still need for AI Engineer: LLM Fundamentals and Responsible AI — both required by your goal. It's sequenced right after Machine Learning Crash Course, since that course builds the Machine Learning Fundamentals this one builds on. On fit, it scores strongly on level fit and preference fit (matching your comfortable pace and format needs) and has solid quality, though coverage and similarity to your existing skills are modest, since this is genuinely new ground for you. For context, from Coursera review order, of 19,580 learners who had Programming Basics like you, only 54 (<1%) went on to this course next — so it's an uncommon next step, but a targeted one for your specific goal gaps.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "On fit, it scores strongly on level fit and preference fit (matching your comfortable pace and format needs) and has solid quality, though coverage and similarity to your existing skills are modest, since this is genuinely new ground for you.",
+     "claim": "matching your comfortable pace",
+     "whyUntraceable": "Profile states pace preference as 'standard', not 'comfortable'; 'comfortable' only describes skill proficiency levels, not pace",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "template:ai-engineer:time-poor|anthropic-quickstarts",
+   "path": "template:ai-engineer:time-poor",
+   "kind": "project",
+   "catalogId": "anthropic-quickstarts",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Anthropic Quickstarts is on your path because it directly builds two skills your AI Engineer goal requires: AI Application Development and Working with LLM APIs. Both sit right on the graph path leading to that goal, so closing them matters.\n\nIt's placed after REST API Tutorial, the Prompt Engineering Guide, and ChatGPT Prompt Engineering for Developers, since those build the REST API design, prompt engineering, and LLM API foundations this hands-on project assumes you already have.\n\nScore-wise, the strongest driver is preference fit — this fits your intense, 3-hour-a-week pace nicely — with solid quality behind it too. It's a well-matched, practical next step toward real LLM app-building experience.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:cloud-engineer:empty|maarek-saa",
+   "path": "template:cloud-engineer:empty",
+   "kind": "course",
+   "catalogId": "maarek-saa",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is placed here because it directly closes five skills your Cloud Engineer goal requires: AWS Fundamentals, Cloud Architecture, Cloud Networking, Cloud Storage, and Cloud Databases — each sits right on the graph path to that goal. It's sequenced after SQLBolt and the Cloud Fundamentals intro course, since those build the SQL and cloud-concepts groundwork this course assumes before going deeper. Looking at the score, preference fit and quality were the strongest components, meaning it suits your six-hours-a-week, standard-pace style well and is a well-regarded course. Coverage and level fit were moderate, reflecting that this is a broad, mid-difficulty course rather than a narrow perfect match — but given how many goal-critical gaps it closes at once, it earns its place early on your path.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced after SQLBolt and the Cloud Fundamentals intro course, since those build the SQL and cloud-concepts groundwork this course assumes before going deeper.",
+     "claim": "the course assumes groundwork before going deeper (implying a depth/difficulty progression)",
+     "whyUntraceable": "No field describes the course's depth or a 'deeper' progression beyond the sequencedAfter relationship and difficulty score",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and level fit were moderate, reflecting that this is a broad, mid-difficulty course rather than a narrow perfect match — but given how many goal-critical gaps it closes at once, it earns its place early on your path.",
+     "claim": "it earns its place early on your path",
+     "whyUntraceable": "No field indicates the course's position or ordering ('early') on the learner's overall path",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:cloud-engineer:partial|terraform-tutorials",
+   "path": "template:cloud-engineer:partial",
+   "kind": "course",
+   "catalogId": "terraform-tutorials",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Terraform Tutorials is here to close your gap in Infrastructure as Code, a skill your Cloud Engineer path requires, building directly on the Cloud Fundamentals you already have. That's why it's sequenced after your intro cloud concepts and DevOps groundwork — you need that foundation before tackling IaC itself. Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.\n\nAmong learners who already had Cloud Fundamentals, Stack Overflow question order shows 73% (of 394) went to Infrastructure as Code in this order, and Coursera review order shows 94% (of 262) did the same — though these reflect sequence, not difficulty or satisfaction. Separately, of 6,019 Coursera learners who had Cloud Fundamentals, only 2% moved to this specific skill next, so it's a common but not the most frequent follow-on step.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.",
+     "claim": "quality is described as making the course a 'well-regarded resource'",
+     "whyUntraceable": "the quality field is a numeric score (0.85) with no qualitative label like 'well-regarded' attached to it in the evidence",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the score, your preference fit and quality were the strongest components, meaning this course fits your 6h/week pace well and is a well-regarded resource, while similarity to your current skill level was moderate.",
+     "claim": "similarity to current skill level was 'moderate'",
+     "whyUntraceable": "similarity score of 0.589 has no defined threshold in the evidence for 'moderate'; this is an unsupported qualitative label",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Separately, of 6,019 Coursera learners who had Cloud Fundamentals, only 2% moved to this specific skill next, so it's a common but not the most frequent follow-on step.",
+     "claim": "describing the 2% follow-on rate as 'common'",
+     "whyUntraceable": "a 2% rate contradicts the characterization of 'common'; the evidence gives only the percentage, not a qualitative frequency judgment like this",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:cloud-engineer:time-poor|hackerrank-sql",
+   "path": "template:cloud-engineer:time-poor",
+   "kind": "assessment",
+   "catalogId": "hackerrank-sql",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This HackerRank SQL certification is here to lock in your SQL skills, which is a direct prerequisite for Cloud Databases—an important step on your way to becoming a Cloud Engineer. It's placed right after SQLBolt, so you'll be applying and proving what you just practiced there.\n\nLooking at the fit: it matches your preferences well and offers solid quality, while sitting at a comfortable difficulty level for where you're starting from. Among real learners on Stack Overflow, out of 4,609 who asked questions about both, 79% tackled SQL before moving on to Cloud Databases—so this sequencing mirrors a well-worn path (keeping in mind that reflects question order, not proof of mastery).",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:devops-engineer:empty|az900-path",
+   "path": "template:devops-engineer:empty",
+   "kind": "course",
+   "catalogId": "az900-path",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This course is here because Cloud Fundamentals is a skill your DevOps Engineer goal requires, and this is the item that closes that gap directly. It's placed after Networking Fundamentals (Module 1) because that module builds your understanding of networking and how the web works, which gives you the grounding needed before tackling cloud concepts.\n\nLooking at the scoring, level fit and preference fit were the strongest match — it's pitched at a beginner level that suits you since you're starting fresh, and it fits your 6 hours/week, standard pace, and open format preferences well. Quality is solid too. Coverage is modest since it targets just this one skill, but that's exactly the gap it's meant to close for you right now.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:devops-engineer:partial|udemy-max-docker-k8s",
+   "path": "template:devops-engineer:partial",
+   "kind": "course",
+   "catalogId": "udemy-max-docker-k8s",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course lands on your path because it directly closes two gaps your DevOps goal needs: Docker & Containers, building on the Command Line & Linux basics you already have, and Kubernetes, which follows naturally once Docker clicks. It's placed after \"The Missing Semester of Your CS Education\" so your command-line comfort is solid first. Among the scoring factors, preference fit was the strongest match to how you like to learn, with solid quality backing it too; coverage and level fit were more modest, so there's real stretch here but the sequencing is meant to ease you into it. On Stack Overflow, 71% of people asking about these topics tackled Command Line before Docker, and 65% moved from Docker to Kubernetes in that order, matching the path here — though that's just where questions were asked, not proof of mastery.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:devops-engineer:time-poor|docker-get-started",
+   "path": "template:devops-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "docker-get-started",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This item is on your path because it closes your gap in Docker & Containers, a skill that's required for the DevOps Engineer goal — that's a core piece of the puzzle you're missing. It's sequenced right after Linux Journey, since getting comfortable with the command line and Linux basics first gives you the footing you need before diving into containers.\n\nLooking at the scoring, preference fit and quality stood out as the strongest factors — this course matches your intense pace and limited weekly hours well, and it's a solidly rated resource straight from Docker's own documentation. Level fit was also solid, meaning the difficulty lines up reasonably with where you're starting from as a newcomer to this skill.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit and quality stood out as the strongest factors — this course matches your intense pace and limited weekly hours well, and it's a solidly rated resource straight from Docker's own documentation.",
+     "claim": "it's a solidly rated resource",
+     "whyUntraceable": "The evidence only gives a numeric quality score (0.85) with no qualitative label like 'solidly rated'; this is an added interpretive characterization beyond the raw number.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Level fit was also solid, meaning the difficulty lines up reasonably with where you're starting from as a newcomer to this skill.",
+     "claim": "Level fit was also solid",
+     "whyUntraceable": "levelFit is a numeric score (0.75) with no qualitative descriptor in the evidence; calling it 'solid' is an interpretive gloss not directly stated.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:site-reliability-engineer:empty|practical-networking",
+   "path": "template:site-reliability-engineer:empty",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This course is here because it builds Networking & How the Web Works, a skill that's a direct stepping stone to Cloud Fundamentals on your way toward Site Reliability Engineer. It isn't sequenced after anything else yet — it's an early foundation piece. Looking at the scoring, your preferences (time, pace, budget, format) fit this perfectly, and the difficulty level matches well too, which is why it made the cut even though overall coverage of your skill gaps is still small this early on.\n\nFor context on ordering: among Stack Overflow question askers, learners moved from Networking to Cloud Fundamentals in that order about half the time (n=3938), while Coursera reviewers followed that same order 90% of the time (n=1123) — though both are indirect proxies, not completion records, so take them as directional rather than certain.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It isn't sequenced after anything else yet — it's an early foundation piece.",
+     "claim": "the course is an 'early foundation piece'",
+     "whyUntraceable": "sequencedAfter is simply an empty list; nothing in the evidence characterizes the course as foundational or early",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:site-reliability-engineer:partial|redis-crash-course",
+   "path": "template:site-reliability-engineer:partial",
+   "kind": "course",
+   "catalogId": "redis-crash-course",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Here's why Redis Crash Course is on your path: it closes your gap in Caching, which sits on the graph route from REST API Design through Caching to System Design — a skill chain that matters for where you're headed as an SRE. It's not sequenced after another path item directly, but it fits your fundamentals well.\n\nLooking at the scoring, preference fit was the strongest match (it's a short, 1-hour course that suits your 6h/week pace), with level fit also solid given your basics-level standing. Coverage and similarity were lighter factors here.\n\nOn real learner patterns from Stack Overflow question order: among learners who asked about REST API Design, 56% (of 4,930) asked about Caching next in that order, and of those who asked about Caching, 49% (of 2,690) went on to System Design next — showing this is a well-worn path toward your goal, though asking a question isn't the same as completing the learning.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "On real learner patterns from Stack Overflow question order: among learners who asked about REST API Design, 56% (of 4,930) asked about Caching next in that order, and of those who asked about Caching, 49% (of 2,690) went on to System Design next — showing this is a well-worn path toward your goal, though asking a question isn't the same as completing the learning.",
+     "claim": "showing this is a well-worn path toward your goal",
+     "whyUntraceable": "The percentages (56% and 49%) are near even splits, not indicative of a dominant or 'well-worn' path; this framing overstates what the data shows",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:site-reliability-engineer:time-poor|redis-crash-course",
+   "path": "template:site-reliability-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "redis-crash-course",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Here's why Redis Crash Course is next on your path toward Site Reliability Engineer: it closes your gap in Caching, a skill that sits directly on the path toward System Design — a key step toward your goal. It's placed right after REST API Tutorial, since that course builds the REST API Design foundation this one builds on.\n\nOn the scoring side, this pick shines mainly on preference fit, matching your intense pace and flexible format needs perfectly, with solid quality and level fit too, given its short length and light difficulty.\n\nFor real-world context, among Stack Overflow questioners who touched both skills, 1,308 of 2,690 asked about Caching before System Design (about 49%) — a rough signal of common ordering, not a guarantee of the best path.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:security-analyst:empty|cisco-networking-basics",
+   "path": "template:security-analyst:empty",
+   "kind": "course",
+   "catalogId": "cisco-networking-basics",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Networking Basics is on your path because it directly builds \"Networking & How the Web Works,\" a skill your goal of becoming a Security Analyst requires — you can't understand how attacks and defenses work without first knowing how networks and the web actually function. It isn't sequenced after anything else yet, since this is foundational ground-floor material given you have no recorded skills so far.\n\nLooking at the scoring, level fit and preference fit were the strongest components here — it matches a beginner starting point well, and fits comfortably into your 6 hours/week at a standard pace. Quality was solid too, reflecting a well-regarded provider. It's an easy on-ramp that sets you up for the deeper security skills ahead.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Networking Basics is on your path because it directly builds \"Networking & How the Web Works,\" a skill your goal of becoming a Security Analyst requires — you can't understand how attacks and defenses work without first knowing how networks and the web actually function.",
+     "claim": "you can't understand how attacks and defenses work without first knowing how networks and the web actually function",
+     "whyUntraceable": "No field in the evidence or profile discusses attacks, defenses, or the relationship between networking knowledge and security analysis reasoning; this causal justification is invented.",
+     "kind": "invented-fact"
+    },
+    {
+     "sentence": "It's an easy on-ramp that sets you up for the deeper security skills ahead.",
+     "claim": "sets you up for the deeper security skills ahead",
+     "whyUntraceable": "No evidence field (sequencedAfter, closesGapIn, graphPath) indicates any subsequent security-related skills or courses this item leads into; sequencedAfter is empty and no future path is specified.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:security-analyst:partial|letsdefend",
+   "path": "template:security-analyst:partial",
+   "kind": "course",
+   "catalogId": "letsdefend",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "LetsDefend earns its place because it directly builds the skills your Security Analyst goal requires: Security Operations (which builds on your Linux Administration base), Incident Response, and Digital Forensics. None of these are covered yet, so this course fills a real gap on your path.\n\nIt's scheduled after Linux Upskill Challenge and KodeKloud Engineer (both growing your Linux Administration skills) and after Professor Messer Security+ Training (building your Security Fundamentals), so you'll have the groundwork needed before tackling hands-on security operations work.\n\nLooking at the scoring, preference fit was the strongest factor, meaning it fits well with your available time and format preferences, with quality also solid. Coverage and similarity were more modest, reflecting that this is a broader step forward rather than a narrow repeat of what you already know.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:security-analyst:time-poor|gdpr-eu",
+   "path": "template:security-analyst:time-poor",
+   "kind": "course",
+   "catalogId": "gdpr-eu",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "The GDPR.eu Guide is here to close your Compliance & Privacy gap, a skill your Security Analyst goal requires directly. It's placed after the Professor Messer Security+ Training so you first build Security Fundamentals before layering on privacy and compliance concepts.\n\nLooking at the scoring, level fit and preference fit were both strong — the course matches your beginner starting point and fits neatly into your 3 hours/week intense pace, with no format or budget conflicts. Quality also scored solidly. Coverage of your overall skill gaps is small since this one course targets just this piece, but that's expected as you're just starting your path toward becoming a Security Analyst.",
+   "sentences": 5,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:qa-automation-engineer:empty|github-pages-site",
+   "path": "template:qa-automation-engineer:empty",
+   "kind": "project",
+   "catalogId": "github-pages-site",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This project earns its spot because it gets you started on two things your goal needs: HTML, which opens the path toward CSS, React, and Frontend Testing, and Git & Version Control, which QA automation work requires directly. It's placed after Command Line & Linux Basics material like The Odin Project Foundations and the Missing Semester course, since knowing your way around the terminal makes this project easier to follow.\n\nOn fit, it scored well on level (matches where you're starting) and preference (fits your 6h/week standard pace), and quality is solid too. Coverage and similarity to your goal were lower, so it's a starting step rather than a core one. For context, among Stack Overflow askers, 63% learned HTML before CSS (n=87,995), and among Coursera reviewers, 92% did the same (n=110) — supporting this as a natural first move.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after Command Line & Linux Basics material like The Odin Project Foundations and the Missing Semester course, since knowing your way around the terminal makes this project easier to follow.",
+     "claim": "knowing your way around the terminal makes this project easier to follow",
+     "whyUntraceable": "The evidence only states the sequencing is because of the 'Command Line & Linux Basics' skill; it gives no causal explanation about terminal familiarity making the project easier to follow.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:qa-automation-engineer:partial|learn-git-branching",
+   "path": "template:qa-automation-engineer:partial",
+   "kind": "course",
+   "catalogId": "learn-git-branching",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Learn Git Branching is here to round out Git & Version Control, which your QA automation path needs and which builds naturally on the Command Line & Linux Basics you're already comfortable with. It's a short, low-difficulty course, which fits your standard pace and 6 h/week nicely — preference fit and quality were the strongest parts of its score. On Stack Overflow, of people who touched both skills, 60% (of 22,774) went from Command Line to Git in that order, and in Coursera review data it was 69% (of 169). Also, among Coursera learners who'd already done Unit Testing like you, 24% (of 353) moved to Git next — a look at where learners went, not a rating.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:qa-automation-engineer:time-poor|postman-academy",
+   "path": "template:qa-automation-engineer:time-poor",
+   "kind": "course",
+   "catalogId": "postman-academy",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "Postman Academy is on your path because it directly builds API Testing, a skill your QA Automation Engineer goal requires — so this closes a real gap between where you are now and where the role needs you to be. It's placed right after REST API Tutorial, since understanding REST API Design first gives you the foundation to make sense of testing those APIs in Postman.\n\nLooking at the scoring, preference fit was the strongest match — it aligns well with your intense pace and time budget — with level fit and quality also solid given your starting point. Coverage and similarity were lower simply because this is an early, narrow step rather than a broad one, but it's an essential building block toward the bigger goal.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, preference fit was the strongest match — it aligns well with your intense pace and time budget — with level fit and quality also solid given your starting point.",
+     "claim": "level fit and quality solid 'given your starting point'",
+     "whyUntraceable": "Profile summary states skills: none recorded, so there is no documented 'starting point' to justify this qualitative claim; not derivable from evidence fields.",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were lower simply because this is an early, narrow step rather than a broad one, but it's an essential building block toward the bigger goal.",
+     "claim": "Coverage and similarity were lower because it is 'an early, narrow step rather than a broad one'",
+     "whyUntraceable": "No field in scoreBreakdown or evidence explains the reason for low coverage/similarity scores; this causal explanation is invented.",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "template:solutions-architect:empty|tutorials-dojo",
+   "path": "template:solutions-architect:empty",
+   "kind": "assessment",
+   "catalogId": "tutorials-dojo",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "This one's on your path because it closes out two skills your Solutions Architect goal needs directly: AWS Fundamentals and Cloud Architecture. It's placed after your cloud fundamentals intro, the AWS Hands-On Tutorials, and the SAA-C03 course, since those build the AWS Fundamentals base that these practice exams test and reinforce.\n\nLooking at the scoring, preference fit was the strongest part — at 6 hours, it fits neatly into your weekly 6-hour budget with no strain. Quality also scored well, meaning it's a solidly rated resource. Coverage and similarity were more modest, since this is a narrower, exam-focused item rather than broad new material, and level fit sits right in the middle given its moderate difficulty. Together, it's a well-timed capstone check before you move further into architecture-specific work.",
+   "sentences": 6,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after your cloud fundamentals intro, the AWS Hands-On Tutorials, and the SAA-C03 course, since those build the AWS Fundamentals base that these practice exams test and reinforce.",
+     "claim": "all three prerequisite items build the 'AWS Fundamentals' base",
+     "whyUntraceable": "sequencedAfter lists the cloud fundamentals intro as tied to becauseSkill 'Cloud Fundamentals', not 'AWS Fundamentals'; only two of the three items are tied to AWS Fundamentals",
+     "kind": "misstated-field"
+    },
+    {
+     "sentence": "Quality also scored well, meaning it's a solidly rated resource.",
+     "claim": "the item is a 'solidly rated' resource, implying an external rating",
+     "whyUntraceable": "scoreBreakdown.quality is a numeric score (0.8) with no indication it derives from user ratings or reviews",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "template:solutions-architect:partial|fcc-database-design",
+   "path": "template:solutions-architect:partial",
+   "kind": "course",
+   "catalogId": "fcc-database-design",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course is here to build your Data Modeling, which the goal requires — and it builds naturally on the SQL skills you already have. Among learners who asked questions on Stack Overflow, 10,626 went from SQL to Data Modeling in that order versus 4,914 the other way (n=15,540), so this is a well-worn sequence. Separately, of 15,453 Coursera learners who studied Networking, about 5% moved on to this skill next, showing it's a path some other learners took, though not the dominant one. The score here leaned heavily on level fit and preference fit — this course matches your current level and fits your six-hours-a-week pace comfortably, with a decent quality signal too, even though it only closes one gap.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "template:solutions-architect:time-poor|redis-crash-course",
+   "path": "template:solutions-architect:time-poor",
+   "kind": "course",
+   "catalogId": "redis-crash-course",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "Here's why Redis Crash Course is on your path toward Solutions Architect: it closes your gap in Caching, which is a prerequisite for System Design — a key step on your way to the goal. It's sequenced right after REST API Tutorial, since that course builds your REST API Design skill, which naturally leads into Caching next.\n\nOn the scoring side, your preference fit was strongest — this short, one-hour video suits your 3 h/week intense pace nicely, and quality and level fit were also solid, matching a straightforward difficulty for where you're at.\n\nFor context, among Stack Overflow question order, of 2,690 learners who touched both skills, 49% went Caching → System Design in that order — a rough signal of common sequencing, not a rating of how they found it.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced right after REST API Tutorial, since that course builds your REST API Design skill, which naturally leads into Caching next.",
+     "claim": "REST API Design skill naturally leads into Caching next",
+     "whyUntraceable": "The evidence only states sequencedAfter with becauseSkill 'REST API Design'; it does not state or imply that REST API Design leads into Caching",
+     "kind": "invented-fact"
+    }
+   ]
+  },
+  {
+   "key": "fixture:beginner-frontend|practical-networking",
+   "path": "fixture:beginner-frontend",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": true,
+   "hasBranch": false,
+   "narration": "This module is here because it builds your understanding of Networking & How the Web Works, which is a prerequisite for Working with APIs — a key step toward your Frontend Developer goal. It's not sequenced after anything else yet, since it's foundational.\n\nLooking at the scoring, your preference fit was the strongest match (this fits your 6 h/week, standard pace, any format), with solid quality and a reasonable level fit for where you're starting from.\n\nOn real learner patterns: among Coursera reviewers, 94 out of 913 pseudo-users' sequences went from Networking & How the Web Works to Working with APIs in that order, and on Stack Overflow, 41% of 15,008 users asked about Networking before Working with APIs — suggesting this ordering is common, though these sources reflect asking or reviewing, not necessarily mastery.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after anything else yet, since it's foundational.",
+     "claim": "the course is described as 'foundational' based on an empty sequencedAfter list",
+     "whyUntraceable": "sequencedAfter is simply empty; that does not itself establish that the item is foundational to other content",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "On real learner patterns: among Coursera reviewers, 94 out of 913 pseudo-users' sequences went from Networking & How the Web Works to Working with APIs in that order, and on Stack Overflow, 41% of 15,008 users asked about Networking before Working with APIs — suggesting this ordering is common, though these sources reflect asking or reviewing, not necessarily mastery.",
+     "claim": "94 out of 913 pseudo-users' sequences went in that order",
+     "whyUntraceable": "the evidence states 855 out of 913 (94%) took that order, not '94 out of 913'; 94 is the percentage, not a count",
+     "kind": "misstated-field"
+    }
+   ]
+  },
+  {
+   "key": "fixture:beginner-frontend|vite-guide",
+   "path": "fixture:beginner-frontend",
+   "kind": "course",
+   "catalogId": "vite-guide",
+   "hasLinks": false,
+   "hasBranch": false,
+   "narration": "The Vite Guide is here because it closes your gap in Frontend Build Tools, a skill your Frontend Developer path requires directly. It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial because both build up your JavaScript foundation first, and build tooling like Vite makes much more sense once you're comfortable with JavaScript itself. Looking at the scoring, this item fits your preferences well and comes from a solid-quality source (the official Vite docs), while its difficulty level sits comfortably close to where you are. Coverage and similarity were more modest, but the strong preference fit and quality made it a good next step to round out your foundational tooling knowledge.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after MDN Learn Web Development and The Modern JavaScript Tutorial because both build up your JavaScript foundation first, and build tooling like Vite makes much more sense once you're comfortable with JavaScript itself.",
+     "claim": "build tooling like Vite makes much more sense once you're comfortable with JavaScript itself",
+     "whyUntraceable": "evidence only states sequencedAfter with becauseSkill JavaScript, not a rationale about tooling making more sense after JS comfort",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Looking at the scoring, this item fits your preferences well and comes from a solid-quality source (the official Vite docs), while its difficulty level sits comfortably close to where you are.",
+     "claim": "its difficulty level sits comfortably close to where you are",
+     "whyUntraceable": "profile records no skills or current level, so there is no basis to claim the difficulty is close to the learner's level",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "Coverage and similarity were more modest, but the strong preference fit and quality made it a good next step to round out your foundational tooling knowledge.",
+     "claim": "round out your foundational tooling knowledge",
+     "whyUntraceable": "no evidence field states the learner has existing tooling knowledge being 'rounded out' or that this is foundational",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:career-switcher-to-ds|wes-mckinney-book",
+   "path": "fixture:career-switcher-to-ds",
+   "kind": "course",
+   "catalogId": "wes-mckinney-book",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This one's here because Python for Data Analysis directly closes a gap the Data Scientist path requires—it's a skill the goal needs, plain and simple. It's placed right after Python for Everybody, since you'll want that core Python foundation before diving into data analysis with it.\n\nLooking at the scoring, quality stands out as the strongest factor (this is a well-regarded resource), with level fit also solid given your current basics-level footing—it shouldn't feel like a stretch. Coverage and similarity to your existing skills were more modest, which is expected since this is genuinely new territory for you.\n\nOne more data point: among learners on Stack Overflow who had Statistics Fundamentals (14,499 of them), 5% went on to ask questions about this next—worth noting that reflects question-asking activity, not a rating, and comes with the usual caveats about that data source.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "Looking at the scoring, quality stands out as the strongest factor (this is a well-regarded resource), with level fit also solid given your current basics-level footing—it shouldn't feel like a stretch.",
+     "claim": "this is a well-regarded resource",
+     "whyUntraceable": "The evidence only gives a numeric quality score (0.9); it does not state that the resource is 'well-regarded' by anyone, which is an added qualitative judgment beyond the raw score.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:career-switcher-to-ds|r4ds",
+   "path": "fixture:career-switcher-to-ds",
+   "kind": "course",
+   "catalogId": "r4ds",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This one's on your path because R for Data Science fills two gaps your goal needs: Data Visualization, and Exploratory Data Analysis, which builds right on the Statistics Fundamentals you already have. It's placed after your Khan Academy statistics work and Python for Data Analysis, so you'll arrive with the stats and coding grounding this course assumes. In the scoring, quality was the strongest factor, with level fit and preference fit (matching your 10 h/week, video/interactive style) also solid. On real-learner patterns, among Stack Overflow askers, 54% moved from Statistics Fundamentals to Exploratory Data Analysis in that order (n=1704, caveat: asking isn't completing), and on Coursera, 10% of learners who had Spreadsheets went on to this kind of skill next (n=3453).",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's placed after your Khan Academy statistics work and Python for Data Analysis, so you'll arrive with the stats and coding grounding this course assumes.",
+     "claim": "that the learner has already completed or worked through Khan Academy Statistics and Python for Data Analysis, and that R for Data Science assumes such grounding",
+     "whyUntraceable": "sequencedAfter only lists recommended prerequisite courses by skill; it does not state the learner completed them, nor does the evidence say the course 'assumes' any prior grounding",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:partial-skills-ml|hf-spaces-demo",
+   "path": "fixture:partial-skills-ml",
+   "kind": "project",
+   "catalogId": "hf-spaces-demo",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This project is here because it directly closes your Model Deployment gap, a skill your Machine Learning Engineer goal requires. It's sequenced after the Titanic Kaggle competition and Intermediate ML course (both building your scikit-learn skills) and Docker Get Started (giving you containerization basics), so you'll have the modeling and packaging foundations needed before shipping a live demo. On scoring, preference fit was strongest, since this free, 6-hour project matches your budget and time nicely, with solid level fit and quality also supporting it. For added context: of 29,427 learners who had Machine Learning Fundamentals, based on Stack Overflow question order, under 1% moved to this specific skill next — a small signal, and one about where people went rather than how useful they found it, but it fits the deployment step you now need.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:partial-skills-ml|lakens-inference",
+   "path": "fixture:partial-skills-ml",
+   "kind": "course",
+   "catalogId": "lakens-inference",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "This course closes your gap in Inferential Statistics, which matters because it's a direct prerequisite for Model Evaluation, a key step toward Machine Learning Engineer. It's placed after Seeing Theory and StatQuest, both building on your existing Statistics Fundamentals comfort, so you'll ease into inference with a solid base already in place. Your preference fit was the strongest score here, since it's free and fits standard pacing well, with quality close behind. Among learners with Statistics Fundamentals, Stack Overflow question order shows only 3% moved to this skill next, so it's a less common next step, but the graph path and course sequencing still make it the right one to close that specific gap on your route to Model Evaluation.",
+   "sentences": 4,
+   "unsupportedClaims": [
+    {
+     "sentence": "This course closes your gap in Inferential Statistics, which matters because it's a direct prerequisite for Model Evaluation, a key step toward Machine Learning Engineer.",
+     "claim": "Model Evaluation is described as 'a key step toward Machine Learning Engineer'",
+     "whyUntraceable": "The evidence only shows a graphPath linking Inferential Statistics to Model Evaluation and a goal of Machine Learning Engineer; it does not state that Model Evaluation is a key step toward that role",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:time-poor-cloud|az900-path",
+   "path": "fixture:time-poor-cloud",
+   "kind": "course",
+   "catalogId": "az900-path",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course is here to close your gap in Cloud Fundamentals, which your goal of becoming a Cloud Engineer directly requires. It's placed right after Networking Fundamentals, since that module builds the \"Networking & How the Web Works\" knowledge this course leans on.\n\nScore-wise, the strongest factors are level fit and preference fit — this matches your comfortable-with-basics profile and your 3 h/week, intense-pace, format-agnostic setup perfectly, and quality is solid too.\n\nWorth noting: among Coursera reviewers who had learned Command Line & Linux Basics (a skill you already have), 13% (390 of 2,882) went on to this same skill next — though that's just a pattern of where people went, not a rating of how they liked it.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:time-poor-cloud|practical-networking",
+   "path": "fixture:time-poor-cloud",
+   "kind": "course",
+   "catalogId": "practical-networking",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This one's on your path because it closes a gap in Networking & How the Web Works, a skill your Cloud Engineer goal directly requires. It's not sequenced after any other item, so it can slot in early alongside what you already know. On the scoring side, preference fit was the strongest match — 3 hours fits neatly into your 3 h/week intense pace, and the level fit is solid too, since a difficulty-2 course suits your comfortable foundation in command line, Python, and Git. Quality is decent as well. For context, among Coursera learners who had Command Line & Linux Basics, 17% (483 of 2,882) went on to a skill like this next, so it's a fairly common next step from where you stand — though that pattern is reconstructed from review order, not a guarantee.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's not sequenced after any other item, so it can slot in early alongside what you already know.",
+     "claim": "the course can slot in early alongside existing knowledge",
+     "whyUntraceable": "sequencedAfter being empty only means no prerequisite order was recorded; it does not support any claim about timing or ease of slotting in early",
+     "kind": "interpretive-gloss"
+    },
+    {
+     "sentence": "For context, among Coursera learners who had Command Line & Linux Basics, 17% (483 of 2,882) went on to a skill like this next, so it's a fairly common next step from where you stand — though that pattern is reconstructed from review order, not a guarantee.",
+     "claim": "17% represents a 'fairly common' next step",
+     "whyUntraceable": "the evidence gives the raw percentage and counts but does not characterize 17% as common or typical",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  },
+  {
+   "key": "fixture:custom-goal|seeing-theory",
+   "path": "fixture:custom-goal",
+   "kind": "course",
+   "catalogId": "seeing-theory",
+   "hasLinks": true,
+   "hasBranch": true,
+   "narration": "Seeing Theory is here because it builds Statistics Fundamentals, which is a stepping stone toward Machine Learning Fundamentals, then LLM Fundamentals, and finally Prompt Engineering — one of the skills your chatbot goal needs. It's not sequenced after anything else yet, so it can start your path. The score shows it fits your current level well and matches your relaxed pace and flexible preferences, and it's a solid-quality course; coverage of the overall gap is modest since this is just one early piece. For context: among learners on Stack Overflow, of those who'd learned Programming Basics (which you already have), about 1% went to this Statistics Fundamentals topic next, and among learners who moved from Statistics Fundamentals onward, 51% went to Machine Learning Fundamentals next — though these numbers reflect question-asking order, not completion.",
+   "sentences": 4,
+   "unsupportedClaims": []
+  },
+  {
+   "key": "fixture:custom-goal|dlai-prompt-eng",
+   "path": "fixture:custom-goal",
+   "kind": "course",
+   "catalogId": "dlai-prompt-eng",
+   "hasLinks": false,
+   "hasBranch": true,
+   "narration": "This course lands on your path because it directly closes two gaps your chatbot goal needs: Prompt Engineering and Working with LLM APIs. It's sequenced right after Intro to Large Language Models, since that's where you'd first build LLM Fundamentals — the foundation prompting skills build on.\n\nOn fit: it matches your relaxed 6h/week pace and any-format preference perfectly (preference fit was strongest), and the course quality is solid too. Level fit is good given where you're starting from, though coverage of the full goal is still partial — more items will fill that in.\n\nFor context, among 34,146 Coursera learners who'd learned Python, about 1% went on to this course next (Coursera review order, 2015–2020, reconstructed sequences) — a modest but real signal of this path.",
+   "sentences": 5,
+   "unsupportedClaims": [
+    {
+     "sentence": "It's sequenced right after Intro to Large Language Models, since that's where you'd first build LLM Fundamentals — the foundation prompting skills build on.",
+     "claim": "LLM Fundamentals is described as 'the foundation prompting skills build on'",
+     "whyUntraceable": "The evidence's sequencedAfter field only states that this course comes after 'Intro to Large Large Models' because of the skill 'LLM Fundamentals'; it does not characterize that skill as the foundation for prompt engineering skills specifically.",
+     "kind": "interpretive-gloss"
+    }
+   ]
+  }
+ ]
+}

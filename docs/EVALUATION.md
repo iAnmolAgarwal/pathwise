@@ -111,7 +111,49 @@ a reviewed diff of every fixture path the swap would alter — is in the script.
 
 ## 3. Narration groundedness
 
-_Measured in the next revision of this document._
+**Method.** The product renders an explanation twice: as a structural evidence object built
+by the engine, and as a short narration written by the model from nothing but that object and
+a one-paragraph profile summary. The claim is that the narration adds no facts. To measure
+it, 60 evidence objects are drawn from the corpus (one from each of the 50 paths plus two
+more from each fixture path; seeded, so the sample is fixed): 46 courses, 9 projects,
+5 assessments; 27 carry learner-sequence links and 26 a "what learners did next" share.
+Each is narrated exactly as `POST /api/explain` narrates it — `pipeline/evaluate/narrate.ts`
+calls the same function with the same prompt, model (`claude-sonnet-5`) and effort (low).
+A second pass with a different objective then reads the profile summary, the evidence object
+and the narration and lists every factual claim not traceable to a field of either input
+(paraphrase, arithmetic over fields and a direct qualitative reading of a field count as
+traceable; encouragement and framing are not claims), classing each flag as an
+*invented fact* (absent from every input), a *misstated field* (present but misquoted or
+misread) or an *interpretive gloss* (a qualitative reading beyond what a field says, without
+a new fact). The checker runs at medium effort with structured output, and every flagged
+sentence is listed in the report.
+
+**Result** (`pipeline/evidence/eval_narration_groundedness.md`):
+
+| Metric | Value |
+|---|---|
+| Narrations | 60 (mean 127 words, 273 sentences) |
+| Narrations with at least one unsupported claim | **37 (61.7 %)** |
+| — with an invented fact or a misstated field | **15 (25.0 %)** |
+| Unsupported claims | 60 — 11 invented facts, 7 misstated fields, 42 interpretive glosses |
+| Unsupported claims per 100 sentences | 22.0 |
+| Narrations that cite learner numbers | 37, of which 21 flagged (one misstatement of a number) |
+| Cost | narration 59,324 in / 15,133 out ($0.27); checker 54,414 in / 67,409 out, 75,516 cached reads ($0.80) — about $1.07 for the pass |
+
+**Reading it.** Strict by construction, the checker flags three narrations in five, but the
+flags sort cleanly. Seven in ten are interpretive glosses: a quality score of 0.8 narrated
+as "a well-regarded resource", an empty `sequencedAfter` as "foundational", a difficulty of 3
+as "a deeper level". Those are tone, and whether they count as claims is a judgement the
+report leaves to the reader by listing them. The quarter that matters is the 15 narrations
+with an invented fact or a misstated field: "level fit is good, meaning the difficulty
+matches where you're at" for a learner whose profile records no skills (flagged as an invented
+fact twice and as a gloss eight more times — the single most common flag); "hands-on practice" for an assessment whose evidence carries no
+format; a sequencing reason the evidence does not give ("REST API Design naturally leads into
+Caching"); and one genuine number error, "94 out of 913 pseudo-users" where the evidence said
+94 % of 913. The learner-sequence numbers themselves — the counts, shares and source names
+the product lets the narrator cite — were reproduced correctly in 36 of the 37 narrations that
+used them. The concrete follow-up is a prompt clause, not a model change: do not describe a
+level fit when the profile records no skills, and never turn a score into a reputation.
 
 ## Limitations
 

@@ -169,9 +169,10 @@ def check(narrations: list[dict]) -> tuple[list[dict], dict]:
             }
             path.write_text(json.dumps(rec, indent=1) + "\n")
             usage["calls"] += 1
-            for k, v in rec["usage"].items():
-                usage[k] += v
             print(f"  checked {i}/{len(narrations)}")
+        # Totals cover the whole pass, cached or not; "calls" is what this run spent.
+        for k, v in rec["usage"].items():
+            usage[k] += v
         results.append(rec["parsed"])
     return results, usage
 
@@ -255,7 +256,7 @@ def main() -> int:
             "narration": {"model": narrations[0]["model"], "effort": narrations[0]["effort"], **narr_usage, "estimatedUsd": cost_usd(narr_usage)},
             "checker": {"model": CHECKER_MODEL, "effort": CHECKER_EFFORT, **checker_usage, "estimatedUsd": cost_usd(checker_usage)},
             "priceUsdPerMTok": PRICE,
-            "note": "token counts are summed from API responses; a cached rerun re-spends nothing",
+            "note": "token counts are summed from the API responses behind every narration and check (cached responses included); 'calls' is what the latest run spent",
         },
         "flagged": [r for r in rows if r["unsupportedClaims"]],
         "samples": rows,
