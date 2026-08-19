@@ -25,14 +25,14 @@
       "baselineReproduced": true,
       "courseSkillTags": {
         "courses": 170,
-        "tags": 188,
+        "tags": 255,
         "byConfidence": {
-          "high": 116,
-          "low": 43,
-          "medium": 11
+          "high": 112,
+          "low": 41,
+          "medium": 17
         },
-        "promptVersion": "v2",
-        "spotCheck": "pending"
+        "promptVersion": "v3",
+        "spotCheck": "reviewed"
       }
     }
   },

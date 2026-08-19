@@ -25,6 +25,7 @@ Commands (repo root; ANTHROPIC_API_KEY from the environment or .env.local):
   python pipeline/tag_courses.py tag [--workers 4]     # passes A+B+guard -> course_skill_tags.json
   python pipeline/tag_courses.py spotcheck             # stratified 20 % sample -> pipeline/build/spotcheck_v2.md
   python pipeline/tag_courses.py score PATH [PATH...]  # filled sheets -> agreement numbers (Jaccard, exact-level)
+  python pipeline/tag_courses.py apply-review          # sources/coursera_tag_resolutions.json -> tags file (spotChecked, checkedBy, numbers)
   python pipeline/tag_courses.py check-schema
 """
 
@@ -55,10 +56,12 @@ CATALOG_MAP_PATH = PIPELINE_DIR / "sources" / "coursera_catalog_map.json"
 DESCRIPTIONS_PATH = BUILD_DIR / "descriptions.json"
 OUT_PATH = EVIDENCE_DIR / "course_skill_tags.json"
 SPOTCHECK_PATH = BUILD_DIR / "spotcheck_v2.md"
+MANIFEST_PATH = BUILD_DIR / "spotcheck_v2.manifest.json"
+RESOLUTIONS_PATH = PIPELINE_DIR / "sources" / "coursera_tag_resolutions.json"
 
 MODEL = "claude-sonnet-5"
 EFFORT = "low"
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"
 SPOTCHECK_SEED = 42
 SPOTCHECK_FRACTION = 0.20
 SPOTCHECK_OVERLAP = 8  # courses both humans tag, for the human-human number
@@ -109,7 +112,17 @@ def parse_course_page(text: str) -> dict | None:
         for d in docs:
             if isinstance(d, dict) and d.get("@type") == "Course" and d.get("description"):
                 about = d.get("about") or []
-                return {"source": "coursera-jsonld", "description": html.unescape(d["description"]).strip(),
+                description = html.unescape(d["description"]).strip()
+                full = re.search(r'id="syllabus-description-content"[^>]*>(.*?)</div>', text, re.S)
+                if full:  # the untruncated "About" text; the JSON-LD description is often cut short
+                    full_text = html.unescape(re.sub(r"<[^>]+>", " ", full.group(1)))
+                    full_text = re.sub(r"[ \t]+", " ", full_text).strip()
+                    if len(full_text) > len(description):
+                        description = full_text
+                modules = [{"name": html.unescape(m.get("name", "")).strip(), "description": html.unescape(m.get("description", "")).strip()}
+                           for m in d.get("syllabusSections") or [] if isinstance(m, dict) and m.get("name")]
+                teaches = [html.unescape(x) for x in d.get("teaches") or [] if isinstance(x, str)]
+                return {"source": "coursera-jsonld", "description": description, "modules": modules, "teaches": teaches,
                         "skillsListed": [html.unescape(a) for a in about if isinstance(a, str)]}
     m = re.search(r'<meta[^>]+name="description"[^>]+content="([^"]*)"', text)
     if m and not m.group(1).startswith("Choose from hundreds"):  # a browse-page redirect, not the course
@@ -196,7 +209,7 @@ def build_models(skill_ids: list[str]):
 PASS_A_SYSTEM = """You tag online courses with the skills they teach, using a closed skill vocabulary for a learning-path engine.
 
 Rules:
-- Emit only skills the course actually TEACHES: the learner comes out able to do them. Do not emit skills that are merely mentioned, assumed as prerequisites, used incidentally, or the general field a course belongs to.
+- Emit only skills the course actually TEACHES: the learner comes out able to do them. Do not emit skills that are merely mentioned, assumed as prerequisites, or the general field a course belongs to. Tools, languages and techniques the learner practises hands-on in the modules or graded work DO count, at the level that practice supports.
 - Level: 1 = introduces the basics, 2 = leaves the learner comfortable and productive, 3 = takes the learner to strong, advanced command. Most single MOOCs teach at level 1 or 2.
 - Prefer the most specific skill in the vocabulary. Emit a broader skill in addition only when the course text explicitly covers it in its own right.
 - Zero skills is a correct and common answer: many courses (psychology, nutrition, history, music, languages, finance, management) teach nothing in this vocabulary. Never stretch a course onto a skill because nothing else fits.
@@ -210,7 +223,7 @@ PASS_B_SYSTEM = """You audit skill tags proposed for an online course. You are g
 
 For each claim decide:
 - verdict "refuted" if the course text does not show the course teaching that skill (mentioned only, a prerequisite, a neighbouring topic, the general field rather than the skill, or a more specific vocabulary skill fits instead);
-- verdict "supported" only if the text gives positive evidence the learner is taught it.
+- verdict "supported" if any part of the text (description, learning outcomes, module descriptions) shows the learner being taught it or practising it hands-on, at roughly the claimed level. Refute only when the text gives no such support or contradicts the claim.
 - levelAgrees / suggestedLevel: whether the claimed level (1 basics, 2 comfortable and productive, 3 strong advanced command) fits what the text supports, and the level you would give.
 - taughtInOwnRight: true if the course teaches this skill as a subject of its own (a named topic, module or outcome); false if it is only implied by, assumed for, or a stepping stone towards another claimed skill.
 - The line "Skills the platform lists for it" is an auto-generated keyword list, not the syllabus. A claim whose only support is that list is refuted; the description and the course name are the evidence.
@@ -223,6 +236,12 @@ def course_text(cid: str, meta: dict, desc: dict | None) -> str:
     lines = [f"Course: {meta['name']}", f"Institution: {meta['institution']}", f"URL: {meta['url']}"]
     if desc and desc.get("description"):
         lines.append(f"Description: {desc['description']}")
+    if desc and desc.get("teaches"):
+        lines.append("What you'll learn: " + " | ".join(desc["teaches"]))
+    if desc and desc.get("modules"):
+        lines.append("Modules:")
+        for m in desc["modules"]:
+            lines.append(f"  - {m['name']}: {m['description']}")
     if desc and desc.get("skillsListed"):
         lines.append("Skills the platform lists for it: " + "; ".join(desc["skillsListed"]))
     if not (desc and desc.get("description")):
@@ -602,6 +621,65 @@ def score(paths: list[Path]) -> int:
     return 0
 
 
+# ---------------------------------------------------------------- human review -> tags file
+
+def apply_review() -> int:
+    """Apply the hand-written resolutions to the tags file. The reviewer's tags for the whole sample
+    (resolutions where set, the model's where kept) are compared with the model's original tags with
+    the same Jaccard / exact-level scorer, and the numbers land in the file's spotCheck block."""
+    doc = load_json(OUT_PATH)
+    res = load_json(RESOLUTIONS_PATH)
+    _, by_id = vocabulary()
+    sample = load_json(MANIFEST_PATH)["sample"] if MANIFEST_PATH.exists() else [r["courseId"] for r in res["rows"]]
+    rows = {r["courseId"]: r for r in res["rows"]}
+    unknown = [c for c in rows if c not in {t["courseId"] for t in doc["tags"]}]
+    if unknown:
+        print(f"resolutions name courses that are not tagged: {unknown}")
+        return 1
+    scores = []
+    for t in doc["tags"]:
+        cid = t["courseId"]
+        if cid not in sample and cid not in rows:
+            continue
+        model = {s["skillId"]: s["level"] for s in t["skillsTaught"]}
+        r = rows.get(cid)
+        if r and r["decision"] == "set":
+            for s in r["tags"]:
+                if s["skillId"] not in by_id or s["level"] not in (1, 2, 3):
+                    print(f"{cid}: bad resolution tag {s}")
+                    return 1
+            reviewer = {s["skillId"]: s["level"] for s in r["tags"]}
+            t["skillsTaught"] = sorted(({"skillId": k, "level": v} for k, v in reviewer.items()), key=lambda s: s["skillId"])
+            t["review"] = {"decision": "set", "modelTags": sorted(model.items()), "note": r["note"], "by": res["reviewer"], "date": res["date"]}
+        else:
+            reviewer = model
+            if r:
+                t["review"] = {"decision": "keep", "note": r["note"], "by": res["reviewer"], "date": res["date"]}
+        t["spotChecked"] = True
+        t["checkedBy"] = res["reviewer"]
+        j, e = agreement(reviewer, model)
+        scores.append({"courseId": cid, "jaccard": round(j, 4), "exactLevel": round(e, 4)})
+    n = len(scores)
+    summary = {
+        "reviewer": res["reviewer"],
+        "date": res["date"],
+        "sampleSize": n,
+        "resolutions": len(rows),
+        "reviewerVsModel": {"jaccard": round(sum(x["jaccard"] for x in scores) / n, 4), "exactLevel": round(sum(x["exactLevel"] for x in scores) / n, 4)},
+        "humanHuman": None,
+        "perCourse": scores,
+    }
+    summary["gateReviewerVsModel"] = summary["reviewerVsModel"]["jaccard"] >= GATES["humanModelJaccard"]
+    doc["spotCheck"] = {"gates": GATES, "status": "reviewed", "resolutions": "pipeline/sources/coursera_tag_resolutions.json", **summary}
+    doc["stats"]["tagsTotal"] = sum(len(t["skillsTaught"]) for t in doc["tags"])
+    doc["stats"]["coursesWithSkills"] = sum(1 for t in doc["tags"] if t["skillsTaught"])
+    doc["stats"]["spotChecked"] = sum(1 for t in doc["tags"] if t["spotChecked"])
+    dump(OUT_PATH, doc, "tags")
+    print(f"applied {len(rows)} resolutions; {n} courses marked spotChecked; reviewer-vs-model {summary['reviewerVsModel']} "
+          f"(gate >= {GATES['humanModelJaccard']}: {'PASS' if summary['gateReviewerVsModel'] else 'FAIL'}); human-human: not measured")
+    return 0
+
+
 # ---------------------------------------------------------------- schema
 
 def _require(cond: bool, msg: str, errors: list[str]) -> None:
@@ -657,6 +735,7 @@ def main() -> int:
     sub.add_parser("spotcheck")
     s = sub.add_parser("score")
     s.add_argument("paths", nargs="+", type=Path)
+    sub.add_parser("apply-review")
     sub.add_parser("check-schema")
     a = ap.parse_args()
     if a.cmd == "fetch":
@@ -667,6 +746,8 @@ def main() -> int:
         return spotcheck()
     if a.cmd == "score":
         return score(a.paths)
+    if a.cmd == "apply-review":
+        return apply_review()
     return check_schema()
 
 

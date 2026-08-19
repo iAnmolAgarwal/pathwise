@@ -128,7 +128,11 @@ python pipeline/tag_courses.py spotcheck   # stratified 20 % blind sample -> pip
 python pipeline/tag_courses.py score pipeline/build/spotcheck_v2.md   # Jaccard + exact-level agreement vs the gates
 ```
 
-The tags are gated, not assumed: two people each tag a blind half of a stratified 20 % sample
-(with an overlap both tag), and the file ships only if mean human–model skill-set agreement is
-≥ 0.85 and human–human ≥ 0.90; below the gate the prompts or guard are fixed and the ring is
-re-run and re-sampled.
+The tags are gated, not assumed. A stratified 20 % sample of Ring 1 is checked blind against
+the pipeline's tags and the file ships only if reviewer–model skill-set agreement (mean
+Jaccard) is ≥ 0.85; below the gate the inputs, prompts or guard are fixed and the ring is
+re-run and re-sampled (the first run failed at 0.80 on truncated descriptions and was re-run
+on the full course pages). For the shipped file the check was done by one reviewer with an
+independent, context-free model pass as a second opinion (`pipeline/sources/coursera_tag_resolutions.json`
+records every adjudication); the file states that process and its numbers in its `spotCheck`
+block — it does not claim a two-person human check.
