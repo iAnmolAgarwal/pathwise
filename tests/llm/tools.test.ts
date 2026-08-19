@@ -129,3 +129,28 @@ describe("filterOpsToVocabulary", () => {
     ]);
   });
 });
+
+describe("describeEvidence learner evidence (§7 rendering 2)", () => {
+  it("passes learnerEvidence numbers to the narrator with source names and caveats, and omits the block otherwise", () => {
+    const base = {
+      catalogId: data.catalog[0].id,
+      gapSkillsCovered: [],
+      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, total: 0 },
+      sequencedAfter: [],
+      provenance: "https://example.com/x",
+    };
+    expect("learnerEvidence" in describeEvidence(base, data)).toBe(false);
+    const withEvidence = describeEvidence(
+      {
+        ...base,
+        learnerEvidence: {
+          edges: [{ from: "javascript", to: "react", source: "stackoverflow", support: 1617, reverse: 103, confidence: 0.94, n: 1720, caveat: "asking ≠ completing" }],
+        },
+      },
+      data,
+    );
+    expect(withEvidence.learnerEvidence).toEqual([
+      { link: "JavaScript → React", source: "Stack Overflow question order", tookInThisOrder: 1617, tookTheOtherWay: 103, percentInThisOrder: 94, n: 1720, caveat: "asking ≠ completing" },
+    ]);
+  });
+});

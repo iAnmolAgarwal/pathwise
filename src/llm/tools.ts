@@ -261,6 +261,21 @@ export function describeEvidence(evidence: Evidence, data: EngineData) {
       becauseSkill: skillName(s.becauseSkill),
     })),
     scoreBreakdown: evidence.scoreBreakdown,
+    // Learner-sequence numbers travel with the source name and caveat; the prompt allows
+    // citing numbers from this block only (§7 rendering 2, §8.2).
+    ...(evidence.learnerEvidence
+      ? {
+          learnerEvidence: evidence.learnerEvidence.edges.map((e) => ({
+            link: `${skillName(e.from)} → ${skillName(e.to)}`,
+            source: e.source === "stackoverflow" ? "Stack Overflow question order" : "Coursera review order",
+            tookInThisOrder: e.support,
+            tookTheOtherWay: e.reverse,
+            percentInThisOrder: Math.round(e.confidence * 100),
+            n: e.n,
+            caveat: e.caveat,
+          })),
+        }
+      : {}),
   };
 }
 
