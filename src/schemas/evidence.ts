@@ -34,3 +34,124 @@ export const EvidenceSchema = z.object({
 export type GapReason = z.infer<typeof GapReasonSchema>;
 export type ScoreBreakdown = z.infer<typeof ScoreBreakdownSchema>;
 export type Evidence = z.infer<typeof EvidenceSchema>;
+
+// ---------------------------------------------------------------------------
+// Learner-sequence evidence (pipeline-generated; src/data/skill_edges.json,
+// src/data/branches.json, pipeline/evidence/course_skill_tags.json,
+// pipeline/sources/tag_skill_map.json). Percentages are transition shares only;
+// every rendered number carries its source caveat.
+
+export const EvidenceSourceSchema = z.enum(["stackoverflow", "coursera"]);
+
+export const SourceStatSchema = z.object({
+  support: z.number().int().nonnegative(),
+  reverse: z.number().int().nonnegative(),
+  confidence: z.number().min(0).max(1),
+  n: z.number().int().positive(),
+  detail: z
+    .object({
+      nCoursePairs: z.number().int().positive().optional(),
+      coursePairs: z
+        .array(
+          z.object({
+            fromCourseId: z.string().min(1),
+            toCourseId: z.string().min(1),
+            support: z.number().int().positive(),
+            fromItem: z.string().min(1).optional(),
+            toItem: z.string().min(1).optional(),
+          }),
+        )
+        .optional(),
+      tagsFrom: z.array(z.string()).optional(),
+      tagsTo: z.array(z.string()).optional(),
+      cohortRule: z.string().optional(),
+      sample: z.string().optional(),
+    })
+    .optional(),
+  caveat: z.string().min(1),
+});
+
+export const EdgeStatusSchema = z.enum([
+  "confirmed-both",
+  "confirmed-one-source",
+  "contradicted-in-review",
+  "no-data",
+  "candidate",
+  "promoted",
+]);
+
+export const EdgeResolutionSchema = z.object({
+  by: z.literal("human"),
+  decision: z.enum([
+    "keep-authored",
+    "flip",
+    "remove",
+    "both-valid-drop-edge",
+    "promote",
+    "keep-candidate",
+  ]),
+  note: z.string().min(1),
+  date: z.string().min(1),
+});
+
+export const SkillEdgeSchema = z
+  .object({
+    from: z.string().min(1),
+    to: z.string().min(1),
+    origin: z.enum(["authored", "mined"]),
+    status: EdgeStatusSchema,
+    drivesPath: z.boolean(),
+    sources: z.partialRecord(EvidenceSourceSchema, SourceStatSchema),
+    resolution: EdgeResolutionSchema.optional(),
+  })
+  .refine((e) => e.from !== e.to, { message: "self edge" })
+  .refine(
+    (e) =>
+      e.origin === "authored"
+        ? e.drivesPath &&
+          ["confirmed-both", "confirmed-one-source", "contradicted-in-review", "no-data"].includes(e.status)
+        : ["candidate", "promoted"].includes(e.status) && e.drivesPath === (e.status === "promoted"),
+    { message: "origin/status/drivesPath inconsistent" },
+  );
+
+export const BranchSchema = z.object({
+  from: z.string().min(1),
+  source: EvidenceSourceSchema,
+  sample: z.string().optional(),
+  next: z.array(
+    z.object({
+      to: z.string().min(1),
+      n: z.number().int().min(5),
+      shareRaw: z.number().gt(0).max(1),
+      shareShrunk: z.number().gt(0).max(1),
+      inCatalog: z.boolean(),
+    }),
+  ),
+  nTotal: z.number().int().positive(),
+  nNextObserved: z.number().int().positive(),
+  minSupportMet: z.boolean(),
+  caveat: z.string().min(1),
+});
+
+export const CourseTagSchema = z.object({
+  courseId: z.string().min(1),
+  name: z.string().min(1),
+  skillsTaught: z.array(z.object({ skillId: z.string().min(1), level: z.union([z.literal(1), z.literal(2), z.literal(3)]) })),
+  confidence: z.enum(["high", "medium", "low"]),
+  spotChecked: z.boolean(),
+  checkedBy: z.string().optional(),
+  catalogItemId: z.string().optional(),
+});
+
+export const TagSkillMapEntrySchema = z.object({
+  tag: z.string().min(1),
+  skillId: z.string().min(1),
+  note: z.string().optional(),
+});
+
+export type EvidenceSource = z.infer<typeof EvidenceSourceSchema>;
+export type SourceStat = z.infer<typeof SourceStatSchema>;
+export type SkillEdge = z.infer<typeof SkillEdgeSchema>;
+export type Branch = z.infer<typeof BranchSchema>;
+export type CourseTag = z.infer<typeof CourseTagSchema>;
+export type TagSkillMapEntry = z.infer<typeof TagSkillMapEntrySchema>;
