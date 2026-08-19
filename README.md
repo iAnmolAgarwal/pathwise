@@ -176,6 +176,17 @@ edge still meets the thresholds, keeps level bands monotone and keeps the path-d
 acyclic (the merge refuses otherwise). Outputs: `src/data/skill_edges.json`,
 `src/data/branches.json`, `pipeline/evidence/agreement_report.md/.json`.
 
+In the product, `skill_edges.json` is the only prerequisite source the engine reads, and only
+its path-driving edges (`drivesPath: true` — authored ∪ human-promoted), walked in file order,
+which is why the merge keeps authored edges in `skills.json` order. Every path item carries
+`learnerEvidence`: for each skill it teaches, the numbers of every source that observed the
+path-driving links that skill sits on, each with its caveat. The evidence card shows one line
+from it ("Confirmed by N learner sequences (P % took these in this order)", with the sources
+and caveats on hover), the skill graph styles every link by its status and opens a provenance
+popover with each source's support, reverse, confidence, n, tags or course pairs and caveat,
+and the narrator may cite numbers from that block only. Mined candidates that meet the
+promotion thresholds are drawn dotted around a selected skill; they never shape a path.
+
 ## Data sources and attribution
 
 - **Stack Overflow** question metadata via the BigQuery public dataset (`bigquery-public-data.stackoverflow`) and the Stack Exchange Data Explorer, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Pathwise publishes aggregate counts only, with this attribution wherever they are shown.
