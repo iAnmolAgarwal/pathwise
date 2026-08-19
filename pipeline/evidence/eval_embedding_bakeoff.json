@@ -1,0 +1,949 @@
+{
+ "description": "Skill retrieval quality per local embedding model: for each catalog item, all skills ranked by cosine to the item text; P@1, P@3, MRR against the item's annotated skillsTaught. Computed by pipeline/evaluate/embedding_bakeoff.py; nothing trained.",
+ "method": {
+  "groundTruth": "catalog.json skillsTaught per item (model-annotated, human spot-checked)",
+  "texts": "item = 'title. description', skill = 'name. description' (what embed.py encodes); nomic-embed gets its required search_query: / search_document: prefixes",
+  "metrics": "P@1, P@3 (hits in top 3 / 3; an item teaching fewer than 3 skills cannot reach 1.0 \u2014 the ceiling column is the mean best achievable P@3), MRR of the first correct skill",
+  "comparison": "candidate minus baseline per metric with a paired bootstrap over items (2000 resamples, seed 42); 'clearly better' means every metric's 95 % interval lies above zero",
+  "items": 246,
+  "skills": 159,
+  "corpusHash": "3689a7e24c03b3b0"
+ },
+ "shipped": "all-MiniLM-L6-v2",
+ "results": [
+  {
+   "model": "all-MiniLM-L6-v2",
+   "dimension": 384,
+   "queryPrefix": "",
+   "docPrefix": "",
+   "device": "mps",
+   "loadSeconds": 5.6,
+   "encodeSeconds": 0.6,
+   "items": 246,
+   "p1": 0.7561,
+   "p3": 0.4011,
+   "p3Ceiling": 0.6138,
+   "mrr": 0.843,
+   "byKind": {
+    "assessment": {
+     "n": 27,
+     "p1": 0.5185,
+     "p3": 0.358,
+     "mrr": 0.6958
+    },
+    "course": {
+     "n": 183,
+     "p1": 0.8361,
+     "p3": 0.4189,
+     "mrr": 0.8964
+    },
+    "project": {
+     "n": 36,
+     "p1": 0.5278,
+     "p3": 0.3426,
+     "mrr": 0.6816
+    }
+   },
+   "worstItems": [
+    {
+     "id": "codecrafters",
+     "firstCorrectRank": 59,
+     "top3": [
+      "ci-cd",
+      "gitops",
+      "frontend-build-tools"
+     ],
+     "truth": [
+      "concurrency",
+      "system-design"
+     ]
+    },
+    {
+     "id": "build-your-own-x",
+     "firstCorrectRank": 58,
+     "top3": [
+      "ci-cd",
+      "frontend-build-tools",
+      "gitops"
+     ],
+     "truth": [
+      "algorithms",
+      "oop"
+     ]
+    },
+    {
+     "id": "langchain-tutorials",
+     "firstCorrectRank": 28,
+     "top3": [
+      "fastapi",
+      "api-documentation",
+      "python-advanced"
+     ],
+     "truth": [
+      "ai-agents",
+      "rag"
+     ]
+    },
+    {
+     "id": "exercism",
+     "firstCorrectRank": 28,
+     "top3": [
+      "ethical-hacking-basics",
+      "prompt-engineering",
+      "exploratory-data-analysis"
+     ],
+     "truth": [
+      "programming-basics",
+      "python"
+     ]
+    },
+    {
+     "id": "coding-challenges",
+     "firstCorrectRank": 28,
+     "top3": [
+      "ci-cd",
+      "secure-coding",
+      "programming-basics"
+     ],
+     "truth": [
+      "rest-api-design",
+      "system-design"
+     ]
+    },
+    {
+     "id": "app-ideas",
+     "firstCorrectRank": 21,
+     "top3": [
+      "agile-methodologies",
+      "data-storytelling",
+      "react-native"
+     ],
+     "truth": [
+      "api-integration",
+      "rest-api-design"
+     ]
+    },
+    {
+     "id": "anthropic-docs",
+     "firstCorrectRank": 14,
+     "top3": [
+      "ci-cd",
+      "technical-writing",
+      "frontend-build-tools"
+     ],
+     "truth": [
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "fcc-backend-apis",
+     "firstCorrectRank": 11,
+     "top3": [
+      "llm-apis",
+      "kubernetes",
+      "api-testing"
+     ],
+     "truth": [
+      "express",
+      "nodejs",
+      "nosql-databases",
+      "rest-api-design"
+     ]
+    },
+    {
+     "id": "frontend-mentor",
+     "firstCorrectRank": 9,
+     "top3": [
+      "frontend-testing",
+      "frontend-build-tools",
+      "open-source-contribution"
+     ],
+     "truth": [
+      "css",
+      "responsive-design"
+     ]
+    },
+    {
+     "id": "github-pages-site",
+     "firstCorrectRank": 7,
+     "top3": [
+      "ci-cd",
+      "git-collaboration",
+      "gitops"
+     ],
+     "truth": [
+      "html",
+      "version-control-git"
+     ]
+    }
+   ],
+   "vsBaseline": null
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "dimension": 384,
+   "queryPrefix": "",
+   "docPrefix": "",
+   "device": "mps",
+   "loadSeconds": 5.5,
+   "encodeSeconds": 0.5,
+   "items": 246,
+   "p1": 0.748,
+   "p3": 0.3821,
+   "p3Ceiling": 0.6138,
+   "mrr": 0.8304,
+   "byKind": {
+    "assessment": {
+     "n": 27,
+     "p1": 0.4815,
+     "p3": 0.284,
+     "mrr": 0.6299
+    },
+    "course": {
+     "n": 183,
+     "p1": 0.8306,
+     "p3": 0.4189,
+     "mrr": 0.8925
+    },
+    "project": {
+     "n": 36,
+     "p1": 0.5278,
+     "p3": 0.2685,
+     "mrr": 0.6648
+    }
+   },
+   "worstItems": [
+    {
+     "id": "otw-bandit",
+     "firstCorrectRank": 58,
+     "top3": [
+      "security-operations",
+      "ci-cd",
+      "gitops"
+     ],
+     "truth": [
+      "command-line",
+      "security-fundamentals"
+     ]
+    },
+    {
+     "id": "build-your-own-x",
+     "firstCorrectRank": 50,
+     "top3": [
+      "ci-cd",
+      "gitops",
+      "git-collaboration"
+     ],
+     "truth": [
+      "algorithms",
+      "oop"
+     ]
+    },
+    {
+     "id": "exercism",
+     "firstCorrectRank": 28,
+     "top3": [
+      "llm-fundamentals",
+      "python-advanced",
+      "prompt-engineering"
+     ],
+     "truth": [
+      "programming-basics",
+      "python"
+     ]
+    },
+    {
+     "id": "codecrafters",
+     "firstCorrectRank": 25,
+     "top3": [
+      "ci-cd",
+      "gitops",
+      "caching"
+     ],
+     "truth": [
+      "concurrency",
+      "system-design"
+     ]
+    },
+    {
+     "id": "coding-challenges",
+     "firstCorrectRank": 23,
+     "top3": [
+      "llm-apis",
+      "llm-fundamentals",
+      "ci-cd"
+     ],
+     "truth": [
+      "rest-api-design",
+      "system-design"
+     ]
+    },
+    {
+     "id": "codewars",
+     "firstCorrectRank": 20,
+     "top3": [
+      "git-collaboration",
+      "llm-fundamentals",
+      "java"
+     ],
+     "truth": [
+      "algorithms",
+      "programming-basics"
+     ]
+    },
+    {
+     "id": "anthropic-docs",
+     "firstCorrectRank": 19,
+     "top3": [
+      "ci-cd",
+      "technical-writing",
+      "browser-devtools"
+     ],
+     "truth": [
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "statquest",
+     "firstCorrectRank": 15,
+     "top3": [
+      "exploratory-data-analysis",
+      "scikit-learn",
+      "r-programming"
+     ],
+     "truth": [
+      "ml-fundamentals",
+      "model-evaluation",
+      "statistics-fundamentals",
+      "supervised-learning"
+     ]
+    },
+    {
+     "id": "anthropic-courses",
+     "firstCorrectRank": 14,
+     "top3": [
+      "technical-writing",
+      "web-animations",
+      "python-advanced"
+     ],
+     "truth": [
+      "ai-agents",
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "guess-correlation",
+     "firstCorrectRank": 14,
+     "top3": [
+      "exploratory-data-analysis",
+      "inferential-statistics",
+      "data-visualization"
+     ],
+     "truth": [
+      "statistics-fundamentals"
+     ]
+    }
+   ],
+   "vsBaseline": {
+    "p1": {
+     "delta": -0.0081,
+     "ci95": [
+      -0.061,
+      0.0408
+     ]
+    },
+    "p3": {
+     "delta": -0.019,
+     "ci95": [
+      -0.0434,
+      0.0054
+     ]
+    },
+    "mrr": {
+     "delta": -0.0126,
+     "ci95": [
+      -0.0457,
+      0.02
+     ]
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-base-en-v1.5",
+   "dimension": 768,
+   "queryPrefix": "",
+   "docPrefix": "",
+   "device": "mps",
+   "loadSeconds": 5.5,
+   "encodeSeconds": 1.5,
+   "items": 246,
+   "p1": 0.7764,
+   "p3": 0.3902,
+   "p3Ceiling": 0.6138,
+   "mrr": 0.8442,
+   "byKind": {
+    "assessment": {
+     "n": 27,
+     "p1": 0.6296,
+     "p3": 0.3086,
+     "mrr": 0.7257
+    },
+    "course": {
+     "n": 183,
+     "p1": 0.8525,
+     "p3": 0.4244,
+     "mrr": 0.9036
+    },
+    "project": {
+     "n": 36,
+     "p1": 0.5,
+     "p3": 0.2778,
+     "mrr": 0.6308
+    }
+   },
+   "worstItems": [
+    {
+     "id": "build-your-own-x",
+     "firstCorrectRank": 89,
+     "top3": [
+      "ci-cd",
+      "version-control-git",
+      "gitops"
+     ],
+     "truth": [
+      "algorithms",
+      "oop"
+     ]
+    },
+    {
+     "id": "exercism",
+     "firstCorrectRank": 60,
+     "top3": [
+      "unit-testing",
+      "java",
+      "prompt-engineering"
+     ],
+     "truth": [
+      "programming-basics",
+      "python"
+     ]
+    },
+    {
+     "id": "codecrafters",
+     "firstCorrectRank": 55,
+     "top3": [
+      "ci-cd",
+      "git-collaboration",
+      "gitops"
+     ],
+     "truth": [
+      "concurrency",
+      "system-design"
+     ]
+    },
+    {
+     "id": "app-ideas",
+     "firstCorrectRank": 33,
+     "top3": [
+      "data-structures",
+      "model-deployment",
+      "react-native"
+     ],
+     "truth": [
+      "api-integration",
+      "rest-api-design"
+     ]
+    },
+    {
+     "id": "kaggle-python",
+     "firstCorrectRank": 21,
+     "top3": [
+      "python-advanced",
+      "fastapi",
+      "scikit-learn"
+     ],
+     "truth": [
+      "python"
+     ]
+    },
+    {
+     "id": "coding-challenges",
+     "firstCorrectRank": 18,
+     "top3": [
+      "web-servers",
+      "web-performance",
+      "git-collaboration"
+     ],
+     "truth": [
+      "rest-api-design",
+      "system-design"
+     ]
+    },
+    {
+     "id": "anthropic-docs",
+     "firstCorrectRank": 15,
+     "top3": [
+      "technical-writing",
+      "vue",
+      "browser-devtools"
+     ],
+     "truth": [
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "otw-bandit",
+     "firstCorrectRank": 15,
+     "top3": [
+      "ethical-hacking-basics",
+      "gitops",
+      "security-operations"
+     ],
+     "truth": [
+      "command-line",
+      "security-fundamentals"
+     ]
+    },
+    {
+     "id": "langchain-tutorials",
+     "firstCorrectRank": 14,
+     "top3": [
+      "fastapi",
+      "python",
+      "api-documentation"
+     ],
+     "truth": [
+      "ai-agents",
+      "rag"
+     ]
+    },
+    {
+     "id": "roadmap-task-tracker",
+     "firstCorrectRank": 14,
+     "top3": [
+      "shell-scripting",
+      "ci-cd",
+      "fastapi"
+     ],
+     "truth": [
+      "command-line",
+      "programming-basics"
+     ]
+    }
+   ],
+   "vsBaseline": {
+    "p1": {
+     "delta": 0.0203,
+     "ci95": [
+      -0.0203,
+      0.061
+     ]
+    },
+    "p3": {
+     "delta": -0.0108,
+     "ci95": [
+      -0.0325,
+      0.0108
+     ]
+    },
+    "mrr": {
+     "delta": 0.0012,
+     "ci95": [
+      -0.027,
+      0.0274
+     ]
+    }
+   }
+  },
+  {
+   "model": "thenlper/gte-base",
+   "dimension": 768,
+   "queryPrefix": "",
+   "docPrefix": "",
+   "device": "mps",
+   "loadSeconds": 5.6,
+   "encodeSeconds": 1.2,
+   "items": 246,
+   "p1": 0.7886,
+   "p3": 0.4024,
+   "p3Ceiling": 0.6138,
+   "mrr": 0.8615,
+   "byKind": {
+    "assessment": {
+     "n": 27,
+     "p1": 0.6296,
+     "p3": 0.3704,
+     "mrr": 0.7629
+    },
+    "course": {
+     "n": 183,
+     "p1": 0.8634,
+     "p3": 0.4262,
+     "mrr": 0.9163
+    },
+    "project": {
+     "n": 36,
+     "p1": 0.5278,
+     "p3": 0.3056,
+     "mrr": 0.6568
+    }
+   },
+   "worstItems": [
+    {
+     "id": "build-your-own-x",
+     "firstCorrectRank": 56,
+     "top3": [
+      "ci-cd",
+      "gitops",
+      "version-control-git"
+     ],
+     "truth": [
+      "algorithms",
+      "oop"
+     ]
+    },
+    {
+     "id": "codecrafters",
+     "firstCorrectRank": 46,
+     "top3": [
+      "ci-cd",
+      "test-automation",
+      "git-collaboration"
+     ],
+     "truth": [
+      "concurrency",
+      "system-design"
+     ]
+    },
+    {
+     "id": "app-ideas",
+     "firstCorrectRank": 37,
+     "top3": [
+      "llm-apis",
+      "cloud-architecture",
+      "react-native"
+     ],
+     "truth": [
+      "api-integration",
+      "rest-api-design"
+     ]
+    },
+    {
+     "id": "exercism",
+     "firstCorrectRank": 26,
+     "top3": [
+      "unit-testing",
+      "prompt-engineering",
+      "ai-agents"
+     ],
+     "truth": [
+      "programming-basics",
+      "python"
+     ]
+    },
+    {
+     "id": "frontend-mentor",
+     "firstCorrectRank": 15,
+     "top3": [
+      "frontend-testing",
+      "frontend-build-tools",
+      "web-performance"
+     ],
+     "truth": [
+      "css",
+      "responsive-design"
+     ]
+    },
+    {
+     "id": "anthropic-docs",
+     "firstCorrectRank": 9,
+     "top3": [
+      "api-documentation",
+      "technical-writing",
+      "browser-devtools"
+     ],
+     "truth": [
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "realworld-app",
+     "firstCorrectRank": 9,
+     "top3": [
+      "frontend-testing",
+      "fastapi",
+      "api-testing"
+     ],
+     "truth": [
+      "api-integration",
+      "react",
+      "state-management"
+     ]
+    },
+    {
+     "id": "otw-bandit",
+     "firstCorrectRank": 7,
+     "top3": [
+      "ethical-hacking-basics",
+      "security-operations",
+      "network-security"
+     ],
+     "truth": [
+      "command-line",
+      "security-fundamentals"
+     ]
+    },
+    {
+     "id": "anthropic-quickstarts",
+     "firstCorrectRank": 6,
+     "top3": [
+      "ai-agents",
+      "fastapi",
+      "responsible-ai"
+     ],
+     "truth": [
+      "ai-app-development",
+      "llm-apis"
+     ]
+    },
+    {
+     "id": "maven-challenges",
+     "firstCorrectRank": 6,
+     "top3": [
+      "dbt",
+      "power-bi",
+      "etl-pipelines"
+     ],
+     "truth": [
+      "data-storytelling",
+      "data-visualization",
+      "exploratory-data-analysis"
+     ]
+    }
+   ],
+   "vsBaseline": {
+    "p1": {
+     "delta": 0.0325,
+     "ci95": [
+      -0.0081,
+      0.0732
+     ]
+    },
+    "p3": {
+     "delta": 0.0014,
+     "ci95": [
+      -0.019,
+      0.0217
+     ]
+    },
+    "mrr": {
+     "delta": 0.0185,
+     "ci95": [
+      -0.0078,
+      0.0433
+     ]
+    }
+   }
+  },
+  {
+   "model": "nomic-ai/nomic-embed-text-v1.5",
+   "dimension": 768,
+   "queryPrefix": "search_query: ",
+   "docPrefix": "search_document: ",
+   "device": "mps",
+   "loadSeconds": 10.4,
+   "encodeSeconds": 2.4,
+   "items": 246,
+   "p1": 0.7358,
+   "p3": 0.3618,
+   "p3Ceiling": 0.6138,
+   "mrr": 0.8183,
+   "byKind": {
+    "assessment": {
+     "n": 27,
+     "p1": 0.4444,
+     "p3": 0.2593,
+     "mrr": 0.5814
+    },
+    "course": {
+     "n": 183,
+     "p1": 0.8197,
+     "p3": 0.3916,
+     "mrr": 0.8844
+    },
+    "project": {
+     "n": 36,
+     "p1": 0.5278,
+     "p3": 0.287,
+     "mrr": 0.6604
+    }
+   },
+   "worstItems": [
+    {
+     "id": "build-your-own-x",
+     "firstCorrectRank": 97,
+     "top3": [
+      "frontend-build-tools",
+      "gitops",
+      "django"
+     ],
+     "truth": [
+      "algorithms",
+      "oop"
+     ]
+    },
+    {
+     "id": "codecrafters",
+     "firstCorrectRank": 76,
+     "top3": [
+      "caching",
+      "serverless",
+      "version-control-git"
+     ],
+     "truth": [
+      "concurrency",
+      "system-design"
+     ]
+    },
+    {
+     "id": "exercism",
+     "firstCorrectRank": 70,
+     "top3": [
+      "rag",
+      "llm-fundamentals",
+      "exploratory-data-analysis"
+     ],
+     "truth": [
+      "programming-basics",
+      "python"
+     ]
+    },
+    {
+     "id": "hackerrank-ai",
+     "firstCorrectRank": 22,
+     "top3": [
+      "ai-app-development",
+      "unsupervised-learning",
+      "algorithms"
+     ],
+     "truth": [
+      "ml-fundamentals"
+     ]
+    },
+    {
+     "id": "app-ideas",
+     "firstCorrectRank": 21,
+     "top3": [
+      "cloud-architecture",
+      "web-accessibility",
+      "tableau"
+     ],
+     "truth": [
+      "api-integration",
+      "rest-api-design"
+     ]
+    },
+    {
+     "id": "codewars",
+     "firstCorrectRank": 13,
+     "top3": [
+      "web-accessibility",
+      "java",
+      "apache-kafka"
+     ],
+     "truth": [
+      "algorithms",
+      "programming-basics"
+     ]
+    },
+    {
+     "id": "guess-correlation",
+     "firstCorrectRank": 12,
+     "top3": [
+      "exploratory-data-analysis",
+      "inferential-statistics",
+      "unsupervised-learning"
+     ],
+     "truth": [
+      "statistics-fundamentals"
+     ]
+    },
+    {
+     "id": "cloud-resume-challenge",
+     "firstCorrectRank": 11,
+     "top3": [
+      "cloud-data-platforms",
+      "cloud-networking",
+      "cloud-fundamentals"
+     ],
+     "truth": [
+      "aws-fundamentals",
+      "ci-cd",
+      "infrastructure-as-code",
+      "serverless"
+     ]
+    },
+    {
+     "id": "anthropic-courses",
+     "firstCorrectRank": 9,
+     "top3": [
+      "web-accessibility",
+      "fastapi",
+      "api-documentation"
+     ],
+     "truth": [
+      "ai-agents",
+      "llm-apis",
+      "prompt-engineering"
+     ]
+    },
+    {
+     "id": "otw-bandit",
+     "firstCorrectRank": 9,
+     "top3": [
+      "ethical-hacking-basics",
+      "web-security",
+      "apache-kafka"
+     ],
+     "truth": [
+      "command-line",
+      "security-fundamentals"
+     ]
+    }
+   ],
+   "vsBaseline": {
+    "p1": {
+     "delta": -0.0203,
+     "ci95": [
+      -0.0732,
+      0.0325
+     ]
+    },
+    "p3": {
+     "delta": -0.0393,
+     "ci95": [
+      -0.0623,
+      -0.0162
+     ]
+    },
+    "mrr": {
+     "delta": -0.0246,
+     "ci95": [
+      -0.0589,
+      0.0094
+     ]
+    }
+   }
+  }
+ ],
+ "winner": {
+  "model": "thenlper/gte-base",
+  "clearlyBetterThanBaselineOnAllThree": false
+ },
+ "decision": "swap only if clearly better on all three metrics AND the fixture-snapshot diff is reviewed and accepted; otherwise keep the shipped model"
+}

@@ -198,6 +198,35 @@ the card adds "Learners like you: P % took this next (n = …)" with the populat
 caveat on hover, and the narrator may cite that share and n from the same block. Branch shares
 are evidence and display; they never reorder a path.
 
+### Self-evaluation — `pipeline/evaluate/`, `docs/EVALUATION.md`
+
+Three measurements, each produced by a committed script and quoted verbatim in
+`docs/EVALUATION.md`; nothing is trained. All three start from the same corpus of generated
+paths — the five fixture learners plus every goal template under three canonical profiles
+(empty, partial, time-poor), 50 paths — emitted by `pipeline/evaluate/dump_paths.ts`, which
+runs the engine exactly as the product does.
+
+```
+python pipeline/evaluate/sequencing_agreement.py     # engine order vs observed learner order, per source -> evidence/eval_sequencing_agreement.md/.json
+python pipeline/evaluate/embedding_bakeoff.py        # five local embedding models, P@1 / P@3 / MRR on skillsTaught -> evidence/eval_embedding_bakeoff.md/.json
+python pipeline/evaluate/narration_groundedness.py   # 60 narrations -> checker pass -> unsupported-claim rate -> evidence/eval_narration_groundedness.md/.json
+```
+
+- **Sequencing agreement**: every ordered pair of taught skills the engine sequenced, checked
+  against the majority direction a source observed above its floor (n ≥ 20), split by whether
+  the pair is an authored edge, a graph-derived order or unrelated — because the engine's order
+  is partly derived from the same authored graph the sources already confirmed.
+- **Embedding bake-off**: for each catalog item, all 159 skills ranked by cosine to the item text
+  and scored against its annotated `skillsTaught`; candidates run locally (MPS), and a paired
+  bootstrap over items decides whether a candidate is clearly better than the shipped MiniLM on
+  all three metrics. The shipped model changes only after that and a reviewed fixture-snapshot
+  diff.
+- **Narration groundedness**: 60 evidence objects narrated the way `POST /api/explain` narrates
+  them (`pipeline/evaluate/narrate.ts` runs the same function, prompt, model and effort), then a
+  second model pass with a different objective flags every claim not traceable to a field of the
+  evidence object or the profile summary; model calls are cached under `pipeline/build/`, token
+  usage is summed into the report.
+
 ## Data sources and attribution
 
 - **Stack Overflow** question metadata via the BigQuery public dataset (`bigquery-public-data.stackoverflow`) and the Stack Exchange Data Explorer, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Pathwise publishes aggregate counts only, with this attribution wherever they are shown.

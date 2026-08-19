@@ -5,6 +5,7 @@ description = "Offline data pipeline: catalog curation, annotation, embeddings, 
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=0.122.0",
+    "einops>=0.8.2",
     "pydantic>=2.13.4",
     "requests>=2.32",
     "sentence-transformers>=3.0",
