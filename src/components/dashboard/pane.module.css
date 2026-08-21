@@ -1,0 +1,33 @@
+/* Pane: identity rail beside the existing dashboard, which keeps its own two-column grid. */
+
+.pane {
+  display: grid;
+  grid-template-columns: 292px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 1180px) {
+  .pane {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rail {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+@media (min-width: 1181px) {
+  .rail {
+    position: sticky;
+    top: 14px;
+  }
+}
+
+.main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+}
