@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { generatePath } from "@/engine";
-import { dashboardSummary, streakFromDays } from "@/engine/dashboard";
+import { activityCalendar, dashboardSummary, difficultySplit, milestoneBadges, streakFromDays } from "@/engine/dashboard";
 import { applyFeedback } from "@/engine/replan";
 import { loadEngineData } from "@/lib/engineData";
 import type { Path, Profile } from "@/schemas";
@@ -87,5 +87,67 @@ describe("dashboardSummary", () => {
     const s = dashboardSummary({ profile, path: allDone, data, eventDays: [], today: TODAY });
     expect(s.nextAction.catalogId).toBeNull();
     expect(s.timeline.every((t) => t.complete)).toBe(true);
+  });
+});
+
+describe("difficultySplit (dashboard item 7c)", () => {
+  it("buckets catalog difficulty 1–2 / 3 / 4–5 and counts done against total per bucket", () => {
+    const split = difficultySplit(path, data);
+    const total = split.easy.total + split.medium.total + split.hard.total;
+    expect(total).toBe(items(path).length);
+    expect(split.easy.done + split.medium.done + split.hard.done).toBe(0);
+    const catalog = new Map(data.catalog.map((c) => [c.id, c.difficulty]));
+    expect(split.easy.total).toBe(items(path).filter((i) => catalog.get(i.catalogId)! <= 2).length);
+    expect(split.medium.total).toBe(items(path).filter((i) => catalog.get(i.catalogId) === 3).length);
+    expect(split.hard.total).toBe(items(path).filter((i) => catalog.get(i.catalogId)! >= 4).length);
+  });
+
+  it("counts a completed item in its bucket only, and is all zeros without a path", () => {
+    const first = items(path)[0];
+    const done = applyFeedback({ type: "completed", catalogId: first.catalogId }, { profile, path, data, now: NOW, eventId: "e" });
+    const split = difficultySplit(done.path, data);
+    const bucket = data.catalog.find((c) => c.id === first.catalogId)!.difficulty;
+    const key = bucket <= 2 ? "easy" : bucket === 3 ? "medium" : "hard";
+    expect(split[key].done).toBe(1);
+    expect(split.easy.done + split.medium.done + split.hard.done).toBe(1);
+    expect(difficultySplit(null, data)).toEqual({ easy: { done: 0, total: 0 }, medium: { done: 0, total: 0 }, hard: { done: 0, total: 0 } });
+  });
+});
+
+describe("activityCalendar (dashboard item 7a)", () => {
+  it("lays out the last 52 weeks ending today, Sunday-first columns, with active days marked and counted", () => {
+    const cal = activityCalendar(["2026-08-15", "2026-08-14", "2026-08-14", "2025-01-01"], TODAY);
+    expect(cal.weeks).toHaveLength(53);
+    const cells = cal.weeks.flat();
+    expect(cells.at(-1)?.day).toBe(TODAY);
+    expect(cells[0]?.day <= "2025-08-16").toBe(true);
+    expect(cells.filter((c) => c.active).map((c) => c.day)).toEqual(["2026-08-14", "2026-08-15"]);
+    expect(cal.activeDays).toBe(2);
+    // Every column is a full week starting on a Sunday; cells after today are absent.
+    expect(cal.weeks.every((w) => w.length <= 7)).toBe(true);
+    expect(new Date(`${cal.weeks[1][0].day}T00:00:00Z`).getUTCDay()).toBe(0);
+    expect(cal.months[0]).toMatchObject({ label: expect.any(String), week: expect.any(Number) });
+    expect(cal.months.map((m) => m.label).at(-1)).toBe("Aug");
+  });
+
+  it("is empty, not faked, without events", () => {
+    const cal = activityCalendar([], TODAY);
+    expect(cal.activeDays).toBe(0);
+    expect(cal.weeks.flat().some((c) => c.active)).toBe(false);
+  });
+});
+
+describe("milestoneBadges (dashboard item 7d)", () => {
+  it("earns one badge per completed phase and keeps the rest locked by name", () => {
+    const s = dashboardSummary({ profile, path, data, eventDays: [], today: TODAY });
+    const badges = milestoneBadges(s.timeline);
+    expect(badges).toHaveLength(path.phases.length);
+    expect(badges.every((b) => !b.earned)).toBe(true);
+    expect(badges.map((b) => b.milestone)).toEqual(path.phases.map((p) => p.milestone));
+    const allDone: Path = { ...path, phases: path.phases.map((p) => ({ ...p, items: p.items.map((i) => ({ ...i, status: "done" as const })) })) };
+    const s2 = dashboardSummary({ profile, path: allDone, data, eventDays: [], today: TODAY });
+    expect(milestoneBadges(s2.timeline).every((b) => b.earned)).toBe(true);
+    expect(s2.difficulty.easy.done + s2.difficulty.medium.done + s2.difficulty.hard.done).toBe(items(path).length);
+    expect(s2.activity.activeDays).toBe(0);
   });
 });

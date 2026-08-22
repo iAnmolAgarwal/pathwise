@@ -1,4 +1,4 @@
-import { getLatestPath, getProfile, insertPath, listFeedbackDays, saveProfile } from "@/db/queries";
+import { getLatestPath, getProfile, insertPath, listActivityDays, saveProfile } from "@/db/queries";
 import { computeDashboard } from "@/lib/dashboard";
 import { loadEngineData } from "@/lib/engineData";
 import type { ChatContext } from "@/llm/tools";
@@ -26,7 +26,7 @@ export function dbChatContext(learnerId: string): ChatContext {
       return { version: row.version };
     },
     async dashboardSummary() {
-      const [profile, latest, eventDays] = await Promise.all([this.getProfile(), getLatestPath(learnerId), listFeedbackDays(learnerId)]);
+      const [profile, latest, eventDays] = await Promise.all([this.getProfile(), getLatestPath(learnerId), listActivityDays(learnerId)]);
       return computeDashboard(profile, latest?.data ?? null, eventDays);
     },
     now: () => new Date(),
