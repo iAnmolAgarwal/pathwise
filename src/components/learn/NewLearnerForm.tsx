@@ -48,7 +48,17 @@ export function NewLearnerForm({ autoFocus = true, carry = "" }: { autoFocus?: b
           autoComplete="name"
         />
       </label>
-      <Button type="submit" size="lg" disabled={busy || !name.trim()} className="mt-1 w-full">
+      {error && (
+        <p className="text-[13px] text-coral" role="alert" aria-live="polite">
+          {error}
+        </p>
+      )}
+      <Button
+        type="submit"
+        size="default"
+        disabled={busy || !name.trim()}
+        className="mt-1 w-full disabled:border disabled:border-line disabled:bg-glass-strong disabled:text-ink-2 disabled:opacity-100 disabled:shadow-none"
+      >
         {busy ? (
           <>
             <Orb state="working" size={20} label="Creating your space" /> Creating your space
@@ -59,11 +69,6 @@ export function NewLearnerForm({ autoFocus = true, carry = "" }: { autoFocus?: b
           </>
         )}
       </Button>
-      {error && (
-        <p className="text-[13px] text-coral" role="alert">
-          {error}
-        </p>
-      )}
     </form>
   );
 }

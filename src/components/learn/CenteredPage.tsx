@@ -7,7 +7,7 @@ export function CenteredPage({ children, width = 420 }: { children: ReactNode; w
     <main className="relative grid min-h-dvh place-items-center overflow-hidden bg-ink px-6 py-16">
       <div className="bg-vignette pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative flex w-full flex-col items-center text-center" style={{ maxWidth: width }}>
-        <Link href="/" className="label-caps text-ink-3 transition-colors hover:text-ink-1">
+        <Link href="/" className="label-caps -m-4 rounded-chip p-4 text-ink-2 transition-colors hover:text-ink-1">
           Pathwise
         </Link>
         {children}
