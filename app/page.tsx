@@ -7,7 +7,6 @@ import { Hero } from "@/components/landing/Hero";
 import { MotionWall } from "@/components/landing/MotionWall";
 import { QuickChatProvider, type QuickChatVisitor } from "@/components/landing/QuickChat";
 import { SkillStream } from "@/components/landing/SkillStream";
-import { HowItWorks, KeepFresh, TrustBadge } from "@/components/landing/Trust";
 import { loadTrustNumbers } from "@/lib/trust";
 import { listLearners } from "@/db/queries";
 
@@ -27,15 +26,12 @@ export default async function Home() {
   return (
     <QuickChatProvider visitor={visitor}>
       <main className="flex flex-1 flex-col">
-        <Hero numbers={trust} />
-        <HowItWorks id="story" />
-        <TrustBadge id="trust" numbers={trust} />
+        <Hero numbers={trust} storyHref="#how-it-works" />
         <Showcase id="showcase" />
         <ArcDeck id="how-it-works" />
         <BeamNetwork id="engine" />
         <SkillStream id="skills" />
         <MotionWall id="different" />
-        <KeepFresh id="fresh" numbers={trust} />
         <TryIt id="try" />
         <Footer />
       </main>
