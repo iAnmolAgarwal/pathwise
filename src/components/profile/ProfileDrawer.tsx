@@ -5,7 +5,7 @@ import type { Preferences, Profile, ProfileOp } from "@/schemas";
 
 const LEVEL_LABEL = ["Not yet", "Basics", "Comfortable", "Strong"];
 const LEVEL_TONE: Record<number, string> = {
-  0: "border-line/60 text-ink-4",
+  0: "border-line/60 text-ink-3",
   1: "border-line text-ink-2",
   2: "border-status-progress-line bg-status-progress-soft text-status-progress",
   3: "border-status-acquired-line bg-status-acquired-soft text-status-acquired",
@@ -84,6 +84,16 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
     }
   }
 
+  // Escape closes the drawer while it is open.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   const latest = changes.at(-1);
   // Highlight the fields the latest batch touched, then let the highlight expire.
   const [expiredId, setExpiredId] = useState<number | null>(null);
@@ -100,141 +110,166 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
 
   return (
     <aside
-      className={`fixed inset-y-3 right-3 z-40 w-[340px] max-w-[calc(100vw-24px)] transform overflow-y-auto rounded-panel border border-line bg-[rgb(8_8_10/88%)] p-5 text-[13.5px] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
+      className={`fixed inset-y-3 right-3 z-40 flex w-[min(400px,calc(100vw-24px))] transform flex-col overflow-hidden rounded-panel border border-line bg-[rgb(8_8_10/88%)] text-[13.5px] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
       aria-label="Learner profile"
       aria-hidden={!open}
       inert={!open}
       data-testid="profile-drawer"
     >
-      <div className="flex items-center justify-between">
-        <h2 className="text-[17px] font-[540] tracking-[-0.02em]">Your profile</h2>
-        <button type="button" className="rounded-pill border border-line px-3 py-1 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={onClose}>
-          Close
-        </button>
-      </div>
-      <p className="mt-1 text-[12.5px] text-ink-3">
-        {editable ? "Everything the engine knows about you. Nova fills this in as you talk; tap a level or a setting to correct it, then save — your path is redone to match." : "Everything the engine knows about you. Nova fills this in as you talk; nothing else writes here."}
-      </p>
-
-      <h3 className="label-caps mt-6 text-ink-3">Goals</h3>
-      {profile.goals.length === 0 ? (
-        <p className="mt-2 px-2 text-[13px] text-ink-3">None yet</p>
-      ) : (
-        <ul className="mt-2 flex flex-col gap-1">
-          {profile.goals.map((g, i) => (
-            <li key={i} className={`rounded px-2 py-[7px] text-[13px] leading-5 ${hi(`goal:${i}`)}`} data-testid="profile-goal">
-              {g.type === "role" ? (
-                <span>{templateTitle(g.templateId)}</span>
-              ) : (
-                <span>
-                  “{g.text}”
-                  <span className="block text-[12px] text-ink-3">
-                    → {g.mappedSkills.map((s) => `${skillName(s.skillId)} L${s.level}`).join(", ") || "unmapped"}
-                  </span>
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <h3 className="label-caps mt-6 text-ink-3">Skills</h3>
-      {skills.length === 0 ? (
-        <p className="mt-2 px-2 text-[13px] text-ink-3">None recorded</p>
-      ) : (
-        <ul className="mt-2 flex flex-col">
-          {skills.map(([id, s]) => (
-            <li
-              key={id}
-              className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded border-b border-line/60 px-2 py-[7px] last:border-b-0 ${hi(`skill:${id}`)}`}
-              data-testid="profile-skill"
-            >
-              <span className="truncate text-[13px] leading-5" title={skillName(id)}>
-                {skillName(id)}
-              </span>
-              <span className="flex items-center gap-2 whitespace-nowrap text-[12px] leading-5">
-                {(() => {
-                  const level = levels[id] ?? s.level;
-                  const changed = level !== s.level;
-                  const pill = `inline-flex h-[18px] items-center rounded-pill border px-2 text-[10.5px] font-[600] uppercase tracking-[0.08em] ${LEVEL_TONE[level]}`;
-                  return editable ? (
-                    <button
-                      type="button"
-                      className={`${pill} cursor-pointer transition-colors hover:border-line-strong ${changed ? "ring-1 ring-violet-line" : ""}`}
-                      onClick={() => cycle(id)}
-                      disabled={saving}
-                      aria-label={`${skillName(id)}: ${LEVEL_LABEL[level]}. Press to change.`}
-                      data-testid="profile-skill-level"
-                      data-level={level}
-                    >
-                      {LEVEL_LABEL[level]}
-                    </button>
-                  ) : (
-                    <span className={pill}>{LEVEL_LABEL[level]}</span>
-                  );
-                })()}
-                <span className="w-[52px] text-right font-mono text-[10.5px] uppercase tracking-[0.06em] text-ink-4">{s.source}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <h3 className="label-caps mt-6 text-ink-3">Preferences</h3>
-      {editable ? (
-        <div className="mt-2 flex flex-col gap-[6px] text-[13px] leading-5">
-          <div className={`flex items-center justify-between rounded px-2 py-[3px] ${hi("pref:hoursPerWeek")}`}>
-            <span className="text-ink-3">Hours / week</span>
-            <span className="inline-flex items-center gap-1" data-testid="pref-hoursPerWeek">
-              <Stepper label="Fewer hours" disabled={saving || prefs.hoursPerWeek <= 1} onClick={() => setPrefs((x) => ({ ...x, hoursPerWeek: Math.max(1, x.hoursPerWeek - 1) }))}>
-                −
-              </Stepper>
-              <span className="w-8 text-center font-mono text-[12px]">{prefs.hoursPerWeek}</span>
-              <Stepper label="More hours" disabled={saving || prefs.hoursPerWeek >= 60} onClick={() => setPrefs((x) => ({ ...x, hoursPerWeek: Math.min(60, x.hoursPerWeek + 1) }))}>
-                +
-              </Stepper>
-            </span>
-          </div>
-          <div className={`flex items-center justify-between gap-3 rounded px-2 py-[3px] ${hi("pref:pace")}`}>
-            <span className="text-ink-3">Pace</span>
-            <Segmented options={PACES} value={prefs.pace} disabled={saving} testId="pref-pace" onChange={(pace) => setPrefs((x) => ({ ...x, pace }))} />
-          </div>
-          <div className={`flex items-center justify-between gap-3 rounded px-2 py-[3px] ${hi("pref:budget")}`}>
-            <span className="text-ink-3">Budget</span>
-            <Segmented options={BUDGETS} value={prefs.budget} disabled={saving} testId="pref-budget" onChange={(budget) => setPrefs((x) => ({ ...x, budget }))} />
-          </div>
-          <div className={`flex items-center justify-between rounded px-2 py-[3px] ${hi("pref:formats")}`}>
-            <span className="text-ink-3">Formats</span>
-            <span data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "Any"}</span>
-          </div>
+      <div className="shrink-0 px-5 pt-5">
+        <div className="flex items-center justify-between">
+          <h2 className="text-[17px] font-[540] tracking-[-0.02em]">Your profile</h2>
+          <button type="button" className="rounded-pill border border-line px-3 py-2 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={onClose}>
+            Close
+          </button>
         </div>
-      ) : (
-        <dl className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-y-[2px] text-[13px] leading-5">
-          <dt className="px-2 text-ink-3">Hours / week</dt>
-          <dd className={`rounded px-2 text-right font-mono text-[12px] ${hi("pref:hoursPerWeek")}`} data-testid="pref-hoursPerWeek">{p.hoursPerWeek}</dd>
-          <dt className="px-2 text-ink-3">Pace</dt>
-          <dd className={`rounded px-2 text-right capitalize ${hi("pref:pace")}`} data-testid="pref-pace">{p.pace}</dd>
-          <dt className="px-2 text-ink-3">Budget</dt>
-          <dd className={`rounded px-2 text-right ${hi("pref:budget")}`} data-testid="pref-budget">{p.budget === "free-only" ? "Free only" : "Any"}</dd>
-          <dt className="px-2 text-ink-3">Formats</dt>
-          <dd className={`rounded px-2 text-right ${hi("pref:formats")}`} data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "Any"}</dd>
-        </dl>
-      )}
+        <p className="mt-1 text-[12.5px] text-ink-3">
+          {editable ? "What the engine knows about you. Tap any level or setting to correct it, then save — your path is redone to match." : "Everything the engine knows about you. Nova fills this in as you talk; nothing else writes here."}
+        </p>
+      </div>
+
+      <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-5">
+        <h3 className="label-caps mt-5 px-2 text-ink-3">Goals</h3>
+        {profile.goals.length === 0 ? (
+          <p className="mt-2 px-2 text-[13px] text-ink-3">None yet</p>
+        ) : (
+          <ul className="mt-2 flex flex-col gap-1">
+            {profile.goals.map((g, i) => (
+              <li key={i} className={`rounded px-2 py-[7px] text-[13px] leading-5 ${hi(`goal:${i}`)}`} data-testid="profile-goal">
+                {g.type === "role" ? (
+                  <span>{templateTitle(g.templateId)}</span>
+                ) : (
+                  <span>
+                    “{g.text}”
+                    <span className="block text-[12px] text-ink-3">
+                      → {g.mappedSkills.map((s) => `${skillName(s.skillId)} L${s.level}`).join(", ") || "unmapped"}
+                    </span>
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <h3 className="label-caps mt-6 px-2 text-ink-3">Skills</h3>
+        {skills.length === 0 ? (
+          <p className="mt-2 px-2 text-[13px] text-ink-3">None recorded</p>
+        ) : (
+          <ul className="mt-2 flex flex-col">
+            {skills.map(([id, s]) => (
+              <li
+                key={id}
+                className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded border-b border-line/60 px-2 py-[10px] last:border-b-0 ${hi(`skill:${id}`)}`}
+                data-testid="profile-skill"
+              >
+                <span className="truncate text-[13px] leading-5" title={skillName(id)}>
+                  {skillName(id)}
+                </span>
+                <span className="flex items-center gap-2 whitespace-nowrap text-[12px] leading-5">
+                  {(() => {
+                    const level = levels[id] ?? s.level;
+                    const changed = level !== s.level;
+                    const pill = `relative inline-flex h-[18px] items-center rounded-pill border px-2 text-[10.5px] font-[600] uppercase tracking-[0.08em] after:absolute after:-inset-x-2 after:-inset-y-[11px] after:content-[''] ${LEVEL_TONE[level]}`;
+                    return editable ? (
+                      <button
+                        type="button"
+                        className={`${pill} cursor-pointer transition-colors hover:border-line-strong ${changed ? "ring-2 ring-brand-line ring-offset-2 ring-offset-ink" : ""}`}
+                        onClick={() => cycle(id)}
+                        disabled={saving}
+                        aria-label={`${skillName(id)}: ${LEVEL_LABEL[level]}. Press to change.`}
+                        data-testid="profile-skill-level"
+                        data-level={level}
+                      >
+                        {LEVEL_LABEL[level]}
+                      </button>
+                    ) : (
+                      <span className={pill}>{LEVEL_LABEL[level]}</span>
+                    );
+                  })()}
+                  <span className="w-[52px] text-right font-mono text-[10.5px] uppercase tracking-[0.06em] text-ink-3">{s.source}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <h3 className="label-caps mt-6 px-2 text-ink-3">Preferences</h3>
+        {editable ? (
+          <div className="mt-2 flex flex-col gap-[6px] text-[13px] leading-5">
+            <div className={`flex items-center justify-between rounded px-2 py-[3px] ${hi("pref:hoursPerWeek")}`}>
+              <span className="text-ink-3">Hours / week</span>
+              <span className="inline-flex items-center gap-1" data-testid="pref-hoursPerWeek">
+                <Stepper label="Fewer hours" disabled={saving || prefs.hoursPerWeek <= 1} onClick={() => setPrefs((x) => ({ ...x, hoursPerWeek: Math.max(1, x.hoursPerWeek - 1) }))}>
+                  −
+                </Stepper>
+                <span className="w-8 text-center font-mono text-[12px]">{prefs.hoursPerWeek}</span>
+                <Stepper label="More hours" disabled={saving || prefs.hoursPerWeek >= 60} onClick={() => setPrefs((x) => ({ ...x, hoursPerWeek: Math.min(60, x.hoursPerWeek + 1) }))}>
+                  +
+                </Stepper>
+              </span>
+            </div>
+            <div className={`flex items-center justify-between gap-3 rounded px-2 py-[3px] ${hi("pref:pace")}`}>
+              <span className="text-ink-3">Pace</span>
+              <Segmented options={PACES} value={prefs.pace} disabled={saving} testId="pref-pace" onChange={(pace) => setPrefs((x) => ({ ...x, pace }))} />
+            </div>
+            <div className={`flex items-center justify-between gap-3 rounded px-2 py-[3px] ${hi("pref:budget")}`}>
+              <span className="text-ink-3">Budget</span>
+              <Segmented options={BUDGETS} value={prefs.budget} disabled={saving} testId="pref-budget" onChange={(budget) => setPrefs((x) => ({ ...x, budget }))} />
+            </div>
+            <div className={`flex items-center justify-between rounded px-2 py-[3px] ${hi("pref:formats")}`}>
+              <span className="text-ink-3">Formats</span>
+              <span data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "Any"}</span>
+            </div>
+          </div>
+        ) : (
+          <dl className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-y-[2px] text-[13px] leading-5">
+            <dt className="px-2 text-ink-3">Hours / week</dt>
+            <dd className={`rounded px-2 text-right font-mono text-[12px] ${hi("pref:hoursPerWeek")}`} data-testid="pref-hoursPerWeek">{p.hoursPerWeek}</dd>
+            <dt className="px-2 text-ink-3">Pace</dt>
+            <dd className={`rounded px-2 text-right capitalize ${hi("pref:pace")}`} data-testid="pref-pace">{p.pace}</dd>
+            <dt className="px-2 text-ink-3">Budget</dt>
+            <dd className={`rounded px-2 text-right ${hi("pref:budget")}`} data-testid="pref-budget">{p.budget === "free-only" ? "Free only" : "Any"}</dd>
+            <dt className="px-2 text-ink-3">Formats</dt>
+            <dd className={`rounded px-2 text-right ${hi("pref:formats")}`} data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "Any"}</dd>
+          </dl>
+        )}
+
+        <h3 className="label-caps mt-6 px-2 text-ink-3">Recent updates</h3>
+        {changes.length === 0 ? (
+          <p className="mt-2 px-2 text-[13px] text-ink-3">Nothing applied yet</p>
+        ) : (
+          <ol className="mt-2 flex flex-col gap-1 text-xs" data-testid="profile-log">
+            {[...changes]
+              .reverse()
+              .slice(0, 8)
+              .map((c) => (
+                <li key={c.id} className="rounded-card border border-line bg-glass px-2.5 py-1.5">
+                  <span className="text-ink-3">{c.at}</span>
+                  <ul className="mt-0.5 list-disc pl-4">
+                    {c.ops.map((op, i) => (
+                      <li key={i}>{describeOp(op, skillName, templateTitle)}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+          </ol>
+        )}
+      </div>
 
       {editable && (
-        <div className="sticky bottom-0 -mx-5 mt-6 flex items-center justify-between gap-3 border-t border-line bg-[rgb(8_8_10/92%)] px-5 py-3 backdrop-blur-[22px]" data-testid="profile-save-bar">
+        <div className="flex shrink-0 items-center justify-between gap-3 border-t border-line bg-[rgb(8_8_10/92%)] px-5 py-3 shadow-[0_-14px_22px_-10px_rgb(0_0_0/80%)]" data-testid="profile-save-bar">
           <span className="text-[12px] text-ink-3">
-            {saveError ? <span className="text-status-gap">{saveError}</span> : dirty ? `${ops.length} ${ops.length === 1 ? "change" : "changes"} — saving redoes your path` : "No unsaved changes"}
+            {saveError ? <span className="text-status-gap">{saveError}</span> : dirty ? `${ops.length} unsaved ${ops.length === 1 ? "change" : "changes"}` : "No unsaved changes"}
           </span>
           <span className="flex shrink-0 items-center gap-2">
             {dirty && !saving && (
-              <button type="button" className="rounded-pill border border-line px-3 py-1 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={() => { setLevels({}); setPrefs(profile.preferences); }}>
+              <button type="button" className="rounded-pill border border-line px-3 py-2 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={() => { setLevels({}); setPrefs(profile.preferences); }}>
                 Reset
               </button>
             )}
             <button
               type="button"
-              className="rounded-pill bg-brand px-3.5 py-1 text-[12px] font-[650] text-brand-foreground shadow-brand transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-pill bg-brand px-3.5 py-2 text-[12px] font-[650] text-brand-foreground shadow-brand transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!dirty || saving}
               onClick={save}
               data-testid="profile-save"
@@ -244,27 +279,6 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
           </span>
         </div>
       )}
-
-      <h3 className="label-caps mt-6 text-ink-3">Recent updates</h3>
-      {changes.length === 0 ? (
-        <p className="mt-2 px-2 text-[13px] text-ink-3">Nothing applied yet</p>
-      ) : (
-        <ol className="mt-2 flex flex-col gap-1 text-xs" data-testid="profile-log">
-          {[...changes]
-            .reverse()
-            .slice(0, 8)
-            .map((c) => (
-              <li key={c.id} className="rounded-card border border-line bg-glass px-2.5 py-1.5">
-                <span className="text-ink-3">{c.at}</span>
-                <ul className="mt-0.5 list-disc pl-4">
-                  {c.ops.map((op, i) => (
-                    <li key={i}>{describeOp(op, skillName, templateTitle)}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-        </ol>
-      )}
     </aside>
   );
 }
@@ -273,7 +287,7 @@ function Stepper({ label, disabled, onClick, children }: { label: string; disabl
   return (
     <button
       type="button"
-      className="grid h-6 w-6 place-items-center rounded-pill border border-line text-[13px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1 disabled:cursor-not-allowed disabled:opacity-40"
+      className="relative grid h-6 w-6 place-items-center rounded-pill border border-line after:absolute after:-inset-2 after:content-[''] text-[13px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1 disabled:cursor-not-allowed disabled:opacity-40"
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
@@ -293,7 +307,7 @@ function Segmented<T extends string>({ options, value, disabled, testId, onChang
           role="radio"
           aria-checked={o.value === value}
           disabled={disabled}
-          className={`px-2.5 py-[2px] text-[11.5px] transition-colors ${o.value === value ? "bg-violet-soft text-violet" : "text-ink-3 hover:text-ink-1"} disabled:cursor-not-allowed`}
+          className={`px-3 py-[9px] text-[11.5px] transition-colors ${o.value === value ? "bg-violet-soft text-violet" : "text-ink-3 hover:text-ink-1"} disabled:cursor-not-allowed`}
           onClick={() => onChange(o.value)}
         >
           {o.label}
