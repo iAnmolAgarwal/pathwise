@@ -334,12 +334,16 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     const next = build();
     setNodes(next.nodes);
     setEdges(next.edges);
+  }, [build, setNodes, setEdges]);
+
+  // Refit only when the layout or the traced item changes — never on a selection, hover or zoom.
+  useEffect(() => {
     const t = setTimeout(() => {
       if (highlightSet.ids.size > 0) fitView({ nodes: [...highlightSet.ids].map((id) => ({ id })), duration: 600, padding: 0.5 });
       else fitView({ duration: 500, padding: 0.08 });
     }, 50);
     return () => clearTimeout(t);
-  }, [build, setNodes, setEdges, highlightSet, fitView]);
+  }, [laid, highlightSet, fitView]);
 
   return (
     <ReactFlow
@@ -383,7 +387,8 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
   const [popover, setPopover] = useState<PopoverState | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<number | null>(null);
-  const prereqs = prereqMap(evidence.edges);
+  // Memoised: a fresh map each render would relayout and refit the view on every hover or zoom click.
+  const prereqs = useMemo(() => prereqMap(evidence.edges), [evidence]);
   const skill = selected ? skills.find((s) => s.id === selected) : null;
   const status = skill ? (skillStatus[skill.id] ?? "unrelated") : null;
   const counts: Record<SkillStatus, number> = { acquired: 0, "in-progress": 0, gap: 0, unrelated: 0 };
