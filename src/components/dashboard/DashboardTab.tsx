@@ -119,8 +119,37 @@ export function DashboardTab({ summary, displayName, goalTitle, joinedAt, prefer
           </motion.section>
         )}
 
+        {/* Next action. */}
+        <motion.section className={cn(styles.card, styles.next)} data-testid="next-action" {...rise(1)}>
+          <p className={styles.label}>Next best action</p>
+          {nextAction.catalogId ? (
+            <>
+              <div className={styles.nextMeta}>
+                {nextAction.kind && <Badge variant="kind">{nextAction.kind}</Badge>}
+                {nextAction.hours ? <span className={styles.mono}>{nextAction.hours}h</span> : null}
+                {nextAction.phase && <span className={styles.nextPhase}>{nextAction.phase}</span>}
+              </div>
+              <h3 className={styles.nextTitle}>{nextAction.title}</h3>
+              <p className={styles.nextWhy}>{nextAction.why}</p>
+            </>
+          ) : (
+            <p className={styles.nextWhy}>{nextAction.why}</p>
+          )}
+          <div className={styles.heroActions}>
+            {nextAction.catalogId && onOpenItem && (
+              <button type="button" className={styles.nextButton} onClick={() => onOpenItem(nextAction.catalogId!)}>
+                Open on path <ArrowRight aria-hidden />
+              </button>
+            )}
+            {onAskNova && (
+              <button type="button" className={styles.ghostButton} onClick={onAskNova} data-testid="ask-nova">
+                <MessageSquare aria-hidden /> Ask Nova
+              </button>
+            )}
+          </div>
+        </motion.section>
         {/* Badges: achievements derived from stored state, the next one to chase first; then one per completed phase. */}
-        <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(1)}>
+        <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(2)}>
           <div className={styles.cardHead}>
             <p className={styles.label}>Badges</p>
             <p className={styles.count}>
@@ -163,35 +192,6 @@ export function DashboardTab({ summary, displayName, goalTitle, joinedAt, prefer
           <p className={styles.cardHint}>Locked badges stay visible and dimmed, so the next thing to chase is always on screen.</p>
         </motion.section>
 
-        {/* Next action. */}
-        <motion.section className={cn(styles.card, styles.next)} data-testid="next-action" {...rise(2)}>
-          <p className={styles.label}>Next best action</p>
-          {nextAction.catalogId ? (
-            <>
-              <div className={styles.nextMeta}>
-                {nextAction.kind && <Badge variant="kind">{nextAction.kind}</Badge>}
-                {nextAction.hours ? <span className={styles.mono}>{nextAction.hours}h</span> : null}
-                {nextAction.phase && <span className={styles.nextPhase}>{nextAction.phase}</span>}
-              </div>
-              <h3 className={styles.nextTitle}>{nextAction.title}</h3>
-              <p className={styles.nextWhy}>{nextAction.why}</p>
-            </>
-          ) : (
-            <p className={styles.nextWhy}>{nextAction.why}</p>
-          )}
-          <div className={styles.heroActions}>
-            {nextAction.catalogId && onOpenItem && (
-              <button type="button" className={styles.nextButton} onClick={() => onOpenItem(nextAction.catalogId!)}>
-                Open on path <ArrowRight aria-hidden />
-              </button>
-            )}
-            {onAskNova && (
-              <button type="button" className={styles.ghostButton} onClick={onAskNova} data-testid="ask-nova">
-                <MessageSquare aria-hidden /> Ask Nova
-              </button>
-            )}
-          </div>
-        </motion.section>
       </aside>
 
       {/* ---- main column ---------------------------------------------------------------------- */}
