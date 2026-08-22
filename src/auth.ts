@@ -23,10 +23,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth(() => ({
   session: { strategy: "database" },
   pages: { signIn: "/sign-in" },
   callbacks: {
-    // Expose the user id so routes can check learner ownership against it.
+    // What the client may see: the user (with id, so routes can check ownership) and the
+    // expiry. Never the adapter row itself — that carries the session token.
     session({ session, user }) {
-      session.user.id = user.id;
-      return session;
+      return {
+        expires: session.expires,
+        user: { id: user.id, name: user.name ?? null, email: user.email ?? null, image: user.image ?? null },
+      };
     },
   },
 }));

@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@/auth";
 import { CenteredPage } from "@/components/learn/CenteredPage";
 import { NewLearnerForm } from "@/components/learn/NewLearnerForm";
-import { initials } from "@/components/shell/Rail";
 import { listLearners } from "@/db/queries";
+import { initials } from "@/lib/initials";
 import { signInUrl } from "@/lib/authz";
 
 export const dynamic = "force-dynamic";
