@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 272px minmax(0, 1fr);
   gap: 14px;
-  align-items: start;
+  align-items: stretch;
 }
 .rail,
 .main {
@@ -12,6 +12,10 @@
   min-width: 0;
   flex-direction: column;
   gap: 14px;
+}
+/* The badges card takes up whatever height the main column has left, so both columns end together. */
+.rail .badges {
+  flex: 1;
 }
 /* Section hooks (tests and the workspace target these by class). */
 .difficultyCard,

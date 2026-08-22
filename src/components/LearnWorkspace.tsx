@@ -110,6 +110,30 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     setDrawerOpen(true);
   }, []);
 
+  // Profile edits from the drawer: save the ops, then take the redone path (if any) with its diff.
+  const saveProfileEdits = useCallback(
+    async (ops: ProfileOp[]) => {
+      const res = await fetch(`/api/learners/${learnerId}/profile`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ops }),
+      });
+      const body = (await res.json().catch(() => ({}))) as { error?: string; profile: Profile; replan: { version: number; path: Path; diff: PathDiff } | null };
+      if (!res.ok) throw new Error(body.error ?? `Could not save your profile (${res.status})`);
+      setProfile(body.profile);
+      setChanges((prev) => [...prev, { id: prev.length + 1, at: new Date().toLocaleTimeString(), ops }]);
+      if (body.replan) {
+        setPathState({ version: body.replan.version, path: body.replan.path });
+        setExplaining(null);
+        setHighlight(null);
+        setDiff({ diff: body.replan.diff, version: body.replan.version });
+        setDrawerOpen(false);
+        setTab("path");
+      }
+    },
+    [learnerId],
+  );
+
   const onPathUpdated = useCallback((version: number, path: Path, pathDiff?: PathDiff | null) => {
     setPathState({ version, path });
     setExplaining(null);
@@ -358,7 +382,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
         </>
       }
     >
-      <ProfileDrawer profile={profile} changes={changes} skillName={skillName} templateTitle={templateTitle} open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <ProfileDrawer profile={profile} changes={changes} skillName={skillName} templateTitle={templateTitle} open={drawerOpen} onClose={() => setDrawerOpen(false)} onSave={saveProfileEdits} />
     </AppShell>
   );
 }

@@ -189,7 +189,6 @@ export function DashboardTab({ summary, displayName, goalTitle, joinedAt, prefer
               ))}
             </ul>
           )}
-          <p className={styles.cardHint}>Locked badges stay visible and dimmed, so the next thing to chase is always on screen.</p>
         </motion.section>
 
       </aside>
