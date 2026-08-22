@@ -29,6 +29,22 @@ KINDS = {"course", "project", "assessment"}
 FORMATS = {"video", "interactive", "text", "project"}
 COSTS = {"free", "freemium", "paid"}
 
+# The per-domain catalog source files. pipeline/sources/ also holds evidence-layer
+# inputs (tag_skill_map.json, coursera_catalog_map.json, resolution files) that are
+# not catalog items, so the domain list is explicit rather than a directory glob.
+DOMAINS = [
+    "ai-engineering",
+    "cloud",
+    "data-analysis",
+    "data-engineering",
+    "devops",
+    "foundations",
+    "machine-learning",
+    "security",
+    "web-backend",
+    "web-frontend",
+]
+
 RAW_FIELDS = [
     "id",
     "kind",
@@ -44,8 +60,10 @@ RAW_FIELDS = [
 
 def load_sources() -> list[dict]:
     items: list[dict] = []
-    for path in sorted(SOURCES_DIR.glob("*.json")):
-        domain = path.stem
+    for domain in DOMAINS:
+        path = SOURCES_DIR / f"{domain}.json"
+        if not path.exists():
+            raise SystemExit(f"missing domain source file: {path.relative_to(PIPELINE_DIR)}")
         for item in json.loads(path.read_text()):
             item["_domain"] = domain
             items.append(item)
