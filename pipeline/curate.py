@@ -117,9 +117,26 @@ def check_urls(items: list[dict]) -> list[str]:
         if "youtube.com/watch" in url:
             target = f"https://www.youtube.com/oembed?url={url}&format=json"
         try:
-            resp = requests.get(target, headers=headers, timeout=15, stream=True)
-            status = resp.status_code
-            resp.close()
+            status = None
+            for attempt in (1, 2):
+                try:
+                    resp = requests.get(target, headers=headers, timeout=15, stream=True)
+                    status = resp.status_code
+                    resp.close()
+                    break
+                except requests.exceptions.SSLError:
+                    raise  # handled below with a verify=False confirmation probe
+                except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+                    # DNS failure means the host is gone; anything else at the
+                    # connection layer (timeout, reset) is indistinguishable from
+                    # bot filtering — retry once, then classify as unverifiable.
+                    if "NameResolution" in repr(exc) or "getaddrinfo" in repr(exc):
+                        raise
+                    if attempt == 2:
+                        blocked += 1
+                        print(f"  [unverifiable {type(exc).__name__}] {item['id']}: {url}")
+            if status is None:
+                continue
         except requests.exceptions.SSLError:
             # Some sites fail local cert-chain verification while being fine in
             # browsers; confirm the host responds at all and classify as blocked.
