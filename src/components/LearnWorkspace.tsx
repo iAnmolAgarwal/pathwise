@@ -261,31 +261,17 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
           {tab === "graph" && (
             <section data-testid="graph-section">
               <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Skill graph</h2>
-              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">
-                Every skill in the taxonomy, coloured by where you stand. Press “Show in graph” on a path item to light up the chain of prerequisites it closes.
-              </p>
+              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">Every skill, coloured by where you stand. Tap any arrow to see who agreed it comes first.</p>
               <div className="mt-4">
-                <SkillGraph skills={skills} evidence={graphEvidence} skillStatus={dashboard?.skillStatus ?? {}} levels={levels} highlight={highlight} />
+                <SkillGraph
+                  skills={skills}
+                  evidence={graphEvidence}
+                  skillStatus={dashboard?.skillStatus ?? {}}
+                  levels={levels}
+                  highlight={highlight}
+                  onClearHighlight={() => setHighlight(null)}
+                />
               </div>
-              {pathState && (
-                <div className="mt-4">
-                  <p className="label-caps text-ink-3">Trace a path item</p>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {pathState.path.phases.flatMap((p) => p.items).map((i) => (
-                      <button
-                        key={i.catalogId}
-                        type="button"
-                        onClick={() => showInGraph(i.catalogId)}
-                        aria-pressed={highlight?.catalogId === i.catalogId}
-                        className={`rounded-pill border px-2.5 py-1 text-[12px] transition-colors ${highlight?.catalogId === i.catalogId ? "border-transparent bg-brand text-brand-foreground" : "border-line text-ink-2 hover:border-line-strong hover:text-ink-1"}`}
-                        data-testid="graph-trace-item"
-                      >
-                        {catalog[i.catalogId]?.title ?? i.catalogId}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </section>
           )}
 

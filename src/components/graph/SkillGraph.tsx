@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dagre from "@dagrejs/dagre";
-import { Check, Crosshair, LayoutGrid, MoveRight } from "lucide-react";
+import { Check, Crosshair, LayoutGrid, MoveRight, X } from "lucide-react";
 import {
   Background,
   BackgroundVariant,
@@ -215,6 +215,8 @@ type Props = {
   skillStatus: Record<string, SkillStatus>;
   levels: Record<string, number>;
   highlight: GraphHighlight;
+  /** Clears the traced path item (the "Tracing" strip's close button). */
+  onClearHighlight?: () => void;
   onSelectSkill?: (skillId: string) => void;
   /** Initial layout; the learner can switch. */
   defaultLayout?: GraphLayout;
@@ -373,7 +375,7 @@ type PopoverState = { edge: GraphEdge; x: number; y: number; canvasWidth: number
  * paths, one arrow style for every prerequisite, and a click card per arrow that opens to the
  * full provenance.
  */
-export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
+export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...props }: Props) {
   const { skills, skillStatus, evidence } = props;
   const [selected, setSelected] = useState<string | null>(null);
   // Default: the learner's own subgraph once a path exists, the domain map before that; a manual pick sticks.
@@ -433,26 +435,21 @@ export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
     if (!edge || !rect) return;
     setPopover({ edge, x: rect.width * 0.5, y: rect.height * 0.3, canvasWidth: rect.width, canvasHeight: rect.height, pinned: true, details: true });
   }, [initialEdge, evidence]);
+  // Escape closes whatever is open: the pinned card first, then the selected skill.
   useEffect(() => {
-    if (!popover?.pinned) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closePopover();
+    if (!popover?.pinned && !selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (popover?.pinned) closePopover();
+      else setSelected(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [popover?.pinned, closePopover]);
+  }, [popover?.pinned, selected, closePopover]);
 
   return (
     <div className={styles.wrap}>
       <div className={styles.toolbar}>
-        <ul className={styles.legend} data-testid="graph-legend" aria-label="Legend">
-          {(Object.keys(STATUS_STYLE) as SkillStatus[]).map((k) => (
-            <li key={k}>
-              <Badge variant={STATUS_STYLE[k].badge} dot>
-                {STATUS_STYLE[k].label}
-                <span className={styles.legendCount}>{counts[k]}</span>
-              </Badge>
-            </li>
-          ))}
-        </ul>
         <Tabs value={layout} onValueChange={(v) => setPicked(v as GraphLayout)}>
           <TabsList variant="pill" aria-label="Layout">
             {LAYOUTS.map((l) => {
@@ -465,11 +462,16 @@ export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
             })}
           </TabsList>
         </Tabs>
+        <ul className={styles.legend} data-testid="graph-legend" aria-label="Legend">
+          {(Object.keys(STATUS_STYLE) as SkillStatus[]).map((k) => (
+            <li key={k} className={cn(styles.legendItem, styles[`legend_${STATUS_STYLE[k].badge}`])}>
+              <span className={styles.legendDot} aria-hidden />
+              {STATUS_STYLE[k].label}
+              <span className={styles.legendCount}>{counts[k]}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <p className={styles.edgeHint} data-testid="graph-edge-hint">
-        Every arrow is a hand-built prerequisite · hover or tap a link for its sources
-      </p>
 
       {props.highlight && (
         <p className={styles.trace} data-testid="graph-highlight">
@@ -480,10 +482,16 @@ export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
               .map((g) => g.graphPath.map((id) => props.skills.find((s) => s.id === id)?.name ?? id).join(" → "))
               .join(" · ")}
           </span>
+          {onClearHighlight && (
+            <button type="button" className={styles.traceClear} onClick={onClearHighlight} aria-label="Stop tracing">
+              <X />
+            </button>
+          )}
         </p>
       )}
 
       <div className={styles.canvas} data-testid="skill-graph" ref={canvasRef}>
+
         <ReactFlowProvider>
           <SkillGraphInner
             {...props}
@@ -491,7 +499,10 @@ export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
             prereqs={prereqs}
             selectedSkill={selected}
             onEdgeInteraction={onEdgeInteraction}
-            onPaneClick={closePopover}
+            onPaneClick={() => {
+              closePopover();
+              setSelected(null);
+            }}
             onSelectSkill={(id) => {
               setSelected(id);
               closePopover();
@@ -521,12 +532,15 @@ export function SkillGraph({ defaultLayout, initialEdge, ...props }: Props) {
         )}
 
         {skill && status && (
-          <div className={styles.detail} data-testid="graph-selected">
+          <div className={styles.detail} data-testid="graph-selected" role="dialog" aria-label={`${skill.name}: details`}>
             <div className={styles.detailHead}>
               <Badge variant={STATUS_STYLE[status].badge} dot>
                 {STATUS_STYLE[status].label}
               </Badge>
               <span className={styles.detailDomain}>{domainLabel(skill.domain)}</span>
+              <button type="button" className={styles.detailClose} onClick={() => setSelected(null)} aria-label="Close" data-testid="graph-selected-close">
+                <X />
+              </button>
             </div>
             <strong className={styles.detailTitle}>{skill.name}</strong>
             <p className={styles.detailMeta}>
