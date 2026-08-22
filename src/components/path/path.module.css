@@ -434,7 +434,7 @@
 
 .evidence {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 22px;
 }
 .evidenceCol {
@@ -466,10 +466,15 @@
   align-items: baseline;
   gap: 7px;
   padding: 4px 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: 0;
   line-height: 1.45;
   border-bottom: 1px dashed var(--color-line-strong);
+  border-radius: 2px;
   cursor: help;
-  outline: none;
 }
 .learnerText svg {
   flex: none;
@@ -487,10 +492,13 @@
 .learnerTip {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 8px);
+  top: calc(100% + 8px);
   z-index: 7;
   display: none;
   width: min(420px, 100%);
+  max-height: min(52vh, 380px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   flex-direction: column;
   gap: 8px;
   padding: 12px 14px;
@@ -499,7 +507,7 @@
   line-height: 1.45;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-panel);
-  background: rgb(8 8 10 / 92%);
+  background: var(--color-surface-1);
   box-shadow: var(--shadow-float);
   backdrop-filter: blur(18px);
 }
@@ -529,8 +537,8 @@
 }
 .learnerTipCaveat {
   color: var(--color-ink-3);
-  font-size: 10.5px;
-  font-style: italic;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .gapList {
@@ -665,5 +673,9 @@
   .chip,
   .link {
     height: 40px;
+  }
+  .learnerText {
+    min-height: 40px;
+    padding: 9px 0;
   }
 }
