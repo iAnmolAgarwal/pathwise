@@ -11,13 +11,14 @@ import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
 import { NovaScene } from "@/components/landing/NovaScene";
 import { useQuickChat } from "@/components/landing/QuickChat";
+import { compactCount, type TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
 import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
-export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?: string; appHref?: string }) {
+export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { storyHref?: string; appHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
@@ -106,13 +107,14 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
           </Badge>
 
           <h1 className={styles.h1}>
-            Learn what
-            <span className={`${styles.gradientText} text-gradient-violet`}>matters.</span>
+            A learning path
+            <span className={`${styles.gradientText} text-gradient-violet`}>you can check.</span>
           </h1>
 
           <p className={styles.lead}>
-            Tell Nova where you want to be. She maps your skill gap, sequences the shortest route she
-            can find through real courses, and rewrites it when you push back.
+            Nova asks what you want to become. Math picks the courses and their order from a hand-built map of {numbers.skills} skills — a map
+            checked against the order {compactCount(numbers.soUsers)} real people on Stack Overflow and Coursera learned things in. Click any arrow, see
+            the count. The AI explains; it never decides.
           </p>
 
           <div className={styles.buttons}>
@@ -128,13 +130,18 @@ export function Hero({ storyHref = "#story", appHref = "/learn" }: { storyHref?:
 
           <div className={styles.features}>
             <div>
-              <strong>159 skills</strong>
-              <span>mapped &amp; sequenced</span>
+              <strong>{numbers.skills} skills</strong>
+              <span>hand-built map</span>
             </div>
             <i aria-hidden />
             <div>
-              <strong>Adaptive</strong>
-              <span>feedback rewrites the path</span>
+              <strong>{numbers.observable} of {numbers.authoredEdges} links</strong>
+              <span>checked against real learners</span>
+            </div>
+            <i aria-hidden />
+            <div>
+              <strong>Every arrow</strong>
+              <span>shows its count</span>
             </div>
           </div>
         </motion.div>
