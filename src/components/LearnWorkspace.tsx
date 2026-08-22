@@ -230,9 +230,10 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     return { tone: "greet", text: `Hi ${first}. Tell me what you want to become and I'll check what you already know, then build your path.` };
   }, [nova.state, diff, dashboard, pathState, first, catalog]);
 
+  // Eyebrow over the learner's name: their own workspace until a path exists, then the goal it serves.
   const goalLabel = (() => {
     const g = profile.goals.at(-1);
-    if (!g) return "Workspace";
+    if (!g || !pathState) return `${displayName}'s workspace`;
     return g.type === "role" ? templateTitle(g.templateId) : g.text;
   })();
 
