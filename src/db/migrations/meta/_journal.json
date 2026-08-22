@@ -8,6 +8,13 @@
       "when": 1786718677094,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787387530449,
+      "tag": "0001_google_sign_in",
+      "breakpoints": true
     }
   ]
 }
