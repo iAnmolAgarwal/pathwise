@@ -291,7 +291,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
           {tab === "graph" && (
             <section data-testid="graph-section">
               <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Skill graph</h2>
-              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">Every skill, coloured by where you stand. Tap any arrow to see who agreed it comes first.</p>
+              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">Every skill, coloured by where you stand. Select an arrow to see who agreed it comes first.</p>
               <div className="mt-4">
                 <SkillGraph
                   skills={skills}
