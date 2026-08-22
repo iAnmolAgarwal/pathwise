@@ -8,8 +8,8 @@
 > **Status of this document (2026-08-18):** single source of truth for the final system.
 > M0–M5 are built and deployed (https://pathwise-psi-blond.vercel.app). §15–§18 describe
 > the approved post-M5 upgrade (evidence layer, self-evaluation, freshness, delivery
-> workflow); §13 carries the ordered milestone sequence, the freeze as an event, and the cut
-> order. **This document carries no time estimates and no dates for future work (D-24): blocks
+> workflow); §19 describes sign-in with Google (added 2026-08-22, D-26); §13 carries the
+> ordered milestone sequence, the freeze as an event, and the cut order. **This document carries no time estimates and no dates for future work (D-24): blocks
 > are defined by scope and exit criteria; the owner tracks the calendar.**
 > Everything a contributor needs is in this file; the earlier companion documents
 > (mining technical account, merged-architecture proposal, dynamic-catalog feasibility
@@ -71,7 +71,7 @@ flowchart TB
     end
 
     subgraph DATA["Neon Postgres (Drizzle)"]
-        DB[(learners · profiles · paths<br/>feedback_events · chat_messages · token_usage)]
+        DB[(users · accounts · sessions<br/>learners · profiles · paths<br/>feedback_events · chat_messages · token_usage)]
     end
 
     CJ & SJ & EJ & SE -->|imported as static data| ENGINE
@@ -109,6 +109,7 @@ not control (§15.6).
 | Graph viz | `@xyflow/react` (React Flow) + dagre | 12.x |
 | Charts | Recharts | 3.x |
 | DB | Neon Postgres (free tier, pooled connection string) + Drizzle ORM + drizzle-kit migrations | latest |
+| Auth | Auth.js v5 (`next-auth@5`) · Google provider · Drizzle adapter · database sessions (§19) | 5.x beta, pinned in lockfile |
 | Validation | Zod — single source of truth for API, engine, and LLM structured-output schemas | 4.x |
 | LLM | `@anthropic-ai/sdk`, model `claude-sonnet-5` | latest SDK |
 | Testing | Vitest (engine unit tests + fixture learners + data validation smoke test) | latest |
@@ -246,12 +247,16 @@ type CatalogItem = {
 ### 4.2 Learner state (Postgres, Drizzle)
 
 ```
-learners        (id, display_name, avatar_seed, created_at)            -- no auth (D-07)
+users           (id, name, email, emailVerified, image)                  -- Auth.js (D-26, §19)
+accounts        (userId FK, type, provider, providerAccountId, tokens…)  -- Auth.js; PK (provider, providerAccountId)
+sessions        (sessionToken PK, userId FK, expires)                     -- Auth.js database sessions
+verification_tokens (identifier, token, expires)                          -- Auth.js (unused by Google sign-in, kept for the adapter)
+learners        (id, user_id FK → users nullable, display_name, avatar_seed, created_at)  -- owned by one user; pre-auth rows orphaned
 profiles        (learner_id PK/FK, data JSONB, updated_at)
 paths           (id, learner_id FK, version, data JSONB, diff JSONB, created_at)
 feedback_events (id, learner_id FK, type, payload JSONB, created_at)   -- append-only
 chat_messages   (id, learner_id FK, role, content JSONB, created_at)
-token_usage     (id, learner_id FK, day, input_tokens, output_tokens)  -- judge mode
+token_usage     (id, learner_id FK, user_id FK nullable, day, input_tokens, output_tokens)  -- judge mode, per-user cap key
 ```
 
 ```ts
@@ -474,20 +479,22 @@ the oracle every evidence-layer change must leave green (N-4).
 
 ## 6. API surface
 
-All handlers Zod-validate input and output. `learnerId` is capability-style (unguessable
-UUID) — the no-auth model (D-07).
+All handlers Zod-validate input and output. `learnerId` stays an unguessable UUID in URLs,
+but since D-26 authorisation is ownership: **session** = a signed-in Google user is required
+(else 401); **owner** = the learner must belong to that user (else 404, never 403) — §19.
 
-| Route | Method | Purpose |
-|---|---|---|
-| `/api/learners` | POST | create learner (name) → id; GET list for the profile picker |
-| `/api/learners/[id]/profile` | POST | apply `ProfileOp[]` (used by the intake card, D-13) |
-| `/api/chat` | POST | SSE stream. Body: `{learnerId, message}`. Runs the tool-use loop (§8.3); side effects: chat persisted, ProfileOps applied, path regenerated when tools request it. Stream events: `text`, `nova_state`, `path_updated`, `ui_card`, `usage` |
-| `/api/path/generate` | POST | `{learnerId}` → run engine, persist new version, return Path |
-| `/api/path/[learnerId]` | GET | latest Path + latest PathDiff |
-| `/api/feedback` | POST | `{learnerId, event}` → apply §5.5 rules; returns `{path?, diff?}` |
-| `/api/explain` | POST | `{learnerId, catalogId}` → `{evidence, narration}` (narration LLM-generated, evidence pure) |
-| `/api/dashboard/[learnerId]` | GET | radar data, progress %, streak, next-best-action (all computed server-side from profile + path + events) |
-| `/api/catalog/search` | GET | `?skill=&domain=&q=` — powers the graph explorer side panel |
+| Route | Method | Auth | Purpose |
+|---|---|---|---|
+| `/api/auth/*` | GET/POST | — | Auth.js: Google sign-in, callback, session, sign-out |
+| `/api/learners` | POST | session | create learner (name) owned by the caller → id; GET: the caller's learners for the picker |
+| `/api/learners/[id]/profile` | GET/POST | owner | read / apply `ProfileOp[]` (used by the intake card, D-13) |
+| `/api/chat` | POST | owner | SSE stream. Body: `{learnerId, message}`. Runs the tool-use loop (§8.3); side effects: chat persisted, ProfileOps applied, path regenerated when tools request it. Stream events: `text`, `nova_state`, `path_updated`, `ui_card`, `usage` |
+| `/api/path/generate` | POST | owner | `{learnerId}` → run engine, persist new version, return Path |
+| `/api/path/[learnerId]` | GET | owner | latest Path + latest PathDiff |
+| `/api/feedback` | POST | owner | `{learnerId, event}` → apply §5.5 rules; returns `{path?, diff?}` |
+| `/api/explain` | POST | owner | `{learnerId, catalogId}` → `{evidence, narration}` (narration LLM-generated, evidence pure) |
+| `/api/dashboard/[learnerId]` | GET | owner | radar data, progress %, streak, next-best-action (all computed server-side from profile + path + events) |
+| `/api/catalog/search` | GET | — | `?skill=&domain=&q=` — powers the graph explorer side panel |
 
 Evidence data (`skill_edges.json`, `branches.json`) is static and imported by the client
 graph explorer directly — no route needed. Internal (not routes): `extract.ts`, `mapGoal.ts`
@@ -719,7 +726,7 @@ disagreements through `pipeline/sources/` files, never by hand-editing `src/data
 | D-04 | Glass-box engine: skill DAG + set-cover + toposort + precomputed embeddings; LLM never ranks | Pure-LLM planner; runtime RAG; collaborative filtering | Deterministic, testable, explainable; strongest honest AI/ML story; CF impossible without real interaction data | Taxonomy/catalog curation effort |
 | D-05 | Closed skill vocabulary → no runtime embedding API | Voyage/Gemini embeddings at runtime | Zero extra dependency/cost; goal mapping via LLM into skill space is more explainable | Exotic goals snap to nearest taxonomy skills |
 | D-06 | Explanations = evidence objects + constrained narration, rendered side by side | Free-form LLM explanations | Grounded by construction; drift is visible | Slightly drier prose |
-| D-07 | No auth; named learner profiles with unguessable IDs | Real auth | Zero rubric points for auth; effort better spent on judged features | Anyone with a URL can view that profile (acceptable for a prototype) |
+| D-07 | ~~No auth; named learner profiles with unguessable IDs~~ **Superseded by D-26 (§19)** | Real auth | Zero rubric points for auth; effort better spent on judged features | Anyone with a URL can view that profile (acceptable for a prototype) |
 | D-08 | Adaptation = deterministic event rules + visible path diffs | LLM-decided adaptation | Predictable, demoable, testable; the diff is an innovation point | Rule table needs tuning against fixtures |
 | D-09 | Judge mode degradation (LLM optional at runtime) | Hard paywall/limits | Cost safety + reads as resilience engineering | Small metering layer |
 | D-10 | A fresh repository for the product, built up in small feature-scoped commits | Reuse an earlier experiments repository | A clean, readable history for the deliverable; the earlier repository carried unrelated work | Repo bootstrap overhead. **Refined by D-22** (private during build, PR-reviewed, visibility flipped at submission) |
@@ -738,9 +745,10 @@ disagreements through `pipeline/sources/` files, never by hand-editing `src/data
 | **D-23** | **Sequence: upgrade blocks M5.5 → M5.12 in dependency order → feature freeze (an event the owner declares: after it, no new features) → M6 hardening → M7 deliverables → M8 packaging + evaluator access → submit. Cut order in §13. Supersedes A-7 and the indicative day numbers of the original §13 table.** *(Revised the same day it was written: its original form carried dates and durations; those were removed under D-24 and are not part of the plan.)* | A minimal upgrade (the four-way verdict's schedule-risk pick); no freeze | Owner's decision to run the full package; M5.5–M5.8 are the never-cut core; the freeze protects hardening and deliverables regardless of when it is declared | The owner carries the calendar; the plan carries only order, gates and cuts |
 | **D-24** | **Standing rule: no time estimates, no scheduling language, no compressing work to fit time — anywhere in the plan, retroactively. Blocks are defined by scope and exit criteria; done means done properly to the exit criteria. If a block grows beyond its scope, work on it stops and is reported; the owner decides cuts. The owner tracks the calendar.** | Keep sizes/dates as pacing hints | Estimates ran conservative and quality was traded away to fit numbers that were never real | Sessions cannot self-pace; every scope change is an explicit owner decision |
 | **D-25** | **M5.6 spot-check gate run by a delegated single reviewer.** Both humans signed `coursera_catalog_map.json` (2026-08-19); the owner then delegated the blind check of the stratified sample to a single reviewer (2026-08-19), amending N-1 for this block: an independent, context-free model pass tags the sample blind under a deliberately different framing; where it and the pipeline's tags disagree the delegated reviewer adjudicates on the course text; resolutions are recorded in `pipeline/sources/coursera_tag_resolutions.json` and applied by `tag_courses.py apply-review`. The file records **reviewer-vs-model** agreement (Jaccard, exact-level) against the ≥ 0.85 gate; **no human–human number exists** for this sample and nothing in the repo may call it human-verified by two people. | Wait for both humans to tag 34 courses blind (the N-1 process) | Owner's decision to close the block; the numbers are still measured, the disagreements still adjudicated by a person, and the process is stated in the file | Human–human gate not measured; the PDF wording must say "one delegated reviewer" for this sample |
+| **D-26** | **Sign in with Google for the whole app (§19), superseding D-07's "no auth".** Auth.js v5 with the Google provider, the Drizzle adapter and database sessions; the landing page stays public, everything under `/learn/*` and every learner-scoped route requires a session and checks ownership; one Google user owns many learners; an unowned learner answers 404, never 403; learner URLs are unchanged. Seeded demo learners and the five fixture learners belong to team accounts only; a judge starts from zero. The engine, the evidence layer and the deterministic core are untouched. A-5 unchanged. | Keep D-07 (capability URLs only); a hosted auth service; JWT-only sessions; one learner per account | Judges open a real app that remembers them; learner state is tied to an identity so the M6 spend cap can be keyed per user, not per learner; Auth.js keeps it in the stack we have (Drizzle, Neon) with no new service | A Google Cloud consent screen that must be *published* (not "Testing"); four more env vars; anonymous rows created before this decision stay orphaned and unreachable |
 
 Superseded / refined markers: A-7 (dated deadline) → superseded by D-23/D-24. D-10 → refined
-by D-22. D-23's dated first form → revised under D-24. Nothing is deleted from this log.
+by D-22. D-07 (no auth) → superseded by D-26. D-23's dated first form → revised under D-24. Nothing is deleted from this log.
 
 ## 12. Assumptions register
 
@@ -784,6 +792,7 @@ the owner says so, never as filler.
 | **M5.9** | **U5 — Branch percentages** (§15.8): overlay on selected skill, evidence-card "learners like you" line, copy audit (no satisfaction wording) | Live where `minSupportMet`, honest label elsewhere; audit clean; or downgraded to card line per D-18 | after M5.8 |
 | **M5.10** | **U6 — Self-evaluation harness** (§16): sequencing agreement, embedding bake-off (swap only if clearly better and diffs reviewed), narration groundedness → `docs/EVALUATION.md` | Report committed with measured numbers; fixtures green | after M5.7 (M5.8 for the narration sample) |
 | **M5.11** | **U7 — Freshness safe subset** (§17): `refresh.sh`, weekly link-check Action, nightly drift-diff Action, README section | Both Actions green on the repo, `workflow_dispatch` works | after M5.7 |
+| **M5.12a** | **Sign in with Google** (§19, D-26): Auth.js tables + migration, ownership on every learner-scoped route and page, picker, sign-in page, rail user menu, route tests, README walkthrough | A non-team Google account uses the full app on the prod URL; signed-out access refused everywhere under `/learn`; tests green; migration applied | after M5.11, before M5.12 |
 | **M5.12** | **UI story pass** (§9.4, D-21): landing rework, hero copy, "how it works" strip, trust badge with U3 numbers, keep-fresh section, surface polish | Stranger test passes; deployed | after the last architecture block, before the freeze |
 | M6 | Judge mode, catalog top-up →300, seeded demo learners, README, hardening, fresh-clone test | **Feature freeze — declared by the owner; after it, no new features** | after the freeze is declared |
 | M7 | Demo video package (script/captions/TTS text; provenance popover + agreement numbers beats), solution PDF (AI/ML section leads with glass box + agreement report + evaluation numbers; limitations + future work from §15.9/§17) | Deliverables drafted | after M6 |
@@ -1186,8 +1195,63 @@ Public wording: "kept fresh by machines, kept true by people" — never "maintai
   `upgrade/u1-stackoverflow-mining`), pushed regularly so teammates can follow, merged to
   `main` by an owner-approved PR. Commit style unchanged: small, feature-scoped, honest.
 - **Secrets:** `.gitignore` covers `.env*` (except `.env.example`), `.vercel`, `pipeline/build/`,
-  raw CSVs; verified before the first push of anything new. `ANTHROPIC_API_KEY` and
-  `DATABASE_URL` live only in `.env.local` and Vercel env.
+  raw CSVs; verified before the first push of anything new. `ANTHROPIC_API_KEY`,
+  `DATABASE_URL` and the `AUTH_*` variables (§19) live only in `.env.local` and Vercel env.
 - **Submission access (M8, deliberate):** the evaluation team needs the repo — flip
   visibility to public or invite the evaluators at submission time, as an explicit M8
   checklist item, never accidentally early.
+
+## 19. Sign-in (D-26)
+
+**Rule.** Anyone who opens the app signs in with an existing Google account first. The
+landing page (hero, how-it-works, trust badge, keep-fresh, the sample-path link) is public;
+everything under `/learn/*` is not. After sign-in the flow is exactly what it was: learner
+picker → workspace → chat, path, graph, dashboard. The engine, the evidence layer and the
+deterministic core do not know users exist.
+
+**Library and session model.** Auth.js v5 (`next-auth@5`) with the Google provider and
+the Drizzle adapter (`src/auth.ts`, route handler `app/api/auth/[...nextauth]`). Database
+sessions: the browser holds an opaque cookie, the `sessions` table says whose it is, so a
+sign-out or a deleted row ends access immediately. Scopes are `openid email profile` only —
+no sensitive scope, so Google never reviews the app; the consent screen must be **published**
+(a screen left in "Testing" admits ≤ 100 listed test users and refuses everyone else). Env:
+`AUTH_SECRET`, `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `AUTH_URL` (production), in
+`.env.local` and Vercel env only; `.env.example` carries the blanks. README "Sign-in" has the
+numbered Google Cloud walkthrough.
+
+**Ownership.** `learners.user_id → users.id`. One user owns many learners; the picker at
+`/learn` lists them (exactly one → straight in; none → the new-learner form). `/learn/[learnerId]`
+keeps its URL; authorisation is "does the signed-in user own this learner?", implemented
+once in `src/lib/authz.ts` (`requireSession` → 401, `requireLearner` → 404) and used by every
+learner-scoped route and page. An id that is malformed, unknown, or someone else's all
+answer the same 404 — the app never confirms that a learner exists. `GET /api/learners`
+returns only the caller's; `POST` stamps the caller. `token_usage.user_id` is stamped on
+every metered response and the budget gate (`BudgetGate.allow({userId, learnerId})`) is
+keyed by user, so the M6 caps are per Google account plus the global cap; the caps
+themselves are M6.
+
+**Gate placement.** Per-route checks, not middleware: pages under `/learn` call
+`currentUser()` and `redirect(signInUrl(<requested URL>))`; the sign-in page honours only
+same-origin `callbackUrl`s and returns the visitor there after Google answers. The
+landing's quick chat offers sign-in when signed out and continues with the user's latest
+learner when signed in (the earlier localStorage learner is gone — learners are owned
+server-side now).
+
+**UI.** `/sign-in`: the Google button, Pathwise tokens. Left rail: the "Show/Hide profile"
+toggle is gone; the bottom avatar is the Google user button (photo or initials) with a menu
+— name/email · switch learner · new learner · open the profile drawer · sign out. "New
+learner" stays on the rail. Nova's state machine is unchanged.
+
+**What stays out of the database.** The five fixture learners are pure engine inputs and
+never touch the DB, so the fixture and property tests are unchanged. Seeded demo learners
+(M6) belong to team accounts and are invisible to other users; a judge who signs in starts
+from an empty list. Learner rows created before sign-in existed keep a null `user_id` and
+are reachable from no account.
+
+**Tests.** `tests/routes/authz.test.ts`: signed-out → 401 on every learner-scoped route and
+a redirect (with the requested URL as callback) on every `/learn` page; a stranger → 404;
+the owner → through. Verified on production with a non-team Google account (the check that
+the consent screen is published).
+
+**Public wording.** "Sign in with Google." No claims about security beyond what Auth.js
+provides.

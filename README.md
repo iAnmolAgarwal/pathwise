@@ -23,9 +23,49 @@ Postgres · Anthropic API · Vitest
 | --- | --- |
 | `DATABASE_URL` | Neon Postgres pooled connection string |
 | `ANTHROPIC_API_KEY` | Anthropic API key for the mentor / LLM layer |
+| `AUTH_SECRET` | Random secret Auth.js uses to sign session cookies (`npx auth secret` or `openssl rand -base64 32`) |
+| `AUTH_GOOGLE_ID` | OAuth client id from Google Cloud (see "Sign-in") |
+| `AUTH_GOOGLE_SECRET` | OAuth client secret from Google Cloud |
+| `AUTH_URL` | Production only: the deployed origin, e.g. `https://pathwise.example.app`. Leave empty locally |
 
-Both live in `.env.local` locally (gitignored) and in Vercel project env vars in
-production. Neither is ever committed.
+All of them live in `.env.local` locally (gitignored) and in Vercel project env vars in
+production. None is ever committed.
+
+## Sign-in
+
+Everyone signs in with an existing Google account before using the app; the landing page
+stays public. Auth.js (`next-auth` v5) with the Google provider and database sessions in
+the `users` / `accounts` / `sessions` / `verification_tokens` tables. Each learner belongs
+to one Google user (`learners.user_id`); one account can have many learners, and the
+picker at `/learn` lists them. A learner URL that belongs to someone else answers 404,
+never 403. The engine, the evidence layer and the deterministic core know nothing about
+users. We only ask Google for `openid`, `email` and `profile`.
+
+Setting up the Google side from scratch:
+
+1. Open https://console.cloud.google.com, create a project (e.g. `pathwise`) and select it.
+2. **APIs & Services → OAuth consent screen** (Google now calls this "Google Auth
+   Platform → Branding / Audience"). App name `Pathwise`, a support email, your email as
+   developer contact. User type **External**.
+3. **Scopes:** add only `openid`, `.../auth/userinfo.email` and `.../auth/userinfo.profile`.
+   No sensitive or restricted scopes, so Google never needs to review the app.
+4. **Publish the app** (Audience → *Publishing status* → **Publish**, confirm). A consent
+   screen left in "Testing" only admits up to 100 listed test users; any other Google
+   account is refused at the Google prompt. Publishing with non-sensitive scopes is
+   immediate and needs no verification.
+5. **Credentials → Create credentials → OAuth client ID**, type **Web application**.
+   Authorised JavaScript origins: `http://localhost:3000` and the production origin.
+   Authorised redirect URIs: `http://localhost:3000/api/auth/callback/google` and
+   `https://<production-origin>/api/auth/callback/google`. Create, then copy the client id
+   and client secret.
+6. Put them in `.env.local` as `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET`, generate an
+   `AUTH_SECRET`, and add all three (plus `AUTH_URL` = the production origin) to the
+   Vercel project env for Production and Preview. Redeploy.
+7. Apply the migration (`npm run db:migrate`) if the auth tables are not there yet.
+8. Check with a Google account that is **not** the project owner's: open the production
+   URL, sign in, create a learner, chat, sign out, sign in again — everything should still
+   be there. If that account is refused with "access blocked", the consent screen is not
+   published (step 4).
 
 ## Scripts
 
