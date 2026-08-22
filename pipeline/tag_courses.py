@@ -429,6 +429,11 @@ def tag(workers: int) -> int:
     usage = dict(tagger.usage)
     usage["estimatedUsd"] = cost_usd(usage)
     usage["priceUsdPerMTok"] = PRICE
+    if usage["calls"] == 0 and OUT_PATH.exists():
+        # Every tag came from the call cache, i.e. from the run whose spend the
+        # committed file already records. Keep that usage block so a cached
+        # re-run (refresh.sh) is byte-identical instead of zeroing the cost.
+        usage = load_json(OUT_PATH)["usage"]
     doc = {
         "source": "coursera",
         "model": MODEL,
