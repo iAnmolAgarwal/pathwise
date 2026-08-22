@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import catalog from "@/data/catalog.json";
+import goals from "@/data/goals.json";
 import skills from "@/data/skills.json";
 import { BADGE_ANCHOR_EDGE } from "@/lib/edgeCard";
 import type { TrustNumbers } from "@/lib/trustFormat";
@@ -43,6 +44,7 @@ export function loadTrustNumbers(): TrustNumbers {
     resolved: report.contradicted.resolved,
     promoted: report.mined.promoted,
     skills: (skills as unknown[]).length,
+    goalTemplates: (goals as unknown[]).length,
     catalogItems: (catalog as unknown[]).length,
     soUsers: num(so, "usersEligible"),
     courseraLearners: num(coursera, "namesWithPairs"),

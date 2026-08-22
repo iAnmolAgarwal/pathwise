@@ -11,14 +11,14 @@ import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
 import { NovaScene } from "@/components/landing/NovaScene";
 import { useQuickChat } from "@/components/landing/QuickChat";
-import { compactCount, type TrustNumbers } from "@/lib/trustFormat";
+import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
 import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
-export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { storyHref?: string; appHref?: string; numbers: TrustNumbers }) {
+export function Hero({ storyHref = "#how-it-works", appHref = "/learn", numbers }: { storyHref?: string; appHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
@@ -112,9 +112,8 @@ export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { st
           </h1>
 
           <p className={styles.lead}>
-            Nova asks what you want to become. Math picks the courses and their order from a hand-built map of {numbers.skills} skills — a map
-            checked against the order {compactCount(numbers.soUsers)} real people on Stack Overflow and Coursera learned things in. Click any arrow, see
-            the count. The AI explains; it never decides.
+            For anyone working towards a role in tech — frontend, data, cloud, ML, security, {numbers.goalTemplates} roles in all — who wants
+            to know what to learn next, in what order, and why.
           </p>
 
           <div className={styles.buttons}>
@@ -128,22 +127,6 @@ export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { st
             </Button>
           </div>
 
-          <div className={styles.features}>
-            <div>
-              <strong>{numbers.skills} skills</strong>
-              <span>hand-built map</span>
-            </div>
-            <i aria-hidden />
-            <div>
-              <strong>{numbers.observable} of {numbers.authoredEdges} links</strong>
-              <span>checked against real learners</span>
-            </div>
-            <i aria-hidden />
-            <div>
-              <strong>Every arrow</strong>
-              <span>shows its count</span>
-            </div>
-          </div>
         </motion.div>
       </div>
     </motion.section>

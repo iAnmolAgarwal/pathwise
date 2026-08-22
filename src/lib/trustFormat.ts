@@ -9,6 +9,8 @@ export type TrustNumbers = {
   resolved: number;
   promoted: number;
   skills: number;
+  /** Goal templates in goals.json — the roles a learner can pick. */
+  goalTemplates: number;
   catalogItems: number;
   /** Stack Overflow users eligible after the cohort filter. */
   soUsers: number;

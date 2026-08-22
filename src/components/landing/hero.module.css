@@ -105,35 +105,10 @@
   margin-top: clamp(18px, 3.5vh, 33px);
 }
 
-.features {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  margin-top: clamp(20px, 4.5vh, 44px);
-}
 
-.features > div {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
 
-.features strong {
-  color: rgb(255 255 255 / 88%);
-  font-size: 12px;
-  font-weight: 600;
-}
 
-.features span {
-  color: rgb(255 255 255 / 31%);
-  font-size: 11px;
-}
 
-.features i {
-  width: 1px;
-  height: 28px;
-  background: var(--color-line);
-}
 
 .loader {
   position: absolute;
@@ -230,7 +205,6 @@
   .h1 { font-size: clamp(55px, 11.5vh, 82px); }
   .lead { margin-top: 14px; font-size: 14px; line-height: 1.55; }
   .buttons { margin-top: 18px; }
-  .features { margin-top: 20px; }
   .liveLabelWrap { bottom: 20px; }
   .liveLabel { padding: 10px 12px; }
 }
@@ -270,6 +244,5 @@
   .lead { margin-top: 19px; font-size: 14px; line-height: 1.65; }
   .buttons { flex-direction: column; align-items: stretch; margin-top: 26px; }
   .buttons > * { width: 100%; }
-  .features { display: none; }
   .sceneArea { min-height: 410px; }
 }
