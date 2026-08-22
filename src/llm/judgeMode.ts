@@ -68,10 +68,16 @@ export function addUsage(total: UsageTotals, usage: Anthropic.Usage | UsageTotal
   };
 }
 
-/** Budget gate. The default allows everything; the metering milestone swaps in real caps. */
+/** Who a request is metered against: the Google user (per-user cap) and the learner (per-learner row). */
+export type BudgetKey = { userId: string; learnerId: string };
+
+/**
+ * Budget gate. The default allows everything; the metering milestone swaps in real caps,
+ * keyed per user plus a global cap, so one account cannot dodge them by making more learners.
+ */
 export interface BudgetGate {
-  allow(learnerId: string): Promise<{ ok: true } | { ok: false; degradation: Degradation }>;
-  record(learnerId: string, usage: UsageTotals): Promise<void>;
+  allow(key: BudgetKey): Promise<{ ok: true } | { ok: false; degradation: Degradation }>;
+  record(key: BudgetKey, usage: UsageTotals): Promise<void>;
 }
 
 export const openGate: BudgetGate = {

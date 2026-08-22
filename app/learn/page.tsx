@@ -1,86 +1,74 @@
-"use client";
-
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { redirect } from "next/navigation";
+import { currentUser } from "@/auth";
+import { CenteredPage } from "@/components/learn/CenteredPage";
+import { NewLearnerForm } from "@/components/learn/NewLearnerForm";
+import { listLearners } from "@/db/queries";
+import { initials } from "@/lib/initials";
+import { signInUrl } from "@/lib/authz";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Orb } from "@/components/ui/orb";
+export const dynamic = "force-dynamic";
 
-/** Entry to the app: one field, one button — a learner id is all Nova needs (D-07). */
-export default function StartPage() {
-  const router = useRouter();
-  const [name, setName] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
+/**
+ * The learner picker (§19). Signed out → sign in and come back. Exactly one learner →
+ * straight into it. None → the new-learner form. Otherwise the list, newest first.
+ */
+export default async function LearnersPage() {
+  const user = await currentUser();
+  if (!user) redirect(signInUrl("/learn"));
+  const learners = await listLearners(user.id);
+  if (learners.length === 1) redirect(`/learn/${learners[0].id}`);
 
-  async function create(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError(null);
-    const res = await fetch("/api/learners", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ displayName: name }),
-    });
-    if (!res.ok) {
-      setError((await res.json()).error ?? "Could not create learner");
-      setBusy(false);
-      return;
-    }
-    const learner = await res.json();
-    router.push(`/learn/${learner.id}`);
-  }
-
-  return (
-    <main className="relative grid min-h-dvh place-items-center overflow-hidden bg-ink px-6 py-16">
-      <div className="bg-vignette pointer-events-none absolute inset-0" aria-hidden />
-      <div className="relative flex w-full max-w-[420px] flex-col items-center text-center">
-        <Link href="/" className="label-caps text-ink-3 transition-colors hover:text-ink-1">
-          Pathwise
-        </Link>
+  if (learners.length === 0) {
+    return (
+      <CenteredPage>
         <h1 className="mt-6 text-[clamp(2.2rem,4vw,3rem)] font-[420] leading-[1.06] tracking-[-0.047em]">
           Start with a <span className="text-gradient-violet">name</span>.
         </h1>
         <p className="mt-4 max-w-[36ch] text-lead text-ink-2">
-          Nova keeps everything under it — your goal, your skills, every version of your path. No account needed.
+          Nova keeps everything under it — the goal, the skills, every version of the path. Signed in as {user.email ?? user.name}.
         </p>
+        <div className="mt-8 w-full">
+          <NewLearnerForm />
+        </div>
+      </CenteredPage>
+    );
+  }
 
-        <form onSubmit={create} className="mt-8 flex w-full flex-col gap-3 rounded-panel border border-line bg-surface-2 p-5 text-left shadow-float">
-          <label className="flex flex-col gap-2 text-[13px] text-ink-2">
-            What should Nova call you?
-            <Input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
-              required
-              maxLength={60}
-              autoFocus
-              name="displayName"
-              autoComplete="name"
-            />
-          </label>
-          <Button type="submit" size="lg" disabled={busy || !name.trim()} className="mt-1 w-full">
-            {busy ? (
-              <>
-                <Orb state="working" size={20} label="Creating your space" /> Creating your space
-              </>
-            ) : (
-              <>
-                Continue <ArrowRight data-icon="inline-end" />
-              </>
-            )}
-          </Button>
-          {error && (
-            <p className="text-[13px] text-coral" role="alert">
-              {error}
-            </p>
-          )}
-        </form>
-        <p className="mt-4 text-[12px] text-ink-3">Your workspace link is private to whoever has it — bookmark it to come back.</p>
-      </div>
-    </main>
+  return (
+    <CenteredPage width={480}>
+      <h1 className="mt-6 text-[clamp(2.2rem,4vw,3rem)] font-[420] leading-[1.06] tracking-[-0.047em]">
+        Pick a <span className="text-gradient-violet">learner</span>.
+      </h1>
+      <p className="mt-4 max-w-[36ch] text-lead text-ink-2">Each one keeps its own goal, skills and path.</p>
+      <ul className="mt-8 flex w-full flex-col gap-2 text-left" data-testid="learner-list">
+        {learners.map((l) => (
+          <li key={l.id}>
+            <Link
+              href={`/learn/${l.id}`}
+              className="flex items-center gap-3 rounded-panel border border-line bg-surface-2 px-4 py-3 transition-colors hover:border-line-strong hover:bg-glass-strong"
+            >
+              <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-brand font-mono text-[11px] font-medium tracking-[0.04em] text-brand-foreground">
+                {initials(l.displayName)}
+              </span>
+              <span className="flex-1 truncate text-[15px] text-ink-1">{l.displayName}</span>
+              <ArrowRight className="h-4 w-4 text-ink-3" />
+            </Link>
+          </li>
+        ))}
+        <li>
+          <Link
+            href="/learn/new"
+            className="flex items-center gap-3 rounded-panel border border-dashed border-line px-4 py-3 text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1"
+          >
+            <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-line">
+              <Plus className="h-4 w-4" />
+            </span>
+            New learner
+          </Link>
+        </li>
+      </ul>
+    </CenteredPage>
   );
 }

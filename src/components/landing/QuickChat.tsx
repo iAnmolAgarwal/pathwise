@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, LogIn, X } from "lucide-react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
@@ -9,6 +9,7 @@ import { ChatPanel } from "@/components/chat/ChatPanel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Orb } from "@/components/ui/orb";
+import { signInUrl } from "@/lib/authz";
 import { NOVA_LABEL, NOVA_ORB } from "@/nova/stage";
 import type { NovaState } from "@/schemas";
 
@@ -23,15 +24,19 @@ export function useQuickChat(): QuickChatApi {
   return ctx;
 }
 
-const STORAGE_KEY = "pathwise.quickLearner";
 const ENTER = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
+type Learner = { id: string; displayName: string };
+
+/** What the landing page knows about the visitor: signed out, or signed in with their latest learner (if any). */
+export type QuickChatVisitor = { signedIn: false } | { signedIn: true; learner: Learner | null };
+
 /**
- * "Talk to Nova" on the landing: a glass drawer with the real chat inside. The
- * first message creates a learner (kept in localStorage so a return visit
- * continues the same conversation) and the drawer offers the full workspace.
+ * "Talk to Nova" on the landing: a glass drawer with the real chat inside. Signed-out
+ * visitors are offered sign-in (and return to the app afterwards); signed-in visitors
+ * continue with their most recent learner, or name a new one on their first message.
  */
-export function QuickChatProvider({ children }: { children: ReactNode }) {
+export function QuickChatProvider({ visitor, children }: { visitor: QuickChatVisitor; children: ReactNode }) {
   const [isOpen, setOpen] = useState(false);
   const api = useMemo<QuickChatApi>(
     () => ({ open: () => setOpen(true), close: () => setOpen(false), isOpen }),
@@ -40,27 +45,14 @@ export function QuickChatProvider({ children }: { children: ReactNode }) {
   return (
     <QuickChatContext.Provider value={api}>
       {children}
-      <QuickChatDrawer open={isOpen} onClose={api.close} />
+      <QuickChatDrawer open={isOpen} onClose={api.close} visitor={visitor} />
     </QuickChatContext.Provider>
   );
 }
 
-type Learner = { id: string; displayName: string };
-
-function readStoredLearner(): Learner | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Learner) : null;
-  } catch {
-    return null;
-  }
-}
-
-function QuickChatDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+function QuickChatDrawer({ open, onClose, visitor }: { open: boolean; onClose: () => void; visitor: QuickChatVisitor }) {
   const reduce = useReducedMotion() ?? false;
-  // Read lazily: nothing depends on it until the drawer opens, so hydration stays stable.
-  const [learner, setLearner] = useState<Learner | null>(readStoredLearner);
+  const [learner, setLearner] = useState<Learner | null>(visitor.signedIn ? visitor.learner : null);
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,9 +82,7 @@ function QuickChatDrawer({ open, onClose }: { open: boolean; onClose: () => void
         });
         if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? "Could not start");
         const created = (await res.json()) as Learner;
-        const next = { id: created.id, displayName: created.displayName };
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-        setLearner(next);
+        setLearner({ id: created.id, displayName: created.displayName });
       } catch (err) {
         setError(err instanceof Error ? err.message : "Could not start");
       } finally {
@@ -148,7 +138,23 @@ function QuickChatDrawer({ open, onClose }: { open: boolean; onClose: () => void
               </div>
             </header>
 
-            {learner ? (
+            {!visitor.signedIn ? (
+              <div className={styles.start}>
+                <Orb state="breathing" size={64} label="Nova" paused={reduce} />
+                <h2 className={styles.startTitle}>
+                  Hi, I&apos;m <span className="text-gradient-violet">Nova</span>.
+                </h2>
+                <p className={styles.startLead}>
+                  Sign in with Google and I&apos;ll keep your goal, your skills and every version of your path under your
+                  account.
+                </p>
+                <Button size="lg" asChild className={styles.startButton}>
+                  <Link href={signInUrl("/learn")}>
+                    <LogIn data-icon="inline-start" /> Sign in to start
+                  </Link>
+                </Button>
+              </div>
+            ) : learner ? (
               <div className={styles.body}>
                 <ChatPanel
                   key={learner.id}

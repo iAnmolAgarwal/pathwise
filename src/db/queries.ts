@@ -1,24 +1,32 @@
 import type { ProfileCard } from "@/schemas/profileCard";
-import { desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { chatMessages, db, feedbackEvents, learners, paths, profiles, tokenUsage } from "./index";
 import type { FeedbackEvent, Path, PathDiff, Profile } from "../schemas";
 
-export async function createLearner(displayName: string, profile: Profile) {
+export async function createLearner(userId: string, displayName: string, profile: Profile) {
   const avatarSeed = Math.random().toString(36).slice(2, 10);
   const [learner] = await db()
     .insert(learners)
-    .values({ displayName, avatarSeed })
+    .values({ userId, displayName, avatarSeed })
     .returning();
   await db().insert(profiles).values({ learnerId: learner.id, data: profile });
   return learner;
 }
 
-export async function listLearners() {
-  return db().select().from(learners).orderBy(desc(learners.createdAt));
+/** The learners one user owns, newest first — the picker's list. */
+export async function listLearners(userId: string) {
+  return db().select().from(learners).where(eq(learners.userId, userId)).orderBy(desc(learners.createdAt));
 }
 
-export async function getLearner(learnerId: string) {
-  const [learner] = await db().select().from(learners).where(eq(learners.id, learnerId));
+/**
+ * A learner only if this user owns it. A learner that exists but belongs to someone else
+ * comes back null, exactly like a missing one, so callers cannot tell the two apart (§19).
+ */
+export async function getOwnedLearner(userId: string, learnerId: string) {
+  const [learner] = await db()
+    .select()
+    .from(learners)
+    .where(and(eq(learners.id, learnerId), eq(learners.userId, userId)));
   return learner ?? null;
 }
 
@@ -111,17 +119,18 @@ export async function insertChatMessage(
   return row;
 }
 
-/** Judge-mode metering (§8.4): one row per learner per UTC day, incremented per response. */
-export async function addTokenUsage(learnerId: string, inputTokens: number, outputTokens: number) {
+/** Judge-mode metering (§8.4): one row per learner per UTC day, incremented per response, stamped with the owner. */
+export async function addTokenUsage(learnerId: string, userId: string, inputTokens: number, outputTokens: number) {
   const day = new Date().toISOString().slice(0, 10);
   await db()
     .insert(tokenUsage)
-    .values({ learnerId, day, inputTokens, outputTokens })
+    .values({ learnerId, userId, day, inputTokens, outputTokens })
     .onConflictDoUpdate({
       target: [tokenUsage.learnerId, tokenUsage.day],
       set: {
         inputTokens: sql`${tokenUsage.inputTokens} + ${inputTokens}`,
         outputTokens: sql`${tokenUsage.outputTokens} + ${outputTokens}`,
+        userId,
       },
     });
 }

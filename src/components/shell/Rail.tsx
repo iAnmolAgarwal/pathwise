@@ -1,28 +1,32 @@
 "use client";
 
-import { Plus, UserRound } from "lucide-react";
+import { DropdownMenu } from "radix-ui";
+import { Check, LogOut, Plus, UserRound, Users } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { initials } from "@/lib/initials";
 import { cn } from "@/lib/utils";
+import type { SessionUser } from "@/schemas";
 
 import styles from "./shell.module.css";
 
+export type RailLearner = { id: string; displayName: string };
+
 export type RailProps = {
+  /** The learner this workspace belongs to. */
+  learnerId: string;
   displayName: string;
-  profileOpen: boolean;
-  onToggleProfile: () => void;
+  /** The signed-in Google user behind the avatar button. */
+  user: SessionUser;
+  /** Every learner this user owns, for the switcher. */
+  learners: RailLearner[];
+  onOpenProfile: () => void;
+  onSignOut: () => void;
   /** Extra controls (the Chat / Workspace switch on narrow screens). */
   children?: ReactNode;
 };
-
-function initials(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  const first = parts[0]?.[0] ?? "?";
-  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
-  return (first + last).toUpperCase();
-}
 
 function RailButton({
   label,
@@ -55,8 +59,9 @@ function RailButton({
   );
 }
 
-/** The icon rail: mark, a couple of global actions, and the learner pinned at the end. */
-export function Rail({ displayName, profileOpen, onToggleProfile, children }: RailProps) {
+/** The icon rail: mark, "new learner", and the signed-in user pinned at the end (§19). */
+export function Rail({ learnerId, displayName, user, learners, onOpenProfile, onSignOut, children }: RailProps) {
+  const userLabel = user.name ?? user.email ?? "Account";
   return (
     <nav className={styles.rail} aria-label="Workspace">
       <Link href="/" className={styles.mark} aria-label="Pathwise home">
@@ -67,24 +72,67 @@ export function Rail({ displayName, profileOpen, onToggleProfile, children }: Ra
       </Link>
 
       <div className={styles.railGroup}>
-        <RailButton label="New learner" href="/learn">
+        <RailButton label="New learner" href="/learn/new">
           <Plus />
-        </RailButton>
-        <RailButton label={profileOpen ? "Hide profile" : "Show profile"} active={profileOpen} onClick={onToggleProfile}>
-          <UserRound />
         </RailButton>
       </div>
 
       {children}
 
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className={styles.avatar} aria-label={displayName} role="img">
-            {initials(displayName)}
-          </div>
-        </TooltipTrigger>
-        <TooltipContent side="right">{displayName}</TooltipContent>
-      </Tooltip>
+      <DropdownMenu.Root modal={false}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DropdownMenu.Trigger asChild>
+              <button type="button" className={styles.userButton} aria-label={`Account: ${userLabel}`} data-testid="user-button">
+                {user.image ? (
+                  // Google's avatar host varies per account; a plain img keeps it out of the image optimiser's allow-list.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={user.image} alt="" referrerPolicy="no-referrer" />
+                ) : (
+                  <span className={styles.avatar}>{initials(userLabel)}</span>
+                )}
+              </button>
+            </DropdownMenu.Trigger>
+          </TooltipTrigger>
+          <TooltipContent side="right">{userLabel}</TooltipContent>
+        </Tooltip>
+
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content side="right" align="end" sideOffset={10} className={styles.menu}>
+            <div className={styles.menuIdentity}>
+              <strong>{user.name ?? "Signed in"}</strong>
+              {user.email && <span>{user.email}</span>}
+            </div>
+
+            <DropdownMenu.Separator className={styles.menuSeparator} />
+            <DropdownMenu.Label className={styles.menuLabel}>
+              <Users /> Learner
+            </DropdownMenu.Label>
+            {learners.map((l) => (
+              <DropdownMenu.Item key={l.id} asChild className={styles.menuItem} data-current={l.id === learnerId || undefined}>
+                <Link href={`/learn/${l.id}`}>
+                  <span className={styles.menuAvatar}>{initials(l.displayName)}</span>
+                  <span className={styles.menuItemText}>{l.displayName}</span>
+                  {l.id === learnerId && <Check className={styles.menuCheck} />}
+                </Link>
+              </DropdownMenu.Item>
+            ))}
+            <DropdownMenu.Item asChild className={styles.menuItem}>
+              <Link href="/learn/new">
+                <Plus /> New learner
+              </Link>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Separator className={styles.menuSeparator} />
+            <DropdownMenu.Item className={styles.menuItem} onSelect={onOpenProfile}>
+              <UserRound /> {displayName}&rsquo;s profile
+            </DropdownMenu.Item>
+            <DropdownMenu.Item className={styles.menuItem} onSelect={onSignOut} data-testid="sign-out">
+              <LogOut /> Sign out
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
     </nav>
   );
 }

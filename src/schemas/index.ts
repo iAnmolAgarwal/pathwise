@@ -7,3 +7,4 @@ export * from "./goal";
 export * from "./feedback";
 export * from "./nova";
 export * from "./profileCard";
+export * from "./user";

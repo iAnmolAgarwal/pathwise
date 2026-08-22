@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { addTokenUsage, getLatestPath, getProfile } from "@/db/queries";
 import { jsonError, parseBody } from "@/lib/api";
+import { requireLearner } from "@/lib/authz";
 import { profileSummaryFor } from "@/lib/chatContext";
 import { loadEngineData } from "@/lib/engineData";
 import { llm } from "@/llm/client";
@@ -25,6 +26,8 @@ export async function POST(request: Request) {
   const body = await parseBody(request, BodySchema);
   if (!body.ok) return body.response;
   const { learnerId, catalogId } = body.data;
+  const authz = await requireLearner(learnerId);
+  if (!authz.ok) return authz.response;
   const [profile, latest] = await Promise.all([getProfile(learnerId), getLatestPath(learnerId)]);
   if (!profile) return jsonError(404, "Learner not found");
   if (!latest) return jsonError(404, "No path generated yet");
@@ -35,7 +38,7 @@ export async function POST(request: Request) {
   const described = describeEvidence(evidence, loadEngineData());
   try {
     const { narration, usage } = await narrateEvidence(llm(), { evidence: described, profileSummary: profileSummaryFor(profile) });
-    await addTokenUsage(learnerId, usage.input_tokens, usage.output_tokens);
+    await addTokenUsage(learnerId, authz.user.id, usage.input_tokens, usage.output_tokens);
     return NextResponse.json({ evidence, described, narration, degraded: null });
   } catch (err) {
     const degradation = classifyLlmError(err);

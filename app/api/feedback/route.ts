@@ -3,6 +3,7 @@ import { z } from "zod";
 import { applyFeedback } from "@/engine/replan";
 import { getLatestPath, getProfile, insertFeedbackEvent, insertPath, saveProfile, updatePathData } from "@/db/queries";
 import { jsonError, parseBody } from "@/lib/api";
+import { requireLearner } from "@/lib/authz";
 import { loadEngineData } from "@/lib/engineData";
 import { FeedbackEventSchema, PathDiffSchema, PathSchema, ProfileSchema } from "@/schemas";
 
@@ -26,6 +27,8 @@ export async function POST(request: Request) {
   const body = await parseBody(request, BodySchema);
   if (!body.ok) return body.response;
   const { learnerId, event } = body.data;
+  const authz = await requireLearner(learnerId);
+  if (!authz.ok) return authz.response;
   const profile = await getProfile(learnerId);
   if (!profile) return jsonError(404, "Learner not found");
   const latest = await getLatestPath(learnerId);
