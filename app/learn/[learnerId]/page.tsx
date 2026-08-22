@@ -5,6 +5,7 @@ import { getOwnedLearner, getLatestPath, getProfile, listChatMessages, listLearn
 import { loadEngineData } from "@/lib/engineData";
 import { loadGraphEvidence } from "@/lib/graphEvidence";
 import { signInUrl } from "@/lib/authz";
+import { carryGraphQuery, parseGraphQuery } from "@/lib/graphLink";
 import { UuidSchema } from "@/lib/api";
 import { LearnWorkspace } from "@/components/LearnWorkspace";
 import type { CatalogLite, SkillLite } from "@/components/path/types";
@@ -26,10 +27,11 @@ export async function generateMetadata({ params }: PageProps<"/learn/[learnerId]
  * The workspace for one learner (§9.1). Signed out → sign-in and back here; a learner
  * that is missing or belongs to someone else → 404, indistinguishable on purpose (§19).
  */
-export default async function LearnPage({ params }: PageProps<"/learn/[learnerId]">) {
+export default async function LearnPage({ params, searchParams }: PageProps<"/learn/[learnerId]">) {
   const { learnerId } = await params;
+  const graphLink = parseGraphQuery(await searchParams);
   const user = await currentUser();
-  if (!user) redirect(signInUrl(`/learn/${learnerId}`));
+  if (!user) redirect(signInUrl(`/learn/${learnerId}${carryGraphQuery(await searchParams)}`));
   if (!UuidSchema.safeParse(learnerId).success) notFound();
   const [learner, profile, latest, messages, siblings] = await Promise.all([
     getOwnedLearner(user.id, learnerId),
@@ -55,6 +57,7 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
     <LearnWorkspace
       learnerId={learner.id}
       displayName={learner.displayName}
+      joinedAt={learner.createdAt.toISOString()}
       user={user}
       learners={siblings.map((l) => ({ id: l.id, displayName: l.displayName }))}
       initialProfile={profile}
@@ -64,6 +67,7 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
       skills={skills}
       graphEvidence={graphEvidence}
       catalog={catalog}
+      initialGraphLink={graphLink}
     />
   );
 }

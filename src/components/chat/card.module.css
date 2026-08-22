@@ -15,25 +15,29 @@
 
 .cardDone {
   flex-direction: row;
+  align-self: flex-start;
+  max-width: 100%;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
-  border-color: var(--color-line);
-  background: var(--color-glass);
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
   box-shadow: none;
 }
 .doneIcon {
   display: grid;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   place-items: center;
   color: var(--color-brand-foreground);
   border-radius: 50%;
   background: var(--color-ink-1);
 }
 .doneIcon svg {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   stroke-width: 3;
 }
 .doneText {

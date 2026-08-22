@@ -87,6 +87,21 @@ export async function listFeedbackDays(learnerId: string): Promise<string[]> {
   return [...new Set(rows.map((r) => r.day))].sort();
 }
 
+/** UTC dates with at least one chat message — the dashboard's activity calendar counts talking to Nova as a day worked. */
+export async function listChatDays(learnerId: string): Promise<string[]> {
+  const rows = await db()
+    .select({ day: sql<string>`to_char(${chatMessages.createdAt} at time zone 'UTC', 'YYYY-MM-DD')` })
+    .from(chatMessages)
+    .where(eq(chatMessages.learnerId, learnerId));
+  return [...new Set(rows.map((r) => r.day))].sort();
+}
+
+/** Feedback days ∪ chat days, sorted, for the streak and the activity calendar. */
+export async function listActivityDays(learnerId: string): Promise<string[]> {
+  const [feedback, chat] = await Promise.all([listFeedbackDays(learnerId), listChatDays(learnerId)]);
+  return [...new Set([...feedback, ...chat])].sort();
+}
+
 export type StoredChatMessage = {
   id: string;
   role: "user" | "assistant";

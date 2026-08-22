@@ -1,14 +1,16 @@
 "use client";
 
-import { X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
+import { useState } from "react";
 
 import type { GraphEdge, GraphEdgeSource, GraphEvidence } from "@/lib/graphEvidence";
 import type { EvidenceSource, SkillEdge } from "@/schemas";
+import { edgeCardLines } from "@/lib/edgeCard";
 import { cn } from "@/lib/utils";
 
 import styles from "./graph.module.css";
 
-/** Visual tier of an edge (§9.3): solid / dashed / dotted / amber, always paired with a label. */
+/** Evidence tier of an edge (§9.3). Since the de-clutter pass every arrow is drawn alike; the tier shows only inside the card's details. */
 export type EdgeTier = "both" | "one" | "none" | "review" | "promoted" | "candidate";
 
 export const TIER_OF: Record<SkillEdge["status"], EdgeTier> = {
@@ -64,72 +66,100 @@ type Props = {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onClose: () => void;
+  /** Open with the details expanded (the landing badge lands here). */
+  defaultOpen?: boolean;
 };
 
-const W = 340;
+const MAX_W = 340;
 const PAD = 12;
 
 /**
- * Provenance popover for one prerequisite link (§7 rendering 3, §9.3): each source's support,
- * reverse, confidence and n, the tags or course pairs behind the numbers, and the source caveat.
+ * The click card for one prerequisite link (§9.4 de-clutter): three plain lines — what the link
+ * claims, how many of the two sources verify it, the larger source's count and share — and a
+ * "details" expander that opens the full provenance: each source's support, reverse, confidence
+ * and n, the tags or course pairs behind the numbers, the source caveat and any review note (N-2).
  * Every number shown here is copied from skill_edges.json; nothing is computed in the client
- * beyond formatting.
+ * beyond formatting. Hover previews the three lines; a click pins the card.
  */
-export function EdgePopover({ edge, evidence, nameOf, x, y, pinned, canvasWidth, canvasHeight, onMouseEnter, onMouseLeave, onClose }: Props) {
+export function EdgeCard({ edge, evidence, nameOf, x, y, pinned, canvasWidth, canvasHeight, onMouseEnter, onMouseLeave, onClose, defaultOpen = false }: Props) {
+  const [open, setOpen] = useState(defaultOpen);
   const tier = TIER_OF[edge.status];
+  const lines = edgeCardLines(edge, nameOf, evidence.thresholds);
   // Keep the card inside the canvas: open to the left near the right edge, upward in the lower half,
   // and let a tall card scroll rather than spill out.
+  const W = canvasWidth ? Math.min(MAX_W, canvasWidth - 2 * PAD) : MAX_W;
   const left = canvasWidth && x + PAD + W > canvasWidth ? Math.max(PAD, x - PAD - W) : x + PAD;
   const below = !canvasHeight || y < canvasHeight * 0.55;
   const vertical = below ? { top: y + PAD } : { bottom: canvasHeight - y + PAD };
   const maxHeight = canvasHeight ? Math.max(160, (below ? canvasHeight - y : y) - 2 * PAD) : undefined;
   const sources = (["stackoverflow", "coursera"] as const).filter((s) => edge.sources[s]);
+  const showDetails = pinned && open;
 
   return (
     <div
       className={cn(styles.popover, pinned && styles.popoverPinned)}
       style={{ left, width: W, maxHeight, ...vertical }}
       role={pinned ? "dialog" : "tooltip"}
-      aria-label={`${nameOf(edge.from)} before ${nameOf(edge.to)}: learner evidence`}
-      data-testid="edge-popover"
+      aria-label={`${lines.order}: learner evidence`}
+      data-testid="edge-card"
+      data-state={showDetails ? "details" : "summary"}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <header className={styles.popoverHead}>
-        <div className={styles.popoverTitle}>
-          <strong>{nameOf(edge.from)}</strong>
-          <span aria-hidden>→</span>
-          <strong>{nameOf(edge.to)}</strong>
-        </div>
+        <p className={styles.cardOrder} data-testid="edge-card-order">
+          <strong>{nameOf(edge.from)}</strong> before <strong>{nameOf(edge.to)}</strong>
+        </p>
         {pinned && (
           <button type="button" className={styles.popoverClose} onClick={onClose} aria-label="Close">
             <X />
           </button>
         )}
       </header>
-      <p className={cn(styles.popoverStatus, styles[`popoverStatus_${tier}`])}>
-        <svg className={styles.swatch} width="28" height="8" viewBox="0 0 28 8" aria-hidden>
-          <line x1="1" y1="4" x2="27" y2="4" className={cn(styles.swatchLine, styles[`tier_${tier}`])} />
-        </svg>
-        {statusLine(edge, evidence.thresholds)}
+      <p className={cn(styles.cardVerdict, styles[`cardVerdict_${lines.verdictKind}`])} data-testid="edge-card-verdict">
+        {lines.verdict}
       </p>
-
-      {sources.length === 0 ? (
-        <p className={styles.popoverEmpty}>Neither source observed these two skills together above its support floor. The link is a hand-built prerequisite.</p>
-      ) : (
-        <ul className={styles.popoverSources}>
-          {sources.map((s) => (
-            <SourceBlock key={s} source={s} stat={edge.sources[s]!} edge={edge} evidence={evidence} nameOf={nameOf} />
-          ))}
-        </ul>
-      )}
-
-      {edge.resolution && (
-        <p className={styles.popoverNote}>
-          <span className="label-caps">Review note</span> {edge.resolution.note} <span className={styles.popoverDate}>({edge.resolution.date})</span>
+      {lines.count && (
+        <p className={styles.cardCount} data-testid="edge-card-count">
+          {lines.count}
         </p>
       )}
-      {!pinned && <p className={styles.popoverHint}>Click the link to keep this open</p>}
+
+      {pinned ? (
+        <button type="button" className={styles.cardDetailsToggle} onClick={() => setOpen((v) => !v)} aria-expanded={showDetails} data-testid="edge-card-details-toggle">
+          <ChevronDown aria-hidden className={cn(styles.cardChevron, showDetails && styles.cardChevronOpen)} />
+          {showDetails ? "hide details" : "details"}
+        </button>
+      ) : (
+        <p className={styles.popoverHint}>Click the link for details</p>
+      )}
+
+      {showDetails && (
+        <div className={styles.cardDetails} data-testid="edge-card-details">
+          <p className={cn(styles.popoverStatus, styles[`popoverStatus_${tier}`])}>
+            <svg className={styles.swatch} width="28" height="8" viewBox="0 0 28 8" aria-hidden>
+              <line x1="1" y1="4" x2="27" y2="4" className={cn(styles.swatchLine, styles[`tier_${tier}`])} />
+            </svg>
+            {statusLine(edge, evidence.thresholds)}
+          </p>
+
+          {sources.length === 0 ? (
+            <p className={styles.popoverEmpty}>Neither source observed these two skills together above its support floor. The link is a hand-built prerequisite.</p>
+          ) : (
+            <ul className={styles.popoverSources}>
+              {sources.map((s) => (
+                <SourceBlock key={s} source={s} stat={edge.sources[s]!} edge={edge} evidence={evidence} nameOf={nameOf} />
+              ))}
+            </ul>
+          )}
+
+          {edge.resolution && (
+            <p className={styles.popoverNote}>
+              <span className="label-caps">Review note</span> {edge.resolution.note} <span className={styles.popoverDate}>({edge.resolution.date})</span>
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

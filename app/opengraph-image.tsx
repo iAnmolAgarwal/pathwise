@@ -26,12 +26,12 @@ export default function OpenGraphImage() {
           Nova · your AI learning mentor
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <div style={{ display: "flex", fontSize: 132, fontWeight: 600, letterSpacing: -9, lineHeight: 0.9 }}>
-            <span>Learn what</span>
-            <span style={{ color: "#a78bfa", marginLeft: 22 }}>matters.</span>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 118, fontWeight: 600, letterSpacing: -8, lineHeight: 0.9 }}>
+            <span>A learning path</span>
+            <span style={{ color: "#a78bfa" }}>you can check.</span>
           </div>
           <div style={{ fontSize: 30, color: "rgba(255,255,255,0.62)", maxWidth: 900, lineHeight: 1.35 }}>
-            Tell Nova where you want to be. She maps your skill gap, sequences real courses, and rewrites the path when you push back.
+            A hand-built skill map checked against millions of real learners. Every arrow shows its count. The AI explains; it never decides.
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "rgba(255,255,255,0.5)" }}>

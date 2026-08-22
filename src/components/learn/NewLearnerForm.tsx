@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Orb } from "@/components/ui/orb";
 
 /** One field, one button: a named learner under the signed-in account. */
-export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
+export function NewLearnerForm({ autoFocus = true, carry = "" }: { autoFocus?: boolean; carry?: string }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
       return;
     }
     const learner = await res.json();
-    router.push(`/learn/${learner.id}`);
+    router.push(`/learn/${learner.id}${carry}`);
   }
 
   return (
@@ -48,7 +48,17 @@ export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
           autoComplete="name"
         />
       </label>
-      <Button type="submit" size="lg" disabled={busy || !name.trim()} className="mt-1 w-full">
+      {error && (
+        <p className="text-[13px] text-coral" role="alert" aria-live="polite">
+          {error}
+        </p>
+      )}
+      <Button
+        type="submit"
+        size="default"
+        disabled={busy || !name.trim()}
+        className="mt-1 w-full disabled:border disabled:border-line disabled:bg-glass-strong disabled:text-ink-2 disabled:opacity-100 disabled:shadow-none"
+      >
         {busy ? (
           <>
             <Orb state="working" size={20} label="Creating your space" /> Creating your space
@@ -59,11 +69,6 @@ export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
           </>
         )}
       </Button>
-      {error && (
-        <p className="text-[13px] text-coral" role="alert">
-          {error}
-        </p>
-      )}
     </form>
   );
 }

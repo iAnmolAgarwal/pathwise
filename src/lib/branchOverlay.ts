@@ -50,3 +50,33 @@ export function buildBranchOverlay(branches: readonly Branch[], limit: number = 
   for (const b of branches) (out[b.from] ??= {})[b.source] = branchOverlayFor(b, limit);
   return out;
 }
+
+/** Next-skills shown per source while the overlay is collapsed (the de-clutter default). */
+export const BRANCH_OVERLAY_COLLAPSED_LIMIT = 3;
+
+export type BranchOverlayView = {
+  /** Sources to render, in order: collapsed = the larger met source only; expanded = every source, larger first. */
+  sources: EvidenceSource[];
+  /** Steps per rendered source. */
+  stepLimit: number;
+  /** Whether "show more" has anything to add: a second source, or a fourth step on the shown one. */
+  canExpand: boolean;
+};
+
+/**
+ * Which sources and how many steps the overlay shows (§9.4 de-clutter): by default ONE source —
+ * the one with the larger population among those above the floor — and its top three next-skills;
+ * expanded, both sources with up to BRANCH_OVERLAY_LIMIT each. Below-floor sources are listed only
+ * when expanded (with their "not enough data" wording), never counted as the default.
+ */
+export function branchOverlayView(bySource: Partial<Record<EvidenceSource, BranchOverlaySource>>, expanded: boolean): BranchOverlayView {
+  const present = EVIDENCE_SOURCES.filter((s) => bySource[s]);
+  const met = present.filter((s) => bySource[s]!.minSupportMet).sort((a, b) => bySource[b]!.nTotal - bySource[a]!.nTotal);
+  const ordered = [...met, ...present.filter((s) => !bySource[s]!.minSupportMet)];
+  if (met.length === 0) return { sources: ordered, stepLimit: 0, canExpand: false };
+  const lead = bySource[met[0]]!;
+  const leadSteps = lead.minSupportMet ? lead.steps.length : 0;
+  const canExpand = ordered.length > 1 || leadSteps > BRANCH_OVERLAY_COLLAPSED_LIMIT;
+  if (expanded) return { sources: ordered, stepLimit: BRANCH_OVERLAY_LIMIT, canExpand };
+  return { sources: [met[0]], stepLimit: BRANCH_OVERLAY_COLLAPSED_LIMIT, canExpand };
+}

@@ -34,7 +34,7 @@ const DOMAIN_LABEL: Record<string, string> = {
 type Props = {
   card: ProfileCard;
   /** Once answered the card is inert and shows what was said. */
-  answered?: { skipped: boolean; stated: number } | null;
+  answered?: { skipped: boolean; stated: number | null } | null;
   busy?: boolean;
   onSubmit: (answer: ProfileCardAnswer) => void;
   onSkip: (answer: ProfileCardAnswer) => void;
@@ -69,7 +69,11 @@ export function ProfileCardView({ card, answered, busy = false, onSubmit, onSkip
           <Check />
         </span>
         <span className={styles.doneText}>
-          {answered.skipped ? "Check-in skipped — built from what Nova already knew." : `Check-in done · ${answered.stated} ${answered.stated === 1 ? "skill" : "skills"} stated`}
+          {answered.skipped
+            ? "Check-in skipped — built from what Nova already knew."
+            : answered.stated === null
+              ? "Check-in done"
+              : `Check-in done · ${answered.stated} ${answered.stated === 1 ? "skill" : "skills"} stated`}
         </span>
       </div>
     );

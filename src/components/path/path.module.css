@@ -4,7 +4,7 @@
 .view {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 
 /* --- summary strip -------------------------------------------------- */
@@ -47,14 +47,14 @@
 .phases {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 32px;
 }
 
 .phase {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .phaseHeader {
@@ -145,7 +145,9 @@
   border-color: var(--color-violet-line);
   background: var(--color-violet-haze);
 }
-.itemSettled .title,
+.itemSettled .title {
+  color: var(--color-ink-2);
+}
 .itemSettled .provider {
   color: var(--color-ink-3);
 }
@@ -239,9 +241,9 @@
   color: var(--color-ink-2);
 }
 .status_done {
-  border-color: var(--color-status-acquired-line);
+  border-color: var(--color-line);
   background: var(--color-status-acquired-soft);
-  color: var(--color-ink-1);
+  color: var(--color-ink-2);
 }
 .status_in_progress {
   border-color: var(--color-violet-line);
@@ -335,8 +337,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 10px 16px;
   margin-top: 4px;
 }
 
@@ -432,7 +434,7 @@
 
 .evidence {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 22px;
 }
 .evidenceCol {
@@ -464,10 +466,15 @@
   align-items: baseline;
   gap: 7px;
   padding: 4px 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: 0;
   line-height: 1.45;
   border-bottom: 1px dashed var(--color-line-strong);
+  border-radius: 2px;
   cursor: help;
-  outline: none;
 }
 .learnerText svg {
   flex: none;
@@ -485,10 +492,13 @@
 .learnerTip {
   position: absolute;
   left: 0;
-  bottom: calc(100% + 8px);
+  top: calc(100% + 8px);
   z-index: 7;
   display: none;
   width: min(420px, 100%);
+  max-height: min(52vh, 380px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   flex-direction: column;
   gap: 8px;
   padding: 12px 14px;
@@ -497,7 +507,7 @@
   line-height: 1.45;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-panel);
-  background: rgb(8 8 10 / 92%);
+  background: var(--color-surface-1);
   box-shadow: var(--shadow-float);
   backdrop-filter: blur(18px);
 }
@@ -526,9 +536,9 @@
   font-variant-numeric: tabular-nums;
 }
 .learnerTipCaveat {
-  color: var(--color-ink-4);
-  font-size: 10.5px;
-  font-style: italic;
+  color: var(--color-ink-3);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .gapList {
@@ -577,7 +587,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--color-ink-2);
+  background: var(--color-ink-3);
   transition: width var(--dur-slow) var(--ease-enter);
 }
 .scoreValue {
@@ -614,5 +624,58 @@
   }
   .scoreFill {
     transition: none;
+  }
+}
+
+/* --- empty gap -------------------------------------------------------- */
+
+.covered {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 520px;
+  padding: 18px 20px;
+  border: 1px solid var(--color-violet-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-violet-soft);
+}
+.coveredTitle {
+  font-size: 16px;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-1);
+}
+.coveredBody {
+  color: var(--color-ink-2);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+@media (hover: none) {
+  .title svg {
+    opacity: 0.55;
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .item {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 10px;
+    padding-right: 4px;
+  }
+  .items::before {
+    left: 13px;
+  }
+  .node {
+    margin-left: 5px;
+  }
+  .chip,
+  .link {
+    height: 40px;
+  }
+  .learnerText {
+    min-height: 40px;
+    padding: 9px 0;
   }
 }

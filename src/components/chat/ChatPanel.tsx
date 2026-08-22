@@ -42,6 +42,8 @@ type Props = {
   resting?: boolean;
   /** Compact greeting for the landing drawer. */
   compact?: boolean;
+  /** Stage-aware composer suggestions (src/lib/nextPrompts); null keeps the role carousel. */
+  prompts?: string[] | null;
 };
 
 export const TOOL_LABEL: Record<string, string> = {
@@ -73,6 +75,7 @@ export function ChatPanel({
   onNovaState,
   onInputFocus,
   inputRef,
+  prompts = null,
   resting = false,
   compact = false,
 }: Props) {
@@ -87,7 +90,7 @@ export function ChatPanel({
   const seq = useRef(initialMessages.length);
   const reduce = useReducedMotion() ?? false;
   // Cards answered this session (by card id); older cards count as answered once anything follows them.
-  const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number }>>({});
+  const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number | null }>>({});
   const [cardBusy, setCardBusy] = useState<string | null>(null);
   const [focused, setFocused] = useState(false);
 
@@ -250,7 +253,7 @@ export function ChatPanel({
                   message={m}
                   activity={m.streaming ? activity : null}
                   reduce={reduce}
-                  cardAnswered={m.card ? (answeredCards[m.card.id] ?? (index < messages.length - 1 ? { skipped: false, stated: 0 } : null)) : null}
+                  cardAnswered={m.card ? (answeredCards[m.card.id] ?? (index < messages.length - 1 ? { skipped: false, stated: null } : null)) : null}
                   cardBusy={m.card ? cardBusy === m.card.id : false}
                   onCardSubmit={(answer) => m.card && answerCard(m.card, answer, false)}
                   onCardSkip={(answer) => m.card && answerCard(m.card, answer, true)}
@@ -287,7 +290,16 @@ export function ChatPanel({
           }}
         >
           {input === "" && !focused && !busy && (
-            <RotatingPrompt className={styles.rotating} paused={reduce} intro={messages.length === 0 ? "I want to become a" : "Ask about your path, or say: I want to become a"} />
+            <RotatingPrompt
+              className={styles.rotating}
+              paused={reduce}
+              phrases={prompts}
+              intro={messages.length === 0 ? "I want to become a" : "Ask about your path, or say: I want to become a"}
+              onPick={(text) => {
+                setInput(text);
+                textareaRef.current?.focus();
+              }}
+            />
           )}
           <textarea
             ref={textareaRef}
@@ -347,7 +359,7 @@ function NovaMessage({
   message: ChatMessageView;
   activity: string | null;
   reduce: boolean;
-  cardAnswered: { skipped: boolean; stated: number } | null;
+  cardAnswered: { skipped: boolean; stated: number | null } | null;
   cardBusy: boolean;
   onCardSubmit: (answer: ProfileCardAnswer) => void;
   onCardSkip: (answer: ProfileCardAnswer) => void;

@@ -40,6 +40,7 @@ vi.mock("@/db/queries", async () => {
     getProfile: async (learnerId: string) => (learnerId === LEARNER_ID ? defaultProfile() : null),
     getLatestPath: async () => null,
     listFeedbackDays: async () => [],
+    listActivityDays: async () => [],
     listChatMessages: async () => [],
     insertChatMessage: async () => ({ id: "m" }),
     addTokenUsage: async () => undefined,
@@ -177,8 +178,11 @@ describe("learner-scoped POST routes", () => {
 describe("/learn pages", () => {
   it("send a signed-out visitor to sign-in and bring them back to the same URL", async () => {
     const picker = await import("@/../app/learn/page");
-    await expect(picker.default()).rejects.toThrow("REDIRECT");
+    await expect(picker.default({ searchParams: Promise.resolve({}) })).rejects.toThrow("REDIRECT");
     expect(redirects.at(-1)).toBe("/sign-in?callbackUrl=%2Flearn");
+    // A graph deep link from the landing survives the sign-in round trip.
+    await expect(picker.default({ searchParams: Promise.resolve({ tab: "graph", edge: "python>python-data-analysis" }) })).rejects.toThrow("REDIRECT");
+    expect(redirects.at(-1)).toBe("/sign-in?callbackUrl=%2Flearn%3Ftab%3Dgraph%26edge%3Dpython%253Epython-data-analysis");
 
     const workspace = await import("@/../app/learn/[learnerId]/page");
     await expect(workspace.default({ params: Promise.resolve({ learnerId: LEARNER_ID }), searchParams: Promise.resolve({}) })).rejects.toThrow("REDIRECT");
@@ -199,7 +203,9 @@ describe("/learn pages", () => {
   it("jumps straight into the only learner from the picker", async () => {
     const picker = await import("@/../app/learn/page");
     state.user = OWNER;
-    await expect(picker.default()).rejects.toThrow("REDIRECT");
+    await expect(picker.default({ searchParams: Promise.resolve({}) })).rejects.toThrow("REDIRECT");
     expect(redirects.at(-1)).toBe(`/learn/${LEARNER_ID}`);
+    await expect(picker.default({ searchParams: Promise.resolve({ tab: "graph", edge: "a>b" }) })).rejects.toThrow("REDIRECT");
+    expect(redirects.at(-1)).toBe(`/learn/${LEARNER_ID}?tab=graph&edge=a%3Eb`);
   });
 });

@@ -1,12 +1,76 @@
-/* Dashboard: one hero figure, a KPI row, radar (emphasis form), next action, timeline. */
+/* Dashboard: a profile rail on the left, a stats column on the right. */
 
-.grid {
+.layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-areas:
+    "identity difficulty"
+    "next progress"
+    "next tiles"
+    "badges activity"
+    "badges bottom";
+  gap: 14px;
+  align-items: stretch;
+}
+.identity {
+  grid-area: identity;
+}
+.next {
+  grid-area: next;
+}
+.badges {
+  grid-area: badges;
+}
+.difficultyCard {
+  grid-area: difficulty;
+}
+.progress {
+  grid-area: progress;
+}
+.tiles {
+  grid-area: tiles;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.activity {
+  grid-area: activity;
+}
+.bottom {
+  grid-area: bottom;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+  align-items: stretch;
 }
-@media (max-width: 1180px) {
-  .grid {
+.bottom > * {
+  height: 100%;
+}
+/* Section hooks (tests and the workspace target these by class). */
+.difficultyCard,
+.badges,
+.activity,
+.phases,
+.skills {
+  min-width: 0;
+}
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "identity"
+      "next"
+      "difficulty"
+      "progress"
+      "tiles"
+      "badges"
+      "activity"
+      "bottom";
+  }
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bottom {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -61,139 +125,10 @@
   font-size: 12px;
 }
 
-/* --- hero ------------------------------------------------------------- */
-
-.hero {
-  grid-column: 1 / -1;
-  gap: 16px;
-  background:
-    radial-gradient(70% 90% at 0% 0%, var(--color-violet-haze), transparent 65%),
-    var(--color-surface-2);
-}
-.heroText {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.heroValue {
-  font-size: 64px;
-  font-weight: 540;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  color: var(--color-ink-1);
-}
-.heroUnit {
-  margin-left: 4px;
-  font-size: 28px;
-  font-weight: 420;
-  color: var(--color-ink-2);
-  letter-spacing: -0.02em;
-}
-.heroSub {
-  color: var(--color-ink-2);
-  font-size: 13.5px;
-}
-.meter {
-  height: 8px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--color-viz-track);
-}
-.meterFill {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--color-violet-2), var(--color-viz));
-  box-shadow: 0 0 14px rgb(143 124 255 / 45%);
-}
-
-/* --- KPI tiles -------------------------------------------------------- */
-
-.tiles {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-}
-@media (max-width: 1180px) {
-  .tiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.tile {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-glass);
-}
-.tileHot {
-  border-color: var(--color-violet-line);
-  background: var(--color-violet-soft);
-}
-.tileValue {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  font-size: 26px;
-  font-weight: 540;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--color-ink-1);
-}
-.tileOf {
-  color: var(--color-ink-3);
-  font-size: 12.5px;
-  font-weight: 450;
-  letter-spacing: 0;
-}
-.tileBar {
-  height: 4px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--color-viz-track);
-}
-.tileBar span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--color-viz);
-  transition: width var(--dur-slow) var(--ease-enter);
-}
-.flame {
-  width: 18px;
-  height: 18px;
-  align-self: center;
-  color: var(--color-viz);
-  filter: drop-shadow(0 0 6px rgb(143 124 255 / 60%));
-}
-
-.dots {
-  display: flex;
-  gap: 4px;
-}
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: var(--color-viz-track);
-}
-.dotOn {
-  background: var(--color-viz);
-  box-shadow: 0 0 6px rgb(143 124 255 / 45%);
-}
-.dotToday {
-  outline: 1px solid var(--color-line-strong);
-  outline-offset: 1px;
-}
-
 /* --- radar ------------------------------------------------------------ */
 
 .radar {
-  height: 280px;
+  height: 240px;
 }
 .legend {
   display: flex;
@@ -219,8 +154,13 @@
   font-size: 12.5px;
 }
 .table summary {
+  padding: 11px 0;
   cursor: pointer;
   color: var(--color-ink-3);
+  transition: color var(--dur-fast) ease-out;
+}
+.table summary:hover {
+  color: var(--color-ink-1);
 }
 .table table {
   width: 100%;
@@ -292,6 +232,14 @@
 .next {
   gap: 10px;
 }
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 6px;
+}
 .nextMeta {
   display: flex;
   flex-wrap: wrap;
@@ -345,95 +293,677 @@
   transform: translateX(3px);
 }
 
-/* --- timeline --------------------------------------------------------- */
+/* --- items by difficulty: ring + bars ------------------------------------ */
 
-.timelineCard {
-  grid-column: 1 / -1;
-}
-.timeline {
+.difficultyBody {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: 12px;
+  flex: 1;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px 28px;
+  align-items: center;
+  align-content: center;
 }
-@media (max-width: 900px) {
-  .timeline {
-    grid-auto-flow: row;
+@media (max-width: 720px) {
+  .difficultyBody {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+  .difficultyBody .buckets {
+    width: 100%;
   }
 }
-.step {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 6px;
-}
-.stepRail {
-  display: flex;
+.ghostButton {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  height: 40px;
+  padding: 0 16px;
+  color: var(--color-ink-2);
+  font-size: 13.5px;
+  font-weight: 550;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out;
 }
-.stepNode {
-  display: grid;
-  width: 26px;
-  height: 26px;
+.ghostButton:hover {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+}
+.ghostButton svg {
+  width: 15px;
+  height: 15px;
+}
+.ring {
+  position: relative;
+  width: 132px;
+  height: 132px;
   flex-shrink: 0;
-  place-items: center;
-  color: var(--color-ink-3);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  border: 1.5px solid var(--color-line-strong);
-  border-radius: 50%;
-  background: var(--color-surface-1);
 }
-.stepNode svg {
-  width: 12px;
-  height: 12px;
-  stroke-width: 3;
+.ringSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
 }
-.stepLine {
-  height: 1px;
-  flex: 1;
-  background: var(--color-line);
+.ringTrack {
+  fill: none;
+  stroke: var(--color-viz-track);
+  stroke-width: 7;
 }
-.stepDone .stepNode {
-  color: var(--color-brand-foreground);
-  border-color: var(--color-ink-1);
-  background: var(--color-ink-1);
+.ringFill {
+  fill: none;
+  stroke: var(--color-viz);
+  stroke-width: 7;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgb(143 124 255 / 45%));
 }
-.stepDone .stepLine {
-  background: var(--color-ink-2);
+.ringText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
-.stepActive .stepNode {
-  color: var(--color-ink-1);
-  border-color: var(--color-viz);
-  box-shadow: 0 0 12px rgb(143 124 255 / 45%);
-}
-.stepTitle {
-  color: var(--color-ink-1);
-  font-size: 14px;
+.ringValue {
+  font-size: 30px;
   font-weight: 540;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.04em;
+  color: var(--color-ink-1);
 }
-.stepMilestone {
+.ringOf {
+  margin-top: 4px;
   color: var(--color-ink-3);
   font-size: 12px;
-  line-height: 1.4;
 }
-.stepBar {
-  height: 4px;
+.ringLabel {
+  margin-top: 6px;
+  color: var(--color-ink-3);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.buckets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bucket {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: baseline;
+  column-gap: 12px;
+  row-gap: 6px;
+}
+.bucketLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.bucket_easy .bucketLabel {
+  color: var(--color-viz);
+}
+.bucket_medium .bucketLabel {
+  color: var(--color-evidence-review);
+}
+.bucket_hard .bucketLabel {
+  color: var(--color-status-gap);
+}
+.bucketValue {
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-1);
+}
+.bucketOf {
+  color: var(--color-ink-3);
+}
+.bucketBar {
+  grid-column: 1 / -1;
+}
+.bucket_easy .meterFill {
+  background: var(--color-viz);
+}
+.bucket_medium .meterFill {
+  background: var(--color-evidence-review);
+}
+.bucket_hard .meterFill {
+  background: var(--color-status-gap);
+}
+
+/* --- meters, progress hero, tiles ---------------------------------------- */
+
+.meter {
+  width: 100%;
+  height: 5px;
   overflow: hidden;
   border-radius: 999px;
   background: var(--color-viz-track);
 }
-.stepBar span {
+.meterFill {
   display: block;
   height: 100%;
   border-radius: 999px;
   background: var(--color-viz);
 }
-.stepCount {
+.progress {
+  gap: 6px;
+  background:
+    radial-gradient(
+      120% 140% at 0% 0%,
+      var(--color-violet-soft),
+      transparent 55%
+    ),
+    var(--color-surface-2);
+}
+.progressValue {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-top: 6px;
+  font-size: 52px;
+  font-weight: 540;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-ink-1);
+}
+.progressUnit {
+  color: var(--color-ink-3);
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.progressHint {
+  color: var(--color-ink-2);
+  font-size: 13px;
+}
+.progressBar {
+  margin-top: 8px;
+  height: 7px;
+}
+.progressBar .meterFill {
+  box-shadow: 0 0 10px rgb(143 124 255 / 45%);
+}
+.tile {
+  gap: 8px;
+  padding: 16px 18px;
+}
+.tileValue {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 26px;
+  font-weight: 540;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-ink-1);
+}
+.tileBar {
+  margin-top: 4px;
+  height: 4px;
+}
+.spark {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 3px;
+  margin-top: 4px;
+}
+.sparkDay {
+  height: 12px;
+  border-radius: 3px;
+  background: var(--color-viz-track);
+}
+.sparkOn {
+  background: var(--color-viz);
+  box-shadow: 0 0 6px rgb(143 124 255 / 40%);
+}
+.sparkToday {
+  outline: 1px solid var(--color-line-strong);
+  outline-offset: 1px;
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-1);
+}
+.countOf {
+  color: var(--color-ink-3);
+}
+
+/* --- badges ----------------------------------------------------------- */
+
+.tileOf {
+  margin-left: 5px;
+  white-space: nowrap;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+  font-weight: 450;
+  letter-spacing: 0;
+}
+.badgeList {
+  display: flex;
+  margin-top: auto;
+  flex-direction: column;
+  gap: 8px;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+}
+.badgeIcon {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--color-viz-track);
+  color: var(--color-ink-4);
+}
+.badgeIcon svg {
+  width: 17px;
+  height: 17px;
+}
+.badgeIndex {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-3);
+}
+.badgeEarned .badgeIcon {
+  background: var(--color-violet-soft);
+  color: var(--color-violet);
+  box-shadow: 0 0 14px rgb(143 124 255 / 35%);
+}
+.badgeLocked {
+  opacity: 0.6;
+}
+.badgeText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+.badgeName {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 520;
+  line-height: 1.35;
+  color: var(--color-ink-1);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.badgePhase {
+  overflow: hidden;
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- activity heatmap ---------------------------------------------------- */
+
+.activityTitle {
+  font-size: 14px;
+  color: var(--color-ink-2);
+}
+.activityCount {
+  margin-right: 4px;
+  font-size: 24px;
+  font-weight: 540;
+  letter-spacing: -0.03em;
+  color: var(--color-ink-1);
+}
+.streakHot {
+  color: var(--color-viz);
+}
+.flame {
+  width: 16px;
+  height: 16px;
+  color: var(--color-viz);
+  filter: drop-shadow(0 0 6px rgb(143 124 255 / 60%));
+}
+.heatWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Opens scrolled to the most recent week — Heatmap in DashboardTab sets scrollLeft. */
+.heat {
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+.heatMonths {
+  display: grid;
+  grid-auto-columns: minmax(11px, 1fr);
+  grid-auto-flow: column;
+  column-gap: 3px;
+  margin-bottom: 4px;
+  color: var(--color-ink-3);
+  font-size: 11px;
+}
+.heatMonths span {
+  grid-row: 1;
+  white-space: nowrap;
+}
+.heatMonths span:last-child {
+  justify-self: end;
+}
+.heatGrid {
+  display: grid;
+  grid-auto-columns: minmax(11px, 1fr);
+  grid-auto-flow: column;
+  column-gap: 3px;
+}
+.heatWeek {
+  display: grid;
+  grid-template-rows: repeat(7, auto);
+  row-gap: 3px;
+}
+.heatCell {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  min-width: 11px;
+  border-radius: 3px;
+  background: var(--color-viz-track);
+}
+.heatOn {
+  background: var(--color-viz);
+  box-shadow: 0 0 6px rgb(143 124 255 / 40%);
+}
+.heatToday {
+  outline: 1px solid var(--color-line-strong);
+  outline-offset: 1px;
+}
+.heatEmpty {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+
+/* --- path timeline ------------------------------------------------------- */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.phase {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: 12px;
+  padding-bottom: 18px;
+}
+.phase:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  bottom: 2px;
+  left: 11.5px;
+  width: 1px;
+  background: var(--color-line);
+}
+.phaseDone:not(:last-child)::before {
+  background: var(--color-viz);
+  opacity: 0.6;
+}
+.phase:last-child {
+  padding-bottom: 0;
+}
+.phaseBody {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 3px;
+}
+.phaseNode {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-ink-2);
+}
+.phaseNode svg {
+  width: 13px;
+  height: 13px;
+}
+.phaseDone .phaseNode {
+  border-color: transparent;
+  background: var(--color-viz);
+  color: var(--color-ink);
+}
+.phaseActive .phaseNode {
+  border-color: var(--color-violet);
+  color: var(--color-violet);
+}
+.phaseTitle {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 540;
+  color: var(--color-ink-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.phaseMilestone {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.phaseBar {
+  height: 4px;
+  margin-top: 2px;
+}
+.phaseCount {
   color: var(--color-ink-3);
   font-family: var(--font-mono);
   font-size: 11px;
+}
+
+/* --- profile card --------------------------------------------------------- */
+
+.identity {
+  gap: 14px;
+}
+.identity .facts {
+  margin-top: auto;
+}
+.who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 50%;
+  background: var(--color-violet-soft);
+  border: 1px solid var(--color-violet-line);
+  color: var(--color-violet);
+}
+.whoText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+.whoName {
+  overflow: hidden;
+  font-size: 17px;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.whoGoal {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+.editButton {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  color: var(--color-ink-2);
+  font-size: 13px;
+  font-weight: 550;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out;
+}
+.editButton:hover {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+}
+.editButton svg {
+  width: 13px;
+  height: 13px;
+}
+.facts {
+  display: flex;
+  flex-direction: column;
+}
+.facts > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--color-line);
+}
+.facts dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+.facts dt svg {
+  width: 13px;
+  height: 13px;
+  color: var(--color-ink-4);
+}
+.facts dd {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--color-ink-1);
+}
+.facts dd em {
+  color: var(--color-ink-3);
+  font-style: italic;
+}
+
+/* --- medals ------------------------------------------------------------- */
+
+.nextBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-violet-line);
+  border-radius: var(--radius-card);
+  background: var(--color-violet-soft);
+}
+.nextBadgeText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+.nextBadgeName {
+  font-size: 13px;
+  font-weight: 540;
+  color: var(--color-ink-1);
+}
+.nextBadgeHint {
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+}
+.medals {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px 6px;
+  align-content: start;
+}
+.medalItem {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.medalItemLocked {
+  opacity: 0.55;
+}
+.medalName {
+  max-width: 100%;
+  color: var(--color-ink-3);
+  font-size: 10.5px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.medal {
+  display: block;
+}
+.medalPlate {
+  fill: var(--color-viz-track);
+  stroke: var(--color-line-strong);
+  stroke-width: 1;
+}
+.medalGlyph {
+  color: var(--color-ink-3);
+}
+.medalEarned .medalPlate {
+  fill: var(--color-violet);
+  stroke: transparent;
+  filter: drop-shadow(0 0 8px rgb(143 124 255 / 55%));
+}
+.medalEarned .medalGlyph {
+  color: var(--color-ink);
 }

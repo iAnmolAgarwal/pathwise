@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import type { GraphHighlight } from "./graph/SkillGraph";
+import { nextPrompts } from "@/lib/nextPrompts";
+import type { GraphLinkState } from "@/lib/graphLink";
 import { NovaStage, type NovaReaction } from "./nova/NovaStage";
 import type { CatalogLite, SkillLite } from "./path/types";
 import { PathDiffBanner, diffHeadline } from "./path/PathDiffBanner";
@@ -49,6 +51,8 @@ type GoalLite = { id: string; title: string; description: string; requiredSkills
 type Props = {
   learnerId: string;
   displayName: string;
+  /** ISO timestamp of the learner row — the dashboard's "Joined" line. */
+  joinedAt?: string;
   user: SessionUser;
   learners: RailLearner[];
   initialProfile: Profile;
@@ -58,17 +62,19 @@ type Props = {
   skills: SkillLite[];
   graphEvidence: GraphEvidence;
   catalog: Record<string, CatalogLite>;
+  /** Open on the graph tab with this arrow's card pinned (trust-badge deep link). */
+  initialGraphLink?: GraphLinkState | null;
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog }: Props) {
+export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
   const [nova, dispatchNova] = useReducer(novaReducer, initialNova);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [explaining, setExplaining] = useState<string | null>(null);
-  const [tab, setTab] = useState<Tab>(initialPath ? "path" : "nova");
+  const [tab, setTab] = useState<Tab>(initialGraphLink ? "graph" : initialPath ? "path" : "nova");
   const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(null);
   const [pendingFeedback, setPendingFeedback] = useState<string | null>(null);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
@@ -103,6 +109,30 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
     setChanges((prev) => [...prev, { id: prev.length + 1, at: new Date().toLocaleTimeString(), ops }]);
     setDrawerOpen(true);
   }, []);
+
+  // Profile edits from the drawer: save the ops, then take the redone path (if any) with its diff.
+  const saveProfileEdits = useCallback(
+    async (ops: ProfileOp[]) => {
+      const res = await fetch(`/api/learners/${learnerId}/profile`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ops }),
+      });
+      const body = (await res.json().catch(() => ({}))) as { error?: string; profile: Profile; replan: { version: number; path: Path; diff: PathDiff } | null };
+      if (!res.ok) throw new Error(body.error ?? `Could not save your profile (${res.status})`);
+      setProfile(body.profile);
+      setChanges((prev) => [...prev, { id: prev.length + 1, at: new Date().toLocaleTimeString(), ops }]);
+      if (body.replan) {
+        setPathState({ version: body.replan.version, path: body.replan.path });
+        setExplaining(null);
+        setHighlight(null);
+        setDiff({ diff: body.replan.diff, version: body.replan.version });
+        setDrawerOpen(false);
+        setTab("path");
+      }
+    },
+    [learnerId],
+  );
 
   const onPathUpdated = useCallback((version: number, path: Path, pathDiff?: PathDiff | null) => {
     setPathState({ version, path });
@@ -200,19 +230,17 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
     return { tone: "greet", text: `Hi ${first}. Tell me what you want to become and I'll check what you already know, then build your path.` };
   }, [nova.state, diff, dashboard, pathState, first, catalog]);
 
+  // Eyebrow over the learner's name: their own workspace until a path exists, then the goal it serves.
   const goalLabel = (() => {
     const g = profile.goals.at(-1);
-    if (!g) return "Workspace";
+    if (!g || !pathState) return `${displayName}'s workspace`;
     return g.type === "role" ? templateTitle(g.templateId) : g.text;
   })();
 
   const chatHeader = (
-    <div className="flex min-w-0 flex-col gap-1">
-      <span className="label-caps truncate text-ink-3" title={goalLabel}>
+    <div className="flex min-w-0 flex-col justify-center">
+      <span className="label-caps truncate text-[12px] text-ink-2" title={goalLabel} data-testid="workspace-title">
         {goalLabel}
-      </span>
-      <span className="truncate text-[17px] font-[540] tracking-[-0.02em] text-ink-1 [text-shadow:0_0_18px_rgb(167_139_250/45%),0_0_2px_rgb(255_255_255/60%)]" data-testid="learner-name">
-        {displayName}
       </span>
     </div>
   );
@@ -238,10 +266,12 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
           onInputFocus={(focused) => dispatchNova({ type: focused ? "input_focus" : "input_blur" })}
           inputRef={chatInputRef}
           resting={nova.state === "resting"}
+          prompts={nextPrompts(profile, pathState?.path ?? null, (id) => catalog[id]?.title ?? id)}
         />
       }
       tabs={TABS}
       tab={tab}
+      fullWidth={tab === "dashboard"}
       onTabChange={(id) => setTab(id as Tab)}
       paneAside={
         pathState ? (
@@ -261,31 +291,19 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
           {tab === "graph" && (
             <section data-testid="graph-section">
               <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Skill graph</h2>
-              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">
-                Every skill in the taxonomy, coloured by where you stand. Press “Show in graph” on a path item to light up the chain of prerequisites it closes.
-              </p>
+              <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">Every skill, coloured by where you stand. Select a skill for what learners did next, or an arrow for who agreed it comes first.</p>
               <div className="mt-4">
-                <SkillGraph skills={skills} evidence={graphEvidence} skillStatus={dashboard?.skillStatus ?? {}} levels={levels} highlight={highlight} />
+                <SkillGraph
+                  skills={skills}
+                  evidence={graphEvidence}
+                  skillStatus={dashboard?.skillStatus ?? {}}
+                  levels={levels}
+                  highlight={highlight}
+                  onClearHighlight={() => setHighlight(null)}
+                  initialEdge={initialGraphLink?.edge ?? null}
+                  defaultLayout={initialGraphLink?.edge ? "lr" : undefined}
+                />
               </div>
-              {pathState && (
-                <div className="mt-4">
-                  <p className="label-caps text-ink-3">Trace a path item</p>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {pathState.path.phases.flatMap((p) => p.items).map((i) => (
-                      <button
-                        key={i.catalogId}
-                        type="button"
-                        onClick={() => showInGraph(i.catalogId)}
-                        aria-pressed={highlight?.catalogId === i.catalogId}
-                        className={`rounded-pill border px-2.5 py-1 text-[12px] transition-colors ${highlight?.catalogId === i.catalogId ? "border-transparent bg-brand text-brand-foreground" : "border-line text-ink-2 hover:border-line-strong hover:text-ink-1"}`}
-                        data-testid="graph-trace-item"
-                      >
-                        {catalog[i.catalogId]?.title ?? i.catalogId}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </section>
           )}
 
@@ -295,6 +313,15 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
               <div className="mt-4">
                 <DashboardTab
                   summary={dashboard}
+                  displayName={displayName}
+                  joinedAt={joinedAt}
+                  preferences={profile.preferences}
+                  onEditProfile={() => setDrawerOpen(true)}
+                  goalTitle={profile.goals[0] ? (profile.goals[0].type === "role" ? templateTitle(profile.goals[0].templateId) : profile.goals[0].text) : null}
+                  onAskNova={() => {
+                    setTab("nova");
+                    chatInputRef.current?.focus();
+                  }}
                   onOpenItem={(id) => {
                     setTab("path");
                     setExplaining(id);
@@ -318,7 +345,7 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
               <>
                 <div>
                   <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Your path</h2>
-                  <p className="mt-1 text-[13px] text-ink-3">Tell Pathwise how each item went — Done, Too hard, Too easy or Not for me — and the path adapts with a stated reason.</p>
+                  <p className="mt-1 max-w-[70ch] text-[13px] text-ink-3">Tell Pathwise how each item went — Done, Too hard, Too easy or Not for me — and the path adapts with a stated reason.</p>
                 </div>
                 <PathView
                   path={pathState.path}
@@ -353,7 +380,7 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
         </>
       }
     >
-      <ProfileDrawer profile={profile} changes={changes} skillName={skillName} templateTitle={templateTitle} open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <ProfileDrawer profile={profile} changes={changes} skillName={skillName} templateTitle={templateTitle} open={drawerOpen} onClose={() => setDrawerOpen(false)} onSave={saveProfileEdits} />
     </AppShell>
   );
 }
