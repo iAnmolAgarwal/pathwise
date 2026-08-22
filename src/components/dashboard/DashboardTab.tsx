@@ -13,6 +13,7 @@ import {
   Pencil,
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef } from "react";
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -805,9 +806,16 @@ function Heatmap({
   activity: DashboardSummary["activity"];
   today: string;
 }) {
+  const scroller = useRef<HTMLDivElement>(null);
+  // The year overflows its column on narrow screens: open on today, not on the oldest week.
+  useEffect(() => {
+    const el = scroller.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [activity]);
   return (
     <div className={styles.heatWrap}>
       <div
+        ref={scroller}
         className={styles.heat}
         data-testid="activity-heatmap"
         data-empty={activity.activeDays === 0}
