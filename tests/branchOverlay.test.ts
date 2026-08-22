@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadEngineData } from "@/lib/engineData";
-import { BRANCH_OVERLAY_LIMIT, branchOverlayFor, buildBranchOverlay } from "@/lib/branchOverlay";
+import { BRANCH_OVERLAY_COLLAPSED_LIMIT, BRANCH_OVERLAY_LIMIT, branchOverlayFor, branchOverlayView, buildBranchOverlay } from "@/lib/branchOverlay";
 import { loadGraphEvidence } from "@/lib/graphEvidence";
 import type { Branch } from "@/schemas";
 
@@ -100,5 +100,30 @@ describe("branch overlay over the real data", () => {
       expect(graph.caveats[src]).toBe(fromFile);
       expect(fromFile).not.toMatch(/satisf|struggl|liked|enjoy|\bhard\b/i);
     }
+  });
+});
+
+describe("branch overlay default view (de-clutter, item 8)", () => {
+  const soMet = branchOverlayFor(above);
+  const csMet = branchOverlayFor({ ...above, source: "coursera", nTotal: 90000 });
+  const csBelow = branchOverlayFor(below);
+
+  it("collapsed: one source, the larger population, three steps", () => {
+    const v = branchOverlayView({ stackoverflow: soMet, coursera: csMet }, false);
+    expect(v).toEqual({ sources: ["coursera"], stepLimit: BRANCH_OVERLAY_COLLAPSED_LIMIT, canExpand: true });
+    expect(BRANCH_OVERLAY_COLLAPSED_LIMIT).toBe(3);
+  });
+
+  it("expanded: every source, larger first, up to four steps each; below-floor sources come last", () => {
+    expect(branchOverlayView({ stackoverflow: soMet, coursera: csBelow }, true)).toEqual({ sources: ["stackoverflow", "coursera"], stepLimit: BRANCH_OVERLAY_LIMIT, canExpand: true });
+    expect(branchOverlayView({ stackoverflow: soMet, coursera: csMet }, true).sources).toEqual(["coursera", "stackoverflow"]);
+  });
+
+  it("never picks a below-floor source as the default, and offers nothing to expand when one source has at most three steps", () => {
+    expect(branchOverlayView({ stackoverflow: soMet, coursera: csBelow }, false).sources).toEqual(["stackoverflow"]);
+    const three = branchOverlayFor({ ...above, next: above.next.slice(0, 3) });
+    expect(branchOverlayView({ stackoverflow: three }, false)).toEqual({ sources: ["stackoverflow"], stepLimit: 3, canExpand: false });
+    expect(branchOverlayView({ coursera: csBelow }, false)).toEqual({ sources: ["coursera"], stepLimit: 0, canExpand: false });
+    expect(branchOverlayView({}, false).sources).toEqual([]);
   });
 });

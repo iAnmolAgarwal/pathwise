@@ -219,42 +219,34 @@
 /* --- edges ------------------------------------------------------------ */
 
 .edge :global(path.react-flow__edge-path) {
-  stroke: rgb(255 255 255 / 20%);
-  stroke-width: 1;
+  stroke: rgb(255 255 255 / 30%);
+  stroke-width: 1.2;
   transition:
     stroke var(--dur-fast) ease-out,
     opacity var(--dur-fast) ease-out;
 }
 
-/* Evidence tiers (§9.3). The same classes style the legend swatches, so the key is the drawing. */
-.tier_both :global(path.react-flow__edge-path),
-line.tier_both {
+/* Evidence tiers (§9.3) survive only as the swatch inside the card's details; every arrow on
+   the canvas is drawn in the one .edge stroke above. */
+line.tier_both,
+line.tier_promoted {
   stroke: rgb(255 255 255 / 42%);
   stroke-width: 1.5;
 }
-.tier_one :global(path.react-flow__edge-path),
 line.tier_one {
   stroke: rgb(255 255 255 / 32%);
   stroke-width: 1.2;
   stroke-dasharray: 6 4;
 }
-.tier_none :global(path.react-flow__edge-path),
 line.tier_none {
   stroke: rgb(255 255 255 / 17%);
   stroke-width: 1;
   stroke-dasharray: 6 4;
 }
-.tier_review :global(path.react-flow__edge-path),
 line.tier_review {
   stroke: var(--color-evidence-review);
   stroke-width: 1.5;
 }
-.tier_promoted :global(path.react-flow__edge-path),
-line.tier_promoted {
-  stroke: rgb(255 255 255 / 42%);
-  stroke-width: 1.5;
-}
-.tier_candidate :global(path.react-flow__edge-path),
 line.tier_candidate {
   stroke: rgb(255 255 255 / 34%);
   stroke-width: 1.4;
@@ -274,30 +266,16 @@ line.tier_candidate {
 .edgeDim {
   opacity: 0.18;
 }
+.edgeNear :global(path.react-flow__edge-path) {
+  stroke: rgb(255 255 255 / 55%);
+}
 
-/* --- edge legend ------------------------------------------------------- */
+/* --- edge hint --------------------------------------------------------- */
 
-.edgeLegend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 16px;
+.edgeHint {
   margin-top: -4px;
-  color: var(--color-ink-3);
+  color: var(--color-ink-4);
   font-size: 11.5px;
-}
-.edgeLegendItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  white-space: nowrap;
-}
-.edgeLegendNote {
-  color: var(--color-ink-4);
-}
-.edgeLegendHint {
-  margin-left: auto;
-  color: var(--color-ink-4);
   font-style: italic;
 }
 .swatch {
@@ -470,9 +448,6 @@ line.tier_candidate {
 .popoverHint {
   color: var(--color-ink-4);
   font-size: 10.5px;
-}
-.detailCandidates {
-  color: var(--color-ink-3);
 }
 
 /* --- domain clusters -------------------------------------------------- */
@@ -669,4 +644,136 @@ line.tier_candidate {
 .branchEmptyNote {
   color: var(--color-ink-4);
   font-size: 10.5px;
+}
+
+/* --- click card (three lines + details) -------------------------------- */
+
+.cardOrder {
+  color: var(--color-ink-2);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.cardOrder strong {
+  color: var(--color-ink-1);
+  font-weight: 520;
+}
+.cardVerdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-ink-1);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.cardVerdict::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 28%);
+}
+.cardVerdict_verified::before {
+  background: var(--color-violet);
+  box-shadow: 0 0 8px rgb(167 139 250 / 60%);
+}
+.cardVerdict_review::before {
+  background: var(--color-evidence-review);
+}
+.cardVerdict_candidate::before {
+  background: transparent;
+  border: 1px dashed rgb(255 255 255 / 45%);
+}
+.cardCount {
+  color: var(--color-ink-3);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.cardDetailsToggle,
+.candidatesToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  padding: 2px 0;
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 25%);
+  text-underline-offset: 3px;
+}
+.cardDetailsToggle:hover,
+.candidatesToggle:hover {
+  color: var(--color-ink-1);
+}
+.cardChevron {
+  width: 12px;
+  height: 12px;
+  transition: transform var(--dur-fast) ease-out;
+}
+.cardChevronOpen {
+  transform: rotate(180deg);
+}
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-line);
+}
+
+/* --- mined candidates of the selected skill ----------------------------- */
+
+.candidates {
+  margin-top: 6px;
+}
+.candidateList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+  padding-left: 0;
+  list-style: none;
+}
+.candidate {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11.5px;
+  color: var(--color-ink-3);
+}
+.candidateName {
+  color: var(--color-ink-1);
+  font-size: 12px;
+}
+.candidateVerdict {
+  color: var(--color-ink-2);
+}
+.candidateStat {
+  font-variant-numeric: tabular-nums;
+}
+.candidateStat em {
+  font-style: italic;
+  color: var(--color-ink-4);
+}
+
+.branchMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  padding: 0;
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 25%);
+  text-underline-offset: 3px;
+}
+.branchMore:hover {
+  color: var(--color-ink-1);
 }

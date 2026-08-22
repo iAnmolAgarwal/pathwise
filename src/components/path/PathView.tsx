@@ -33,6 +33,9 @@ type Props = {
   justAdded?: Set<string>;
 };
 
+/** Skill chips on a card before "+n more"; the full list is in the explain panel. */
+export const SKILL_CHIP_LIMIT = 3;
+
 const STATUS_LABEL: Record<PathItemStatus, string> = { todo: "To do", in_progress: "In progress", done: "Done", skipped: "Skipped" };
 const FEEDBACK: { type: ItemFeedbackType; label: string; title: string }[] = [
   { type: "completed", label: "Done", title: "I completed this" },
@@ -121,12 +124,16 @@ export function PathView({ path, catalog, skillName, onExplain, selectedId, expl
 
                         {skills.length > 0 && (
                           <ul className={styles.skills} aria-label="Closes gap in">
-                            {skills.slice(0, 4).map((g) => (
+                            {skills.slice(0, SKILL_CHIP_LIMIT).map((g) => (
                               <li key={g.skillId} className={styles.skill} title={g.graphPath.map(skillName).join(" → ")}>
                                 {skillName(g.skillId)}
                               </li>
                             ))}
-                            {skills.length > 4 && <li className={cn(styles.skill, styles.skillMore)}>+{skills.length - 4}</li>}
+                            {skills.length > SKILL_CHIP_LIMIT && (
+                              <li className={cn(styles.skill, styles.skillMore)} title={skills.slice(SKILL_CHIP_LIMIT).map((g) => skillName(g.skillId)).join(", ")}>
+                                +{skills.length - SKILL_CHIP_LIMIT} more
+                              </li>
+                            )}
                           </ul>
                         )}
 
