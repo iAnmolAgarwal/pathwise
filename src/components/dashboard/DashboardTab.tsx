@@ -266,21 +266,23 @@ export function DashboardTab({
           </div>
         )}
         <ul className={styles.medals} aria-label="Achievements">
-          {summary.achievements.map((a) => (
-            <li
-              key={a.id}
-              className={cn(
-                styles.medalItem,
-                !a.earned && styles.medalItemLocked,
-              )}
-              title={a.hint}
-              data-earned={a.earned}
-              data-badge={a.id}
-            >
-              <BadgeMedal id={a.id} earned={a.earned} title={a.name} />
-              <span className={styles.medalName}>{a.name}</span>
-            </li>
-          ))}
+          {summary.achievements
+            .filter((a) => a.id !== nextBadge?.id)
+            .map((a) => (
+              <li
+                key={a.id}
+                className={cn(
+                  styles.medalItem,
+                  !a.earned && styles.medalItemLocked,
+                )}
+                title={a.hint}
+                data-earned={a.earned}
+                data-badge={a.id}
+              >
+                <BadgeMedal id={a.id} earned={a.earned} title={a.name} />
+                <span className={styles.medalName}>{a.name}</span>
+              </li>
+            ))}
         </ul>
         {milestones.length > 0 && (
           <ul className={styles.badgeList} aria-label="Phase milestones">
@@ -495,7 +497,9 @@ export function DashboardTab({
                   data={radar.map((r) => ({
                     ...r,
                     requiredPct: 100,
-                    knownPct: Math.round((r.known / r.required) * 100),
+                    knownPct: r.required
+                      ? Math.round((r.known / r.required) * 100)
+                      : 0,
                   }))}
                   outerRadius="66%"
                 >
@@ -521,7 +525,7 @@ export function DashboardTab({
                     fillOpacity={0.06}
                     strokeWidth={1.5}
                     strokeDasharray="4 4"
-                    isAnimationActive={!reduce}
+                    isAnimationActive={false}
                   />
                   <Radar
                     name="You"
@@ -531,7 +535,7 @@ export function DashboardTab({
                     fillOpacity={0.28}
                     strokeWidth={2}
                     dot={{ r: 3, fill: VIZ.known, strokeWidth: 0 }}
-                    isAnimationActive={!reduce}
+                    isAnimationActive={false}
                   />
                   <Tooltip
                     cursor={false}

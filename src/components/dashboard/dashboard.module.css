@@ -154,8 +154,13 @@
   font-size: 12.5px;
 }
 .table summary {
+  padding: 11px 0;
   cursor: pointer;
   color: var(--color-ink-3);
+  transition: color var(--dur-fast) ease-out;
+}
+.table summary:hover {
+  color: var(--color-ink-1);
 }
 .table table {
   width: 100%;
@@ -377,9 +382,9 @@
 }
 .ringLabel {
   margin-top: 6px;
-  color: var(--color-ink-4);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
+  color: var(--color-ink-3);
+  font-size: 9px;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 .buckets {
@@ -409,6 +414,7 @@
   color: var(--color-status-gap);
 }
 .bucketValue {
+  justify-self: end;
   font-family: var(--font-mono);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
@@ -448,7 +454,11 @@
 .progress {
   gap: 6px;
   background:
-    radial-gradient(120% 140% at 0% 0%, var(--color-violet-soft), transparent 55%),
+    radial-gradient(
+      120% 140% at 0% 0%,
+      var(--color-violet-soft),
+      transparent 55%
+    ),
     var(--color-surface-2);
 }
 .progressValue {
@@ -593,16 +603,21 @@
   gap: 2px;
 }
 .badgeName {
+  display: -webkit-box;
   overflow: hidden;
   font-size: 13px;
   font-weight: 520;
+  line-height: 1.35;
   color: var(--color-ink-1);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .badgePhase {
+  overflow: hidden;
   color: var(--color-ink-3);
   font-size: 11.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* --- activity heatmap ---------------------------------------------------- */
@@ -632,9 +647,16 @@
   flex-direction: column;
   gap: 10px;
 }
+/* The container is RTL so it opens scrolled to the most recent week. */
 .heat {
+  direction: rtl;
   overflow-x: auto;
   padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+.heat > * {
+  direction: ltr;
 }
 .heatMonths {
   display: grid;
@@ -820,7 +842,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 36px;
+  height: 40px;
   color: var(--color-ink-2);
   font-size: 13px;
   font-weight: 550;
@@ -870,7 +892,7 @@
   color: var(--color-ink-1);
 }
 .facts dd em {
-  color: var(--color-ink-4);
+  color: var(--color-ink-3);
   font-style: italic;
 }
 
@@ -903,7 +925,7 @@
 .medals {
   display: grid;
   flex: 1;
-  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px 6px;
   align-content: space-evenly;
 }
