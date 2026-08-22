@@ -1,8 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { Application } from "@splinetool/runtime";
 
@@ -14,24 +13,23 @@ import { useQuickChat } from "@/components/landing/QuickChat";
 import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
-import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
-export function Hero({ storyHref = "#how-it-works", appHref = "/learn", numbers }: { storyHref?: string; appHref?: string; numbers: TrustNumbers }) {
+export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
-  const inView = useInView(containerRef, "0px");
   const quickChat = useQuickChat();
+  const reduce = useReducedMotion();
 
-  // Nova's scene renders at 60 fps; stop it while the hero is scrolled away.
+  // The scene keeps running once loaded: the runtime has no pause, and play() after stop()
+  // replays the scene's intro zoom every time the hero scrolls back into view.
   useEffect(() => {
     const app = appRef.current;
     if (!app || !sceneLoaded) return;
-    if (inView) app.play();
-    else app.stop();
-  }, [inView, sceneLoaded]);
+    app.play();
+  }, [sceneLoaded]);
 
   const cursorX = useMotionValue(-500);
   const cursorY = useMotionValue(-500);
@@ -59,6 +57,36 @@ export function Hero({ storyHref = "#how-it-works", appHref = "/learn", numbers 
 
       <div className={styles.content}>
         <motion.div
+          className={styles.textArea}
+          initial={{ opacity: 0, x: -35 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ ...ENTER, delay: 0.15 }}
+        >
+          <Badge variant="eyebrow" dot className={styles.eyebrow}>
+            Nova · your AI learning mentor
+          </Badge>
+
+          <h1 className={styles.h1}>
+            A learning path
+            <span className={`${styles.gradientText} text-gradient-violet`}>you can verify.</span>
+          </h1>
+
+          <p className={styles.lead}>
+            For anyone working towards a role in tech — frontend, data, cloud, ML, security, {numbers.goalTemplates} roles in all — who wants
+            to know what to learn next, in what order, and why.
+          </p>
+
+          <div className={styles.buttons}>
+            <Button asChild>
+              <a href={storyHref}>
+                Explore how it works <ArrowRight data-icon="inline-end" />
+              </a>
+            </Button>
+          </div>
+
+        </motion.div>
+
+        <motion.div
           className={styles.sceneArea}
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -81,8 +109,8 @@ export function Hero({ storyHref = "#how-it-works", appHref = "/learn", numbers 
 
           <motion.div
             className={styles.liveLabelWrap}
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={reduce ? undefined : { y: [0, -5, 0] }}
+            transition={reduce ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             <button type="button" onClick={quickChat.open} className={styles.liveLabel}>
               <span className={styles.liveIcon}>
@@ -94,39 +122,6 @@ export function Hero({ storyHref = "#how-it-works", appHref = "/learn", numbers 
               </div>
             </button>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          className={styles.textArea}
-          initial={{ opacity: 0, x: -35 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ...ENTER, delay: 0.15 }}
-        >
-          <Badge variant="eyebrow" dot className={styles.eyebrow}>
-            Nova · your AI learning mentor
-          </Badge>
-
-          <h1 className={styles.h1}>
-            A learning path
-            <span className={`${styles.gradientText} text-gradient-violet`}>you can check.</span>
-          </h1>
-
-          <p className={styles.lead}>
-            For anyone working towards a role in tech — frontend, data, cloud, ML, security, {numbers.goalTemplates} roles in all — who wants
-            to know what to learn next, in what order, and why.
-          </p>
-
-          <div className={styles.buttons}>
-            <Button asChild>
-              <a href={storyHref}>
-                Explore how it works <ArrowRight data-icon="inline-end" />
-              </a>
-            </Button>
-            <Button variant="secondary" asChild>
-              <Link href={appHref}>View a sample path</Link>
-            </Button>
-          </div>
-
         </motion.div>
       </div>
     </motion.section>
