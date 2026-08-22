@@ -1,31 +1,50 @@
-/* Dashboard: one hero figure, a KPI row, radar (emphasis form), next action, timeline. */
+/* Dashboard: a profile rail on the left, a stats column on the right. */
 
-/* Three columns at full width: hero (2) + badges (1) / activity (3) / phases (2) + skills (1). */
-.grid {
+.layout {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 272px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.rail,
+.main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   gap: 14px;
 }
-.hero {
-  grid-column: span 2;
+/* Section hooks (tests and the workspace target these by class). */
+.difficultyCard,
+.badges,
+.activity,
+.phases,
+.skills {
+  min-width: 0;
 }
-.activity {
-  grid-column: 1 / -1;
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
-.phases {
-  grid-column: span 2;
+.bottom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
 }
-@media (max-width: 1180px) {
-  .grid {
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .hero,
-  .phases {
-    grid-column: 1 / -1;
+  .bottom {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 720px) {
-  .grid {
+  .layout {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -83,7 +102,7 @@
 /* --- radar ------------------------------------------------------------ */
 
 .radar {
-  height: 280px;
+  height: 240px;
 }
 .legend {
   display: flex;
@@ -182,6 +201,13 @@
 .next {
   gap: 10px;
 }
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
 .nextMeta {
   display: flex;
   flex-wrap: wrap;
@@ -235,31 +261,22 @@
   transform: translateX(3px);
 }
 
-/* --- hero: next action + ring + difficulty ---------------------------- */
+/* --- items by difficulty: ring + bars ------------------------------------ */
 
-.hero {
+.difficultyBody {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 16px 28px;
   align-items: center;
 }
 @media (max-width: 720px) {
-  .hero {
+  .difficultyBody {
     grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
   }
-}
-.heroMain {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 10px;
-}
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
+  .difficultyBody .buckets {
+    width: 100%;
+  }
 }
 .ghostButton {
   display: inline-flex;
@@ -285,11 +302,6 @@
 .ghostButton svg {
   width: 15px;
   height: 15px;
-}
-.heroStats {
-  display: flex;
-  align-items: center;
-  gap: 18px;
 }
 .ring {
   position: relative;
@@ -344,25 +356,22 @@
 .buckets {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 .bucket {
-  display: flex;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-rows: auto auto;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 14px;
-  min-width: 118px;
-  padding: 7px 12px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-glass);
+  column-gap: 12px;
+  row-gap: 6px;
 }
 .bucketLabel {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
 }
 .bucket_easy .bucketLabel {
-  color: var(--color-status-acquired);
+  color: var(--color-viz);
 }
 .bucket_medium .bucketLabel {
   color: var(--color-evidence-review);
@@ -379,20 +388,118 @@
 .bucketOf {
   color: var(--color-ink-3);
 }
+.bucketBar {
+  grid-column: 1 / -1;
+}
+.bucket_easy .meterFill {
+  background: var(--color-viz);
+}
+.bucket_medium .meterFill {
+  background: var(--color-evidence-review);
+}
+.bucket_hard .meterFill {
+  background: var(--color-status-gap);
+}
 
-/* --- badges ----------------------------------------------------------- */
+/* --- meters, progress hero, tiles ---------------------------------------- */
 
-.badgeCount {
+.meter {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-viz-track);
+}
+.meterFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-viz);
+}
+.progress {
+  gap: 6px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, var(--color-violet-soft), transparent 55%),
+    var(--color-surface-2);
+}
+.progressValue {
   display: flex;
   align-items: baseline;
-  gap: 4px;
-  margin-top: 4px;
-  font-size: 30px;
+  gap: 2px;
+  margin-top: 6px;
+  font-size: 52px;
+  font-weight: 540;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-ink-1);
+}
+.progressUnit {
+  color: var(--color-ink-3);
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.progressHint {
+  color: var(--color-ink-2);
+  font-size: 13px;
+}
+.progressBar {
+  margin-top: 8px;
+  height: 7px;
+}
+.progressBar .meterFill {
+  box-shadow: 0 0 10px rgb(143 124 255 / 45%);
+}
+.tile {
+  gap: 8px;
+  padding: 16px 18px;
+}
+.tileValue {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 26px;
   font-weight: 540;
   line-height: 1;
   letter-spacing: -0.04em;
+  color: var(--color-ink-1);
 }
+.tileBar {
+  margin-top: 4px;
+  height: 4px;
+}
+.spark {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 3px;
+  margin-top: 4px;
+}
+.sparkDay {
+  height: 12px;
+  border-radius: 3px;
+  background: var(--color-viz-track);
+}
+.sparkOn {
+  background: var(--color-viz);
+  box-shadow: 0 0 6px rgb(143 124 255 / 40%);
+}
+.sparkToday {
+  outline: 1px solid var(--color-line-strong);
+  outline-offset: 1px;
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-1);
+}
+.countOf {
+  color: var(--color-ink-3);
+}
+
+/* --- badges ----------------------------------------------------------- */
+
 .tileOf {
+  margin-left: 5px;
   color: var(--color-ink-3);
   font-size: 12.5px;
   font-weight: 450;
@@ -482,30 +589,6 @@
   letter-spacing: -0.03em;
   color: var(--color-ink-1);
 }
-.streaks {
-  display: flex;
-  gap: 22px;
-}
-.streaks > span {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.streakLabel {
-  color: var(--color-ink-4);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.streakValue {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 18px;
-  font-weight: 540;
-  letter-spacing: -0.02em;
-  color: var(--color-ink-1);
-}
 .streakHot {
   color: var(--color-viz);
 }
@@ -526,7 +609,7 @@
 }
 .heatMonths {
   display: grid;
-  grid-auto-columns: 13px;
+  grid-auto-columns: minmax(11px, 1fr);
   grid-auto-flow: column;
   column-gap: 3px;
   margin-bottom: 4px;
@@ -539,18 +622,20 @@
 }
 .heatGrid {
   display: grid;
-  grid-auto-columns: 13px;
+  grid-auto-columns: minmax(11px, 1fr);
   grid-auto-flow: column;
   column-gap: 3px;
 }
 .heatWeek {
   display: grid;
-  grid-template-rows: repeat(7, 13px);
+  grid-template-rows: repeat(7, auto);
   row-gap: 3px;
 }
 .heatCell {
-  width: 13px;
-  height: 13px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  min-width: 11px;
   border-radius: 3px;
   background: var(--color-viz-track);
 }
@@ -567,29 +652,41 @@
   font-size: 12.5px;
 }
 
-/* --- phases strip ------------------------------------------------------- */
+/* --- path timeline ------------------------------------------------------- */
 
-.strip {
-  display: grid;
-  grid-auto-columns: minmax(150px, 1fr);
-  grid-auto-flow: column;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 4px;
+.timeline {
+  display: flex;
+  flex-direction: column;
 }
 .phase {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: 12px;
+  padding-bottom: 18px;
+}
+.phase:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  bottom: 2px;
+  left: 11.5px;
+  width: 1px;
+  background: var(--color-line);
+}
+.phaseDone:not(:last-child)::before {
+  background: var(--color-viz);
+  opacity: 0.6;
+}
+.phase:last-child {
+  padding-bottom: 0;
+}
+.phaseBody {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-glass);
-}
-.phaseActive {
-  border-color: var(--color-violet-line);
-  background: var(--color-violet-soft);
+  gap: 5px;
+  padding-top: 3px;
 }
 .phaseNode {
   display: grid;
@@ -634,15 +731,7 @@
 }
 .phaseBar {
   height: 4px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--color-viz-track);
-}
-.phaseBar span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--color-viz);
+  margin-top: 2px;
 }
 .phaseCount {
   color: var(--color-ink-3);
@@ -650,15 +739,15 @@
   font-size: 11px;
 }
 
-/* --- identity header ------------------------------------------------------ */
+/* --- profile card --------------------------------------------------------- */
 
 .identity {
-  grid-column: 1 / -1;
+  gap: 14px;
+}
+.who {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px 20px;
-  padding: 4px 2px 2px;
+  gap: 12px;
 }
 .avatar {
   display: grid;
@@ -674,43 +763,83 @@
   border: 1px solid var(--color-violet-line);
   color: var(--color-violet);
 }
-.who {
+.whoText {
   display: flex;
   min-width: 0;
-  flex: 1;
   flex-direction: column;
   gap: 2px;
 }
 .whoName {
-  font-size: 18px;
+  overflow: hidden;
+  font-size: 17px;
   font-weight: 540;
   letter-spacing: -0.02em;
   color: var(--color-ink-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .whoGoal {
   color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+.editButton {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  color: var(--color-ink-2);
   font-size: 13px;
+  font-weight: 550;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out;
 }
-.whoStats {
-  display: flex;
-  gap: 22px;
+.editButton:hover {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
 }
-.whoStats div {
+.editButton svg {
+  width: 13px;
+  height: 13px;
+}
+.facts {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
-.whoStats dt {
+.facts > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--color-line);
+}
+.facts dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+.facts dt svg {
+  width: 13px;
+  height: 13px;
   color: var(--color-ink-4);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
-.whoStats dd {
-  font-size: 18px;
-  font-weight: 540;
-  letter-spacing: -0.02em;
+.facts dd {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
   color: var(--color-ink-1);
+}
+.facts dd em {
+  color: var(--color-ink-4);
+  font-style: italic;
 }
 
 /* --- medals ------------------------------------------------------------- */
@@ -777,10 +906,4 @@
 }
 .medalEarned .medalGlyph {
   color: var(--color-ink);
-}
-@media (max-width: 720px) {
-  .whoStats {
-    flex-basis: 100%;
-    gap: 26px;
-  }
 }

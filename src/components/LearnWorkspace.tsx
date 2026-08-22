@@ -51,6 +51,8 @@ type GoalLite = { id: string; title: string; description: string; requiredSkills
 type Props = {
   learnerId: string;
   displayName: string;
+  /** ISO timestamp of the learner row — the dashboard's "Joined" line. */
+  joinedAt?: string;
   user: SessionUser;
   learners: RailLearner[];
   initialProfile: Profile;
@@ -65,7 +67,7 @@ type Props = {
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
+export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
@@ -290,6 +292,9 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
                 <DashboardTab
                   summary={dashboard}
                   displayName={displayName}
+                  joinedAt={joinedAt}
+                  preferences={profile.preferences}
+                  onEditProfile={() => setDrawerOpen(true)}
                   goalTitle={profile.goals[0] ? (profile.goals[0].type === "role" ? templateTitle(profile.goals[0].templateId) : profile.goals[0].text) : null}
                   onAskNova={() => {
                     setTab("nova");

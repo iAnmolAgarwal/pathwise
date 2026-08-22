@@ -57,6 +57,7 @@ export default async function LearnPage({ params, searchParams }: PageProps<"/le
     <LearnWorkspace
       learnerId={learner.id}
       displayName={learner.displayName}
+      joinedAt={learner.createdAt.toISOString()}
       user={user}
       learners={siblings.map((l) => ({ id: l.id, displayName: l.displayName }))}
       initialProfile={profile}

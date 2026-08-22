@@ -1,10 +1,11 @@
 "use client";
 
-import { ArrowRight, Award, Check, Flame, Lock, MessageSquare } from "lucide-react";
+import { ArrowRight, Award, Calendar, Check, Clock, Flame, Gauge, Lock, MessageSquare, Pencil } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { milestoneBadges, type DashboardSummary, type DifficultyBucket } from "@/engine/dashboard";
+import type { Profile } from "@/schemas";
 import { BadgeMedal } from "./BadgeMedal";
 import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
@@ -20,12 +21,20 @@ type Props = {
   /** The learner this dashboard belongs to (identity header). */
   displayName?: string;
   goalTitle?: string | null;
+  /** ISO timestamp of the learner row, for the "Joined" line. */
+  joinedAt?: string;
+  /** Hours per week and pace, straight from the stored profile. */
+  preferences?: Profile["preferences"];
   onOpenItem?: (catalogId: string) => void;
+  /** Opens the profile drawer. */
+  onEditProfile?: () => void;
   /** Switches to the Nova tab — the dashboard hides the chat column, so this is the one-click way back. */
   onAskNova?: () => void;
 };
 
 const ENTER = { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const };
+const GROW = { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 };
+const PACE_LABEL: Record<Profile["preferences"]["pace"], string> = { relaxed: "Relaxed", standard: "Standard", intense: "Intense" };
 const BUCKETS: { key: DifficultyBucket; label: string }[] = [
   { key: "easy", label: "Easy" },
   { key: "medium", label: "Medium" },
@@ -33,12 +42,13 @@ const BUCKETS: { key: DifficultyBucket; label: string }[] = [
 ];
 
 /**
- * Full-width dashboard (§9.3, M5.12 item 7): next action as the hero, items done as a ring with the
- * easy / medium / hard split beside it, milestone badges, a year of activity as a heatmap, the
- * phases as a horizontal strip, and skills by domain. Every figure comes from DashboardSummary,
- * which is computed from stored rows — nothing here is invented or filled in.
+ * Full-width dashboard (§9.3, M5.12 item 7). A profile rail on the left (identity, badges, next
+ * action) and a stats column on the right: items done as a ring with the easy / medium / hard
+ * split, progress toward the goal as the hero figure, four tiles, a year of activity as a
+ * heatmap, skills by domain and the phases as a vertical timeline. Every figure comes from
+ * DashboardSummary, which is computed from stored rows — nothing here is invented or filled in.
  */
-export function DashboardTab({ summary, displayName, goalTitle, onOpenItem, onAskNova }: Props) {
+export function DashboardTab({ summary, displayName, goalTitle, joinedAt, preferences, onOpenItem, onEditProfile, onAskNova }: Props) {
   const reduce = useReducedMotion() ?? false;
   if (!summary) {
     return (
@@ -58,42 +68,104 @@ export function DashboardTab({ summary, displayName, goalTitle, onOpenItem, onAs
     transition: { ...ENTER, delay: reduce ? 0 : i * 0.06 },
   });
 
-  return (
-    <div className={styles.grid} data-testid="dashboard">
-      {displayName && (
-        <motion.header className={styles.identity} data-testid="identity" {...rise(0)}>
-          <span className={styles.avatar} aria-hidden>
-            {displayName
-              .split(/\s+/)
-              .slice(0, 2)
-              .map((w) => w[0]?.toUpperCase() ?? "")
-              .join("")}
-          </span>
-          <div className={styles.who}>
-            <p className={styles.whoName}>{displayName}</p>
-            <p className={styles.whoGoal}>{goalTitle ? `Becoming a ${goalTitle}` : "No goal yet"}</p>
-          </div>
-          <dl className={styles.whoStats}>
-            <div>
-              <dt>Items done</dt>
-              <dd>{progress.itemsDone}</dd>
-            </div>
-            <div>
-              <dt>Active days</dt>
-              <dd>{activity.activeDays}</dd>
-            </div>
-            <div>
-              <dt>Badges</dt>
-              <dd>{earnedList.length}</dd>
-            </div>
-          </dl>
-        </motion.header>
-      )}
+  const domainsTouched = radar.filter((r) => r.known > 0).length;
+  const spark = lastDays(activity, 14);
+  const initials = (displayName ?? "")
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("");
 
-      {/* Hero: the next thing to do, with the done ring and the difficulty split beside it. */}
-      <motion.section className={cn(styles.card, styles.hero)} data-testid="next-action" {...rise(0)}>
-        <div className={styles.heroMain}>
-          <p className={styles.label}>Next up</p>
+  return (
+    <div className={styles.layout} data-testid="dashboard">
+      {/* ---- left rail: who, badges, what next ------------------------------------------------ */}
+      <aside className={styles.rail}>
+        {displayName && (
+          <motion.section className={cn(styles.card, styles.identity)} data-testid="identity" {...rise(0)}>
+            <div className={styles.who}>
+              <span className={styles.avatar} aria-hidden>
+                {initials}
+              </span>
+              <div className={styles.whoText}>
+                <p className={styles.whoName}>{displayName}</p>
+                <p className={styles.whoGoal}>{goalTitle ? `Becoming a ${goalTitle}` : "No goal yet"}</p>
+              </div>
+            </div>
+            {onEditProfile && (
+              <button type="button" className={styles.editButton} onClick={onEditProfile} data-testid="edit-profile">
+                <Pencil aria-hidden /> Edit profile
+              </button>
+            )}
+            <dl className={styles.facts}>
+              <div>
+                <dt>
+                  <Clock aria-hidden /> Hours / week
+                </dt>
+                <dd>{preferences ? `${preferences.hoursPerWeek} h` : <em>Not set</em>}</dd>
+              </div>
+              <div>
+                <dt>
+                  <Gauge aria-hidden /> Pace
+                </dt>
+                <dd>{preferences ? PACE_LABEL[preferences.pace] : <em>Not set</em>}</dd>
+              </div>
+              <div>
+                <dt>
+                  <Calendar aria-hidden /> Joined
+                </dt>
+                <dd>{joinedAt ? formatMonth(joinedAt) : <em>Not set</em>}</dd>
+              </div>
+            </dl>
+          </motion.section>
+        )}
+
+        {/* Badges: achievements derived from stored state, the next one to chase first; then one per completed phase. */}
+        <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(1)}>
+          <div className={styles.cardHead}>
+            <p className={styles.label}>Badges</p>
+            <p className={styles.count}>
+              {earnedList.length} <span className={styles.countOf}>/ {summary.achievements.length}</span>
+            </p>
+          </div>
+          {nextBadge && (
+            <div className={styles.nextBadge} data-testid="next-badge">
+              <BadgeMedal id={nextBadge.id} earned={false} title={nextBadge.name} size={40} />
+              <div className={styles.nextBadgeText}>
+                <p className={styles.nextBadgeName}>{nextBadge.name}</p>
+                <p className={styles.nextBadgeHint}>Next up · {nextBadge.hint.toLowerCase()}</p>
+              </div>
+            </div>
+          )}
+          <ul className={styles.medals} aria-label="Achievements">
+            {summary.achievements.map((a) => (
+              <li key={a.id} className={cn(styles.medalItem, !a.earned && styles.medalItemLocked)} title={a.hint} data-earned={a.earned} data-badge={a.id}>
+                <BadgeMedal id={a.id} earned={a.earned} title={a.name} />
+                <span className={styles.medalName}>{a.name}</span>
+              </li>
+            ))}
+          </ul>
+          {milestones.length > 0 && (
+            <ul className={styles.badgeList} aria-label="Phase milestones">
+              {milestones.map((b, i) => (
+                <li key={b.phase} className={cn(styles.badge, b.earned ? styles.badgeEarned : styles.badgeLocked)} data-earned={b.earned} title={b.milestone}>
+                  <span className={styles.badgeIcon} aria-hidden>
+                    {b.earned ? <Award /> : <Lock />}
+                    <span className={styles.badgeIndex}>{i + 1}</span>
+                  </span>
+                  <span className={styles.badgeText}>
+                    <span className={styles.badgeName}>{b.milestone}</span>
+                    <span className={styles.badgePhase}>{b.earned ? "Earned" : "Locked"} · {b.phase}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className={styles.cardHint}>Locked badges stay visible and dimmed, so the next thing to chase is always on screen.</p>
+        </motion.section>
+
+        {/* Next action. */}
+        <motion.section className={cn(styles.card, styles.next)} data-testid="next-action" {...rise(2)}>
+          <p className={styles.label}>Next best action</p>
           {nextAction.catalogId ? (
             <>
               <div className={styles.nextMeta}>
@@ -119,190 +191,230 @@ export function DashboardTab({ summary, displayName, goalTitle, onOpenItem, onAs
               </button>
             )}
           </div>
-        </div>
+        </motion.section>
+      </aside>
 
-        <div className={styles.heroStats}>
-          <Ring done={progress.itemsDone} total={progress.itemsTotal} reduce={reduce} />
-          <ul className={styles.buckets} aria-label="Items by difficulty" data-testid="difficulty-split">
-            {BUCKETS.map((b) => (
-              <li key={b.key} className={cn(styles.bucket, styles[`bucket_${b.key}`])} data-bucket={b.key}>
-                <span className={styles.bucketLabel}>{b.label}</span>
-                <span className={styles.bucketValue}>
-                  {difficulty[b.key].done}
-                  <span className={styles.bucketOf}>/{difficulty[b.key].total}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.section>
-
-      {/* Badges: achievements derived from stored state, the next one to chase first; then one per completed phase. */}
-      <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(1)}>
-        <div className={styles.cardHead}>
+      {/* ---- main column ---------------------------------------------------------------------- */}
+      <div className={styles.main}>
+        {/* Items done as a ring, with the easy / medium / hard split as bars. */}
+        <motion.section className={cn(styles.card, styles.difficultyCard)} data-testid="difficulty" {...rise(0)}>
           <div>
-            <p className={styles.label}>Badges</p>
-            <p className={styles.badgeCount}>
-              {earnedList.length}
-              <span className={styles.tileOf}> of {summary.achievements.length}</span>
-            </p>
+            <p className={styles.label}>Items by difficulty</p>
+            <p className={styles.cardHint}>Bands come from each item&apos;s difficulty, counted against what your path holds.</p>
           </div>
+          <div className={styles.difficultyBody}>
+            <Ring done={progress.itemsDone} total={progress.itemsTotal} reduce={reduce} />
+            <ul className={styles.buckets} aria-label="Items by difficulty" data-testid="difficulty-split">
+              {BUCKETS.map((b, i) => {
+                const { done, total } = difficulty[b.key];
+                return (
+                  <li key={b.key} className={cn(styles.bucket, styles[`bucket_${b.key}`])} data-bucket={b.key}>
+                    <span className={styles.bucketLabel}>{b.label}</span>
+                    <span className={styles.bucketValue}>
+                      {done}
+                      <span className={styles.bucketOf}> / {total}</span>
+                    </span>
+                    <Meter share={total ? done / total : 0} reduce={reduce} delay={0.2 + i * 0.08} className={styles.bucketBar} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </motion.section>
+
+        {/* Progress toward the goal: the hero figure. */}
+        <motion.section className={cn(styles.card, styles.progress)} data-testid="progress" {...rise(1)}>
+          <p className={styles.label}>Progress toward your goal</p>
+          <p className={styles.progressValue}>
+            {progress.percent}
+            <span className={styles.progressUnit}>%</span>
+          </p>
+          <p className={styles.progressHint}>
+            {progress.attainedLevels} of {progress.requiredLevels} required skill levels reached
+          </p>
+          <Meter share={progress.percent / 100} reduce={reduce} delay={0.25} className={styles.progressBar} label="Progress toward your goal" value={progress.percent} />
+        </motion.section>
+
+        {/* Four tiles. */}
+        <div className={styles.tiles}>
+          <Tile label="Items done" value={progress.itemsDone} of={progress.itemsTotal} i={2} reduce={reduce} testId="tile-items-done" />
+          <Tile label="Skill levels" value={progress.attainedLevels} of={progress.requiredLevels} i={3} reduce={reduce} testId="tile-levels" />
+          <Tile label="Domains" value={domainsTouched} of={radar.length} i={4} reduce={reduce} testId="tile-domains" />
+          <motion.div className={cn(styles.card, styles.tile)} data-testid="streak" {...rise(5)}>
+            <p className={styles.label}>Streak</p>
+            <p className={styles.tileValue}>
+              {streak.current > 0 && <Flame aria-hidden className={styles.flame} />}
+              <span className={cn(streak.current > 0 && styles.streakHot)}>{streak.current}</span>
+              <span className={styles.tileOf}>
+                {" "}
+                {streak.current === 1 ? "day" : "days"} · best {streak.longest}
+              </span>
+            </p>
+            <ul className={styles.spark} aria-label="Last 14 days">
+              {spark.map((d) => (
+                <li key={d.day} className={cn(styles.sparkDay, d.active && styles.sparkOn, d.day === summary.today && styles.sparkToday)} title={d.day} data-active={d.active} />
+              ))}
+            </ul>
+          </motion.div>
         </div>
-        {nextBadge && (
-          <div className={styles.nextBadge} data-testid="next-badge">
-            <BadgeMedal id={nextBadge.id} earned={false} title={nextBadge.name} size={40} />
-            <div className={styles.nextBadgeText}>
-              <p className={styles.nextBadgeName}>{nextBadge.name}</p>
-              <p className={styles.nextBadgeHint}>Next up · {nextBadge.hint.toLowerCase()}</p>
+
+        {/* Activity: a year of days, from stored feedback events and chat messages. */}
+        <motion.section className={cn(styles.card, styles.activity)} data-testid="activity" {...rise(3)}>
+          <div className={styles.cardHead}>
+            <div>
+              <p className={styles.label}>Activity</p>
+              <p className={styles.cardHint}>
+                <span className={styles.activityCount}>{activity.activeDays}</span> active {activity.activeDays === 1 ? "day" : "days"} in the past year — marking an item or talking to Nova lights one up.
+              </p>
             </div>
           </div>
-        )}
-        <ul className={styles.medals} aria-label="Achievements">
-          {summary.achievements.map((a) => (
-            <li key={a.id} className={cn(styles.medalItem, !a.earned && styles.medalItemLocked)} title={a.hint} data-earned={a.earned} data-badge={a.id}>
-              <BadgeMedal id={a.id} earned={a.earned} title={a.name} />
-              <span className={styles.medalName}>{a.name}</span>
-            </li>
-          ))}
-        </ul>
-        {milestones.length > 0 && (
-          <ul className={styles.badgeList} aria-label="Phase milestones">
-            {milestones.map((b, i) => (
-              <li key={b.phase} className={cn(styles.badge, b.earned ? styles.badgeEarned : styles.badgeLocked)} data-earned={b.earned} title={b.milestone}>
-                <span className={styles.badgeIcon} aria-hidden>
-                  {b.earned ? <Award /> : <Lock />}
-                  <span className={styles.badgeIndex}>{i + 1}</span>
-                </span>
-                <span className={styles.badgeText}>
-                  <span className={styles.badgeName}>{b.milestone}</span>
-                  <span className={styles.badgePhase}>{b.earned ? "Earned" : "Locked"} · {b.phase}</span>
-                </span>
+          <Heatmap activity={activity} today={summary.today} />
+        </motion.section>
+
+        <div className={styles.bottom}>
+          {/* Skills by domain */}
+          <motion.section className={cn(styles.card, styles.skills)} data-testid="skill-radar" {...rise(4)}>
+            <header className={styles.cardHead}>
+              <div>
+                <p className={styles.label}>Skills by domain</p>
+                <p className={styles.cardHint}>Outer ring is the goal, filled shape is you.</p>
+              </div>
+            </header>
+            {radar.length === 0 ? (
+              <p className={styles.empty}>Add a goal to see which domains it needs.</p>
+            ) : radar.length < 3 ? (
+              <DomainBars radar={radar} />
+            ) : (
+              <div className={styles.radar}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radar.map((r) => ({ ...r, requiredPct: 100, knownPct: Math.round((r.known / r.required) * 100) }))} outerRadius="66%">
+                    <PolarGrid stroke={VIZ.grid} />
+                    <PolarAngleAxis dataKey="label" tick={{ fontSize: 11, fill: VIZ.tick, fontFamily: "inherit" }} />
+                    <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                    <Radar name="Goal" dataKey="requiredPct" stroke={VIZ.required} fill={VIZ.required} fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="4 4" isAnimationActive={!reduce} />
+                    <Radar name="You" dataKey="knownPct" stroke={VIZ.known} fill={VIZ.known} fillOpacity={0.28} strokeWidth={2} dot={{ r: 3, fill: VIZ.known, strokeWidth: 0 }} isAnimationActive={!reduce} />
+                    <Tooltip
+                      cursor={false}
+                      contentStyle={{ background: "rgb(8 8 10 / 88%)", border: "1px solid rgb(255 255 255 / 18%)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f5f5f7", backdropFilter: "blur(14px)" }}
+                      itemStyle={{ color: "#f5f5f7" }}
+                      labelStyle={{ color: "rgb(255 255 255 / 60%)", marginBottom: 4 }}
+                      formatter={(value, name, entry) => {
+                        const r = entry.payload as { known: number; required: number };
+                        return [name === "You" ? `${value}% (${r.known} of ${r.required} levels)` : `${r.required} levels`, name];
+                      }}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+            <ul className={styles.legend} aria-label="Legend">
+              <li>
+                <i style={{ background: VIZ.known }} /> You
               </li>
-            ))}
-          </ul>
-        )}
-      </motion.section>
-
-      {/* Activity: a year of days, from stored feedback events and chat messages. */}
-      <motion.section className={cn(styles.card, styles.activity)} data-testid="activity" {...rise(2)}>
-        <div className={styles.cardHead}>
-          <p className={styles.activityTitle}>
-            <span className={styles.activityCount}>{activity.activeDays}</span> active {activity.activeDays === 1 ? "day" : "days"} in the past year
-          </p>
-          <div className={styles.streaks} data-testid="streak">
-            <span>
-              <span className={styles.streakLabel}>Current streak</span>
-              <span className={cn(styles.streakValue, streak.current > 0 && styles.streakHot)}>
-                {streak.current > 0 && <Flame aria-hidden className={styles.flame} />}
-                {streak.current}
-              </span>
-            </span>
-            <span>
-              <span className={styles.streakLabel}>Longest</span>
-              <span className={styles.streakValue}>{streak.longest}</span>
-            </span>
-          </div>
-        </div>
-        <Heatmap activity={activity} today={summary.today} />
-      </motion.section>
-
-      {/* Phases as a strip. */}
-      <motion.section className={cn(styles.card, styles.phases)} data-testid="timeline" {...rise(3)}>
-        <p className={styles.label}>Phases</p>
-        {timeline.length === 0 ? (
-          <p className={styles.empty}>No path yet.</p>
-        ) : (
-          <ol className={styles.strip}>
-            {timeline.map((t, i) => (
-              <li key={t.title} className={cn(styles.phase, t.complete && styles.phaseDone, t.active && styles.phaseActive)} data-complete={t.complete} data-active={t.active}>
-                <span className={styles.phaseNode} aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}>
-                  {t.complete ? <Check aria-hidden /> : i + 1}
-                </span>
-                <p className={styles.phaseTitle}>{t.title}</p>
-                <p className={styles.phaseMilestone}>{t.milestone}</p>
-                <div className={styles.phaseBar} aria-hidden>
-                  <span style={{ width: `${t.itemsTotal ? (t.itemsDone / t.itemsTotal) * 100 : 0}%` }} />
-                </div>
-                <p className={styles.phaseCount}>
-                  {t.itemsDone}/{t.itemsTotal} done
-                </p>
+              <li>
+                <i style={{ borderColor: VIZ.required }} className={styles.legendRing} /> Goal
               </li>
-            ))}
-          </ol>
-        )}
-      </motion.section>
+            </ul>
+            {radar.length > 0 && (
+              <details className={styles.table}>
+                <summary>Table view</summary>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Domain</th>
+                      <th>You</th>
+                      <th>Goal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {radar.map((r) => (
+                      <tr key={r.domain}>
+                        <td>{r.label}</td>
+                        <td>{r.known}</td>
+                        <td>{r.required}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </details>
+            )}
+          </motion.section>
 
-      {/* Skills by domain */}
-      <motion.section className={cn(styles.card, styles.skills)} data-testid="skill-radar" {...rise(4)}>
-        <header className={styles.cardHead}>
-          <div>
-            <p className={styles.label}>Skills</p>
-            <p className={styles.cardHint}>
-              {progress.attainedLevels} of {progress.requiredLevels} required levels ({progress.percent} %) — the outer ring is the goal, the filled shape is you.
-            </p>
-          </div>
-          <ul className={styles.legend} aria-label="Legend">
-            <li>
-              <i style={{ background: VIZ.known }} /> You
-            </li>
-            <li>
-              <i style={{ borderColor: VIZ.required }} className={styles.legendRing} /> Goal
-            </li>
-          </ul>
-        </header>
-        {radar.length === 0 ? (
-          <p className={styles.empty}>Add a goal to see which domains it needs.</p>
-        ) : radar.length < 3 ? (
-          <DomainBars radar={radar} />
-        ) : (
-          <div className={styles.radar}>
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={radar.map((r) => ({ ...r, requiredPct: 100, knownPct: Math.round((r.known / r.required) * 100) }))} outerRadius="66%">
-                <PolarGrid stroke={VIZ.grid} />
-                <PolarAngleAxis dataKey="label" tick={{ fontSize: 11, fill: VIZ.tick, fontFamily: "inherit" }} />
-                <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                <Radar name="Goal" dataKey="requiredPct" stroke={VIZ.required} fill={VIZ.required} fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="4 4" isAnimationActive={!reduce} />
-                <Radar name="You" dataKey="knownPct" stroke={VIZ.known} fill={VIZ.known} fillOpacity={0.28} strokeWidth={2} dot={{ r: 3, fill: VIZ.known, strokeWidth: 0 }} isAnimationActive={!reduce} />
-                <Tooltip
-                  cursor={false}
-                  contentStyle={{ background: "rgb(8 8 10 / 88%)", border: "1px solid rgb(255 255 255 / 18%)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f5f5f7", backdropFilter: "blur(14px)" }}
-                  itemStyle={{ color: "#f5f5f7" }}
-                  labelStyle={{ color: "rgb(255 255 255 / 60%)", marginBottom: 4 }}
-                  formatter={(value, name, entry) => {
-                    const r = entry.payload as { known: number; required: number };
-                    return [name === "You" ? `${value}% (${r.known} of ${r.required} levels)` : `${r.required} levels`, name];
-                  }}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        )}
-        {radar.length > 0 && (
-          <details className={styles.table}>
-            <summary>Table view</summary>
-            <table>
-              <thead>
-                <tr>
-                  <th>Domain</th>
-                  <th>You</th>
-                  <th>Goal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {radar.map((r) => (
-                  <tr key={r.domain}>
-                    <td>{r.label}</td>
-                    <td>{r.known}</td>
-                    <td>{r.required}</td>
-                  </tr>
+          {/* Phases as a vertical timeline. */}
+          <motion.section className={cn(styles.card, styles.phases)} data-testid="timeline" {...rise(5)}>
+            <p className={styles.label}>Path timeline</p>
+            {timeline.length === 0 ? (
+              <p className={styles.empty}>No path yet.</p>
+            ) : (
+              <ol className={styles.timeline}>
+                {timeline.map((t, i) => (
+                  <li key={t.title} className={cn(styles.phase, t.complete && styles.phaseDone, t.active && styles.phaseActive)} data-complete={t.complete} data-active={t.active}>
+                    <span className={styles.phaseNode} aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}>
+                      {t.complete ? <Check aria-hidden /> : i + 1}
+                    </span>
+                    <div className={styles.phaseBody}>
+                      <p className={styles.phaseTitle}>{t.title}</p>
+                      <p className={styles.phaseMilestone}>{t.milestone}</p>
+                      <Meter share={t.itemsTotal ? t.itemsDone / t.itemsTotal : 0} reduce={reduce} delay={0.3 + i * 0.08} className={styles.phaseBar} />
+                      <p className={styles.phaseCount}>
+                        {t.itemsDone}/{t.itemsTotal} done
+                      </p>
+                    </div>
+                  </li>
                 ))}
-              </tbody>
-            </table>
-          </details>
-        )}
-      </motion.section>
+              </ol>
+            )}
+          </motion.section>
+        </div>
+      </div>
     </div>
   );
+}
+
+/** A count out of a total with a thin meter under it. */
+function Tile({ label, value, of, i, reduce, testId }: { label: string; value: number; of: number; i: number; reduce: boolean; testId: string }) {
+  return (
+    <motion.div
+      className={cn(styles.card, styles.tile)}
+      data-testid={testId}
+      initial={reduce ? false : { opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...ENTER, delay: reduce ? 0 : i * 0.06 }}
+    >
+      <p className={styles.label}>{label}</p>
+      <p className={styles.tileValue}>
+        {value}
+        <span className={styles.tileOf}> / {of}</span>
+      </p>
+      <Meter share={of ? value / of : 0} reduce={reduce} delay={0.25 + i * 0.05} className={styles.tileBar} />
+    </motion.div>
+  );
+}
+
+/** A horizontal meter whose fill grows in on mount. With `label` it is a progressbar; otherwise decorative. */
+function Meter({ share, reduce, delay, className, label, value }: { share: number; reduce: boolean; delay: number; className?: string; label?: string; value?: number }) {
+  const pct = Math.max(0, Math.min(100, share * 100));
+  const a11y = label ? { role: "progressbar", "aria-label": label, "aria-valuenow": value ?? Math.round(pct), "aria-valuemin": 0, "aria-valuemax": 100 } : { "aria-hidden": true };
+  return (
+    <div className={cn(styles.meter, className)} {...a11y}>
+      <motion.span
+        className={styles.meterFill}
+        initial={reduce ? false : { width: 0 }}
+        animate={{ width: `${pct}%` }}
+        transition={reduce ? { duration: 0 } : { ...GROW, delay }}
+      />
+    </div>
+  );
+}
+
+function formatMonth(iso: string): string {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? "—" : d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
+/** The last `n` calendar cells of the activity year, oldest first. */
+function lastDays(activity: DashboardSummary["activity"], n: number) {
+  return activity.weeks.flat().slice(-n);
 }
 
 /** Items done out of total as a ring; the number in the middle is the count, not a percentage. */
