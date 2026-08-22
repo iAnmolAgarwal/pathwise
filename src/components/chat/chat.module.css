@@ -295,10 +295,20 @@
 .rotating {
   position: absolute;
   top: 14px;
-  right: 16px;
+  right: 56px;
   left: 16px;
   z-index: 1;
   pointer-events: none;
+}
+.rotatingPick {
+  pointer-events: auto;
+  padding: 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: text;
+  color: inherit;
+  font: inherit;
 }
 .rotatingInner {
   display: inline-flex;

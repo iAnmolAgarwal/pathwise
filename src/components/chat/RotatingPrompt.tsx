@@ -14,21 +14,43 @@ export const ROLE_TITLES: string[] = (goals as { title: string }[]).map((g) => g
 const ENTER = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 const EVERY_MS = 2200;
 
+type Props = {
+  /** Text before the rotating slot; ignored when `phrases` are given. */
+  intro?: string;
+  /** Full sentences to rotate instead of role titles — what the learner would say next at this stage. */
+  phrases?: string[] | null;
+  paused?: boolean;
+  className?: string;
+  /** Fills the composer with the phrase on show (the whole placeholder is a button then). */
+  onPick?: (text: string) => void;
+};
+
 /**
- * Tutorial-by-placeholder: sits over the empty composer and cycles the role so a first-time
- * visitor sees exactly what to type. Static (first role) under reduced motion.
+ * Tutorial-by-placeholder: sits over the empty composer and cycles either the role titles (before
+ * a goal exists) or stage-aware suggestions (after), so the learner sees exactly what to type.
+ * Static (first entry) under reduced motion.
  */
-export function RotatingPrompt({ intro, paused = false, className }: { intro: string; paused?: boolean; className?: string }) {
+export function RotatingPrompt({ intro = "", phrases, paused = false, className, onPick }: Props) {
+  const list = phrases && phrases.length > 0 ? phrases : ROLE_TITLES;
   const [index, setIndex] = useState(0);
   useEffect(() => {
+    setIndex(0);
+  }, [list.length, phrases]);
+  useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % ROLE_TITLES.length), EVERY_MS);
+    const t = setInterval(() => setIndex((i) => (i + 1) % list.length), EVERY_MS);
     return () => clearInterval(t);
-  }, [paused]);
-  const role = ROLE_TITLES[index] ?? ROLE_TITLES[0];
+  }, [paused, list.length]);
+  const role = list[index] ?? list[0];
+  const text = phrases && phrases.length > 0 ? role : `${intro} ${role}`.trim();
+  const Tag = onPick ? "button" : "span";
   return (
-    <span className={cn(styles.rotatingInner, className)} aria-hidden>
-      {intro}{" "}
+    <Tag
+      className={cn(styles.rotatingInner, onPick && styles.rotatingPick, className)}
+      aria-hidden={!onPick}
+      {...(onPick ? { type: "button" as const, onClick: () => onPick(text), "aria-label": `Use suggestion: ${text}` } : {})}
+    >
+      {phrases && phrases.length > 0 ? null : <>{intro} </>}
       <span className={styles.rotatingSlot}>
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
@@ -43,6 +65,6 @@ export function RotatingPrompt({ intro, paused = false, className }: { intro: st
           </motion.span>
         </AnimatePresence>
       </span>
-    </span>
+    </Tag>
   );
 }

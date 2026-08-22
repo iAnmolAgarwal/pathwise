@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import type { GraphHighlight } from "./graph/SkillGraph";
+import { nextPrompts } from "@/lib/nextPrompts";
 import { NovaStage, type NovaReaction } from "./nova/NovaStage";
 import type { CatalogLite, SkillLite } from "./path/types";
 import { PathDiffBanner, diffHeadline } from "./path/PathDiffBanner";
@@ -238,6 +239,7 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
           onInputFocus={(focused) => dispatchNova({ type: focused ? "input_focus" : "input_blur" })}
           inputRef={chatInputRef}
           resting={nova.state === "resting"}
+          prompts={nextPrompts(profile, pathState?.path ?? null, (id) => catalog[id]?.title ?? id)}
         />
       }
       tabs={TABS}

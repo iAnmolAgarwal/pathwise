@@ -42,6 +42,8 @@ type Props = {
   resting?: boolean;
   /** Compact greeting for the landing drawer. */
   compact?: boolean;
+  /** Stage-aware composer suggestions (src/lib/nextPrompts); null keeps the role carousel. */
+  prompts?: string[] | null;
 };
 
 export const TOOL_LABEL: Record<string, string> = {
@@ -73,6 +75,7 @@ export function ChatPanel({
   onNovaState,
   onInputFocus,
   inputRef,
+  prompts = null,
   resting = false,
   compact = false,
 }: Props) {
@@ -287,7 +290,16 @@ export function ChatPanel({
           }}
         >
           {input === "" && !focused && !busy && (
-            <RotatingPrompt className={styles.rotating} paused={reduce} intro={messages.length === 0 ? "I want to become a" : "Ask about your path, or say: I want to become a"} />
+            <RotatingPrompt
+              className={styles.rotating}
+              paused={reduce}
+              phrases={prompts}
+              intro={messages.length === 0 ? "I want to become a" : "Ask about your path, or say: I want to become a"}
+              onPick={(text) => {
+                setInput(text);
+                textareaRef.current?.focus();
+              }}
+            />
           )}
           <textarea
             ref={textareaRef}
