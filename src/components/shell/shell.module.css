@@ -282,6 +282,7 @@
 .paneBody {
   overflow-y: auto;
   padding: 20px;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12px);
 }
 
 /* --- narrow screens: one column at a time, the rail switches ----------- */
@@ -303,5 +304,23 @@
   .railButton {
     width: 42px;
     height: 42px;
+  }
+  .columnHeader {
+    gap: 10px;
+    padding: 0 14px;
+  }
+  .tabsList {
+    gap: 16px;
+    min-width: 0;
+    overflow-x: auto;
+    padding-bottom: 1px;
+    margin-bottom: -1px;
+    scrollbar-width: none;
+  }
+  .tabsList::-webkit-scrollbar {
+    display: none;
+  }
+  .paneBody {
+    padding: 14px;
   }
 }

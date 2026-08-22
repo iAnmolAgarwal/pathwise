@@ -345,7 +345,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
               <>
                 <div>
                   <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Your path</h2>
-                  <p className="mt-1 text-[13px] text-ink-3">Tell Pathwise how each item went — Done, Too hard, Too easy or Not for me — and the path adapts with a stated reason.</p>
+                  <p className="mt-1 max-w-[70ch] text-[13px] text-ink-3">Tell Pathwise how each item went — Done, Too hard, Too easy or Not for me — and the path adapts with a stated reason.</p>
                 </div>
                 <PathView
                   path={pathState.path}

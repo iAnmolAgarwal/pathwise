@@ -89,8 +89,8 @@
 
 .dismiss {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   place-items: center;
   color: var(--color-ink-3);
   border-radius: 999px;
@@ -123,6 +123,10 @@
   column-gap: 14px;
   row-gap: 6px;
   margin-top: 4px;
+}
+.changesSingle,
+.changesSingle .changeRow {
+  grid-template-columns: minmax(0, 1fr);
 }
 .changeRow {
   display: grid;
@@ -203,5 +207,12 @@
   .banner,
   .kickerDot {
     animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .dismiss {
+    width: 40px;
+    height: 40px;
   }
 }

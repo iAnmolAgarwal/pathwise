@@ -104,7 +104,12 @@ export function ExplainPanel({ learnerId, catalogId, evidence, catalog, skillNam
               {narration}
             </p>
           )}
-          {(status === "degraded" || status === "error") && <p className={styles.note}>{note}</p>}
+          {(status === "degraded" || status === "error") && (
+            <div className={styles.note} role="status">
+              <p>{note}</p>
+              <p className={styles.noteHint}>The evidence beside this is unaffected — it comes from the path, not the model.</p>
+            </div>
+          )}
         </div>
 
         <div className={styles.evidence}>

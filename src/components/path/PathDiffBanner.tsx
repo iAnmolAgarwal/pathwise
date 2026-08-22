@@ -22,7 +22,10 @@ const list = (titles: string[]) =>
 
 /** One sentence a learner can read: "Swapped X for Y because you found Z too hard." */
 export function diffHeadline(diff: PathDiff, title: (id: string) => string): string {
-  const because = `because ${lowerFirst(diff.cause.humanReadable)}`;
+  // The cause often repeats a course we already name in the sentence; say "it" instead.
+  const named = [...diff.added, ...diff.removed].map((d) => title(d.catalogId));
+  const cause = named.reduce((s, t) => (t && s.includes(t) ? s.replace(t, "it") : s), diff.cause.humanReadable);
+  const because = `because ${lowerFirst(cause)}`;
   const added = diff.added.map((d) => title(d.catalogId));
   const removed = diff.removed.map((d) => title(d.catalogId));
   if (added.length === 1 && removed.length === 1) return `Swapped ${removed[0]} for ${added[0]} ${because}.`;
@@ -92,21 +95,27 @@ export function PathDiffBanner({ diff, version, catalog, onDismiss }: Props) {
   );
 }
 
-/** Added and removed side by side, row-aligned so the two columns always match. */
+/** Added and removed side by side, row-aligned so the two columns always match.
+    When only one side changed, that column takes the full width on its own. */
 function ChangeGrid({ added, removed, title }: { added: PathDiff["added"]; removed: PathDiff["removed"]; title: (id: string) => string }) {
   const rows = Math.max(added.length, removed.length);
+  const single = added.length === 0 || removed.length === 0;
   return (
-    <div className={styles.changes} role="table" aria-label="Changes to your path">
-      <p className={styles.changeHeading} role="columnheader">
-        Added <span className={styles.changeCount}>{added.length}</span>
-      </p>
-      <p className={styles.changeHeading} role="columnheader">
-        Removed <span className={styles.changeCount}>{removed.length}</span>
-      </p>
+    <div className={`${styles.changes}${single ? ` ${styles.changesSingle}` : ""}`} role="table" aria-label="Changes to your path">
+      {added.length > 0 && (
+        <p className={styles.changeHeading} role="columnheader">
+          Added <span className={styles.changeCount}>{added.length}</span>
+        </p>
+      )}
+      {removed.length > 0 && (
+        <p className={styles.changeHeading} role="columnheader">
+          Removed <span className={styles.changeCount}>{removed.length}</span>
+        </p>
+      )}
       {Array.from({ length: rows }, (_, i) => (
         <div key={i} className={styles.changeRow} role="row">
-          <ChangeCell kind="added" item={added[i]} title={title} />
-          <ChangeCell kind="removed" item={removed[i]} title={title} />
+          {added.length > 0 && <ChangeCell kind="added" item={added[i]} title={title} />}
+          {removed.length > 0 && <ChangeCell kind="removed" item={removed[i]} title={title} />}
         </div>
       ))}
     </div>
