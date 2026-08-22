@@ -70,7 +70,7 @@ type Props = {
   defaultOpen?: boolean;
 };
 
-const W = 340;
+const MAX_W = 340;
 const PAD = 12;
 
 /**
@@ -87,6 +87,7 @@ export function EdgeCard({ edge, evidence, nameOf, x, y, pinned, canvasWidth, ca
   const lines = edgeCardLines(edge, nameOf, evidence.thresholds);
   // Keep the card inside the canvas: open to the left near the right edge, upward in the lower half,
   // and let a tall card scroll rather than spill out.
+  const W = canvasWidth ? Math.min(MAX_W, canvasWidth - 2 * PAD) : MAX_W;
   const left = canvasWidth && x + PAD + W > canvasWidth ? Math.max(PAD, x - PAD - W) : x + PAD;
   const below = !canvasHeight || y < canvasHeight * 0.55;
   const vertical = below ? { top: y + PAD } : { bottom: canvasHeight - y + PAD };

@@ -75,7 +75,7 @@ type SkillNodeData = {
 };
 type DomainNodeData = { label: string; count: number; width: number; height: number; [key: string]: unknown };
 
-const NODE_W = 156;
+const NODE_W = 188;
 const NODE_H = 32;
 /** The one arrow colour; matches .edge in graph.module.css. */
 const EDGE_MARKER = "rgba(255,255,255,0.30)";
@@ -309,7 +309,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
         source: e.from,
         target: e.to,
         animated: on,
-        interactionWidth: 14,
+        interactionWidth: 30,
         className: cn(styles.edge, on && styles.edgeOn, dim && !on && styles.edgeDim, selectedEnd && styles.edgeNear),
         markerEnd: { type: MarkerType.ArrowClosed, color: on ? "#a78bfa" : EDGE_MARKER, width: 14, height: 14 },
         data: { key },
@@ -340,7 +340,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
   useEffect(() => {
     const t = setTimeout(() => {
       if (highlightSet.ids.size > 0) fitView({ nodes: [...highlightSet.ids].map((id) => ({ id })), duration: 600, padding: 0.5 });
-      else fitView({ duration: 500, padding: 0.08 });
+      else fitView({ duration: 500, padding: 0.08, minZoom: 0.7 });
     }, 50);
     return () => clearTimeout(t);
   }, [laid, highlightSet, fitView]);

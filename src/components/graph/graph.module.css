@@ -8,13 +8,12 @@
 
 .toolbar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-/* Status legend: a quiet list to the right of the layout switcher. */
+/* Status legend: a quiet line under the layout switcher. */
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -97,8 +96,8 @@
 
 .canvas {
   position: relative;
-  height: min(62vh, 640px);
-  min-height: 420px;
+  height: clamp(460px, calc(100vh - 300px), 780px);
+  min-height: 460px;
   overflow: hidden;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-panel);
@@ -648,7 +647,6 @@ line.tier_candidate {
 .branchStep:focus-visible {
   border-color: var(--color-line-strong);
   background: rgb(255 255 255 / 6%);
-  outline: none;
 }
 .branchStepName {
   overflow: hidden;
@@ -836,4 +834,20 @@ line.tier_candidate {
 }
 .branchMore:hover {
   color: var(--color-ink-1);
+}
+
+/* Narrow screens: a shorter canvas, thumb-sized close buttons, two columns of stats. */
+@media (max-width: 640px) {
+  .canvas {
+    height: clamp(420px, 72vh, 560px);
+  }
+  .popoverClose,
+  .detailClose,
+  .traceClear {
+    width: 40px;
+    height: 40px;
+  }
+  .popoverStats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
