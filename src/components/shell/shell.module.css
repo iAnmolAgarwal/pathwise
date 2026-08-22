@@ -300,4 +300,8 @@
   .chatColumn {
     border-right: 0;
   }
+  .railButton {
+    width: 42px;
+    height: 42px;
+  }
 }

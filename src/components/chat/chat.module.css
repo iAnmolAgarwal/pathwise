@@ -16,7 +16,8 @@
   flex-direction: column;
   gap: 18px;
   overflow-y: auto;
-  padding: 24px 22px 12px;
+  padding: 24px 22px 20px;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 calc(100% - 26px), transparent 100%);
   scrollbar-width: thin;
   scrollbar-color: var(--color-line-strong) transparent;
 }
@@ -29,7 +30,7 @@
   align-items: flex-start;
   gap: 14px;
   margin: auto 0;
-  padding: 8px 4px 24px;
+  padding: 8px 0 24px;
 }
 
 .greetingCompact {
@@ -60,6 +61,7 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
+  max-width: 52ch;
   margin-top: 8px;
 }
 
@@ -99,6 +101,9 @@
 }
 .rowNova {
   justify-content: flex-start;
+}
+.row[data-role="assistant"] + .row[data-role="user"] {
+  margin-top: 10px;
 }
 
 .userBubble {
@@ -147,6 +152,7 @@
 }
 
 .novaText {
+  max-width: 68ch;
   color: var(--color-ink-1);
   font-size: 15px;
   line-height: 1.62;
@@ -195,6 +201,8 @@
 
 .checklist {
   display: flex;
+  align-self: flex-start;
+  max-width: 100%;
   flex-direction: column;
   gap: 2px;
   padding: 8px 12px 8px 10px;
@@ -225,9 +233,7 @@
 }
 
 .checkDone {
-  color: var(--color-ink-3);
-  text-decoration: line-through;
-  text-decoration-color: var(--color-ink-4);
+  color: var(--color-ink-2);
 }
 .checkDone .checkIcon {
   color: var(--color-brand-foreground);
@@ -245,7 +251,7 @@
 .composerWrap {
   position: relative;
   flex-shrink: 0;
-  padding: 8px 16px 12px;
+  padding: 8px 22px 12px;
   background: linear-gradient(to bottom, transparent, var(--color-ink) 28%);
 }
 
@@ -286,7 +292,7 @@
 }
 .composer:focus-within {
   border-color: var(--color-line-strong);
-  box-shadow: var(--shadow-float), 0 0 0 4px rgb(255 255 255 / 5%);
+  box-shadow: var(--shadow-float), 0 0 0 3px rgb(255 255 255 / 14%);
 }
 .composerBusy {
   border-color: var(--color-violet-line);
@@ -295,9 +301,10 @@
 .rotating {
   position: absolute;
   top: 14px;
-  right: 56px;
+  right: 16px;
   left: 16px;
   z-index: 1;
+  overflow: hidden;
   pointer-events: none;
 }
 .rotatingPick {
@@ -323,14 +330,21 @@
 .rotatingSlot {
   position: relative;
   display: inline-grid;
+  min-width: 0;
   vertical-align: baseline;
 }
 .rotatingSlot > * {
   grid-area: 1 / 1;
 }
 .rotatingValue {
+  overflow: hidden;
   font-weight: 560;
   white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rotatingPhrase {
+  color: var(--color-ink-3);
+  font-weight: 400;
 }
 
 .textarea {
@@ -363,7 +377,7 @@
 }
 
 .hint {
-  color: var(--color-ink-4);
+  color: var(--color-ink-3);
   font-size: 11.5px;
   letter-spacing: 0.01em;
 }
@@ -404,10 +418,13 @@
 }
 
 .footnote {
-  margin: 8px 6px 0;
-  color: var(--color-ink-4);
+  max-width: 52ch;
+  margin: 8px auto 0;
+  color: var(--color-ink-3);
   font-size: 11.5px;
+  line-height: 1.45;
   text-align: center;
+  text-wrap: balance;
 }
 .footnoteError {
   color: var(--color-coral);
@@ -416,5 +433,12 @@
 @media (prefers-reduced-motion: reduce) {
   .caret {
     animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .send {
+    width: 42px;
+    height: 42px;
   }
 }

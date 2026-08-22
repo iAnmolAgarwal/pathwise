@@ -90,7 +90,7 @@ export function ChatPanel({
   const seq = useRef(initialMessages.length);
   const reduce = useReducedMotion() ?? false;
   // Cards answered this session (by card id); older cards count as answered once anything follows them.
-  const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number }>>({});
+  const [answeredCards, setAnsweredCards] = useState<Record<string, { skipped: boolean; stated: number | null }>>({});
   const [cardBusy, setCardBusy] = useState<string | null>(null);
   const [focused, setFocused] = useState(false);
 
@@ -253,7 +253,7 @@ export function ChatPanel({
                   message={m}
                   activity={m.streaming ? activity : null}
                   reduce={reduce}
-                  cardAnswered={m.card ? (answeredCards[m.card.id] ?? (index < messages.length - 1 ? { skipped: false, stated: 0 } : null)) : null}
+                  cardAnswered={m.card ? (answeredCards[m.card.id] ?? (index < messages.length - 1 ? { skipped: false, stated: null } : null)) : null}
                   cardBusy={m.card ? cardBusy === m.card.id : false}
                   onCardSubmit={(answer) => m.card && answerCard(m.card, answer, false)}
                   onCardSkip={(answer) => m.card && answerCard(m.card, answer, true)}
@@ -359,7 +359,7 @@ function NovaMessage({
   message: ChatMessageView;
   activity: string | null;
   reduce: boolean;
-  cardAnswered: { skipped: boolean; stated: number } | null;
+  cardAnswered: { skipped: boolean; stated: number | null } | null;
   cardBusy: boolean;
   onCardSubmit: (answer: ProfileCardAnswer) => void;
   onCardSkip: (answer: ProfileCardAnswer) => void;

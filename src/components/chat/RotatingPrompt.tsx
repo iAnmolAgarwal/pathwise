@@ -55,10 +55,10 @@ export function RotatingPrompt({ intro = "", phrases, paused = false, className,
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={role}
-            className={cn(styles.rotatingValue, "text-gradient-violet")}
+            className={cn(styles.rotatingValue, phrases && phrases.length > 0 ? styles.rotatingPhrase : "text-gradient-violet")}
             initial={paused ? false : { opacity: 0, y: 10, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -10, filter: "blur(4px)", transition: { duration: 0.25 } }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", transition: { ...ENTER, delay: 0.2 } }}
+            exit={{ opacity: 0, y: -10, filter: "blur(4px)", transition: { duration: 0.18 } }}
             transition={ENTER}
           >
             {role}
