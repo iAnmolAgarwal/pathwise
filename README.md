@@ -44,6 +44,7 @@ production. Neither is ever committed.
 JSON under `src/data/` and `pipeline/evidence/`, and nothing in it runs at request time.
 `python pipeline/validate.py` re-checks the committed data and writes
 `pipeline/validation-report.json`, which the Vitest suite pins, so `npm test` fails on drift.
+`pipeline/refresh.sh` runs the whole pipeline in order — see [Keeping it fresh](#keeping-it-fresh).
 
 The evidence stages run in this order (each is documented below; raw inputs never enter the
 repo, and a stage whose raw inputs are absent is skipped — its committed outputs stand):
@@ -226,6 +227,38 @@ python pipeline/evaluate/narration_groundedness.py   # 60 narrations -> checker 
   second model pass with a different objective flags every claim not traceable to a field of the
   evidence object or the profile summary; model calls are cached under `pipeline/build/`, token
   usage is summed into the report.
+
+## Keeping it fresh
+
+Kept fresh by machines, kept true by people: the machines re-run the pipeline, probe the
+links and watch for drift; every change to the shipped data still goes through the pipeline
+scripts, the validator and a human commit. Nothing below writes to `src/data/`, the skill
+taxonomy or the prerequisite edges on its own, and nothing runs at request time.
+
+```
+pipeline/refresh.sh   # curate -> annotate -> embed -> mine -> tag -> pool -> merge -> validate
+```
+
+One entry point for the whole offline pipeline. Stages whose raw inputs are absent — the
+BigQuery result CSVs, the Kaggle Coursera CSVs, the fetched course descriptions plus an
+`ANTHROPIC_API_KEY` — are skipped with a printed notice and their committed outputs stand,
+so the script is safe to run on a fresh clone. It ends with a per-stage ran/skipped summary;
+a clean `git status` afterwards means the committed data already matched what the pipeline
+produces (verified: with every raw input present, a full run is byte-identical).
+
+Two scheduled GitHub Actions, both also runnable on demand via `workflow_dispatch`:
+
+- **link-check** (weekly) runs `pipeline/curate.py --check-urls` over every catalog URL and
+  uploads the full log as a `link-check-report` artifact. Hosts that block scripted requests
+  (403/405/429/999, local SSL-chain failures) are reported as unverifiable, not dead; the run
+  fails only on URLs that are genuinely gone.
+- **drift-check** (nightly) regenerates the five seeded fixture learners' paths with the
+  committed engine and data and diffs them against the committed Vitest snapshots — the same
+  `tests/engine/fixtures.test.ts` that `npm test` runs, with no snapshot updating in CI. A red
+  run is the drift alarm: something changed a generated path.
+
+Note: GitHub pauses scheduled workflows after 60 days without repository activity; a push or
+a manual dispatch resumes them.
 
 ## Data sources and attribution
 
