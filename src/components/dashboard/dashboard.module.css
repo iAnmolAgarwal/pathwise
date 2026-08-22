@@ -778,3 +778,9 @@
 .medalEarned .medalGlyph {
   color: var(--color-ink);
 }
+@media (max-width: 720px) {
+  .whoStats {
+    flex-basis: 100%;
+    gap: 26px;
+  }
+}
