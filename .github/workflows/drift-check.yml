@@ -1,0 +1,29 @@
+# Nightly drift alarm: regenerate the five seeded fixture learners' paths with the
+# committed engine + data and diff them against the committed Vitest snapshots
+# (tests/engine/__snapshots__/fixtures.test.ts.snap). Vitest never updates snapshots
+# in CI, so any difference — an engine change, a data change, a dependency bump that
+# alters a path — fails the run. No new engine code; this is the same test npm test runs.
+# workflow_dispatch so it can be run on demand.
+name: drift-check
+
+on:
+  schedule:
+    - cron: "30 2 * * *" # nightly 02:30 UTC
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/drift-check.yml"
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Regenerate fixture paths and diff against committed snapshots
+        run: npx vitest run tests/engine/fixtures.test.ts
