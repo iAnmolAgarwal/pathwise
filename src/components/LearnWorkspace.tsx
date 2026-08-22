@@ -14,6 +14,7 @@ import { Orb } from "@/components/ui/orb";
 import { ChatPanel, type ChatMessageView } from "./chat/ChatPanel";
 import type { GraphHighlight } from "./graph/SkillGraph";
 import { nextPrompts } from "@/lib/nextPrompts";
+import type { GraphLinkState } from "@/lib/graphLink";
 import { NovaStage, type NovaReaction } from "./nova/NovaStage";
 import type { CatalogLite, SkillLite } from "./path/types";
 import { PathDiffBanner, diffHeadline } from "./path/PathDiffBanner";
@@ -59,17 +60,19 @@ type Props = {
   skills: SkillLite[];
   graphEvidence: GraphEvidence;
   catalog: Record<string, CatalogLite>;
+  /** Open on the graph tab with this arrow's card pinned (trust-badge deep link). */
+  initialGraphLink?: GraphLinkState | null;
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog }: Props) {
+export function LearnWorkspace({ learnerId, displayName, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
   const [nova, dispatchNova] = useReducer(novaReducer, initialNova);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [explaining, setExplaining] = useState<string | null>(null);
-  const [tab, setTab] = useState<Tab>(initialPath ? "path" : "nova");
+  const [tab, setTab] = useState<Tab>(initialGraphLink ? "graph" : initialPath ? "path" : "nova");
   const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(null);
   const [pendingFeedback, setPendingFeedback] = useState<string | null>(null);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
@@ -273,6 +276,8 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
                   levels={levels}
                   highlight={highlight}
                   onClearHighlight={() => setHighlight(null)}
+                  initialEdge={initialGraphLink?.edge ?? null}
+                  defaultLayout={initialGraphLink?.edge ? "lr" : undefined}
                 />
               </div>
             </section>

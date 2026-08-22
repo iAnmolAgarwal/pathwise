@@ -7,6 +7,7 @@ import { NewLearnerForm } from "@/components/learn/NewLearnerForm";
 import { listLearners } from "@/db/queries";
 import { initials } from "@/lib/initials";
 import { signInUrl } from "@/lib/authz";
+import { carryGraphQuery } from "@/lib/graphLink";
 
 export const dynamic = "force-dynamic";
 
@@ -14,11 +15,13 @@ export const dynamic = "force-dynamic";
  * The learner picker (§19). Signed out → sign in and come back. Exactly one learner →
  * straight into it. None → the new-learner form. Otherwise the list, newest first.
  */
-export default async function LearnersPage() {
+export default async function LearnersPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  // A graph deep link from the landing (trust badge) rides along through every hop.
+  const carry = carryGraphQuery(await searchParams);
   const user = await currentUser();
-  if (!user) redirect(signInUrl("/learn"));
+  if (!user) redirect(signInUrl(`/learn${carry}`));
   const learners = await listLearners(user.id);
-  if (learners.length === 1) redirect(`/learn/${learners[0].id}`);
+  if (learners.length === 1) redirect(`/learn/${learners[0].id}${carry}`);
 
   if (learners.length === 0) {
     return (
@@ -30,7 +33,7 @@ export default async function LearnersPage() {
           Nova keeps everything under it — the goal, the skills, every version of the path. Signed in as {user.email ?? user.name}.
         </p>
         <div className="mt-8 w-full">
-          <NewLearnerForm />
+          <NewLearnerForm carry={carry} />
         </div>
       </CenteredPage>
     );
@@ -46,7 +49,7 @@ export default async function LearnersPage() {
         {learners.map((l) => (
           <li key={l.id}>
             <Link
-              href={`/learn/${l.id}`}
+              href={`/learn/${l.id}${carry}`}
               className="flex items-center gap-3 rounded-panel border border-line bg-surface-2 px-4 py-3 transition-colors hover:border-line-strong hover:bg-glass-strong"
             >
               <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-brand font-mono text-[11px] font-medium tracking-[0.04em] text-brand-foreground">

@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Orb } from "@/components/ui/orb";
 
 /** One field, one button: a named learner under the signed-in account. */
-export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
+export function NewLearnerForm({ autoFocus = true, carry = "" }: { autoFocus?: boolean; carry?: string }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export function NewLearnerForm({ autoFocus = true }: { autoFocus?: boolean }) {
       return;
     }
     const learner = await res.json();
-    router.push(`/learn/${learner.id}`);
+    router.push(`/learn/${learner.id}${carry}`);
   }
 
   return (
