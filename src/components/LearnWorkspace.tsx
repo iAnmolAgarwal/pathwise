@@ -284,6 +284,8 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
               <div className="mt-4">
                 <DashboardTab
                   summary={dashboard}
+                  displayName={displayName}
+                  goalTitle={profile.goals[0] ? (profile.goals[0].type === "role" ? templateTitle(profile.goals[0].templateId) : profile.goals[0].text) : null}
                   onAskNova={() => {
                     setTab("nova");
                     chatInputRef.current?.focus();

@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import type { Profile, ProfileOp } from "@/schemas";
 
 const LEVEL_LABEL = ["Not yet", "Basics", "Comfortable", "Strong"];
+const LEVEL_TONE: Record<number, string> = {
+  1: "border-line text-ink-2",
+  2: "border-status-progress-line bg-status-progress-soft text-status-progress",
+  3: "border-status-acquired-line bg-status-acquired-soft text-status-acquired",
+};
 
 export type ProfileChange = { id: number; at: string; ops: ProfileOp[] };
 
@@ -53,11 +58,11 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
 
       <h3 className="label-caps mt-6 text-ink-3">Goals</h3>
       {profile.goals.length === 0 ? (
-        <p className="mt-2 text-ink-3">None yet</p>
+        <p className="mt-2 px-2 text-[13px] text-ink-3">None yet</p>
       ) : (
         <ul className="mt-2 flex flex-col gap-1">
           {profile.goals.map((g, i) => (
-            <li key={i} className={`rounded px-2 py-1 ${hi(`goal:${i}`)}`} data-testid="profile-goal">
+            <li key={i} className={`rounded px-2 py-[7px] text-[13px] leading-5 ${hi(`goal:${i}`)}`} data-testid="profile-goal">
               {g.type === "role" ? (
                 <span>{templateTitle(g.templateId)}</span>
               ) : (
@@ -75,14 +80,21 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
 
       <h3 className="label-caps mt-6 text-ink-3">Skills</h3>
       {skills.length === 0 ? (
-        <p className="mt-2 text-ink-3">None recorded</p>
+        <p className="mt-2 px-2 text-[13px] text-ink-3">None recorded</p>
       ) : (
-        <ul className="mt-2 flex flex-col gap-1">
+        <ul className="mt-2 flex flex-col">
           {skills.map(([id, s]) => (
-            <li key={id} className={`flex items-center justify-between rounded px-2 py-1 ${hi(`skill:${id}`)}`} data-testid="profile-skill">
-              <span>{skillName(id)}</span>
-              <span className="text-[12px] text-ink-2">
-                {LEVEL_LABEL[s.level]} <span className="text-ink-3">· {s.source}</span>
+            <li
+              key={id}
+              className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded border-b border-line/60 px-2 py-[7px] last:border-b-0 ${hi(`skill:${id}`)}`}
+              data-testid="profile-skill"
+            >
+              <span className="truncate text-[13px] leading-5" title={skillName(id)}>
+                {skillName(id)}
+              </span>
+              <span className="flex items-center gap-2 whitespace-nowrap text-[12px] leading-5">
+                <span className={`inline-flex h-[18px] items-center rounded-pill border px-2 text-[10.5px] font-[600] uppercase tracking-[0.08em] ${LEVEL_TONE[s.level]}`}>{LEVEL_LABEL[s.level]}</span>
+                <span className="w-[52px] text-right font-mono text-[10.5px] uppercase tracking-[0.06em] text-ink-4">{s.source}</span>
               </span>
             </li>
           ))}
@@ -90,20 +102,20 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
       )}
 
       <h3 className="label-caps mt-6 text-ink-3">Preferences</h3>
-      <dl className="mt-2 grid grid-cols-[7rem_1fr] gap-y-1">
-        <dt className="text-ink-3">Hours / week</dt>
-        <dd className={`rounded px-1 ${hi("pref:hoursPerWeek")}`} data-testid="pref-hoursPerWeek">{p.hoursPerWeek}</dd>
-        <dt className="text-ink-3">Pace</dt>
-        <dd className={`rounded px-1 ${hi("pref:pace")}`} data-testid="pref-pace">{p.pace}</dd>
-        <dt className="text-ink-3">Budget</dt>
-        <dd className={`rounded px-1 ${hi("pref:budget")}`} data-testid="pref-budget">{p.budget}</dd>
-        <dt className="text-ink-3">Formats</dt>
-        <dd className={`rounded px-1 ${hi("pref:formats")}`} data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "any"}</dd>
+      <dl className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-y-[2px] text-[13px] leading-5">
+        <dt className="px-2 text-ink-3">Hours / week</dt>
+        <dd className={`rounded px-2 text-right font-mono text-[12px] ${hi("pref:hoursPerWeek")}`} data-testid="pref-hoursPerWeek">{p.hoursPerWeek}</dd>
+        <dt className="px-2 text-ink-3">Pace</dt>
+        <dd className={`rounded px-2 text-right capitalize ${hi("pref:pace")}`} data-testid="pref-pace">{p.pace}</dd>
+        <dt className="px-2 text-ink-3">Budget</dt>
+        <dd className={`rounded px-2 text-right ${hi("pref:budget")}`} data-testid="pref-budget">{p.budget === "free-only" ? "Free only" : "Any"}</dd>
+        <dt className="px-2 text-ink-3">Formats</dt>
+        <dd className={`rounded px-2 text-right ${hi("pref:formats")}`} data-testid="pref-formats">{p.formats.length ? p.formats.join(", ") : "Any"}</dd>
       </dl>
 
       <h3 className="label-caps mt-6 text-ink-3">Recent updates</h3>
       {changes.length === 0 ? (
-        <p className="mt-2 text-ink-3">Nothing applied yet</p>
+        <p className="mt-2 px-2 text-[13px] text-ink-3">Nothing applied yet</p>
       ) : (
         <ol className="mt-2 flex flex-col gap-1 text-xs" data-testid="profile-log">
           {[...changes]

@@ -30,6 +30,8 @@ export type DashboardSummary = {
   difficulty: DifficultySplit;
   /** Calendar of active days over the last 52 weeks. */
   activity: ActivityCalendar;
+  /** Achievement badges, derived from the fields above. */
+  achievements: Achievement[];
   gap: Pick<Gap, "skillId" | "targetLevel" | "currentLevel" | "reason">[];
   skillStatus: Record<string, SkillStatus>;
   /** The UTC date the summary was computed for. */
@@ -51,6 +53,15 @@ export type ActivityCalendar = {
 };
 
 export type MilestoneBadge = { phase: string; milestone: string; earned: boolean };
+
+export type AchievementId = "first-path" | "first-done" | "streak-7" | "streak-30" | "foundations" | "explorer" | "hard-mode" | "depth" | "phase-1" | "goal-complete";
+export type Achievement = {
+  id: AchievementId;
+  name: string;
+  /** What earning it takes, phrased for the learner. */
+  hint: string;
+  earned: boolean;
+};
 
 export type DashboardInput = {
   profile: Profile;
@@ -150,6 +161,28 @@ export function activityCalendar(days: string[], today: string, weeks = 52): Act
   return { weeks: columns, months, activeDays };
 }
 
+/**
+ * Achievement badges, derived on read from stored state — no badges table, nothing written when
+ * one is earned, nothing invented: each rule reads the path, the profile, the streak or the split.
+ */
+export function achievements(input: { profile: Profile; path: Path | null; data: EngineData; difficulty: DifficultySplit; streak: Streak; timeline: DashboardSummary["timeline"]; progress: DashboardSummary["progress"] }): Achievement[] {
+  const { profile, path, data, difficulty, streak, timeline, progress } = input;
+  const levels = Object.values(profile.skills).map((s) => s.level);
+  const domains = new Set(data.skills.filter((s) => (profile.skills[s.id]?.level ?? 0) > 0).map((s) => s.domain));
+  return [
+    { id: "first-path", name: "First path", hint: "Generate your first learning path", earned: (path?.phases.length ?? 0) > 0 },
+    { id: "first-done", name: "First step", hint: "Mark your first item done", earned: progress.itemsDone >= 1 },
+    { id: "phase-1", name: "Phase one", hint: "Finish every item in your first phase", earned: timeline[0]?.complete === true },
+    { id: "streak-7", name: "7-day streak", hint: "Seven active days in a row", earned: streak.longest >= 7 },
+    { id: "foundations", name: "Foundations", hint: "Finish every easy item on your path", earned: difficulty.easy.total > 0 && difficulty.easy.done === difficulty.easy.total },
+    { id: "explorer", name: "Explorer", hint: "Hold skills in five different domains", earned: domains.size >= 5 },
+    { id: "depth", name: "Depth", hint: "Reach level 3 in any skill", earned: levels.some((l) => l >= 3) },
+    { id: "hard-mode", name: "Hard mode", hint: "Finish three hard items", earned: difficulty.hard.done >= 3 },
+    { id: "streak-30", name: "30-day streak", hint: "Thirty active days in a row", earned: streak.longest >= 30 },
+    { id: "goal-complete", name: "Goal complete", hint: "Reach every skill level your goal requires", earned: progress.requiredLevels > 0 && progress.attainedLevels === progress.requiredLevels },
+  ];
+}
+
 /** One badge per phase: earned when the phase's items are all settled, otherwise locked under its milestone name. */
 export function milestoneBadges(timeline: DashboardSummary["timeline"]): MilestoneBadge[] {
   return timeline.map((p) => ({ phase: p.title, milestone: p.milestone, earned: p.complete }));
@@ -215,20 +248,24 @@ export function dashboardSummary(input: DashboardInput): DashboardSummary {
     else skillStatus[s.id] = "unrelated";
   }
 
+  const progress = {
+    percent: requiredLevels === 0 ? 0 : Math.round((attained / requiredLevels) * 100),
+    attainedLevels: attained,
+    requiredLevels,
+    itemsDone: items.filter((i) => i.status === "done").length,
+    itemsTotal: items.length,
+  };
+  const streak = streakFromDays(input.eventDays, input.today);
+  const difficulty = difficultySplit(path, data);
   return {
-    progress: {
-      percent: requiredLevels === 0 ? 0 : Math.round((attained / requiredLevels) * 100),
-      attainedLevels: attained,
-      requiredLevels,
-      itemsDone: items.filter((i) => i.status === "done").length,
-      itemsTotal: items.length,
-    },
+    progress,
     radar,
     timeline,
     nextAction: nextAction(path, data, profile),
-    streak: streakFromDays(input.eventDays, input.today),
-    difficulty: difficultySplit(path, data),
+    streak,
+    difficulty,
     activity: activityCalendar(input.eventDays, input.today),
+    achievements: achievements({ profile, path, data, difficulty, streak, timeline, progress }),
     gap: gap.map(({ skillId, targetLevel, currentLevel, reason }) => ({ skillId, targetLevel, currentLevel, reason })),
     skillStatus,
     today: input.today,

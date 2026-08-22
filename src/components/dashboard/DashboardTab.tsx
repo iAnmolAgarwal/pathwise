@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { milestoneBadges, type DashboardSummary, type DifficultyBucket } from "@/engine/dashboard";
+import { BadgeMedal } from "./BadgeMedal";
 import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,9 @@ const VIZ = { known: "#8f7cff", required: "#6b6b70", grid: "rgba(255,255,255,0.0
 
 type Props = {
   summary: DashboardSummary | null;
+  /** The learner this dashboard belongs to (identity header). */
+  displayName?: string;
+  goalTitle?: string | null;
   onOpenItem?: (catalogId: string) => void;
   /** Switches to the Nova tab — the dashboard hides the chat column, so this is the one-click way back. */
   onAskNova?: () => void;
@@ -34,7 +38,7 @@ const BUCKETS: { key: DifficultyBucket; label: string }[] = [
  * phases as a horizontal strip, and skills by domain. Every figure comes from DashboardSummary,
  * which is computed from stored rows — nothing here is invented or filled in.
  */
-export function DashboardTab({ summary, onOpenItem, onAskNova }: Props) {
+export function DashboardTab({ summary, displayName, goalTitle, onOpenItem, onAskNova }: Props) {
   const reduce = useReducedMotion() ?? false;
   if (!summary) {
     return (
@@ -45,8 +49,9 @@ export function DashboardTab({ summary, onOpenItem, onAskNova }: Props) {
     );
   }
   const { progress, radar, timeline, nextAction, streak, difficulty, activity } = summary;
-  const badges = milestoneBadges(timeline);
-  const earned = badges.filter((b) => b.earned).length;
+  const milestones = milestoneBadges(timeline);
+  const earnedList = summary.achievements.filter((a) => a.earned);
+  const nextBadge = summary.achievements.find((a) => !a.earned) ?? null;
   const rise = (i: number) => ({
     initial: reduce ? false : { opacity: 0, y: 10 },
     animate: { opacity: 1, y: 0 },
@@ -55,6 +60,36 @@ export function DashboardTab({ summary, onOpenItem, onAskNova }: Props) {
 
   return (
     <div className={styles.grid} data-testid="dashboard">
+      {displayName && (
+        <motion.header className={styles.identity} data-testid="identity" {...rise(0)}>
+          <span className={styles.avatar} aria-hidden>
+            {displayName
+              .split(/\s+/)
+              .slice(0, 2)
+              .map((w) => w[0]?.toUpperCase() ?? "")
+              .join("")}
+          </span>
+          <div className={styles.who}>
+            <p className={styles.whoName}>{displayName}</p>
+            <p className={styles.whoGoal}>{goalTitle ? `Becoming a ${goalTitle}` : "No goal yet"}</p>
+          </div>
+          <dl className={styles.whoStats}>
+            <div>
+              <dt>Items done</dt>
+              <dd>{progress.itemsDone}</dd>
+            </div>
+            <div>
+              <dt>Active days</dt>
+              <dd>{activity.activeDays}</dd>
+            </div>
+            <div>
+              <dt>Badges</dt>
+              <dd>{earnedList.length}</dd>
+            </div>
+          </dl>
+        </motion.header>
+      )}
+
       {/* Hero: the next thing to do, with the done ring and the difficulty split beside it. */}
       <motion.section className={cn(styles.card, styles.hero)} data-testid="next-action" {...rise(0)}>
         <div className={styles.heroMain}>
@@ -102,22 +137,37 @@ export function DashboardTab({ summary, onOpenItem, onAskNova }: Props) {
         </div>
       </motion.section>
 
-      {/* Badges: one per completed phase; the rest locked under their milestone name. */}
+      {/* Badges: achievements derived from stored state, the next one to chase first; then one per completed phase. */}
       <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(1)}>
         <div className={styles.cardHead}>
           <div>
             <p className={styles.label}>Badges</p>
             <p className={styles.badgeCount}>
-              {earned}
-              <span className={styles.tileOf}> of {badges.length}</span>
+              {earnedList.length}
+              <span className={styles.tileOf}> of {summary.achievements.length}</span>
             </p>
           </div>
         </div>
-        {badges.length === 0 ? (
-          <p className={styles.empty}>Badges unlock as you finish each phase of your path.</p>
-        ) : (
-          <ul className={styles.badgeList}>
-            {badges.map((b, i) => (
+        {nextBadge && (
+          <div className={styles.nextBadge} data-testid="next-badge">
+            <BadgeMedal id={nextBadge.id} earned={false} title={nextBadge.name} size={40} />
+            <div className={styles.nextBadgeText}>
+              <p className={styles.nextBadgeName}>{nextBadge.name}</p>
+              <p className={styles.nextBadgeHint}>Next up · {nextBadge.hint.toLowerCase()}</p>
+            </div>
+          </div>
+        )}
+        <ul className={styles.medals} aria-label="Achievements">
+          {summary.achievements.map((a) => (
+            <li key={a.id} className={cn(styles.medalItem, !a.earned && styles.medalItemLocked)} title={a.hint} data-earned={a.earned} data-badge={a.id}>
+              <BadgeMedal id={a.id} earned={a.earned} title={a.name} />
+              <span className={styles.medalName}>{a.name}</span>
+            </li>
+          ))}
+        </ul>
+        {milestones.length > 0 && (
+          <ul className={styles.badgeList} aria-label="Phase milestones">
+            {milestones.map((b, i) => (
               <li key={b.phase} className={cn(styles.badge, b.earned ? styles.badgeEarned : styles.badgeLocked)} data-earned={b.earned} title={b.milestone}>
                 <span className={styles.badgeIcon} aria-hidden>
                   {b.earned ? <Award /> : <Lock />}
@@ -298,7 +348,7 @@ function Heatmap({ activity, today }: { activity: DashboardSummary["activity"]; 
             </span>
           ))}
         </div>
-        <div className={styles.heatGrid}>
+        <div className={styles.heatGrid} aria-hidden>
           {activity.weeks.map((week, w) => (
             <div key={w} className={styles.heatWeek}>
               {week.map((cell) => (

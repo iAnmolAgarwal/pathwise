@@ -151,3 +151,28 @@ describe("milestoneBadges (dashboard item 7d)", () => {
     expect(s2.activity.activeDays).toBe(0);
   });
 });
+
+describe("achievements (dashboard badges, derived on read)", () => {
+  it("earns first-path with a path and nothing else for a fresh learner; all-done earns first step, phase one, foundations and goal-complete when levels are met", () => {
+    const s = dashboardSummary({ profile, path, data, eventDays: [], today: TODAY });
+    const byId = Object.fromEntries(s.achievements.map((a) => [a.id, a.earned]));
+    expect(byId["first-path"]).toBe(true);
+    expect(byId["first-done"]).toBe(false);
+    expect(byId["streak-7"]).toBe(false);
+    const allDone: Path = { ...path, phases: path.phases.map((p) => ({ ...p, items: p.items.map((i) => ({ ...i, status: "done" as const })) })) };
+    const s2 = dashboardSummary({ profile, path: allDone, data, eventDays: [], today: TODAY });
+    const by2 = Object.fromEntries(s2.achievements.map((a) => [a.id, a.earned]));
+    expect(by2["first-done"]).toBe(true);
+    expect(by2["phase-1"]).toBe(true);
+    expect(by2["foundations"]).toBe(s2.difficulty.easy.total > 0);
+    expect(by2["goal-complete"]).toBe(s2.progress.attainedLevels === s2.progress.requiredLevels);
+  });
+
+  it("streak badges follow the longest streak; no path means no first-path", () => {
+    const days = Array.from({ length: 7 }, (_, i) => `2026-08-${String(9 + i).padStart(2, "0")}`);
+    const s = dashboardSummary({ profile, path, data, eventDays: days, today: TODAY });
+    expect(s.achievements.find((a) => a.id === "streak-7")?.earned).toBe(true);
+    expect(s.achievements.find((a) => a.id === "streak-30")?.earned).toBe(false);
+    expect(dashboardSummary({ profile, path: null, data, eventDays: [], today: TODAY }).achievements.find((a) => a.id === "first-path")?.earned).toBe(false);
+  });
+});
