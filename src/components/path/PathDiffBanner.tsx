@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef } from "react";
 
 import type { PathDiff } from "@/schemas";
 
@@ -39,9 +40,25 @@ export function PathDiffBanner({ diff, version, catalog, onDismiss }: Props) {
   const reduce = useReducedMotion() ?? false;
   const title = (id: string) => catalog[id]?.title ?? id;
   const changed = diff.added.length + diff.removed.length;
+  const ref = useRef<HTMLElement>(null);
+  // The banner sits at the top of the path; feedback is given further down, so bring it into view.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Scroll the pane itself (not the window) once the list below has settled its layout.
+    const t = window.setTimeout(() => {
+      let parent = el.parentElement;
+      while (parent && !(parent.scrollHeight > parent.clientHeight && getComputedStyle(parent).overflowY !== "visible")) parent = parent.parentElement;
+      if (!parent) return;
+      const top = el.getBoundingClientRect().top - parent.getBoundingClientRect().top + parent.scrollTop - 16;
+      parent.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+    }, 120);
+    return () => window.clearTimeout(t);
+  }, [reduce]);
 
   return (
     <motion.section
+      ref={ref}
       className={styles.banner}
       role="status"
       aria-live="polite"
