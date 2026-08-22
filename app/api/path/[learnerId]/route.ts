@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getLatestPath, getLearner } from "@/db/queries";
-import { jsonError, UuidSchema } from "@/lib/api";
+import { getLatestPath } from "@/db/queries";
+import { jsonError } from "@/lib/api";
+import { requireLearner } from "@/lib/authz";
 import { PathDiffSchema, PathSchema } from "@/schemas";
 
 type Ctx = { params: Promise<{ learnerId: string }> };
@@ -16,8 +17,8 @@ const ResponseSchema = z.object({
 /** Latest path version (and its diff, once replanning exists) for a learner. */
 export async function GET(_request: Request, { params }: Ctx) {
   const { learnerId } = await params;
-  if (!UuidSchema.safeParse(learnerId).success) return jsonError(400, "Invalid learner id");
-  if (!(await getLearner(learnerId))) return jsonError(404, "Learner not found");
+  const authz = await requireLearner(learnerId);
+  if (!authz.ok) return authz.response;
   const latest = await getLatestPath(learnerId);
   if (!latest) return jsonError(404, "No path generated yet");
   return NextResponse.json(

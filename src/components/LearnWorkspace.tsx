@@ -2,10 +2,11 @@
 
 import { AnimatePresence } from "motion/react";
 import dynamic from "next/dynamic";
+import { signOut } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
 import type { GraphEvidence } from "@/lib/graphEvidence";
-import type { NovaState } from "@/schemas";
+import type { NovaState, SessionUser } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +20,7 @@ import { ExplainPanel } from "./path/ExplainPanel";
 import { PathView, type ItemFeedbackType } from "./path/PathView";
 import { ProfileDrawer, type ProfileChange } from "./profile/ProfileDrawer";
 import { AppShell, type PaneTab } from "./shell/AppShell";
+import type { RailLearner } from "./shell/Rail";
 import { EmptyPath } from "./shell/EmptyPath";
 
 // The graph (React Flow + dagre) and dashboard (Recharts) only load when their tab opens.
@@ -47,6 +49,8 @@ type GoalLite = { id: string; title: string; description: string; requiredSkills
 type Props = {
   learnerId: string;
   displayName: string;
+  user: SessionUser;
+  learners: RailLearner[];
   initialProfile: Profile;
   initialPath: { version: number; path: Path } | null;
   initialMessages: ChatMessageView[];
@@ -57,7 +61,7 @@ type Props = {
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog }: Props) {
+export function LearnWorkspace({ learnerId, displayName, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
@@ -215,7 +219,14 @@ export function LearnWorkspace({ learnerId, displayName, initialProfile, initial
 
   return (
     <AppShell
-      rail={{ displayName, profileOpen: drawerOpen, onToggleProfile: () => setDrawerOpen((o) => !o) }}
+      rail={{
+        learnerId,
+        displayName,
+        user,
+        learners,
+        onOpenProfile: () => setDrawerOpen(true),
+        onSignOut: () => void signOut({ callbackUrl: "/" }),
+      }}
       chatHeader={chatHeader}
       chat={
         <ChatPanel

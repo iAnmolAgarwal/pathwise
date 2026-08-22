@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getLearner, getLatestPath, getProfile, listChatMessages } from "@/db/queries";
+import { notFound, redirect } from "next/navigation";
+import { currentUser } from "@/auth";
+import { getOwnedLearner, getLatestPath, getProfile, listChatMessages, listLearners } from "@/db/queries";
 import { loadEngineData } from "@/lib/engineData";
 import { loadGraphEvidence } from "@/lib/graphEvidence";
+import { signInUrl } from "@/lib/authz";
 import { UuidSchema } from "@/lib/api";
 import { LearnWorkspace } from "@/components/LearnWorkspace";
 import type { CatalogLite, SkillLite } from "@/components/path/types";
@@ -11,8 +13,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: PageProps<"/learn/[learnerId]">): Promise<Metadata> {
   const { learnerId } = await params;
-  if (!UuidSchema.safeParse(learnerId).success) return { title: "Workspace" };
-  const learner = await getLearner(learnerId);
+  const user = await currentUser();
+  const learner = user && UuidSchema.safeParse(learnerId).success ? await getOwnedLearner(user.id, learnerId) : null;
   return {
     title: learner ? `${learner.displayName}'s workspace` : "Workspace",
     description: "Chat with Nova, follow your learning path, trace skills on the graph, and track progress.",
@@ -20,14 +22,21 @@ export async function generateMetadata({ params }: PageProps<"/learn/[learnerId]
   };
 }
 
+/**
+ * The workspace for one learner (§9.1). Signed out → sign-in and back here; a learner
+ * that is missing or belongs to someone else → 404, indistinguishable on purpose (§19).
+ */
 export default async function LearnPage({ params }: PageProps<"/learn/[learnerId]">) {
   const { learnerId } = await params;
+  const user = await currentUser();
+  if (!user) redirect(signInUrl(`/learn/${learnerId}`));
   if (!UuidSchema.safeParse(learnerId).success) notFound();
-  const [learner, profile, latest, messages] = await Promise.all([
-    getLearner(learnerId),
+  const [learner, profile, latest, messages, siblings] = await Promise.all([
+    getOwnedLearner(user.id, learnerId),
     getProfile(learnerId),
     getLatestPath(learnerId),
     listChatMessages(learnerId),
+    listLearners(user.id),
   ]);
   if (!learner || !profile) notFound();
 
@@ -46,6 +55,8 @@ export default async function LearnPage({ params }: PageProps<"/learn/[learnerId
     <LearnWorkspace
       learnerId={learner.id}
       displayName={learner.displayName}
+      user={user}
+      learners={siblings.map((l) => ({ id: l.id, displayName: l.displayName }))}
       initialProfile={profile}
       initialPath={latest ? { version: latest.version, path: latest.data } : null}
       initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded, card: m.content.card }))}
