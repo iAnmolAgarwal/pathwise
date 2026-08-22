@@ -110,16 +110,18 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
 
   return (
     <aside
-      className={`fixed inset-y-3 right-3 z-40 flex w-[min(400px,calc(100vw-24px))] transform flex-col overflow-hidden rounded-panel border border-line bg-[rgb(8_8_10/88%)] text-[13.5px] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
+      className={`fixed inset-y-3 right-3 z-40 flex w-[min(400px,calc(100vw-24px))] transform flex-col overflow-hidden rounded-panel border border-line bg-[rgb(8_8_10/94%)] text-[13.5px] sm:bg-[rgb(8_8_10/88%)] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
+      role="dialog"
+      aria-modal={open}
       aria-label="Learner profile"
       aria-hidden={!open}
       inert={!open}
       data-testid="profile-drawer"
     >
-      <div className="shrink-0 px-5 pt-5">
+      <div className="shrink-0 border-b border-line/60 px-5 pt-5 pb-4">
         <div className="flex items-center justify-between">
           <h2 className="text-[17px] font-[540] tracking-[-0.02em]">Your profile</h2>
-          <button type="button" className="rounded-pill border border-line px-3 py-2 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={onClose}>
+          <button type="button" className="inline-flex h-10 items-center rounded-pill border border-line px-3.5 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={onClose}>
             Close
           </button>
         </div>
@@ -128,7 +130,7 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
         </p>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-5">
+      <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-5 [mask-image:linear-gradient(to_bottom,transparent_0,#000_14px,#000_calc(100%-22px),transparent_100%)]">
         <h3 className="label-caps mt-5 px-2 text-ink-3">Goals</h3>
         {profile.goals.length === 0 ? (
           <p className="mt-2 px-2 text-[13px] text-ink-3">None yet</p>
@@ -162,7 +164,7 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
                 className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded border-b border-line/60 px-2 py-[10px] last:border-b-0 ${hi(`skill:${id}`)}`}
                 data-testid="profile-skill"
               >
-                <span className="truncate text-[13px] leading-5" title={skillName(id)}>
+                <span className="line-clamp-2 text-[13px] leading-5 [overflow-wrap:anywhere]" title={skillName(id)}>
                   {skillName(id)}
                 </span>
                 <span className="flex items-center gap-2 whitespace-nowrap text-[12px] leading-5">
@@ -263,13 +265,13 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
           </span>
           <span className="flex shrink-0 items-center gap-2">
             {dirty && !saving && (
-              <button type="button" className="rounded-pill border border-line px-3 py-2 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={() => { setLevels({}); setPrefs(profile.preferences); }}>
+              <button type="button" className="inline-flex h-10 items-center rounded-pill border border-line px-3.5 text-[12px] text-ink-2 transition-colors hover:border-line-strong hover:text-ink-1" onClick={() => { setLevels({}); setPrefs(profile.preferences); }}>
                 Reset
               </button>
             )}
             <button
               type="button"
-              className="rounded-pill bg-brand px-3.5 py-2 text-[12px] font-[650] text-brand-foreground shadow-brand transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex h-10 items-center rounded-pill bg-brand px-4 text-[12px] font-[650] text-brand-foreground shadow-brand transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!dirty || saving}
               onClick={save}
               data-testid="profile-save"
@@ -307,7 +309,7 @@ function Segmented<T extends string>({ options, value, disabled, testId, onChang
           role="radio"
           aria-checked={o.value === value}
           disabled={disabled}
-          className={`px-3 py-[9px] text-[11.5px] transition-colors ${o.value === value ? "bg-violet-soft text-violet" : "text-ink-3 hover:text-ink-1"} disabled:cursor-not-allowed`}
+          className={`inline-flex h-10 items-center px-3 text-[11.5px] transition-colors ${o.value === value ? "bg-violet-soft text-violet" : "text-ink-3 hover:text-ink-1"} disabled:cursor-not-allowed`}
           onClick={() => onChange(o.value)}
         >
           {o.label}
