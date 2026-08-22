@@ -1,10 +1,10 @@
 "use client";
 
-import { ArrowRight, Check, Flame } from "lucide-react";
+import { ArrowRight, Award, Check, Flame, Lock, MessageSquare } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import type { DashboardSummary } from "@/engine/dashboard";
+import { milestoneBadges, type DashboardSummary, type DifficultyBucket } from "@/engine/dashboard";
 import { Badge } from "@/components/ui/badge";
 import { Orb } from "@/components/ui/orb";
 import { cn } from "@/lib/utils";
@@ -17,12 +17,24 @@ const VIZ = { known: "#8f7cff", required: "#6b6b70", grid: "rgba(255,255,255,0.0
 type Props = {
   summary: DashboardSummary | null;
   onOpenItem?: (catalogId: string) => void;
+  /** Switches to the Nova tab — the dashboard hides the chat column, so this is the one-click way back. */
+  onAskNova?: () => void;
 };
 
 const ENTER = { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const };
+const BUCKETS: { key: DifficultyBucket; label: string }[] = [
+  { key: "easy", label: "Easy" },
+  { key: "medium", label: "Medium" },
+  { key: "hard", label: "Hard" },
+];
 
-/** Dashboard tab (§9.3): hero progress, stat tiles, radar, timeline, streak, next-best-action — all engine-computed. */
-export function DashboardTab({ summary, onOpenItem }: Props) {
+/**
+ * Full-width dashboard (§9.3, M5.12 item 7): next action as the hero, items done as a ring with the
+ * easy / medium / hard split beside it, milestone badges, a year of activity as a heatmap, the
+ * phases as a horizontal strip, and skills by domain. Every figure comes from DashboardSummary,
+ * which is computed from stored rows — nothing here is invented or filled in.
+ */
+export function DashboardTab({ summary, onOpenItem, onAskNova }: Props) {
   const reduce = useReducedMotion() ?? false;
   if (!summary) {
     return (
@@ -32,9 +44,9 @@ export function DashboardTab({ summary, onOpenItem }: Props) {
       </div>
     );
   }
-  const { progress, radar, timeline, nextAction, streak } = summary;
-  const skillsKnown = radar.reduce((n, r) => n + r.known, 0);
-  const skillsRequired = radar.reduce((n, r) => n + r.required, 0);
+  const { progress, radar, timeline, nextAction, streak, difficulty, activity } = summary;
+  const badges = milestoneBadges(timeline);
+  const earned = badges.filter((b) => b.earned).length;
   const rise = (i: number) => ({
     initial: reduce ? false : { opacity: 0, y: 10 },
     animate: { opacity: 1, y: 0 },
@@ -43,46 +55,140 @@ export function DashboardTab({ summary, onOpenItem }: Props) {
 
   return (
     <div className={styles.grid} data-testid="dashboard">
-      {/* Hero: the one number the view leads with. */}
-      <motion.section className={cn(styles.card, styles.hero)} {...rise(0)}>
-        <div className={styles.heroText}>
-          <p className={styles.label}>Progress toward your goal</p>
-          <p className={styles.heroValue} data-testid="progress-percent">
-            {progress.percent}
-            <span className={styles.heroUnit}>%</span>
-          </p>
-          <p className={styles.heroSub}>
-            {progress.attainedLevels} of {progress.requiredLevels} required skill levels reached
-          </p>
+      {/* Hero: the next thing to do, with the done ring and the difficulty split beside it. */}
+      <motion.section className={cn(styles.card, styles.hero)} data-testid="next-action" {...rise(0)}>
+        <div className={styles.heroMain}>
+          <p className={styles.label}>Next up</p>
+          {nextAction.catalogId ? (
+            <>
+              <div className={styles.nextMeta}>
+                {nextAction.kind && <Badge variant="kind">{nextAction.kind}</Badge>}
+                {nextAction.hours ? <span className={styles.mono}>{nextAction.hours}h</span> : null}
+                {nextAction.phase && <span className={styles.nextPhase}>{nextAction.phase}</span>}
+              </div>
+              <h3 className={styles.nextTitle}>{nextAction.title}</h3>
+              <p className={styles.nextWhy}>{nextAction.why}</p>
+            </>
+          ) : (
+            <p className={styles.nextWhy}>{nextAction.why}</p>
+          )}
+          <div className={styles.heroActions}>
+            {nextAction.catalogId && onOpenItem && (
+              <button type="button" className={styles.nextButton} onClick={() => onOpenItem(nextAction.catalogId!)}>
+                Open on path <ArrowRight aria-hidden />
+              </button>
+            )}
+            {onAskNova && (
+              <button type="button" className={styles.ghostButton} onClick={onAskNova} data-testid="ask-nova">
+                <MessageSquare aria-hidden /> Ask Nova
+              </button>
+            )}
+          </div>
         </div>
-        <div className={styles.meter} role="progressbar" aria-valuenow={progress.percent} aria-valuemin={0} aria-valuemax={100} aria-label="Progress toward your goal">
-          <motion.span className={styles.meterFill} initial={reduce ? false : { width: 0 }} animate={{ width: `${progress.percent}%` }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }} />
+
+        <div className={styles.heroStats}>
+          <Ring done={progress.itemsDone} total={progress.itemsTotal} reduce={reduce} />
+          <ul className={styles.buckets} aria-label="Items by difficulty" data-testid="difficulty-split">
+            {BUCKETS.map((b) => (
+              <li key={b.key} className={cn(styles.bucket, styles[`bucket_${b.key}`])} data-bucket={b.key}>
+                <span className={styles.bucketLabel}>{b.label}</span>
+                <span className={styles.bucketValue}>
+                  {difficulty[b.key].done}
+                  <span className={styles.bucketOf}>/{difficulty[b.key].total}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </motion.section>
 
-      {/* KPI row */}
-      <motion.ul className={styles.tiles} aria-label="Key figures" {...rise(1)}>
-        <Tile label="Items done" value={progress.itemsDone} of={progress.itemsTotal} testId="tile-items" />
-        <Tile label="Skill levels" value={progress.attainedLevels} of={progress.requiredLevels} />
-        <Tile label="Domains touched" value={radar.filter((r) => r.known > 0).length} of={radar.length} />
-        <li className={cn(styles.tile, streak.current > 0 && styles.tileHot)} data-testid="streak">
-          <p className={styles.label}>Streak</p>
-          <p className={styles.tileValue}>
-            {streak.current > 0 && <Flame className={styles.flame} aria-hidden />}
-            {streak.current}
-            <span className={styles.tileOf}> {streak.current === 1 ? "day" : "days"} · best {streak.longest}</span>
-          </p>
-          <StreakDots activeDays={streak.activeDays} today={summary.today} />
-        </li>
-      </motion.ul>
+      {/* Badges: one per completed phase; the rest locked under their milestone name. */}
+      <motion.section className={cn(styles.card, styles.badges)} data-testid="badges" {...rise(1)}>
+        <div className={styles.cardHead}>
+          <div>
+            <p className={styles.label}>Badges</p>
+            <p className={styles.badgeCount}>
+              {earned}
+              <span className={styles.tileOf}> of {badges.length}</span>
+            </p>
+          </div>
+        </div>
+        {badges.length === 0 ? (
+          <p className={styles.empty}>Badges unlock as you finish each phase of your path.</p>
+        ) : (
+          <ul className={styles.badgeList}>
+            {badges.map((b, i) => (
+              <li key={b.phase} className={cn(styles.badge, b.earned ? styles.badgeEarned : styles.badgeLocked)} data-earned={b.earned} title={b.milestone}>
+                <span className={styles.badgeIcon} aria-hidden>
+                  {b.earned ? <Award /> : <Lock />}
+                  <span className={styles.badgeIndex}>{i + 1}</span>
+                </span>
+                <span className={styles.badgeText}>
+                  <span className={styles.badgeName}>{b.milestone}</span>
+                  <span className={styles.badgePhase}>{b.earned ? "Earned" : "Locked"} · {b.phase}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </motion.section>
 
-      {/* Radar */}
-      <motion.section className={styles.card} data-testid="skill-radar" {...rise(2)}>
+      {/* Activity: a year of days, from stored feedback events and chat messages. */}
+      <motion.section className={cn(styles.card, styles.activity)} data-testid="activity" {...rise(2)}>
+        <div className={styles.cardHead}>
+          <p className={styles.activityTitle}>
+            <span className={styles.activityCount}>{activity.activeDays}</span> active {activity.activeDays === 1 ? "day" : "days"} in the past year
+          </p>
+          <div className={styles.streaks} data-testid="streak">
+            <span>
+              <span className={styles.streakLabel}>Current streak</span>
+              <span className={cn(styles.streakValue, streak.current > 0 && styles.streakHot)}>
+                {streak.current > 0 && <Flame aria-hidden className={styles.flame} />}
+                {streak.current}
+              </span>
+            </span>
+            <span>
+              <span className={styles.streakLabel}>Longest</span>
+              <span className={styles.streakValue}>{streak.longest}</span>
+            </span>
+          </div>
+        </div>
+        <Heatmap activity={activity} today={summary.today} />
+      </motion.section>
+
+      {/* Phases as a strip. */}
+      <motion.section className={cn(styles.card, styles.phases)} data-testid="timeline" {...rise(3)}>
+        <p className={styles.label}>Phases</p>
+        {timeline.length === 0 ? (
+          <p className={styles.empty}>No path yet.</p>
+        ) : (
+          <ol className={styles.strip}>
+            {timeline.map((t, i) => (
+              <li key={t.title} className={cn(styles.phase, t.complete && styles.phaseDone, t.active && styles.phaseActive)} data-complete={t.complete} data-active={t.active}>
+                <span className={styles.phaseNode} aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}>
+                  {t.complete ? <Check aria-hidden /> : i + 1}
+                </span>
+                <p className={styles.phaseTitle}>{t.title}</p>
+                <p className={styles.phaseMilestone}>{t.milestone}</p>
+                <div className={styles.phaseBar} aria-hidden>
+                  <span style={{ width: `${t.itemsTotal ? (t.itemsDone / t.itemsTotal) * 100 : 0}%` }} />
+                </div>
+                <p className={styles.phaseCount}>
+                  {t.itemsDone}/{t.itemsTotal} done
+                </p>
+              </li>
+            ))}
+          </ol>
+        )}
+      </motion.section>
+
+      {/* Skills by domain */}
+      <motion.section className={cn(styles.card, styles.skills)} data-testid="skill-radar" {...rise(4)}>
         <header className={styles.cardHead}>
           <div>
-            <p className={styles.label}>Skills by domain</p>
+            <p className={styles.label}>Skills</p>
             <p className={styles.cardHint}>
-              {skillsKnown} of {skillsRequired} required levels — the outer ring is the goal, the filled shape is you.
+              {progress.attainedLevels} of {progress.requiredLevels} required levels ({progress.percent} %) — the outer ring is the goal, the filled shape is you.
             </p>
           </div>
           <ul className={styles.legend} aria-label="Legend">
@@ -145,74 +251,77 @@ export function DashboardTab({ summary, onOpenItem }: Props) {
           </details>
         )}
       </motion.section>
-
-      {/* Next best action */}
-      <motion.section className={cn(styles.card, styles.next)} data-testid="next-action" {...rise(3)}>
-        <p className={styles.label}>Next best action</p>
-        {nextAction.catalogId ? (
-          <>
-            <div className={styles.nextMeta}>
-              {nextAction.kind && <Badge variant="kind">{nextAction.kind}</Badge>}
-              {nextAction.hours ? <span className={styles.mono}>{nextAction.hours}h</span> : null}
-              {nextAction.phase && <span className={styles.nextPhase}>{nextAction.phase}</span>}
-            </div>
-            <h3 className={styles.nextTitle}>{nextAction.title}</h3>
-            <p className={styles.nextWhy}>{nextAction.why}</p>
-            {onOpenItem && (
-              <button type="button" className={styles.nextButton} onClick={() => onOpenItem(nextAction.catalogId!)}>
-                Open on path <ArrowRight aria-hidden />
-              </button>
-            )}
-          </>
-        ) : (
-          <p className={styles.nextWhy}>{nextAction.why}</p>
-        )}
-      </motion.section>
-
-      {/* Timeline */}
-      <motion.section className={cn(styles.card, styles.timelineCard)} data-testid="timeline" {...rise(4)}>
-        <p className={styles.label}>Path timeline</p>
-        {timeline.length === 0 ? (
-          <p className={styles.empty}>No path yet.</p>
-        ) : (
-          <ol className={styles.timeline}>
-            {timeline.map((t, i) => (
-              <li key={t.title} className={cn(styles.step, t.complete && styles.stepDone, t.active && styles.stepActive)} data-complete={t.complete} data-active={t.active}>
-                <div className={styles.stepRail}>
-                  <span className={styles.stepNode} aria-label={t.complete ? "complete" : t.active ? "current" : "upcoming"}>
-                    {t.complete ? <Check aria-hidden /> : <span>{i + 1}</span>}
-                  </span>
-                  {i < timeline.length - 1 && <span className={styles.stepLine} aria-hidden />}
-                </div>
-                <p className={styles.stepTitle}>{t.title}</p>
-                <p className={styles.stepMilestone}>{t.milestone}</p>
-                <div className={styles.stepBar} aria-hidden>
-                  <span style={{ width: `${t.itemsTotal ? (t.itemsDone / t.itemsTotal) * 100 : 0}%` }} />
-                </div>
-                <p className={styles.stepCount}>
-                  {t.itemsDone}/{t.itemsTotal} done
-                </p>
-              </li>
-            ))}
-          </ol>
-        )}
-      </motion.section>
     </div>
   );
 }
 
-function Tile({ label, value, of, testId }: { label: string; value: number; of: number; testId?: string }) {
+/** Items done out of total as a ring; the number in the middle is the count, not a percentage. */
+function Ring({ done, total, reduce }: { done: number; total: number; reduce: boolean }) {
+  const R = 52;
+  const C = 2 * Math.PI * R;
+  const share = total ? done / total : 0;
   return (
-    <li className={styles.tile} data-testid={testId}>
-      <p className={styles.label}>{label}</p>
-      <p className={styles.tileValue}>
-        {value}
-        <span className={styles.tileOf}> / {of}</span>
-      </p>
-      <div className={styles.tileBar} aria-hidden>
-        <span style={{ width: `${of ? (value / of) * 100 : 0}%` }} />
+    <div className={styles.ring} role="img" aria-label={`${done} of ${total} items done`} data-testid="tile-items">
+      <svg viewBox="0 0 128 128" className={styles.ringSvg} aria-hidden>
+        <circle cx="64" cy="64" r={R} className={styles.ringTrack} />
+        <motion.circle
+          cx="64"
+          cy="64"
+          r={R}
+          className={styles.ringFill}
+          strokeDasharray={C}
+          initial={reduce ? false : { strokeDashoffset: C }}
+          animate={{ strokeDashoffset: C * (1 - share) }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        />
+      </svg>
+      <div className={styles.ringText}>
+        <span className={styles.ringValue}>{done}</span>
+        <span className={styles.ringOf}>of {total}</span>
+        <span className={styles.ringLabel}>items done</span>
       </div>
-    </li>
+    </div>
+  );
+}
+
+const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+/** Calendar heatmap of active days; an empty year is drawn empty and says so. */
+function Heatmap({ activity, today }: { activity: DashboardSummary["activity"]; today: string }) {
+  return (
+    <div className={styles.heatWrap}>
+      <div className={styles.heat} data-testid="activity-heatmap" data-empty={activity.activeDays === 0}>
+        <div className={styles.heatMonths} aria-hidden>
+          {activity.months.map((m) => (
+            <span key={`${m.label}-${m.week}`} style={{ gridColumnStart: m.week + 1 }}>
+              {m.label}
+            </span>
+          ))}
+        </div>
+        <div className={styles.heatGrid}>
+          {activity.weeks.map((week, w) => (
+            <div key={w} className={styles.heatWeek}>
+              {week.map((cell) => (
+                <span
+                  key={cell.day}
+                  className={cn(styles.heatCell, cell.active && styles.heatOn, cell.day === today && styles.heatToday)}
+                  title={`${cell.day}${cell.active ? " · active" : ""}`}
+                  data-day={cell.day}
+                  data-active={cell.active}
+                  style={{ gridRowStart: new Date(`${cell.day}T00:00:00Z`).getUTCDay() + 1 }}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+        <span className="sr-only">{DOW.join(", ")} rows, one column per week</span>
+      </div>
+      {activity.activeDays === 0 && (
+        <p className={styles.heatEmpty} data-testid="activity-empty">
+          No activity yet — marking an item done or talking to Nova lights up a day.
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -231,22 +340,6 @@ function DomainBars({ radar }: { radar: DashboardSummary["radar"] }) {
             {r.known} / {r.required}
           </p>
         </div>
-      ))}
-    </div>
-  );
-}
-
-function StreakDots({ activeDays, today }: { activeDays: string[]; today: string }) {
-  const active = new Set(activeDays);
-  const end = Date.parse(`${today}T00:00:00Z`);
-  const days = Array.from({ length: 14 }, (_, i) => {
-    const d = new Date(end - (13 - i) * 86_400_000).toISOString().slice(0, 10);
-    return { d, on: active.has(d) };
-  });
-  return (
-    <div className={styles.dots} aria-label="Last fourteen days">
-      {days.map(({ d, on }, i) => (
-        <span key={d} title={d} className={cn(styles.dot, on && styles.dotOn, i === 13 && styles.dotToday)} />
       ))}
     </div>
   );

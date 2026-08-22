@@ -1,11 +1,30 @@
 /* Dashboard: one hero figure, a KPI row, radar (emphasis form), next action, timeline. */
 
+/* Three columns at full width: hero (2) + badges (1) / activity (3) / phases (2) + skills (1). */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
+.hero {
+  grid-column: span 2;
+}
+.activity {
+  grid-column: 1 / -1;
+}
+.phases {
+  grid-column: span 2;
+}
 @media (max-width: 1180px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero,
+  .phases {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 720px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -59,135 +78,6 @@
   color: var(--color-ink-3);
   font-family: var(--font-mono);
   font-size: 12px;
-}
-
-/* --- hero ------------------------------------------------------------- */
-
-.hero {
-  grid-column: 1 / -1;
-  gap: 16px;
-  background:
-    radial-gradient(70% 90% at 0% 0%, var(--color-violet-haze), transparent 65%),
-    var(--color-surface-2);
-}
-.heroText {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.heroValue {
-  font-size: 64px;
-  font-weight: 540;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  color: var(--color-ink-1);
-}
-.heroUnit {
-  margin-left: 4px;
-  font-size: 28px;
-  font-weight: 420;
-  color: var(--color-ink-2);
-  letter-spacing: -0.02em;
-}
-.heroSub {
-  color: var(--color-ink-2);
-  font-size: 13.5px;
-}
-.meter {
-  height: 8px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--color-viz-track);
-}
-.meterFill {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--color-violet-2), var(--color-viz));
-  box-shadow: 0 0 14px rgb(143 124 255 / 45%);
-}
-
-/* --- KPI tiles -------------------------------------------------------- */
-
-.tiles {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-}
-@media (max-width: 1180px) {
-  .tiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.tile {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-glass);
-}
-.tileHot {
-  border-color: var(--color-violet-line);
-  background: var(--color-violet-soft);
-}
-.tileValue {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  font-size: 26px;
-  font-weight: 540;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--color-ink-1);
-}
-.tileOf {
-  color: var(--color-ink-3);
-  font-size: 12.5px;
-  font-weight: 450;
-  letter-spacing: 0;
-}
-.tileBar {
-  height: 4px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--color-viz-track);
-}
-.tileBar span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--color-viz);
-  transition: width var(--dur-slow) var(--ease-enter);
-}
-.flame {
-  width: 18px;
-  height: 18px;
-  align-self: center;
-  color: var(--color-viz);
-  filter: drop-shadow(0 0 6px rgb(143 124 255 / 60%));
-}
-
-.dots {
-  display: flex;
-  gap: 4px;
-}
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: var(--color-viz-track);
-}
-.dotOn {
-  background: var(--color-viz);
-  box-shadow: 0 0 6px rgb(143 124 255 / 45%);
-}
-.dotToday {
-  outline: 1px solid var(--color-line-strong);
-  outline-offset: 1px;
 }
 
 /* --- radar ------------------------------------------------------------ */
@@ -345,94 +235,416 @@
   transform: translateX(3px);
 }
 
-/* --- timeline --------------------------------------------------------- */
+/* --- hero: next action + ring + difficulty ---------------------------- */
 
-.timelineCard {
-  grid-column: 1 / -1;
-}
-.timeline {
+.hero {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px 28px;
+  align-items: center;
 }
-@media (max-width: 900px) {
-  .timeline {
-    grid-auto-flow: row;
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
-.step {
+.heroMain {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  color: var(--color-ink-2);
+  font-size: 13.5px;
+  font-weight: 550;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease-out,
+    border-color var(--dur-fast) ease-out;
+}
+.ghostButton:hover {
+  color: var(--color-ink-1);
+  border-color: var(--color-line-strong);
+}
+.ghostButton svg {
+  width: 15px;
+  height: 15px;
+}
+.heroStats {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.ring {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+}
+.ringSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ringTrack {
+  fill: none;
+  stroke: var(--color-viz-track);
+  stroke-width: 7;
+}
+.ringFill {
+  fill: none;
+  stroke: var(--color-viz);
+  stroke-width: 7;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgb(143 124 255 / 45%));
+}
+.ringText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.ringValue {
+  font-size: 30px;
+  font-weight: 540;
+  letter-spacing: -0.04em;
+  color: var(--color-ink-1);
+}
+.ringOf {
+  margin-top: 4px;
+  color: var(--color-ink-3);
+  font-size: 12px;
+}
+.ringLabel {
+  margin-top: 6px;
+  color: var(--color-ink-4);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.buckets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bucket {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 118px;
+  padding: 7px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+}
+.bucketLabel {
+  font-size: 12px;
+  font-weight: 600;
+}
+.bucket_easy .bucketLabel {
+  color: var(--color-status-acquired);
+}
+.bucket_medium .bucketLabel {
+  color: var(--color-evidence-review);
+}
+.bucket_hard .bucketLabel {
+  color: var(--color-status-gap);
+}
+.bucketValue {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-1);
+}
+.bucketOf {
+  color: var(--color-ink-3);
+}
+
+/* --- badges ----------------------------------------------------------- */
+
+.badgeCount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 30px;
+  font-weight: 540;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.tileOf {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+  font-weight: 450;
+  letter-spacing: 0;
+}
+.badgeList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
+}
+.badgeIcon {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--color-viz-track);
+  color: var(--color-ink-4);
+}
+.badgeIcon svg {
+  width: 17px;
+  height: 17px;
+}
+.badgeIndex {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-3);
+}
+.badgeEarned .badgeIcon {
+  background: var(--color-violet-soft);
+  color: var(--color-violet);
+  box-shadow: 0 0 14px rgb(143 124 255 / 35%);
+}
+.badgeLocked {
+  opacity: 0.6;
+}
+.badgeText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+.badgeName {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 520;
+  color: var(--color-ink-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.badgePhase {
+  color: var(--color-ink-3);
+  font-size: 11.5px;
+}
+
+/* --- activity heatmap ---------------------------------------------------- */
+
+.activityTitle {
+  font-size: 14px;
+  color: var(--color-ink-2);
+}
+.activityCount {
+  margin-right: 4px;
+  font-size: 24px;
+  font-weight: 540;
+  letter-spacing: -0.03em;
+  color: var(--color-ink-1);
+}
+.streaks {
+  display: flex;
+  gap: 22px;
+}
+.streaks > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.streakLabel {
+  color: var(--color-ink-4);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.streakValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-1);
+}
+.streakHot {
+  color: var(--color-viz);
+}
+.flame {
+  width: 16px;
+  height: 16px;
+  color: var(--color-viz);
+  filter: drop-shadow(0 0 6px rgb(143 124 255 / 60%));
+}
+.heatWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.heat {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.heatMonths {
+  display: grid;
+  grid-auto-columns: 13px;
+  grid-auto-flow: column;
+  column-gap: 3px;
+  margin-bottom: 4px;
+  color: var(--color-ink-3);
+  font-size: 11px;
+}
+.heatMonths span {
+  grid-row: 1;
+  white-space: nowrap;
+}
+.heatGrid {
+  display: grid;
+  grid-auto-columns: 13px;
+  grid-auto-flow: column;
+  column-gap: 3px;
+}
+.heatWeek {
+  display: grid;
+  grid-template-rows: repeat(7, 13px);
+  row-gap: 3px;
+}
+.heatCell {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  background: var(--color-viz-track);
+}
+.heatOn {
+  background: var(--color-viz);
+  box-shadow: 0 0 6px rgb(143 124 255 / 40%);
+}
+.heatToday {
+  outline: 1px solid var(--color-line-strong);
+  outline-offset: 1px;
+}
+.heatEmpty {
+  color: var(--color-ink-3);
+  font-size: 12.5px;
+}
+
+/* --- phases strip ------------------------------------------------------- */
+
+.strip {
+  display: grid;
+  grid-auto-columns: minmax(150px, 1fr);
+  grid-auto-flow: column;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.phase {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-glass);
 }
-.stepRail {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+.phaseActive {
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-soft);
 }
-.stepNode {
+.phaseNode {
   display: grid;
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   place-items: center;
-  color: var(--color-ink-3);
   font-family: var(--font-mono);
   font-size: 11px;
-  border: 1.5px solid var(--color-line-strong);
   border-radius: 50%;
-  background: var(--color-surface-1);
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-ink-2);
 }
-.stepNode svg {
-  width: 12px;
-  height: 12px;
-  stroke-width: 3;
+.phaseNode svg {
+  width: 13px;
+  height: 13px;
 }
-.stepLine {
-  height: 1px;
-  flex: 1;
-  background: var(--color-line);
+.phaseDone .phaseNode {
+  border-color: transparent;
+  background: var(--color-viz);
+  color: var(--color-ink);
 }
-.stepDone .stepNode {
-  color: var(--color-brand-foreground);
-  border-color: var(--color-ink-1);
-  background: var(--color-ink-1);
+.phaseActive .phaseNode {
+  border-color: var(--color-violet);
+  color: var(--color-violet);
 }
-.stepDone .stepLine {
-  background: var(--color-ink-2);
-}
-.stepActive .stepNode {
-  color: var(--color-ink-1);
-  border-color: var(--color-viz);
-  box-shadow: 0 0 12px rgb(143 124 255 / 45%);
-}
-.stepTitle {
-  color: var(--color-ink-1);
-  font-size: 14px;
+.phaseTitle {
+  overflow: hidden;
+  font-size: 13px;
   font-weight: 540;
-  letter-spacing: -0.015em;
+  color: var(--color-ink-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.stepMilestone {
+.phaseMilestone {
+  display: -webkit-box;
+  overflow: hidden;
   color: var(--color-ink-3);
-  font-size: 12px;
+  font-size: 11.5px;
   line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
-.stepBar {
+.phaseBar {
   height: 4px;
   overflow: hidden;
   border-radius: 999px;
   background: var(--color-viz-track);
 }
-.stepBar span {
+.phaseBar span {
   display: block;
   height: 100%;
   border-radius: 999px;
   background: var(--color-viz);
 }
-.stepCount {
+.phaseCount {
   color: var(--color-ink-3);
   font-family: var(--font-mono);
   font-size: 11px;

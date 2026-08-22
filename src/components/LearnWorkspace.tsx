@@ -244,6 +244,7 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
       }
       tabs={TABS}
       tab={tab}
+      fullWidth={tab === "dashboard"}
       onTabChange={(id) => setTab(id as Tab)}
       paneAside={
         pathState ? (
@@ -283,6 +284,10 @@ export function LearnWorkspace({ learnerId, displayName, user, learners, initial
               <div className="mt-4">
                 <DashboardTab
                   summary={dashboard}
+                  onAskNova={() => {
+                    setTab("nova");
+                    chatInputRef.current?.focus();
+                  }}
                   onOpenItem={(id) => {
                     setTab("path");
                     setExplaining(id);

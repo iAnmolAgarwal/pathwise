@@ -232,6 +232,13 @@
 .chatColumn {
   border-right: 1px solid var(--color-line);
 }
+/* Full-width pane (Dashboard tab): the chat column leaves the grid. */
+.shell[data-full="true"] {
+  grid-template-columns: 56px minmax(0, 1fr);
+}
+.shell[data-full="true"] .chatColumn {
+  display: none;
+}
 
 .paneColumn {
   background: var(--color-surface-1);

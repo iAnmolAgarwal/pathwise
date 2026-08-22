@@ -21,6 +21,8 @@ type Props = {
   tabs: PaneTab[];
   tab: string;
   onTabChange: (id: string) => void;
+  /** Hide the chat column and let the pane take the full width (the Dashboard tab). */
+  fullWidth?: boolean;
   paneAside?: ReactNode;
   pane: ReactNode;
   /** Anything that must overlay the shell (drawers, banners). */
@@ -32,12 +34,12 @@ type Props = {
  * On laptops both columns show side by side; under 1024px one of them is on
  * screen at a time and the rail carries the switch.
  */
-export function AppShell({ rail, chatHeader, chat, tabs, tab, onTabChange, paneAside, pane, children }: Props) {
+export function AppShell({ rail, chatHeader, chat, tabs, tab, onTabChange, fullWidth = false, paneAside, pane, children }: Props) {
   const [view, setView] = useState<"chat" | "pane">("chat");
 
   return (
     <TooltipProvider>
-      <main className={styles.shell} data-view={view}>
+      <main className={styles.shell} data-view={fullWidth ? "pane" : view} data-full={fullWidth ? "true" : "false"}>
         <Rail {...rail}>
           <div className={styles.viewSwitch} role="group" aria-label="Show">
             <button
