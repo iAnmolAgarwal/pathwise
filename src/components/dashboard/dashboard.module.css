@@ -2,20 +2,49 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 272px minmax(0, 1fr);
+  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-areas:
+    "identity difficulty"
+    "next progress"
+    "next tiles"
+    "badges activity"
+    "badges bottom";
   gap: 14px;
   align-items: stretch;
 }
-.rail,
-.main {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
+.identity {
+  grid-area: identity;
+}
+.next {
+  grid-area: next;
+}
+.badges {
+  grid-area: badges;
+}
+.difficultyCard {
+  grid-area: difficulty;
+}
+.progress {
+  grid-area: progress;
+}
+.tiles {
+  grid-area: tiles;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
-/* The badges card takes up whatever height the main column has left, so both columns end together. */
-.rail .badges {
-  flex: 1;
+.activity {
+  grid-area: activity;
+}
+.bottom {
+  grid-area: bottom;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.bottom > * {
+  height: 100%;
 }
 /* Section hooks (tests and the workspace target these by class). */
 .difficultyCard,
@@ -25,33 +54,23 @@
 .skills {
   min-width: 0;
 }
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-.bottom {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
-}
-.bottom > * {
-  height: 100%;
-}
 @media (max-width: 1100px) {
   .layout {
-    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "identity"
+      "next"
+      "difficulty"
+      "progress"
+      "tiles"
+      "badges"
+      "activity"
+      "bottom";
   }
   .tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .bottom {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-@media (max-width: 720px) {
-  .layout {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -213,7 +232,8 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  margin-top: 4px;
+  margin-top: auto;
+  padding-top: 6px;
 }
 .nextMeta {
   display: flex;
@@ -272,9 +292,11 @@
 
 .difficultyBody {
   display: grid;
+  flex: 1;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 16px 28px;
   align-items: center;
+  align-content: center;
 }
 @media (max-width: 720px) {
   .difficultyBody {
@@ -751,6 +773,9 @@
 .identity {
   gap: 14px;
 }
+.identity .facts {
+  margin-top: auto;
+}
 .who {
   display: flex;
   align-items: center;
@@ -877,8 +902,10 @@
 }
 .medals {
   display: grid;
+  flex: 1;
   grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
   gap: 10px 6px;
+  align-content: space-evenly;
 }
 .medalItem {
   display: flex;
