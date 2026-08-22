@@ -40,6 +40,7 @@ vi.mock("@/db/queries", async () => {
     getProfile: async (learnerId: string) => (learnerId === LEARNER_ID ? defaultProfile() : null),
     getLatestPath: async () => null,
     listFeedbackDays: async () => [],
+    listActivityDays: async () => [],
     listChatMessages: async () => [],
     insertChatMessage: async () => ({ id: "m" }),
     addTokenUsage: async () => undefined,
