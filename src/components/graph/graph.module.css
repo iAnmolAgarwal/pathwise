@@ -263,6 +263,9 @@
 
 /* --- edges ------------------------------------------------------------ */
 
+.edge {
+  cursor: pointer;
+}
 .edge :global(path.react-flow__edge-path) {
   stroke: rgb(255 255 255 / 30%);
   stroke-width: 1.2;
@@ -301,6 +304,7 @@ line.tier_candidate {
 
 .edge:hover :global(path.react-flow__edge-path) {
   stroke: var(--color-ink-1);
+  stroke-width: 2.2;
 }
 .edgeOn :global(path.react-flow__edge-path) {
   stroke: var(--color-violet);
@@ -614,8 +618,8 @@ line.tier_candidate {
   font-weight: 560;
 }
 .branchPopulation {
-  color: var(--color-ink-4);
-  font-size: 10.5px;
+  color: var(--color-ink-3);
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
 .branchSteps {
@@ -654,16 +658,20 @@ line.tier_candidate {
   white-space: nowrap;
 }
 .branchStepShare {
+  min-width: 4.5ch;
   font-family: var(--font-mono);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
+  text-align: right;
   color: var(--color-violet);
 }
 .branchStepN {
+  min-width: 7ch;
   font-family: var(--font-mono);
   font-size: 10.5px;
   font-variant-numeric: tabular-nums;
-  color: var(--color-ink-4);
+  text-align: right;
+  color: var(--color-ink-3);
 }
 .branchStepOut {
   color: var(--color-ink-4);
@@ -681,12 +689,12 @@ line.tier_candidate {
   font-style: italic;
 }
 .branchFoot {
-  color: var(--color-ink-4);
+  color: var(--color-ink-3);
   font-size: 10.5px;
   line-height: 1.4;
 }
 .branchCaveat {
-  color: var(--color-ink-4);
+  color: var(--color-ink-3);
   font-size: 10.5px;
   font-style: italic;
   line-height: 1.4;
@@ -847,7 +855,23 @@ line.tier_candidate {
     width: 40px;
     height: 40px;
   }
+  .controls :global(.react-flow__controls-button) {
+    width: 40px;
+    height: 40px;
+  }
+  .controls :global(.react-flow__controls-button svg) {
+    max-width: 16px;
+    max-height: 16px;
+  }
   .popoverStats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* The card spans the canvas instead of floating in a corner of it. */
+  .detail {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    max-height: 62%;
   }
 }

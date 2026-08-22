@@ -154,15 +154,18 @@ function wrapRanks(positions: Map<string, { x: number; y: number }>, maxWidth: n
   return out;
 }
 
-/** Layout for each option; memoised per (skills, layout, focus set). */
-function computeLayout(skills: SkillLite[], prereqs: PrereqMap, layout: GraphLayout, focusIds: Set<string> | null): Positioned {
+/** Layout for each option; memoised per (skills, layout, focus set, canvas width). */
+function computeLayout(skills: SkillLite[], prereqs: PrereqMap, layout: GraphLayout, focusIds: Set<string> | null, maxWidth: number): Positioned {
+  // Ranks fold to the canvas width rather than a fixed one: anything wider only reads after a
+  // pan, and panning slices the node labels at the canvas edge.
+  const wrapTo = Math.max(NODE_W + 12, maxWidth - 24);
   // The whole taxonomy ranks ~80 skills at depth 0: lay it out top-to-bottom and wrap the wide ranks.
   if (layout === "lr" || (layout === "focus" && !focusIds)) {
-    return { positions: wrapRanks(dagreLayout(skills, prereqs, "TB"), 1900), domains: [], horizontal: false };
+    return { positions: wrapRanks(dagreLayout(skills, prereqs, "TB"), wrapTo), domains: [], horizontal: false };
   }
   if (layout === "focus" && focusIds) {
     const subset = skills.filter((s) => focusIds.has(s.id));
-    return { positions: dagreLayout(subset, prereqs, "LR"), domains: [], horizontal: true };
+    return { positions: wrapRanks(dagreLayout(subset, prereqs, "TB"), wrapTo), domains: [], horizontal: false };
   }
   // domains: lay each domain out on its own, then pack the clusters into rows.
   const byDomain = new Map<string, SkillLite[]>();
@@ -231,11 +234,13 @@ type InnerProps = Props & {
   layout: GraphLayout;
   prereqs: PrereqMap;
   selectedSkill: string | null;
+  /** Measured width of the canvas element; 0 before the first measurement. */
+  canvasWidth: number;
   onEdgeInteraction: (i: EdgeInteraction) => void;
   onPaneClick: () => void;
 };
 
-function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, layout, selectedSkill, onEdgeInteraction, onPaneClick }: InnerProps) {
+function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, layout, selectedSkill, canvasWidth, onEdgeInteraction, onPaneClick }: InnerProps) {
   const { fitView } = useReactFlow();
 
   // Focus = every skill the path touches plus everything it builds on (over path-driving edges).
@@ -253,7 +258,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     return out;
   }, [skills, prereqs, skillStatus]);
 
-  const laid = useMemo(() => computeLayout(skills, prereqs, layout, focusIds), [skills, prereqs, layout, focusIds]);
+  const laid = useMemo(() => computeLayout(skills, prereqs, layout, focusIds, canvasWidth || 1900), [skills, prereqs, layout, focusIds, canvasWidth]);
 
   const edgeByKey = useMemo(() => new Map(evidence.edges.map((e) => [`${e.from}->${e.to}`, e])), [evidence]);
 
@@ -385,10 +390,19 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
   // Default: the learner's own subgraph once a path exists, the domain map before that; a manual pick sticks.
   const [picked, setPicked] = useState<GraphLayout | null>(defaultLayout ?? null);
   const [popover, setPopover] = useState<PopoverState | null>(null);
+  const [canvasWidth, setCanvasWidth] = useState(0);
   const canvasRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<number | null>(null);
   // Memoised: a fresh map each render would relayout and refit the view on every hover or zoom click.
   const prereqs = useMemo(() => prereqMap(evidence.edges), [evidence]);
+  // Measured so the layout can fold its ranks to the canvas instead of a fixed width.
+  useEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setCanvasWidth(entry.contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const skill = selected ? skills.find((s) => s.id === selected) : null;
   const status = skill ? (skillStatus[skill.id] ?? "unrelated") : null;
   const counts: Record<SkillStatus, number> = { acquired: 0, "in-progress": 0, gap: 0, unrelated: 0 };
@@ -503,6 +517,7 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
             layout={layout}
             prereqs={prereqs}
             selectedSkill={selected}
+            canvasWidth={canvasWidth}
             onEdgeInteraction={onEdgeInteraction}
             onPaneClick={() => {
               closePopover();
