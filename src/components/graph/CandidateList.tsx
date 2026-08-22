@@ -39,8 +39,8 @@ export function CandidateList({ candidates, skillId, evidence, nameOf }: Props) 
                   const stat = e.sources[s];
                   if (!stat) return null;
                   return (
-                    <span key={s} className={styles.candidateStat}>
-                      {SOURCE_NAME[s]}: {formatCount(stat.support)} this way, {formatCount(stat.reverse)} the other ({formatPct(stat.confidence)}, n {formatCount(stat.n)}) · <em>{evidence.caveats[s]}</em>
+                    <span key={s} className={styles.candidateStat} title={evidence.caveats[s]}>
+                      {SOURCE_NAME[s]}: {formatPct(stat.confidence)} in this order, n {formatCount(stat.n)}
                     </span>
                   );
                 })}

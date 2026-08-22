@@ -22,8 +22,9 @@ type Props = {
  * "What learners did next" for the selected skill (§15.8, D-18): by default ONE source — the
  * larger population above the floor — and its top three next-skills with their shrunk transition
  * share and count; "show more" opens the second source and up to four steps per source, each
- * list under its source caveat. Out-of-catalog steps are greyed, never hidden. Below the floor a
- * source says so instead of showing numbers. Shares are transition shares only — never a rating (N-5).
+ * list headed by its source (the source caveat is the name's hover title; the full method lives in
+ * the arrow card's details and the README). Out-of-catalog steps are greyed, never hidden. Below
+ * the floor a source says so instead of showing numbers. Shares are transition shares only (N-5).
  */
 export function BranchOverlay({ skillId, evidence, nameOf, onSelectSkill }: Props) {
   const [expanded, setExpanded] = useState(false);
@@ -79,7 +80,9 @@ function SourceRow({ source, entry, stepLimit, skillId, evidence, nameOf, onSele
   return (
     <div className={styles.branchSource} data-testid={`branch-source-${source}`} data-state="met">
       <p className={styles.branchSourceHead}>
-        <span className={styles.branchSourceName}>{SOURCE_NAME[source]}</span>
+        <span className={styles.branchSourceName} title={evidence.caveats[source]}>
+          {SOURCE_NAME[source]}
+        </span>
         <span className={styles.branchPopulation}>
           {formatCount(entry.nTotal)} {POPULATION_NOUN[source]} learned {nameOf(skillId)}
         </span>
@@ -107,10 +110,6 @@ function SourceRow({ source, entry, stepLimit, skillId, evidence, nameOf, onSele
           </li>
         ))}
       </ul>
-      <p className={styles.branchFoot}>
-        Top {steps.length} of {entry.listed} next-skills seen at n ≥ {evidence.branchFloors.minListed} · shares shrunk (α = {evidence.branchFloors.alpha}); the rest went elsewhere
-      </p>
-      <p className={styles.branchCaveat}>{evidence.caveats[source]}</p>
     </div>
   );
 }
