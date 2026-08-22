@@ -29,6 +29,22 @@ KINDS = {"course", "project", "assessment"}
 FORMATS = {"video", "interactive", "text", "project"}
 COSTS = {"free", "freemium", "paid"}
 
+# The per-domain catalog source files. pipeline/sources/ also holds evidence-layer
+# inputs (tag_skill_map.json, coursera_catalog_map.json, resolution files) that are
+# not catalog items, so the domain list is explicit rather than a directory glob.
+DOMAINS = [
+    "ai-engineering",
+    "cloud",
+    "data-analysis",
+    "data-engineering",
+    "devops",
+    "foundations",
+    "machine-learning",
+    "security",
+    "web-backend",
+    "web-frontend",
+]
+
 RAW_FIELDS = [
     "id",
     "kind",
@@ -44,8 +60,10 @@ RAW_FIELDS = [
 
 def load_sources() -> list[dict]:
     items: list[dict] = []
-    for path in sorted(SOURCES_DIR.glob("*.json")):
-        domain = path.stem
+    for domain in DOMAINS:
+        path = SOURCES_DIR / f"{domain}.json"
+        if not path.exists():
+            raise SystemExit(f"missing domain source file: {path.relative_to(PIPELINE_DIR)}")
         for item in json.loads(path.read_text()):
             item["_domain"] = domain
             items.append(item)
@@ -99,9 +117,26 @@ def check_urls(items: list[dict]) -> list[str]:
         if "youtube.com/watch" in url:
             target = f"https://www.youtube.com/oembed?url={url}&format=json"
         try:
-            resp = requests.get(target, headers=headers, timeout=15, stream=True)
-            status = resp.status_code
-            resp.close()
+            status = None
+            for attempt in (1, 2):
+                try:
+                    resp = requests.get(target, headers=headers, timeout=15, stream=True)
+                    status = resp.status_code
+                    resp.close()
+                    break
+                except requests.exceptions.SSLError:
+                    raise  # handled below with a verify=False confirmation probe
+                except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+                    # DNS failure means the host is gone; anything else at the
+                    # connection layer (timeout, reset) is indistinguishable from
+                    # bot filtering — retry once, then classify as unverifiable.
+                    if "NameResolution" in repr(exc) or "getaddrinfo" in repr(exc):
+                        raise
+                    if attempt == 2:
+                        blocked += 1
+                        print(f"  [unverifiable {type(exc).__name__}] {item['id']}: {url}")
+            if status is None:
+                continue
         except requests.exceptions.SSLError:
             # Some sites fail local cert-chain verification while being fine in
             # browsers; confirm the host responds at all and classify as blocked.

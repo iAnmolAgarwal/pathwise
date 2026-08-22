@@ -48,10 +48,14 @@ SPOTCHECK_FRACTION = 0.10
 
 
 def load_items() -> list[dict]:
+    # Same explicit domain list as curate.py: pipeline/sources/ also holds
+    # evidence-layer files that are not catalog items.
+    from curate import DOMAINS
+
     items: list[dict] = []
-    for path in sorted((PIPELINE_DIR / "sources").glob("*.json")):
-        for item in json.loads(path.read_text()):
-            item["_domain"] = path.stem
+    for domain in DOMAINS:
+        for item in json.loads((PIPELINE_DIR / "sources" / f"{domain}.json").read_text()):
+            item["_domain"] = domain
             items.append(item)
     return items
 

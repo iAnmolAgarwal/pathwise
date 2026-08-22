@@ -1,0 +1,37 @@
+# Weekly link-liveness check over the curated catalog (pipeline/curate.py --check-urls).
+# Every catalog URL is probed; hosts that block scripted requests (403/405/429/999,
+# local SSL-chain failures) are reported as blocked/unverifiable, not dead — only a
+# URL that is genuinely gone fails the run. The full log is uploaded as an artifact.
+# workflow_dispatch so it can be run on demand.
+name: link-check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+  push:
+    paths:
+      - "pipeline/sources/*.json"
+      - "pipeline/curate.py"
+      - ".github/workflows/link-check.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Probe every catalog URL
+        run: |
+          set -o pipefail
+          python pipeline/curate.py --check-urls | tee link-check-report.txt
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: link-check-report
+          path: link-check-report.txt
