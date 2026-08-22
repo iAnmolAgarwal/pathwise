@@ -53,6 +53,21 @@ export function PathView({ path, catalog, skillName, onExplain, selectedId, expl
   const hours = items.reduce((sum, i) => sum + (catalog[i.catalogId]?.durationHours ?? 0), 0);
   const done = items.filter((i) => i.status === "done").length;
 
+  // A path with no phases means the gap is empty: the profile already covers every level the goal needs.
+  if (path.phases.length === 0) {
+    return (
+      <div className={styles.view}>
+        <div className={styles.covered} data-testid="path-covered">
+          <p className={styles.coveredTitle}>Nothing left to learn for this goal.</p>
+          <p className={styles.coveredBody}>
+            Your profile already holds every skill level the goal requires, so the engine has no items to plan. Lower a level in your profile if that is not
+            right, or tell Nova about a new goal.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.view}>
       <ul className={styles.summary} aria-label="Path summary">

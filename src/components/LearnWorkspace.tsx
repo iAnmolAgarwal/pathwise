@@ -238,12 +238,9 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   })();
 
   const chatHeader = (
-    <div className="flex min-w-0 flex-col gap-1">
-      <span className="label-caps truncate text-ink-3" title={goalLabel}>
+    <div className="flex min-w-0 flex-col justify-center">
+      <span className="label-caps truncate text-[12px] text-ink-2" title={goalLabel} data-testid="workspace-title">
         {goalLabel}
-      </span>
-      <span className="truncate text-[17px] font-[540] tracking-[-0.02em] text-ink-1 [text-shadow:0_0_18px_rgb(167_139_250/45%),0_0_2px_rgb(255_255_255/60%)]" data-testid="learner-name">
-        {displayName}
       </span>
     </div>
   );
