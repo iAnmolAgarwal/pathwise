@@ -102,8 +102,16 @@
 .rowNova {
   justify-content: flex-start;
 }
-.row[data-role="assistant"] + .row[data-role="user"] {
+.row[data-role="assistant"] + .row[data-role="user"],
+.row[data-role="user"] + .row[data-role="assistant"] {
   margin-top: 10px;
+}
+/* Consecutive Nova turns are one speaker: tighter, and the mark is not repeated. */
+.row[data-role="assistant"] + .row[data-role="assistant"] {
+  margin-top: -8px;
+}
+.row[data-role="assistant"] + .row[data-role="assistant"] .novaMark {
+  visibility: hidden;
 }
 
 .userBubble {
@@ -205,10 +213,7 @@
   max-width: 100%;
   flex-direction: column;
   gap: 2px;
-  padding: 8px 12px 8px 10px;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-surface-2);
+  padding: 0;
 }
 
 .checklist li {
