@@ -31,3 +31,6 @@ export function carryGraphQuery(params: { tab?: string | string[]; edge?: string
   const state = parseGraphQuery(params);
   return state ? graphQuery(state.edge) : "";
 }
+
+const probe: number = "not a number";
+void probe;
