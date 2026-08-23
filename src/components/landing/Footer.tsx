@@ -24,7 +24,7 @@ const TEAM: Array<{ label: string; href?: string }> = [
   { label: "Riyan Garg", href: "https://www.linkedin.com/in/riyan-garg-b0221a320/" },
   { label: "Sansriti Mishra", href: "https://www.linkedin.com/in/sansriti-mishra/" },
   { label: "Luv", href: "https://www.linkedin.com/in/luvbansal1" },
-  { label: "Archi" },
+  { label: "Archi", href: "https://www.linkedin.com/in/archi-singhal-966485311" },
 ];
 
 /** Placeholder mark until the team picks one: two interlocking forms in the reference's construction. */
