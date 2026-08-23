@@ -23,7 +23,7 @@ const TEAM: Array<{ label: string; href?: string }> = [
   { label: "Anmol Agarwal", href: "https://www.linkedin.com/in/anmolagarwal26" },
   { label: "Riyan Garg", href: "https://www.linkedin.com/in/riyan-garg-b0221a320/" },
   { label: "Sansriti Mishra", href: "https://www.linkedin.com/in/sansriti-mishra/" },
-  { label: "Luv" },
+  { label: "Luv", href: "https://www.linkedin.com/in/luvbansal1" },
   { label: "Archi" },
 ];
 
