@@ -3,6 +3,7 @@ import { getLatestPath, getProfile, listActivityDays } from "@/db/queries";
 import { jsonError } from "@/lib/api";
 import { requireLearner } from "@/lib/authz";
 import { computeDashboard } from "@/lib/dashboard";
+import { DashboardSummarySchema } from "@/schemas";
 
 type Ctx = { params: Promise<{ learnerId: string }> };
 
@@ -13,5 +14,5 @@ export async function GET(_request: Request, { params }: Ctx) {
   if (!authz.ok) return authz.response;
   const [profile, latest, eventDays] = await Promise.all([getProfile(learnerId), getLatestPath(learnerId), listActivityDays(learnerId)]);
   if (!profile) return jsonError(404, "Learner not found");
-  return NextResponse.json(computeDashboard(profile, latest?.data ?? null, eventDays));
+  return NextResponse.json(DashboardSummarySchema.parse(computeDashboard(profile, latest?.data ?? null, eventDays)));
 }

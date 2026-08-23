@@ -1,4 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
+import type { z } from "zod";
+import type { DegradationReasonSchema, DegradationSchema } from "../schemas/degradation";
 
 /**
  * Judge mode (§8.4) — cost control and resilience. Two seams: classifying an LLM failure
@@ -7,14 +9,10 @@ import Anthropic from "@anthropic-ai/sdk";
  * either way — the routes answer `{degraded: true}` for the model's part only.
  */
 
-export type DegradationReason = "rate_limit" | "overloaded" | "budget" | "unavailable";
+export type DegradationReason = z.infer<typeof DegradationReasonSchema>;
 
-export type Degradation = {
-  degraded: true;
-  reason: DegradationReason;
-  /** Learner-facing sentence; everything deterministic keeps working. */
-  message: string;
-};
+/** `degraded: true`, a reason, and a learner-facing sentence; everything deterministic keeps working. */
+export type Degradation = z.infer<typeof DegradationSchema>;
 
 const MESSAGES: Record<DegradationReason, string> = {
   rate_limit: "Nova is catching its breath — too many requests right now. Your path and profile still work; try again in a moment.",

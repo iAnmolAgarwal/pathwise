@@ -8,3 +8,5 @@ export * from "./feedback";
 export * from "./nova";
 export * from "./profileCard";
 export * from "./user";
+export * from "./dashboard";
+export * from "./degradation";

@@ -192,3 +192,49 @@ export type SkillEdge = z.infer<typeof SkillEdgeSchema>;
 export type Branch = z.infer<typeof BranchSchema>;
 export type CourseTag = z.infer<typeof CourseTagSchema>;
 export type TagSkillMapEntry = z.infer<typeof TagSkillMapEntrySchema>;
+
+/** The prompt-facing rendering of an Evidence object (`describeEvidence`), as `/api/explain` returns it. */
+export const DescribedEvidenceSchema = z.object({
+  item: z.union([
+    z.object({
+      catalogId: z.string(),
+      title: z.string(),
+      provider: z.string(),
+      kind: z.string(),
+      hours: z.number(),
+      difficulty: z.number(),
+      url: z.string(),
+    }),
+    z.object({ catalogId: z.string() }),
+  ]),
+  closesGapIn: z.array(z.object({ skill: z.string(), why: z.string(), graphPath: z.array(z.string()) })),
+  sequencedAfter: z.array(z.object({ title: z.string(), becauseSkill: z.string() })),
+  scoreBreakdown: ScoreBreakdownSchema,
+  learnerEvidence: z
+    .object({
+      links: z
+        .array(
+          z.object({
+            link: z.string(),
+            source: z.string(),
+            tookInThisOrder: z.number(),
+            tookTheOtherWay: z.number(),
+            percentInThisOrder: z.number(),
+            n: z.number(),
+            caveat: z.string(),
+          }),
+        )
+        .optional(),
+      whatLearnersDidNext: z
+        .object({
+          fromSkillTheLearnerHas: z.string(),
+          source: z.string(),
+          ofLearnersWhoLearnedIt: z.number(),
+          wentToThisSkillNext: z.number(),
+          percentWentHereNext: z.union([z.number(), z.string()]),
+          caveat: z.string(),
+        })
+        .optional(),
+    })
+    .optional(),
+});
