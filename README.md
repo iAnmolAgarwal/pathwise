@@ -16,6 +16,11 @@ Postgres · Anthropic API · Vitest
 2. Copy `.env.example` to `.env.local` and fill in the values.
 3. `npm run db:migrate` to apply migrations to your Postgres database.
 4. `npm run dev` and open http://localhost:3000
+5. Sign in once at http://localhost:3000, then run `npm run seed you@example.com` to load
+   a demo learner with six weeks of generated history: an intake card, every feedback
+   kind, the replans they produced, and streaks. The learner attaches to the Google
+   account you signed in with, so the sign-in has to come first. Re-running the script
+   replaces the previous copy.
 
 ## Environment variables
 
@@ -75,6 +80,8 @@ Setting up the Google side from scratch:
 | `npm run build` | Production build |
 | `npm test` | Vitest suite |
 | `npm run typecheck` | TypeScript, no emit |
+| `npm run lint` | ESLint |
+| `npm run seed <email> [name]` | Seed the demo learner (six weeks of real engine history) onto an existing signed-in Google account; re-running replaces the copy |
 | `npm run db:generate` | Generate a migration from `src/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
 

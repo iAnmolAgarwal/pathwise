@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { db, chatMessages, feedbackEvents, learners, paths, profiles, users } from "../src/db";
+import { db, chatMessages, feedbackEvents, learners, paths, profiles, tokenUsage, users } from "../src/db";
 import { generatePath } from "../src/engine";
 import { applyProfileOps } from "../src/engine/profile";
 import { applyFeedback } from "../src/engine/replan";
@@ -29,6 +29,7 @@ async function main() {
   // Replace any previous copy so the script is safe to re-run.
   const existing = await conn.select().from(learners).where(eq(learners.displayName, DISPLAY_NAME));
   for (const row of existing.filter((l) => l.userId === owner.id)) {
+    await conn.delete(tokenUsage).where(eq(tokenUsage.learnerId, row.id));
     await conn.delete(chatMessages).where(eq(chatMessages.learnerId, row.id));
     await conn.delete(feedbackEvents).where(eq(feedbackEvents.learnerId, row.id));
     await conn.delete(paths).where(eq(paths.learnerId, row.id));
