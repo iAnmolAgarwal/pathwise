@@ -31,28 +31,6 @@ function RevealHeading({ text, id, as: Tag = "h2" }: { text: string; id?: string
   );
 }
 
-/** "What Pathwise does" — the showcase statement. */
-export function Showcase({ id }: { id?: string }) {
-  const reduce = useReducedMotion();
-  return (
-    <section id={id} className={`${styles.section} ${styles.showcase}`} aria-labelledby="showcase-heading">
-      <p className={styles.label}>What Pathwise does</p>
-      <RevealHeading text="Your goal, mapped." id="showcase-heading" />
-      <motion.p
-        className={styles.description}
-        initial={reduce ? false : { opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.6 }}
-        transition={{ duration: 0.7, ease: EASE, delay: 0.3 }}
-      >
-        One sentence about where you want to be becomes a measured gap across 159 skills, then a
-        sequenced route through 246 real courses, projects and assessments — every pick with its
-        evidence attached, every step open to change.
-      </motion.p>
-    </section>
-  );
-}
-
 /** "Try it yourself" — the closing statement before the footer. */
 export function TryIt({ id, appHref = "/learn" }: { id?: string; appHref?: string }) {
   const reduce = useReducedMotion();
