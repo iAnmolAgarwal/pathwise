@@ -116,6 +116,9 @@ minutes, no review). Python is only needed to re-run the offline pipeline.
 2. `npm install`
 3. `cp .env.example .env.local` and fill in the values (table below).
 4. `npm run db:migrate` applies the migrations in `src/db/migrations/` to your database.
+   Note: unlike the app (which reaches Neon over HTTPS), `drizzle-kit` connects over plain
+   TCP port 5432 — on a network that blocks outbound 5432 it exits 1 without printing an
+   error. Run it from an unblocked network; it is a fast no-op when nothing is pending.
 5. `npm run dev` and open http://localhost:3000.
 6. `npm test` and `npm run typecheck` should both be green on a clean clone; neither needs
    a database or an API key.
@@ -132,7 +135,7 @@ for you in production).
 
 | Name | Purpose |
 | --- | --- |
-| `DATABASE_URL` | Neon Postgres pooled connection string |
+| `DATABASE_URL` | Postgres connection string. For Neon, the direct (non-`-pooler`) one: the app derives the pooled host from it at runtime, and `db:migrate` needs the direct endpoint |
 | `ANTHROPIC_API_KEY` | Anthropic API key for the mentor / LLM layer |
 | `AUTH_SECRET` | Random secret Auth.js uses to sign session cookies (`npx auth secret` or `openssl rand -base64 32`) |
 | `AUTH_GOOGLE_ID` | OAuth client id from Google Cloud (see "Sign-in") |
@@ -190,6 +193,7 @@ Setting up the Google side from scratch:
 | `npm test` | Vitest suite |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run lint` | ESLint |
+| `npm run test:e2e` | Playwright smoke test: the whole degraded journey against a dev server with an invalid model key (needs `DATABASE_URL`; creates and removes its own rows) |
 | `npm run seed <email> [alex\|priya\|sam\|all]` | Seed the demo learners onto an existing signed-in Google account — Alex (six weeks in, a milestone done, several replans), Priya (a `too_hard` replan is the latest thing on her path), Sam (fresh, nothing yet). Every path version is engine-generated; re-running replaces the copies |
 | `npm run db:generate` | Generate a migration from `src/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
