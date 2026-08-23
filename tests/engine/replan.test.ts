@@ -34,8 +34,9 @@ describe("feedbackRule (§5.5 event table)", () => {
   });
 
   it("completed never lowers a level the learner already has", () => {
+    // Same path, but the learner has since claimed html at 3 — completing the item must not pull it down.
     const p: Profile = { ...profile, skills: { html: { level: 3, source: "stated" } } };
-    const rule = feedbackRule({ type: "completed", catalogId: "mdn-learn" }, p, pathFor(p), data);
+    const rule = feedbackRule({ type: "completed", catalogId: "mdn-learn" }, p, path, data);
     expect(rule.ops.find((o) => o.op === "set_skill" && o.skillId === "html")).toBeUndefined();
   });
 
@@ -49,7 +50,13 @@ describe("feedbackRule (§5.5 event table)", () => {
   });
 
   it("too_hard on an item whose requirements are already at 0 changes nothing but still explains", () => {
-    const rule = feedbackRule({ type: "too_hard", catalogId: "react-dev-learn" }, profile, path, data);
+    // Picked from the generated path, so the case survives catalog growth: every required skill absent from the profile.
+    const zeroed = items(path).find((i) => {
+      const item = data.catalog.find((c) => c.id === i.catalogId)!;
+      return item.skillsRequired.length > 0 && item.skillsRequired.every((r) => (profile.skills[r.skillId]?.level ?? 0) === 0);
+    });
+    expect(zeroed).toBeDefined();
+    const rule = feedbackRule({ type: "too_hard", catalogId: zeroed!.catalogId }, profile, path, data);
     expect(rule.ops).toEqual([]);
     expect(rule.policy).toBe("always");
   });
@@ -138,21 +145,25 @@ describe("applyFeedback end to end", () => {
     }
   });
 
-  it("completed with nothing else changing does not replan", () => {
-    // Complete every item: the final one closes nothing new for the rest of the path.
+  it("completed replans only when it drops a now-redundant open item; a full run ends all done", () => {
     let p = profile;
     let current = path;
-    let last: ReturnType<typeof feedback> | null = null;
-    for (let guard = 0; guard < 40; guard++) {
+    for (let guard = 0; guard < 60; guard++) {
       const next = items(current).find((i) => i.status === "todo");
       if (!next) break;
-      last = feedback(p, current, { type: "completed", catalogId: next.catalogId });
-      p = last.profile;
-      current = last.path;
+      const openBefore = new Set(items(current).filter((i) => i.status === "todo").map((i) => i.catalogId));
+      const r = feedback(p, current, { type: "completed", catalogId: next.catalogId });
+      if (r.replanned) {
+        // A completion may only replan by removing open items its new levels made redundant.
+        expect(r.diff!.removed.length).toBeGreaterThan(0);
+        for (const removed of r.diff!.removed) expect(openBefore.has(removed.catalogId)).toBe(true);
+      } else {
+        expect(r.diff).toBeNull();
+      }
+      p = r.profile;
+      current = r.path;
     }
     expect(items(current).every((i) => i.status === "done")).toBe(true);
-    expect(last!.replanned).toBe(false);
-    expect(last!.diff).toBeNull();
   });
 
   it("quiz_result that does not change the gap updates the profile without replanning", () => {

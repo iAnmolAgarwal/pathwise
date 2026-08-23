@@ -43,6 +43,7 @@ exports[`fixture learners (§5.6) > beginner-frontend > matches its snapshot 1`]
     },
     {
       "items": [
+        "course:wesbos-css-grid (4h, score 0.431)",
         "course:javascript-info (60h, score 0.475)",
         "project:frontend-mentor (30h, score 0.469)",
       ],
@@ -53,23 +54,24 @@ exports[`fixture learners (§5.6) > beginner-frontend > matches its snapshot 1`]
       "items": [
         "course:vite-guide (4h, score 0.446)",
         "course:typescript-handbook (10h, score 0.479)",
-        "course:react-dev-learn (12h, score 0.492)",
-        "course:css-for-js (40h, score 0.444)",
+        "course:coursera-meta-advanced-react (26h, score 0.488)",
         "project:realworld-app (40h, score 0.441)",
       ],
       "milestone": "Build and deploy a component-driven interface",
       "title": "Phase 4 — Core Frontend",
     },
+    {
+      "items": [
+        "course:testing-library-docs (6h, score 0.447)",
+        "course:redux-essentials (12h, score 0.462)",
+      ],
+      "milestone": "Build and deploy a component-driven interface",
+      "title": "Phase 5 — Core Frontend",
+    },
   ],
-  "stoppedBecause": "budget",
-  "uncovered": [
-    "react:1",
-    "state-management:2",
-    "api-integration:1",
-    "frontend-testing:1",
-    "unit-testing:1",
-  ],
-  "usedHours": 311,
+  "stoppedBecause": "covered",
+  "uncovered": [],
+  "usedHours": 307,
 }
 `;
 
@@ -98,42 +100,46 @@ exports[`fixture learners (§5.6) > career-switcher-to-ds > matches its snapshot
     {
       "items": [
         "course:sqlbolt (6h, score 0.502)",
-        "course:khan-stats (40h, score 0.500)",
         "course:python-for-everybody (60h, score 0.515)",
-        "project:roadmap-task-tracker (6h, score 0.388)",
+        "course:duke-tableau-viz-comm (25h, score 0.449)",
+        "project:maven-challenges (12h, score 0.428)",
         "assessment:hackerrank-sql (2h, score 0.441)",
       ],
-      "milestone": "Solve multi-step problems with clean, tested code",
-      "title": "Phase 1 — Core Programming",
+      "milestone": "Deliver an analysis with charts and a clear story",
+      "title": "Phase 1 — Core Data Analysis",
     },
     {
       "items": [
-        "course:wes-mckinney-book (30h, score 0.453)",
+        "course:think-stats-3e (30h, score 0.543)",
         "course:ng-ml-spec (100h, score 0.499)",
-        "course:lakens-inference (30h, score 0.429)",
+        "course:ucsd-design-experiments (20h, score 0.406)",
+        "course:umich-intro-ds-python (30h, score 0.471)",
         "project:kaggle-titanic (8h, score 0.465)",
         "assessment:stratascratch (15h, score 0.443)",
       ],
+      "milestone": "Deliver an analysis with charts and a clear story",
+      "title": "Phase 2 — Core Data Analysis",
+    },
+    {
+      "items": [
+        "course:duke-data-viz-python (9h, score 0.455)",
+        "course:inria-sklearn-mooc (30h, score 0.536)",
+        "project:tidytuesday (15h, score 0.421)",
+      ],
       "milestone": "Build a well-evaluated model on real data",
-      "title": "Phase 2 — Core Machine Learning",
+      "title": "Phase 3 — Core Machine Learning",
     },
     {
       "items": [
         "course:kaggle-intermediate-ml (5h, score 0.512)",
-        "course:r4ds (40h, score 0.451)",
-        "course:sklearn-guide (25h, score 0.439)",
-        "project:maven-challenges (12h, score 0.428)",
+        "project:kaggle-house-prices (12h, score 0.420)",
       ],
-      "milestone": "Deliver an analysis with charts and a clear story",
-      "title": "Phase 3 — Core Data Analysis",
+      "milestone": "Build a well-evaluated model on real data",
+      "title": "Phase 4 — Core Machine Learning",
     },
   ],
-  "stoppedBecause": "budget",
-  "uncovered": [
-    "statistics-fundamentals:1",
-    "model-evaluation:1",
-    "data-storytelling:2",
-  ],
+  "stoppedBecause": "covered",
+  "uncovered": [],
   "usedHours": 379,
 }
 `;
@@ -163,33 +169,23 @@ exports[`fixture learners (§5.6) > custom-goal > matches its snapshot 1`] = `
     {
       "items": [
         "course:karpathy-intro-llms (1h, score 0.562)",
-        "course:dlai-prompt-eng (2h, score 0.584)",
-        "project:anthropic-quickstarts (8h, score 0.444)",
+        "course:weaviate-academy (10h, score 0.512)",
       ],
       "milestone": "Ship a grounded, evaluated LLM application",
       "title": "Phase 2 — Core AI Engineering",
     },
     {
       "items": [
-        "course:openai-cookbook (10h, score 0.529)",
-        "course:pinecone-learn (12h, score 0.478)",
+        "course:anthropic-building-with-claude-api (12h, score 0.633)",
         "project:langchain-rag-tutorial (6h, score 0.515)",
       ],
       "milestone": "Ship a grounded, evaluated LLM application",
       "title": "Phase 3 — Core AI Engineering",
     },
-    {
-      "items": [
-        "course:dlai-short-courses (30h, score 0.445)",
-        "assessment:promptfoo (4h, score 0.433)",
-      ],
-      "milestone": "Ship a grounded, evaluated LLM application",
-      "title": "Phase 4 — Core AI Engineering",
-    },
   ],
   "stoppedBecause": "covered",
   "uncovered": [],
-  "usedHours": 84,
+  "usedHours": 40,
 }
 `;
 
@@ -232,9 +228,7 @@ exports[`fixture learners (§5.6) > partial-skills-ml > matches its snapshot 1`]
     },
     {
       "items": [
-        "course:statquest (40h, score 0.507)",
         "course:imperial-math-ml (60h, score 0.365)",
-        "project:kaggle-titanic (8h, score 0.494)",
         "assessment:deep-ml (10h, score 0.447)",
       ],
       "milestone": "Build a well-evaluated model on real data",
@@ -244,17 +238,19 @@ exports[`fixture learners (§5.6) > partial-skills-ml > matches its snapshot 1`]
       "items": [
         "course:roadmap-devops (6h, score 0.434)",
         "course:docker-get-started (8h, score 0.446)",
-        "course:lakens-inference (30h, score 0.393)",
-        "course:karpathy-zero-hero (25h, score 0.428)",
-        "project:kaggle-digit-recognizer (10h, score 0.441)",
+        "course:google-ml-crash (15h, score 0.503)",
+        "course:ucsd-design-experiments (20h, score 0.354)",
+        "project:kaggle-titanic (8h, score 0.494)",
+        "assessment:hackerrank-ai (8h, score 0.431)",
       ],
       "milestone": "Build a well-evaluated model on real data",
       "title": "Phase 3 — Core Machine Learning",
     },
     {
       "items": [
-        "course:kaggle-intermediate-ml (5h, score 0.521)",
-        "course:github-actions-docs (8h, score 0.437)",
+        "course:ms-learn-github-actions (5h, score 0.408)",
+        "course:inria-sklearn-mooc (30h, score 0.496)",
+        "course:karpathy-zero-hero (25h, score 0.428)",
         "project:kaggle-house-prices (12h, score 0.463)",
       ],
       "milestone": "Build a well-evaluated model on real data",
@@ -262,20 +258,26 @@ exports[`fixture learners (§5.6) > partial-skills-ml > matches its snapshot 1`]
     },
     {
       "items": [
+        "course:kaggle-intermediate-ml (5h, score 0.521)",
         "course:learnpytorch-io (50h, score 0.446)",
-        "course:madewithml (40h, score 0.412)",
-        "project:hf-spaces-demo (6h, score 0.410)",
+        "project:kaggle-digit-recognizer (10h, score 0.441)",
       ],
       "milestone": "Build a well-evaluated model on real data",
       "title": "Phase 5 — Core Machine Learning",
+    },
+    {
+      "items": [
+        "course:fsdl-2022 (40h, score 0.440)",
+        "project:hf-spaces-demo (6h, score 0.410)",
+      ],
+      "milestone": "Deploy and monitor a model in production",
+      "title": "Phase 6 — Advanced Machine Learning",
     },
   ],
   "stoppedBecause": "budget",
   "uncovered": [
     "ml-fundamentals:1",
-    "supervised-learning:1",
     "deep-learning:1",
-    "model-deployment:1",
   ],
   "usedHours": 359,
 }
@@ -313,7 +315,7 @@ exports[`fixture learners (§5.6) > time-poor-cloud > matches its snapshot 1`] =
     },
     {
       "items": [
-        "course:az900-path (3h, score 0.557)",
+        "course:mslearn-az305-prereqs (5h, score 0.451)",
         "course:finops-intro (3h, score 0.471)",
         "course:maarek-saa (27h, score 0.532)",
         "project:aws-hands-on (15h, score 0.484)",
@@ -324,8 +326,8 @@ exports[`fixture learners (§5.6) > time-poor-cloud > matches its snapshot 1`] =
     },
     {
       "items": [
+        "course:coursera-aws-python-serverless (10h, score 0.475)",
         "course:aws-iam-guide (4h, score 0.438)",
-        "course:serverless-land (10h, score 0.433)",
       ],
       "milestone": "Architect a multi-service cloud application",
       "title": "Phase 3 — Core Cloud",
@@ -334,12 +336,11 @@ exports[`fixture learners (§5.6) > time-poor-cloud > matches its snapshot 1`] =
   "stoppedBecause": "budget",
   "uncovered": [
     "networking-basics:1",
-    "cloud-fundamentals:1",
     "infrastructure-as-code:2",
     "linux-administration:2",
     "security-fundamentals:1",
     "devops-fundamentals:1",
   ],
-  "usedHours": 75,
+  "usedHours": 77,
 }
 `;

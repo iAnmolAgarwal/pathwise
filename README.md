@@ -26,8 +26,8 @@ real learners took those two skills in that order.
   when you have not said what you know.
 - **Get a path, not a list.** A deterministic engine computes the skill gap (goal skills plus
   the prerequisite closure), scores every catalog item against it, picks a small covering set
-  under your time budget, and sequences it into phases with milestones — 300-odd real
-  courses, projects and assessments with real URLs.
+  under your time budget, and sequences it into phases with milestones — 370 real items
+  (307 courses, 36 projects, 27 assessments) with real URLs.
 - **See why.** Every item carries an evidence object: the gap skills it covers, the graph path
   that made it necessary, a five-part score breakdown, what it is sequenced after and why, and
   — where learners were observed — "confirmed by N learner sequences (P % took these in this
