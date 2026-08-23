@@ -5,9 +5,9 @@
   "texts": "item = 'title. description', skill = 'name. description' (what embed.py encodes); nomic-embed gets its required search_query: / search_document: prefixes",
   "metrics": "P@1, P@3 (hits in top 3 / 3; an item teaching fewer than 3 skills cannot reach 1.0 \u2014 the ceiling column is the mean best achievable P@3), MRR of the first correct skill",
   "comparison": "candidate minus baseline per metric with a paired bootstrap over items (2000 resamples, seed 42); 'clearly better' means every metric's 95 % interval lies above zero",
-  "items": 246,
+  "items": 370,
   "skills": 159,
-  "corpusHash": "3689a7e24c03b3b0"
+  "corpusHash": "ce27ecb678538d67"
  },
  "shipped": "all-MiniLM-L6-v2",
  "results": [
@@ -17,13 +17,13 @@
    "queryPrefix": "",
    "docPrefix": "",
    "device": "mps",
-   "loadSeconds": 5.6,
-   "encodeSeconds": 0.6,
-   "items": 246,
-   "p1": 0.7561,
-   "p3": 0.4011,
-   "p3Ceiling": 0.6138,
-   "mrr": 0.843,
+   "loadSeconds": 11.7,
+   "encodeSeconds": 0.8,
+   "items": 370,
+   "p1": 0.7757,
+   "p3": 0.4189,
+   "p3Ceiling": 0.6441,
+   "mrr": 0.8568,
    "byKind": {
     "assessment": {
      "n": 27,
@@ -32,10 +32,10 @@
      "mrr": 0.6958
     },
     "course": {
-     "n": 183,
-     "p1": 0.8361,
-     "p3": 0.4189,
-     "mrr": 0.8964
+     "n": 307,
+     "p1": 0.8274,
+     "p3": 0.4332,
+     "mrr": 0.8915
     },
     "project": {
      "n": 36,
@@ -124,6 +124,18 @@
      ]
     },
     {
+     "id": "jest-getting-started",
+     "firstCorrectRank": 17,
+     "top3": [
+      "frontend-build-tools",
+      "frontend-testing",
+      "javascript-advanced"
+     ],
+     "truth": [
+      "unit-testing"
+     ]
+    },
+    {
      "id": "anthropic-docs",
      "firstCorrectRank": 14,
      "top3": [
@@ -163,19 +175,6 @@
       "css",
       "responsive-design"
      ]
-    },
-    {
-     "id": "github-pages-site",
-     "firstCorrectRank": 7,
-     "top3": [
-      "ci-cd",
-      "git-collaboration",
-      "gitops"
-     ],
-     "truth": [
-      "html",
-      "version-control-git"
-     ]
     }
    ],
    "vsBaseline": null
@@ -186,13 +185,13 @@
    "queryPrefix": "",
    "docPrefix": "",
    "device": "mps",
-   "loadSeconds": 5.5,
-   "encodeSeconds": 0.5,
-   "items": 246,
-   "p1": 0.748,
-   "p3": 0.3821,
-   "p3Ceiling": 0.6138,
-   "mrr": 0.8304,
+   "loadSeconds": 9.3,
+   "encodeSeconds": 0.8,
+   "items": 370,
+   "p1": 0.7568,
+   "p3": 0.4081,
+   "p3Ceiling": 0.6441,
+   "mrr": 0.8384,
    "byKind": {
     "assessment": {
      "n": 27,
@@ -201,10 +200,10 @@
      "mrr": 0.6299
     },
     "course": {
-     "n": 183,
-     "p1": 0.8306,
-     "p3": 0.4189,
-     "mrr": 0.8925
+     "n": 307,
+     "p1": 0.8078,
+     "p3": 0.4354,
+     "mrr": 0.877
     },
     "project": {
      "n": 36,
@@ -241,6 +240,18 @@
      ]
     },
     {
+     "id": "cypress-docs-core",
+     "firstCorrectRank": 29,
+     "top3": [
+      "frontend-testing",
+      "programming-basics",
+      "ci-cd"
+     ],
+     "truth": [
+      "test-automation"
+     ]
+    },
+    {
      "id": "exercism",
      "firstCorrectRank": 28,
      "top3": [
@@ -251,6 +262,20 @@
      "truth": [
       "programming-basics",
       "python"
+     ]
+    },
+    {
+     "id": "weaviate-academy",
+     "firstCorrectRank": 26,
+     "top3": [
+      "scikit-learn",
+      "pytorch",
+      "fastapi"
+     ],
+     "truth": [
+      "embeddings-vector-search",
+      "rag",
+      "vector-databases"
      ]
     },
     {
@@ -306,67 +331,38 @@
      ]
     },
     {
-     "id": "statquest",
-     "firstCorrectRank": 15,
+     "id": "mslearn-sc200-kql-sentinel",
+     "firstCorrectRank": 16,
      "top3": [
-      "exploratory-data-analysis",
-      "scikit-learn",
-      "r-programming"
+      "advanced-sql",
+      "graphql",
+      "data-modeling"
      ],
      "truth": [
-      "ml-fundamentals",
-      "model-evaluation",
-      "statistics-fundamentals",
-      "supervised-learning"
-     ]
-    },
-    {
-     "id": "anthropic-courses",
-     "firstCorrectRank": 14,
-     "top3": [
-      "technical-writing",
-      "web-animations",
-      "python-advanced"
-     ],
-     "truth": [
-      "ai-agents",
-      "llm-apis",
-      "prompt-engineering"
-     ]
-    },
-    {
-     "id": "guess-correlation",
-     "firstCorrectRank": 14,
-     "top3": [
-      "exploratory-data-analysis",
-      "inferential-statistics",
-      "data-visualization"
-     ],
-     "truth": [
-      "statistics-fundamentals"
+      "security-operations"
      ]
     }
    ],
    "vsBaseline": {
     "p1": {
-     "delta": -0.0081,
+     "delta": -0.0189,
      "ci95": [
-      -0.061,
-      0.0408
+      -0.0595,
+      0.0216
      ]
     },
     "p3": {
-     "delta": -0.019,
+     "delta": -0.0108,
      "ci95": [
-      -0.0434,
-      0.0054
+      -0.0297,
+      0.0081
      ]
     },
     "mrr": {
-     "delta": -0.0126,
+     "delta": -0.0185,
      "ci95": [
-      -0.0457,
-      0.02
+      -0.0443,
+      0.0071
      ]
     }
    }
@@ -377,13 +373,13 @@
    "queryPrefix": "",
    "docPrefix": "",
    "device": "mps",
-   "loadSeconds": 5.5,
-   "encodeSeconds": 1.5,
-   "items": 246,
-   "p1": 0.7764,
-   "p3": 0.3902,
-   "p3Ceiling": 0.6138,
-   "mrr": 0.8442,
+   "loadSeconds": 9.8,
+   "encodeSeconds": 2.5,
+   "items": 370,
+   "p1": 0.7946,
+   "p3": 0.4198,
+   "p3Ceiling": 0.6441,
+   "mrr": 0.8592,
    "byKind": {
     "assessment": {
      "n": 27,
@@ -392,10 +388,10 @@
      "mrr": 0.7257
     },
     "course": {
-     "n": 183,
-     "p1": 0.8525,
-     "p3": 0.4244,
-     "mrr": 0.9036
+     "n": 307,
+     "p1": 0.8436,
+     "p3": 0.4463,
+     "mrr": 0.8978
     },
     "project": {
      "n": 36,
@@ -458,6 +454,20 @@
      ]
     },
     {
+     "id": "weaviate-academy",
+     "firstCorrectRank": 28,
+     "top3": [
+      "fastapi",
+      "tensorflow",
+      "scikit-learn"
+     ],
+     "truth": [
+      "embeddings-vector-search",
+      "rag",
+      "vector-databases"
+     ]
+    },
+    {
      "id": "kaggle-python",
      "firstCorrectRank": 21,
      "top3": [
@@ -467,6 +477,21 @@
      ],
      "truth": [
       "python"
+     ]
+    },
+    {
+     "id": "anthropic-building-with-claude-api",
+     "firstCorrectRank": 19,
+     "top3": [
+      "fastapi",
+      "django",
+      "rest-api-design"
+     ],
+     "truth": [
+      "ai-agents",
+      "llm-apis",
+      "prompt-engineering",
+      "rag"
      ]
     },
     {
@@ -507,54 +532,28 @@
       "command-line",
       "security-fundamentals"
      ]
-    },
-    {
-     "id": "langchain-tutorials",
-     "firstCorrectRank": 14,
-     "top3": [
-      "fastapi",
-      "python",
-      "api-documentation"
-     ],
-     "truth": [
-      "ai-agents",
-      "rag"
-     ]
-    },
-    {
-     "id": "roadmap-task-tracker",
-     "firstCorrectRank": 14,
-     "top3": [
-      "shell-scripting",
-      "ci-cd",
-      "fastapi"
-     ],
-     "truth": [
-      "command-line",
-      "programming-basics"
-     ]
     }
    ],
    "vsBaseline": {
     "p1": {
-     "delta": 0.0203,
+     "delta": 0.0189,
      "ci95": [
-      -0.0203,
-      0.061
+      -0.0135,
+      0.0514
      ]
     },
     "p3": {
-     "delta": -0.0108,
+     "delta": 0.0009,
      "ci95": [
-      -0.0325,
-      0.0108
+      -0.018,
+      0.0189
      ]
     },
     "mrr": {
-     "delta": 0.0012,
+     "delta": 0.0024,
      "ci95": [
-      -0.027,
-      0.0274
+      -0.0196,
+      0.0236
      ]
     }
    }
@@ -565,13 +564,13 @@
    "queryPrefix": "",
    "docPrefix": "",
    "device": "mps",
-   "loadSeconds": 5.6,
-   "encodeSeconds": 1.2,
-   "items": 246,
-   "p1": 0.7886,
-   "p3": 0.4024,
-   "p3Ceiling": 0.6138,
-   "mrr": 0.8615,
+   "loadSeconds": 9.1,
+   "encodeSeconds": 2.1,
+   "items": 370,
+   "p1": 0.8027,
+   "p3": 0.4315,
+   "p3Ceiling": 0.6441,
+   "mrr": 0.8735,
    "byKind": {
     "assessment": {
      "n": 27,
@@ -580,10 +579,10 @@
      "mrr": 0.7629
     },
     "course": {
-     "n": 183,
-     "p1": 0.8634,
-     "p3": 0.4262,
-     "mrr": 0.9163
+     "n": 307,
+     "p1": 0.8502,
+     "p3": 0.4517,
+     "mrr": 0.9087
     },
     "project": {
      "n": 36,
@@ -659,6 +658,20 @@
      ]
     },
     {
+     "id": "weaviate-academy",
+     "firstCorrectRank": 12,
+     "top3": [
+      "fastapi",
+      "scikit-learn",
+      "deep-learning"
+     ],
+     "truth": [
+      "embeddings-vector-search",
+      "rag",
+      "vector-databases"
+     ]
+    },
+    {
      "id": "anthropic-docs",
      "firstCorrectRank": 9,
      "top3": [
@@ -710,42 +723,28 @@
       "ai-app-development",
       "llm-apis"
      ]
-    },
-    {
-     "id": "maven-challenges",
-     "firstCorrectRank": 6,
-     "top3": [
-      "dbt",
-      "power-bi",
-      "etl-pipelines"
-     ],
-     "truth": [
-      "data-storytelling",
-      "data-visualization",
-      "exploratory-data-analysis"
-     ]
     }
    ],
    "vsBaseline": {
     "p1": {
-     "delta": 0.0325,
+     "delta": 0.027,
      "ci95": [
       -0.0081,
-      0.0732
+      0.0649
      ]
     },
     "p3": {
-     "delta": 0.0014,
+     "delta": 0.0126,
      "ci95": [
-      -0.019,
-      0.0217
+      -0.0045,
+      0.0288
      ]
     },
     "mrr": {
-     "delta": 0.0185,
+     "delta": 0.0167,
      "ci95": [
-      -0.0078,
-      0.0433
+      -0.0045,
+      0.0379
      ]
     }
    }
@@ -756,13 +755,13 @@
    "queryPrefix": "search_query: ",
    "docPrefix": "search_document: ",
    "device": "mps",
-   "loadSeconds": 10.4,
-   "encodeSeconds": 2.4,
-   "items": 246,
-   "p1": 0.7358,
-   "p3": 0.3618,
-   "p3Ceiling": 0.6138,
-   "mrr": 0.8183,
+   "loadSeconds": 18.1,
+   "encodeSeconds": 4.3,
+   "items": 370,
+   "p1": 0.7405,
+   "p3": 0.3847,
+   "p3Ceiling": 0.6441,
+   "mrr": 0.8261,
    "byKind": {
     "assessment": {
      "n": 27,
@@ -771,10 +770,10 @@
      "mrr": 0.5814
     },
     "course": {
-     "n": 183,
-     "p1": 0.8197,
-     "p3": 0.3916,
-     "mrr": 0.8844
+     "n": 307,
+     "p1": 0.7915,
+     "p3": 0.4072,
+     "mrr": 0.8671
     },
     "project": {
      "n": 36,
@@ -821,6 +820,18 @@
      "truth": [
       "programming-basics",
       "python"
+     ]
+    },
+    {
+     "id": "jest-getting-started",
+     "firstCorrectRank": 37,
+     "top3": [
+      "javascript-advanced",
+      "frontend-build-tools",
+      "vue"
+     ],
+     "truth": [
+      "unit-testing"
      ]
     },
     {
@@ -889,53 +900,40 @@
      ]
     },
     {
-     "id": "anthropic-courses",
-     "firstCorrectRank": 9,
+     "id": "stanford-cs329s",
+     "firstCorrectRank": 11,
      "top3": [
-      "web-accessibility",
-      "fastapi",
-      "api-documentation"
+      "math-for-ml",
+      "ml-fundamentals",
+      "llm-fundamentals"
      ],
      "truth": [
-      "ai-agents",
-      "llm-apis",
-      "prompt-engineering"
-     ]
-    },
-    {
-     "id": "otw-bandit",
-     "firstCorrectRank": 9,
-     "top3": [
-      "ethical-hacking-basics",
-      "web-security",
-      "apache-kafka"
-     ],
-     "truth": [
-      "command-line",
-      "security-fundamentals"
+      "feature-engineering",
+      "mlops",
+      "model-deployment"
      ]
     }
    ],
    "vsBaseline": {
     "p1": {
-     "delta": -0.0203,
+     "delta": -0.0351,
      "ci95": [
-      -0.0732,
-      0.0325
+      -0.073,
+      0.0028
      ]
     },
     "p3": {
-     "delta": -0.0393,
+     "delta": -0.0342,
      "ci95": [
-      -0.0623,
+      -0.0523,
       -0.0162
      ]
     },
     "mrr": {
-     "delta": -0.0246,
+     "delta": -0.0307,
      "ci95": [
-      -0.0589,
-      0.0094
+      -0.0554,
+      -0.0049
      ]
     }
    }

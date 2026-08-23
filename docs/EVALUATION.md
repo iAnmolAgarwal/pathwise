@@ -21,7 +21,7 @@ which runs the engine exactly as the product does.
 **Method.** For each of the 50 paths, every ordered pair of taught skills is a sequencing
 decision: skill A's first teaching item precedes skill B's first teaching item (assessments
 do not teach, and an item teaches a skill only above the level the learner already holds).
-That gives 2,451 unique ordered pairs (6,164 occurrences across paths). Each pair is looked
+That gives 2,732 unique ordered pairs (6,587 occurrences across paths). Each pair is looked
 up in the learner-sequence evidence: Stack Overflow question order (the date of a user's
 first question per skill, users who started after both technologies existed) and Coursera
 review order (review sequence per pseudo-user, 2015–2020). Where a source observed the pair
@@ -36,37 +36,37 @@ came from scoring and phasing).
 
 | Source | Pairs observed (n ≥ 20) | Agreement | Authored edges | Graph-derived | Graph-inverted | Unrelated |
 |---|---|---|---|---|---|---|
-| Stack Overflow question order | 1,934 | **68.5 %** | 83 / 97 (85.6 %) | 154 / 161 (95.7 %) | 3 / 10 (30.0 %) | 1,085 / 1,666 (65.1 %) |
-| Coursera review order | 329 | **62.9 %** | 26 / 30 (86.7 %) | 31 / 39 (79.5 %) | 1 / 9 (11.1 %) | 149 / 251 (59.4 %) |
+| Stack Overflow question order | 2,265 | **65.4 %** | 95 / 112 (84.8 %) | 167 / 174 (96.0 %) | 4 / 27 (14.8 %) | 1,215 / 1,952 (62.2 %) |
+| Coursera review order | 400 | **61.8 %** | 29 / 36 (80.6 %) | 33 / 41 (80.5 %) | 3 / 11 (27.3 %) | 182 / 312 (58.3 %) |
 
 Two further views of the same pairs: restricted to pairs that cross a phase boundary (the
-order a learner actually experiences as "later"), agreement is 74.6 % on Stack Overflow
-(1,301 pairs) and 57.1 % on Coursera (191); restricted to the pairs the sources are surest
-about (n ≥ 50 and a majority of at least 70 %), it is 83.5 % on Stack Overflow (407 pairs)
-and 65.8 % on Coursera (228).
+order a learner actually experiences as "later"), agreement is 72.1 % on Stack Overflow
+(1,522 pairs) and 65.9 % on Coursera (226); restricted to the pairs the sources are surest
+about (n ≥ 50 and a majority of at least 70 %), it is 78.3 % on Stack Overflow (474 pairs)
+and 61.2 % on Coursera (281).
 
 **Reading it.** Where the engine's order comes from a prerequisite claim — an authored edge
-or anything derived from one — learners agree with it 86–96 % of the time on Stack Overflow
-and 80–87 % on Coursera. Where the engine had no prerequisite reason for an order (the
-*unrelated* column, four fifths of all observed pairs), agreement drops to 65 % and 59 %:
+or anything derived from one — learners agree with it 85–96 % of the time on Stack Overflow
+and 80–81 % on Coursera. Where the engine had no prerequisite reason for an order (the
+*unrelated* column, more than four fifths of all observed pairs), agreement drops to 62 % and 58 %:
 that order comes from scores and time budget, not from a claim about what comes first, and
 the learner data says it is a little better than a coin toss. The disagreeing prerequisite
 pairs are listed in full in the report; the largest are *Networking & How the Web Works →
-Working with APIs* (Stack Overflow saw 40 % in that order, n = 15,008), *Modern JavaScript →
-Node.js* (34 %, n = 14,683) and *Statistics Fundamentals → R Programming* (13 %, n = 5,539) —
+Working with APIs* (Stack Overflow saw 41 % in that order, n = 15,008), *Modern JavaScript →
+Node.js* (35 %, n = 14,683) and *Statistics Fundamentals → R Programming* (14 %, n = 5,539) —
 pairs where the order people first ask about things may simply differ from the order a
 curriculum teaches them, and which are now candidates for an authoring review. On Coursera,
-*Supervised Learning → Model Evaluation* (20 %, n = 659) and *Supervised Learning →
-scikit-learn* (23 %, n = 579) disagree: reviewers reached the evaluation and scikit-learn
-courses before the supervised-learning ones roughly four times in five.
+*Model Evaluation → Neural Networks* (8 %, n = 5,317) and *SQL → Python* (8 %, n = 2,276)
+disagree hardest: reviewers overwhelmingly reached the neural-network and Python courses
+first — orders that came from scoring, not from any prerequisite claim.
 
-The *graph-inverted* column is a finding about the engine rather than about learners: in 16
-of 2,451 pairs the engine taught a skill before one of its own prerequisites — almost always a
-phase project that touches a skill at level 1 before the course that teaches its prerequisite
-arrives in the next phase (for example *DevOps Fundamentals* before *Git & Version Control*
-in seven paths), plus one cycle-broken soft edge (*Model Evaluation* before *Inferential
-Statistics*). Learners side with the graph in those cases (3 of 10 and 1 of 9 agree), which
-is the direction the fix should take.
+The *graph-inverted* column is a finding about the engine rather than about learners: in 35
+of 2,732 pairs the engine taught a skill before one of its own prerequisites — almost always a
+phase project or a broad course that touches a skill at level 1 before the course that
+teaches its prerequisite arrives in a later phase (for example *Cloud Architecture* before
+*AWS Fundamentals* in five paths), plus cycle-broken soft edges. Learners side with the
+graph in those cases (4 of 27 and 3 of 11 agree with the engine), which is the direction
+the fix should take.
 
 **The confound, stated.** The engine's order is partly *derived* from the authored graph, and
 that same graph is what the sources were checked against when the evidence was merged; high
@@ -81,10 +81,10 @@ the product applies here too.
 **Method.** The engine's similarity signal is a cosine between a catalog item's text
 ("title. description") and a skill's text ("name. description"), both encoded offline by
 `pipeline/embed.py`. Ground truth for the bake-off is each item's annotated `skillsTaught`
-(model-annotated, human spot-checked, 246 items over 159 skills). For every item, all 159
+(model-annotated, human spot-checked, 370 items over 159 skills). For every item, all 159
 skills are ranked by cosine to the item; P@1, P@3 and MRR of the first correct skill are
-averaged over items. Because 103 of the 246 items teach a single skill and 182 teach at most
-two, P@3 cannot reach 1.0 — its ceiling, the mean best achievable P@3, is 0.614. Five models
+averaged over items. Because 135 of the 370 items teach a single skill and 260 teach at most
+two, P@3 cannot reach 1.0 — its ceiling, the mean best achievable P@3, is 0.644. Five models
 ran locally on Apple silicon (MPS); `nomic-embed-text-v1.5` received its required
 `search_query:` / `search_document:` prefixes, the others plain text. Each candidate is
 compared to the shipped baseline with a paired bootstrap over items (2,000 resamples); a
@@ -92,20 +92,20 @@ candidate is "clearly better" only if every metric's 95 % interval lies above ze
 
 **Result** (`pipeline/evidence/eval_embedding_bakeoff.md`):
 
-| Model | Dim | P@1 | P@3 (ceiling 0.614) | MRR | Δ vs shipped: P@1 · P@3 · MRR (95 % interval) |
+| Model | Dim | P@1 | P@3 (ceiling 0.644) | MRR | Δ vs shipped: P@1 · P@3 · MRR (95 % interval) |
 |---|---|---|---|---|---|
-| all-MiniLM-L6-v2 (shipped) | 384 | 0.756 | 0.401 | 0.843 | — |
-| BAAI/bge-small-en-v1.5 | 384 | 0.748 | 0.382 | 0.830 | −0.008 [−0.061, +0.041] · −0.019 [−0.043, +0.005] · −0.013 [−0.046, +0.020] |
-| BAAI/bge-base-en-v1.5 | 768 | 0.776 | 0.390 | 0.844 | +0.020 [−0.020, +0.061] · −0.011 [−0.033, +0.011] · +0.001 [−0.027, +0.027] |
-| thenlper/gte-base | 768 | **0.789** | **0.402** | **0.862** | +0.033 [−0.008, +0.073] · +0.001 [−0.019, +0.022] · +0.018 [−0.008, +0.043] |
-| nomic-ai/nomic-embed-text-v1.5 | 768 | 0.736 | 0.362 | 0.818 | −0.020 [−0.073, +0.033] · −0.039 [−0.062, −0.016] · −0.025 [−0.059, +0.009] |
+| all-MiniLM-L6-v2 (shipped) | 384 | 0.776 | 0.419 | 0.857 | — |
+| BAAI/bge-small-en-v1.5 | 384 | 0.757 | 0.408 | 0.838 | −0.019 [−0.059, +0.022] · −0.011 [−0.030, +0.008] · −0.018 [−0.044, +0.007] |
+| BAAI/bge-base-en-v1.5 | 768 | 0.795 | 0.420 | 0.859 | +0.019 [−0.013, +0.051] · +0.001 [−0.018, +0.019] · +0.002 [−0.020, +0.024] |
+| thenlper/gte-base | 768 | **0.803** | **0.431** | **0.874** | +0.027 [−0.008, +0.065] · +0.013 [−0.004, +0.029] · +0.017 [−0.004, +0.038] |
+| nomic-ai/nomic-embed-text-v1.5 | 768 | 0.741 | 0.385 | 0.826 | −0.035 [−0.073, +0.003] · −0.034 [−0.052, −0.016] · −0.031 [−0.055, −0.005] |
 
-By item kind the ranking is stable: courses are easy (MiniLM P@1 0.836, gte-base 0.863),
+By item kind the ranking is stable: courses are easy (MiniLM P@1 0.827, gte-base 0.850),
 projects and assessments are hard for every model (P@1 0.44–0.63), because their text
 describes a task rather than a topic.
 
-**Decision.** `gte-base` leads on all three metrics, but by +0.033 / +0.001 / +0.018 with
-every interval straddling zero — eight more items right at rank 1 out of 246, at twice the
+**Decision.** `gte-base` leads on all three metrics, but by +0.027 / +0.013 / +0.017 with
+every interval straddling zero — ten more items right at rank 1 out of 370, at twice the
 vector size. That is not "clearly better", so the shipped model stays `all-MiniLM-L6-v2` and
 the table is the result. The rule that would change it — all three intervals above zero, and
 a reviewed diff of every fixture path the swap would alter — is in the script.
@@ -165,38 +165,36 @@ whether the paths above are a property of the engine or of one particular settin
 
 **Method.** `pipeline/evaluate/weight_sensitivity.ts` takes the 66-learner corpus the
 property tests sweep — the five fixture learners plus every goal template under four learner
-shapes and one two-goal learner — generates every path at the committed weights (920 path
+shapes and one two-goal learner — generates every path at the committed weights (982 path
 items), then moves one weight at a time by ±25 % and regenerates. For each perturbation it
-counts learners whose path changed at all, items added and removed (as a share of the 920),
+counts learners whose path changed at all, items added and removed (as a share of the 982),
 learners whose shared items came out in a different order, and phase-order flips (the same
 phase titles in a different sequence). The weights are passed into the engine as an option;
 the product never sets it.
 
 **Result** (`pipeline/evidence/weight_sensitivity.json`):
 
-| axis | Δ | learners changed | items added | items removed | items changed (% of 920) | learners reordered | phase-order flips |
+| axis | Δ | learners changed | items added | items removed | items changed (% of 982) | learners reordered | phase-order flips |
 |---|---|---|---|---|---|---|---|
-| coverage | +25 % | 6/66 | 4 | 5 | 9 (0.98 %) | 2 | 0 |
-| coverage | −25 % | 10/66 | 19 | 14 | 33 (3.59 %) | 6 | 1 |
-| levelFit | +25 % | 17/66 | 21 | 21 | 42 (4.57 %) | 4 | 0 |
-| levelFit | −25 % | 15/66 | 23 | 20 | 43 (4.67 %) | 5 | 0 |
-| preferenceFit | +25 % | 2/66 | 7 | 3 | 10 (1.09 %) | 1 | 0 |
-| preferenceFit | −25 % | 5/66 | 4 | 4 | 8 (0.87 %) | 3 | 0 |
-| quality | +25 % | 6/66 | 11 | 8 | 19 (2.07 %) | 1 | 0 |
-| quality | −25 % | 8/66 | 10 | 10 | 20 (2.17 %) | 2 | 0 |
-| similarity | +25 % | 7/66 | 8 | 8 | 16 (1.74 %) | 1 | 0 |
-| similarity | −25 % | 16/66 | 17 | 17 | 34 (3.70 %) | 5 | 0 |
+| coverage | +25 % | 7/66 | 6 | 6 | 12 (1.22 %) | 4 | 0 |
+| coverage | −25 % | 12/66 | 30 | 18 | 48 (4.89 %) | 8 | 0 |
+| levelFit | +25 % | 17/66 | 21 | 18 | 39 (3.97 %) | 4 | 0 |
+| levelFit | −25 % | 17/66 | 19 | 18 | 37 (3.77 %) | 2 | 0 |
+| preferenceFit | +25 % | 2/66 | 11 | 7 | 18 (1.83 %) | 1 | 0 |
+| preferenceFit | −25 % | 5/66 | 4 | 3 | 7 (0.71 %) | 3 | 0 |
+| quality | +25 % | 7/66 | 6 | 7 | 13 (1.32 %) | 1 | 0 |
+| quality | −25 % | 8/66 | 11 | 10 | 21 (2.14 %) | 1 | 0 |
+| similarity | +25 % | 10/66 | 22 | 16 | 38 (3.87 %) | 4 | 0 |
+| similarity | −25 % | 16/66 | 19 | 17 | 36 (3.67 %) | 6 | 0 |
 
-No fixture learner's phase order flips under any perturbation. The one flip in the corpus is
-`business-intelligence-analyst/free-text` (free courses only, text format, 3 h/week) under
-coverage −25 %, where two equally sized phases swap. Among the five fixtures, the only item
-substitutions are `sqlzoo` ↔ `hackerrank-sql` (two SQL practice sets of similar size and
-level) for the data-science and ML learners, and `beginner-frontend` sees two order
-inversions among items in the same phase under three of the ten perturbations.
+No learner's phase order flips under any perturbation — fixture or sweep. Among the five
+fixtures the changes are single-item substitutions between resources of similar size and
+level (a practice set for a practice set, one SQL course for another) and a handful of
+same-phase order inversions; no fixture gains or loses more than one item under any axis.
 
-**Reading it.** Level fit is the most sensitive axis and preference fit the least; at ±25 %
-no axis moves more than 4.7 % of items or changes the phase structure of a fixture. Most of
-what a path contains is decided by the gap and the prerequisite graph before the weights
+**Reading it.** Coverage and level fit are the most sensitive axes and preference fit the
+least; at ±25 % no axis moves more than 4.9 % of items and no learner's phase order changes.
+Most of what a path contains is decided by the gap and the prerequisite graph before the weights
 break ties among courses that cover the same skills — which is the intended division of
 labour (§5.1–5.3). The weights are not changed on the strength of this; the study is an
 input to any future change, and its numbers are what the documentation quotes.
