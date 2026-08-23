@@ -1,7 +1,7 @@
 "use client";
 
-import { BarChart3, BookOpen, GitBranch, MessageSquare, Route, UserRound } from "lucide-react";
-import { motion } from "motion/react";
+import { BarChart3, BookOpen, Calculator, GitBranch, MessageSquare, Route, UserRound } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { forwardRef, useEffect, useId, useRef, useState, type ReactNode, type RefObject } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +22,8 @@ interface AnimatedBeamProps {
   gradientStopColor?: string;
   endYOffset?: number;
   active?: boolean;
+  /** Animate the gradient top-to-bottom instead of left-to-right (for a beam between stacked nodes). */
+  vertical?: boolean;
 }
 
 function AnimatedBeam({
@@ -32,10 +34,11 @@ function AnimatedBeam({
   reverse = false,
   duration = 4.5,
   delay = 0,
-  gradientStartColor = "#ff9d3d",
-  gradientStopColor = "#8b5cff",
+  gradientStartColor = "var(--color-violet-2)",
+  gradientStopColor = "var(--color-violet)",
   endYOffset = 0,
   active = true,
+  vertical = false,
 }: AnimatedBeamProps) {
   const gradientId = useId().replace(/:/g, "");
   const [path, setPath] = useState("");
@@ -67,9 +70,14 @@ function AnimatedBeam({
     };
   }, [containerRef, fromRef, toRef, curvature, endYOffset]);
 
-  const coords = reverse
-    ? { x1: ["110%", "-20%"], x2: ["120%", "-10%"] }
-    : { x1: ["-20%", "110%"], x2: ["-10%", "120%"] };
+  // The gradient sweeps in screen space: left→right by default, right→left with `reverse`.
+  // Left-hand nodes therefore flow into the engine without it; right-hand nodes flow out of
+  // the engine without it and back in with it.
+  const sweep = reverse ? { a: ["110%", "-20%"], b: ["120%", "-10%"] } : { a: ["-20%", "110%"], b: ["-10%", "120%"] };
+  const still = ["0%", "0%"];
+  const animated = vertical
+    ? { x1: still, x2: still, y1: sweep.a, y2: sweep.b }
+    : { x1: sweep.a, x2: sweep.b, y1: still, y2: still };
 
   return (
     <svg
@@ -80,14 +88,14 @@ function AnimatedBeam({
       viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
       fill="none"
     >
-      <path d={path} stroke="rgba(255,255,255,0.16)" strokeWidth={2} strokeLinecap="round" />
+      <path d={path} className={styles.beamBase} strokeWidth={2} strokeLinecap="round" />
       <path d={path} stroke={`url(#${gradientId})`} strokeWidth={2.7} strokeLinecap="round" />
       <defs>
         <motion.linearGradient
           id={gradientId}
           gradientUnits="userSpaceOnUse"
           initial={{ x1: "0%", x2: "0%", y1: "0%", y2: "0%" }}
-          animate={active ? { x1: coords.x1, x2: coords.x2, y1: ["0%", "0%"], y2: ["0%", "0%"] } : { x1: "0%", x2: "0%" }}
+          animate={active ? animated : { x1: "0%", x2: "0%", y1: "0%", y2: "0%" }}
           transition={active ? { delay, duration, ease: "linear", repeat: Infinity } : { duration: 0 }}
         >
           <stop stopColor={gradientStartColor} stopOpacity="0" />
@@ -118,11 +126,13 @@ const Node = forwardRef<HTMLDivElement, { icon: ReactNode; name: string; large?:
 );
 Node.displayName = "Node";
 
-/** "Under the hood" — what flows into and out of the engine. */
+/** "Under the hood": what flows into and out of the engine; feedback flows back in (§5.5). */
 export function BeamNetwork({ id }: { id?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef);
+  const reduce = useReducedMotion();
+  const beamsActive = inView && !reduce;
   const profileRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<HTMLDivElement>(null);
   const catalogRef = useRef<HTMLDivElement>(null);
@@ -130,6 +140,7 @@ export function BeamNetwork({ id }: { id?: string }) {
   const pathRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
+  const novaRef = useRef<HTMLDivElement>(null);
   const stroke = 1.6;
 
   return (
@@ -140,11 +151,11 @@ export function BeamNetwork({ id }: { id?: string }) {
           Under the hood
         </Badge>
         <h2 id="beams-title" className={styles.title}>
-          Everything flows through <span>one deterministic engine.</span>
+          The engine decides. <span className="text-gradient-violet">Nova only explains.</span>
         </h2>
         <p className={styles.description}>
-          Your profile, the 159-skill graph and a 246-item catalog go in; a sequenced path, live
-          feedback and a progress dashboard come out. Nova narrates — the numbers come from the engine.
+          The path is arithmetic over your profile, the skill map and the catalog. Nova reads the
+          result and tells you why.
         </p>
       </header>
 
@@ -155,7 +166,8 @@ export function BeamNetwork({ id }: { id?: string }) {
           <Node ref={catalogRef} name="Catalog" icon={<BookOpen strokeWidth={stroke} />} />
         </div>
         <div className={styles.center}>
-          <Node ref={centerRef} name="Engine" large icon={<Orb state="connecting" size={64} label="Engine" paused={!inView} />} />
+          <Node ref={centerRef} name="Engine" large icon={<Calculator strokeWidth={stroke} />} />
+          <Node ref={novaRef} name="Nova" icon={<Orb state="breathing" size={64} label="Nova" paused={!beamsActive} className={styles.novaOrb} />} />
         </div>
         <div className={`${styles.column} ${styles.right}`}>
           <Node ref={pathRef} name="Path" icon={<Route strokeWidth={stroke} />} />
@@ -163,17 +175,18 @@ export function BeamNetwork({ id }: { id?: string }) {
           <Node ref={dashboardRef} name="Dashboard" icon={<BarChart3 strokeWidth={stroke} />} />
         </div>
 
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={profileRef} toRef={centerRef} curvature={-88} endYOffset={-8} duration={4.8} />
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={graphRef} toRef={centerRef} duration={4} delay={0.3} gradientStartColor="#ff8c42" gradientStopColor="#c05cff" />
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={catalogRef} toRef={centerRef} curvature={88} endYOffset={8} duration={5.2} delay={0.7} gradientStartColor="#3ee18e" gradientStopColor="#8868ff" />
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={pathRef} toRef={centerRef} curvature={-88} endYOffset={-8} reverse duration={5} delay={0.2} gradientStartColor="#4aa8ff" gradientStopColor="#a45cff" />
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={feedbackRef} toRef={centerRef} reverse duration={4.2} delay={0.5} gradientStartColor="#ff5a24" gradientStopColor="#bd5cff" />
-        <AnimatedBeam active={inView} containerRef={containerRef} fromRef={dashboardRef} toRef={centerRef} curvature={88} endYOffset={8} reverse duration={5.4} delay={0.9} gradientStartColor="#ff5f87" gradientStopColor="#5d83ff" />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={profileRef} toRef={centerRef} curvature={-88} endYOffset={-8} duration={4.8} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={graphRef} toRef={centerRef} duration={4} delay={0.3} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={catalogRef} toRef={centerRef} curvature={88} endYOffset={8} duration={5.2} delay={0.7} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={pathRef} toRef={centerRef} curvature={-88} endYOffset={-8} duration={5} delay={0.2} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={feedbackRef} toRef={centerRef} reverse duration={4.2} delay={0.5} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={dashboardRef} toRef={centerRef} curvature={88} endYOffset={8} duration={5.4} delay={0.9} />
+        <AnimatedBeam active={beamsActive} containerRef={containerRef} fromRef={centerRef} toRef={novaRef} vertical duration={3.6} delay={1.1} gradientStartColor="var(--color-violet)" gradientStopColor="var(--color-ink-1)" />
       </div>
 
-      <div className={styles.status}>
+      <div className={`${styles.status} label-caps`}>
         <span className={styles.statusLight} />
-        Pure engine · 230 tests green · every score reproducible
+        Same inputs, same path, every time.
       </div>
     </section>
   );
