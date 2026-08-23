@@ -4,14 +4,15 @@
   "baseline": {
     "coverage": 0.4,
     "levelFit": 0.15,
-    "preferenceFit": 0.15,
+    "preferenceFit": 0.13,
     "quality": 0.1,
-    "similarity": 0.2
+    "similarity": 0.2,
+    "transitionPrior": 0.02
   },
   "corpus": {
     "learners": 66,
     "fixtures": 5,
-    "items": 982
+    "items": 983
   },
   "results": [
     {
@@ -20,17 +21,18 @@
       "weights": {
         "coverage": 0.5,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 7,
-      "itemsAdded": 6,
-      "itemsRemoved": 6,
-      "itemsChanged": 12,
-      "itemsTotal": 982,
-      "itemsChangedPct": 1.22,
+      "learnersChanged": 6,
+      "itemsAdded": 5,
+      "itemsRemoved": 5,
+      "itemsChanged": 10,
+      "itemsTotal": 983,
+      "itemsChangedPct": 1.02,
       "reorderedLearners": 4,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
@@ -72,20 +74,21 @@
       "weights": {
         "coverage": 0.3,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 12,
-      "itemsAdded": 30,
-      "itemsRemoved": 18,
-      "itemsChanged": 48,
-      "itemsTotal": 982,
-      "itemsChangedPct": 4.89,
-      "reorderedLearners": 8,
+      "learnersChanged": 10,
+      "itemsAdded": 25,
+      "itemsRemoved": 15,
+      "itemsChanged": 40,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.07,
+      "reorderedLearners": 6,
       "phaseOrderFlips": 0,
-      "phaseCountChanges": 1,
+      "phaseCountChanges": 0,
       "fixtureFlips": [],
       "phaseFlipLearners": [],
       "fixtureChanges": [
@@ -119,18 +122,19 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.1875,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 17,
-      "itemsAdded": 21,
-      "itemsRemoved": 18,
-      "itemsChanged": 39,
-      "itemsTotal": 982,
-      "itemsChangedPct": 3.97,
-      "reorderedLearners": 4,
+      "learnersChanged": 18,
+      "itemsAdded": 23,
+      "itemsRemoved": 22,
+      "itemsChanged": 45,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.58,
+      "reorderedLearners": 3,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
       "fixtureFlips": [],
@@ -154,17 +158,18 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.1125,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 17,
-      "itemsAdded": 19,
-      "itemsRemoved": 18,
-      "itemsChanged": 37,
-      "itemsTotal": 982,
-      "itemsChangedPct": 3.77,
+      "learnersChanged": 15,
+      "itemsAdded": 17,
+      "itemsRemoved": 16,
+      "itemsChanged": 33,
+      "itemsTotal": 983,
+      "itemsChangedPct": 3.36,
       "reorderedLearners": 2,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
@@ -192,17 +197,18 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.1875,
+        "preferenceFit": 0.1625,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 2,
-      "itemsAdded": 11,
-      "itemsRemoved": 7,
-      "itemsChanged": 18,
-      "itemsTotal": 982,
-      "itemsChangedPct": 1.83,
+      "learnersChanged": 3,
+      "itemsAdded": 3,
+      "itemsRemoved": 4,
+      "itemsChanged": 7,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.71,
       "reorderedLearners": 1,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
@@ -216,18 +222,19 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.1125,
+        "preferenceFit": 0.0975,
         "quality": 0.1,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 5,
-      "itemsAdded": 4,
+      "learnersChanged": 4,
+      "itemsAdded": 2,
       "itemsRemoved": 3,
-      "itemsChanged": 7,
-      "itemsTotal": 982,
-      "itemsChangedPct": 0.71,
-      "reorderedLearners": 3,
+      "itemsChanged": 5,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.51,
+      "reorderedLearners": 2,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
       "fixtureFlips": [],
@@ -247,32 +254,24 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.125,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 7,
-      "itemsAdded": 6,
-      "itemsRemoved": 7,
-      "itemsChanged": 13,
-      "itemsTotal": 982,
-      "itemsChangedPct": 1.32,
-      "reorderedLearners": 1,
+      "learnersChanged": 3,
+      "itemsAdded": 3,
+      "itemsRemoved": 3,
+      "itemsChanged": 6,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.61,
+      "reorderedLearners": 0,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
       "fixtureFlips": [],
       "phaseFlipLearners": [],
-      "fixtureChanges": [
-        {
-          "name": "career-switcher-to-ds",
-          "added": [],
-          "removed": [
-            "tidytuesday"
-          ],
-          "reordered": 1
-        }
-      ]
+      "fixtureChanges": []
     },
     {
       "axis": "quality",
@@ -280,17 +279,18 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.075,
-        "similarity": 0.2
+        "similarity": 0.2,
+        "transitionPrior": 0.02
       },
       "learners": 66,
       "learnersChanged": 8,
-      "itemsAdded": 11,
-      "itemsRemoved": 10,
-      "itemsChanged": 21,
-      "itemsTotal": 982,
-      "itemsChangedPct": 2.14,
+      "itemsAdded": 12,
+      "itemsRemoved": 11,
+      "itemsChanged": 23,
+      "itemsTotal": 983,
+      "itemsChangedPct": 2.34,
       "reorderedLearners": 1,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
@@ -306,6 +306,17 @@
             "hackerrank-sql"
           ],
           "reordered": 0
+        },
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "3b1b-nn",
+            "fastai"
+          ],
+          "removed": [
+            "imperial-math-ml"
+          ],
+          "reordered": 4
         }
       ]
     },
@@ -315,18 +326,19 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.25
+        "similarity": 0.25,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 10,
-      "itemsAdded": 22,
-      "itemsRemoved": 16,
-      "itemsChanged": 38,
-      "itemsTotal": 982,
-      "itemsChangedPct": 3.87,
-      "reorderedLearners": 4,
+      "learnersChanged": 8,
+      "itemsAdded": 9,
+      "itemsRemoved": 7,
+      "itemsChanged": 16,
+      "itemsTotal": 983,
+      "itemsChangedPct": 1.63,
+      "reorderedLearners": 2,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
       "fixtureFlips": [],
@@ -350,18 +362,19 @@
       "weights": {
         "coverage": 0.4,
         "levelFit": 0.15,
-        "preferenceFit": 0.15,
+        "preferenceFit": 0.13,
         "quality": 0.1,
-        "similarity": 0.15
+        "similarity": 0.15,
+        "transitionPrior": 0.02
       },
       "learners": 66,
-      "learnersChanged": 16,
-      "itemsAdded": 19,
-      "itemsRemoved": 17,
-      "itemsChanged": 36,
-      "itemsTotal": 982,
-      "itemsChangedPct": 3.67,
-      "reorderedLearners": 6,
+      "learnersChanged": 19,
+      "itemsAdded": 24,
+      "itemsRemoved": 23,
+      "itemsChanged": 47,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.78,
+      "reorderedLearners": 7,
       "phaseOrderFlips": 0,
       "phaseCountChanges": 0,
       "fixtureFlips": [],
@@ -396,6 +409,56 @@
           "reordered": 4
         }
       ]
+    },
+    {
+      "axis": "transitionPrior",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.025
+      },
+      "learners": 66,
+      "learnersChanged": 1,
+      "itemsAdded": 1,
+      "itemsRemoved": 1,
+      "itemsChanged": 2,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.2,
+      "reorderedLearners": 0,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
+    },
+    {
+      "axis": "transitionPrior",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.015
+      },
+      "learners": 66,
+      "learnersChanged": 0,
+      "itemsAdded": 0,
+      "itemsRemoved": 0,
+      "itemsChanged": 0,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0,
+      "reorderedLearners": 0,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
     }
   ]
 }

@@ -29,7 +29,7 @@ real learners took those two skills in that order.
   under your time budget, and sequences it into phases with milestones — 370 real items
   (307 courses, 36 projects, 27 assessments) with real URLs.
 - **See why.** Every item carries an evidence object: the gap skills it covers, the graph path
-  that made it necessary, a five-part score breakdown, what it is sequenced after and why, and
+  that made it necessary, a six-part score breakdown, what it is sequenced after and why, and
   — where learners were observed — "confirmed by N learner sequences (P % took these in this
   order)". Nova narrates from that object and nothing else, and the narration sits beside the
   structural evidence so any drift is visible.
@@ -88,7 +88,9 @@ decision-maker.** Concretely:
   its outputs are committed and bundled, so nothing Python runs at request time.
 
 `docs/EVALUATION.md` holds the measured numbers: sequencing agreement with observed learner
-order, the embedding bake-off, narration groundedness, and a weight sensitivity study.
+order, the embedding bake-off, narration groundedness, a weight sensitivity study, and
+whether the one signal mined from real learner behaviour changed any recommendation — it did
+not, and §5 says so under a rule written before the numbers were seen.
 
 ### Judge mode
 
@@ -377,13 +379,18 @@ per source with share and n, out-of-catalog steps greyed but never hidden, the c
 list, and "not enough learner data on this step" below the floor. On the evidence card, when a
 skill the learner already has lists the item's primary skill as a next step above those floors,
 the card adds "Learners like you: P % took this next (n = …)" with the population, source and
-caveat on hover, and the narrator may cite that share and n from the same block. Branch shares
-are evidence and display; they never reorder a path.
+caveat on hover, and the narrator may cite that share and n from the same block. That same
+share is also the engine's sixth scoring signal, at a weight of 0.02 and only above those
+floors: the score reads it through the same lookup the card does, so the number that moved the
+ranking is the number shown. Branch shares never reorder a path — sequencing is the authored
+prerequisite graph and nothing else — and mined transitions never become prerequisites; they
+carry two per cent of the selection score and are display everywhere else. Whether that
+changed any recommendation was measured, and the answer was no: `docs/EVALUATION.md` §5.
 
 ### Self-evaluation — `pipeline/evaluate/`, `docs/EVALUATION.md`
 
-Three measurements, each produced by a committed script and quoted verbatim in
-`docs/EVALUATION.md`; nothing is trained. All three start from the same corpus of generated
+Five measurements, each produced by a committed script and quoted verbatim in
+`docs/EVALUATION.md`; nothing is trained. The first three start from the same corpus of generated
 paths — the five fixture learners plus every goal template under three canonical profiles
 (empty, partial, time-poor), 50 paths — emitted by `pipeline/evaluate/dump_paths.ts`, which
 runs the engine exactly as the product does.
@@ -392,7 +399,12 @@ runs the engine exactly as the product does.
 python pipeline/evaluate/sequencing_agreement.py     # engine order vs observed learner order, per source -> evidence/eval_sequencing_agreement.md/.json
 python pipeline/evaluate/embedding_bakeoff.py        # five local embedding models, P@1 / P@3 / MRR on skillsTaught -> evidence/eval_embedding_bakeoff.md/.json
 python pipeline/evaluate/narration_groundedness.py   # 60 narrations -> checker pass -> unsupported-claim rate -> evidence/eval_narration_groundedness.md/.json
+npm exec -- tsx pipeline/evaluate/weight_sensitivity.ts --out pipeline/evidence/weight_sensitivity.json --md   # each of the six weights moved +-25 % over the 66-learner sweep
 ```
+
+The fifth is the transition prior (`docs/EVALUATION.md` §5): the same sequencing script run
+before and after the mined prior was wired into the score, against a decision rule written
+first.
 
 - **Sequencing agreement**: every ordered pair of taught skills the engine sequenced, checked
   against the majority direction a source observed above its floor (n ≥ 20), split by whether

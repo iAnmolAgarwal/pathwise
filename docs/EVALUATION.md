@@ -6,8 +6,9 @@ similarity signal retrieves the right skills for a catalog item, and that the na
 explanation of a path item says nothing the underlying evidence does not. Each claim has a
 script under `pipeline/evaluate/`, each script writes its result under `pipeline/evidence/`,
 and the numbers below are copied from those files. A fourth section measures how much the
-engine's scoring weights matter, for the same reason. Nothing here is trained; no number is
-quoted that a script did not produce.
+engine's scoring weights matter, and a fifth reports, under a rule written before the numbers
+were seen, whether the one signal mined from real learner behaviour changed anything.
+Nothing here is trained; no number is quoted that a script did not produce.
 
 All three start from the same corpus of generated paths: the five fixture learners the test
 suite pins, plus every one of the 15 goal templates under three canonical profiles — *empty*
@@ -158,46 +159,115 @@ level fit when the profile records no skills, and never turn a score into a repu
 
 ## 4. Weight sensitivity
 
-**Why.** The five scoring weights (§5.2 of the architecture: coverage 0.40, level fit 0.15,
-preference fit 0.15, quality 0.10, similarity 0.20) were set by judgement, not tuned. This
-study does not tune them either; it measures how much each one matters, so a reader knows
-whether the paths above are a property of the engine or of one particular setting.
+**Why.** The six scoring weights (§5.2 of the architecture: coverage 0.40, level fit 0.15,
+preference fit 0.13, quality 0.10, similarity 0.20, transition prior 0.02) were set by
+judgement, not tuned. This study does not tune them either; it measures how much each one
+matters, so a reader knows whether the paths above are a property of the engine or of one
+particular setting.
 
 **Method.** `pipeline/evaluate/weight_sensitivity.ts` takes the 66-learner corpus the
 property tests sweep — the five fixture learners plus every goal template under four learner
-shapes and one two-goal learner — generates every path at the committed weights (982 path
+shapes and one two-goal learner — generates every path at the committed weights (983 path
 items), then moves one weight at a time by ±25 % and regenerates. For each perturbation it
-counts learners whose path changed at all, items added and removed (as a share of the 982),
+counts learners whose path changed at all, items added and removed (as a share of the 983),
 learners whose shared items came out in a different order, and phase-order flips (the same
 phase titles in a different sequence). The weights are passed into the engine as an option;
 the product never sets it.
 
 **Result** (`pipeline/evidence/weight_sensitivity.json`):
 
-| axis | Δ | learners changed | items added | items removed | items changed (% of 982) | learners reordered | phase-order flips |
+| axis | Δ | learners changed | items added | items removed | items changed (% of 983) | learners reordered | phase-order flips |
 |---|---|---|---|---|---|---|---|
-| coverage | +25 % | 7/66 | 6 | 6 | 12 (1.22 %) | 4 | 0 |
-| coverage | −25 % | 12/66 | 30 | 18 | 48 (4.89 %) | 8 | 0 |
-| levelFit | +25 % | 17/66 | 21 | 18 | 39 (3.97 %) | 4 | 0 |
-| levelFit | −25 % | 17/66 | 19 | 18 | 37 (3.77 %) | 2 | 0 |
-| preferenceFit | +25 % | 2/66 | 11 | 7 | 18 (1.83 %) | 1 | 0 |
-| preferenceFit | −25 % | 5/66 | 4 | 3 | 7 (0.71 %) | 3 | 0 |
-| quality | +25 % | 7/66 | 6 | 7 | 13 (1.32 %) | 1 | 0 |
-| quality | −25 % | 8/66 | 11 | 10 | 21 (2.14 %) | 1 | 0 |
-| similarity | +25 % | 10/66 | 22 | 16 | 38 (3.87 %) | 4 | 0 |
-| similarity | −25 % | 16/66 | 19 | 17 | 36 (3.67 %) | 6 | 0 |
+| coverage | +25 % | 6/66 | 5 | 5 | 10 (1.02 %) | 4 | 0 |
+| coverage | −25 % | 10/66 | 25 | 15 | 40 (4.07 %) | 6 | 0 |
+| levelFit | +25 % | 18/66 | 23 | 22 | 45 (4.58 %) | 3 | 0 |
+| levelFit | −25 % | 15/66 | 17 | 16 | 33 (3.36 %) | 2 | 0 |
+| preferenceFit | +25 % | 3/66 | 3 | 4 | 7 (0.71 %) | 1 | 0 |
+| preferenceFit | −25 % | 4/66 | 2 | 3 | 5 (0.51 %) | 2 | 0 |
+| quality | +25 % | 3/66 | 3 | 3 | 6 (0.61 %) | 0 | 0 |
+| quality | −25 % | 8/66 | 12 | 11 | 23 (2.34 %) | 1 | 0 |
+| similarity | +25 % | 8/66 | 9 | 7 | 16 (1.63 %) | 2 | 0 |
+| similarity | −25 % | 19/66 | 24 | 23 | 47 (4.78 %) | 7 | 0 |
+| transitionPrior | +25 % | 1/66 | 1 | 1 | 2 (0.20 %) | 0 | 0 |
+| transitionPrior | −25 % | 0/66 | 0 | 0 | 0 (0.00 %) | 0 | 0 |
 
 No learner's phase order flips under any perturbation — fixture or sweep. Among the five
 fixtures the changes are single-item substitutions between resources of similar size and
 level (a practice set for a practice set, one SQL course for another) and a handful of
-same-phase order inversions; no fixture gains or loses more than one item under any axis.
+same-phase order inversions; no fixture's phase order flips under any axis.
 
-**Reading it.** Coverage and level fit are the most sensitive axes and preference fit the
-least; at ±25 % no axis moves more than 4.9 % of items and no learner's phase order changes.
-Most of what a path contains is decided by the gap and the prerequisite graph before the weights
+**Reading it.** Level fit and similarity are the most sensitive axes; the transition prior is
+by some distance the least — moving it ±25 % changes two path items in one direction and none
+in the other, which is what a 0.02 weight over shares that top out at 0.24 should do (§5).
+At ±25 % no axis moves more than 4.8 % of items and no learner's phase order changes. Most of
+what a path contains is decided by the gap and the prerequisite graph before the weights
 break ties among courses that cover the same skills — which is the intended division of
 labour (§5.1–5.3). The weights are not changed on the strength of this; the study is an
 input to any future change, and its numbers are what the documentation quotes.
+
+## 5. Transition prior
+
+**Why.** Until this change, the mined behaviour of 2M+ Stack Overflow and Coursera learners
+was rendered on screen and influenced no decision the engine made. §5.2 of the architecture
+now takes a sixth signal from it: when the learner already holds skill A and real learners
+who held A went to skill B next, an item teaching B gets a small bonus — the shrunk share,
+read through the same `branchEvidenceFor()` the evidence card calls, so the number that moved
+the score is the number the learner is shown. It is zero unless a source observed the
+transition above its floors (`minSupportMet`, `nTotal ≥ 50`, `n ≥ 5`). Nothing is fitted: this
+is an empirical prior in a scoring function, not a trained model. The weight is 0.02, taken
+out of `preferenceFit` (0.15 → 0.13) so the weights still sum to 1.
+
+**The decision rule, pre-registered.** Written down before any number below was seen, in the
+pattern of the bake-off in §2:
+
+> The transition prior ships at weight 0.02 if and only if (a) no fixture path becomes
+> indefensible on human review, and (b) the graph-inverted pair count does not rise above 35.
+> The weight may be raised above 0.02 only if unrelated-pair agreement improves on both
+> sources beyond run-to-run noise with every affected fixture diff reviewed. If agreement
+> does not improve, the term ships anyway at 0.02 and the null result is reported.
+
+**Method.** The same 50-path corpus and the same script as §1
+(`dump_paths.ts` → `sequencing_agreement.py`), run before and after; plus a diff of all 66
+sweep learners' paths at the old and new weights, with the `preferenceFit` reduction isolated
+from the prior by a third run at `preferenceFit` 0.13 and `transitionPrior` 0.
+
+**Result.**
+
+| Metric | Before | After | Δ |
+|---|---|---|---|
+| Stack Overflow agreement (n ≥ 20) | 65.4 % (2,265 pairs) | 65.4 % (2,265) | 0 |
+| Coursera agreement (n ≥ 20) | 61.8 % (400 pairs) | 61.8 % (400) | 0 |
+| **Unrelated pairs, Stack Overflow** | **62.2 %** (1,215 / 1,952) | **62.2 %** (1,215 / 1,952) | **0** |
+| **Unrelated pairs, Coursera** | **58.3 %** (182 / 312) | **58.3 %** (182 / 312) | **0** |
+| Graph-inverted pairs | 35 of 2,732 | 35 of 2,732 | 0 |
+| Fixture paths whose contents or order changed | — | 0 of 5 | — |
+
+`pipeline/evidence/eval_sequencing_agreement.md` is byte-identical before and after. All five
+fixture snapshots changed, and every changed line is a printed score: no fixture gained,
+lost, or reordered an item.
+
+How much the prior actually fires, over the 66-learner corpus: it is non-zero on 397 of 983
+path items (40.4 %) and on 1,904 of 4,525 scored candidates (42.1 %), with a median share of
+0.036 and a maximum of 0.242 — so at weight 0.02 it contributes at most 0.005 to a total, and
+typically 0.0007. That is smaller than the gaps between competing candidates, and it is why
+nothing moved. Three of the 66 sweep learners' paths did change; re-running with the prior
+switched off but `preferenceFit` still at 0.13 reproduces all three exactly, so they are the
+`preferenceFit` reduction, not the prior.
+
+**Conclusion.** A null result. Adding a shrunk transition prior at weight 0.02 left
+unrelated-pair agreement at 62.2 % on Stack Overflow and 58.3 % on Coursera — unchanged, not
+merely within noise — left the graph-inverted count at 35, and altered no fixture path's
+contents or order. Under the pre-registered rule both conditions for shipping hold (no
+fixture became indefensible; graph-inverted did not rise) and the condition for raising the
+weight does not, so the term ships at 0.02 and this paragraph is the report. We kept it
+because behavioural evidence should carry some weight in a scorer that claims to use it,
+because the mechanism and its tests now exist and can be re-measured when the catalog or the
+mined data grows, and because at this weight the null result costs nothing. We report that it
+did not measurably improve ordering.
+
+**What did not change.** The prerequisite graph is still authored ∪ human-promoted only;
+mined transitions still never become prerequisites and never drive the topological sort
+(§5.4, §15.9). The prior touches candidate scoring and nothing else.
 
 ## Limitations
 
