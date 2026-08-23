@@ -2,6 +2,8 @@
 export type TrustNumbers = {
   authoredEdges: number;
   observable: number;
+  /** observable / authoredEdges, rounded to a whole percent. */
+  observablePct: number;
   confirmedAny: number;
   confirmedPct: number;
   confirmedBoth: number;

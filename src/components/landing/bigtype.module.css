@@ -16,7 +16,7 @@
 
 .showcase {
   background:
-    radial-gradient(circle at 50% -10%, rgb(139 92 255 / 22%), transparent 43%),
+    radial-gradient(circle 512px at 50% -86px, rgb(139 92 255 / 22%), transparent),
     linear-gradient(180deg, #14111d, #0b0a10);
 }
 

@@ -37,6 +37,7 @@ export function loadTrustNumbers(): TrustNumbers {
   cached = {
     authoredEdges: report.authoredEdges,
     observable: report.observable.anySource,
+    observablePct: Math.round((100 * report.observable.anySource) / report.authoredEdges),
     confirmedAny: report.confirmed.anySource,
     confirmedPct: report.confirmed.pctOfObservableAny,
     confirmedBoth: report.confirmed.both,
