@@ -9,7 +9,7 @@ import { ChatPanel } from "@/components/chat/ChatPanel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Orb } from "@/components/ui/orb";
-import { signInUrl } from "@/lib/authz";
+import { signInUrl } from "@/lib/signInUrl";
 import { NOVA_LABEL, NOVA_ORB } from "@/nova/stage";
 import type { NovaState } from "@/schemas";
 
