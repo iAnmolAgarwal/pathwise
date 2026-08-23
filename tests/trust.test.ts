@@ -19,6 +19,7 @@ describe("landing trust numbers come from the committed files", () => {
     expect(t.skills).toBe(159);
     expect(t.catalogItems).toBe(246);
     expect(t.goalTemplates).toBe(15);
+    expect(t.providers).toBe(180);
     expect(t.observablePct).toBe(97);
     expect(t.soUsers).toBeGreaterThan(1_000_000);
     expect(t.courseraLearners).toBeGreaterThan(10_000);

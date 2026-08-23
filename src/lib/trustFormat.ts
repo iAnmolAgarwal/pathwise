@@ -14,6 +14,8 @@ export type TrustNumbers = {
   /** Goal templates in goals.json — the roles a learner can pick. */
   goalTemplates: number;
   catalogItems: number;
+  /** Distinct providers in catalog.json. */
+  providers: number;
   /** Stack Overflow users eligible after the cohort filter. */
   soUsers: number;
   /** Coursera pseudo-learners with at least one ordered course pair. */

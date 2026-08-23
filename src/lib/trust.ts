@@ -47,6 +47,7 @@ export function loadTrustNumbers(): TrustNumbers {
     skills: (skills as unknown[]).length,
     goalTemplates: (goals as unknown[]).length,
     catalogItems: (catalog as unknown[]).length,
+    providers: new Set((catalog as { provider: string }[]).map((item) => item.provider)).size,
     soUsers: num(so, "usersEligible"),
     courseraLearners: num(coursera, "namesWithPairs"),
     anchor: BADGE_ANCHOR_EDGE,
