@@ -6,7 +6,7 @@
 > find-and-replace plus one Spline text node.
 >
 > **Status of this document (2026-08-18):** single source of truth for the final system.
-> M0–M5 are built and deployed (https://pathwise-psi-blond.vercel.app). §15–§18 describe
+> M0–M5 are built and deployed (https://trypathwise.vercel.app). §15–§18 describe
 > the approved post-M5 upgrade (evidence layer, self-evaluation, freshness, delivery
 > workflow); §19 describes sign-in with Google (added 2026-08-22, D-26); §13 carries the
 > ordered milestone sequence, the freeze as an event, and the cut order. **This document carries no time estimates and no dates for future work (D-24): blocks
