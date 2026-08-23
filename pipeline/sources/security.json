@@ -12,13 +12,34 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "security-fundamentals", "level": 3 },
-      { "skillId": "network-security", "level": 2 },
-      { "skillId": "security-operations", "level": 2 },
-      { "skillId": "linux-administration", "level": 1 },
-      { "skillId": "identity-access-management", "level": 1 },
-      { "skillId": "python", "level": 1 },
-      { "skillId": "sql", "level": 1 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -35,12 +56,29 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "security-fundamentals", "level": 2 },
-      { "skillId": "ethical-hacking-basics", "level": 2 },
-      { "skillId": "network-security", "level": 2 },
-      { "skillId": "digital-forensics", "level": 1 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "digital-forensics",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "htb-academy",
@@ -55,13 +93,28 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "ethical-hacking-basics", "level": 3 },
-      { "skillId": "web-security", "level": 2 },
-      { "skillId": "network-security", "level": 2 }
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 3
+      },
+      {
+        "skillId": "web-security",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "security-fundamentals", "level": 2 },
-      { "skillId": "command-line", "level": 2 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
     ]
   },
   {
@@ -76,10 +129,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.9,
-    "skillsTaught": [{ "skillId": "web-security", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "security-fundamentals", "level": 1 },
-      { "skillId": "javascript", "level": 1 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
     ]
   },
   {
@@ -94,8 +158,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
-    "skillsRequired": [{ "skillId": "security-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "professor-messer",
@@ -110,12 +184,29 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "security-fundamentals", "level": 2 },
-      { "skillId": "network-security", "level": 2 },
-      { "skillId": "cryptography-basics", "level": 1 },
-      { "skillId": "identity-access-management", "level": 1 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "coursera-crypto",
@@ -129,10 +220,21 @@
     "cost": "freemium",
     "difficulty": 4,
     "qualityPrior": 0.9,
-    "skillsTaught": [{ "skillId": "cryptography-basics", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "cryptography-basics",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "probability", "level": 1 },
-      { "skillId": "programming-basics", "level": 2 }
+      {
+        "skillId": "probability",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
     ]
   },
   {
@@ -148,12 +250,24 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "secure-coding", "level": 2 },
-      { "skillId": "web-security", "level": 1 }
+      {
+        "skillId": "secure-coding",
+        "level": 2
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "web-security", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
     ]
   },
   {
@@ -169,13 +283,28 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "security-operations", "level": 2 },
-      { "skillId": "incident-response", "level": 2 },
-      { "skillId": "digital-forensics", "level": 1 }
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      },
+      {
+        "skillId": "digital-forensics",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "security-fundamentals", "level": 2 },
-      { "skillId": "networking-basics", "level": 2 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
     ]
   },
   {
@@ -190,10 +319,21 @@
     "cost": "paid",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "ethical-hacking-basics", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "ethical-hacking-basics",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "networking-basics", "level": 2 },
-      { "skillId": "command-line", "level": 2 }
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
     ]
   },
   {
@@ -208,7 +348,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "compliance-privacy", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "compliance-privacy",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -223,8 +368,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "threat-modeling", "level": 2 }],
-    "skillsRequired": [{ "skillId": "web-security", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "threat-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "juice-shop",
@@ -238,10 +393,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "web-security", "level": 1 },
-      { "skillId": "javascript", "level": 1 }
+      {
+        "skillId": "web-security",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
     ]
   },
   {
@@ -256,10 +422,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "web-security", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "web-security",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "web-security", "level": 1 },
-      { "skillId": "command-line", "level": 1 }
+      {
+        "skillId": "web-security",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
     ]
   },
   {
@@ -275,12 +452,24 @@
     "difficulty": 3,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "security-operations", "level": 2 },
-      { "skillId": "linux-administration", "level": 1 }
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "linux-administration", "level": 1 },
-      { "skillId": "networking-basics", "level": 2 }
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
     ]
   },
   {
@@ -296,10 +485,21 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "command-line", "level": 2 },
-      { "skillId": "security-fundamentals", "level": 1 }
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "picoctf",
@@ -314,11 +514,25 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "security-fundamentals", "level": 2 },
-      { "skillId": "cryptography-basics", "level": 1 },
-      { "skillId": "web-security", "level": 1 }
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "cryptohack",
@@ -332,10 +546,21 @@
     "cost": "free",
     "difficulty": 4,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "cryptography-basics", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "cryptography-basics",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "cryptography-basics", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      }
     ]
   },
   {
@@ -351,9 +576,388 @@
     "difficulty": 4,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "digital-forensics", "level": 2 },
-      { "skillId": "incident-response", "level": 2 }
+      {
+        "skillId": "digital-forensics",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "security-operations", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "security-operations",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-sc200-sentinel-detections",
+    "kind": "course",
+    "title": "Create detections and perform investigations using Microsoft Sentinel",
+    "provider": "Microsoft Learn (official training, SC-200)",
+    "url": "https://learn.microsoft.com/en-us/training/paths/sc-200-create-detections-perform-investigations-azure-sentinel/",
+    "description": "Eight-module SC-200 learning path on running a SIEM: writing analytics rules for threat detection, incident management and evidence handling, automation rules and playbooks, entity behavior analytics, ASIM data normalization, and workbooks in Microsoft Sentinel.",
+    "durationHours": 8,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 3
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "network-security",
+        "level": 1
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-sc200-defender-xdr",
+    "kind": "course",
+    "title": "Mitigate threats using Microsoft Defender XDR",
+    "provider": "Microsoft Learn (official training, SC-200)",
+    "url": "https://learn.microsoft.com/en-us/training/paths/sc-200-mitigate-threats-using-microsoft-365-defender/",
+    "description": "Six-module intermediate SC-200 path on SOC analyst work in Microsoft Defender XDR: triaging and remediating cross-domain incidents, phishing investigation and automated remediation in Defender for Office 365, Entra Identity Protection, Defender for Identity, and Defender for Cloud Apps.",
+    "durationHours": 6,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 3
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "network-security",
+        "level": 1
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "mslearn-sc200-kql-sentinel",
+    "kind": "course",
+    "title": "Create queries for Microsoft Sentinel using Kusto Query Language (KQL)",
+    "provider": "Microsoft Learn (official training, SC-200)",
+    "url": "https://learn.microsoft.com/en-us/training/paths/sc-200-utilize-kql-for-azure-sentinel/",
+    "description": "Four-module path teaching KQL for security log analysis in a SIEM: statement structure, summarizing and visualizing results, multi-table joins, and string manipulation over security tables, as the foundation for hunting and detection rules in Microsoft Sentinel.",
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-google-detection-response",
+    "kind": "course",
+    "title": "Sound the Alarm: Detection and Response",
+    "provider": "Coursera (Google)",
+    "url": "https://www.coursera.org/learn/detection-and-response",
+    "description": "Course 6 of the Google Cybersecurity Certificate: the incident response lifecycle and team roles, packet capture and analysis, investigating and documenting incidents, and reading IDS signatures and logs and querying SIEM tools (Splunk, Google SecOps) during an investigation.",
+    "durationHours": 19,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "security-operations",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 2
+      },
+      {
+        "skillId": "network-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-ibm-incident-response-forensics",
+    "kind": "course",
+    "title": "Incident Response and Digital Forensics",
+    "provider": "Coursera (IBM)",
+    "url": "https://www.coursera.org/learn/ibm-incident-response-digital-forensics",
+    "description": "Intermediate six-hour IBM course covering NIST and SANS incident response frameworks (preparation, detection, analysis, containment, post-incident) and digital forensics basics (evidence collection and handling, log investigation with Cowrie), with hands-on labs and a graded final project.",
+    "durationHours": 6,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "incident-response",
+        "level": 2
+      },
+      {
+        "skillId": "digital-forensics",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-operations",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-infosec-digital-forensics-concepts",
+    "kind": "course",
+    "title": "Digital Forensics Concepts",
+    "provider": "Coursera (Infosec)",
+    "url": "https://www.coursera.org/learn/digital-forensics-concepts",
+    "description": "Seven-hour intermediate course on the forensic investigation process: legal authority and search considerations, recognizing and collecting digital evidence, on-scene triage and preservation, file hashing, creating disk images, keyword and grep searches, and writing a peer-reviewed report.",
+    "durationHours": 7,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      {
+        "skillId": "digital-forensics",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-operations",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-sc900-entra",
+    "kind": "course",
+    "title": "Introduction to Microsoft Entra",
+    "provider": "Microsoft Learn (official training, SC-900)",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-capabilities-of-microsoft-identity-access/",
+    "description": "Four-module SC-900 path on cloud identity and access management with Microsoft Entra ID: identity types and hybrid/external identities, multifactor authentication and password protection, conditional access and role-based access control, and identity protection and governance.",
+    "durationHours": 3,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "identity-access-management",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "oauth2-simplified",
+    "kind": "course",
+    "title": "OAuth 2.0 Simplified",
+    "provider": "oauth.com (Aaron Parecki / Okta)",
+    "url": "https://www.oauth.com/",
+    "description": "Free web edition of Aaron Parecki's book: a chapter-by-chapter guide to OAuth 2.0 for securing API access, covering client registration, the authorization code flow with PKCE, access and refresh tokens, scopes, redirect URL security, and OpenID Connect for authentication, with step-by-step examples.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "identity-access-management",
+        "level": 2
+      },
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "auth0-auth-flows",
+    "kind": "course",
+    "title": "Authentication and Authorization Flows",
+    "provider": "Auth0 (official docs)",
+    "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow",
+    "description": "Auth0's guide to choosing and implementing OAuth 2.0 / OpenID Connect flows for server-side, mobile, single-page, machine-to-machine, and device applications: authorization code with PKCE, hybrid, client credentials, device authorization, and CIBA, each with sequence diagrams and implementation walkthroughs.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "identity-access-management",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "lfd121-developing-secure-software",
+    "kind": "course",
+    "title": "Developing Secure Software (LFD121)",
+    "provider": "Linux Foundation (OpenSSF)",
+    "url": "https://training.linuxfoundation.org/training/developing-secure-software-lfd121/",
+    "description": "Free 16-20 hour OpenSSF course for working developers on writing secure code: secure design principles, supply chain security, input validation, safe output and error handling, calling external programs, static and dynamic analysis, threat modeling, and applied cryptography, with quizzes and labs.",
+    "durationHours": 18,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "secure-coding",
+        "level": 3
+      },
+      {
+        "skillId": "threat-modeling",
+        "level": 1
+      },
+      {
+        "skillId": "cryptography-basics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-threat-modeling-fundamentals",
+    "kind": "course",
+    "title": "Threat Modeling Security Fundamentals",
+    "provider": "Microsoft Learn (official training)",
+    "url": "https://learn.microsoft.com/en-us/training/paths/tm-threat-modeling-fundamentals/",
+    "description": "Seven-module path on Microsoft's threat modeling practice: the four phases, building data-flow diagrams at the right depth, choosing an asset- or attacker-centric focus, using the STRIDE framework to enumerate threats and controls, prioritizing issues, and recommended diagramming tools.",
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "threat-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "web-security",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-google-networks-security",
+    "kind": "course",
+    "title": "Connect and Protect: Networks and Network Security",
+    "provider": "Coursera (Google)",
+    "url": "https://www.coursera.org/learn/networks-and-network-security",
+    "description": "Course 3 of the Google Cybersecurity Certificate, 11 hours across four modules: network architecture and TCP/IP, network operations and protocols, defending against intrusions with firewalls, VPNs and IDS/IPS, and system and cloud hardening.",
+    "durationHours": 11,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "network-security",
+        "level": 2
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   }
 ]

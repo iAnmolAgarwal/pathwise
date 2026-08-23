@@ -11,8 +11,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "nodejs", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udemy-max-node",
@@ -27,13 +37,33 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "nodejs", "level": 3 },
-      { "skillId": "express", "level": 2 },
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "authentication", "level": 2 },
-      { "skillId": "websockets", "level": 1 }
+      {
+        "skillId": "nodejs",
+        "level": 3
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "authentication",
+        "level": 2
+      },
+      {
+        "skillId": "websockets",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "fcc-backend-apis",
@@ -48,12 +78,29 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "nodejs", "level": 2 },
-      { "skillId": "express", "level": 2 },
-      { "skillId": "rest-api-design", "level": 1 },
-      { "skillId": "nosql-databases", "level": 1 }
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      },
+      {
+        "skillId": "nosql-databases",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "meta-backend-cert",
@@ -68,11 +115,26 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "django", "level": 2 },
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "mysql", "level": 1 },
-      { "skillId": "authentication", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "django",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "mysql",
+        "level": 1
+      },
+      {
+        "skillId": "authentication",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -89,10 +151,21 @@
     "difficulty": 2,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "django", "level": 2 },
-      { "skillId": "orm-data-access", "level": 1 }
+      {
+        "skillId": "django",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "fastapi-tutorial",
@@ -107,11 +180,25 @@
     "difficulty": 2,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "fastapi", "level": 2 },
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "api-documentation", "level": 1 }
+      {
+        "skillId": "fastapi",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "udemy-darby-spring",
@@ -126,13 +213,28 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "spring-boot", "level": 3 },
-      { "skillId": "orm-data-access", "level": 2 },
-      { "skillId": "rest-api-design", "level": 2 }
+      {
+        "skillId": "spring-boot",
+        "level": 3
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "java", "level": 2 },
-      { "skillId": "oop", "level": 2 }
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
     ]
   },
   {
@@ -147,8 +249,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.9,
-    "skillsTaught": [{ "skillId": "go", "level": 2 }],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "go",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "learn-go-with-tests",
@@ -163,10 +275,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "go", "level": 3 },
-      { "skillId": "unit-testing", "level": 2 }
+      {
+        "skillId": "go",
+        "level": 3
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "restfulapi-net",
@@ -180,8 +303,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "rest-api-design", "level": 2 }],
-    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "ms-api-design",
@@ -196,10 +329,21 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "rest-api-design", "level": 3 },
-      { "skillId": "api-documentation", "level": 1 }
+      {
+        "skillId": "rest-api-design",
+        "level": 3
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "graphql-learn",
@@ -213,8 +357,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "graphql", "level": 2 }],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "graphql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "copenhagen-book",
@@ -228,8 +382,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "authentication", "level": 3 }],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "authentication",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "rabbitmq-tutorials",
@@ -243,8 +407,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "message-queues", "level": 2 }],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "message-queues",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "redis-crash-course",
@@ -258,8 +432,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "caching", "level": 1 }],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "caching",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "system-design-primer",
@@ -274,13 +458,28 @@
     "difficulty": 4,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "system-design", "level": 3 },
-      { "skillId": "caching", "level": 2 },
-      { "skillId": "message-queues", "level": 1 }
+      {
+        "skillId": "system-design",
+        "level": 3
+      },
+      {
+        "skillId": "caching",
+        "level": 2
+      },
+      {
+        "skillId": "message-queues",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "data-modeling", "level": 1 }
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 1
+      }
     ]
   },
   {
@@ -296,10 +495,21 @@
     "difficulty": 4,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "microservices", "level": 2 },
-      { "skillId": "event-driven-architecture", "level": 1 }
+      {
+        "skillId": "microservices",
+        "level": 2
+      },
+      {
+        "skillId": "event-driven-architecture",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "nginx-beginners",
@@ -313,8 +523,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "web-servers", "level": 2 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "web-servers",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "postman-academy",
@@ -329,10 +549,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "api-testing", "level": 2 },
-      { "skillId": "api-documentation", "level": 1 }
+      {
+        "skillId": "api-testing",
+        "level": 2
+      },
+      {
+        "skillId": "api-documentation",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "rest-api-design", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "mdn-websockets",
@@ -346,10 +577,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "websockets", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "websockets",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "javascript-advanced", "level": 2 },
-      { "skillId": "nodejs", "level": 1 }
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 1
+      }
     ]
   },
   {
@@ -365,10 +607,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "system-design", "level": 1 }
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "system-design",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "codecrafters",
@@ -383,12 +636,24 @@
     "difficulty": 5,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "concurrency", "level": 2 },
-      { "skillId": "system-design", "level": 1 }
+      {
+        "skillId": "concurrency",
+        "level": 2
+      },
+      {
+        "skillId": "system-design",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "command-line", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
     ]
   },
   {
@@ -404,10 +669,21 @@
     "difficulty": 2,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "rest-api-design", "level": 1 },
-      { "skillId": "api-integration", "level": 1 }
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "roadmap-url-shortener",
@@ -422,12 +698,24 @@
     "difficulty": 2,
     "qualityPrior": 0.6,
     "skillsTaught": [
-      { "skillId": "rest-api-design", "level": 2 },
-      { "skillId": "orm-data-access", "level": 1 }
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "nodejs", "level": 1 },
-      { "skillId": "sql", "level": 1 }
+      {
+        "skillId": "nodejs",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
     ]
   },
   {
@@ -442,7 +730,447 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "nodejs", "level": 2 }],
-    "skillsRequired": [{ "skillId": "nodejs", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "nodejs",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nodejs",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "confluent-event-driven-microservices",
+    "kind": "course",
+    "title": "Designing Event-Driven Microservices",
+    "provider": "Confluent Developer",
+    "url": "https://developer.confluent.io/courses/microservices/",
+    "description": "Wade Waldron's 25-module video course that follows a bank's move from a monolith to event-driven microservices, covering publish/subscribe, the transactional outbox, CQRS and event sourcing, schema evolution, and strangler-fig decomposition.",
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "event-driven-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "microservices",
+        "level": 2
+      },
+      {
+        "skillId": "message-queues",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "confluent-event-sourcing",
+    "kind": "course",
+    "title": "Event Sourcing and Event Storage with Apache Kafka",
+    "provider": "Confluent Developer",
+    "url": "https://developer.confluent.io/courses/event-sourcing/",
+    "description": "Short seven-module video course contrasting state-based and event-based system design, then introducing event sourcing, event modelling, CQRS and event storage with Kafka and ksqlDB.",
+    "durationHours": 1,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "event-driven-architecture",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "message-queues",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dotnet-microservices-ebook",
+    "kind": "course",
+    "title": ".NET Microservices: Architecture for Containerized .NET Applications",
+    "provider": "Microsoft Learn (.NET architecture e-book)",
+    "url": "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/",
+    "description": "Free Microsoft e-book built around the eShopOnContainers reference app: service boundaries, API gateways, DDD/CQRS patterns, integration events over an event bus (RabbitMQ/Azure Service Bus), resilience with Polly, and running it all in Docker.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "microservices",
+        "level": 3
+      },
+      {
+        "skillId": "event-driven-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "message-queues",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "learnapidoc-documenting-apis",
+    "kind": "course",
+    "title": "Documenting APIs: A guide for technical writers and engineers",
+    "provider": "idratherbewriting.com (Tom Johnson)",
+    "url": "https://idratherbewriting.com/learnapidoc/",
+    "description": "Free 900-page web course on API documentation: using REST APIs like a developer, documenting endpoints, writing an OpenAPI spec by hand and rendering it with Swagger UI/Redoc/Stoplight, conceptual topics, publishing with docs-as-code, and measuring doc quality.",
+    "durationHours": 40,
+    "format": "text",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "api-documentation",
+        "level": 3
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "howtographql",
+    "kind": "course",
+    "title": "How to GraphQL - The Fullstack Tutorial for GraphQL",
+    "provider": "howtographql.com (Prisma and the GraphQL community)",
+    "url": "https://www.howtographql.com/",
+    "description": "Free open-source tutorial that teaches GraphQL fundamentals and advanced concepts, then builds a Hacker News clone with backend tracks for TypeScript/Apollo Server, Python, Go, Ruby, Elixir and Scala plus React frontend tracks.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "graphql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      },
+      {
+        "skillId": "nodejs",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mdn-express-module",
+    "kind": "course",
+    "title": "Express web framework (Node.js/JavaScript)",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs",
+    "description": "MDN's server-side module that builds the Local Library site with Express: environment setup, skeleton app, Mongoose models, routes and controllers, Pug templates, form handling, and deployment to production.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mdn-django-module",
+    "kind": "course",
+    "title": "Django Web Framework (Python)",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django",
+    "description": "Eleven-part MDN tutorial building the Local Library app in Django: models and migrations, the admin site, views and templates, generic class-based views, sessions, authentication and permissions, forms, testing, deployment, and Django security.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "django",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      },
+      {
+        "skillId": "authentication",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "sqlalchemy-unified-tutorial",
+    "kind": "course",
+    "title": "SQLAlchemy Unified Tutorial",
+    "provider": "docs.sqlalchemy.org (official docs)",
+    "url": "https://docs.sqlalchemy.org/en/20/tutorial/",
+    "description": "Official SQLAlchemy 2.0 tutorial covering Core and ORM together: engines and connections, transactions and the DBAPI, table metadata, inserts/selects/updates, ORM sessions and data manipulation, and related objects with loading strategies.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "orm-data-access",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "go-gin-rest-tutorial",
+    "kind": "course",
+    "title": "Tutorial: Developing a RESTful API with Go and Gin",
+    "provider": "go.dev (official)",
+    "url": "https://go.dev/doc/tutorial/web-service-gin",
+    "description": "Official Go tutorial that designs album endpoints and implements GET/POST handlers with the Gin framework, returning JSON and testing with curl; runnable locally or in Google Cloud Shell.",
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "go",
+        "level": 1
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "mslearn-aspnet-core-web-api",
+    "kind": "course",
+    "title": "Create a web API with ASP.NET Core controllers",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/modules/build-web-api-aspnet-core/",
+    "description": "Nine-unit Microsoft Learn module that scaffolds an ASP.NET Core web API project, adds an in-memory data store and controllers, implements CRUD actions, and tests them from the command line.",
+    "durationHours": 1,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "spring-building-rest-services",
+    "kind": "course",
+    "title": "Building REST services with Spring",
+    "provider": "spring.io (official guides)",
+    "url": "https://spring.io/guides/tutorials/rest",
+    "description": "Official Spring tutorial that builds a payroll service with Spring Boot and Spring Data JPA, then adds hypermedia (HATEOAS/HAL), evolves the API without breaking clients, and emits conditional links driven by resource state.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "spring-boot",
+        "level": 2
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "socketio-chat-tutorial",
+    "kind": "course",
+    "title": "Socket.IO Tutorial - Get started (chat application)",
+    "provider": "socket.io (official docs)",
+    "url": "https://socket.io/docs/v4/tutorial/step-1",
+    "description": "Official Socket.IO step-by-step tutorial that builds a realtime chat app on Express: integrating Socket.IO, emitting and broadcasting events, connection state recovery, server and client delivery guarantees, and scaling horizontally with adapters.",
+    "durationHours": 3,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "websockets",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nodejs",
+        "level": 1
+      },
+      {
+        "skillId": "express",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mdn-http-caching",
+    "kind": "course",
+    "title": "HTTP caching",
+    "provider": "MDN (Mozilla)",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+    "description": "MDN's long-form guide to HTTP caching: private, shared and managed caches, heuristic freshness, Cache-Control and max-age, Vary, ETag/Last-Modified validation, no-store vs no-cache, request collapsing, and cache-busting patterns.",
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "caching",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "nginx-admin-guide",
+    "kind": "course",
+    "title": "NGINX Admin Guide",
+    "provider": "docs.nginx.com (F5, official docs)",
+    "url": "https://docs.nginx.com/nginx/admin-guide/",
+    "description": "Official NGINX administration guide covering installation, the web server and reverse proxy configuration, HTTP/TCP load balancing, SSL termination, content caching, security controls, monitoring and high availability.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "web-servers",
+        "level": 3
+      },
+      {
+        "skillId": "caching",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   }
 ]

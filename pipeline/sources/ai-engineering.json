@@ -12,10 +12,21 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "prompt-engineering", "level": 2 },
-      { "skillId": "llm-apis", "level": 1 }
+      {
+        "skillId": "prompt-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "prompting-guide",
@@ -30,8 +41,14 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "prompt-engineering", "level": 3 },
-      { "skillId": "llm-fundamentals", "level": 1 }
+      {
+        "skillId": "prompt-engineering",
+        "level": 3
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -48,11 +65,25 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "prompt-engineering", "level": 3 },
-      { "skillId": "llm-apis", "level": 2 },
-      { "skillId": "ai-agents", "level": 1 }
+      {
+        "skillId": "prompt-engineering",
+        "level": 3
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "anthropic-docs",
@@ -67,10 +98,21 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "llm-apis", "level": 2 },
-      { "skillId": "prompt-engineering", "level": 1 }
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "prompt-engineering",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "karpathy-zero-hero",
@@ -85,14 +127,32 @@
     "difficulty": 4,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "llm-fundamentals", "level": 3 },
-      { "skillId": "neural-networks", "level": 2 },
-      { "skillId": "deep-learning", "level": 2 },
-      { "skillId": "pytorch", "level": 1 }
+      {
+        "skillId": "llm-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "pytorch",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "math-for-ml", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 1
+      }
     ]
   },
   {
@@ -107,7 +167,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "llm-fundamentals", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -123,8 +188,14 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "llm-fundamentals", "level": 1 },
-      { "skillId": "responsible-ai", "level": 1 }
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "responsible-ai",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -141,12 +212,24 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "ai-agents", "level": 2 },
-      { "skillId": "llm-apis", "level": 1 }
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "llm-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -162,12 +245,24 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "ai-agents", "level": 2 },
-      { "skillId": "rag", "level": 1 }
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "llm-apis", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
     ]
   },
   {
@@ -183,11 +278,25 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "embeddings-vector-search", "level": 3 },
-      { "skillId": "vector-databases", "level": 2 },
-      { "skillId": "rag", "level": 1 }
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 3
+      },
+      {
+        "skillId": "vector-databases",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "llm-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "fsdl-llm-bootcamp",
@@ -202,13 +311,28 @@
     "difficulty": 4,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "ai-app-development", "level": 2 },
-      { "skillId": "llm-apis", "level": 2 },
-      { "skillId": "llm-evaluation", "level": 1 }
+      {
+        "skillId": "ai-app-development",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "llm-apis", "level": 1 },
-      { "skillId": "rest-api-design", "level": 1 }
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      },
+      {
+        "skillId": "rest-api-design",
+        "level": 1
+      }
     ]
   },
   {
@@ -223,8 +347,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "llm-evaluation", "level": 2 }],
-    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "ollama-github",
@@ -238,8 +372,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "local-llms", "level": 2 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "local-llms",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "openai-cookbook",
@@ -254,11 +398,25 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "llm-apis", "level": 2 },
-      { "skillId": "rag", "level": 1 },
-      { "skillId": "multimodal-ai", "level": 1 }
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      },
+      {
+        "skillId": "multimodal-ai",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "dlai-short-courses",
@@ -273,15 +431,36 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "rag", "level": 2 },
-      { "skillId": "ai-agents", "level": 2 },
-      { "skillId": "fine-tuning", "level": 1 },
-      { "skillId": "multimodal-ai", "level": 1 },
-      { "skillId": "llm-evaluation", "level": 1 }
+      {
+        "skillId": "rag",
+        "level": 2
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "fine-tuning",
+        "level": 1
+      },
+      {
+        "skillId": "multimodal-ai",
+        "level": 1
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "llm-apis", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
     ]
   },
   {
@@ -297,8 +476,14 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "responsible-ai", "level": 2 },
-      { "skillId": "ml-fundamentals", "level": 1 }
+      {
+        "skillId": "responsible-ai",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -314,10 +499,21 @@
     "cost": "free",
     "difficulty": 4,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "fine-tuning", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "fine-tuning",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "deep-learning", "level": 1 },
-      { "skillId": "python", "level": 2 }
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
     ]
   },
   {
@@ -333,11 +529,25 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "llm-fundamentals", "level": 2 },
-      { "skillId": "embeddings-vector-search", "level": 1 },
-      { "skillId": "rag", "level": 1 }
+      {
+        "skillId": "llm-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      },
+      {
+        "skillId": "rag",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "gcsb-genai",
@@ -352,8 +562,14 @@
     "difficulty": 1,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "llm-fundamentals", "level": 1 },
-      { "skillId": "responsible-ai", "level": 1 }
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "responsible-ai",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -370,10 +586,21 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "rag", "level": 2 },
-      { "skillId": "embeddings-vector-search", "level": 1 }
+      {
+        "skillId": "rag",
+        "level": 2
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "llm-apis", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "anthropic-quickstarts",
@@ -388,10 +615,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "ai-app-development", "level": 2 },
-      { "skillId": "llm-apis", "level": 2 }
+      {
+        "skillId": "ai-app-development",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "open-webui",
@@ -405,10 +643,21 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "local-llms", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "local-llms",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "command-line", "level": 2 },
-      { "skillId": "docker", "level": 1 }
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
     ]
   },
   {
@@ -424,9 +673,464 @@
     "difficulty": 3,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "prompt-engineering", "level": 2 },
-      { "skillId": "llm-evaluation", "level": 2 }
+      {
+        "skillId": "prompt-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "llm-apis", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "anthropic-building-with-claude-api",
+    "kind": "course",
+    "title": "Building with the Claude API",
+    "provider": "Anthropic Academy",
+    "url": "https://anthropic.skilljar.com/claude-with-the-anthropic-api",
+    "description": "Anthropic's free, self-paced video course with exercises and quizzes on the Claude API: message formatting, tool use, streaming, structured outputs, prompt caching, extended thinking, image and PDF inputs, a RAG build, MCP servers, and agent patterns (chaining, routing, parallelization).",
+    "durationHours": 12,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "llm-apis",
+        "level": 3
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 2
+      },
+      {
+        "skillId": "prompt-engineering",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-advanced-rag-llamaindex",
+    "kind": "course",
+    "title": "Building and Evaluating Advanced RAG",
+    "provider": "DeepLearning.AI (LlamaIndex, TruEra)",
+    "url": "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/",
+    "description": "Jerry Liu and Anupam Datta teach advanced retrieval methods (sentence-window and auto-merging retrieval) and the RAG triad of evaluation metrics (context relevance, groundedness, answer relevance) with LlamaIndex and TruLens, including experiment tracking to iterate on a pipeline.",
+    "durationHours": 3,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "rag",
+        "level": 3
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-advanced-retrieval-chroma",
+    "kind": "course",
+    "title": "Advanced Retrieval for AI with Chroma",
+    "provider": "DeepLearning.AI (Chroma)",
+    "url": "https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/",
+    "description": "Anton Troynikov of Chroma covers the failure modes of embedding-based retrieval and the techniques that fix them: LLM query expansion, cross-encoder reranking, and training embedding adapters, with code examples in Chroma.",
+    "durationHours": 2,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "rag",
+        "level": 3
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "vector-databases",
+        "level": 1
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-functions-tools-agents-langchain",
+    "kind": "course",
+    "title": "Functions, Tools and Agents with LangChain",
+    "provider": "DeepLearning.AI (LangChain)",
+    "url": "https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/",
+    "description": "Harrison Chase teaches OpenAI function calling, LangChain Expression Language, structured output extraction and tagging, tool selection and routing, and building a conversational agent, across eight lessons with runnable notebooks.",
+    "durationHours": 3,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "llm-apis",
+        "level": 3
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "prompt-engineering",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-ai-agents-langgraph",
+    "kind": "course",
+    "title": "AI Agents in LangGraph",
+    "provider": "DeepLearning.AI (LangChain, Tavily)",
+    "url": "https://learn.deeplearning.ai/courses/ai-agents-in-langgraph",
+    "description": "Build agents from scratch and then in LangGraph: graph components, tool calling, agentic search, state persistence, streaming, and human-in-the-loop control, ending in a multi-step essay-writer agent.",
+    "durationHours": 3,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "ai-agents",
+        "level": 3
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-evaluating-ai-agents-arize",
+    "kind": "course",
+    "title": "Evaluating AI Agents",
+    "provider": "DeepLearning.AI (Arize AI)",
+    "url": "https://www.deeplearning.ai/short-courses/evaluating-ai-agents/",
+    "description": "Fifteen lessons on instrumenting an agent with tracing, building code-based and LLM-as-a-judge evaluators for each component (router, skills, memory), convergence scoring, running structured experiments, and monitoring agents in production.",
+    "durationHours": 4,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "llm-evaluation",
+        "level": 3
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-generative-ai-with-llms",
+    "kind": "course",
+    "title": "Generative AI with Large Language Models",
+    "provider": "Coursera (DeepLearning.AI, AWS)",
+    "url": "https://www.coursera.org/learn/generative-ai-with-llms",
+    "description": "Three-week intermediate course on the LLM lifecycle: transformer pretraining and scaling, instruction fine-tuning and PEFT (LoRA, soft prompts), evaluation and benchmarks, RLHF, and deployment optimisation, with hands-on labs.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "fine-tuning",
+        "level": 3
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "hf-smol-course",
+    "kind": "course",
+    "title": "smol-course: Fine-Tuning Language Models",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/smol-course/unit0/1",
+    "description": "Hands-on Hugging Face course on post-training small language models with TRL: supervised instruction tuning and chat templates, custom and benchmark evaluation, preference alignment with DPO, and adapting vision-language models; free with certification.",
+    "durationHours": 16,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "fine-tuning",
+        "level": 3
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      },
+      {
+        "skillId": "multimodal-ai",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "weaviate-academy",
+    "kind": "course",
+    "title": "Weaviate Academy",
+    "provider": "Weaviate",
+    "url": "https://academy.weaviate.io/",
+    "description": "Weaviate's free course track: key concepts and architecture, hands-on Weaviate with Python, a deep dive into embedding and generative models, building a search-and-RAG app with FastAPI, and an architectural decisions guide for production vector search.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "vector-databases",
+        "level": 3
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 2
+      },
+      {
+        "skillId": "rag",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "llamaindex-building-llm-application",
+    "kind": "course",
+    "title": "Building an LLM application",
+    "provider": "LlamaIndex (official docs)",
+    "url": "https://developers.llamaindex.ai/python/framework/understanding/",
+    "description": "LlamaIndex's official progressive guide: using LLMs, building agents with tools, state, streaming and human-in-the-loop, multi-agent workflows, the full RAG pipeline (loading, indexing, embedding, storing, querying), and observability and evaluation for production.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "rag",
+        "level": 3
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "llm-evaluation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 1
+      },
+      {
+        "skillId": "embeddings-vector-search",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ms-ai-agents-for-beginners",
+    "kind": "course",
+    "title": "AI Agents for Beginners - A Course",
+    "provider": "Microsoft",
+    "url": "https://microsoft.github.io/ai-agents-for-beginners/",
+    "description": "Nineteen open-source lessons, each a written README plus short video and Python samples, on agent fundamentals, frameworks, tool use, agentic RAG, planning, multi-agent and metacognition patterns, memory, protocols, trustworthiness, and production deployment.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "llm-apis",
+        "level": 2
+      },
+      {
+        "skillId": "responsible-ai",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-mcp-anthropic",
+    "kind": "course",
+    "title": "MCP: Build Rich-Context AI Apps with Anthropic",
+    "provider": "DeepLearning.AI (Anthropic)",
+    "url": "https://www.deeplearning.ai/short-courses/mcp-build-rich-context-ai-apps-with-anthropic/",
+    "description": "Elie Schoppik teaches the Model Context Protocol: client-server architecture, building MCP servers exposing tools, resources and prompts, writing MCP clients into a Claude-powered chatbot, wiring reference servers, and deploying remote servers.",
+    "durationHours": 3,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "llm-apis",
+        "level": 3
+      },
+      {
+        "skillId": "ai-agents",
+        "level": 2
+      },
+      {
+        "skillId": "ai-app-development",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "prompt-engineering",
+        "level": 1
+      }
+    ]
   }
 ]

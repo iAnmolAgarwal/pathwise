@@ -12,11 +12,26 @@
     "difficulty": 2,
     "qualityPrior": 0.95,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "python", "level": 1 },
-      { "skillId": "sql", "level": 1 },
-      { "skillId": "data-structures", "level": 1 },
-      { "skillId": "algorithms", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      },
+      {
+        "skillId": "data-structures",
+        "level": 1
+      },
+      {
+        "skillId": "algorithms",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -33,9 +48,18 @@
     "difficulty": 1,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "python", "level": 2 },
-      { "skillId": "sql", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -52,8 +76,14 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "oop", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -69,7 +99,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "python", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -84,8 +119,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "python", "level": 2 }],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udemy-100-days-python",
@@ -100,9 +145,18 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "python-advanced", "level": 1 },
-      { "skillId": "oop", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -119,8 +173,14 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "java", "level": 2 },
-      { "skillId": "oop", "level": 2 }
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
     ],
     "skillsRequired": []
   },
@@ -137,8 +197,14 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "java", "level": 2 },
-      { "skillId": "oop", "level": 1 }
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -155,12 +221,29 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "command-line", "level": 2 },
-      { "skillId": "shell-scripting", "level": 2 },
-      { "skillId": "version-control-git", "level": 1 },
-      { "skillId": "debugging", "level": 1 }
+      {
+        "skillId": "command-line",
+        "level": 2
+      },
+      {
+        "skillId": "shell-scripting",
+        "level": 2
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      },
+      {
+        "skillId": "debugging",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "linux-journey",
@@ -174,7 +257,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "command-line", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -189,8 +277,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "version-control-git", "level": 2 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "fcc-git-video",
@@ -204,7 +302,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "version-control-git", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -220,10 +323,21 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "version-control-git", "level": 3 },
-      { "skillId": "git-collaboration", "level": 2 }
+      {
+        "skillId": "version-control-git",
+        "level": 3
+      },
+      {
+        "skillId": "git-collaboration",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "coursera-ucsd-dsa",
@@ -238,10 +352,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "data-structures", "level": 3 },
-      { "skillId": "algorithms", "level": 3 }
+      {
+        "skillId": "data-structures",
+        "level": 3
+      },
+      {
+        "skillId": "algorithms",
+        "level": 3
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "princeton-algorithms",
@@ -256,12 +381,24 @@
     "difficulty": 4,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "algorithms", "level": 3 },
-      { "skillId": "data-structures", "level": 2 }
+      {
+        "skillId": "algorithms",
+        "level": 3
+      },
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "java", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "java",
+        "level": 1
+      }
     ]
   },
   {
@@ -276,8 +413,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "data-structures", "level": 2 }],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "regexone",
@@ -291,8 +438,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "regex", "level": 2 }],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "regex",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "google-tech-writing",
@@ -306,7 +463,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "technical-writing", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "technical-writing",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -321,7 +483,12 @@
     "cost": "freemium",
     "difficulty": 1,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "agile-methodologies", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "agile-methodologies",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -336,8 +503,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "design-patterns", "level": 2 }],
-    "skillsRequired": [{ "skillId": "oop", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "design-patterns",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "oop",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "refactoring-guru-refactoring",
@@ -351,8 +528,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "clean-code", "level": 2 }],
-    "skillsRequired": [{ "skillId": "oop", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "clean-code",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "real-python-testing",
@@ -366,8 +553,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "unit-testing", "level": 2 }],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "practical-networking",
@@ -381,7 +578,12 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "networking-basics", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -396,7 +598,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "networking-basics", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -411,8 +618,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "functional-programming", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "functional-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "build-your-own-x",
@@ -427,10 +644,21 @@
     "difficulty": 4,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "algorithms", "level": 2 },
-      { "skillId": "oop", "level": 2 }
+      {
+        "skillId": "algorithms",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "first-contributions",
@@ -445,10 +673,21 @@
     "difficulty": 1,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "open-source-contribution", "level": 1 },
-      { "skillId": "git-collaboration", "level": 1 }
+      {
+        "skillId": "open-source-contribution",
+        "level": 1
+      },
+      {
+        "skillId": "git-collaboration",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "version-control-git", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "advent-of-code",
@@ -463,10 +702,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "algorithms", "level": 2 },
-      { "skillId": "data-structures", "level": 2 }
+      {
+        "skillId": "algorithms",
+        "level": 2
+      },
+      {
+        "skillId": "data-structures",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "roadmap-task-tracker",
@@ -481,10 +731,21 @@
     "difficulty": 1,
     "qualityPrior": 0.6,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "command-line", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "leetcode",
@@ -499,10 +760,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "data-structures", "level": 2 },
-      { "skillId": "algorithms", "level": 2 }
+      {
+        "skillId": "data-structures",
+        "level": 2
+      },
+      {
+        "skillId": "algorithms",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "codewars",
@@ -517,10 +789,21 @@
     "difficulty": 2,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "algorithms", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "algorithms",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "exercism",
@@ -535,10 +818,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "python", "level": 2 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "hackerrank-python-basic",
@@ -552,7 +846,377 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "python", "level": 2 }],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "vitest-guide",
+    "kind": "course",
+    "title": "Vitest Guide",
+    "provider": "vitest.dev (official docs)",
+    "url": "https://vitest.dev/guide/",
+    "description": "The official Vitest guide: writing tests and matchers, async tests, setup/teardown, mock functions and module/timer/request mocking, snapshot testing, coverage, test filtering and parallelism, reporters, and debugging tests in a Vite/TypeScript project.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "jest-getting-started",
+    "kind": "course",
+    "title": "Getting Started · Jest",
+    "provider": "jestjs.io (official docs)",
+    "url": "https://jestjs.io/docs/getting-started",
+    "description": "Official Jest documentation entry point: installing Jest, writing and running a first test, configuring Babel/TypeScript/bundlers, then linking on to the guides on matchers, async code, setup and teardown, mock functions and snapshot testing.",
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "testing-javascript-kcd",
+    "kind": "course",
+    "title": "Testing JavaScript",
+    "provider": "testingjavascript.com (Kent C. Dodds)",
+    "url": "https://testingjavascript.com/",
+    "description": "Kent C. Dodds' eight-module video course on the JavaScript testing trophy: static analysis, unit tests with Jest, mocking, DOM and React component testing, Node backend testing, and end-to-end tests with Cypress.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-umn-software-testing",
+    "kind": "course",
+    "title": "Software Testing and Automation Specialization",
+    "provider": "Coursera (University of Minnesota)",
+    "url": "https://www.coursera.org/specializations/software-testing-automation",
+    "description": "Four-course intermediate specialization on software testing in Java: unit tests with JUnit, test doubles and mocks, statement and branch coverage, mutation testing, black-box and white-box techniques, BDD with Cucumber, automated analysis, and Selenium web testing.",
+    "durationHours": 95,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "java",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "debugging-book",
+    "kind": "course",
+    "title": "The Debugging Book: Tools and Techniques for Automated Software Debugging",
+    "provider": "debuggingbook.org (Andreas Zeller)",
+    "url": "https://www.debuggingbook.org/",
+    "description": "Free interactive textbook by Andreas Zeller on systematic debugging: tracing and interactive debuggers, assertions, isolating failure-inducing inputs and changes (delta debugging), statistical fault localization, dynamic slicing and automated repair, with runnable Python notebooks.",
+    "durationHours": 30,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "debugging",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "vscode-debugging-docs",
+    "kind": "course",
+    "title": "Debug code with Visual Studio Code",
+    "provider": "code.visualstudio.com (official docs)",
+    "url": "https://code.visualstudio.com/docs/debugtest/debugging",
+    "description": "Official VS Code guide to debugger-driven debugging: the Run and Debug view, launch configurations, conditional, inline, function and data breakpoints and logpoints, watch expressions, call stack inspection, the Debug Console, and multi-target and remote Node.js debugging.",
+    "durationHours": 2,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "debugging",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "python-pdb-docs",
+    "kind": "course",
+    "title": "pdb — The Python Debugger",
+    "provider": "docs.python.org (official docs)",
+    "url": "https://docs.python.org/3/library/pdb.html",
+    "description": "Official reference and walkthrough for Python's built-in debugger: entering with breakpoint(), stepping, conditional breakpoints, inspecting stack frames and variables, breakpoint command lists, running scripts under python -m pdb, and post-mortem debugging after an exception.",
+    "durationHours": 1,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "debugging",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "talkpython-concurrency",
+    "kind": "course",
+    "title": "Mastering Python Concurrency: Async, Threads, and Multiprocessing",
+    "provider": "Talk Python Training (Michael Kennedy)",
+    "url": "https://training.talkpython.fm/courses/python-concurrency-deep-dive",
+    "description": "Five-hour video course on every concurrency model in Python: async/await with asyncio, threads and the GIL, multiprocessing for CPU-bound work, execution pools, thread safety (race conditions, deadlocks, locks), and coordinating the approaches in real applications.",
+    "durationHours": 5,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "concurrency",
+        "level": 3
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "oop",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "talkpython-type-hints",
+    "kind": "course",
+    "title": "Rock Solid Python: Type Hints & Modern Tools (Pydantic, FastAPI, and More)",
+    "provider": "Talk Python Training (Michael Kennedy)",
+    "url": "https://training.talkpython.fm/courses/python-type-hint-course-with-hands-on-examples",
+    "description": "Video course on Python's typing system: annotating variables, functions and classes, Optional and Union types, Protocols for structural typing, checking with mypy in CI, and applying types at runtime with Pydantic, FastAPI and Beanie.",
+    "durationHours": 5,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 3
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "oop",
+        "level": 1
+      },
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "python-howtos",
+    "kind": "course",
+    "title": "Python HOWTOs",
+    "provider": "docs.python.org (official docs)",
+    "url": "https://docs.python.org/3/howto/index.html",
+    "description": "The official in-depth Python HOWTO collection: a conceptual overview of asyncio, the Functional Programming HOWTO, the Descriptor Guide, annotations best practices, the Regular Expression HOWTO, sorting techniques, argparse, logging, Unicode, enums and sockets.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 3
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "functional-programming",
+        "level": 2
+      },
+      {
+        "skillId": "regex",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "corey-schafer-python",
+    "kind": "course",
+    "title": "Python Tutorials",
+    "provider": "YouTube (Corey Schafer)",
+    "url": "https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU",
+    "description": "Corey Schafer's long-running Python tutorial playlist, from setup and basic types through functions, modules, file I/O and classes to generators, decorators, context managers, comprehensions, regular expressions, unit testing and standard-library tools.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 3
+      },
+      {
+        "skillId": "oop",
+        "level": 2
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 2
+      },
+      {
+        "skillId": "regex",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "python-packaging-tutorials",
+    "kind": "course",
+    "title": "Tutorials — Python Packaging User Guide",
+    "provider": "packaging.python.org (PyPA official docs)",
+    "url": "https://packaging.python.org/en/latest/tutorials/",
+    "description": "The Python Packaging Authority's step-by-step tutorials: installing packages with pip and virtual environments, managing application dependencies, and packaging a Python project with pyproject.toml and publishing it to PyPI.",
+    "durationHours": 3,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "python-advanced",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   }
 ]

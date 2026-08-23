@@ -11,8 +11,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "docker", "level": 2 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "nana-docker",
@@ -26,8 +36,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "docker", "level": 1 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udemy-max-docker-k8s",
@@ -42,10 +62,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "docker", "level": 3 },
-      { "skillId": "kubernetes", "level": 2 }
+      {
+        "skillId": "docker",
+        "level": 3
+      },
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "nana-kubernetes",
@@ -59,8 +90,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "kubernetes", "level": 1 }],
-    "skillsRequired": [{ "skillId": "docker", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "k8s-tutorials",
@@ -74,8 +115,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "kubernetes", "level": 2 }],
-    "skillsRequired": [{ "skillId": "docker", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "devops-with-docker",
@@ -90,11 +141,25 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "docker", "level": 3 },
-      { "skillId": "devops-fundamentals", "level": 1 },
-      { "skillId": "ci-cd", "level": 1 }
+      {
+        "skillId": "docker",
+        "level": 3
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "devops-with-kubernetes",
@@ -109,11 +174,25 @@
     "difficulty": 4,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "kubernetes", "level": 3 },
-      { "skillId": "gitops", "level": 1 },
-      { "skillId": "monitoring-observability", "level": 1 }
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      },
+      {
+        "skillId": "gitops",
+        "level": 1
+      },
+      {
+        "skillId": "monitoring-observability",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "docker", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "github-actions-docs",
@@ -127,8 +206,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "ci-cd", "level": 2 }],
-    "skillsRequired": [{ "skillId": "version-control-git", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "terraform-tutorials",
@@ -142,10 +231,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "infrastructure-as-code", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "infrastructure-as-code",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "cloud-fundamentals", "level": 1 },
-      { "skillId": "command-line", "level": 2 }
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
     ]
   },
   {
@@ -160,8 +260,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "configuration-management", "level": 2 }],
-    "skillsRequired": [{ "skillId": "linux-administration", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "configuration-management",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "google-sre-book",
@@ -176,11 +286,25 @@
     "difficulty": 4,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "sre-fundamentals", "level": 3 },
-      { "skillId": "monitoring-observability", "level": 2 },
-      { "skillId": "incident-response", "level": 1 }
+      {
+        "skillId": "sre-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "monitoring-observability",
+        "level": 2
+      },
+      {
+        "skillId": "incident-response",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "linux-administration", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "grafana-tutorials",
@@ -194,8 +318,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "monitoring-observability", "level": 2 }],
-    "skillsRequired": [{ "skillId": "devops-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "monitoring-observability",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "linux-upskill",
@@ -209,8 +343,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "linux-administration", "level": 2 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kodekloud",
@@ -225,12 +369,29 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "devops-fundamentals", "level": 2 },
-      { "skillId": "docker", "level": 2 },
-      { "skillId": "kubernetes", "level": 2 },
-      { "skillId": "linux-administration", "level": 2 }
+      {
+        "skillId": "devops-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 2
+      },
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "tau",
@@ -245,12 +406,24 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "test-automation", "level": 2 },
-      { "skillId": "api-testing", "level": 1 }
+      {
+        "skillId": "test-automation",
+        "level": 2
+      },
+      {
+        "skillId": "api-testing",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "unit-testing", "level": 1 },
-      { "skillId": "javascript", "level": 1 }
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
     ]
   },
   {
@@ -265,10 +438,21 @@
     "cost": "free",
     "difficulty": 4,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "gitops", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "gitops",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "kubernetes", "level": 2 },
-      { "skillId": "ci-cd", "level": 1 }
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
     ]
   },
   {
@@ -283,8 +467,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "devops-fundamentals", "level": 1 }],
-    "skillsRequired": [{ "skillId": "command-line", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kubernetes-the-hard-way",
@@ -299,12 +493,24 @@
     "difficulty": 5,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "kubernetes", "level": 3 },
-      { "skillId": "cloud-networking", "level": 1 }
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "kubernetes", "level": 1 },
-      { "skillId": "linux-administration", "level": 2 }
+      {
+        "skillId": "kubernetes",
+        "level": 1
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      }
     ]
   },
   {
@@ -320,10 +526,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "linux-administration", "level": 2 },
-      { "skillId": "devops-fundamentals", "level": 1 }
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "actions-starter-workflows",
@@ -337,10 +554,21 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "ci-cd", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "version-control-git", "level": 2 },
-      { "skillId": "unit-testing", "level": 1 }
+      {
+        "skillId": "version-control-git",
+        "level": 2
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      }
     ]
   },
   {
@@ -356,10 +584,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "linux-administration", "level": 2 },
-      { "skillId": "debugging", "level": 2 }
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      },
+      {
+        "skillId": "debugging",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "command-line", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "killercoda",
@@ -374,10 +613,21 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "kubernetes", "level": 2 },
-      { "skillId": "linux-administration", "level": 1 }
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "docker", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "killer-sh",
@@ -391,7 +641,380 @@
     "cost": "paid",
     "difficulty": 4,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "kubernetes", "level": 3 }],
-    "skillsRequired": [{ "skillId": "kubernetes", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "kubernetes",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "kubernetes",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "gitlab-ci-get-started",
+    "kind": "course",
+    "title": "Get started with GitLab CI/CD",
+    "provider": "GitLab (official docs)",
+    "url": "https://docs.gitlab.com/ci/",
+    "description": "GitLab's official getting-started guide to CI/CD: writing a .gitlab-ci.yml with stages and jobs, runners, variables and expressions, and reusable CI/CD components, with links into the full pipeline reference and tutorials.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "lf-lfs101-intro-linux",
+    "kind": "course",
+    "title": "Introduction to Linux (LFS101)",
+    "provider": "The Linux Foundation",
+    "url": "https://training.linuxfoundation.org/training/introduction-to-linux/",
+    "description": "Free 18-chapter self-paced Linux Foundation course with hands-on labs covering system startup, the command line, file operations, text editors, bash scripting, users and processes, networking and security basics; earns a digital badge.",
+    "durationHours": 60,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 1,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 2
+      },
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "lf-lfs207-linux-sysadmin",
+    "kind": "course",
+    "title": "Linux System Administration Essentials (LFS207)",
+    "provider": "The Linux Foundation",
+    "url": "https://training.linuxfoundation.org/training/linux-system-administration-essentials-lfs207/",
+    "description": "Intermediate 34-chapter LFCS-preparation course with labs on filesystems, user and group administration, package management, process monitoring, kernel and network configuration, systemd, firewalls, LDAP, backup/recovery and security modules.",
+    "durationHours": 55,
+    "format": "interactive",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "linux-administration",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "command-line",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "playwright-getting-started",
+    "kind": "course",
+    "title": "Playwright: Getting Started (official docs)",
+    "provider": "playwright.dev (official docs)",
+    "url": "https://playwright.dev/docs/intro",
+    "description": "Microsoft's official Playwright Test guide: installing and writing end-to-end tests, generating tests with codegen, running and debugging with UI mode and the trace viewer, and setting up CI; the surrounding docs cover retries, sharding, fixtures and best practices for stable suites.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "test-automation",
+        "level": 3
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "cypress-docs-core",
+    "kind": "course",
+    "title": "Why Cypress? (Cypress Documentation: Get Started and Core Concepts)",
+    "provider": "docs.cypress.io (official docs)",
+    "url": "https://docs.cypress.io/app/get-started/why-cypress",
+    "description": "Cypress's official learning path from install through Core Concepts: testing types, writing and organizing tests, interacting with elements, aliases, test isolation, retry-ability and best practices for end-to-end and component tests.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "test-automation",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "google-sre-workbook",
+    "kind": "course",
+    "title": "The Site Reliability Workbook",
+    "provider": "Google",
+    "url": "https://sre.google/workbook/table-of-contents/",
+    "description": "Free online edition of Google's follow-up to the SRE Book: practical chapters on implementing SLOs, monitoring, alerting on SLOs, eliminating toil, on-call, incident response, postmortem culture, canarying releases and configuration design, with a sample SLO document and postmortem.",
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "sre-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "monitoring-observability",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "prometheus-docs",
+    "kind": "course",
+    "title": "Prometheus Documentation",
+    "provider": "prometheus.io (official docs)",
+    "url": "https://prometheus.io/docs/introduction/overview/",
+    "description": "The official Prometheus documentation from first steps through PromQL basics, operators and functions, instrumentation, storage, service discovery, Alertmanager configuration and notification templates, and Grafana visualisation.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "monitoring-observability",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "lf-lfs162-intro-devops-sre",
+    "kind": "course",
+    "title": "Introduction to DevOps and Site Reliability Engineering (LFS162)",
+    "provider": "The Linux Foundation",
+    "url": "https://training.linuxfoundation.org/training/introduction-to-devops-and-site-reliability-engineering-lfs162/",
+    "description": "Free Linux Foundation survey course on DevOps principles and software delivery, cloud computing, containers and Kubernetes, infrastructure as code, CI/CD, observability and SRE; self-paced with a digital badge.",
+    "durationHours": 11,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      },
+      {
+        "skillId": "sre-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "lf-lfs148-opentelemetry",
+    "kind": "course",
+    "title": "Getting Started with OpenTelemetry (LFS148)",
+    "provider": "The Linux Foundation",
+    "url": "https://training.linuxfoundation.org/training/getting-started-with-opentelemetry-lfs148/",
+    "description": "Free Linux Foundation course on instrumenting code for traces, metrics and logs with OpenTelemetry, manual versus automatic instrumentation, and running the OpenTelemetry Collector to manage telemetry pipelines.",
+    "durationHours": 9,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "monitoring-observability",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "lf-lfs241-prometheus",
+    "kind": "course",
+    "title": "Monitoring Systems and Services with Prometheus (LFS241)",
+    "provider": "The Linux Foundation",
+    "url": "https://training.linuxfoundation.org/training/monitoring-systems-and-services-with-prometheus-lfs241/",
+    "description": "Intermediate 24-chapter Prometheus Certified Associate preparation course with labs: Prometheus setup, PromQL, dashboarding, host and container monitoring, instrumentation, service discovery, alerting, high availability, long-term storage and Kubernetes deployment.",
+    "durationHours": 22,
+    "format": "interactive",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "monitoring-observability",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      },
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ms-learn-github-actions",
+    "kind": "course",
+    "title": "Automate your workflow with GitHub Actions Part 1 of 2",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/github-actions/",
+    "description": "Four-module hands-on learning path: create a basic GitHub Action and workflow, build continuous integration workflows, build and deploy applications to Azure with GitHub Actions, and automate GitHub via GitHub Script and the API.",
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ibm-cicd-coursera",
+    "kind": "course",
+    "title": "Continuous Integration and Continuous Delivery (CI/CD)",
+    "provider": "Coursera (IBM)",
+    "url": "https://www.coursera.org/learn/continuous-integration-and-continuous-delivery-ci-cd",
+    "description": "Intermediate IBM course with 11 hands-on labs and a final project: CI/CD automation, infrastructure as code with Terraform, GitHub Actions workflows, Tekton pipelines, deployment to OpenShift, and GitOps with Argo CD.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "ci-cd",
+        "level": 3
+      },
+      {
+        "skillId": "gitops",
+        "level": 1
+      },
+      {
+        "skillId": "infrastructure-as-code",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "devops-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
+    ]
   }
 ]
