@@ -59,6 +59,9 @@ type Props = {
   onEditProfile?: () => void;
   /** Switches to the Nova tab — the dashboard hides the chat column, so this is the one-click way back. */
   onAskNova?: () => void;
+  /** The summary request failed and there is nothing older to show. */
+  failed?: boolean;
+  onRetry?: () => void;
 };
 
 const ENTER = { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const };
@@ -90,8 +93,22 @@ export function DashboardTab({
   onOpenItem,
   onEditProfile,
   onAskNova,
+  failed = false,
+  onRetry,
 }: Props) {
   const reduce = useReducedMotion() ?? false;
+  if (!summary && failed) {
+    return (
+      <div className={styles.loading} role="alert">
+        Your dashboard couldn&apos;t be computed just now.
+        {onRetry && (
+          <button type="button" className={styles.retry} onClick={onRetry}>
+            Try again
+          </button>
+        )}
+      </div>
+    );
+  }
   if (!summary) {
     return (
       <div className={styles.loading}>

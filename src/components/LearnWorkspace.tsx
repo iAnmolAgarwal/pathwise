@@ -83,6 +83,8 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<GraphHighlight>(null);
   const [dashboard, setDashboard] = useState<DashboardSummary | null>(null);
+  const [dashboardFailed, setDashboardFailed] = useState(false);
+  const [dashboardAttempt, setDashboardAttempt] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [degradedReason, setDegradedReason] = useState<DegradationReason | null>(initialDegradation?.reason ?? null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
@@ -156,16 +158,21 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const pathVersion = pathState?.version ?? 0;
   useEffect(() => {
     let cancelled = false;
+    setDashboardFailed(false);
     fetch(`/api/dashboard/${learnerId}`)
       .then((r) => (r.ok ? (r.json() as Promise<DashboardSummary>) : null))
       .then((d) => {
-        if (!cancelled && d) setDashboard(d);
+        if (cancelled) return;
+        if (d) setDashboard(d);
+        else setDashboardFailed(true);
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (!cancelled) setDashboardFailed(true);
+      });
     return () => {
       cancelled = true;
     };
-  }, [learnerId, pathVersion, profile]);
+  }, [learnerId, pathVersion, profile, dashboardAttempt]);
 
   const sendFeedback = useCallback(
     async (catalogId: string, type: ItemFeedbackType) => {
@@ -355,6 +362,8 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
               <div className="mt-4">
                 <DashboardTab
                   summary={dashboard}
+                  failed={dashboardFailed && !dashboard}
+                  onRetry={() => setDashboardAttempt((n) => n + 1)}
                   displayName={displayName}
                   joinedAt={joinedAt}
                   preferences={profile.preferences}
