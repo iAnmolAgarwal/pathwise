@@ -2,13 +2,13 @@
 
 import { ArrowRight } from "lucide-react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { Application } from "@splinetool/runtime";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
-import { NovaScene } from "@/components/landing/NovaScene";
+import { NOVA_SCENE_TIMEOUT_MS, NovaScene } from "@/components/landing/NovaScene";
 import { useQuickChat } from "@/components/landing/QuickChat";
 import type { TrustNumbers } from "@/lib/trustFormat";
 
@@ -17,12 +17,51 @@ import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
+/** The slice of the Network Information API we read; it ships in Chromium only. */
+type SaveDataConnection = { saveData?: boolean };
+
+/** True when the visitor has asked their browser to spend less data ("Data Saver"). */
+function prefersSaveData() {
+  if (typeof navigator === "undefined") return false;
+  return (navigator as Navigator & { connection?: SaveDataConnection }).connection?.saveData === true;
+}
+
+/** Never changes, so nothing to subscribe to — the snapshot only has to flip once. */
+const noSubscribe = () => () => {};
+
 export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  // Two different failures: the scene threw (it will never paint), or it is simply
+  // taking too long (it may still arrive, and is welcome when it does).
+  const [sceneErrored, setSceneErrored] = useState(false);
+  const [sceneStalled, setSceneStalled] = useState(false);
   const quickChat = useQuickChat();
   const reduce = useReducedMotion();
+
+  // False through the server render and the hydration render, true immediately after, so
+  // browser-only preferences can decide what to render without a hydration mismatch.
+  const hydrated = useSyncExternalStore(noSubscribe, () => true, () => false);
+
+  // Reduced motion, or Data Saver: the visitor asked for less, so the ~3 MB of runtime and
+  // scene is never fetched — the orb is the hero instead. (`reduce` is null until known.)
+  const skipScene = hydrated && (reduce === true || prefersSaveData());
+  const showScene = hydrated && !skipScene;
+
+  // A stalled scene request calls neither onLoad nor onError, so a timer is the only
+  // thing that notices. The scene stays mounted: if it does arrive late, it still wins.
+  useEffect(() => {
+    if (!showScene || sceneLoaded) return;
+    const timer = setTimeout(() => setSceneStalled(true), NOVA_SCENE_TIMEOUT_MS);
+    return () => clearTimeout(timer);
+  }, [showScene, sceneLoaded]);
+
+  // An error outranks a load: once the boundary has caught, nothing is on the canvas,
+  // whatever a load callback from a torn-down mount may have said.
+  const sceneVisible = sceneLoaded && !sceneErrored;
+  // Nothing is on its way any more: hold the orb still and stop saying "loading".
+  const sceneGivenUp = skipScene || sceneErrored || sceneStalled;
 
   // The runtime has no pause: play() after stop() replays the intro zoom. So the scene keeps
   // running while the hero is within a viewport of the screen (scrolling to the next section
@@ -30,10 +69,10 @@ export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: str
   const near = useInView(containerRef, "100% 0px");
   useEffect(() => {
     const app = appRef.current;
-    if (!app || !sceneLoaded) return;
+    if (!app || !sceneVisible) return;
     if (near) app.play();
     else app.stop();
-  }, [near, sceneLoaded]);
+  }, [near, sceneVisible]);
 
   const cursorX = useMotionValue(-500);
   const cursorY = useMotionValue(-500);
@@ -96,20 +135,28 @@ export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: str
           animate={{ opacity: 1, scale: 1 }}
           transition={{ ...ENTER, duration: 1, delay: 0.15 }}
         >
-          {!sceneLoaded && (
+          {!sceneVisible && (
             <div className={styles.loader} aria-live="polite">
-              <Orb state="breathing" size={64} label="Loading Nova" />
-              <p className="label-caps">Loading Nova</p>
+              <Orb
+                state="breathing"
+                size={64}
+                paused={sceneGivenUp}
+                label={sceneGivenUp ? "Nova" : "Loading Nova"}
+              />
+              <p className="label-caps">{sceneGivenUp ? "Nova" : "Loading Nova"}</p>
             </div>
           )}
 
-          <NovaScene
-            className={styles.spline}
-            onLoad={(app) => {
-              appRef.current = app;
-              setSceneLoaded(true);
-            }}
-          />
+          {showScene && (
+            <NovaScene
+              className={styles.spline}
+              onLoad={(app) => {
+                appRef.current = app;
+                setSceneLoaded(true);
+              }}
+              onError={() => setSceneErrored(true)}
+            />
+          )}
 
           <motion.div
             className={styles.liveLabelWrap}
