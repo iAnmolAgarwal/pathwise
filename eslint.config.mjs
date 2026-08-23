@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Not project code: the Python pipeline's virtualenv and untracked scratch files.
+    "pipeline/**",
+    ".local/**",
   ]),
 ]);
 
