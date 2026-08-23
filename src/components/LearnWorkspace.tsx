@@ -213,6 +213,31 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     chatInputRef.current?.focus();
   }, []);
 
+  // Judge mode, no path yet: record the role goal and let the engine build the first path without Nova.
+  const buildFromGoal = useCallback(
+    async (templateId: string) => {
+      const ops: ProfileOp[] = [{ op: "add_goal", goal: { type: "role", templateId } }];
+      const saved = await fetch(`/api/learners/${learnerId}/profile`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ops }),
+      });
+      const nextProfile = (await saved.json().catch(() => ({}))) as Profile & { error?: string };
+      if (!saved.ok) throw new Error(nextProfile.error ?? `Could not save your goal (${saved.status})`);
+      setProfile(nextProfile);
+      setChanges((prev) => [...prev, { id: prev.length + 1, at: new Date().toLocaleTimeString(), ops }]);
+      const generated = await fetch("/api/path/generate", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ learnerId }),
+      });
+      const body = (await generated.json().catch(() => ({}))) as { error?: string; version: number; path: Path };
+      if (!generated.ok) throw new Error(body.error ?? `Could not build the path (${generated.status})`);
+      onPathUpdated(body.version, body.path, null);
+    },
+    [learnerId, onPathUpdated],
+  );
+
 
   const selectedItem = pathState && explaining ? pathState.path.phases.flatMap((p) => p.items).find((i) => i.catalogId === explaining) ?? null : null;
   const justAdded = useMemo(() => new Set(diff?.diff.added.map((d) => d.catalogId) ?? []), [diff]);
@@ -390,7 +415,14 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
                 />
               </>
             ) : (
-              <EmptyPath displayName={displayName} returning={initialMessages.length > 0} onTalk={talkToNova} />
+              <EmptyPath
+                displayName={displayName}
+                returning={initialMessages.length > 0}
+                onTalk={talkToNova}
+                resting={nova.state === "resting"}
+                goals={goals}
+                onBuildFromGoal={buildFromGoal}
+              />
             )}
 
           </section>
