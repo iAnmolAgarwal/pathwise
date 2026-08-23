@@ -1,7 +1,7 @@
 import { currentUser } from "@/auth";
 import { ArcDeck } from "@/components/landing/ArcDeck";
 import { BeamNetwork } from "@/components/landing/BeamNetwork";
-import { Showcase, TryIt } from "@/components/landing/BigType";
+import { TryIt } from "@/components/landing/BigType";
 import { Footer } from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
 import { MotionWall } from "@/components/landing/MotionWall";
@@ -29,9 +29,8 @@ export default async function Home() {
       <main className="flex flex-1 flex-col">
         <Hero numbers={trust} storyHref="#how-it-works" />
         <SkillStream id="skills" />
-        <ProofStrip id="proof" numbers={trust} />
-        <Showcase id="showcase" />
         <ArcDeck id="how-it-works" />
+        <ProofStrip id="proof" numbers={trust} />
         <BeamNetwork id="engine" />
         <MotionWall id="different" />
         <TryIt id="try" />

@@ -6,8 +6,7 @@
   margin-bottom: -1px;
   padding: clamp(48px, 7vh, 96px) clamp(1.25rem, 7vw, 7.5rem) clamp(72px, 10vh, 128px);
   background:
-    radial-gradient(circle 512px at 50% calc(100% + 86px), rgb(139 92 255 / 22%), transparent),
-    linear-gradient(180deg, var(--color-ink) 0%, var(--color-ink) 45%, #14111d 100%);
+    linear-gradient(180deg, var(--color-ink) 0%, var(--color-ink) 100%);
   color: var(--color-ink-1);
 }
 
