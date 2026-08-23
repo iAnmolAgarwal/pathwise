@@ -158,13 +158,12 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const pathVersion = pathState?.version ?? 0;
   useEffect(() => {
     let cancelled = false;
-    setDashboardFailed(false);
     fetch(`/api/dashboard/${learnerId}`)
       .then((r) => (r.ok ? (r.json() as Promise<DashboardSummary>) : null))
       .then((d) => {
         if (cancelled) return;
         if (d) setDashboard(d);
-        else setDashboardFailed(true);
+        setDashboardFailed(!d);
       })
       .catch(() => {
         if (!cancelled) setDashboardFailed(true);
