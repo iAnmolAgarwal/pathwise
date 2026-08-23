@@ -63,7 +63,7 @@ export default async function LearnPage({ params, searchParams }: PageProps<"/le
       user={user}
       learners={siblings.map((l) => ({ id: l.id, displayName: l.displayName }))}
       initialProfile={profile}
-      initialPath={latest ? { version: latest.version, path: latest.data } : null}
+      initialPath={latest ? { version: latest.version, path: latest.data, diff: latest.diff } : null}
       initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded, card: m.content.card }))}
       goals={goals}
       skills={skills}

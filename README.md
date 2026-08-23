@@ -87,7 +87,7 @@ Setting up the Google side from scratch:
 | `npm test` | Vitest suite |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run lint` | ESLint |
-| `npm run seed <email> [name]` | Seed the demo learner (six weeks of real engine history) onto an existing signed-in Google account; re-running replaces the copy |
+| `npm run seed <email> [alex\|priya\|sam\|all]` | Seed the demo learners onto an existing signed-in Google account — Alex (six weeks in, a milestone done, several replans), Priya (a `too_hard` replan is the latest thing on her path), Sam (fresh, nothing yet). Every path version is engine-generated; re-running replaces the copies |
 | `npm run db:generate` | Generate a migration from `src/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
 

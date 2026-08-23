@@ -57,7 +57,8 @@ type Props = {
   user: SessionUser;
   learners: RailLearner[];
   initialProfile: Profile;
-  initialPath: { version: number; path: Path } | null;
+  /** The latest stored path and, when that version came from a replan, its diff — shown again on open. */
+  initialPath: { version: number; path: Path; diff?: PathDiff | null } | null;
   initialMessages: ChatMessageView[];
   goals: GoalLite[];
   skills: SkillLite[];
@@ -73,12 +74,12 @@ type Props = {
 export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null, initialDegradation = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
-  const [pathState, setPathState] = useState(initialPath);
+  const [pathState, setPathState] = useState<{ version: number; path: Path } | null>(initialPath ? { version: initialPath.version, path: initialPath.path } : null);
   const [nova, dispatchNova] = useReducer(novaReducer, initialNova);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [explaining, setExplaining] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>(initialGraphLink ? "graph" : initialPath ? "path" : "nova");
-  const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(null);
+  const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(initialPath?.diff ? { diff: initialPath.diff, version: initialPath.version } : null);
   const [pendingFeedback, setPendingFeedback] = useState<string | null>(null);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<GraphHighlight>(null);
