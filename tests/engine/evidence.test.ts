@@ -21,7 +21,7 @@ const item: CatalogItem = {
 
 const candidate: Candidate = {
   item,
-  breakdown: { coverage: 0.5, levelFit: 0.9, preferenceFit: 1, quality: 0.8, similarity: 0.7, total: 0.72 },
+  breakdown: { coverage: 0.5, levelFit: 0.9, preferenceFit: 1, quality: 0.8, similarity: 0.7, transitionPrior: 0, total: 0.72 },
   gapSkills: [{ skillId: "react", taughtLevel: 2, levelsGained: 2 }],
 };
 

@@ -125,6 +125,22 @@ describe("preferenceFit", () => {
   });
 });
 
+describe("ENGINE_WEIGHTS", () => {
+  it("sums to 1, so breakdown.total stays on the 0–1 scale the UI and evidence assume", () => {
+    const sum = Object.values(ENGINE_WEIGHTS).reduce((a, b) => a + b, 0);
+    expect(sum).toBeCloseTo(1, 10);
+  });
+
+  it("has one weight per component of the breakdown", () => {
+    const [top] = scoreCandidates(gap, profile, {
+      catalog: [item({ skillsTaught: [{ skillId: "js", level: 2 }] })],
+      embeddings: { js: [1, 0], x: [1, 0] },
+    });
+    const components = Object.keys(top.breakdown).filter((k) => k !== "total");
+    expect(components.sort()).toEqual(Object.keys(ENGINE_WEIGHTS).sort());
+  });
+});
+
 describe("scoreCandidates", () => {
   const embeddings = { js: [1, 0], react: [1, 0], a: [1, 0], b: [0, 1], c: [-1, 0] };
   const catalog = [
@@ -148,7 +164,8 @@ describe("scoreCandidates", () => {
       ENGINE_WEIGHTS.levelFit * b.levelFit +
       ENGINE_WEIGHTS.preferenceFit * b.preferenceFit +
       ENGINE_WEIGHTS.quality * b.quality +
-      ENGINE_WEIGHTS.similarity * b.similarity;
+      ENGINE_WEIGHTS.similarity * b.similarity +
+      ENGINE_WEIGHTS.transitionPrior * b.transitionPrior;
     expect(b.total).toBeCloseTo(expected);
     for (const v of Object.values(b)) {
       expect(v).toBeGreaterThanOrEqual(0);

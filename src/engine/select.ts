@@ -297,6 +297,11 @@ function bestCourseTeaching(
     },
   ];
   const gapIds = new Set(gap.map((g) => g.skillId));
+  // `branches` is deliberately withheld (D-27): this is a narrow "what teaches this one
+  // skill" query over an already-filtered shortlist, not a ranking of the learner's
+  // options, and every candidate here shares the same primary gap skill — so the prior
+  // would be a constant added to every score and could only add noise. The prior is
+  // re-applied to whatever this returns when index.ts rescores the chosen items.
   const scored = scoreCandidates(pseudoGap, profile, { catalog: teaching, embeddings: data.embeddings, weights: data.weights });
   // Prefer courses that are themselves unblocked, then ones touching the real gap, then value per hour.
   const ready = (c: Candidate) =>

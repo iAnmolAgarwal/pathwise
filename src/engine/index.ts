@@ -96,6 +96,9 @@ export function generatePath(
         .filter((c): c is Candidate => c !== undefined)
         .map((c) => c.item),
       embeddings: data.embeddings,
+      // The prior must be re-read here too, or the breakdown on the evidence card would
+      // report transitionPrior: 0 for items the prior actually helped select (D-27).
+      branches: data.branches,
       weights: options.weights,
     }).map((c) => [c.item.id, c]),
   );

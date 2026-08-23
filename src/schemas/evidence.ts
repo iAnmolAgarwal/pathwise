@@ -12,6 +12,12 @@ export const ScoreBreakdownSchema = z.object({
   preferenceFit: z.number(),
   quality: z.number(),
   similarity: z.number(),
+  /**
+   * The empirical transition prior (D-27). `.default(0)` on purpose: paths stored in
+   * Postgres before this signal existed carry five components, and they must keep parsing
+   * — reading as "this path predates the prior", which is accurate.
+   */
+  transitionPrior: z.number().default(0),
   total: z.number(),
 });
 

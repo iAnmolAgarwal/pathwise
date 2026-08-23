@@ -422,6 +422,11 @@ const SCORE_ROWS: {
     label: "Similarity",
     hint: "Closeness to what you said you want",
   },
+  {
+    key: "transitionPrior",
+    label: "Learners' next step",
+    hint: "How often learners who had one of your skills went to this one next — zero when no source saw it above its floors",
+  },
 ];
 
 /** The structural evidence (§7): which gap skills it closes, why it comes after what it does, and the score. */

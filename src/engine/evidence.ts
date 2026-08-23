@@ -49,8 +49,10 @@ export function primaryGapSkill(candidate: Pick<Candidate, "gapSkills">): string
  * "Learners like you" (§15.8, D-18): among the skills the learner already has, the branch entry
  * (per source) that lists `skillId` as a next step — above the floors only (entry minSupportMet,
  * successor n ≥ 5) — choosing the largest shrunk share, then the larger count, then the source
- * order. The share is a transition share copied from branches.json with its caveat (N-2, N-5);
- * nothing here affects selection or sequencing (§15.9).
+ * order. The share is a transition share copied from branches.json with its caveat (N-2, N-5).
+ * Sequencing never reads this — the toposort runs on the authored graph alone (§15.9). Scoring
+ * does: `transitionPrior` in score.ts calls this same function for the same item, so the share
+ * that moved the score at weight 0.02 is the share the card displays (D-27).
  */
 export function branchEvidenceFor(
   skillId: string,

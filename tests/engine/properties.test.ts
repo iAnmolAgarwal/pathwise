@@ -120,6 +120,15 @@ describe("engine properties (§5.6)", () => {
     }
   });
 
+  it("is deterministic with the transition prior enabled (D-27)", () => {
+    // The prior reads branches.json, which the sweep's engine data carries; generating the
+    // same profile twice must still produce byte-identical output.
+    for (const { name, profile, result } of cases) {
+      const again = generatePath(profile, data, { now: NOW, trigger: "initial" });
+      expect(JSON.stringify(again.path), name).toBe(JSON.stringify(result.path));
+    }
+  });
+
   it("the path-driving skill DAG is acyclic (engine precondition)", () => {
     const prereqs = prereqMap(data.skillEdges);
     const state = new Map<string, 1 | 2>();

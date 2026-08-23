@@ -17,7 +17,13 @@ export type EngineData = {
   embeddings: Record<string, number[]>;
   /** The merged, tiered edge set (skill_edges.json); the engine walks only the path-driving edges. */
   skillEdges: SkillEdge[];
-  /** "What learners did next" per skill and source (branches.json); evidence only, never control. */
+  /**
+   * "What learners did next" per skill and source (branches.json). The prerequisite graph
+   * stays authored-only — mined transitions never become prerequisites and never drive the
+   * topological sort. Candidate scoring takes a small empirical prior from these shares
+   * (weight 0.02, above the support floors only, D-27); everything else about them is
+   * display (§5.2, §15.9).
+   */
   branches: Branch[];
 };
 
