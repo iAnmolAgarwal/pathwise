@@ -11,6 +11,96 @@ evidence.
 
 ![The learner dashboard: items by difficulty, progress toward the goal, next best action, streak and activity](docs/img/dashboard.png)
 
+## The problem
+
+"What should I learn next, in what order, and why?" Most recommenders answer with a list
+and a shrug. Pathwise answers with a sequenced path whose every item can be traced back to
+arithmetic: which skill gap it closes, why it comes after the item before it, and how many
+real learners took those two skills in that order.
+
+## What it does
+
+- **Talk to Nova.** Tell a conversational mentor what you want to become and what you already
+  know. Nova extracts a profile (goals, skill levels, hours per week, pace, budget, formats)
+  as typed operations you can see in the profile drawer, and asks a structured intake card
+  when you have not said what you know.
+- **Get a path, not a list.** A deterministic engine computes the skill gap (goal skills plus
+  the prerequisite closure), scores every catalog item against it, picks a small covering set
+  under your time budget, and sequences it into phases with milestones — 300-odd real
+  courses, projects and assessments with real URLs.
+- **See why.** Every item carries an evidence object: the gap skills it covers, the graph path
+  that made it necessary, a five-part score breakdown, what it is sequenced after and why, and
+  — where learners were observed — "confirmed by N learner sequences (P % took these in this
+  order)". Nova narrates from that object and nothing else, and the narration sits beside the
+  structural evidence so any drift is visible.
+- **Push back.** Mark an item done, too hard, too easy or not for you; the path is regenerated
+  by fixed rules and the diff — what was added, removed, reordered and the stated cause — is
+  shown as a first-class thing, not silently applied.
+- **Trust the map.** The hand-built prerequisite graph (159 skills, 193 edges) is checked
+  offline against millions of Stack Overflow question sequences and a million Coursera review
+  sequences; every edge shows its status and its numbers in the skill graph, and nothing
+  mined rewrites the graph without a human decision.
+- **Track it.** A dashboard with progress toward the goal, a radar by domain, the phase
+  timeline, streaks, an activity calendar, achievements and the next best action.
+- **Keep working without the model.** If the Anthropic API is unreachable or the daily token
+  budget is spent, Nova rests and the chat closes with a notice — but path generation,
+  feedback and replanning, structural evidence, the graph and the dashboard all keep working,
+  and a learner with no path yet can pick a goal and have the engine build one.
+
+## How it is built
+
+```
+  browser ──── Next.js route handlers (Zod-validated in and out) ──── Neon Postgres (Drizzle)
+                     │                          │
+                     │                          └── Judge mode: token metering, daily caps,
+                     │                              graceful degradation
+                     ▼
+          src/engine (pure TypeScript, no I/O)            src/llm (Anthropic SDK)
+          gap → score → select → sequence → evidence      chat tool loop · extraction ·
+          replan rules · dashboard                        goal mapping · narration
+                     ▲                                          │
+                     └──────── the LLM's tools ARE the engine ◄─┘
+                     ▲
+          src/data/*.json (pipeline-generated, committed): catalog, skills, goals,
+          embeddings, tiered skill edges with provenance, branch shares
+```
+
+The thesis in one line: **the LLM is the interface and the narrator; the engine is the
+decision-maker.** Concretely:
+
+- **The engine** (`src/engine/`) is pure: data in, data out, fully unit-tested (five fixture
+  learners with snapshot-pinned paths, a 66-profile property sweep, DAG and diff invariants).
+  It reads only the path-driving edges of the skill graph (authored ∪ human-promoted).
+- **The Claude API** (`src/llm/`, model `claude-sonnet-5` via `@anthropic-ai/sdk`) is used for
+  four things and only these: the chat turn (a manual tool-use loop whose tools are engine
+  functions and profile operations), extracting profile operations from what the learner
+  says (structured output against the shared Zod schema), mapping a free-text goal onto the
+  closed skill vocabulary, and narrating an evidence object in Nova's voice. Prompts are
+  frozen and prompt-cached; the model never ranks a course, never edits the profile directly
+  and never writes to the database — persistence goes through the route handlers.
+- **Schemas** (`src/schemas/`, Zod) are the single source of truth shared by the API, the
+  engine and the LLM's structured outputs.
+- **Nova**, the 3D mentor, is a Spline scene driven by a small state machine fed by the chat
+  stream (`listening → thinking → speaking`, `celebrating`, `resting`); the scene and its
+  wasm module are served from this deploy, not a third-party host.
+- **The offline pipeline** (`pipeline/`, Python) curates the catalog, embeds it, mines the
+  learner-sequence evidence, merges it into the tiered skill graph and validates everything;
+  its outputs are committed and bundled, so nothing Python runs at request time.
+
+`docs/EVALUATION.md` holds the measured numbers: sequencing agreement with observed learner
+order, the embedding bake-off, narration groundedness, and a weight sensitivity study.
+
+### Judge mode
+
+Every model response is metered into `token_usage`. A Google account gets
+`JUDGE_USER_DAILY_TOKENS` per UTC day across all its learners (default 150,000) and the
+deployment as a whole gets `JUDGE_GLOBAL_DAILY_TOKENS` (default 3,000,000); past either cap
+the LLM routes answer `{degraded: true, reason: "budget"}`, Nova rests and the composer
+closes until the next day. Model errors (rate limit, overload, outage, a rejected key)
+degrade the single turn the same way without closing the composer. `/api/chat` also takes at
+most ten turns per learner per minute. To see the degraded product end to end, run the dev
+server with `ANTHROPIC_API_KEY=invalid`.
+
 ## Stack
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Drizzle ORM + Neon
@@ -18,15 +108,25 @@ Postgres · Anthropic API · Vitest
 
 ## Setup
 
-1. `npm install`
-2. Copy `.env.example` to `.env.local` and fill in the values.
-3. `npm run db:migrate` to apply migrations to your Postgres database.
-4. `npm run dev` and open http://localhost:3000
-5. Sign in once at http://localhost:3000, then run `npm run seed you@example.com` to load
-   a demo learner with six weeks of generated history: an intake card, every feedback
-   kind, the replans they produced, and streaks. The learner attaches to the Google
-   account you signed in with, so the sign-in has to come first. Re-running the script
-   replaces the previous copy.
+Prerequisites: Node.js 22.9 or later and npm; a Postgres database (a free Neon project is
+what production uses); an Anthropic API key; a Google OAuth client (see "Sign-in" — ten
+minutes, no review). Python is only needed to re-run the offline pipeline.
+
+1. `git clone https://github.com/iAnmolAgarwal/pathwise.git && cd pathwise`
+2. `npm install`
+3. `cp .env.example .env.local` and fill in the values (table below).
+4. `npm run db:migrate` applies the migrations in `src/db/migrations/` to your database.
+5. `npm run dev` and open http://localhost:3000.
+6. `npm test` and `npm run typecheck` should both be green on a clean clone; neither needs
+   a database or an API key.
+7. Sign in once at http://localhost:3000, then `npm run seed you@example.com` loads the
+   three demo learners (Alex, Priya, Sam) onto the account you signed in with — every path
+   version is generated by the engine, every replan by a feedback event. Re-running replaces
+   the copies.
+
+To run the production build locally (`npm run build && npm start`), Auth.js needs to be told
+the host is yours: set `AUTH_TRUST_HOST=true` in `.env.local` for that run (Vercel sets it
+for you in production).
 
 ## Environment variables
 
@@ -38,6 +138,9 @@ Postgres · Anthropic API · Vitest
 | `AUTH_GOOGLE_ID` | OAuth client id from Google Cloud (see "Sign-in") |
 | `AUTH_GOOGLE_SECRET` | OAuth client secret from Google Cloud |
 | `AUTH_URL` | Production only: the deployed origin, e.g. `https://pathwise.example.app`. Leave empty locally |
+| `AUTH_TRUST_HOST` | Only for `npm start` on localhost (`true`); Vercel provides it in production |
+| `JUDGE_USER_DAILY_TOKENS` | Optional. Tokens per Google account per UTC day before Nova rests; default 150000 |
+| `JUDGE_GLOBAL_DAILY_TOKENS` | Optional. Tokens for the whole deployment per UTC day; default 3000000 |
 
 All of them live in `.env.local` locally (gitignored) and in Vercel project env vars in
 production. None is ever committed.
@@ -90,6 +193,27 @@ Setting up the Google side from scratch:
 | `npm run seed <email> [alex\|priya\|sam\|all]` | Seed the demo learners onto an existing signed-in Google account — Alex (six weeks in, a milestone done, several replans), Priya (a `too_hard` replan is the latest thing on her path), Sam (fresh, nothing yet). Every path version is engine-generated; re-running replaces the copies |
 | `npm run db:generate` | Generate a migration from `src/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
+
+## Deploying
+
+Production is a single Vercel project with a Neon database; nothing else is provisioned.
+
+1. Create a Neon project and copy its connection string into `DATABASE_URL`. The app derives
+   the pooled host (`…-pooler.…neon.tech`) from it at runtime; `drizzle-kit` keeps the direct
+   one for migrations.
+2. Import the repository into Vercel, framework preset Next.js, no build overrides. Add every
+   variable from the table above to Production (and Preview if you use preview URLs), with
+   `AUTH_URL` set to the production origin.
+3. Apply migrations from your machine against the production database:
+   `DATABASE_URL=… npm run db:migrate`.
+4. Add the production origin and `https://<origin>/api/auth/callback/google` to the Google
+   OAuth client (Sign-in, step 5) and redeploy.
+5. `GET /api/health` answers `{ok, db: {ok, ms}}` with one `select 1`; the `keep-warm`
+   GitHub Action calls it every ten minutes so Neon's free-tier compute does not suspend
+   between visits. Point the URL in `.github/workflows/keep-warm.yml` at your deployment.
+
+The LLM routes run on the Node runtime with `maxDuration` 60 s (chat) and 30 s (explain);
+everything else is a plain route handler.
 
 ## Data pipeline
 
