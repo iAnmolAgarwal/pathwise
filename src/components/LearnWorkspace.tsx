@@ -301,7 +301,6 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
                   highlight={highlight}
                   onClearHighlight={() => setHighlight(null)}
                   initialEdge={initialGraphLink?.edge ?? null}
-                  defaultLayout={initialGraphLink?.edge ? "focus" : undefined}
                 />
               </div>
             </section>

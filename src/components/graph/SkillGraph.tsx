@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dagre from "@dagrejs/dagre";
-import { Check, Crosshair, LayoutGrid, MoveRight, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Background,
   BackgroundVariant,
@@ -26,7 +26,6 @@ import { prereqMap, type PrereqMap } from "@/engine/edges";
 import type { GraphEdge, GraphEvidence } from "@/lib/graphEvidence";
 import type { Evidence } from "@/schemas";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 import type { SkillLite } from "../path/types";
@@ -42,13 +41,6 @@ export const STATUS_STYLE: Record<SkillStatus, { label: string; glyph: string; b
   gap: { label: "Gap", glyph: "○", badge: "gap" },
   unrelated: { label: "Not on your path", glyph: "·", badge: "unrelated" },
 };
-
-export type GraphLayout = "lr" | "domains" | "focus";
-export const LAYOUTS: { id: GraphLayout; label: string; hint: string }[] = [
-  { id: "lr", label: "Flow", hint: "The whole taxonomy, prerequisites flowing top to bottom" },
-  { id: "domains", label: "Domains", hint: "Skills clustered by domain" },
-  { id: "focus", label: "My path", hint: "Only the skills your path touches, and what they build on" },
-];
 
 const DOMAIN_LABEL: Record<string, string> = {
   foundations: "Foundations",
@@ -70,10 +62,8 @@ type SkillNodeData = {
   highlighted: boolean;
   dimmed: boolean;
   level: number;
-  horizontal: boolean;
   [key: string]: unknown;
 };
-type DomainNodeData = { label: string; count: number; width: number; height: number; [key: string]: unknown };
 
 const NODE_W = 188;
 const NODE_H = 32;
@@ -88,36 +78,23 @@ function SkillNode({ data, selected }: NodeProps<Node<SkillNodeData>>) {
       style={{ width: NODE_W, height: NODE_H }}
       title={`${data.label} — ${style.label}${data.level ? ` (level ${data.level})` : ""}`}
     >
-      <Handle type="target" position={data.horizontal ? Position.Left : Position.Top} className={styles.handle} />
+      <Handle type="target" position={Position.Top} className={styles.handle} />
       <span className={styles.glyph} aria-hidden>
         {data.status === "acquired" ? <Check /> : style.glyph}
       </span>
       <span className={styles.nodeLabel}>{data.label}</span>
       {data.level > 0 && <span className={styles.level}>L{data.level}</span>}
-      <Handle type="source" position={data.horizontal ? Position.Right : Position.Bottom} className={styles.handle} />
+      <Handle type="source" position={Position.Bottom} className={styles.handle} />
     </div>
   );
 }
 
-function DomainNode({ data }: NodeProps<Node<DomainNodeData>>) {
-  return (
-    <div className={styles.domain} style={{ width: data.width, height: data.height }}>
-      <span className={styles.domainLabel}>
-        {data.label}
-        <span className={styles.domainCount}>{data.count}</span>
-      </span>
-    </div>
-  );
-}
-
-const nodeTypes = { skill: SkillNode, domain: DomainNode };
-
-type Positioned = { positions: Map<string, { x: number; y: number }>; domains: (DomainNodeData & { id: string; x: number; y: number })[]; horizontal: boolean };
+const nodeTypes = { skill: SkillNode };
 
 /** Layout over the path-driving edges only: mined candidates are evidence, not structure. */
-function dagreLayout(skills: SkillLite[], prereqs: PrereqMap, rankdir: "LR" | "TB"): Map<string, { x: number; y: number }> {
+function dagreLayout(skills: SkillLite[], prereqs: PrereqMap): Map<string, { x: number; y: number }> {
   const g = new dagre.graphlib.Graph();
-  g.setGraph({ rankdir, nodesep: rankdir === "LR" ? 12 : 16, ranksep: rankdir === "LR" ? 70 : 52, marginx: 12, marginy: 12 });
+  g.setGraph({ rankdir: "TB", nodesep: 16, ranksep: 52, marginx: 12, marginy: 12 });
   g.setDefaultEdgeLabel(() => ({}));
   for (const s of skills) g.setNode(s.id, { width: NODE_W, height: NODE_H });
   const ids = new Set(skills.map((s) => s.id));
@@ -154,59 +131,17 @@ function wrapRanks(positions: Map<string, { x: number; y: number }>, maxWidth: n
   return out;
 }
 
-/** Layout for each option; memoised per (skills, layout, focus set, canvas width). */
-function computeLayout(skills: SkillLite[], prereqs: PrereqMap, layout: GraphLayout, focusIds: Set<string> | null, maxWidth: number): Positioned {
+/**
+ * The learner's own subgraph, top to bottom; memoised per (skills, focus set, canvas width).
+ * Before there is a path to focus on, `focusIds` is null and the whole taxonomy is laid out
+ * instead, so the pane is never empty.
+ */
+function computeLayout(skills: SkillLite[], prereqs: PrereqMap, focusIds: Set<string> | null, maxWidth: number): Map<string, { x: number; y: number }> {
   // Ranks fold to the canvas width rather than a fixed one: anything wider only reads after a
   // pan, and panning slices the node labels at the canvas edge.
   const wrapTo = Math.max(NODE_W + 12, maxWidth - 24);
-  // The whole taxonomy ranks ~80 skills at depth 0: lay it out top-to-bottom and wrap the wide ranks.
-  if (layout === "lr" || (layout === "focus" && !focusIds)) {
-    return { positions: wrapRanks(dagreLayout(skills, prereqs, "TB"), wrapTo), domains: [], horizontal: false };
-  }
-  if (layout === "focus" && focusIds) {
-    const subset = skills.filter((s) => focusIds.has(s.id));
-    return { positions: wrapRanks(dagreLayout(subset, prereqs, "TB"), wrapTo), domains: [], horizontal: false };
-  }
-  // domains: lay each domain out on its own, then pack the clusters into rows.
-  const byDomain = new Map<string, SkillLite[]>();
-  for (const s of skills) byDomain.set(s.domain, [...(byDomain.get(s.domain) ?? []), s]);
-  const clusters = [...byDomain.entries()]
-    .map(([domain, list]) => {
-      const pos = dagreLayout(list, prereqs, "TB");
-      let w = 0;
-      let h = 0;
-      for (const p of pos.values()) {
-        w = Math.max(w, p.x + NODE_W);
-        h = Math.max(h, p.y + NODE_H);
-      }
-      return { domain, list, pos, w: w + 24, h: h + 52 };
-    })
-    .sort((a, b) => b.list.length - a.list.length);
-
-  // Pack clusters into rows whose total width targets a landscape canvas.
-  const PAD = 40;
-  const area = clusters.reduce((sum, c) => sum + (c.w + PAD) * (c.h + PAD), 0);
-  const MAX_ROW = Math.max(Math.sqrt(area * 1.7), ...clusters.map((c) => c.w));
-  const positions = new Map<string, { x: number; y: number }>();
-  const domains: Positioned["domains"] = [];
-  let x = 0;
-  let y = 0;
-  let rowH = 0;
-  for (const c of clusters) {
-    if (x > 0 && x + c.w > MAX_ROW) {
-      x = 0;
-      y += rowH + PAD;
-      rowH = 0;
-    }
-    domains.push({ id: `domain:${c.domain}`, label: domainLabel(c.domain), count: c.list.length, width: c.w, height: c.h, x, y });
-    for (const s of c.list) {
-      const p = c.pos.get(s.id)!;
-      positions.set(s.id, { x: x + 12 + p.x, y: y + 40 + p.y });
-    }
-    x += c.w + PAD;
-    rowH = Math.max(rowH, c.h);
-  }
-  return { positions, domains, horizontal: false };
+  const subset = focusIds ? skills.filter((s) => focusIds.has(s.id)) : skills;
+  return wrapRanks(dagreLayout(subset, prereqs), wrapTo);
 }
 
 export type GraphHighlight = { catalogId: string; title: string; evidence: Evidence } | null;
@@ -221,8 +156,6 @@ type Props = {
   /** Clears the traced path item (the "Tracing" strip's close button). */
   onClearHighlight?: () => void;
   onSelectSkill?: (skillId: string) => void;
-  /** Initial layout; the learner can switch. */
-  defaultLayout?: GraphLayout;
   /** Open this arrow's card, details expanded, once the canvas is laid out (the landing badge lands here). */
   initialEdge?: { from: string; to: string } | null;
 };
@@ -231,7 +164,6 @@ type Props = {
 export type EdgeInteraction = { kind: "enter" | "leave" | "click"; edge: GraphEdge; clientX: number; clientY: number };
 
 type InnerProps = Props & {
-  layout: GraphLayout;
   prereqs: PrereqMap;
   selectedSkill: string | null;
   /** Measured width of the canvas element; 0 before the first measurement. */
@@ -242,7 +174,7 @@ type InnerProps = Props & {
   onPaneClick: () => void;
 };
 
-function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, layout, selectedSkill, canvasWidth, focusEdge, onEdgeInteraction, onPaneClick }: InnerProps) {
+function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, selectedSkill, canvasWidth, focusEdge, onEdgeInteraction, onPaneClick }: InnerProps) {
   const { fitView } = useReactFlow();
 
   // Focus = every skill the path touches plus everything it builds on (over path-driving edges).
@@ -260,7 +192,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     return out;
   }, [skills, prereqs, skillStatus]);
 
-  const laid = useMemo(() => computeLayout(skills, prereqs, layout, focusIds, canvasWidth || 1900), [skills, prereqs, layout, focusIds, canvasWidth]);
+  const laid = useMemo(() => computeLayout(skills, prereqs, focusIds, canvasWidth || 1900), [skills, prereqs, focusIds, canvasWidth]);
 
   const edgeByKey = useMemo(() => new Map(evidence.edges.map((e) => [`${e.from}->${e.to}`, e])), [evidence]);
 
@@ -278,29 +210,18 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
 
   const build = useCallback(() => {
     const dim = highlightSet.ids.size > 0;
-    const visible = skills.filter((s) => laid.positions.has(s.id));
+    const visible = skills.filter((s) => laid.has(s.id));
     const ids = new Set(visible.map((s) => s.id));
-    const domainNodes: Node<DomainNodeData>[] = laid.domains.map((d) => ({
-      id: d.id,
-      type: "domain",
-      position: { x: d.x, y: d.y },
-      data: { label: d.label, count: d.count, width: d.width, height: d.height },
-      selectable: false,
-      draggable: false,
-      focusable: false,
-      zIndex: -1,
-    }));
     const nodes: Node<SkillNodeData>[] = visible.map((s) => ({
       id: s.id,
       type: "skill",
-      position: laid.positions.get(s.id)!,
+      position: laid.get(s.id)!,
       data: {
         label: s.name,
         status: skillStatus[s.id] ?? "unrelated",
         highlighted: highlightSet.ids.has(s.id),
         dimmed: dim && !highlightSet.ids.has(s.id),
         level: levels[s.id] ?? 0,
-        horizontal: laid.horizontal,
       },
     }));
     // Only the path-driving (authored ∪ promoted) arrows are drawn, every one in the same stroke:
@@ -322,7 +243,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
         data: { key },
       };
     });
-    return { nodes: [...(domainNodes as Node[]), ...(nodes as Node[])], edges };
+    return { nodes: nodes as Node[], edges };
   }, [skills, evidence, laid, skillStatus, highlightSet, levels, selectedSkill, focusEdge]);
 
   const interact = useCallback(
@@ -343,11 +264,11 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     setEdges(next.edges);
   }, [build, setNodes, setEdges]);
 
-  // Refit only when the layout, the traced item or the deep-linked arrow changes — never on a
+  // Refit only when the laid-out graph, the traced item or the deep-linked arrow changes — never on a
   // selection, hover or zoom. A deep link zooms onto the arrow's two skills.
   useEffect(() => {
     const t = setTimeout(() => {
-      if (focusEdge && laid.positions.has(focusEdge.from) && laid.positions.has(focusEdge.to)) {
+      if (focusEdge && laid.has(focusEdge.from) && laid.has(focusEdge.to)) {
         fitView({ nodes: [{ id: focusEdge.from }, { id: focusEdge.to }], duration: 600, padding: 0.12, maxZoom: 1.6 });
       } else if (highlightSet.ids.size > 0) fitView({ nodes: [...highlightSet.ids].map((id) => ({ id })), duration: 600, padding: 0.5 });
       else fitView({ duration: 500, padding: 0.08, minZoom: 0.7 });
@@ -380,20 +301,16 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
   );
 }
 
-const LAYOUT_ICON: Record<GraphLayout, typeof MoveRight> = { lr: MoveRight, domains: LayoutGrid, focus: Crosshair };
-
 type PopoverState = { edge: GraphEdge; x: number; y: number; canvasWidth: number; canvasHeight: number; pinned: boolean; details: boolean };
 
 /**
- * Skill-graph explorer (§7 renderings 1 and 3): gap colouring, click-to-highlight evidence
- * paths, one arrow style for every prerequisite, and a click card per arrow that opens to the
- * full provenance.
+ * Skill-graph explorer (§7 renderings 1 and 3): the learner's own subgraph, gap colouring,
+ * click-to-highlight evidence paths, one arrow style for every prerequisite, and a click card
+ * per arrow that opens to the full provenance.
  */
-export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...props }: Props) {
+export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
   const { skills, skillStatus, evidence } = props;
   const [selected, setSelected] = useState<string | null>(null);
-  // Default: the learner's own subgraph once a path exists, the domain map before that; a manual pick sticks.
-  const [picked, setPicked] = useState<GraphLayout | null>(defaultLayout ?? null);
   const [popover, setPopover] = useState<PopoverState | null>(null);
   // The deep-linked arrow stays highlighted until the visitor clicks the pane or picks a skill.
   const [focusLink, setFocusLink] = useState<{ from: string; to: string } | null>(initialEdge ?? null);
@@ -414,8 +331,6 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
   const status = skill ? (skillStatus[skill.id] ?? "unrelated") : null;
   const counts: Record<SkillStatus, number> = { acquired: 0, "in-progress": 0, gap: 0, unrelated: 0 };
   for (const s of skills) counts[skillStatus[s.id] ?? "unrelated"]++;
-  const hasPath = counts.acquired + counts["in-progress"] + counts.gap > 0;
-  const layout: GraphLayout = picked ?? (hasPath ? "focus" : "domains");
   const nameOf = (id: string) => skills.find((s) => s.id === id)?.name ?? id;
 
   const candidatesOfSelected = useMemo(
@@ -475,29 +390,15 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.toolbar}>
-        <Tabs value={layout} onValueChange={(v) => setPicked(v as GraphLayout)}>
-          <TabsList variant="pill" aria-label="Layout">
-            {LAYOUTS.map((l) => {
-              const Icon = LAYOUT_ICON[l.id];
-              return (
-                <TabsTrigger key={l.id} value={l.id} title={l.hint} disabled={l.id === "focus" && !hasPath} data-testid={`graph-layout-${l.id}`}>
-                  <Icon /> {l.label}
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
-        </Tabs>
-        <ul className={styles.legend} data-testid="graph-legend" aria-label="Legend">
-          {(Object.keys(STATUS_STYLE) as SkillStatus[]).map((k) => (
-            <li key={k} className={cn(styles.legendItem, styles[`legend_${STATUS_STYLE[k].badge}`])}>
-              <span className={styles.legendDot} aria-hidden />
-              {STATUS_STYLE[k].label}
-              <span className={styles.legendCount}>{counts[k]}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className={styles.legend} data-testid="graph-legend" aria-label="Legend">
+        {(Object.keys(STATUS_STYLE) as SkillStatus[]).map((k) => (
+          <li key={k} className={cn(styles.legendItem, styles[`legend_${STATUS_STYLE[k].badge}`])}>
+            <span className={styles.legendDot} aria-hidden />
+            {STATUS_STYLE[k].label}
+            <span className={styles.legendCount}>{counts[k]}</span>
+          </li>
+        ))}
+      </ul>
 
       {props.highlight && (
         <p className={styles.trace} data-testid="graph-highlight">
@@ -521,7 +422,6 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
         <ReactFlowProvider>
           <SkillGraphInner
             {...props}
-            layout={layout}
             prereqs={prereqs}
             selectedSkill={selected}
             canvasWidth={canvasWidth}
