@@ -79,11 +79,14 @@ export function preferenceFit(item: CatalogItem, prefs: Preferences, dislikes?: 
  * Score every catalog item that advances at least one gap skill (§5.2). All five
  * components are returned per candidate so the Evidence object can log them verbatim.
  */
+/** Catalog, vectors and — for the sensitivity study only — the weights to score with; absent, ENGINE_WEIGHTS. */
+export type ScoringData = { catalog: CatalogItem[]; embeddings: Record<string, number[]>; weights?: EngineWeights };
+
 export function scoreCandidates(
   gap: Gap[],
   profile: Profile,
-  data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
-  weights: EngineWeights = ENGINE_WEIGHTS,
+  data: ScoringData,
+  weights: EngineWeights = data.weights ?? ENGINE_WEIGHTS,
 ): Candidate[] {
   if (gap.length === 0) return [];
   const goalCentroid = centroid(

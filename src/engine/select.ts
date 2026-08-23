@@ -1,5 +1,5 @@
 import type { CatalogItem, Preferences, Profile } from "../schemas";
-import { scoreCandidates } from "./score";
+import { scoreCandidates, type ScoringData } from "./score";
 import type { Candidate, Gap } from "./types";
 
 /** Planning horizon in weeks by pace; time budget = hoursPerWeek × horizon (§5.3). */
@@ -86,7 +86,7 @@ export function selectCourses(
   gap: Gap[],
   budgetHours: number,
   profile?: Profile,
-  data?: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
+  data?: ScoringData,
   initial: Candidate[] = [],
 ): CourseSelection {
   const achieved = new Map<string, number>(gap.map((g) => [g.skillId, g.currentLevel]));
@@ -232,7 +232,7 @@ export function unmetRequirements(
 export function repairRequirements(
   selected: Candidate[],
   profile: Profile,
-  data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
+  data: ScoringData,
   gap: Gap[],
   budgetHours: number,
 ): { selected: Candidate[]; added: Candidate[]; dropped: Candidate[]; prerequisiteGaps: Gap[] } {
@@ -272,7 +272,7 @@ export function repairRequirements(
 function bestCourseTeaching(
   need: { skillId: string; level: number },
   already: Candidate[],
-  data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
+  data: ScoringData,
   profile: Profile,
   gap: Gap[],
   achieved?: Map<string, number>,
@@ -297,7 +297,7 @@ function bestCourseTeaching(
     },
   ];
   const gapIds = new Set(gap.map((g) => g.skillId));
-  const scored = scoreCandidates(pseudoGap, profile, { catalog: teaching, embeddings: data.embeddings });
+  const scored = scoreCandidates(pseudoGap, profile, { catalog: teaching, embeddings: data.embeddings, weights: data.weights });
   // Prefer courses that are themselves unblocked, then ones touching the real gap, then value per hour.
   const ready = (c: Candidate) =>
     achieved ? Number(unmetRequirements(c.item, achieved).length === 0) : 1;

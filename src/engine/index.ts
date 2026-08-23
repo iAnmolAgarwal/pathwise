@@ -1,7 +1,7 @@
 import type { CatalogItem, Path, Profile } from "../schemas";
 import { buildEvidence } from "./evidence";
 import { computeGap, requiredSkillsForGoals } from "./gap";
-import { scoreCandidates } from "./score";
+import { scoreCandidates, type EngineWeights } from "./score";
 import {
   EXTRAS_BUDGET_SHARE,
   attachPhaseExtras,
@@ -22,6 +22,8 @@ export type GenerateOptions = {
   trigger: Path["meta"]["trigger"];
   /** Hours already spent on completed items; they came out of the same horizon budget. */
   spentHours?: number;
+  /** Scoring weights to use instead of ENGINE_WEIGHTS — the sensitivity study's knob; the product never sets it. */
+  weights?: EngineWeights;
 };
 
 export type Working = {
@@ -52,17 +54,18 @@ export function generatePath(
 ): { path: Path; working: Working } {
   const required = requiredSkillsForGoals(profile.goals, data.goals);
   const gap = computeGap(profile, required, data.skillEdges);
-  const candidates = scoreCandidates(gap, profile, data);
+  const scoring = options.weights ? { ...data, weights: options.weights } : data;
+  const candidates = scoreCandidates(gap, profile, scoring);
 
   const budgetHours = Math.max(0, timeBudgetHours(profile.preferences) - (options.spentHours ?? 0));
   const courseBudgetHours = Math.round(budgetHours * (1 - EXTRAS_BUDGET_SHARE));
   // Select → repair → prune, repeated: pruning can free hours that admit another course.
   let kept: Candidate[] = [];
-  let selection = selectCourses(candidates, gap, courseBudgetHours, profile, data);
+  let selection = selectCourses(candidates, gap, courseBudgetHours, profile, scoring);
   let dropped: Candidate[] = [];
   const prerequisiteGaps: Gap[] = [];
   for (let round = 0; round < 4; round++) {
-    const repaired = repairRequirements(selection.selected, profile, data, gap, courseBudgetHours);
+    const repaired = repairRequirements(selection.selected, profile, scoring, gap, courseBudgetHours);
     dropped = repaired.dropped;
     prerequisiteGaps.push(...selection.prerequisiteGaps, ...repaired.prerequisiteGaps);
     const pruned = pruneRedundant(repaired.selected, gap, profile);
@@ -93,6 +96,7 @@ export function generatePath(
         .filter((c): c is Candidate => c !== undefined)
         .map((c) => c.item),
       embeddings: data.embeddings,
+      weights: options.weights,
     }).map((c) => [c.item.id, c]),
   );
   const consistent = (c: Candidate | undefined): Candidate[] =>

@@ -5,7 +5,8 @@ skills in matches the order real learners took them, that the embedding model be
 similarity signal retrieves the right skills for a catalog item, and that the narrated
 explanation of a path item says nothing the underlying evidence does not. Each claim has a
 script under `pipeline/evaluate/`, each script writes its result under `pipeline/evidence/`,
-and the numbers below are copied from those files. Nothing here is trained; no number is
+and the numbers below are copied from those files. A fourth section measures how much the
+engine's scoring weights matter, for the same reason. Nothing here is trained; no number is
 quoted that a script did not produce.
 
 All three start from the same corpus of generated paths: the five fixture learners the test
@@ -155,6 +156,51 @@ the product lets the narrator cite — were reproduced correctly in 36 of the 37
 used them. The concrete follow-up is a prompt clause, not a model change: do not describe a
 level fit when the profile records no skills, and never turn a score into a reputation.
 
+## 4. Weight sensitivity
+
+**Why.** The five scoring weights (§5.2 of the architecture: coverage 0.40, level fit 0.15,
+preference fit 0.15, quality 0.10, similarity 0.20) were set by judgement, not tuned. This
+study does not tune them either; it measures how much each one matters, so a reader knows
+whether the paths above are a property of the engine or of one particular setting.
+
+**Method.** `pipeline/evaluate/weight_sensitivity.ts` takes the 66-learner corpus the
+property tests sweep — the five fixture learners plus every goal template under four learner
+shapes and one two-goal learner — generates every path at the committed weights (920 path
+items), then moves one weight at a time by ±25 % and regenerates. For each perturbation it
+counts learners whose path changed at all, items added and removed (as a share of the 920),
+learners whose shared items came out in a different order, and phase-order flips (the same
+phase titles in a different sequence). The weights are passed into the engine as an option;
+the product never sets it.
+
+**Result** (`pipeline/evidence/weight_sensitivity.json`):
+
+| axis | Δ | learners changed | items added | items removed | items changed (% of 920) | learners reordered | phase-order flips |
+|---|---|---|---|---|---|---|---|
+| coverage | +25 % | 6/66 | 4 | 5 | 9 (0.98 %) | 2 | 0 |
+| coverage | −25 % | 10/66 | 19 | 14 | 33 (3.59 %) | 6 | 1 |
+| levelFit | +25 % | 17/66 | 21 | 21 | 42 (4.57 %) | 4 | 0 |
+| levelFit | −25 % | 15/66 | 23 | 20 | 43 (4.67 %) | 5 | 0 |
+| preferenceFit | +25 % | 2/66 | 7 | 3 | 10 (1.09 %) | 1 | 0 |
+| preferenceFit | −25 % | 5/66 | 4 | 4 | 8 (0.87 %) | 3 | 0 |
+| quality | +25 % | 6/66 | 11 | 8 | 19 (2.07 %) | 1 | 0 |
+| quality | −25 % | 8/66 | 10 | 10 | 20 (2.17 %) | 2 | 0 |
+| similarity | +25 % | 7/66 | 8 | 8 | 16 (1.74 %) | 1 | 0 |
+| similarity | −25 % | 16/66 | 17 | 17 | 34 (3.70 %) | 5 | 0 |
+
+No fixture learner's phase order flips under any perturbation. The one flip in the corpus is
+`business-intelligence-analyst/free-text` (free courses only, text format, 3 h/week) under
+coverage −25 %, where two equally sized phases swap. Among the five fixtures, the only item
+substitutions are `sqlzoo` ↔ `hackerrank-sql` (two SQL practice sets of similar size and
+level) for the data-science and ML learners, and `beginner-frontend` sees two order
+inversions among items in the same phase under three of the ten perturbations.
+
+**Reading it.** Level fit is the most sensitive axis and preference fit the least; at ±25 %
+no axis moves more than 4.7 % of items or changes the phase structure of a fixture. Most of
+what a path contains is decided by the gap and the prerequisite graph before the weights
+break ties among courses that cover the same skills — which is the intended division of
+labour (§5.1–5.3). The weights are not changed on the strength of this; the study is an
+input to any future change, and its numbers are what the documentation quotes.
+
 ## Limitations
 
 - **No users.** Pathwise has had no learners at the time of writing. Nothing here measures
@@ -179,4 +225,5 @@ npm exec -- tsx pipeline/evaluate/dump_paths.ts --out pipeline/build/evaluate/pa
 python pipeline/evaluate/sequencing_agreement.py
 python pipeline/evaluate/embedding_bakeoff.py
 python pipeline/evaluate/narration_groundedness.py   # needs ANTHROPIC_API_KEY; model calls are cached under pipeline/build/
+npm exec -- tsx pipeline/evaluate/weight_sensitivity.ts --out pipeline/evidence/weight_sensitivity.json --md
 ```
