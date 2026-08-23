@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Application } from "@splinetool/runtime";
 
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
 import { NOVA_SCENE_TIMEOUT_MS, NovaScene } from "@/components/landing/NovaScene";
 import { useQuickChat } from "@/components/landing/QuickChat";
+import { useHydrated } from "@/lib/hydrated";
 import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
@@ -26,9 +27,6 @@ function prefersSaveData() {
   return (navigator as Navigator & { connection?: SaveDataConnection }).connection?.saveData === true;
 }
 
-/** Never changes, so nothing to subscribe to — the snapshot only has to flip once. */
-const noSubscribe = () => () => {};
-
 export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
@@ -42,7 +40,7 @@ export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: str
 
   // False through the server render and the hydration render, true immediately after, so
   // browser-only preferences can decide what to render without a hydration mismatch.
-  const hydrated = useSyncExternalStore(noSubscribe, () => true, () => false);
+  const hydrated = useHydrated();
 
   // Reduced motion, or Data Saver: the visitor asked for less, so the ~3 MB of runtime and
   // scene is never fetched — the orb is the hero instead. (`reduce` is null until known.)
