@@ -1,8 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { Application } from "@splinetool/runtime";
 
@@ -11,27 +10,30 @@ import { Button } from "@/components/ui/button";
 import { Orb } from "@/components/ui/orb";
 import { NovaScene } from "@/components/landing/NovaScene";
 import { useQuickChat } from "@/components/landing/QuickChat";
-import { compactCount, type TrustNumbers } from "@/lib/trustFormat";
+import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
 import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
-export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { storyHref?: string; appHref?: string; numbers: TrustNumbers }) {
+export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: string; numbers: TrustNumbers }) {
   const containerRef = useRef<HTMLElement>(null);
   const appRef = useRef<Application | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
-  const inView = useInView(containerRef, "0px");
   const quickChat = useQuickChat();
+  const reduce = useReducedMotion();
 
-  // Nova's scene renders at 60 fps; stop it while the hero is scrolled away.
+  // The runtime has no pause: play() after stop() replays the intro zoom. So the scene keeps
+  // running while the hero is within a viewport of the screen (scrolling to the next section
+  // and back never replays) and only stops once the visitor is well past it.
+  const near = useInView(containerRef, "100% 0px");
   useEffect(() => {
     const app = appRef.current;
     if (!app || !sceneLoaded) return;
-    if (inView) app.play();
+    if (near) app.play();
     else app.stop();
-  }, [inView, sceneLoaded]);
+  }, [near, sceneLoaded]);
 
   const cursorX = useMotionValue(-500);
   const cursorY = useMotionValue(-500);
@@ -59,6 +61,36 @@ export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { st
 
       <div className={styles.content}>
         <motion.div
+          className={styles.textArea}
+          initial={{ opacity: 0, x: -35 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ ...ENTER, delay: 0.15 }}
+        >
+          <Badge variant="eyebrow" dot className={styles.eyebrow}>
+            Nova · your AI learning mentor
+          </Badge>
+
+          <h1 className={styles.h1}>
+            A learning path
+            <span className={`${styles.gradientText} text-gradient-violet`}>you can verify.</span>
+          </h1>
+
+          <p className={styles.lead}>
+            For anyone working towards a role in tech — frontend, data, cloud, ML, security, {numbers.goalTemplates} roles in all — who wants
+            to know what to learn next, in what order, and why.
+          </p>
+
+          <div className={styles.buttons}>
+            <Button asChild>
+              <a href={storyHref}>
+                Explore how it works <ArrowRight data-icon="inline-end" />
+              </a>
+            </Button>
+          </div>
+
+        </motion.div>
+
+        <motion.div
           className={styles.sceneArea}
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -81,8 +113,8 @@ export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { st
 
           <motion.div
             className={styles.liveLabelWrap}
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={reduce ? undefined : { y: [0, -5, 0] }}
+            transition={reduce ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             <button type="button" onClick={quickChat.open} className={styles.liveLabel}>
               <span className={styles.liveIcon}>
@@ -94,56 +126,6 @@ export function Hero({ storyHref = "#story", appHref = "/learn", numbers }: { st
               </div>
             </button>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          className={styles.textArea}
-          initial={{ opacity: 0, x: -35 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ...ENTER, delay: 0.15 }}
-        >
-          <Badge variant="eyebrow" dot className={styles.eyebrow}>
-            Nova · your AI learning mentor
-          </Badge>
-
-          <h1 className={styles.h1}>
-            A learning path
-            <span className={`${styles.gradientText} text-gradient-violet`}>you can check.</span>
-          </h1>
-
-          <p className={styles.lead}>
-            Nova asks what you want to become. Math picks the courses and their order from a hand-built map of {numbers.skills} skills — a map
-            checked against the order {compactCount(numbers.soUsers)} real people on Stack Overflow and Coursera learned things in. Click any arrow, see
-            the count. The AI explains; it never decides.
-          </p>
-
-          <div className={styles.buttons}>
-            <Button asChild>
-              <a href={storyHref}>
-                Explore how it works <ArrowRight data-icon="inline-end" />
-              </a>
-            </Button>
-            <Button variant="secondary" asChild>
-              <Link href={appHref}>View a sample path</Link>
-            </Button>
-          </div>
-
-          <div className={styles.features}>
-            <div>
-              <strong>{numbers.skills} skills</strong>
-              <span>hand-built map</span>
-            </div>
-            <i aria-hidden />
-            <div>
-              <strong>{numbers.observable} of {numbers.authoredEdges} links</strong>
-              <span>checked against real learners</span>
-            </div>
-            <i aria-hidden />
-            <div>
-              <strong>Every arrow</strong>
-              <span>shows its count</span>
-            </div>
-          </div>
         </motion.div>
       </div>
     </motion.section>

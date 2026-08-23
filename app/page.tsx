@@ -1,13 +1,16 @@
 import { currentUser } from "@/auth";
 import { ArcDeck } from "@/components/landing/ArcDeck";
 import { BeamNetwork } from "@/components/landing/BeamNetwork";
-import { Showcase, TryIt } from "@/components/landing/BigType";
+import { EvidencePlates } from "@/components/landing/EvidencePlates";
+import { TryIt } from "@/components/landing/BigType";
 import { Footer } from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
 import { MotionWall } from "@/components/landing/MotionWall";
+import { ProofStrip } from "@/components/landing/ProofStrip";
 import { QuickChatProvider, type QuickChatVisitor } from "@/components/landing/QuickChat";
 import { SkillStream } from "@/components/landing/SkillStream";
-import { HowItWorks, KeepFresh, TrustBadge } from "@/components/landing/Trust";
+import { demoNumbers } from "@/lib/demoStory";
+import { loadEvidencePlates } from "@/lib/evidencePlates";
 import { loadTrustNumbers } from "@/lib/trust";
 import { listLearners } from "@/db/queries";
 
@@ -24,18 +27,18 @@ async function visitorState(): Promise<QuickChatVisitor> {
 export default async function Home() {
   const visitor = await visitorState();
   const trust = loadTrustNumbers();
+  const demo = demoNumbers();
+  const plates = loadEvidencePlates();
   return (
     <QuickChatProvider visitor={visitor}>
       <main className="flex flex-1 flex-col">
-        <Hero numbers={trust} />
-        <HowItWorks id="story" />
-        <TrustBadge id="trust" numbers={trust} />
-        <Showcase id="showcase" />
-        <ArcDeck id="how-it-works" />
-        <BeamNetwork id="engine" />
+        <Hero numbers={trust} storyHref="#how-it-works" />
         <SkillStream id="skills" />
-        <MotionWall id="different" />
-        <KeepFresh id="fresh" numbers={trust} />
+        <ArcDeck id="how-it-works" />
+        <ProofStrip id="proof" numbers={trust} />
+        <MotionWall id="different" numbers={trust} demo={demo} />
+        <BeamNetwork id="engine" />
+        <EvidencePlates id="evidence" numbers={trust} plates={plates} />
         <TryIt id="try" />
         <Footer />
       </main>

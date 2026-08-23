@@ -236,11 +236,13 @@ type InnerProps = Props & {
   selectedSkill: string | null;
   /** Measured width of the canvas element; 0 before the first measurement. */
   canvasWidth: number;
+  /** A deep-linked arrow: the view zooms onto its two skills and the arrow is drawn highlighted. */
+  focusEdge: { from: string; to: string } | null;
   onEdgeInteraction: (i: EdgeInteraction) => void;
   onPaneClick: () => void;
 };
 
-function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, layout, selectedSkill, canvasWidth, onEdgeInteraction, onPaneClick }: InnerProps) {
+function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highlight, onSelectSkill, layout, selectedSkill, canvasWidth, focusEdge, onEdgeInteraction, onPaneClick }: InnerProps) {
   const { fitView } = useReactFlow();
 
   // Focus = every skill the path touches plus everything it builds on (over path-driving edges).
@@ -307,7 +309,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     const shown = evidence.edges.filter((e) => e.drivesPath && ids.has(e.from) && ids.has(e.to));
     const edges: Edge[] = shown.map((e) => {
       const key = `${e.from}->${e.to}`;
-      const on = highlightSet.edgeKeys.has(key);
+      const on = highlightSet.edgeKeys.has(key) || (focusEdge !== null && e.from === focusEdge.from && e.to === focusEdge.to);
       const selectedEnd = selectedSkill !== null && (e.from === selectedSkill || e.to === selectedSkill);
       return {
         id: key,
@@ -321,7 +323,7 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
       };
     });
     return { nodes: [...(domainNodes as Node[]), ...(nodes as Node[])], edges };
-  }, [skills, evidence, laid, skillStatus, highlightSet, levels, selectedSkill]);
+  }, [skills, evidence, laid, skillStatus, highlightSet, levels, selectedSkill, focusEdge]);
 
   const interact = useCallback(
     (kind: EdgeInteraction["kind"]) => (event: React.MouseEvent, edge: Edge) => {
@@ -341,14 +343,17 @@ function SkillGraphInner({ skills, evidence, prereqs, skillStatus, levels, highl
     setEdges(next.edges);
   }, [build, setNodes, setEdges]);
 
-  // Refit only when the layout or the traced item changes — never on a selection, hover or zoom.
+  // Refit only when the layout, the traced item or the deep-linked arrow changes — never on a
+  // selection, hover or zoom. A deep link zooms onto the arrow's two skills.
   useEffect(() => {
     const t = setTimeout(() => {
-      if (highlightSet.ids.size > 0) fitView({ nodes: [...highlightSet.ids].map((id) => ({ id })), duration: 600, padding: 0.5 });
+      if (focusEdge && laid.positions.has(focusEdge.from) && laid.positions.has(focusEdge.to)) {
+        fitView({ nodes: [{ id: focusEdge.from }, { id: focusEdge.to }], duration: 600, padding: 0.12, maxZoom: 1.6 });
+      } else if (highlightSet.ids.size > 0) fitView({ nodes: [...highlightSet.ids].map((id) => ({ id })), duration: 600, padding: 0.5 });
       else fitView({ duration: 500, padding: 0.08, minZoom: 0.7 });
     }, 50);
     return () => clearTimeout(t);
-  }, [laid, highlightSet, fitView]);
+  }, [laid, highlightSet, focusEdge, fitView]);
 
   return (
     <ReactFlow
@@ -390,6 +395,8 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
   // Default: the learner's own subgraph once a path exists, the domain map before that; a manual pick sticks.
   const [picked, setPicked] = useState<GraphLayout | null>(defaultLayout ?? null);
   const [popover, setPopover] = useState<PopoverState | null>(null);
+  // The deep-linked arrow stays highlighted until the visitor clicks the pane or picks a skill.
+  const [focusLink, setFocusLink] = useState<{ from: string; to: string } | null>(initialEdge ?? null);
   const [canvasWidth, setCanvasWidth] = useState(0);
   const canvasRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<number | null>(null);
@@ -518,14 +525,17 @@ export function SkillGraph({ defaultLayout, initialEdge, onClearHighlight, ...pr
             prereqs={prereqs}
             selectedSkill={selected}
             canvasWidth={canvasWidth}
+            focusEdge={focusLink}
             onEdgeInteraction={onEdgeInteraction}
             onPaneClick={() => {
               closePopover();
               setSelected(null);
+              setFocusLink(null);
             }}
             onSelectSkill={(id) => {
               setSelected(id);
               closePopover();
+              setFocusLink(null);
               props.onSelectSkill?.(id);
             }}
           />

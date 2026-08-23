@@ -14,24 +14,19 @@
   text-align: center;
 }
 
-.showcase {
-  background:
-    radial-gradient(circle at 50% -10%, rgb(139 92 255 / 22%), transparent 43%),
-    linear-gradient(180deg, #14111d, #0b0a10);
-}
-
 .contact {
   background:
     radial-gradient(circle at 50% 115%, rgb(132 83 255 / 35%), transparent 45%),
-    linear-gradient(180deg, #111014, var(--color-ink));
+    linear-gradient(180deg, var(--color-ink), #111014 22%, var(--color-ink));
 }
 
 .label {
-  margin-bottom: 1.5rem;
-  color: rgb(255 255 255 / 55%);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.18em;
+  margin-bottom: clamp(0.875rem, 2.22vh, 1.25rem);
+  color: var(--color-ink-2);
+  line-height: var(--text-label--line-height);
+  font-size: var(--text-label);
+  font-weight: var(--text-label--font-weight);
+  letter-spacing: var(--text-label--letter-spacing);
   text-transform: uppercase;
 }
 
@@ -40,14 +35,14 @@
   max-width: 1100px;
   flex-wrap: wrap;
   justify-content: center;
-  column-gap: 0.22em;
+  column-gap: 0.18em;
   margin: 0;
+  padding-right: 0.08em;
   color: var(--color-ink-1);
   font-size: clamp(3.2rem, 8.5vw, 9rem);
   font-weight: 520;
   letter-spacing: -0.08em;
   line-height: 0.87;
-  text-wrap: balance;
 }
 
 .word {
@@ -55,18 +50,10 @@
   will-change: opacity, transform;
 }
 
-.description {
-  max-width: 550px;
-  margin: 2rem 0 0;
-  color: rgb(255 255 255 / 62%);
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
-  line-height: 1.6;
-}
-
 .cta {
-  margin-top: 2.5rem;
+  margin-top: clamp(2rem, 6.67vh, 3.75rem);
 }
 
 @media (max-width: 540px) {
-  .heading { font-size: clamp(2.8rem, 15vw, 5.7rem); }
+  .heading { font-size: clamp(2.8rem, 15vw, 5.7rem); max-width: 4.08em; }
 }

@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 118, fontWeight: 600, letterSpacing: -8, lineHeight: 0.9 }}>
             <span>A learning path</span>
-            <span style={{ color: "#a78bfa" }}>you can check.</span>
+            <span style={{ color: "#a78bfa" }}>you can verify.</span>
           </div>
           <div style={{ fontSize: 30, color: "rgba(255,255,255,0.62)", maxWidth: 900, lineHeight: 1.35 }}>
             A hand-built skill map checked against millions of real learners. Every arrow shows its count. The AI explains; it never decides.
