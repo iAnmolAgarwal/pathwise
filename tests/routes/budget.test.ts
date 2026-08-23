@@ -120,3 +120,19 @@ describe("/api/explain over budget", () => {
     expect(model.calls).toBe(0);
   });
 });
+
+describe("/api/chat rate limit", () => {
+  it("answers 429 with a retry-after once a learner exceeds the per-minute allowance", async () => {
+    vi.resetModules();
+    meter.userUsed = 1000; // budget spent, so each allowed turn is a cheap degraded stream
+    const { CHAT_TURNS_PER_MINUTE } = await import("@/lib/rateLimit");
+    const route = await import("@/../app/api/chat/route");
+    for (let i = 0; i < CHAT_TURNS_PER_MINUTE; i += 1) {
+      expect((await route.POST(json({ learnerId: LEARNER_ID, message: `turn ${i}` }))).status).toBe(200);
+    }
+    const blocked = await route.POST(json({ learnerId: LEARNER_ID, message: "one more" }));
+    expect(blocked.status).toBe(429);
+    expect(Number(blocked.headers.get("retry-after"))).toBeGreaterThan(0);
+    expect((await blocked.json()).error).toMatch(/try again/);
+  });
+});

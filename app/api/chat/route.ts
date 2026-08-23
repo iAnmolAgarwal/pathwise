@@ -2,9 +2,10 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { insertChatMessage, listChatMessages } from "@/db/queries";
 import type { ProfileCard } from "@/schemas/profileCard";
-import { parseBody } from "@/lib/api";
+import { jsonError, parseBody } from "@/lib/api";
 import { requireLearner } from "@/lib/authz";
 import { dbChatContext } from "@/lib/chatContext";
+import { chatLimit } from "@/lib/rateLimit";
 import { SSE_HEADERS, sseStream } from "@/lib/sse";
 import { runChatTurn, type ChatEvent } from "@/llm/chat";
 import { judgeGate } from "@/lib/budget";
@@ -34,6 +35,12 @@ export async function POST(request: Request) {
   const authz = await requireLearner(learnerId);
   if (!authz.ok) return authz.response;
   const userId = authz.user.id;
+  const limit = chatLimit.take(learnerId);
+  if (!limit.ok) {
+    const res = jsonError(429, `Nova can take a few messages a minute — try again in ${limit.retryAfterSeconds}s.`);
+    res.headers.set("retry-after", String(limit.retryAfterSeconds));
+    return res;
+  }
 
   const gate = await judgeGate.allow({ userId, learnerId });
   const prior = await listChatMessages(learnerId, HISTORY_TURNS);
