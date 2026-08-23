@@ -1190,11 +1190,12 @@ Public wording: "kept fresh by machines, kept true by people" — never "maintai
   must be made through a pull request"); deleting `main` was refused; `main` stayed at
   `4e70628`. Teammates therefore get write-with-PR only; nothing lands without the owner's
   approval.
-- **Required status checks (added 2026-08-23, M5.14):** the same ruleset gained a
-  **required_status_checks** rule (`strict_required_status_checks_policy: false`) naming both
-  legs of the `check` job in `.github/workflows/test.yml`: `check (ubuntu-latest)` and
-  `check (windows-latest)`. The workflow runs typecheck, lint and the full Vitest suite on
-  every pull request and every push to `main`. Until both legs are green a PR cannot merge,
+- **Required status checks (added 2026-08-23, M5.14; `smoke` added 2026-08-24, M6):** the same
+  ruleset gained a **required_status_checks** rule (`strict_required_status_checks_policy: false`)
+  naming both legs of the `check` job in `.github/workflows/test.yml` — `check (ubuntu-latest)`
+  and `check (windows-latest)` — and, since M6, the `smoke` job (the Playwright degraded-journey
+  test against a throwaway Postgres). The workflow runs typecheck, lint and the full Vitest suite
+  on every pull request and every push to `main`. Until all three are green a PR cannot merge,
   whatever the review state; the admin bypass stays `pull_request`-only as before, so the
   gate applies to the owner too. Verified by probe: a throwaway PR carrying a deliberate type
   error went red on both legs and GitHub reported the merge blocked; it was closed unmerged.
