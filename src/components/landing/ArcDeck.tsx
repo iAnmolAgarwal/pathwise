@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./arcdeck.module.css";
-import { useInView } from "./useInView";
+import { FOCUS_THRESHOLD, useInView } from "./useInView";
 
 type Theme = "ink" | "paper" | "signal";
 type Art =
@@ -385,7 +385,7 @@ function ArcCard({
 export function ArcDeck({ id }: { id?: string }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef);
+  const inView = useInView(sectionRef, "0px", FOCUS_THRESHOLD);
   const value = useRef(-1);
   const target = useRef(-1);
   const velocity = useRef(0);
