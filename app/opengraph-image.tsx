@@ -36,7 +36,7 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "rgba(255,255,255,0.5)" }}>
           <span style={{ fontWeight: 600, color: "#f5f5f7", letterSpacing: -1 }}>Pathwise</span>
-          <span>pathwise-psi-blond.vercel.app</span>
+          <span>trypathwise.vercel.app</span>
         </div>
       </div>
     ),

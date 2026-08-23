@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://pathwise-psi-blond.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://trypathwise.vercel.app"),
   title: { default: "Pathwise — a learning path you can verify", template: "%s · Pathwise" },
   description: "Nova asks what you want to become; math picks the courses from a hand-built skill map checked against millions of real learners. Every arrow shows its count. The AI explains, it never decides.",
   applicationName: "Pathwise",
