@@ -116,7 +116,7 @@ export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: str
             animate={reduce ? undefined : { y: [0, -5, 0] }}
             transition={reduce ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <button type="button" onClick={quickChat.open} className={styles.liveLabel}>
+            <button type="button" onClick={quickChat.open} className={`${styles.liveLabel} ring-orbit`}>
               <span className={styles.liveIcon}>
                 <span />
               </span>

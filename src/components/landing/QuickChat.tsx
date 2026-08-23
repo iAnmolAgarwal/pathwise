@@ -126,7 +126,7 @@ function QuickChatDrawer({ open, onClose, visitor }: { open: boolean; onClose: (
               </div>
               <div className={styles.headerActions}>
                 {learner && (
-                  <Button asChild variant="secondary" size="sm">
+                  <Button asChild variant="secondary" size="sm" className="ring-orbit">
                     <Link href={`/learn/${learner.id}`}>
                       Open workspace <ArrowRight data-icon="inline-end" />
                     </Link>

@@ -338,3 +338,80 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
   mix-blend-mode: soft-light;
 }
+
+/*
+ * .ring-orbit — a violet light that circulates around a control's edge so a
+ * first-time visitor cannot miss it. A pseudo-element sits behind the label
+ * (z-index -1, inside an explicit stacking context so it still paints over the
+ * button's own background), carries a conic gradient that is transparent for
+ * most of the sweep and violet for one short arc, and is masked down to a 2px
+ * band hugging the border by the padding + content-box-exclude mask pair. The
+ * sweep is driven by the registered --ring-angle; where @property is not
+ * supported the property falls back to the 0deg declared on the rule and the
+ * keyframes flip 0deg -> 360deg discretely, which renders identically, so the
+ * ring is simply static instead of animated. Radius is inherited, so the ring
+ * follows whatever shape the host control already has.
+ */
+@property --ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes ring-orbit-sweep {
+  from {
+    --ring-angle: 0deg;
+  }
+  to {
+    --ring-angle: 360deg;
+  }
+}
+
+.ring-orbit {
+  position: relative;
+  isolation: isolate;
+}
+
+.ring-orbit::before {
+  --ring-angle: 0deg;
+
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--ring-angle),
+    transparent 0%,
+    transparent 74%,
+    var(--color-violet-2) 88%,
+    var(--color-violet) 97%,
+    var(--color-violet) 99%,
+    transparent 100%
+  );
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: ring-orbit-sweep 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No sweep: hold a soft, even violet edge so the control is still marked. */
+  .ring-orbit::before {
+    background: conic-gradient(
+      from 0deg,
+      var(--color-violet-2),
+      var(--color-violet) 50%,
+      var(--color-violet-2)
+    );
+    opacity: 0.5;
+    animation: none;
+  }
+}
