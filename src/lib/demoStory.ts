@@ -145,6 +145,8 @@ export type DemoNumbers = {
    * item whose remediation adds something. `cause` and the row reasons are the engine's own words.
    */
   tooHard: { cause: string; added: { title: string; reason: string }[]; removed: { title: string; reason: string }[] };
+  /** The live-profile chips: the goal, hours per week and the two skills the story sets first. */
+  chips: { goal: string; hoursPerWeek: number; skills: { id: string; name: string; level: number; source: string }[] };
 };
 
 export function demoNumbers(data: EngineData = loadEngineData(), now = new Date()): DemoNumbers {
@@ -170,7 +172,17 @@ export function demoNumbers(data: EngineData = loadEngineData(), now = new Date(
   }
   if (!tooHard) throw new Error("demoNumbers: no open item on the demo path produces a too_hard remediation");
 
+  const skillName = (id: string) => data.skills.find((s) => s.id === id)?.name ?? id;
+  const goalId = replay.profile.goals[0]?.type === "role" ? replay.profile.goals[0].templateId : "";
+  const goalTitle = data.goals.find((g) => g.id === goalId)?.title ?? goalId;
+  const chips: DemoNumbers["chips"] = {
+    goal: goalTitle,
+    hoursPerWeek: replay.profile.preferences.hoursPerWeek,
+    skills: ["python", "python-data-analysis"].map((id) => ({ id, name: skillName(id), level: replay.profile.skills[id]?.level ?? 0, source: replay.profile.skills[id]?.source ?? "inferred" })),
+  };
+
   return {
+    chips,
     score: { coverage: b.coverage, levelFit: b.levelFit, preferenceFit: b.preferenceFit, quality: b.quality, similarity: b.similarity },
     streakDays: summary.streak.current,
     progressPct: summary.progress.percent,
