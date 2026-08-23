@@ -174,19 +174,24 @@ export function MotionWall({ id }: { id?: string }) {
       video.addEventListener("canplay", beginPlayback);
       cleanups.push(() => video.removeEventListener("canplay", beginPlayback));
     });
-    const handleVisibility = () => {
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
+
+  // Six video textures decode continuously; only the ones on screen should. Pause when the wall
+  // is scrolled away or the tab is hidden, resume when it is back.
+  useEffect(() => {
+    const sync = () => {
+      const shouldPlay = inView && !document.hidden;
       videoRefs.current.forEach((video) => {
         if (!video) return;
-        if (document.hidden) video.pause();
-        else void video.play().catch(() => undefined);
+        if (shouldPlay) void video.play().catch(() => undefined);
+        else video.pause();
       });
     };
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => {
-      cleanups.forEach((cleanup) => cleanup());
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, []);
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, [inView]);
 
   return (
     <section ref={sectionRef} id={id} className={`${styles.scene} ${inView ? "" : styles.quiet}`} aria-labelledby="wall-heading">

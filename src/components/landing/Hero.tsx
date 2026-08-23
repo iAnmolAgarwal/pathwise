@@ -13,6 +13,7 @@ import { useQuickChat } from "@/components/landing/QuickChat";
 import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./hero.module.css";
+import { useInView } from "./useInView";
 
 const ENTER = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -23,13 +24,16 @@ export function Hero({ storyHref = "#how-it-works", numbers }: { storyHref?: str
   const quickChat = useQuickChat();
   const reduce = useReducedMotion();
 
-  // The scene keeps running once loaded: the runtime has no pause, and play() after stop()
-  // replays the scene's intro zoom every time the hero scrolls back into view.
+  // The runtime has no pause: play() after stop() replays the intro zoom. So the scene keeps
+  // running while the hero is within a viewport of the screen (scrolling to the next section
+  // and back never replays) and only stops once the visitor is well past it.
+  const near = useInView(containerRef, "100% 0px");
   useEffect(() => {
     const app = appRef.current;
     if (!app || !sceneLoaded) return;
-    app.play();
-  }, [sceneLoaded]);
+    if (near) app.play();
+    else app.stop();
+  }, [near, sceneLoaded]);
 
   const cursorX = useMotionValue(-500);
   const cursorY = useMotionValue(-500);

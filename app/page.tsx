@@ -28,11 +28,11 @@ export default async function Home() {
     <QuickChatProvider visitor={visitor}>
       <main className="flex flex-1 flex-col">
         <Hero numbers={trust} storyHref="#how-it-works" />
+        <SkillStream id="skills" />
         <ProofStrip id="proof" numbers={trust} />
         <Showcase id="showcase" />
         <ArcDeck id="how-it-works" />
         <BeamNetwork id="engine" />
-        <SkillStream id="skills" />
         <MotionWall id="different" />
         <TryIt id="try" />
         <Footer />

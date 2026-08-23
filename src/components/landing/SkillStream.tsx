@@ -1,12 +1,11 @@
 "use client";
 
 import { ArrowRight, Pause, Play } from "lucide-react";
-import Link from "next/link";
 import { useId, useMemo, useRef, useState } from "react";
 
 import { useInView } from "./useInView";
 
-import skills from "@/data/skills.json";
+import catalog from "@/data/catalog.json";
 import { Button } from "@/components/ui/button";
 
 import styles from "./stream.module.css";
@@ -28,9 +27,13 @@ function makeKeyframes(direction: 1 | -1, name: string) {
   const frames: string[] = [];
   for (let step = 0; step <= PATH.stops; step += 1) {
     const progress = step / PATH.stops;
-    const scale = (PATH.birthHeight / PATH.cardHeight) * Math.pow(PATH.exitHeight / PATH.birthHeight, progress);
+    const scale =
+      (PATH.birthHeight / PATH.cardHeight) *
+      Math.pow(PATH.exitHeight / PATH.birthHeight, progress);
     const z = PATH.perspective * (1 - 1 / scale);
-    const rail = PATH.railExit - (PATH.railExit - PATH.railBirth) * Math.pow(1 - progress, PATH.fan);
+    const rail =
+      PATH.railExit -
+      (PATH.railExit - PATH.railBirth) * Math.pow(1 - progress, PATH.fan);
     const turn = PATH.turnBirth + (PATH.turnExit - PATH.turnBirth) * progress;
     frames.push(
       `${(progress * 100).toFixed(2)}%{transform:translate3d(${(direction * rail).toFixed(2)}cqw,0,${z.toFixed(2)}cqw) rotateY(${(-direction * turn).toFixed(2)}deg)}`,
@@ -39,34 +42,46 @@ function makeKeyframes(direction: 1 | -1, name: string) {
   return `@keyframes ${name}{${frames.join("")}}`;
 }
 
-interface SkillCard {
+/** Top of the difficulty scale, read from the catalog rather than typed. */
+const LEVELS = Math.max(
+  ...(catalog as { difficulty: number }[]).map((c) => c.difficulty),
+);
+
+interface StreamCard {
   id: string;
-  name: string;
-  domain: string;
-  levelBand: number;
+  title: string;
+  provider: string;
+  difficulty: number;
 }
 
-/** Nine skills per rail, spread across the ten domains so the corridor reads as the whole map. */
-function pickSkills(): { right: SkillCard[]; left: SkillCard[] } {
-  const all = skills as SkillCard[];
-  const byDomain = new Map<string, SkillCard[]>();
-  for (const s of all) byDomain.set(s.domain, [...(byDomain.get(s.domain) ?? []), s]);
-  const domains = [...byDomain.keys()];
-  const chosen: SkillCard[] = [];
-  let round = 0;
-  while (chosen.length < 18) {
-    for (const d of domains) {
-      const list = byDomain.get(d)!;
-      const pick = list[(round * 3) % list.length];
-      if (pick && !chosen.includes(pick)) chosen.push(pick);
-      if (chosen.length === 18) break;
-    }
-    round += 1;
-  }
-  return { right: chosen.slice(0, 9), left: chosen.slice(9, 18) };
+const SLOTS = 18;
+const TITLE_MAX = 30;
+const PROVIDER_MAX = 18;
+
+/** A title or provider that would spill past the card is cut to a fixed length with an ellipsis. */
+function clip(text: string, max: number): string {
+  const clean = text.replace(/\s*\(.*?\)\s*$/, "").trim();
+  return clean.length > max
+    ? `${clean.slice(0, max - 1).trimEnd()}\u2026`
+    : clean;
 }
 
-export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?: string }) {
+/** The whole catalog in a fixed shuffled order (stride walk, deterministic) — every item passes through the corridor. */
+function orderCatalog(): StreamCard[] {
+  const all = catalog as StreamCard[];
+  const out: StreamCard[] = [];
+  for (let step = 0; step < all.length; step += 1)
+    out.push(all[(step * 7) % all.length]);
+  return out;
+}
+
+export function SkillStream({
+  id,
+  nextHref = "#how-it-works",
+}: {
+  id?: string;
+  nextHref?: string;
+}) {
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef);
@@ -75,40 +90,69 @@ export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?:
   const rightAnimation = `stream-right-${animationId}`;
   const leftAnimation = `stream-left-${animationId}`;
   const animationCSS = useMemo(
-    () => `${makeKeyframes(1, rightAnimation)}${makeKeyframes(-1, leftAnimation)}`,
+    () =>
+      `${makeKeyframes(1, rightAnimation)}${makeKeyframes(-1, leftAnimation)}`,
     [rightAnimation, leftAnimation],
   );
-  const rails = useMemo(() => pickSkills(), []);
+  const sequence = useMemo(() => orderCatalog(), []);
+  // Eighteen slots; each card advances to the next unseen item every time its loop restarts, so the
+  // full catalog streams past at the cost of eighteen DOM nodes.
+  const [rounds, setRounds] = useState<number[]>(() => Array(SLOTS).fill(0));
+  const itemFor = (slot: number) =>
+    sequence[(slot + SLOTS * rounds[slot]) % sequence.length];
+  const advance = (slot: number) =>
+    setRounds((current) => current.map((r, i) => (i === slot ? r + 1 : r)));
 
   return (
-    <section ref={sectionRef} id={id} className={styles.shell} aria-labelledby="stream-title">
+    <section
+      ref={sectionRef}
+      id={id}
+      className={styles.shell}
+      aria-labelledby="stream-title"
+    >
       <style>{animationCSS}</style>
 
       <div className={styles.scene} aria-hidden>
         <div className={styles.world}>
           {[
-            { animationName: rightAnimation, cards: rails.right, mirror: false },
-            { animationName: leftAnimation, cards: rails.left, mirror: true },
-          ].map(({ animationName, cards, mirror }) =>
-            cards.map((skill, index) => (
-              <div
-                className={`${styles.card} ${mirror ? styles.mirror : ""}`}
-                key={`${animationName}-${skill.id}`}
-                style={{
-                  animation: `${animationName} 18s linear infinite`,
-                  animationDelay: `${-(index * 18) / 9}s`,
-                  animationPlayState: running ? "running" : "paused",
-                }}
-              >
-                <span className={styles.domain}>{skill.domain.replace(/-/g, " ")}</span>
-                <span className={styles.name}>{skill.name}</span>
-                <span className={styles.level}>
-                  {[1, 2, 3].map((n) => (
-                    <i key={n} className={n <= skill.levelBand ? styles.on : undefined} />
-                  ))}
-                </span>
-              </div>
-            )),
+            { animationName: rightAnimation, base: 0, mirror: false },
+            { animationName: leftAnimation, base: 9, mirror: true },
+          ].map(({ animationName, base, mirror }) =>
+            Array.from({ length: 9 }, (_, index) => {
+              const slot = base + index;
+              const item = itemFor(slot);
+              return (
+                <div
+                  className={`${styles.card} ${mirror ? styles.mirror : ""}`}
+                  key={`${animationName}-${index}`}
+                  onAnimationIteration={() => advance(slot)}
+                  style={{
+                    animation: `${animationName} 18s linear infinite`,
+                    animationDelay: `${-(index * 18) / 9}s`,
+                    animationPlayState: running ? "running" : "paused",
+                  }}
+                >
+                  <span className={styles.domain}>
+                    {clip(item.provider, PROVIDER_MAX)}
+                  </span>
+                  <span className={styles.name}>
+                    {clip(item.title, TITLE_MAX)}
+                  </span>
+                  <span className={styles.level}>
+                    {Array.from({ length: LEVELS }, (_, i) => i + 1).map(
+                      (n) => (
+                        <i
+                          key={n}
+                          className={
+                            n <= item.difficulty ? styles.on : undefined
+                          }
+                        />
+                      ),
+                    )}
+                  </span>
+                </div>
+              );
+            }),
           )}
         </div>
       </div>
@@ -116,31 +160,35 @@ export function SkillStream({ id, appHref = "/learn" }: { id?: string; appHref?:
       <div className={styles.ambient} aria-hidden />
 
       <header className={styles.topbar}>
-        <div className={styles.brand}>
-          <span className={styles.brandMark} />
-          SKILL MAP
-        </div>
         <button
           className={styles.pause}
           type="button"
           onClick={() => setPaused((current) => !current)}
           aria-label={paused ? "Play animation" : "Pause animation"}
         >
-          {paused ? <Play size={12} strokeWidth={2} /> : <Pause size={12} strokeWidth={2} />}
+          {paused ? (
+            <Play size={16} strokeWidth={2} />
+          ) : (
+            <Pause size={16} strokeWidth={2} />
+          )}
           <span className={styles.pauseLabel}>{paused ? "Play" : "Pause"}</span>
         </button>
       </header>
 
       <div className={styles.content}>
-        <p className={styles.eyebrow}>159 skills · 10 domains · 193 prerequisite edges</p>
         <h2 id="stream-title" className={styles.h2}>
-          Every skill, mapped.
+          Ten thousand courses. No order.
         </h2>
+        <p className={styles.lead}>
+          Every site hands you a pile of courses. None of them starts from what
+          you already know and tells you the shortest way to the role you
+          actually want.
+        </p>
         <div className={styles.cta}>
           <Button size="lg" asChild>
-            <Link href={appHref}>
-              View a sample path <ArrowRight data-icon="inline-end" />
-            </Link>
+            <a href={nextHref}>
+              See how we order it <ArrowRight data-icon="inline-end" />
+            </a>
           </Button>
         </div>
       </div>

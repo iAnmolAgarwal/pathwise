@@ -12,13 +12,13 @@
   color: var(--color-ink-1);
   background:
     radial-gradient(circle at 50% 54%, rgb(255 255 255 / 10.5%) 0, rgb(255 255 255 / 3.5%) 17%, transparent 42%),
-    #050505;
+    var(--color-ink);
 }
 
 .ambient {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   background:
     linear-gradient(90deg, rgb(0 0 0 / 52%), transparent 18%, transparent 82%, rgb(0 0 0 / 52%)),
@@ -54,9 +54,9 @@
   gap: 0.6cqw;
   overflow: hidden;
   padding: 1.6cqw;
-  border: 1px solid rgb(255 255 255 / 20%);
+  border: 1px solid var(--color-line-strong);
   border-radius: 0.8cqw;
-  background: linear-gradient(160deg, #1b1b1f, #0e0e11);
+  background: linear-gradient(160deg, var(--color-surface-3), var(--color-surface-1));
   box-shadow: 0 20px 65px rgb(0 0 0 / 62%), inset 0 0 0 1px rgb(255 255 255 / 4%);
   backface-visibility: hidden;
   will-change: transform;
@@ -75,15 +75,19 @@
   font-size: 0.85cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 45%);
+  color: var(--color-ink-3);
 }
 
 .name {
-  font-size: 1.9cqw;
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 1.6cqw;
   font-weight: 540;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
   text-wrap: balance;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .level {
@@ -125,45 +129,26 @@
   padding: 28px clamp(22px, 4.2vw, 72px);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-}
-
-.brandMark {
-  width: 9px;
-  height: 9px;
-  border: 2px solid white;
-  border-radius: 50%;
-  box-shadow: 0 0 16px rgb(255 255 255 / 80%);
-}
-
 .pause {
   display: inline-flex;
   align-items: center;
   gap: 9px;
   min-height: 40px;
   padding: 0 16px;
-  border: 1px solid rgb(255 255 255 / 18%);
+  border: 1px solid var(--color-line);
   border-radius: 999px;
-  color: rgb(255 255 255 / 78%);
-  background: rgb(8 8 8 / 45%);
+  color: var(--color-ink-1);
+  background: var(--color-glass);
   backdrop-filter: blur(14px);
   cursor: pointer;
   font-size: 13px;
-  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, border-color var(--dur-fast) ease;
 }
 
 .pause:hover {
-  color: white;
-  border-color: rgb(255 255 255 / 42%);
-  background: rgb(25 25 25 / 72%);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  border-color: var(--color-line-strong);
+  background: var(--color-glass-strong);
 }
 
 .content {
@@ -172,22 +157,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: clamp(150px, 24.5vh, 230px);
   width: min(760px, calc(100% - 42px));
   height: 100%;
   margin: 0 auto;
-  padding-top: 12px;
   text-align: center;
   pointer-events: none;
-}
-
-.eyebrow {
-  margin: 0 0 18px;
-  color: rgb(255 255 255 / 58%);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
 }
 
 .h2 {
@@ -201,6 +177,15 @@
   text-shadow: 0 6px 32px rgb(0 0 0 / 46%);
 }
 
+.lead {
+  max-width: 60ch;
+  margin: clamp(160px, 24.5vh, 230px) 0 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-lead);
+  line-height: var(--text-lead--line-height);
+  text-shadow: 0 4px 24px rgb(0 0 0 / 46%);
+}
+
 .cta {
   pointer-events: auto;
   margin-top: 32px;
@@ -210,6 +195,7 @@
   .shell { --axis: 54%; min-height: 560px; }
   .topbar { padding: 20px; }
   .pauseLabel { display: none; }
+  .pause { width: 44px; height: 44px; padding: 0; justify-content: center; }
   .content { width: calc(100% - 30px); }
   .h2 { font-size: clamp(48px, 15vw, 72px); line-height: 0.91; }
   .card { border-radius: 1.5cqw; }
