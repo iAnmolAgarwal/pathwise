@@ -175,7 +175,7 @@ level fit when the profile records no skills, and never turn a score into a repu
 ## Reproducing
 
 ```
-npx tsx pipeline/evaluate/dump_paths.ts --out pipeline/build/evaluate/paths.json   # the 50-path corpus (the scripts run this themselves)
+npm exec -- tsx pipeline/evaluate/dump_paths.ts --out pipeline/build/evaluate/paths.json   # the 50-path corpus (the scripts run this themselves)
 python pipeline/evaluate/sequencing_agreement.py
 python pipeline/evaluate/embedding_bakeoff.py
 python pipeline/evaluate/narration_groundedness.py   # needs ANTHROPIC_API_KEY; model calls are cached under pipeline/build/

@@ -308,8 +308,7 @@ type PopoverState = { edge: GraphEdge; x: number; y: number; canvasWidth: number
  * click-to-highlight evidence paths, one arrow style for every prerequisite, and a click card
  * per arrow that opens to the full provenance.
  */
-export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
-  const { skills, skillStatus, evidence } = props;
+export function SkillGraph({ skills, evidence, skillStatus, levels, highlight, onClearHighlight, onSelectSkill, initialEdge }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const [popover, setPopover] = useState<PopoverState | null>(null);
   // The deep-linked arrow stays highlighted until the visitor clicks the pane or picks a skill.
@@ -400,13 +399,13 @@ export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
         ))}
       </ul>
 
-      {props.highlight && (
+      {highlight && (
         <p className={styles.trace} data-testid="graph-highlight">
           <span className="label-caps">Tracing</span>
-          <strong>{props.highlight.title}</strong>
+          <strong>{highlight.title}</strong>
           <span className={styles.traceChain}>
-            {props.highlight.evidence.gapSkillsCovered
-              .map((g) => g.graphPath.map((id) => props.skills.find((s) => s.id === id)?.name ?? id).join(" → "))
+            {highlight.evidence.gapSkillsCovered
+              .map((g) => g.graphPath.map((id) => skills.find((s) => s.id === id)?.name ?? id).join(" → "))
               .join(" · ")}
           </span>
           {onClearHighlight && (
@@ -421,7 +420,11 @@ export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
 
         <ReactFlowProvider>
           <SkillGraphInner
-            {...props}
+            skills={skills}
+            evidence={evidence}
+            skillStatus={skillStatus}
+            levels={levels}
+            highlight={highlight}
             prereqs={prereqs}
             selectedSkill={selected}
             canvasWidth={canvasWidth}
@@ -436,7 +439,7 @@ export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
               setSelected(id);
               closePopover();
               setFocusLink(null);
-              props.onSelectSkill?.(id);
+              onSelectSkill?.(id);
             }}
           />
         </ReactFlowProvider>
@@ -474,7 +477,7 @@ export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
             </div>
             <strong className={styles.detailTitle}>{skill.name}</strong>
             <p className={styles.detailMeta}>
-              {props.levels[skill.id] ? `Your level ${props.levels[skill.id]} of 3` : "No level recorded"}
+              {levels[skill.id] ? `Your level ${levels[skill.id]} of 3` : "No level recorded"}
               {(prereqs.get(skill.id) ?? []).length > 0 && <> · builds on {(prereqs.get(skill.id) ?? []).map(nameOf).join(", ")}</>}
             </p>
             <CandidateList candidates={candidatesOfSelected} skillId={skill.id} evidence={evidence} nameOf={nameOf} />
@@ -485,7 +488,7 @@ export function SkillGraph({ initialEdge, onClearHighlight, ...props }: Props) {
               onSelectSkill={(id) => {
                 setSelected(id);
                 closePopover();
-                props.onSelectSkill?.(id);
+                onSelectSkill?.(id);
               }}
             />
           </div>

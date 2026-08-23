@@ -33,9 +33,12 @@ type Props = {
 export function RotatingPrompt({ intro = "", phrases, paused = false, className, onPick }: Props) {
   const list = phrases && phrases.length > 0 ? phrases : ROLE_TITLES;
   const [index, setIndex] = useState(0);
-  useEffect(() => {
+  // A new phrase list restarts the cycle; adjusted during render rather than in an effect.
+  const [seen, setSeen] = useState(phrases);
+  if (seen !== phrases) {
+    setSeen(phrases);
     setIndex(0);
-  }, [list.length, phrases]);
+  }
   useEffect(() => {
     if (paused) return;
     const t = setInterval(() => setIndex((i) => (i + 1) % list.length), EVERY_MS);

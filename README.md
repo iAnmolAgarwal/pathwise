@@ -5,6 +5,12 @@ embedding engine decides what to learn and in what order; a conversational mento
 the Claude API elicits your goals and explains every recommendation from the engine's own
 evidence.
 
+**Live:** https://trypathwise.vercel.app, sign in with any Google account, no setup.
+
+![One prerequisite edge, Python before Python for Data Analysis, with the support, reverse, share and n from both sources](docs/img/evidence-card.png)
+
+![The learner dashboard: items by difficulty, progress toward the goal, next best action, streak and activity](docs/img/dashboard.png)
+
 ## Stack
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Drizzle ORM + Neon
@@ -16,6 +22,11 @@ Postgres · Anthropic API · Vitest
 2. Copy `.env.example` to `.env.local` and fill in the values.
 3. `npm run db:migrate` to apply migrations to your Postgres database.
 4. `npm run dev` and open http://localhost:3000
+5. Sign in once at http://localhost:3000, then run `npm run seed you@example.com` to load
+   a demo learner with six weeks of generated history: an intake card, every feedback
+   kind, the replans they produced, and streaks. The learner attaches to the Google
+   account you signed in with, so the sign-in has to come first. Re-running the script
+   replaces the previous copy.
 
 ## Environment variables
 
@@ -75,6 +86,8 @@ Setting up the Google side from scratch:
 | `npm run build` | Production build |
 | `npm test` | Vitest suite |
 | `npm run typecheck` | TypeScript, no emit |
+| `npm run lint` | ESLint |
+| `npm run seed <email> [name]` | Seed the demo learner (six weeks of real engine history) onto an existing signed-in Google account; re-running replaces the copy |
 | `npm run db:generate` | Generate a migration from `src/db/schema.ts` |
 | `npm run db:migrate` | Apply migrations |
 
@@ -306,3 +319,13 @@ a manual dispatch resumes them.
 - **Coursera** review order from the Kaggle dataset [Course Reviews on Coursera](https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera) (imuhammad), CC0 — only review order is used; review text never leaves the gitignored build directory.
 - The learner-sequence mining method, its measured validation (successes and failures shown side by side) and the "neither graph is strictly superior — use both and say which" conclusion are **Riyan Garg's**; Pathwise reproduces his method in the repository and credits it wherever the Coursera numbers appear.
 - Catalog items link to their original providers (Coursera, edX, freeCodeCamp, Kaggle, official documentation, YouTube); Pathwise stores titles, URLs and its own annotations, never course content.
+
+## License
+
+Code: MIT, see [LICENSE](LICENSE).
+
+Data under `src/data/` and `pipeline/evidence/` includes aggregates derived from Stack
+Overflow question metadata (CC BY-SA 4.0) and from a CC0-licensed Coursera review dataset.
+Those aggregates carry their sources' terms, not the MIT grant; see
+[Data sources and attribution](#data-sources-and-attribution). The learner-sequence
+mining method reproduced in the pipeline is Riyan Garg's, as credited there.

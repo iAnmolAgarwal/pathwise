@@ -1,0 +1,13 @@
+# Text files use LF in the working tree on every platform.
+* text=auto eol=lf
+
+# Data whose bytes are hashed must never be converted, in either direction.
+src/data/*.json -text
+pipeline/evidence/*.json -text
+pipeline/validation-report.json -text
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.webp binary
+*.splinecode binary
