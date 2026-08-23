@@ -293,15 +293,21 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
               <h2 className="text-[22px] font-[420] tracking-[-0.03em]">Skill graph</h2>
               <p className="mt-1 max-w-[70ch] text-[13.5px] text-ink-2">Every skill, coloured by where you stand. Select a skill for what learners did next, or an arrow for who agreed it comes first.</p>
               <div className="mt-4">
-                <SkillGraph
-                  skills={skills}
-                  evidence={graphEvidence}
-                  skillStatus={dashboard?.skillStatus ?? {}}
-                  levels={levels}
-                  highlight={highlight}
-                  onClearHighlight={() => setHighlight(null)}
-                  initialEdge={initialGraphLink?.edge ?? null}
-                />
+                {/* The focus set comes from the dashboard's skill statuses. With a path but no dashboard
+                    yet, wait rather than lay out the whole taxonomy and then jump to the path. */}
+                {pathState && !dashboard ? (
+                  <TabLoading label="Loading the skill graph" />
+                ) : (
+                  <SkillGraph
+                    skills={skills}
+                    evidence={graphEvidence}
+                    skillStatus={dashboard?.skillStatus ?? {}}
+                    levels={levels}
+                    highlight={highlight}
+                    onClearHighlight={() => setHighlight(null)}
+                    initialEdge={initialGraphLink?.edge ?? null}
+                  />
+                )}
               </div>
             </section>
           )}
