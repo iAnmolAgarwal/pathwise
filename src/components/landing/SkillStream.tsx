@@ -3,7 +3,7 @@
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { useId, useMemo, useRef, useState } from "react";
 
-import { useInView } from "./useInView";
+import { FOCUS_THRESHOLD, useInView } from "./useInView";
 
 import catalog from "@/data/catalog.json";
 import { Button } from "@/components/ui/button";
@@ -84,7 +84,7 @@ export function SkillStream({
 }) {
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef);
+  const inView = useInView(sectionRef, "0px", FOCUS_THRESHOLD);
   const running = !paused && inView;
   const animationId = useId().replace(/[^a-zA-Z0-9]/g, "");
   const rightAnimation = `stream-right-${animationId}`;
