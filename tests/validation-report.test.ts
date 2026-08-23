@@ -19,12 +19,16 @@ describe("pipeline validation report", () => {
   });
 
   it("matches the committed data files (no drift since validation)", () => {
+    // Collect every mismatch before asserting, so a drift in one file is
+    // never hidden behind the failure of the file checked before it.
+    const mismatches: string[] = [];
     for (const [name, expected] of Object.entries<string>(report.dataHashes)) {
       const actual = createHash("sha256")
         .update(readFileSync(join(dataDir, name)))
         .digest("hex");
-      expect(`${name}:${actual}`).toBe(`${name}:${expected}`);
+      if (actual !== expected) mismatches.push(`${name}: ${actual} !== ${expected}`);
     }
+    expect(mismatches).toEqual([]);
   });
 
   it("meets the M1 floor counts", () => {
