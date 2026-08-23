@@ -319,3 +319,13 @@ a manual dispatch resumes them.
 - **Coursera** review order from the Kaggle dataset [Course Reviews on Coursera](https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera) (imuhammad), CC0 — only review order is used; review text never leaves the gitignored build directory.
 - The learner-sequence mining method, its measured validation (successes and failures shown side by side) and the "neither graph is strictly superior — use both and say which" conclusion are **Riyan Garg's**; Pathwise reproduces his method in the repository and credits it wherever the Coursera numbers appear.
 - Catalog items link to their original providers (Coursera, edX, freeCodeCamp, Kaggle, official documentation, YouTube); Pathwise stores titles, URLs and its own annotations, never course content.
+
+## License
+
+Code: MIT, see [LICENSE](LICENSE).
+
+Data under `src/data/` and `pipeline/evidence/` includes aggregates derived from Stack
+Overflow question metadata (CC BY-SA 4.0) and from a CC0-licensed Coursera review dataset.
+Those aggregates carry their sources' terms, not the MIT grant; see
+[Data sources and attribution](#data-sources-and-attribution). The learner-sequence
+mining method reproduced in the pipeline is Riyan Garg's, as credited there.
