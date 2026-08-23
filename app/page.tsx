@@ -8,6 +8,7 @@ import { MotionWall } from "@/components/landing/MotionWall";
 import { ProofStrip } from "@/components/landing/ProofStrip";
 import { QuickChatProvider, type QuickChatVisitor } from "@/components/landing/QuickChat";
 import { SkillStream } from "@/components/landing/SkillStream";
+import { demoNumbers } from "@/lib/demoStory";
 import { loadTrustNumbers } from "@/lib/trust";
 import { listLearners } from "@/db/queries";
 
@@ -24,6 +25,7 @@ async function visitorState(): Promise<QuickChatVisitor> {
 export default async function Home() {
   const visitor = await visitorState();
   const trust = loadTrustNumbers();
+  const demo = demoNumbers();
   return (
     <QuickChatProvider visitor={visitor}>
       <main className="flex flex-1 flex-col">
@@ -31,8 +33,8 @@ export default async function Home() {
         <SkillStream id="skills" />
         <ArcDeck id="how-it-works" />
         <ProofStrip id="proof" numbers={trust} />
+        <MotionWall id="different" numbers={trust} demo={demo} />
         <BeamNetwork id="engine" />
-        <MotionWall id="different" />
         <TryIt id="try" />
         <Footer />
       </main>
