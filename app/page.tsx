@@ -1,6 +1,7 @@
 import { currentUser } from "@/auth";
 import { ArcDeck } from "@/components/landing/ArcDeck";
 import { BeamNetwork } from "@/components/landing/BeamNetwork";
+import { EvidencePlates } from "@/components/landing/EvidencePlates";
 import { TryIt } from "@/components/landing/BigType";
 import { Footer } from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
@@ -9,6 +10,7 @@ import { ProofStrip } from "@/components/landing/ProofStrip";
 import { QuickChatProvider, type QuickChatVisitor } from "@/components/landing/QuickChat";
 import { SkillStream } from "@/components/landing/SkillStream";
 import { demoNumbers } from "@/lib/demoStory";
+import { loadEvidencePlates } from "@/lib/evidencePlates";
 import { loadTrustNumbers } from "@/lib/trust";
 import { listLearners } from "@/db/queries";
 
@@ -26,6 +28,7 @@ export default async function Home() {
   const visitor = await visitorState();
   const trust = loadTrustNumbers();
   const demo = demoNumbers();
+  const plates = loadEvidencePlates();
   return (
     <QuickChatProvider visitor={visitor}>
       <main className="flex flex-1 flex-col">
@@ -35,6 +38,7 @@ export default async function Home() {
         <ProofStrip id="proof" numbers={trust} />
         <MotionWall id="different" numbers={trust} demo={demo} />
         <BeamNetwork id="engine" />
+        <EvidencePlates id="evidence" numbers={trust} plates={plates} />
         <TryIt id="try" />
         <Footer />
       </main>

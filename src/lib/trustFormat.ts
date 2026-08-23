@@ -28,3 +28,13 @@ export function compactCount(n: number): string {
   if (n >= 1_000_000) return `${(Math.floor(n / 100_000) / 10).toFixed(1)} M`;
   return new Intl.NumberFormat("en-US").format(n);
 }
+
+const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+
+/** "two million" for 2,210,622 — whole millions in words, floored, for a headline; never rounds up. */
+export function millionsInWords(n: number): string {
+  const m = Math.floor(n / 1_000_000);
+  if (m < 1) return compactCount(n);
+  const word = m < ONES.length ? ONES[m] : String(m);
+  return `${word} million`;
+}

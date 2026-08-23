@@ -1,0 +1,308 @@
+/* Evidence: three grid-paper plates — the anchor edge as the app's click card, and one plate per source. */
+
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100svh;
+  margin-bottom: -1px;
+  padding: clamp(24px, 4vh, 48px) 0;
+  overflow: hidden;
+  color: var(--color-ink-1);
+  background: var(--color-ink);
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  width: min(680px, calc(100% - 40px));
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin: clamp(14px, 2.4vh, 24px) 0 clamp(12px, 2vh, 18px);
+  font-size: var(--text-display-sm);
+  font-weight: var(--text-display-sm--font-weight);
+  line-height: var(--text-display-sm--line-height);
+  letter-spacing: var(--text-display-sm--letter-spacing);
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--color-ink-2);
+  font-size: var(--text-lead);
+  line-height: var(--text-lead--line-height);
+  text-wrap: balance;
+}
+
+.grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: min(960px, calc(100% - 48px));
+  margin: clamp(20px, 4.5vh, 40px) auto 0;
+}
+
+.plate {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  min-width: 0;
+  padding: 20px 30px 20px 20px;
+  border-radius: var(--radius-panel);
+  background: var(--color-surface-2);
+  box-shadow: inset 0 0 0 1px var(--color-glass-strong);
+}
+
+.wide {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-rows: none;
+  align-items: center;
+  gap: 24px;
+}
+
+.wide .plateText { order: 0; }
+.wide .figureWrap { order: 1; }
+.wide .paper { height: auto; min-height: 196px; }
+
+/* Rotated caption hung off the figure's top-right corner, reading upward (from the reference). */
+.figureWrap { position: relative; min-width: 0; }
+
+.side {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(14px, -100%) rotate(-90deg);
+  transform-origin: bottom right;
+  text-align: right;
+  white-space: nowrap;
+  font-size: var(--text-label);
+  font-weight: var(--text-label--font-weight);
+  letter-spacing: var(--text-label--letter-spacing);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+.plateText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.plateTitle {
+  margin: 0;
+  font-size: var(--text-lead);
+  font-weight: 520;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-ink-2);
+  text-wrap: balance;
+}
+
+.caveat {
+  margin: 4px 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-2);
+}
+
+/* The app's click card lines: verdict with its tier dot, count in tabular figures (graph.module.css). */
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--color-ink-1);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+.verdict::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink-4);
+}
+
+.verdict[data-kind="verified"]::before {
+  background: var(--color-violet);
+  box-shadow: 0 0 8px var(--color-violet-glow);
+}
+
+.count {
+  margin: 0;
+  text-wrap: balance;
+  color: var(--color-ink-3);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  font-variant-numeric: tabular-nums;
+}
+
+.action { margin-top: 8px; }
+
+/* Grid paper: the plate's figure area. */
+.paper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 140px;
+  padding: 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-1);
+  background-image:
+    linear-gradient(var(--color-ink) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-ink) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center;
+}
+
+.edge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.node {
+  padding: 8px 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  font-size: var(--text-body);
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) ease-out, background var(--dur-fast) ease-out;
+}
+
+/* The app's highlighted graph edge (graph.module.css .edgeOn + React Flow's animated dash), in white. */
+/* Hovering or focusing the graph link lights the edge the way the app's selected edge lights (.edgeOn). */
+.wide:has(.action a:hover) .arrow,
+.wide:has(.action a:focus-visible) .arrow {
+  color: var(--color-violet);
+  filter: drop-shadow(0 0 8px var(--color-violet-glow));
+}
+
+.wide:has(.action a:hover) .node,
+.wide:has(.action a:focus-visible) .node {
+  border-color: var(--color-violet-line);
+  background: var(--color-violet-soft);
+}
+
+.arrow {
+  flex: 1 1 48px;
+  width: 48px;
+  min-width: 40px;
+  height: 12px;
+  overflow: visible;
+  color: var(--color-ink-1);
+  filter: drop-shadow(0 0 6px rgb(255 255 255 / 70%));
+  transition: color var(--dur-fast) ease-out, filter var(--dur-fast) ease-out;
+}
+
+.arrowPath {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+  from { stroke-dashoffset: 10; }
+  to { stroke-dashoffset: 0; }
+}
+
+.quiet .arrowPath { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .arrowPath { animation: none; }
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 10em 1fr;
+  gap: 6px 10px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.02em;
+}
+
+.fieldRow dt { margin: 0; color: var(--color-ink-1); }
+.fieldRow dd { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 10px; margin: 0; color: var(--color-ink-1); }
+.fieldRow dd span { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); align-items: baseline; white-space: nowrap; }
+.fieldRow em { font-style: normal; color: var(--color-ink-3); }
+
+.figure {
+  margin: 0;
+  font-size: calc(var(--text-display-sm) * 0.74);
+  font-weight: var(--text-display-sm--font-weight);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.figureLabel {
+  margin: 0;
+  font-size: var(--text-label);
+  font-weight: var(--text-label--font-weight);
+  letter-spacing: var(--text-label--letter-spacing);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+@media (max-width: 720px) {
+  .section { min-height: 0; padding: 48px 0; }
+  .grid { grid-template-columns: 1fr; gap: 20px; width: calc(100% - 32px); }
+  .plate { padding: 18px; gap: 16px; }
+  .wide { grid-template-columns: 1fr; gap: 16px; }
+  .figure { font-size: calc(var(--text-display-sm) * 0.8); }
+  .action { display: flex; }
+  .action > * { flex: 1; }
+  .wide .plateText { order: 1; }
+  .wide .figureWrap { order: 0; }
+  .side { display: none; }
+  .paper { height: 118px; padding: 16px; }
+  .wide .paper { height: auto; min-height: 0; }
+  .edge { flex-direction: column; gap: 8px; }
+  .node { max-width: 100%; white-space: normal; text-align: center; }
+  .arrow { flex: none; width: 44px; height: 12px; margin: 16px 0; transform: rotate(90deg); }
+  .fieldRow { grid-template-columns: 1fr; }
+  .fieldRow dd { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
