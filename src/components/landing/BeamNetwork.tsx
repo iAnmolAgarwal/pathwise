@@ -144,7 +144,7 @@ export function BeamNetwork({ id }: { id?: string }) {
   const stroke = 1.6;
 
   return (
-    <section ref={sectionRef} id={id} className={styles.section} aria-labelledby="beams-title">
+    <section ref={sectionRef} id={id} className={`${styles.section} ${inView ? "" : styles.quiet}`} aria-labelledby="beams-title">
       <div className={styles.orb} aria-hidden />
       <header className={styles.header}>
         <Badge variant="eyebrow" dot>

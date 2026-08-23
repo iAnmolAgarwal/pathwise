@@ -44,6 +44,12 @@
   animation: pulse 4.8s ease-in-out infinite;
 }
 
+/* Off screen the pulses hold; the beams themselves stop through their own in-view flag. */
+.quiet .orb,
+.quiet .statusLight {
+  animation-play-state: paused;
+}
+
 .header {
   position: relative;
   z-index: 5;
