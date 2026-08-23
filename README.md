@@ -5,6 +5,12 @@ embedding engine decides what to learn and in what order; a conversational mento
 the Claude API elicits your goals and explains every recommendation from the engine's own
 evidence.
 
+**Live:** https://trypathwise.vercel.app, sign in with any Google account, no setup.
+
+![One prerequisite edge, Python before Python for Data Analysis, with the support, reverse, share and n from both sources](docs/img/evidence-card.png)
+
+![The learner dashboard: items by difficulty, progress toward the goal, next best action, streak and activity](docs/img/dashboard.png)
+
 ## Stack
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Drizzle ORM + Neon
