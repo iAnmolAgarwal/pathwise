@@ -29,3 +29,47 @@ jobs:
         run: npm run lint
       - name: Tests
         run: npm test
+
+  # The browser smoke test (tests/e2e/): one journey through the deterministic core against
+  # a throwaway Postgres, with the model key invalid on purpose. Ubuntu only — it needs a
+  # service container and a browser, and the Windows leg above already covers portability.
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pathwise
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Migrate
+        run: npm run db:migrate
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pathwise
+      - name: Smoke test
+        run: npm run test:e2e
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pathwise
+          AUTH_SECRET: ci-smoke-secret
+          CI: "true"
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/
