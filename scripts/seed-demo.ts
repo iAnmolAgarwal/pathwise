@@ -8,7 +8,7 @@ import { loadEngineData } from "../src/lib/engineData";
 import { buildProfileCard } from "../src/lib/profileCard";
 import type { Path, PathDiff, Profile } from "../src/schemas";
 
-const DISPLAY_NAME = process.argv[3] ?? "Maya Iyer";
+const DISPLAY_NAME = process.argv[3] ?? "Alex";
 const OWNER_EMAIL = process.argv[2];
 if (!OWNER_EMAIL) {
   console.error("usage: seed-demo.ts <owner-email> [display name]");
@@ -44,7 +44,7 @@ async function main() {
 
   const [learner] = await conn
     .insert(learners)
-    .values({ userId: owner.id, displayName: DISPLAY_NAME, avatarSeed: "demo-maya", createdAt: at(41, 19) })
+    .values({ userId: owner.id, displayName: DISPLAY_NAME, avatarSeed: "demo-alex", createdAt: at(41, 19) })
     .returning();
   await conn.insert(profiles).values({ learnerId: learner.id, data: profile, updatedAt: at(41, 19, 6) });
 
