@@ -8,22 +8,29 @@ import { useInView } from "./useInView";
 
 const NAV = [
   { label: "How it works", href: "#how-it-works" },
-  { label: "Skill graph", href: "#skills" },
-  { label: "Dashboard", href: "/learn" },
-  { label: "Source", href: "https://github.com/anmolagarwal2625/pathwise" },
+  { label: "Open Nova", href: "/learn" },
+  { label: "Source", href: "https://github.com/iAnmolAgarwal/pathwise" },
 ];
+
+/** Attribution the evidence numbers on this page require (README, "Data sources and attribution"). */
+const CREDIT = {
+  licence: { label: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" },
+  corpus: { label: "Kaggle", href: "https://www.kaggle.com/datasets/imuhammad/course-reviews-on-coursera" },
+};
 
 /** Team row: names link to LinkedIn where a profile has been provided. */
 const TEAM: Array<{ label: string; href?: string }> = [
   { label: "Anmol Agarwal", href: "https://www.linkedin.com/in/anmolagarwal26" },
   { label: "Riyan Garg", href: "https://www.linkedin.com/in/riyan-garg-b0221a320/" },
   { label: "Sansriti Mishra", href: "https://www.linkedin.com/in/sansriti-mishra/" },
+  { label: "Luv" },
+  { label: "Archi" },
 ];
 
 /** Placeholder mark until the team picks one: two interlocking forms in the reference's construction. */
 function PathwiseMark() {
   return (
-    <svg className={styles.mark} viewBox="0 0 160 160" role="img" aria-label="Pathwise symbol">
+    <svg className={styles.mark} viewBox="0 0 160 160" aria-hidden>
       <path d="M12 18h50c0 25 11 38 36 38v22c-25 0-36 13-36 38H12V18Z" fill="currentColor" />
       <path d="M148 142H98c0-25-11-38-36-38V82c25 0 36-13 36-38h50v98Z" fill="currentColor" />
     </svg>
@@ -76,8 +83,8 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
           Get in touch
         </div>
         <h2 className={`${styles.heading} ${styles.reveal} ${styles.delayTwo}`}>
-          Ready to learn what matters,
-          <span>skip what you already know, and see exactly why every step is there?</span>
+          Your goal becomes a path,
+          <span>and every step on it says why it is there.</span>
         </h2>
       </div>
 
@@ -109,12 +116,25 @@ export function Footer({ email = "teamApprentice@gmail.com" }: { email?: string 
         <div className={styles.markWrap}>
           <PathwiseMark />
         </div>
-        <div className={styles.wordmark} aria-label="Pathwise">
+        <div className={styles.wordmark}>
           pathwise
         </div>
       </div>
 
-      <p className={styles.copyright}>© 2026 Pathwise · built by Team Apprentice</p>
+      <div className={styles.copyright}>
+        <p className={styles.credit}>
+          Stack Overflow data under{" "}
+          <a href={CREDIT.licence.href} target="_blank" rel="noreferrer">
+            {CREDIT.licence.label}
+          </a>
+          . Coursera review order via{" "}
+          <a href={CREDIT.corpus.href} target="_blank" rel="noreferrer">
+            {CREDIT.corpus.label}
+          </a>
+          .
+        </p>
+        <p>© 2026 Pathwise · built by Team Apprentice</p>
+      </div>
 
       {TEAM.length > 0 && (
         <div className={styles.socials}>
