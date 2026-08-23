@@ -149,3 +149,25 @@ export async function addTokenUsage(learnerId: string, userId: string, inputToke
       },
     });
 }
+
+/** Tokens one user has spent today across every learner they own (the per-user cap, §19). */
+export async function sumTokenUsageForUser(userId: string, day = utcDay()) {
+  const [row] = await db()
+    .select({ total: sql<number>`coalesce(sum(${tokenUsage.inputTokens} + ${tokenUsage.outputTokens}), 0)::int` })
+    .from(tokenUsage)
+    .where(and(eq(tokenUsage.userId, userId), eq(tokenUsage.day, day)));
+  return row?.total ?? 0;
+}
+
+/** Tokens the whole deployment has spent today (the global cap). */
+export async function sumTokenUsageGlobal(day = utcDay()) {
+  const [row] = await db()
+    .select({ total: sql<number>`coalesce(sum(${tokenUsage.inputTokens} + ${tokenUsage.outputTokens}), 0)::int` })
+    .from(tokenUsage)
+    .where(eq(tokenUsage.day, day));
+  return row?.total ?? 0;
+}
+
+function utcDay() {
+  return new Date().toISOString().slice(0, 10);
+}

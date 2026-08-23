@@ -44,6 +44,8 @@ vi.mock("@/db/queries", async () => {
     listChatMessages: async () => [],
     insertChatMessage: async () => ({ id: "m" }),
     addTokenUsage: async () => undefined,
+    sumTokenUsageForUser: async () => 0,
+    sumTokenUsageGlobal: async () => 0,
   };
 });
 

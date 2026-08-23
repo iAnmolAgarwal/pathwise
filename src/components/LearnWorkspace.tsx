@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
 import type { GraphEvidence } from "@/lib/graphEvidence";
+import type { Degradation, DegradationReason } from "@/llm/judgeMode";
 import type { NovaState, SessionUser } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
@@ -64,10 +65,12 @@ type Props = {
   catalog: Record<string, CatalogLite>;
   /** Open on the graph tab with this arrow's card pinned (trust-badge deep link). */
   initialGraphLink?: GraphLinkState | null;
+  /** Judge mode already parked the model when the page loaded (today's budget is spent). */
+  initialDegradation?: Degradation | null;
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
+export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null, initialDegradation = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
   const [pathState, setPathState] = useState(initialPath);
@@ -81,6 +84,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const [highlight, setHighlight] = useState<GraphHighlight>(null);
   const [dashboard, setDashboard] = useState<DashboardSummary | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [degradedReason, setDegradedReason] = useState<DegradationReason | null>(initialDegradation?.reason ?? null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -90,6 +94,11 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // The budget was spent before this page loaded: Nova rests from the first frame.
+  useEffect(() => {
+    if (initialDegradation) dispatchNova({ type: "degraded" });
+  }, [initialDegradation]);
 
   // Celebrations are momentary: hand control back to the chat lifecycle after a beat.
   useEffect(() => {
@@ -103,6 +112,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const templateTitle = useCallback((id: string) => goals.find((g) => g.id === id)?.title ?? id, [goals]);
 
   const onNovaState = useCallback((state: NovaState) => dispatchNova({ type: "sse", state }), []);
+  const onDegraded = useCallback((d: Degradation) => setDegradedReason(d.reason), []);
 
   const onProfileUpdated = useCallback((next: Profile, ops: ProfileOp[]) => {
     setProfile(next);
@@ -266,6 +276,8 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
           onInputFocus={(focused) => dispatchNova({ type: focused ? "input_focus" : "input_blur" })}
           inputRef={chatInputRef}
           resting={nova.state === "resting"}
+          restingReason={nova.state === "resting" ? degradedReason : null}
+          onDegraded={onDegraded}
           prompts={nextPrompts(profile, pathState?.path ?? null, (id) => catalog[id]?.title ?? id)}
         />
       }

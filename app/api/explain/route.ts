@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { addTokenUsage, getLatestPath, getProfile } from "@/db/queries";
+import { getLatestPath, getProfile } from "@/db/queries";
 import { jsonError, parseBody } from "@/lib/api";
 import { requireLearner } from "@/lib/authz";
 import { profileSummaryFor } from "@/lib/chatContext";
+import { judgeGate } from "@/lib/budget";
 import { loadEngineData } from "@/lib/engineData";
 import { llm } from "@/llm/client";
 import { narrateEvidence } from "@/llm/explain";
-import { classifyLlmError } from "@/llm/judgeMode";
+import { addUsage, classifyLlmError, emptyUsage } from "@/llm/judgeMode";
 import { describeEvidence } from "@/llm/tools";
 import { EvidenceSchema } from "@/schemas";
 
@@ -36,9 +37,12 @@ export async function POST(request: Request) {
 
   const evidence = EvidenceSchema.parse(item.evidence);
   const described = describeEvidence(evidence, loadEngineData());
+  const key = { userId: authz.user.id, learnerId };
+  const gate = await judgeGate.allow(key);
+  if (!gate.ok) return NextResponse.json({ evidence, described, narration: null, degraded: gate.degradation });
   try {
     const { narration, usage } = await narrateEvidence(llm(), { evidence: described, profileSummary: profileSummaryFor(profile) });
-    await addTokenUsage(learnerId, authz.user.id, usage.input_tokens, usage.output_tokens);
+    await judgeGate.record(key, addUsage(emptyUsage(), usage));
     return NextResponse.json({ evidence, described, narration, degraded: null });
   } catch (err) {
     const degradation = classifyLlmError(err);

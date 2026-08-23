@@ -1,14 +1,14 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { addTokenUsage, insertChatMessage, listChatMessages } from "@/db/queries";
+import { insertChatMessage, listChatMessages } from "@/db/queries";
 import type { ProfileCard } from "@/schemas/profileCard";
 import { parseBody } from "@/lib/api";
 import { requireLearner } from "@/lib/authz";
 import { dbChatContext } from "@/lib/chatContext";
 import { SSE_HEADERS, sseStream } from "@/lib/sse";
 import { runChatTurn, type ChatEvent } from "@/llm/chat";
+import { judgeGate } from "@/lib/budget";
 import { llm } from "@/llm/client";
-import { openGate } from "@/llm/judgeMode";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
   if (!authz.ok) return authz.response;
   const userId = authz.user.id;
 
-  const gate = await openGate.allow({ userId, learnerId });
+  const gate = await judgeGate.allow({ userId, learnerId });
   const prior = await listChatMessages(learnerId, HISTORY_TURNS);
   await insertChatMessage(learnerId, "user", { text: message });
   const history: Anthropic.MessageParam[] = prior
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
           ...(result.degradation ? { degraded: true } : {}),
         });
       }
-      await addTokenUsage(learnerId, userId, result.usage.inputTokens + result.usage.cacheReadInputTokens + result.usage.cacheCreationInputTokens, result.usage.outputTokens);
+      await judgeGate.record({ userId, learnerId }, result.usage);
     } catch (err) {
       console.error("chat turn failed", err);
       emit({ type: "degraded", degradation: { degraded: true, reason: "unavailable", message: "Something went wrong on our side. Your path and profile are unaffected." } });
