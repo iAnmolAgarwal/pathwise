@@ -3,6 +3,7 @@
 import { motion, useInView as useMotionInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
+import { useHydrated } from "@/lib/hydrated";
 import type { TrustNumbers } from "@/lib/trustFormat";
 
 import styles from "./proofstrip.module.css";
@@ -183,6 +184,7 @@ function Count({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useMotionInView(ref, { once: true, margin: "-10% 0px" });
   const reduce = useReducedMotion();
+  const hydrated = useHydrated();
   const [shown, setShown] = useState(0);
 
   useEffect(() => {
@@ -200,8 +202,11 @@ function Count({ value }: { value: number }) {
     return () => cancelAnimationFrame(frame);
   }, [inView, reduce, value]);
 
-  // Reduced motion skips the count-up entirely: the final value is what renders.
-  return <span ref={ref}>{reduce ? value : shown}</span>;
+  // Reduced motion skips the count-up entirely: the final value is what renders. The preference
+  // is only readable in the browser (`reduce` is null on the server), so the count-up's starting
+  // value is what the server and the hydration render both emit; the jump to the final number
+  // happens on the render right after hydration.
+  return <span ref={ref}>{hydrated && reduce ? value : shown}</span>;
 }
 
 type Cell = { label: string; value: number; of?: number; note: string; palette: Palette };
