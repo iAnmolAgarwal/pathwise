@@ -11,4 +11,5 @@ pipeline/validation-report.json -text
 *.jpg binary
 *.webp binary
 *.splinecode binary
+*.pdf binary
 *.wasm binary
