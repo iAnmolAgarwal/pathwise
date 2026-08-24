@@ -7,6 +7,8 @@ evidence.
 
 **Live:** https://trypathwise.vercel.app, sign in with any Google account, no setup.
 
+**Solution documentation:** [`docs/Pathwise-Solution-Documentation.pdf`](docs/Pathwise-Solution-Documentation.pdf), the deck submitted with this entry.
+
 ![One prerequisite edge, Python before Python for Data Analysis, with the support, reverse, share and n from both sources](docs/img/evidence-card.png)
 
 ![The learner dashboard: items by difficulty, progress toward the goal, next best action, streak and activity](docs/img/dashboard.png)
