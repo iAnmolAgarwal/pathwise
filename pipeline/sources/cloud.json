@@ -12,10 +12,21 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "cloud-fundamentals", "level": 2 },
-      { "skillId": "aws-fundamentals", "level": 1 }
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "networking-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "fcc-clf-c02",
@@ -30,8 +41,14 @@
     "difficulty": 1,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 2 },
-      { "skillId": "cloud-fundamentals", "level": 2 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      }
     ],
     "skillsRequired": []
   },
@@ -48,13 +65,33 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 3 },
-      { "skillId": "cloud-architecture", "level": 2 },
-      { "skillId": "cloud-networking", "level": 2 },
-      { "skillId": "cloud-storage", "level": 2 },
-      { "skillId": "cloud-databases", "level": 2 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "cantrill-saa",
@@ -69,11 +106,25 @@
     "difficulty": 3,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 3 },
-      { "skillId": "cloud-architecture", "level": 3 },
-      { "skillId": "cloud-networking", "level": 3 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 3
+      }
     ],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "az900-path",
@@ -88,8 +139,14 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "azure-fundamentals", "level": 1 },
-      { "skillId": "cloud-fundamentals", "level": 2 }
+      {
+        "skillId": "azure-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      }
     ],
     "skillsRequired": []
   },
@@ -105,7 +162,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "azure-fundamentals", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -121,10 +183,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "gcp-fundamentals", "level": 2 },
-      { "skillId": "cloud-networking", "level": 1 }
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "coursera-gcp-core",
@@ -138,8 +211,18 @@
     "cost": "freemium",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "gcp-fundamentals", "level": 2 }],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "aws-skill-builder",
@@ -154,9 +237,18 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 2 },
-      { "skillId": "serverless", "level": 1 },
-      { "skillId": "cloud-security", "level": 1 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-security",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -172,8 +264,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "serverless", "level": 2 }],
-    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "serverless",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "aws-well-architected",
@@ -188,10 +290,21 @@
     "difficulty": 4,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "cloud-architecture", "level": 2 },
-      { "skillId": "cloud-cost-optimization", "level": 1 }
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-cost-optimization",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "finops-intro",
@@ -205,8 +318,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "cloud-cost-optimization", "level": 2 }],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "cloud-cost-optimization",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "aws-iam-guide",
@@ -221,10 +344,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "cloud-security", "level": 2 },
-      { "skillId": "identity-access-management", "level": 1 }
+      {
+        "skillId": "cloud-security",
+        "level": 2
+      },
+      {
+        "skillId": "identity-access-management",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "cloud-resume-challenge",
@@ -239,14 +373,32 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 2 },
-      { "skillId": "serverless", "level": 2 },
-      { "skillId": "ci-cd", "level": 1 },
-      { "skillId": "infrastructure-as-code", "level": 1 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 2
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      },
+      {
+        "skillId": "infrastructure-as-code",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "cloud-fundamentals", "level": 1 },
-      { "skillId": "html", "level": 1 }
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "html",
+        "level": 1
+      }
     ]
   },
   {
@@ -262,11 +414,25 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 2 },
-      { "skillId": "cloud-storage", "level": 1 },
-      { "skillId": "cloud-databases", "level": 1 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "aws-workshops",
@@ -281,10 +447,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "cloud-architecture", "level": 2 },
-      { "skillId": "serverless", "level": 1 }
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      },
+      {
+        "skillId": "serverless",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "tutorials-dojo",
@@ -299,10 +476,21 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "aws-fundamentals", "level": 2 },
-      { "skillId": "cloud-architecture", "level": 2 }
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "aws-fundamentals", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "az900-practice",
@@ -317,9 +505,493 @@
     "difficulty": 1,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "azure-fundamentals", "level": 2 },
-      { "skillId": "cloud-fundamentals", "level": 1 }
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "cloud-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-aws-solutions-architect-cert",
+    "kind": "course",
+    "title": "AWS Cloud Solutions Architect Professional Certificate",
+    "provider": "Coursera (AWS)",
+    "url": "https://www.coursera.org/professional-certificates/aws-cloud-solutions-architect",
+    "description": "Four-course AWS-authored certificate (Cloud Technical Essentials, Architecting Solutions on AWS, Building Data Lakes on AWS, SAA-C03 exam prep) with 15 hands-on console labs covering compute, storage, databases, networking, security and cost/performance-optimised design.",
+    "durationHours": 62,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "fcc-saa-c03",
+    "kind": "course",
+    "title": "AWS Solutions Architect Associate Certification (SAA-C03) – Full Course to PASS the Exam",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=c3Cn4xYfxJY",
+    "description": "Andrew Brown's ~50-hour free video course for the SAA-C03 exam: every core AWS service with follow-along labs, architecture patterns, high availability, VPC networking, IAM, storage classes and database options.",
+    "durationHours": 50,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "fcc-az104",
+    "kind": "course",
+    "title": "Azure Administrator Certification (AZ-104) - Full Course to PASS the Exam",
+    "provider": "YouTube (freeCodeCamp / ExamPro)",
+    "url": "https://www.youtube.com/watch?v=10PbGbTUSAg",
+    "description": "Free ~11-hour video course for the AZ-104 Azure Administrator exam: identities and governance, storage accounts, virtual machines and compute, virtual networking, and monitoring/backup, with follow-along portal demos.",
+    "durationHours": 11,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "azure-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-gcp-architecting-gce",
+    "kind": "course",
+    "title": "Architecting with Google Compute Engine Specialization",
+    "provider": "Coursera (Google Cloud)",
+    "url": "https://www.coursera.org/specializations/gcp-architecture",
+    "description": "Five Google Cloud courses (Core Infrastructure, Foundation, Core Services, Scaling and Automation, Design and Process) with Qwiklabs labs on VPC networking, VMs, IAM, storage and database options, load balancing, autoscaling and reliable system design.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "gcsb-cloud-architect",
+    "kind": "course",
+    "title": "Professional Cloud Architect Certification",
+    "provider": "Google Cloud (Google Skills)",
+    "url": "https://www.skills.google/paths/12",
+    "description": "Google's official 24-activity learning path for the Professional Cloud Architect exam: courses, hands-on labs and skill badges on designing, provisioning and managing secure, scalable enterprise solutions on Google Cloud.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-architecture",
+        "level": 3
+      },
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-security",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-az305-prereqs",
+    "kind": "course",
+    "title": "AZ-305 Microsoft Azure Architect Design Prerequisites",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/microsoft-azure-architect-design-prerequisites/",
+    "description": "Six-module intermediate path for aspiring Azure infrastructure architects: core architectural components (regions, zones, resource groups), compute and storage services, identity and security, the Cloud Adoption Framework and the Azure Well-Architected Framework.",
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-architecture",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-aws-technical-essentials",
+    "kind": "course",
+    "title": "AWS Cloud Technical Essentials",
+    "provider": "Coursera (AWS)",
+    "url": "https://www.coursera.org/learn/aws-cloud-technical-essentials",
+    "description": "AWS-authored four-module course with labs: global infrastructure, IAM and the shared responsibility model, EC2/Lambda/containers, VPC networking, S3/EBS storage, RDS/DynamoDB, CloudWatch monitoring, load balancing and auto scaling.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-storage",
+        "level": 1
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "networking-basics",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "mslearn-azure-cost-management",
+    "kind": "course",
+    "title": "Control Azure spending and manage bills with Microsoft Cost Management + Billing",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/control-spending-manage-bills/",
+    "description": "Six-module path on Azure cost control: Well-Architected cost optimisation, cost analysis and budgets with alerts, Reserved Instances, savings plans for compute, and Power BI cost reporting.",
+    "durationHours": 5,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-cost-optimization",
+        "level": 2
+      },
+      {
+        "skillId": "azure-fundamentals",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-gcp-security-engineer-cert",
+    "kind": "course",
+    "title": "Preparing for Google Cloud Certification: Cloud Security Engineer Professional Certificate",
+    "provider": "Coursera (Google Cloud)",
+    "url": "https://www.coursera.org/professional-certificates/google-cloud-security",
+    "description": "Fourteen-course Google Cloud series for the Professional Cloud Security Engineer exam: IAM and org policy, the full Networking in Google Cloud sequence, security best practices, vulnerability mitigation, logging/monitoring, and hands-on security labs.",
+    "durationHours": 80,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-security",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-networking",
+        "level": 3
+      },
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "security-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "linux-administration",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-whizlabs-aws-storage",
+    "kind": "course",
+    "title": "AWS: Storage",
+    "provider": "Coursera (Whizlabs)",
+    "url": "https://www.coursera.org/learn/aws-storage",
+    "description": "Three-module intermediate course on AWS storage: S3 object storage with storage classes and lifecycle rules, S3 security (replication, ACLs, bucket policies, encryption), and EBS block and EFS file storage, with demos and labs.",
+    "durationHours": 6,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-storage",
+        "level": 3
+      },
+      {
+        "skillId": "cloud-security",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "gcsb-database-engineer",
+    "kind": "course",
+    "title": "Professional Database Engineer Certification",
+    "provider": "Google Cloud (Google Skills)",
+    "url": "https://www.skills.google/paths/22",
+    "description": "Google's 12-activity path for the Professional Cloud Database Engineer exam: courses, labs and skill badges on designing highly available managed databases (Cloud SQL, Spanner, AlloyDB), enterprise migrations, and cost-effective, scalable database solutions.",
+    "durationHours": 20,
+    "format": "interactive",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-databases",
+        "level": 3
+      },
+      {
+        "skillId": "gcp-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "mslearn-az104-virtual-networks",
+    "kind": "course",
+    "title": "AZ-104: Configure and manage virtual networks for Azure administrators",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/az-104-manage-virtual-networks/",
+    "description": "Eight-module path on Azure networking: virtual networks and subnets, network security groups, Azure DNS, VNet peering, user-defined routes, Load Balancer, Application Gateway and Network Watcher.",
+    "durationHours": 7,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-networking",
+        "level": 3
+      },
+      {
+        "skillId": "azure-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "cloud-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "networking-basics",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "coursera-aws-python-serverless",
+    "kind": "course",
+    "title": "Python for Serverless Applications and Automation on AWS",
+    "provider": "Coursera (AWS)",
+    "url": "https://www.coursera.org/learn/aws-python-serverless",
+    "description": "AWS-authored four-module course that builds a microservice with AWS Lambda and API Gateway (deployed via AWS SAM), compares monolith vs microservice architectures, uses RDS and DynamoDB, and automates operations with Python and Systems Manager.",
+    "durationHours": 10,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "serverless",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-databases",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "aws-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   }
 ]

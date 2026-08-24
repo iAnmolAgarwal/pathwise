@@ -9,6 +9,7 @@ import {
   PathSchema,
   ProfileOpSchema,
   ProfileSchema,
+  ScoreBreakdownSchema,
   SkillSchema,
   mappedGoalSchema,
 } from "@/schemas";
@@ -243,6 +244,18 @@ describe("EvidenceSchema", () => {
     expect(
       EvidenceSchema.safeParse({ ...evidence, provenance: "trust me" }).success,
     ).toBe(false);
+  });
+
+  it("parses a stored breakdown written before transitionPrior existed (D-27)", () => {
+    // Paths live in Postgres as JSON and are re-parsed on read. Every path generated before
+    // the prior — including the seeded demo learner's six weeks of history — has a five-part
+    // breakdown, and must keep loading as "this path predates the prior".
+    const legacy = {
+      coverage: 0.5, levelFit: 0.5, preferenceFit: 0.5, quality: 0.5, similarity: 0.5, total: 0.5,
+    };
+    const parsed = ScoreBreakdownSchema.parse(legacy);
+    expect(parsed.transitionPrior).toBe(0);
+    expect(EvidenceSchema.parse({ ...evidence, scoreBreakdown: legacy }).scoreBreakdown.transitionPrior).toBe(0);
   });
 });
 

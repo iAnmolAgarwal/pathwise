@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+# playwright (test-results/ is what the configured reporters write; playwright-report/
+# appears as soon as anyone runs the html reporter)
+/test-results/
+/playwright-report/
+
 # next.js
 /.next/
 /out/

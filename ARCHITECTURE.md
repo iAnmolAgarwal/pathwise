@@ -6,7 +6,7 @@
 > find-and-replace plus one Spline text node.
 >
 > **Status of this document (2026-08-18):** single source of truth for the final system.
-> M0–M5 are built and deployed (https://pathwise-psi-blond.vercel.app). §15–§18 describe
+> M0–M5 are built and deployed (https://trypathwise.vercel.app). §15–§18 describe
 > the approved post-M5 upgrade (evidence layer, self-evaluation, freshness, delivery
 > workflow); §19 describes sign-in with Google (added 2026-08-22, D-26); §13 carries the
 > ordered milestone sequence, the freeze as an event, and the cut order. **This document carries no time estimates and no dates for future work (D-24): blocks
@@ -421,13 +421,34 @@ score = w_cov  · gapCoverage        // Σ levels of gap skills taught / Σ gap 
       + w_pref · preferenceFit      // format ∈ prefs, cost ≤ budget, duration vs hours/week, disliked provider/format penalty
       + w_qual · qualityPrior
       + w_sim  · cosine(itemVec, goalCentroid)   // goalCentroid = mean of gap-skill vectors
+      + w_tp   · transitionPrior     // mined: shrunk share of learners who went from a skill
+                                     // the learner holds into this item's primary gap skill
 ```
 
-Defaults: `w = {cov: .40, lvl: .15, pref: .15, qual: .10, sim: .20}`. All five components
-are logged per candidate into the Evidence object. Items whose `skillsRequired` cannot be
-satisfied by the profile plus earlier-planned items get a hard sequencing constraint, not a
-score penalty. **No evidence term in the score** (D-14): learner evidence explains, it does
-not rank.
+Defaults: `w = {cov: .40, lvl: .15, pref: .13, qual: .10, sim: .20, tp: .02}`.
+
+| signal | weight | source |
+|---|---|---|
+| `coverage` | 0.40 | gap arithmetic |
+| `levelFit` | 0.15 | profile levels vs item difficulty |
+| `preferenceFit` | 0.13 | stated preferences and dislike memos |
+| `quality` | 0.10 | curated `qualityPrior` |
+| `similarity` | 0.20 | cosine over pre-trained MiniLM embeddings |
+| `transitionPrior` | **0.02** | mined behaviour, `branches.json` (D-27) |
+
+The weights sum to 1.0 so `breakdown.total` stays on a 0–1 scale; `transitionPrior` was
+funded out of `preferenceFit`, not added on top. All six components are logged per candidate
+into the Evidence object. Items whose `skillsRequired` cannot be satisfied by the profile
+plus earlier-planned items get a hard sequencing constraint, not a score penalty.
+
+**The sixth signal (D-27).** `transitionPrior()` calls the same `branchEvidenceFor()` the
+evidence card calls, on the same primary gap skill, with the same known-skills filter
+(`level > 0`) — so the number that moved the score is exactly the number the learner is
+shown. It is zero unless a source observed the transition above its floors (`minSupportMet`,
+`nTotal ≥ 50`, `n ≥ 5`); absence of evidence contributes nothing rather than penalising.
+D-14's *"no evidence term in the score"* is **refined by D-27**: learner evidence now carries
+2 % of candidate scoring above the floors, and still explains everywhere else. What has not
+changed: evidence never becomes a prerequisite, and never touches sequencing (§5.4, §15.9).
 
 ### 5.3 Selection — greedy weighted set-cover (`select.ts`)
 
@@ -445,7 +466,9 @@ teaches a skill B requires), ties broken by difficulty ascending, then duration 
 cycles among soft edges are broken at soft edges first so hard requirements hold. Phases
 are cut at graph "levels" (antichains of the induced partial order), each phase named after
 its dominant domain and given a milestone string from a small template table. Output is
-`Path`. Branch shares are **not** used as a tie-breaker (ruled out, §15.9).
+`Path`. Branch shares are **not** used as a tie-breaker here (ruled out, §15.9): sequencing
+reads the authored graph and nothing else. They carry 2 % of *candidate scoring* (§5.2,
+D-27), which decides what is on the path, never what order it comes in.
 
 ### 5.5 Adaptation (`replan.ts`)
 
@@ -733,7 +756,7 @@ disagreements through `pipeline/sources/` files, never by hand-editing `src/data
 | D-11 | 3D mentor as state-driven embodiment (A/B/C visual fallbacks) | Decorative hero only | Innovation points; state machine reuses chat lifecycle | Spline sourcing risk (isolated) — resolved: plan A shipped in M5 |
 | D-12 | The machine-generated review dataset from an earlier stage of the event is **not** used | Reuse that dataset | Machine-generated text; would poison quality claims | Catalog built from scratch. **Still stands.** Note: the Kaggle *Coursera reviews* corpus used in D-14 is a different, real dataset; only its review **order metadata** is used, never its text (D-16) |
 | D-13 | In-chat structured intake card, gated on "no skills stated" (§8.3) | Keep "act first, ask later" only; a separate manual set-up form; free-text elicitation | Learners rarely volunteer levels, so free-text-only yields level-0 paths; the card keeps the profiling visible in the conversation (requirement 2) and every level carries `source: stated`; it is a presentation of ProfileOps, so engine/schema invariants hold | One extra turn before the first path when nothing is stated (mitigated by Skip); one new tool + schema + UI card |
-| **D-14** | **Evidence layer: the authored prerequisite graph is checked against two independent behavioural sources (Stack Overflow question order, Coursera review order), offline, with provenance on every edge; evidence augments and never auto-overrides the authored graph (§15)** | Replace the authored DAG with a mined graph; a single source; a learned prerequisite model; no evidence | The four-way evaluation ranked "authored + agreement report" first: keeps D-04's glass box, turns "one author's opinion" into "checked against real learners"; the mined graph is better where it has data, the authored graph everywhere else (Riyan's §8 conclusion) — so use both and always say which one you're looking at | Two mining pipelines, a tagging protocol with human gates; percentages shown only above support floors |
+| **D-14** | **Evidence layer: the authored prerequisite graph is checked against two independent behavioural sources (Stack Overflow question order, Coursera review order), offline, with provenance on every edge; evidence augments and never auto-overrides the authored graph (§15)** | Replace the authored DAG with a mined graph; a single source; a learned prerequisite model; no evidence | The four-way evaluation ranked "authored + agreement report" first: keeps D-04's glass box, turns "one author's opinion" into "checked against real learners"; the mined graph is better where it has data, the authored graph everywhere else (Riyan's §8 conclusion) — so use both and always say which one you're looking at | Two mining pipelines, a tagging protocol with human gates; percentages shown only above support floors. **Refined by D-27**: its "no evidence term in the score" clause (§5.2) no longer holds — mined shares carry 0.02 of candidate scoring above the floors; everything else about D-14, including "evidence never auto-overrides the authored graph", stands |
 | **D-15** | **Stack Overflow as the second (and larger) behavioural source, mined at skill level through a hand-built tag→skill map, with the cohort-bias filter: for pair (A,B) count only users whose first-ever question is ≥ 12 months after both technologies existed (§15.2)** | Coursera only; MOOCCubeX; OULAD/HarvardX; GitHub/Libraries.io; curriculum corpora | Real persistent user IDs (no pseudo-user problem), current data, ~120 of 159 skills observable (vs ~40–60 from Coursera), no LLM in the loop; the cohort filter removes the "newer tech always comes later" confound that would otherwise inflate confirmations and hide contradictions | Semantics are "asked about" not "completed" — every rendered number carries that caveat; askers-only survivorship; BigQuery mirror freshness (fallback: SEDE sample) |
 | **D-16** | **Coursera mining re-run inside the repo at conf ≥ 0.85, Ring-1 courses only (those appearing in any mined edge), course→skill tags produced by a two-pass closed-vocabulary protocol with a 20 % blind two-human spot-check gate (≥ 85 % human–model, ≥ 90 % human–human) — pooling does not start on a failing sample (§15.3)** | conf 0.70 (his original); tag all 623; skip the gate | His own §2.5 mitigation; tagging is the single point of failure and its errors are invisible downstream, so the gate is not optional | Coverage limited to Ring 1 (~171 courses); Ring 2 is first-to-cut stretch |
 | **D-17** | **Tiered provenance vocabulary (`confirmed-both / confirmed-one-source / contradicted-in-review / no-data` for authored edges; `candidate / promoted` for mined-only) and the promotion policy: a mined-only edge drives paths only when a human promotes it after it meets conf ≥ 0.85, n ≥ 50, ≥ 2 course pairs (Coursera) or ≥ 2 tags (SO), level-band monotone, acyclic — recorded in `pipeline/sources/promotions.md`; contradictions go to `contradictions.md` and the authored edge keeps driving paths until resolved (§15.6)** | Auto-flip on strong evidence; mined edges never drive paths | Doc 3's N-1 (nothing automatic rewrites the spine) plus a real path for data to improve the map, with a human signature on every change | A manual review step per contradiction/promotion |
@@ -747,8 +770,13 @@ disagreements through `pipeline/sources/` files, never by hand-editing `src/data
 | **D-25** | **M5.6 spot-check gate run by a delegated single reviewer.** Both humans signed `coursera_catalog_map.json` (2026-08-19); the owner then delegated the blind check of the stratified sample to a single reviewer (2026-08-19), amending N-1 for this block: an independent, context-free model pass tags the sample blind under a deliberately different framing; where it and the pipeline's tags disagree the delegated reviewer adjudicates on the course text; resolutions are recorded in `pipeline/sources/coursera_tag_resolutions.json` and applied by `tag_courses.py apply-review`. The file records **reviewer-vs-model** agreement (Jaccard, exact-level) against the ≥ 0.85 gate; **no human–human number exists** for this sample and nothing in the repo may call it human-verified by two people. | Wait for both humans to tag 34 courses blind (the N-1 process) | Owner's decision to close the block; the numbers are still measured, the disagreements still adjudicated by a person, and the process is stated in the file | Human–human gate not measured; the PDF wording must say "one delegated reviewer" for this sample |
 | **D-26** | **Sign in with Google for the whole app (§19), superseding D-07's "no auth".** Auth.js v5 with the Google provider, the Drizzle adapter and database sessions; the landing page stays public, everything under `/learn/*` and every learner-scoped route requires a session and checks ownership; one Google user owns many learners; an unowned learner answers 404, never 403; learner URLs are unchanged. Seeded demo learners and the five fixture learners belong to team accounts only; a judge starts from zero. The engine, the evidence layer and the deterministic core are untouched. A-5 unchanged. | Keep D-07 (capability URLs only); a hosted auth service; JWT-only sessions; one learner per account | Judges open a real app that remembers them; learner state is tied to an identity so the M6 spend cap can be keyed per user, not per learner; Auth.js keeps it in the stack we have (Drizzle, Neon) with no new service | A Google Cloud consent screen that must be *published* (not "Testing"); four more env vars; anonymous rows created before this decision stay orphaned and unreachable |
 
+| **D-27** | **A sixth scoring signal, `transitionPrior`, at weight 0.02, funded out of `preferenceFit` (0.15 → 0.13) — the shrunk share of learners who moved from a skill the learner already holds into a candidate's primary gap skill, read from `branches.json` through the same `branchEvidenceFor()` the evidence card calls (§5.2). It ships despite a measured null result, under a rule written before the numbers were seen.** | (a) Leave the mined data as display only — the position before this entry; (b) this, at 0.02; (c) the same term at a weight large enough to move paths (0.1–0.2); (d) let mined transitions become prerequisites or a sequencing tie-breaker; (e) train a ranker on the mined sequences | The mined behaviour of 2M+ learners was the project's most expensive asset and influenced no decision the system made, which (a) cannot fix. 0.02 is the weight our own evidence supports and no more: `docs/EVALUATION.md` §1 measures learner agreement with the engine at 62.2 % / 58.3 % on exactly the *unrelated* pairs this prior draws from, and every share carries the "asking ≠ completing" caveat — (c) would let confused beginners' search order design a curriculum. (d) is excluded by §15.9 and D-17 (nothing automatic rewrites the spine); (e) is excluded by D-19. Reusing the card's own lookup rather than writing a second one guarantees the number that moved the score is the number the learner is shown | **A measured null result, reported as one.** At 0.02 the prior is non-zero on 40.4 % of path items (median share 0.036, max 0.242 → at most 0.005 of a total) but changes **no** path in the 66-learner corpus, and leaves the 50-path sequencing report byte-identical: SO 65.4 %, Coursera 61.8 %, unrelated 62.2 % / 58.3 %, graph-inverted 35 — every figure unmoved. The three sweep learners whose paths changed changed because of the `preferenceFit` reduction, not the prior. The weight study's new sixth axis is its least sensitive (±25 % moves 2 items and 0 items). It ships anyway: a scorer that claims to use behavioural evidence should let it carry some weight, the mechanism and its tests now exist, and the honest report of "it did not measurably change ordering" is worth as much as a gain (`docs/EVALUATION.md` §5). **Refines D-14's "no evidence term in the score" and narrows §15.9's "branch shares as a sequencing tie-breaker"** — sequencing and the prerequisite graph are untouched |
+
 Superseded / refined markers: A-7 (dated deadline) → superseded by D-23/D-24. D-10 → refined
-by D-22. D-07 (no auth) → superseded by D-26. D-23's dated first form → revised under D-24. Nothing is deleted from this log.
+by D-22. D-07 (no auth) → superseded by D-26. D-23's dated first form → revised under D-24.
+D-14 (no evidence term in the score) → **refined by D-27** (scoring only, weight 0.02, above
+the floors; sequencing and the graph unchanged). §15.9's branch-share clause → **narrowed by
+D-27**. Nothing is deleted from this log.
 
 ## 12. Assumptions register
 
@@ -1089,7 +1117,9 @@ Replacing the authored DAG with a mined graph · runtime mining, tagging or LLM 
 over 1.45 M review texts (large-scale extraction and spend for a non-required feature) · a trained ranker /
 learning-to-rank / neural sequence model (no interaction data on our catalog; would replace
 inspectable arithmetic with unexplainable weights) · branch shares as a sequencing
-tie-breaker · cross-platform transitions (no shared user IDs — structural) · post-2020
+tie-breaker (**narrowed by D-27**: sequencing is still authored-graph-only, but candidate
+*scoring* takes a 0.02-weighted prior from branch shares above the floors — §5.2) ·
+cross-platform transitions (no shared user IDs — structural) · post-2020
 skills receiving *Coursera* evidence (they get SO evidence or `no-data`) · population-level
 "self-improvement" shown as a feature (per-learner adaptation is the demoable claim;
 population learning is design intent) · MOOCCubeX, OULAD, HarvardX-MITx (§15.1).
@@ -1190,11 +1220,12 @@ Public wording: "kept fresh by machines, kept true by people" — never "maintai
   must be made through a pull request"); deleting `main` was refused; `main` stayed at
   `4e70628`. Teammates therefore get write-with-PR only; nothing lands without the owner's
   approval.
-- **Required status checks (added 2026-08-23, M5.14):** the same ruleset gained a
-  **required_status_checks** rule (`strict_required_status_checks_policy: false`) naming both
-  legs of the `check` job in `.github/workflows/test.yml`: `check (ubuntu-latest)` and
-  `check (windows-latest)`. The workflow runs typecheck, lint and the full Vitest suite on
-  every pull request and every push to `main`. Until both legs are green a PR cannot merge,
+- **Required status checks (added 2026-08-23, M5.14; `smoke` added 2026-08-24, M6):** the same
+  ruleset gained a **required_status_checks** rule (`strict_required_status_checks_policy: false`)
+  naming both legs of the `check` job in `.github/workflows/test.yml` — `check (ubuntu-latest)`
+  and `check (windows-latest)` — and, since M6, the `smoke` job (the Playwright degraded-journey
+  test against a throwaway Postgres). The workflow runs typecheck, lint and the full Vitest suite
+  on every pull request and every push to `main`. Until all three are green a PR cannot merge,
   whatever the review state; the admin bypass stays `pull_request`-only as before, so the
   gate applies to the owner too. Verified by probe: a throwaway PR carrying a deliberate type
   error went red on both legs and GitHub reported the merge blocked; it was closed unmerged.

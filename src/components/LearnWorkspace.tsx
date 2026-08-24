@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { DashboardSummary } from "@/engine/dashboard";
 import type { GraphEvidence } from "@/lib/graphEvidence";
+import type { Degradation, DegradationReason } from "@/llm/judgeMode";
 import type { NovaState, SessionUser } from "@/schemas";
 import type { Path, PathDiff, Profile, ProfileOp } from "@/schemas";
 import { initialNova, novaReducer } from "@/nova/machine";
@@ -56,7 +57,8 @@ type Props = {
   user: SessionUser;
   learners: RailLearner[];
   initialProfile: Profile;
-  initialPath: { version: number; path: Path } | null;
+  /** The latest stored path and, when that version came from a replan, its diff — shown again on open. */
+  initialPath: { version: number; path: Path; diff?: PathDiff | null } | null;
   initialMessages: ChatMessageView[];
   goals: GoalLite[];
   skills: SkillLite[];
@@ -64,23 +66,28 @@ type Props = {
   catalog: Record<string, CatalogLite>;
   /** Open on the graph tab with this arrow's card pinned (trust-badge deep link). */
   initialGraphLink?: GraphLinkState | null;
+  /** Judge mode already parked the model when the page loaded (today's budget is spent). */
+  initialDegradation?: Degradation | null;
 };
 
 /** The app shell for one learner: chat on the left, a switchable pane (Nova / Path / Skill Graph / Dashboard) on the right. */
-export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null }: Props) {
+export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learners, initialProfile, initialPath, initialMessages, goals, skills, graphEvidence, catalog, initialGraphLink = null, initialDegradation = null }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [changes, setChanges] = useState<ProfileChange[]>([]);
-  const [pathState, setPathState] = useState(initialPath);
+  const [pathState, setPathState] = useState<{ version: number; path: Path } | null>(initialPath ? { version: initialPath.version, path: initialPath.path } : null);
   const [nova, dispatchNova] = useReducer(novaReducer, initialNova);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [explaining, setExplaining] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>(initialGraphLink ? "graph" : initialPath ? "path" : "nova");
-  const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(null);
+  const [diff, setDiff] = useState<{ diff: PathDiff; version: number } | null>(initialPath?.diff ? { diff: initialPath.diff, version: initialPath.version } : null);
   const [pendingFeedback, setPendingFeedback] = useState<string | null>(null);
   const [feedbackError, setFeedbackError] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<GraphHighlight>(null);
   const [dashboard, setDashboard] = useState<DashboardSummary | null>(null);
+  const [dashboardFailed, setDashboardFailed] = useState(false);
+  const [dashboardAttempt, setDashboardAttempt] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [degradedReason, setDegradedReason] = useState<DegradationReason | null>(initialDegradation?.reason ?? null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -90,6 +97,11 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // The budget was spent before this page loaded: Nova rests from the first frame.
+  useEffect(() => {
+    if (initialDegradation) dispatchNova({ type: "degraded" });
+  }, [initialDegradation]);
 
   // Celebrations are momentary: hand control back to the chat lifecycle after a beat.
   useEffect(() => {
@@ -103,6 +115,7 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const templateTitle = useCallback((id: string) => goals.find((g) => g.id === id)?.title ?? id, [goals]);
 
   const onNovaState = useCallback((state: NovaState) => dispatchNova({ type: "sse", state }), []);
+  const onDegraded = useCallback((d: Degradation) => setDegradedReason(d.reason), []);
 
   const onProfileUpdated = useCallback((next: Profile, ops: ProfileOp[]) => {
     setProfile(next);
@@ -149,13 +162,17 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
     fetch(`/api/dashboard/${learnerId}`)
       .then((r) => (r.ok ? (r.json() as Promise<DashboardSummary>) : null))
       .then((d) => {
-        if (!cancelled && d) setDashboard(d);
+        if (cancelled) return;
+        if (d) setDashboard(d);
+        setDashboardFailed(!d);
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (!cancelled) setDashboardFailed(true);
+      });
     return () => {
       cancelled = true;
     };
-  }, [learnerId, pathVersion, profile]);
+  }, [learnerId, pathVersion, profile, dashboardAttempt]);
 
   const sendFeedback = useCallback(
     async (catalogId: string, type: ItemFeedbackType) => {
@@ -202,6 +219,31 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
   const talkToNova = useCallback(() => {
     chatInputRef.current?.focus();
   }, []);
+
+  // Judge mode, no path yet: record the role goal and let the engine build the first path without Nova.
+  const buildFromGoal = useCallback(
+    async (templateId: string) => {
+      const ops: ProfileOp[] = [{ op: "add_goal", goal: { type: "role", templateId } }];
+      const saved = await fetch(`/api/learners/${learnerId}/profile`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ops }),
+      });
+      const nextProfile = (await saved.json().catch(() => ({}))) as Profile & { error?: string };
+      if (!saved.ok) throw new Error(nextProfile.error ?? `Could not save your goal (${saved.status})`);
+      setProfile(nextProfile);
+      setChanges((prev) => [...prev, { id: prev.length + 1, at: new Date().toLocaleTimeString(), ops }]);
+      const generated = await fetch("/api/path/generate", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ learnerId }),
+      });
+      const body = (await generated.json().catch(() => ({}))) as { error?: string; version: number; path: Path };
+      if (!generated.ok) throw new Error(body.error ?? `Could not build the path (${generated.status})`);
+      onPathUpdated(body.version, body.path, null);
+    },
+    [learnerId, onPathUpdated],
+  );
 
 
   const selectedItem = pathState && explaining ? pathState.path.phases.flatMap((p) => p.items).find((i) => i.catalogId === explaining) ?? null : null;
@@ -266,6 +308,8 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
           onInputFocus={(focused) => dispatchNova({ type: focused ? "input_focus" : "input_blur" })}
           inputRef={chatInputRef}
           resting={nova.state === "resting"}
+          restingReason={nova.state === "resting" ? degradedReason : null}
+          onDegraded={onDegraded}
           prompts={nextPrompts(profile, pathState?.path ?? null, (id) => catalog[id]?.title ?? id)}
         />
       }
@@ -318,6 +362,8 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
               <div className="mt-4">
                 <DashboardTab
                   summary={dashboard}
+                  failed={dashboardFailed && !dashboard}
+                  onRetry={() => setDashboardAttempt((n) => n + 1)}
                   displayName={displayName}
                   joinedAt={joinedAt}
                   preferences={profile.preferences}
@@ -378,7 +424,14 @@ export function LearnWorkspace({ learnerId, displayName, joinedAt, user, learner
                 />
               </>
             ) : (
-              <EmptyPath displayName={displayName} returning={initialMessages.length > 0} onTalk={talkToNova} />
+              <EmptyPath
+                displayName={displayName}
+                returning={initialMessages.length > 0}
+                onTalk={talkToNova}
+                resting={nova.state === "resting"}
+                goals={goals}
+                onBuildFromGoal={buildFromGoal}
+              />
             )}
 
           </section>

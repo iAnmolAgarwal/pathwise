@@ -85,7 +85,11 @@ const INTAKE = [
   { label: "STYLE", value: "videos · projects" },
 ];
 
-/** Card 03's example breakdown, the same five components the explain panel shows for every pick. */
+/**
+ * Card 03's example breakdown, the same six components the explain panel shows for every
+ * pick. The total is their weighted sum at the shipped ENGINE_WEIGHTS (§5.2), so the card's
+ * arithmetic is the engine's: .4(.04) + .15(1) + .13(1) + .1(.7) + .2(.31) + .02(.24) = .43.
+ */
 const SCORE_ROWS: { label: string; value: number; total?: boolean }[][] = [
   [
     { label: "Coverage", value: 0.04 },
@@ -95,8 +99,11 @@ const SCORE_ROWS: { label: string; value: number; total?: boolean }[][] = [
     { label: "Preference fit", value: 1 },
     { label: "Quality", value: 0.7 },
   ],
-  [{ label: "Similarity", value: 0.31 }],
-  [{ label: "Total", value: 0.45, total: true }],
+  [
+    { label: "Similarity", value: 0.31 },
+    { label: "Learners' next", value: 0.24 },
+  ],
+  [{ label: "Total", value: 0.43, total: true }],
 ];
 
 /** Card 05's mini skill graph: a slice of the real map in the Path tab's node style, prerequisites on top. */

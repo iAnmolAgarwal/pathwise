@@ -3,6 +3,8 @@ import { getOwnedLearner } from "@/db/queries";
 import { jsonError, UuidSchema } from "@/lib/api";
 import type { SessionUser } from "@/schemas";
 
+export { safeCallbackUrl, signInUrl } from "./signInUrl";
+
 /**
  * Route-level authorisation (§19). Two outcomes only: 401 when nobody is signed in, 404 when
  * the learner is missing or belongs to another user. There is no 403 — an unowned id must
@@ -26,15 +28,4 @@ export async function requireLearner(
   const learner = await getOwnedLearner(session.user.id, learnerId);
   if (!learner) return { ok: false, response: jsonError(404, "Learner not found") };
   return { ok: true, user: session.user, learner };
-}
-
-/** Sign-in URL that brings the visitor back to `returnTo` once Google has answered. */
-export function signInUrl(returnTo: string): string {
-  return `/sign-in?callbackUrl=${encodeURIComponent(returnTo)}`;
-}
-
-/** Only same-origin paths are honoured as a return address; anything else lands on /learn. */
-export function safeCallbackUrl(raw: string | undefined): string {
-  if (!raw || !raw.startsWith("/") || raw.startsWith("//") || raw.startsWith("/\\")) return "/learn";
-  return raw;
 }

@@ -12,10 +12,22 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 },
-      { "skillId": "responsive-design", "level": 2 },
-      { "skillId": "web-accessibility", "level": 1 }
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      },
+      {
+        "skillId": "web-accessibility",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -32,12 +44,29 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "javascript-advanced", "level": 1 },
-      { "skillId": "regex", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "regex",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "odin-foundations",
@@ -52,12 +81,30 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 },
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "version-control-git", "level": 1 },
-      { "skillId": "command-line", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      },
+      {
+        "skillId": "command-line",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -74,16 +121,40 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "react", "level": 2 },
-      { "skillId": "javascript-advanced", "level": 2 },
-      { "skillId": "nodejs", "level": 2 },
-      { "skillId": "express", "level": 2 },
-      { "skillId": "orm-data-access", "level": 1 }
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "express",
+        "level": 2
+      },
+      {
+        "skillId": "orm-data-access",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 }
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      }
     ]
   },
   {
@@ -99,12 +170,30 @@
     "difficulty": 1,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 1 },
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 },
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "api-integration", "level": 1 },
-      { "skillId": "web-accessibility", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      },
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      },
+      {
+        "skillId": "web-accessibility",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -121,10 +210,21 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "javascript-advanced", "level": 3 }
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 3
+      }
     ],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udemy-jonas-js",
@@ -139,14 +239,32 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 2 },
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "javascript-advanced", "level": 2 },
-      { "skillId": "api-integration", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "html", "level": 1 },
-      { "skillId": "css", "level": 1 }
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 1
+      }
     ]
   },
   {
@@ -162,11 +280,25 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "react", "level": 3 },
-      { "skillId": "state-management", "level": 2 },
-      { "skillId": "nextjs", "level": 1 }
+      {
+        "skillId": "react",
+        "level": 3
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "nextjs",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "react-dev-learn",
@@ -180,8 +312,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.9,
-    "skillsTaught": [{ "skillId": "react", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "nextjs-learn",
@@ -196,10 +338,21 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "nextjs", "level": 2 },
-      { "skillId": "react-advanced", "level": 1 }
+      {
+        "skillId": "nextjs",
+        "level": 2
+      },
+      {
+        "skillId": "react-advanced",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "udemy-max-typescript",
@@ -213,8 +366,18 @@
     "cost": "paid",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "typescript", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "typescript",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "typescript-handbook",
@@ -228,8 +391,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "typescript", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "typescript",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "css-for-js",
@@ -244,12 +417,24 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "css-advanced", "level": 3 },
-      { "skillId": "responsive-design", "level": 2 }
+      {
+        "skillId": "css-advanced",
+        "level": 3
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "css", "level": 2 },
-      { "skillId": "javascript", "level": 1 }
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
     ]
   },
   {
@@ -264,8 +449,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "tailwind-css", "level": 2 }],
-    "skillsRequired": [{ "skillId": "css", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "tailwind-css",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "meta-frontend-cert",
@@ -280,12 +475,30 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "programming-basics", "level": 1 },
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 },
-      { "skillId": "javascript", "level": 2 },
-      { "skillId": "react", "level": 2 },
-      { "skillId": "frontend-testing", "level": 1 }
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      },
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "javascript",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -302,14 +515,37 @@
     "difficulty": 3,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "react", "level": 3 },
-      { "skillId": "state-management", "level": 2 },
-      { "skillId": "nodejs", "level": 2 },
-      { "skillId": "graphql", "level": 2 },
-      { "skillId": "typescript", "level": 1 },
-      { "skillId": "frontend-testing", "level": 2 }
+      {
+        "skillId": "react",
+        "level": 3
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "nodejs",
+        "level": 2
+      },
+      {
+        "skillId": "graphql",
+        "level": 2
+      },
+      {
+        "skillId": "typescript",
+        "level": 1
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "webdev-accessibility",
@@ -323,10 +559,21 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "web-accessibility", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "web-accessibility",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "html", "level": 2 },
-      { "skillId": "css", "level": 2 }
+      {
+        "skillId": "html",
+        "level": 2
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      }
     ]
   },
   {
@@ -341,8 +588,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "web-performance", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "web-performance",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "motion-docs",
@@ -356,8 +613,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "web-animations", "level": 2 }],
-    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "web-animations",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "react-native-docs",
@@ -371,8 +638,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "react-native", "level": 2 }],
-    "skillsRequired": [{ "skillId": "react", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "react-native",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "vuejs-tutorial",
@@ -386,8 +663,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "vue", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript-advanced", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "vue",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "vite-guide",
@@ -401,8 +688,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "frontend-build-tools", "level": 2 }],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "frontend-build-tools",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "chrome-devtools-docs",
@@ -416,8 +713,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "browser-devtools", "level": 2 }],
-    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "browser-devtools",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "frontend-mentor",
@@ -432,13 +739,28 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "css", "level": 2 },
-      { "skillId": "responsive-design", "level": 2 }
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "html", "level": 1 },
-      { "skillId": "css", "level": 1 },
-      { "skillId": "javascript", "level": 1 }
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 1
+      },
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
     ]
   },
   {
@@ -454,10 +776,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "javascript-advanced", "level": 2 },
-      { "skillId": "browser-devtools", "level": 1 }
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "browser-devtools",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "javascript", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "realworld-app",
@@ -472,13 +805,28 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "react", "level": 2 },
-      { "skillId": "state-management", "level": 2 },
-      { "skillId": "api-integration", "level": 2 }
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "api-integration",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "javascript-advanced", "level": 2 },
-      { "skillId": "react", "level": 1 }
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 1
+      }
     ]
   },
   {
@@ -494,8 +842,14 @@
     "difficulty": 1,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "html", "level": 1 },
-      { "skillId": "version-control-git", "level": 1 }
+      {
+        "skillId": "html",
+        "level": 1
+      },
+      {
+        "skillId": "version-control-git",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -511,8 +865,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "css", "level": 1 }],
-    "skillsRequired": [{ "skillId": "css", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "css-diner",
@@ -526,8 +890,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.65,
-    "skillsTaught": [{ "skillId": "css", "level": 1 }],
-    "skillsRequired": [{ "skillId": "html", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "w3schools-js-quiz",
@@ -541,7 +915,335 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.6,
-    "skillsTaught": [{ "skillId": "javascript", "level": 1 }],
-    "skillsRequired": [{ "skillId": "javascript", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "testing-library-docs",
+    "kind": "course",
+    "title": "Testing Library Documentation",
+    "provider": "testing-library.com (official docs)",
+    "url": "https://testing-library.com/docs/",
+    "description": "Official guide to the Testing Library family (DOM, React, Vue): guiding principles, querying the DOM the way users do, firing events, async utilities and framework-specific setup. Teaches component testing that avoids implementation details.",
+    "durationHours": 6,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "frontend-testing",
+        "level": 2
+      },
+      {
+        "skillId": "unit-testing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 1
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "kcd-testing-javascript",
+    "kind": "course",
+    "title": "Testing JavaScript",
+    "provider": "Kent C. Dodds",
+    "url": "https://www.testingjavascript.com/",
+    "description": "Eight video modules (about 9 hours) on testing JavaScript applications: testing fundamentals, mocking, static analysis, configuring Jest, DOM and React Testing Library, Cypress end-to-end tests and testing Node backends. Follows the static/unit/integration/e2e 'testing trophy' approach.",
+    "durationHours": 10,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "unit-testing",
+        "level": 3
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "redux-essentials",
+    "kind": "course",
+    "title": "Redux Essentials, Part 1: Redux Overview and Concepts",
+    "provider": "redux.js.org (official docs)",
+    "url": "https://redux.js.org/tutorials/essentials/part-1-overview-concepts",
+    "description": "The official eight-part Redux Essentials tutorial: core concepts, Redux Toolkit app structure, data flow, async logic and data fetching, performance and normalisation, then RTK Query basics and advanced patterns, built around a social-feed example app.",
+    "durationHours": 12,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "state-management",
+        "level": 3
+      },
+      {
+        "skillId": "api-integration",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "react",
+        "level": 2
+      },
+      {
+        "skillId": "javascript-advanced",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "webpack-guides",
+    "kind": "course",
+    "title": "Guides | webpack",
+    "provider": "webpack.js.org (official docs)",
+    "url": "https://webpack.js.org/guides/",
+    "description": "webpack's official guide series from Getting Started through asset and output management, development setup, code splitting, caching, tree shaking, environment variables, hot module replacement, TypeScript and production builds.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "frontend-build-tools",
+        "level": 3
+      },
+      {
+        "skillId": "web-performance",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "w3c-digital-accessibility-foundations",
+    "kind": "course",
+    "title": "Digital Accessibility Foundations - Free Online Course",
+    "provider": "W3C Web Accessibility Initiative (on edX)",
+    "url": "https://www.w3.org/WAI/fundamentals/foundations-course/",
+    "description": "W3C WAI's self-paced course (delivered on edX) on what web accessibility is, how people with disabilities use technology, the business case, WCAG principles and standards, and first accessibility checks. About 16-20 hours over four modules.",
+    "durationHours": 18,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "web-accessibility",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-meta-advanced-react",
+    "kind": "course",
+    "title": "Advanced React",
+    "provider": "Coursera (Meta)",
+    "url": "https://www.coursera.org/learn/advanced-react",
+    "description": "Intermediate Meta course (about 26 hours) covering lists and forms, lifting state and the Context API, built-in and custom hooks, composition patterns such as higher-order components and render props, and testing components with React Testing Library, ending in a portfolio project.",
+    "durationHours": 26,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "react",
+        "level": 3
+      },
+      {
+        "skillId": "state-management",
+        "level": 2
+      },
+      {
+        "skillId": "frontend-testing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "webdev-learn-css",
+    "kind": "course",
+    "title": "Learn CSS",
+    "provider": "web.dev (Google)",
+    "url": "https://web.dev/learn/css",
+    "description": "Google's 38-module evergreen CSS course: box model, selectors, cascade and specificity, flexbox, grid, logical properties, custom properties, transitions and animations, container queries, gradients, filters and blend modes, with self-check questions per module.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "css-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "web-animations",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "html",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "wesbos-css-grid",
+    "kind": "course",
+    "title": "CSS Grid",
+    "provider": "Wes Bos",
+    "url": "https://cssgrid.io/",
+    "description": "Free 25-video course (about 4 hours) on CSS Grid: implicit and explicit tracks, sizing, item placement, minmax() and auto-fit responsive layouts, template areas, alignment, grid versus flexbox, and practical builds such as image galleries and a full responsive site.",
+    "durationHours": 4,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      {
+        "skillId": "css-advanced",
+        "level": 2
+      },
+      {
+        "skillId": "responsive-design",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "udacity-browser-rendering-optimization",
+    "kind": "course",
+    "title": "Browser Rendering Optimization",
+    "provider": "Udacity (Google)",
+    "url": "https://www.udacity.com/course/browser-rendering-optimization--ud860",
+    "description": "Free six-lesson course by Paul Lewis and Cameron Pittman on the browser rendering pipeline: the critical rendering path, the RAIL model, finding and removing jank with Chrome DevTools, JavaScript and web-worker optimisation, style/layout costs and compositor layers.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      {
+        "skillId": "web-performance",
+        "level": 2
+      },
+      {
+        "skillId": "browser-devtools",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "javascript-advanced",
+        "level": 1
+      },
+      {
+        "skillId": "css",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "animations-dev",
+    "kind": "course",
+    "title": "Animations on the Web",
+    "provider": "Emil Kowalski (animations.dev)",
+    "url": "https://animations.dev/",
+    "description": "Paid course by Emil Kowalski (Linear, ex-Vercel) on interface motion: animation theory (easing, timing, springs), CSS animations, Motion/Framer Motion from basics to complex sequences, what separates good from great animations, and four real-world walkthrough builds.",
+    "durationHours": 12,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 3,
+    "qualityPrior": 0.75,
+    "skillsTaught": [
+      {
+        "skillId": "web-animations",
+        "level": 3
+      },
+      {
+        "skillId": "css-advanced",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "css",
+        "level": 2
+      },
+      {
+        "skillId": "react",
+        "level": 1
+      }
+    ]
   }
 ]

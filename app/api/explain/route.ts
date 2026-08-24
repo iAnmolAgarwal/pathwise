@@ -1,21 +1,31 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { addTokenUsage, getLatestPath, getProfile } from "@/db/queries";
+import { getLatestPath, getProfile } from "@/db/queries";
 import { jsonError, parseBody } from "@/lib/api";
 import { requireLearner } from "@/lib/authz";
 import { profileSummaryFor } from "@/lib/chatContext";
+import { judgeGate } from "@/lib/budget";
 import { loadEngineData } from "@/lib/engineData";
 import { llm } from "@/llm/client";
 import { narrateEvidence } from "@/llm/explain";
-import { classifyLlmError } from "@/llm/judgeMode";
+import { addUsage, classifyLlmError, emptyUsage } from "@/llm/judgeMode";
 import { describeEvidence } from "@/llm/tools";
-import { EvidenceSchema } from "@/schemas";
+import { DegradationSchema, DescribedEvidenceSchema, EvidenceSchema } from "@/schemas";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 const BodySchema = z.object({ learnerId: z.uuid(), catalogId: z.string().min(1) });
+
+const ResponseSchema = z.object({
+  evidence: EvidenceSchema,
+  described: DescribedEvidenceSchema,
+  narration: z.string().nullable(),
+  degraded: DegradationSchema.nullable(),
+});
+type ExplainResponse = z.infer<typeof ResponseSchema>;
+const respond = (body: ExplainResponse) => NextResponse.json(ResponseSchema.parse(body));
 
 /**
  * POST /api/explain — the two renderings of §7 side by side: the structural Evidence
@@ -36,13 +46,16 @@ export async function POST(request: Request) {
 
   const evidence = EvidenceSchema.parse(item.evidence);
   const described = describeEvidence(evidence, loadEngineData());
+  const key = { userId: authz.user.id, learnerId };
+  const gate = await judgeGate.allow(key);
+  if (!gate.ok) return respond({ evidence, described, narration: null, degraded: gate.degradation });
   try {
     const { narration, usage } = await narrateEvidence(llm(), { evidence: described, profileSummary: profileSummaryFor(profile) });
-    await addTokenUsage(learnerId, authz.user.id, usage.input_tokens, usage.output_tokens);
-    return NextResponse.json({ evidence, described, narration, degraded: null });
+    await judgeGate.record(key, addUsage(emptyUsage(), usage));
+    return respond({ evidence, described, narration, degraded: null });
   } catch (err) {
     const degradation = classifyLlmError(err);
     if (!degradation) throw err;
-    return NextResponse.json({ evidence, described, narration: null, degraded: degradation });
+    return respond({ evidence, described, narration: null, degraded: degradation });
   }
 }

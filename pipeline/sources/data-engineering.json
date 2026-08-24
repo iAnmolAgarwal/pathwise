@@ -11,7 +11,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "sql", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -27,8 +32,14 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "advanced-sql", "level": 2 }
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
     ],
     "skillsRequired": []
   },
@@ -45,8 +56,14 @@
     "difficulty": 1,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "postgresql", "level": 1 }
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "postgresql",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -63,10 +80,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "postgresql", "level": 2 },
-      { "skillId": "advanced-sql", "level": 2 }
+      {
+        "skillId": "postgresql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "planetscale-mysql",
@@ -81,10 +109,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "mysql", "level": 2 },
-      { "skillId": "database-performance", "level": 2 }
+      {
+        "skillId": "mysql",
+        "level": 2
+      },
+      {
+        "skillId": "database-performance",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "mongodb-university",
@@ -98,8 +137,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "nosql-databases", "level": 2 }],
-    "skillsRequired": [{ "skillId": "programming-basics", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "nosql-databases",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "programming-basics",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "ibm-data-engineering",
@@ -114,13 +163,34 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "etl-pipelines", "level": 2 },
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "python", "level": 2 },
-      { "skillId": "data-warehousing", "level": 2 },
-      { "skillId": "big-data-fundamentals", "level": 2 },
-      { "skillId": "apache-airflow", "level": 1 },
-      { "skillId": "apache-kafka", "level": 1 }
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "apache-airflow",
+        "level": 1
+      },
+      {
+        "skillId": "apache-kafka",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -137,18 +207,48 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "etl-pipelines", "level": 3 },
-      { "skillId": "apache-spark", "level": 2 },
-      { "skillId": "apache-kafka", "level": 2 },
-      { "skillId": "dbt", "level": 2 },
-      { "skillId": "cloud-data-platforms", "level": 2 },
-      { "skillId": "big-data-fundamentals", "level": 2 },
-      { "skillId": "data-lakes", "level": 2 },
-      { "skillId": "docker", "level": 1 }
+      {
+        "skillId": "etl-pipelines",
+        "level": 3
+      },
+      {
+        "skillId": "apache-spark",
+        "level": 2
+      },
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      },
+      {
+        "skillId": "dbt",
+        "level": 2
+      },
+      {
+        "skillId": "cloud-data-platforms",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "data-lakes",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "sql", "level": 2 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      }
     ]
   },
   {
@@ -163,8 +263,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "data-modeling", "level": 2 }],
-    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "data-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "spark-quickstart",
@@ -178,10 +288,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "apache-spark", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "apache-spark",
+        "level": 1
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "big-data-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -196,8 +317,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "apache-kafka", "level": 2 }],
-    "skillsRequired": [{ "skillId": "big-data-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "airflow-tutorial",
@@ -211,10 +342,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "apache-airflow", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "apache-airflow",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "etl-pipelines", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 1
+      }
     ]
   },
   {
@@ -229,10 +371,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "dbt", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "dbt",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "advanced-sql", "level": 1 },
-      { "skillId": "data-warehousing", "level": 1 }
+      {
+        "skillId": "advanced-sql",
+        "level": 1
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
     ]
   },
   {
@@ -248,13 +401,28 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "cloud-data-platforms", "level": 2 },
-      { "skillId": "etl-pipelines", "level": 2 },
-      { "skillId": "data-warehousing", "level": 2 }
+      {
+        "skillId": "cloud-data-platforms",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "python", "level": 1 }
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      }
     ]
   },
   {
@@ -269,8 +437,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "elasticsearch", "level": 2 }],
-    "skillsRequired": [{ "skillId": "nosql-databases", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "elasticsearch",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "nosql-databases",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "gx-docs",
@@ -284,10 +462,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "data-quality", "level": 2 }],
+    "skillsTaught": [
+      {
+        "skillId": "data-quality",
+        "level": 2
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "etl-pipelines", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 1
+      }
     ]
   },
   {
@@ -302,8 +491,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "data-lakes", "level": 1 }],
-    "skillsRequired": [{ "skillId": "big-data-fundamentals", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "data-lakes",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "jaffle-shop",
@@ -317,8 +516,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "dbt", "level": 2 }],
-    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "dbt",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "data-eng-practice",
@@ -333,12 +542,24 @@
     "difficulty": 3,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "etl-pipelines", "level": 2 },
-      { "skillId": "python-advanced", "level": 1 }
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "python-advanced",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "sql", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
     ]
   },
   {
@@ -353,8 +574,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "apache-kafka", "level": 2 }],
-    "skillsRequired": [{ "skillId": "apache-kafka", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "apache-kafka",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "apache-kafka",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "nyc-taxi-pipeline",
@@ -369,12 +600,24 @@
     "difficulty": 3,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "etl-pipelines", "level": 2 },
-      { "skillId": "data-warehousing", "level": 1 }
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "sql", "level": 2 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 2
+      }
     ]
   },
   {
@@ -390,10 +633,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "advanced-sql", "level": 2 }
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "hackerrank-sql",
@@ -407,8 +661,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "sql", "level": 2 }],
-    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "sqlzoo",
@@ -422,7 +686,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.65,
-    "skillsTaught": [{ "skillId": "sql", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -437,7 +706,367 @@
     "cost": "freemium",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "advanced-sql", "level": 2 }],
-    "skillsRequired": [{ "skillId": "sql", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "udacity-sql-for-data-analysis",
+    "kind": "course",
+    "title": "SQL for Data Analysis",
+    "provider": "Udacity",
+    "url": "https://www.udacity.com/course/sql-for-data-analysis--ud198",
+    "description": "Free ten-lesson video course by Derek Steer that goes from basic SELECT, joins and aggregations through subqueries, temporary tables and data cleaning to advanced lessons on window functions, partitions, advanced joins and query performance tuning, all with in-browser SQL exercises.",
+    "durationHours": 25,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "sql",
+        "level": 3
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "coursera-sql-window-functions",
+    "kind": "course",
+    "title": "Transform Data: SQL Window Functions",
+    "provider": "Coursera",
+    "url": "https://www.coursera.org/learn/transform-data-sql-window-functions",
+    "description": "Short advanced-level course from the SQL at Scale specialization on unpivoting wide data, writing complex window functions for rolling metrics and time-series analysis, and optimizing analytical query performance on warehouse platforms such as SQL Server, Synapse, Teradata and Snowflake.",
+    "durationHours": 2,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.7,
+    "skillsTaught": [
+      {
+        "skillId": "advanced-sql",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "coursera-cu-data-warehouse-design",
+    "kind": "course",
+    "title": "Data Warehouse Concepts, Design, and Data Integration",
+    "provider": "Coursera (University of Colorado System)",
+    "url": "https://www.coursera.org/learn/dwdesign",
+    "description": "Five-module university course by Michael Mannino covering warehouse architectures, multidimensional data representation, star-schema and dimensional design methodologies, and data integration/ETL processes and tools such as Pentaho Data Integration, with graded assignments on schema design.",
+    "durationHours": 60,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "data-modeling",
+        "level": 3
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 3
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "kimball-dimensional-modeling-techniques",
+    "kind": "course",
+    "title": "Dimensional Modeling Techniques",
+    "provider": "Kimball Group",
+    "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/",
+    "description": "The canonical Kimball reference of dimensional modeling techniques, organized from fundamental concepts and basic fact/dimension table design through conformed dimensions, slowly changing dimension types, hierarchies, advanced fact and dimension techniques and special-purpose schemas; free to read online with a PDF version.",
+    "durationHours": 8,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "data-warehousing",
+        "level": 3
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "cmu-15445-database-systems",
+    "kind": "course",
+    "title": "Introduction to Database Systems (CMU 15-445/645)",
+    "provider": "Carnegie Mellon University",
+    "url": "https://15445.courses.cs.cmu.edu/",
+    "description": "CMU's flagship database internals course: relational/document/key-value data models, storage architectures, indexes and filters, query processing (joins, sorting, aggregation, optimization), transactions and concurrency control, recovery, and parallel/distributed architectures, with public lecture slides, notes and C++ projects on the BusTub engine.",
+    "durationHours": 80,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 5,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "database-performance",
+        "level": 3
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "use-the-index-luke",
+    "kind": "course",
+    "title": "Use The Index, Luke: A guide to SQL performance for developers",
+    "provider": "use-the-index-luke.com (Markus Winand)",
+    "url": "https://use-the-index-luke.com/",
+    "description": "Free web edition of Markus Winand's SQL Performance Explained: how B-tree indexes work, indexing WHERE clauses, joins, clustering, sorting and grouping, pagination and DML, plus reading execution plans, across Oracle, MySQL, PostgreSQL, SQL Server and Db2.",
+    "durationHours": 10,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "database-performance",
+        "level": 3
+      },
+      {
+        "skillId": "advanced-sql",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "coursera-epfl-scala-spark",
+    "kind": "course",
+    "title": "Big Data Analysis with Scala and Spark",
+    "provider": "Coursera (EPFL)",
+    "url": "https://www.coursera.org/learn/scala-spark-big-data",
+    "description": "Heather Miller's EPFL course on distributed data analysis with Spark: RDDs and pair RDDs, reduction operations, partitioning and shuffling, and structured data with Spark SQL, DataFrames and Datasets, with programming assignments in Scala.",
+    "durationHours": 30,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "apache-spark",
+        "level": 3
+      },
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "confluent-kafka-definitive-guide",
+    "kind": "course",
+    "title": "Apache Kafka: The Definitive Guide",
+    "provider": "Confluent (O'Reilly ebook)",
+    "url": "https://www.confluent.io/resources/ebook/kafka-the-definitive-guide/",
+    "description": "Free (form-gated) O'Reilly book by Narkhede, Shapira and Palino covering Kafka architecture, producers, consumers, topics, brokers and logs, production deployment, security and monitoring, data pipelines with Kafka Connect, and stream processing with Kafka Streams.",
+    "durationHours": 20,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "apache-kafka",
+        "level": 3
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "snowflake-dw-workshop-badge1",
+    "kind": "course",
+    "title": "Data Warehousing Workshop (Badge 1)",
+    "provider": "Snowflake University",
+    "url": "https://learn.snowflake.com/en/courses/OD-ESS-DWW/",
+    "description": "Free hands-on Snowflake Hands-On Essentials workshop with auto-graded labs: account setup and security basics, creating databases and tables, loading data with SQL and COPY INTO, and querying semi-structured JSON and XML, leading to a verified badge.",
+    "durationHours": 10,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "cloud-data-platforms",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      },
+      {
+        "skillId": "data-warehousing",
+        "level": 1
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "astronomer-learn-airflow",
+    "kind": "course",
+    "title": "Learn Airflow 3",
+    "provider": "Astronomer (docs)",
+    "url": "https://www.astronomer.io/docs/learn/",
+    "description": "Astronomer's free guide collection for Apache Airflow 3: DAG-writing tutorials, scheduling including event-driven and asset-driven pipelines, backfills, DAG versioning, remote execution and Airflow 2 to 3 migration, written by the company that maintains much of Airflow.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "apache-airflow",
+        "level": 3
+      },
+      {
+        "skillId": "etl-pipelines",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "dremio-iceberg-definitive-guide",
+    "kind": "course",
+    "title": "Apache Iceberg: The Definitive Guide",
+    "provider": "Dremio (O'Reilly ebook)",
+    "url": "https://www.dremio.com/guides/apache-iceberg-the-definitive-guide/",
+    "description": "Free (form-gated) O'Reilly book by Shiran, Hughes and Merced on the Apache Iceberg table format: table architecture and metadata, partitioning and performance tuning for large workloads, and using Iceberg from Spark, Flink and Dremio in a lakehouse architecture.",
+    "durationHours": 15,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "data-lakes",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "big-data-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "apache-spark",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "datakitchen-data-observability-cert",
+    "kind": "course",
+    "title": "Data Observability and Data Quality Testing Certification Series",
+    "provider": "DataKitchen",
+    "url": "https://datakitchen.io/data-observability-and-data-quality-testing-certification-series/",
+    "description": "Free four-part on-demand webinar series with homework on DataKitchen's open-source observability tools: data reliability in production, data testing in development and migration, and maturing toward observability practices, with a certification on completion.",
+    "durationHours": 8,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.65,
+    "skillsTaught": [
+      {
+        "skillId": "data-quality",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "etl-pipelines",
+        "level": 1
+      }
+    ]
   }
 ]

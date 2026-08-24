@@ -1,14 +1,20 @@
-import type { CatalogItem, Dislikes, Preferences, Profile, ScoreBreakdown } from "../schemas";
+import type { Branch, CatalogItem, Dislikes, Preferences, Profile, ScoreBreakdown } from "../schemas";
+import { branchEvidenceFor, primaryGapSkill } from "./evidence";
 import { centroid, cosine } from "./similarity";
 import type { Candidate, Gap } from "./types";
 
-/** Hybrid score weights (§5.2). Documented in the solution doc; changing them is a tuning decision. */
+/**
+ * Hybrid score weights (§5.2). Documented in the solution doc; changing them is a tuning
+ * decision. They sum to 1.0 so `breakdown.total` stays on a 0–1 scale — `transitionPrior`
+ * (D-27) was funded out of `preferenceFit`, not added on top.
+ */
 export const ENGINE_WEIGHTS = {
   coverage: 0.4,
   levelFit: 0.15,
-  preferenceFit: 0.15,
+  preferenceFit: 0.13,
   quality: 0.1,
   similarity: 0.2,
+  transitionPrior: 0.02,
 } as const;
 
 export type EngineWeights = { [K in keyof typeof ENGINE_WEIGHTS]: number };
@@ -76,14 +82,52 @@ export function preferenceFit(item: CatalogItem, prefs: Preferences, dislikes?: 
 }
 
 /**
- * Score every catalog item that advances at least one gap skill (§5.2). All five
+ * Empirical transition prior (§5.2, D-27): among the skills the learner already holds, the
+ * shrunk share of real learners who moved from one of them into this item's primary gap
+ * skill. Read from branches.json through the same lookup the evidence card uses, so the
+ * number that moved the score is exactly the number the learner is shown. Zero when no
+ * source observed the transition above its floors (`minSupportMet`, nTotal ≥ 50, n ≥ 5) —
+ * the common case, and correct: absence of evidence contributes nothing rather than
+ * penalising. The prerequisite graph is untouched by this; see §15.9.
+ */
+export function transitionPrior(
+  gapSkills: Candidate["gapSkills"],
+  profile: Profile,
+  branches: readonly Branch[],
+): number {
+  if (branches.length === 0) return 0;
+  const primary = primaryGapSkill({ gapSkills });
+  if (!primary) return 0;
+  // Must match buildEvidence exactly: only skills actually held (level > 0) count as known.
+  // Object.keys() would include level-0 entries and make the score disagree with the card.
+  const known = Object.entries(profile.skills)
+    .filter(([, v]) => v.level > 0)
+    .map(([id]) => id);
+  const branch = branchEvidenceFor(primary, known, branches);
+  return branch ? clamp01(branch.shareShrunk) : 0;
+}
+
+/**
+ * Score every catalog item that advances at least one gap skill (§5.2). All six
  * components are returned per candidate so the Evidence object can log them verbatim.
  */
+/**
+ * Catalog, vectors, the mined branch shares the transition prior reads (absent → the prior
+ * is 0, which is what a caller with no branch data should contribute) and — for the
+ * sensitivity study only — the weights to score with; absent, ENGINE_WEIGHTS.
+ */
+export type ScoringData = {
+  catalog: CatalogItem[];
+  embeddings: Record<string, number[]>;
+  branches?: readonly Branch[];
+  weights?: EngineWeights;
+};
+
 export function scoreCandidates(
   gap: Gap[],
   profile: Profile,
-  data: { catalog: CatalogItem[]; embeddings: Record<string, number[]> },
-  weights: EngineWeights = ENGINE_WEIGHTS,
+  data: ScoringData,
+  weights: EngineWeights = data.weights ?? ENGINE_WEIGHTS,
 ): Candidate[] {
   if (gap.length === 0) return [];
   const goalCentroid = centroid(
@@ -105,6 +149,7 @@ export function scoreCandidates(
       preferenceFit: preferenceFit(item, profile.preferences, profile.dislikes),
       quality: clamp01(item.qualityPrior),
       similarity,
+      transitionPrior: transitionPrior(gapSkills, profile, data.branches ?? []),
       total: 0,
     };
     breakdown.total =
@@ -112,7 +157,8 @@ export function scoreCandidates(
       weights.levelFit * breakdown.levelFit +
       weights.preferenceFit * breakdown.preferenceFit +
       weights.quality * breakdown.quality +
-      weights.similarity * breakdown.similarity;
+      weights.similarity * breakdown.similarity +
+      weights.transitionPrior * breakdown.transitionPrior;
     candidates.push({ item, breakdown, gapSkills });
   }
 

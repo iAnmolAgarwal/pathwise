@@ -12,13 +12,34 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "spreadsheets", "level": 2 },
-      { "skillId": "sql", "level": 1 },
-      { "skillId": "r-programming", "level": 1 },
-      { "skillId": "data-cleaning", "level": 2 },
-      { "skillId": "data-visualization", "level": 2 },
-      { "skillId": "data-storytelling", "level": 2 },
-      { "skillId": "tableau", "level": 1 }
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      },
+      {
+        "skillId": "sql",
+        "level": 1
+      },
+      {
+        "skillId": "r-programming",
+        "level": 1
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 2
+      },
+      {
+        "skillId": "tableau",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -34,7 +55,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "python", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -49,8 +75,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "python-data-analysis", "level": 2 }],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-data-viz",
@@ -64,8 +100,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "data-visualization", "level": 1 }],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "data-visualization",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-data-cleaning",
@@ -79,8 +125,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "data-cleaning", "level": 2 }],
-    "skillsRequired": [{ "skillId": "python-data-analysis", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "wes-mckinney-book",
@@ -95,10 +151,21 @@
     "difficulty": 2,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "python-data-analysis", "level": 3 },
-      { "skillId": "data-cleaning", "level": 2 }
+      {
+        "skillId": "python-data-analysis",
+        "level": 3
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "khan-stats",
@@ -113,9 +180,18 @@
     "difficulty": 1,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "statistics-fundamentals", "level": 2 },
-      { "skillId": "probability", "level": 2 },
-      { "skillId": "inferential-statistics", "level": 1 }
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "probability",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -131,10 +207,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "inferential-statistics", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "statistics-fundamentals", "level": 2 },
-      { "skillId": "probability", "level": 1 }
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "probability",
+        "level": 1
+      }
     ]
   },
   {
@@ -150,8 +237,14 @@
     "difficulty": 1,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "probability", "level": 1 },
-      { "skillId": "statistics-fundamentals", "level": 1 }
+      {
+        "skillId": "probability",
+        "level": 1
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -167,7 +260,12 @@
     "cost": "freemium",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "spreadsheets", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 3
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -183,10 +281,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "tableau", "level": 2 },
-      { "skillId": "data-visualization", "level": 1 }
+      {
+        "skillId": "tableau",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "spreadsheets", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "ms-powerbi-start",
@@ -200,8 +309,18 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "power-bi", "level": 1 }],
-    "skillsRequired": [{ "skillId": "spreadsheets", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "power-bi",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udemy-maven-powerbi",
@@ -216,10 +335,21 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "power-bi", "level": 3 },
-      { "skillId": "data-modeling", "level": 1 }
+      {
+        "skillId": "power-bi",
+        "level": 3
+      },
+      {
+        "skillId": "data-modeling",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "spreadsheets", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "r4ds",
@@ -234,11 +364,25 @@
     "difficulty": 2,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "r-programming", "level": 3 },
-      { "skillId": "data-visualization", "level": 2 },
-      { "skillId": "exploratory-data-analysis", "level": 2 }
+      {
+        "skillId": "r-programming",
+        "level": 3
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "statistics-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "udacity-ab-testing",
@@ -252,8 +396,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "ab-testing", "level": 2 }],
-    "skillsRequired": [{ "skillId": "inferential-statistics", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "ab-testing",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "fpp3",
@@ -267,10 +421,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "time-series-analysis", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "time-series-analysis",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "inferential-statistics", "level": 2 },
-      { "skillId": "r-programming", "level": 1 }
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 1
+      }
     ]
   },
   {
@@ -286,11 +451,25 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "python-data-analysis", "level": 2 },
-      { "skillId": "data-visualization", "level": 2 },
-      { "skillId": "exploratory-data-analysis", "level": 1 }
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "maven-challenges",
@@ -305,11 +484,25 @@
     "difficulty": 2,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "exploratory-data-analysis", "level": 2 },
-      { "skillId": "data-visualization", "level": 2 },
-      { "skillId": "data-storytelling", "level": 1 }
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "spreadsheets", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "tidytuesday",
@@ -324,10 +517,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "r-programming", "level": 2 },
-      { "skillId": "data-visualization", "level": 2 }
+      {
+        "skillId": "r-programming",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "r-programming", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "r-programming",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-datasets-eda",
@@ -342,10 +546,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "exploratory-data-analysis", "level": 2 },
-      { "skillId": "data-storytelling", "level": 1 }
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python-data-analysis", "level": 2 }]
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "fivethirtyeight-data",
@@ -360,10 +575,21 @@
     "difficulty": 2,
     "qualityPrior": 0.7,
     "skillsTaught": [
-      { "skillId": "exploratory-data-analysis", "level": 2 },
-      { "skillId": "data-cleaning", "level": 1 }
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python-data-analysis", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "stratascratch",
@@ -378,10 +604,21 @@
     "difficulty": 3,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "sql", "level": 2 },
-      { "skillId": "python-data-analysis", "level": 2 }
+      {
+        "skillId": "sql",
+        "level": 2
+      },
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "sql", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "sql",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "guess-correlation",
@@ -395,7 +632,12 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.6,
-    "skillsTaught": [{ "skillId": "statistics-fundamentals", "level": 1 }],
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -410,7 +652,458 @@
     "cost": "free",
     "difficulty": 1,
     "qualityPrior": 0.6,
-    "skillsTaught": [{ "skillId": "spreadsheets", "level": 1 }],
-    "skillsRequired": [{ "skillId": "spreadsheets", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "openintro-statistics",
+    "kind": "course",
+    "title": "OpenIntro Statistics",
+    "provider": "OpenIntro (free open textbook)",
+    "url": "https://www.openintro.org/book/os/",
+    "description": "Open-source college statistics textbook covering data summaries, probability, distributions, foundations for inference, categorical and numerical inference, and simple, multiple and logistic regression, with free PDF, videos, slides and labs in R/Python.",
+    "durationHours": 60,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "probability",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "duke-data-analysis-r",
+    "kind": "course",
+    "title": "Data Analysis with R Specialization",
+    "provider": "Coursera (Duke University)",
+    "url": "https://www.coursera.org/specializations/statistics",
+    "description": "Three-course Duke specialization by Mine Cetinkaya-Rundel: probability and data, inferential statistics (hypothesis tests, confidence intervals), and linear regression and modeling, all done hands-on in R and RStudio.",
+    "durationHours": 42,
+    "format": "video",
+    "cost": "paid",
+    "difficulty": 2,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "probability",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 3
+      },
+      {
+        "skillId": "r-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "mit-1805-prob-stats",
+    "kind": "course",
+    "title": "Introduction to Probability and Statistics",
+    "provider": "MIT OpenCourseWare (18.05, Spring 2022)",
+    "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/",
+    "description": "MIT undergraduate course with full lecture notes, problem sets with solutions, exams and R tutorials covering combinatorics, random variables and distributions, Bayesian inference, hypothesis testing, confidence intervals and linear regression.",
+    "durationHours": 80,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "probability",
+        "level": 3
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 3
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "think-stats-3e",
+    "kind": "course",
+    "title": "Think Stats, 3rd edition",
+    "provider": "Allen B. Downey (free online book)",
+    "url": "https://allendowney.github.io/ThinkStats/",
+    "description": "Free Python-first statistics book in 14 Jupyter chapters (runnable on Colab) that teaches exploratory data analysis, distributions, probability, hypothesis testing, regression and basic time series using real NIH datasets.",
+    "durationHours": 30,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 2
+      },
+      {
+        "skillId": "probability",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ucsd-design-experiments",
+    "kind": "course",
+    "title": "Designing, Running, and Analyzing Experiments",
+    "provider": "Coursera (University of California San Diego)",
+    "url": "https://www.coursera.org/learn/designexperiments",
+    "description": "Nine-module course on experiment design and analysis in R: tests of proportions, t-tests, validity, between- and within-subjects designs, factorial designs, generalized linear models and mixed-effects models.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 3
+      },
+      {
+        "skillId": "ab-testing",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "suny-practical-time-series",
+    "kind": "course",
+    "title": "Practical Time Series Analysis",
+    "provider": "Coursera (The State University of New York)",
+    "url": "https://www.coursera.org/learn/practical-time-series-analysis",
+    "description": "Six-week course in R covering stationarity, autocovariance and ACF/PACF, AR/MA/ARMA/ARIMA model fitting with Yule-Walker and AIC model selection, SARIMA seasonality and exponential-smoothing forecasts.",
+    "durationHours": 28,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "time-series-analysis",
+        "level": 3
+      },
+      {
+        "skillId": "r-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "inferential-statistics",
+        "level": 1
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "umich-intro-ds-python",
+    "kind": "course",
+    "title": "Introduction to Data Science in Python",
+    "provider": "Coursera (University of Michigan)",
+    "url": "https://www.coursera.org/learn/python-data-analysis",
+    "description": "First course of Michigan's Applied Data Science with Python: NumPy arrays, CSV handling, then pandas DataFrames, merging, grouping and pivot tables, ending with answering questions from messy data with distributions, sampling and t-tests.",
+    "durationHours": 30,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 3
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      },
+      {
+        "skillId": "inferential-statistics",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "jhu-exploratory-data-analysis",
+    "kind": "course",
+    "title": "Exploratory Data Analysis",
+    "provider": "Coursera (Johns Hopkins University)",
+    "url": "https://www.coursera.org/learn/exploratory-data-analysis",
+    "description": "Johns Hopkins course by Roger Peng on analytic graphics in R: base, lattice and ggplot2 plotting systems, principles of exploratory graphs, clustering and dimension reduction, colour use, and air-pollution case studies.",
+    "durationHours": 25,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "exploratory-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "jhu-getting-cleaning-data",
+    "kind": "course",
+    "title": "Getting and Cleaning Data",
+    "provider": "Coursera (Johns Hopkins University)",
+    "url": "https://www.coursera.org/learn/data-cleaning",
+    "description": "Johns Hopkins course on obtaining data from files, databases, web pages and APIs, then tidying it with dplyr and tidyr, reshaping, merging, and handling text and dates in R, with a tidy-dataset course project.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "data-cleaning",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "socviz-healy",
+    "kind": "course",
+    "title": "Data Visualization: A Practical Introduction",
+    "provider": "Kieran Healy (free online book, Princeton University Press)",
+    "url": "https://socviz.co/",
+    "description": "Complete free web draft of Healy's book teaching visualization principles and ggplot2 practice: looking at data, showing the right numbers, labels and annotations, plotting model results, maps, and refining plots.",
+    "durationHours": 25,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "r-programming",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "duke-data-viz-python",
+    "kind": "course",
+    "title": "Data Visualization with Python",
+    "provider": "Coursera (Duke University)",
+    "url": "https://www.coursera.org/learn/data-visualization-python",
+    "description": "Nine-hour Duke course spanning visualization fundamentals in spreadsheets, pandas/seaborn/matplotlib charts, interactive dashboards with Plotly, Dash and Streamlit, and BI tools Tableau and Amazon QuickSight.",
+    "durationHours": 9,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "data-visualization",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 1
+      },
+      {
+        "skillId": "tableau",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "duke-tableau-viz-comm",
+    "kind": "course",
+    "title": "Data Visualization and Communication with Tableau",
+    "provider": "Coursera (Duke University)",
+    "url": "https://www.coursera.org/learn/analytics-tableau",
+    "description": "Duke course on building Tableau visualizations and dynamic dashboards, asking the right business questions, and combining visuals, logic and stories into stakeholder presentations, with a final communication project.",
+    "durationHours": 25,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 2,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "tableau",
+        "level": 2
+      },
+      {
+        "skillId": "data-storytelling",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ibm-excel-basics",
+    "kind": "course",
+    "title": "Excel Basics for Data Analysis",
+    "provider": "Coursera (IBM)",
+    "url": "https://www.coursera.org/learn/excel-basics-data-analysis-ibm",
+    "description": "Short IBM course for absolute beginners on spreadsheets for analysis: Excel and Google Sheets basics, formulas and functions, cleaning and wrangling data, then filtering, sorting, lookup functions and pivot tables, with a final project.",
+    "durationHours": 10,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 1,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "spreadsheets",
+        "level": 2
+      }
+    ],
+    "skillsRequired": []
+  },
+  {
+    "id": "ms-powerbi-prepare-data",
+    "kind": "course",
+    "title": "Prepare data for analysis with Power BI",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/prepare-data-power-bi/",
+    "description": "Three-module Microsoft Learn path (PL-300 track) on getting data into Power BI from Excel, relational and NoSQL sources, cleaning and transforming it with Power Query, profiling columns, and choosing a model framework.",
+    "durationHours": 4,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 2,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "power-bi",
+        "level": 2
+      },
+      {
+        "skillId": "data-cleaning",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "ms-powerbi-model-data",
+    "kind": "course",
+    "title": "Model data with Power BI",
+    "provider": "Microsoft Learn",
+    "url": "https://learn.microsoft.com/en-us/training/paths/model-data-power-bi/",
+    "description": "Six-module Microsoft Learn path (PL-300 track) on semantic models and DAX: writing formulas, creating measures and calculations, modifying filter context, time-intelligence functions, and visual calculations in Power BI Desktop.",
+    "durationHours": 7,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "power-bi",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "spreadsheets",
+        "level": 1
+      }
+    ]
   }
 ]

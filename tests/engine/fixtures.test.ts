@@ -55,14 +55,15 @@ describe("fixture learners (§5.6)", () => {
     });
   }
 
-  it("beginner-frontend reaches React and ends with a real-world project", () => {
+  it("beginner-frontend reaches React and builds a real-world project after it", () => {
     const { path } = summarize("beginner-frontend");
     const ids = path.phases.flatMap((p) => p.items.map((i) => i.catalogId));
     expect(ids.some((id) => catalogById.get(id)!.skillsTaught.some((t) => t.skillId === "react"))).toBe(true);
     const html = ids.findIndex((id) => catalogById.get(id)!.skillsTaught.some((t) => t.skillId === "html"));
     const react = ids.findIndex((id) => catalogById.get(id)!.skillsTaught.some((t) => t.skillId === "react"));
     expect(html).toBeLessThan(react);
-    expect(path.phases.at(-1)!.items.some((i) => catalogById.get(i.catalogId)!.kind === "project")).toBe(true);
+    const lastProject = ids.findLastIndex((id) => catalogById.get(id)!.kind === "project");
+    expect(lastProject).toBeGreaterThan(react);
   });
 
   it("time-poor-cloud stays within its small budget", () => {

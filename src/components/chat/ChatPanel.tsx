@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState, type RefObject } from "react";
 
 import type { ChatEvent } from "@/llm/chat";
+import type { Degradation, DegradationReason } from "@/llm/judgeMode";
 import type { NovaState } from "@/schemas";
 import type { Path, Profile, ProfileOp, PathDiff } from "@/schemas";
 import type { ProfileCard, ProfileCardAnswer } from "@/schemas/profileCard";
@@ -40,6 +41,10 @@ type Props = {
   inputRef?: RefObject<HTMLTextAreaElement | null>;
   /** Judge mode has parked the model: show the resting notice. */
   resting?: boolean;
+  /** Why Nova rests; a spent budget closes the composer, an outage leaves it open for a retry. */
+  restingReason?: DegradationReason | null;
+  /** A turn came back degraded — the shell remembers the reason. */
+  onDegraded?: (degradation: Degradation) => void;
   /** Compact greeting for the landing drawer. */
   compact?: boolean;
   /** Stage-aware composer suggestions (src/lib/nextPrompts); null keeps the role carousel. */
@@ -77,6 +82,8 @@ export function ChatPanel({
   inputRef,
   prompts = null,
   resting = false,
+  restingReason = null,
+  onDegraded,
   compact = false,
 }: Props) {
   const [messages, setMessages] = useState<ChatMessageView[]>(initialMessages);
@@ -98,9 +105,11 @@ export function ChatPanel({
     bottomRef.current?.scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" });
   }, [messages, activity, reduce]);
 
+  const budgetSpent = resting && restingReason === "budget";
+
   async function send(text: string) {
     const message = text.trim();
-    if (!message || busy) return;
+    if (!message || busy || budgetSpent) return;
     setBusy(true);
     setError(null);
     setInput("");
@@ -152,6 +161,7 @@ export function ChatPanel({
             break;
           case "degraded":
             patch((m) => ({ ...m, degraded: true, text: m.text || event.degradation.message }));
+            onDegraded?.(event.degradation);
             break;
           case "done":
             patch((m) => ({ ...m, streaming: false }));
@@ -199,7 +209,7 @@ export function ChatPanel({
     }
   }
 
-  const canSend = input.trim().length > 0 && !busy;
+  const canSend = input.trim().length > 0 && !busy && !budgetSpent;
 
   return (
     <section className={styles.panel} aria-label="Chat with Nova">
@@ -277,7 +287,9 @@ export function ChatPanel({
               transition={ENTER}
             >
               <span className={styles.noticeDot} aria-hidden />
-              Nova is resting — the model is unavailable right now. Your path, graph and dashboard still work.
+              {budgetSpent
+                ? "Nova is resting — today's conversation budget is spent. Your path, feedback, graph and dashboard still work; chat opens again tomorrow."
+                : "Nova is resting — the model is unavailable right now. Your path, graph and dashboard still work."}
             </motion.p>
           )}
         </AnimatePresence>
@@ -322,7 +334,7 @@ export function ChatPanel({
                 void send(input);
               }
             }}
-            disabled={busy}
+            disabled={busy || budgetSpent}
             aria-label="Message Nova"
             data-testid="chat-input"
           />

@@ -1,0 +1,464 @@
+{
+  "generatedAt": "2026-08-23T00:00:00.000Z",
+  "delta": 0.25,
+  "baseline": {
+    "coverage": 0.4,
+    "levelFit": 0.15,
+    "preferenceFit": 0.13,
+    "quality": 0.1,
+    "similarity": 0.2,
+    "transitionPrior": 0.02
+  },
+  "corpus": {
+    "learners": 66,
+    "fixtures": 5,
+    "items": 983
+  },
+  "results": [
+    {
+      "axis": "coverage",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.5,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 6,
+      "itemsAdded": 5,
+      "itemsRemoved": 5,
+      "itemsChanged": 10,
+      "itemsTotal": 983,
+      "itemsChangedPct": 1.02,
+      "reorderedLearners": 4,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "beginner-frontend",
+          "added": [],
+          "removed": [],
+          "reordered": 2
+        },
+        {
+          "name": "career-switcher-to-ds",
+          "added": [],
+          "removed": [
+            "tidytuesday"
+          ],
+          "reordered": 1
+        },
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "hackerrank-sql",
+            "3b1b-nn",
+            "fastai"
+          ],
+          "removed": [
+            "sqlzoo",
+            "imperial-math-ml"
+          ],
+          "reordered": 4
+        }
+      ]
+    },
+    {
+      "axis": "coverage",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.3,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 10,
+      "itemsAdded": 25,
+      "itemsRemoved": 15,
+      "itemsChanged": 40,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.07,
+      "reorderedLearners": 6,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "career-switcher-to-ds",
+          "added": [
+            "sqlzoo"
+          ],
+          "removed": [
+            "hackerrank-sql"
+          ],
+          "reordered": 0
+        },
+        {
+          "name": "custom-goal",
+          "added": [
+            "dlai-prompt-eng",
+            "anthropic-quickstarts",
+            "dlai-functions-tools-agents-langchain"
+          ],
+          "removed": [
+            "anthropic-building-with-claude-api"
+          ],
+          "reordered": 0
+        }
+      ]
+    },
+    {
+      "axis": "levelFit",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.1875,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 18,
+      "itemsAdded": 23,
+      "itemsRemoved": 22,
+      "itemsChanged": 45,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.58,
+      "reorderedLearners": 3,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "career-switcher-to-ds",
+          "added": [
+            "sqlzoo"
+          ],
+          "removed": [
+            "hackerrank-sql"
+          ],
+          "reordered": 0
+        }
+      ]
+    },
+    {
+      "axis": "levelFit",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.1125,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 15,
+      "itemsAdded": 17,
+      "itemsRemoved": 16,
+      "itemsChanged": 33,
+      "itemsTotal": 983,
+      "itemsChangedPct": 3.36,
+      "reorderedLearners": 2,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "hackerrank-sql",
+            "3b1b-nn",
+            "fastai"
+          ],
+          "removed": [
+            "sqlzoo",
+            "imperial-math-ml"
+          ],
+          "reordered": 4
+        }
+      ]
+    },
+    {
+      "axis": "preferenceFit",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.1625,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 3,
+      "itemsAdded": 3,
+      "itemsRemoved": 4,
+      "itemsChanged": 7,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.71,
+      "reorderedLearners": 1,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
+    },
+    {
+      "axis": "preferenceFit",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.0975,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 4,
+      "itemsAdded": 2,
+      "itemsRemoved": 3,
+      "itemsChanged": 5,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.51,
+      "reorderedLearners": 2,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "beginner-frontend",
+          "added": [],
+          "removed": [],
+          "reordered": 2
+        }
+      ]
+    },
+    {
+      "axis": "quality",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.125,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 3,
+      "itemsAdded": 3,
+      "itemsRemoved": 3,
+      "itemsChanged": 6,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.61,
+      "reorderedLearners": 0,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
+    },
+    {
+      "axis": "quality",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.075,
+        "similarity": 0.2,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 8,
+      "itemsAdded": 12,
+      "itemsRemoved": 11,
+      "itemsChanged": 23,
+      "itemsTotal": 983,
+      "itemsChangedPct": 2.34,
+      "reorderedLearners": 1,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "career-switcher-to-ds",
+          "added": [
+            "sqlzoo"
+          ],
+          "removed": [
+            "hackerrank-sql"
+          ],
+          "reordered": 0
+        },
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "3b1b-nn",
+            "fastai"
+          ],
+          "removed": [
+            "imperial-math-ml"
+          ],
+          "reordered": 4
+        }
+      ]
+    },
+    {
+      "axis": "similarity",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.25,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 8,
+      "itemsAdded": 9,
+      "itemsRemoved": 7,
+      "itemsChanged": 16,
+      "itemsTotal": 983,
+      "itemsChangedPct": 1.63,
+      "reorderedLearners": 2,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "hackerrank-sql"
+          ],
+          "removed": [
+            "sqlzoo"
+          ],
+          "reordered": 0
+        }
+      ]
+    },
+    {
+      "axis": "similarity",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.15,
+        "transitionPrior": 0.02
+      },
+      "learners": 66,
+      "learnersChanged": 19,
+      "itemsAdded": 24,
+      "itemsRemoved": 23,
+      "itemsChanged": 47,
+      "itemsTotal": 983,
+      "itemsChangedPct": 4.78,
+      "reorderedLearners": 7,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": [
+        {
+          "name": "beginner-frontend",
+          "added": [],
+          "removed": [],
+          "reordered": 2
+        },
+        {
+          "name": "career-switcher-to-ds",
+          "added": [
+            "sqlzoo"
+          ],
+          "removed": [
+            "hackerrank-sql",
+            "tidytuesday"
+          ],
+          "reordered": 1
+        },
+        {
+          "name": "partial-skills-ml",
+          "added": [
+            "3b1b-nn",
+            "fastai"
+          ],
+          "removed": [
+            "imperial-math-ml"
+          ],
+          "reordered": 4
+        }
+      ]
+    },
+    {
+      "axis": "transitionPrior",
+      "direction": "+25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.025
+      },
+      "learners": 66,
+      "learnersChanged": 1,
+      "itemsAdded": 1,
+      "itemsRemoved": 1,
+      "itemsChanged": 2,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0.2,
+      "reorderedLearners": 0,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
+    },
+    {
+      "axis": "transitionPrior",
+      "direction": "-25%",
+      "weights": {
+        "coverage": 0.4,
+        "levelFit": 0.15,
+        "preferenceFit": 0.13,
+        "quality": 0.1,
+        "similarity": 0.2,
+        "transitionPrior": 0.015
+      },
+      "learners": 66,
+      "learnersChanged": 0,
+      "itemsAdded": 0,
+      "itemsRemoved": 0,
+      "itemsChanged": 0,
+      "itemsTotal": 983,
+      "itemsChangedPct": 0,
+      "reorderedLearners": 0,
+      "phaseOrderFlips": 0,
+      "phaseCountChanges": 0,
+      "fixtureFlips": [],
+      "phaseFlipLearners": [],
+      "fixtureChanges": []
+    }
+  ]
+}

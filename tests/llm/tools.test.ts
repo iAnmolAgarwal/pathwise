@@ -135,7 +135,7 @@ describe("describeEvidence learner evidence (§7 rendering 2)", () => {
     const base = {
       catalogId: data.catalog[0].id,
       gapSkillsCovered: [],
-      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, total: 0 },
+      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, transitionPrior: 0, total: 0 },
       sequencedAfter: [],
       provenance: "https://example.com/x",
     };
@@ -158,7 +158,7 @@ describe("describeEvidence learner evidence (§7 rendering 2)", () => {
     const base = {
       catalogId: data.catalog[0].id,
       gapSkillsCovered: [],
-      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, total: 0 },
+      scoreBreakdown: { coverage: 0, levelFit: 0, preferenceFit: 0, quality: 0, similarity: 0, transitionPrior: 0, total: 0 },
       sequencedAfter: [],
       provenance: "https://example.com/x",
     };

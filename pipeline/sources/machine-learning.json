@@ -12,14 +12,32 @@
     "difficulty": 2,
     "qualityPrior": 0.95,
     "skillsTaught": [
-      { "skillId": "ml-fundamentals", "level": 3 },
-      { "skillId": "supervised-learning", "level": 3 },
-      { "skillId": "unsupervised-learning", "level": 2 },
-      { "skillId": "neural-networks", "level": 2 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 3
+      },
+      {
+        "skillId": "unsupervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "statistics-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -35,15 +53,36 @@
     "difficulty": 4,
     "qualityPrior": 0.95,
     "skillsTaught": [
-      { "skillId": "deep-learning", "level": 3 },
-      { "skillId": "neural-networks", "level": 3 },
-      { "skillId": "computer-vision", "level": 1 },
-      { "skillId": "nlp", "level": 1 }
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 3
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "ml-fundamentals", "level": 2 },
-      { "skillId": "math-for-ml", "level": 2 },
-      { "skillId": "python", "level": 2 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
     ]
   },
   {
@@ -59,14 +98,32 @@
     "difficulty": 3,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "deep-learning", "level": 3 },
-      { "skillId": "pytorch", "level": 2 },
-      { "skillId": "computer-vision", "level": 2 },
-      { "skillId": "nlp", "level": 1 }
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      },
+      {
+        "skillId": "pytorch",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 2
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "ml-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -82,13 +139,28 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "ml-fundamentals", "level": 2 },
-      { "skillId": "supervised-learning", "level": 1 },
-      { "skillId": "feature-engineering", "level": 1 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 1 },
-      { "skillId": "statistics-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 1
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -104,11 +176,25 @@
     "difficulty": 1,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "ml-fundamentals", "level": 1 },
-      { "skillId": "supervised-learning", "level": 1 },
-      { "skillId": "scikit-learn", "level": 1 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-intermediate-ml",
@@ -123,11 +209,25 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "scikit-learn", "level": 2 },
-      { "skillId": "feature-engineering", "level": 2 },
-      { "skillId": "model-evaluation", "level": 1 }
+      {
+        "skillId": "scikit-learn",
+        "level": 2
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "sklearn-guide",
@@ -142,12 +242,24 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "scikit-learn", "level": 3 },
-      { "skillId": "model-evaluation", "level": 2 }
+      {
+        "skillId": "scikit-learn",
+        "level": 3
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "ml-fundamentals", "level": 2 },
-      { "skillId": "python-data-analysis", "level": 1 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
     ]
   },
   {
@@ -163,10 +275,22 @@
     "difficulty": 2,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "ml-fundamentals", "level": 2 },
-      { "skillId": "supervised-learning", "level": 2 },
-      { "skillId": "model-evaluation", "level": 2 },
-      { "skillId": "statistics-fundamentals", "level": 2 }
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 2
+      },
+      {
+        "skillId": "statistics-fundamentals",
+        "level": 2
+      }
     ],
     "skillsRequired": []
   },
@@ -182,7 +306,12 @@
     "cost": "freemium",
     "difficulty": 3,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "math-for-ml", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "math-for-ml",
+        "level": 3
+      }
+    ],
     "skillsRequired": []
   },
   {
@@ -198,8 +327,14 @@
     "difficulty": 2,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "neural-networks", "level": 1 },
-      { "skillId": "math-for-ml", "level": 1 }
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 1
+      }
     ],
     "skillsRequired": []
   },
@@ -216,12 +351,24 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "pytorch", "level": 2 },
-      { "skillId": "deep-learning", "level": 1 }
+      {
+        "skillId": "pytorch",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "neural-networks", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      }
     ]
   },
   {
@@ -237,14 +384,32 @@
     "difficulty": 3,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "pytorch", "level": 3 },
-      { "skillId": "deep-learning", "level": 2 },
-      { "skillId": "computer-vision", "level": 1 },
-      { "skillId": "model-deployment", "level": 1 }
+      {
+        "skillId": "pytorch",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "ml-fundamentals", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
     ]
   },
   {
@@ -260,14 +425,32 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "tensorflow", "level": 3 },
-      { "skillId": "deep-learning", "level": 2 },
-      { "skillId": "computer-vision", "level": 2 },
-      { "skillId": "nlp", "level": 1 }
+      {
+        "skillId": "tensorflow",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 2
+      },
+      {
+        "skillId": "nlp",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "neural-networks", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 1
+      }
     ]
   },
   {
@@ -283,13 +466,28 @@
     "difficulty": 5,
     "qualityPrior": 0.9,
     "skillsTaught": [
-      { "skillId": "computer-vision", "level": 3 },
-      { "skillId": "deep-learning", "level": 2 }
+      {
+        "skillId": "computer-vision",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      }
     ],
     "skillsRequired": [
-      { "skillId": "deep-learning", "level": 1 },
-      { "skillId": "math-for-ml", "level": 2 },
-      { "skillId": "python", "level": 2 }
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
     ]
   },
   {
@@ -305,13 +503,28 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "nlp", "level": 3 },
-      { "skillId": "fine-tuning", "level": 1 },
-      { "skillId": "llm-fundamentals", "level": 1 }
+      {
+        "skillId": "nlp",
+        "level": 3
+      },
+      {
+        "skillId": "fine-tuning",
+        "level": 1
+      },
+      {
+        "skillId": "llm-fundamentals",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "deep-learning", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      }
     ]
   },
   {
@@ -326,8 +539,18 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "recommender-systems", "level": 2 }],
-    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "recommender-systems",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "spinning-up-rl",
@@ -341,11 +564,25 @@
     "cost": "free",
     "difficulty": 5,
     "qualityPrior": 0.85,
-    "skillsTaught": [{ "skillId": "reinforcement-learning", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "reinforcement-learning",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "deep-learning", "level": 2 },
-      { "skillId": "math-for-ml", "level": 2 },
-      { "skillId": "python", "level": 2 }
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
     ]
   },
   {
@@ -360,10 +597,21 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.8,
-    "skillsTaught": [{ "skillId": "model-interpretability", "level": 3 }],
+    "skillsTaught": [
+      {
+        "skillId": "model-interpretability",
+        "level": 3
+      }
+    ],
     "skillsRequired": [
-      { "skillId": "supervised-learning", "level": 2 },
-      { "skillId": "model-evaluation", "level": 1 }
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
     ]
   },
   {
@@ -379,14 +627,32 @@
     "difficulty": 3,
     "qualityPrior": 0.85,
     "skillsTaught": [
-      { "skillId": "mlops", "level": 3 },
-      { "skillId": "model-deployment", "level": 2 },
-      { "skillId": "docker", "level": 1 },
-      { "skillId": "ci-cd", "level": 1 }
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "scikit-learn", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
     ]
   },
   {
@@ -402,13 +668,28 @@
     "difficulty": 4,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "mlops", "level": 2 },
-      { "skillId": "model-deployment", "level": 2 },
-      { "skillId": "feature-engineering", "level": 1 }
+      {
+        "skillId": "mlops",
+        "level": 2
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
     ],
     "skillsRequired": [
-      { "skillId": "python", "level": 2 },
-      { "skillId": "scikit-learn", "level": 1 }
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
     ]
   },
   {
@@ -424,11 +705,25 @@
     "difficulty": 1,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "scikit-learn", "level": 1 },
-      { "skillId": "supervised-learning", "level": 1 },
-      { "skillId": "feature-engineering", "level": 1 }
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 1
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "python-data-analysis", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-house-prices",
@@ -443,11 +738,25 @@
     "difficulty": 2,
     "qualityPrior": 0.8,
     "skillsTaught": [
-      { "skillId": "feature-engineering", "level": 2 },
-      { "skillId": "supervised-learning", "level": 2 },
-      { "skillId": "model-evaluation", "level": 1 }
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "scikit-learn", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "kaggle-digit-recognizer",
@@ -462,10 +771,21 @@
     "difficulty": 2,
     "qualityPrior": 0.75,
     "skillsTaught": [
-      { "skillId": "neural-networks", "level": 2 },
-      { "skillId": "computer-vision", "level": 1 }
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      }
     ],
-    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "hf-spaces-demo",
@@ -479,8 +799,18 @@
     "cost": "free",
     "difficulty": 2,
     "qualityPrior": 0.75,
-    "skillsTaught": [{ "skillId": "model-deployment", "level": 2 }],
-    "skillsRequired": [{ "skillId": "scikit-learn", "level": 1 }]
+    "skillsTaught": [
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "deep-ml",
@@ -495,10 +825,21 @@
     "difficulty": 3,
     "qualityPrior": 0.65,
     "skillsTaught": [
-      { "skillId": "math-for-ml", "level": 2 },
-      { "skillId": "ml-fundamentals", "level": 2 }
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
     ],
-    "skillsRequired": [{ "skillId": "ml-fundamentals", "level": 1 }]
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ]
   },
   {
     "id": "hackerrank-ai",
@@ -512,7 +853,465 @@
     "cost": "free",
     "difficulty": 3,
     "qualityPrior": 0.7,
-    "skillsTaught": [{ "skillId": "ml-fundamentals", "level": 2 }],
-    "skillsRequired": [{ "skillId": "python", "level": 2 }]
+    "skillsTaught": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "fsdl-2022",
+    "kind": "course",
+    "title": "Full Stack Deep Learning - 2022 Course",
+    "provider": "Full Stack Deep Learning",
+    "url": "https://fullstackdeeplearning.com/course/2022/",
+    "description": "Free lecture-plus-lab course on the full ML lifecycle: development infrastructure, experiment management, data management, deploying models as web services, continual learning and monitoring, and team practice. Labs build and ship a text-recognition app with PyTorch Lightning.",
+    "durationHours": 40,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "model-deployment",
+        "level": 3
+      },
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "pytorch",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "dlai-ml-in-production",
+    "kind": "course",
+    "title": "Machine Learning in Production",
+    "provider": "Coursera (DeepLearning.AI)",
+    "url": "https://www.coursera.org/learn/introduction-to-machine-learning-in-production",
+    "description": "Andrew Ng's three-module course on the production ML lifecycle: deployment patterns and monitoring, error analysis, baselines, handling skewed datasets and experiment tracking, and data definition and labeling consistency.",
+    "durationHours": 11,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "model-deployment",
+        "level": 2
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 3
+      },
+      {
+        "skillId": "mlops",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "stanford-cs329s",
+    "kind": "course",
+    "title": "CS 329S: Machine Learning Systems Design",
+    "provider": "Stanford University",
+    "url": "https://stanford-cs329s.github.io/",
+    "description": "Chip Huyen's Stanford course on building ML systems that are deployable, reliable and scalable, with public lecture slides and notes covering data management, feature engineering, model selection, deployment, monitoring, privacy, fairness and security.",
+    "durationHours": 30,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "model-deployment",
+        "level": 3
+      },
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "ml-fundamentals",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "evidently-ml-observability",
+    "kind": "course",
+    "title": "Open-source AI observability course",
+    "provider": "Evidently AI",
+    "url": "https://www.evidentlyai.com/ml-observability-course",
+    "description": "Free six-module course with 40+ videos and code examples on ML monitoring: model-quality and data-quality metrics, data drift, monitoring NLP and embeddings, designing monitoring, validating ML pipelines, and deploying a monitoring dashboard with Evidently.",
+    "durationHours": 15,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 2
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "kaggle-ml-explainability",
+    "kind": "course",
+    "title": "Machine Learning Explainability",
+    "provider": "Kaggle Learn",
+    "url": "https://www.kaggle.com/learn/machine-learning-explainability",
+    "description": "Short hands-on Kaggle Learn course on explaining model predictions: permutation importance, partial dependence plots, SHAP values and advanced SHAP summary and dependence plots, with exercises in notebooks.",
+    "durationHours": 4,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "model-interpretability",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "scikit-learn",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "kaggle-feature-engineering",
+    "kind": "course",
+    "title": "Feature Engineering",
+    "provider": "Kaggle Learn",
+    "url": "https://www.kaggle.com/learn/feature-engineering",
+    "description": "Kaggle Learn course on building better features: mutual information for feature discovery, creating features, k-means clustering features, PCA, and target encoding, applied in notebook exercises on a house-prices dataset.",
+    "durationHours": 5,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "feature-engineering",
+        "level": 2
+      },
+      {
+        "skillId": "unsupervised-learning",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "hf-deep-rl-course",
+    "kind": "course",
+    "title": "Deep Reinforcement Learning Course",
+    "provider": "Hugging Face",
+    "url": "https://huggingface.co/learn/deep-rl-course/unit0/introduction",
+    "description": "Free self-paced course (about 3-4 hours per weekly unit) on deep RL from Q-learning to policy gradients, PPO and multi-agent RL, training agents in Colab with Stable-Baselines3 and sharing them on the Hugging Face Hub.",
+    "durationHours": 40,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.8,
+    "skillsTaught": [
+      {
+        "skillId": "reinforcement-learning",
+        "level": 3
+      },
+      {
+        "skillId": "pytorch",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "deep-learning",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "d2l-ai",
+    "kind": "course",
+    "title": "Dive into Deep Learning",
+    "provider": "d2l.ai (Zhang, Lipton, Li, Smola; free online book)",
+    "url": "https://d2l.ai/",
+    "description": "Free interactive deep-learning textbook of 23 chapters with runnable notebooks in PyTorch, JAX and TensorFlow: preliminaries math, linear and multilayer networks, CNNs, RNNs, attention and transformers, optimization, computer vision, NLP, recommender systems and RL.",
+    "durationHours": 100,
+    "format": "text",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 3
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      },
+      {
+        "skillId": "pytorch",
+        "level": 2
+      },
+      {
+        "skillId": "recommender-systems",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "stanford-cs224n",
+    "kind": "course",
+    "title": "CS224N: Natural Language Processing with Deep Learning",
+    "provider": "Stanford University",
+    "url": "https://web.stanford.edu/class/cs224n/",
+    "description": "Stanford's NLP course with public lecture videos, slides and assignments: word vectors, backpropagation, RNN language models, transformers and self-attention, LLM pretraining and post-training, efficient adaptation, RAG and agents, evaluation and interpretability.",
+    "durationHours": 60,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 4,
+    "qualityPrior": 0.95,
+    "skillsTaught": [
+      {
+        "skillId": "nlp",
+        "level": 3
+      },
+      {
+        "skillId": "deep-learning",
+        "level": 3
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "pytorch",
+        "level": 1
+      },
+      {
+        "skillId": "math-for-ml",
+        "level": 2
+      }
+    ]
+  },
+  {
+    "id": "mit-6s191",
+    "kind": "course",
+    "title": "MIT 6.S191: Introduction to Deep Learning",
+    "provider": "MIT",
+    "url": "https://introtodeeplearning.com/",
+    "description": "MIT's open bootcamp on deep learning with lecture videos and Colab labs: sequence modeling, deep computer vision, generative modeling, deep reinforcement learning and new frontiers, with labs on music generation, facial detection and fine-tuning LLMs.",
+    "durationHours": 20,
+    "format": "video",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "deep-learning",
+        "level": 2
+      },
+      {
+        "skillId": "neural-networks",
+        "level": 2
+      },
+      {
+        "skillId": "computer-vision",
+        "level": 1
+      },
+      {
+        "skillId": "reinforcement-learning",
+        "level": 1
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "math-for-ml",
+        "level": 1
+      },
+      {
+        "skillId": "python",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "inria-sklearn-mooc",
+    "kind": "course",
+    "title": "Machine Learning in Python with scikit-learn",
+    "provider": "Inria (scikit-learn core team MOOC)",
+    "url": "https://inria.github.io/scikit-learn-mooc/",
+    "description": "Free MOOC from the scikit-learn maintainers: predictive modeling pipelines, overfitting and model selection, hyperparameter tuning, linear models, trees and ensembles, evaluation metrics for classification and regression, dimensionality reduction, feature selection and clustering.",
+    "durationHours": 30,
+    "format": "interactive",
+    "cost": "free",
+    "difficulty": 3,
+    "qualityPrior": 0.9,
+    "skillsTaught": [
+      {
+        "skillId": "scikit-learn",
+        "level": 3
+      },
+      {
+        "skillId": "model-evaluation",
+        "level": 3
+      },
+      {
+        "skillId": "supervised-learning",
+        "level": 3
+      },
+      {
+        "skillId": "unsupervised-learning",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python-data-analysis",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "duke-mlops-spec",
+    "kind": "course",
+    "title": "MLOps | Machine Learning Operations Specialization",
+    "provider": "Coursera (Duke University)",
+    "url": "https://www.coursera.org/specializations/mlops-machine-learning-duke",
+    "description": "Four-course specialization by Noah Gift on operationalizing ML: Python essentials for MLOps, DevOps/DataOps/MLOps practices, MLOps platforms on Amazon SageMaker and Azure ML, and MLOps tools MLflow and Hugging Face, with hands-on GitHub exercises.",
+    "durationHours": 145,
+    "format": "video",
+    "cost": "freemium",
+    "difficulty": 4,
+    "qualityPrior": 0.85,
+    "skillsTaught": [
+      {
+        "skillId": "mlops",
+        "level": 3
+      },
+      {
+        "skillId": "model-deployment",
+        "level": 3
+      },
+      {
+        "skillId": "ci-cd",
+        "level": 2
+      }
+    ],
+    "skillsRequired": [
+      {
+        "skillId": "python",
+        "level": 2
+      },
+      {
+        "skillId": "ml-fundamentals",
+        "level": 2
+      },
+      {
+        "skillId": "docker",
+        "level": 1
+      }
+    ]
   }
 ]

@@ -4,10 +4,10 @@
     "skills": 159,
     "prereqEdges": 193,
     "goals": 15,
-    "courses": 183,
+    "courses": 307,
     "projects": 36,
     "assessments": 27,
-    "embeddings": 405
+    "embeddings": 529
   },
   "evidence": {
     "stackoverflow": {
@@ -81,8 +81,8 @@
   "dataHashes": {
     "skills.json": "a6d3d2f4894f2e5cd5d47502dd79def203954270d90323eff0815baf7892c95d",
     "goals.json": "d10a8a4a3eabcf7ed046e90b880917e70adb8a3da906eec91cab11852e08fd7e",
-    "catalog.json": "d488c76a36a239991e086f5787fbf19fee2a9573fc954abfc65c8aebf21fd6b4",
-    "embeddings.json": "5ab1bc6163cc9193e6d61a683e89288a6284bd4d9475cb3dfd37ac53ab5f799e",
+    "catalog.json": "c838db431da562e40b433b9d6f11f0fd667e1ec1bfce07d7cd139e5527fd6381",
+    "embeddings.json": "20e4f43ddfaa90e1657226df42560c9ab5cdb4906912034aeb733b95c3950dd1",
     "skill_edges.json": "29ed93019aee7f074d0fbaecf29e572ced36b49b94f966f4f05e9a7d9b3c2bc5",
     "branches.json": "fccc30d86b1da44dad0f3b10d15c76d2a426c6b318b2446317bd5a3d60142cf9"
   }

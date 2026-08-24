@@ -2,69 +2,14 @@ import { describe, expect, it } from "vitest";
 import { generatePath, prereqMap } from "@/engine";
 import { achievedLevels, unmetRequirements } from "@/engine/select";
 import { loadEngineData } from "@/lib/engineData";
-import type { CatalogItem, Profile } from "@/schemas";
-import { FIXTURE_LEARNERS } from "../fixtures/learners";
+import type { CatalogItem } from "@/schemas";
+import { sweepProfiles } from "../fixtures/sweep";
 
 const NOW = "2026-08-15T00:00:00.000Z";
 const data = loadEngineData();
 const catalogById = new Map(data.catalog.map((c) => [c.id, c]));
 
-/**
- * A deterministic sweep: every goal template under several learner shapes, plus the five
- * fixtures. Known-skill sets are derived from the template's own requirements so each
- * profile is a plausible partial learner rather than random noise.
- */
-function buildProfiles(): { name: string; profile: Profile }[] {
-  const out: { name: string; profile: Profile }[] = Object.entries(FIXTURE_LEARNERS).map(
-    ([name, profile]) => ({ name, profile }),
-  );
-  const prefs = (over: Partial<Profile["preferences"]>): Profile["preferences"] => ({
-    hoursPerWeek: 6,
-    formats: [],
-    budget: "any",
-    pace: "standard",
-    ...over,
-  });
-  for (const goal of data.goals) {
-    const role = { type: "role" as const, templateId: goal.id };
-    const req = goal.requiredSkills;
-    const half = Object.fromEntries(
-      req.filter((_, i) => i % 2 === 0).map((r) => [r.skillId, { level: r.level, source: "stated" as const }]),
-    );
-    const belowTarget = Object.fromEntries(
-      req.map((r) => [r.skillId, { level: Math.max(0, r.level - 1) as 0 | 1 | 2 | 3, source: "inferred" as const }]),
-    );
-    out.push({ name: `${goal.id}/blank`, profile: { goals: [role], skills: {}, preferences: prefs({}) } });
-    out.push({ name: `${goal.id}/half`, profile: { goals: [role], skills: half, preferences: prefs({ hoursPerWeek: 10 }) } });
-    out.push({
-      name: `${goal.id}/one-below`,
-      profile: { goals: [role], skills: belowTarget, preferences: prefs({ pace: "intense", hoursPerWeek: 4 }) },
-    });
-    out.push({
-      name: `${goal.id}/free-text`,
-      profile: {
-        goals: [role],
-        skills: {},
-        preferences: prefs({ budget: "free-only", formats: ["text"], pace: "relaxed", hoursPerWeek: 3 }),
-      },
-    });
-  }
-  // Two goals at once.
-  out.push({
-    name: "multi-goal",
-    profile: {
-      goals: [
-        { type: "role", templateId: data.goals[0].id },
-        { type: "role", templateId: data.goals[data.goals.length - 1].id },
-      ],
-      skills: {},
-      preferences: prefs({ hoursPerWeek: 12 }),
-    },
-  });
-  return out;
-}
-
-const cases = buildProfiles().map(({ name, profile }) => ({
+const cases = sweepProfiles(data).map(({ name, profile }) => ({
   name,
   profile,
   result: generatePath(profile, data, { now: NOW, trigger: "initial" }),
@@ -172,6 +117,15 @@ describe("engine properties (§5.6)", () => {
         expect(p.title, name).toMatch(new RegExp(`^Phase ${i + 1} — `));
         expect(p.items.filter((it) => catalogById.get(it.catalogId)!.kind === "course").length).toBeLessThanOrEqual(4);
       });
+    }
+  });
+
+  it("is deterministic with the transition prior enabled (D-27)", () => {
+    // The prior reads branches.json, which the sweep's engine data carries; generating the
+    // same profile twice must still produce byte-identical output.
+    for (const { name, profile, result } of cases) {
+      const again = generatePath(profile, data, { now: NOW, trigger: "initial" });
+      expect(JSON.stringify(again.path), name).toBe(JSON.stringify(result.path));
     }
   });
 

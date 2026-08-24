@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { currentUser } from "@/auth";
 import { getOwnedLearner, getLatestPath, getProfile, listChatMessages, listLearners } from "@/db/queries";
+import { judgeGate } from "@/lib/budget";
 import { loadEngineData } from "@/lib/engineData";
 import { loadGraphEvidence } from "@/lib/graphEvidence";
 import { signInUrl } from "@/lib/authz";
@@ -33,12 +34,13 @@ export default async function LearnPage({ params, searchParams }: PageProps<"/le
   const user = await currentUser();
   if (!user) redirect(signInUrl(`/learn/${learnerId}${carryGraphQuery(await searchParams)}`));
   if (!UuidSchema.safeParse(learnerId).success) notFound();
-  const [learner, profile, latest, messages, siblings] = await Promise.all([
+  const [learner, profile, latest, messages, siblings, budget] = await Promise.all([
     getOwnedLearner(user.id, learnerId),
     getProfile(learnerId),
     getLatestPath(learnerId),
     listChatMessages(learnerId),
     listLearners(user.id),
+    judgeGate.allow({ userId: user.id, learnerId }),
   ]);
   if (!learner || !profile) notFound();
 
@@ -61,13 +63,14 @@ export default async function LearnPage({ params, searchParams }: PageProps<"/le
       user={user}
       learners={siblings.map((l) => ({ id: l.id, displayName: l.displayName }))}
       initialProfile={profile}
-      initialPath={latest ? { version: latest.version, path: latest.data } : null}
+      initialPath={latest ? { version: latest.version, path: latest.data, diff: latest.diff } : null}
       initialMessages={messages.map((m) => ({ id: m.id, role: m.role, text: m.content.text, toolCalls: m.content.toolCalls, degraded: m.content.degraded, card: m.content.card }))}
       goals={goals}
       skills={skills}
       graphEvidence={graphEvidence}
       catalog={catalog}
       initialGraphLink={graphLink}
+      initialDegradation={budget.ok ? null : budget.degradation}
     />
   );
 }

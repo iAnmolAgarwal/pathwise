@@ -5,7 +5,6 @@ import { useId, useMemo, useRef, useState } from "react";
 
 import { FOCUS_THRESHOLD, useInView } from "./useInView";
 
-import catalog from "@/data/catalog.json";
 import { Button } from "@/components/ui/button";
 
 import styles from "./stream.module.css";
@@ -42,12 +41,9 @@ function makeKeyframes(direction: 1 | -1, name: string) {
   return `@keyframes ${name}{${frames.join("")}}`;
 }
 
-/** Top of the difficulty scale, read from the catalog rather than typed. */
-const LEVELS = Math.max(
-  ...(catalog as { difficulty: number }[]).map((c) => c.difficulty),
-);
 
-interface StreamCard {
+/** The four fields a card shows; the server page passes these so the client never bundles the catalog. */
+export interface StreamCard {
   id: string;
   title: string;
   provider: string;
@@ -67,8 +63,7 @@ function clip(text: string, max: number): string {
 }
 
 /** The whole catalog in a fixed shuffled order (stride walk, deterministic) — every item passes through the corridor. */
-function orderCatalog(): StreamCard[] {
-  const all = catalog as StreamCard[];
+function orderCatalog(all: StreamCard[]): StreamCard[] {
   const out: StreamCard[] = [];
   for (let step = 0; step < all.length; step += 1)
     out.push(all[(step * 7) % all.length]);
@@ -77,9 +72,11 @@ function orderCatalog(): StreamCard[] {
 
 export function SkillStream({
   id,
+  cards,
   nextHref = "#how-it-works",
 }: {
   id?: string;
+  cards: StreamCard[];
   nextHref?: string;
 }) {
   const [paused, setPaused] = useState(false);
@@ -94,7 +91,9 @@ export function SkillStream({
       `${makeKeyframes(1, rightAnimation)}${makeKeyframes(-1, leftAnimation)}`,
     [rightAnimation, leftAnimation],
   );
-  const sequence = useMemo(() => orderCatalog(), []);
+  const sequence = useMemo(() => orderCatalog(cards), [cards]);
+  /** Top of the difficulty scale, read from the cards rather than typed. */
+  const levels = useMemo(() => Math.max(1, ...cards.map((c) => c.difficulty)), [cards]);
   // Eighteen slots; each card advances to the next unseen item every time its loop restarts, so the
   // full catalog streams past at the cost of eighteen DOM nodes.
   const [rounds, setRounds] = useState<number[]>(() => Array(SLOTS).fill(0));
@@ -139,7 +138,7 @@ export function SkillStream({
                     {clip(item.title, TITLE_MAX)}
                   </span>
                   <span className={styles.level}>
-                    {Array.from({ length: LEVELS }, (_, i) => i + 1).map(
+                    {Array.from({ length: levels }, (_, i) => i + 1).map(
                       (n) => (
                         <i
                           key={n}
