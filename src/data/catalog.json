@@ -4281,12 +4281,12 @@
     "qualityPrior": 0.8
   },
   {
-    "id": "datakitchen-data-observability-cert",
+    "id": "dbt-data-tests-guide",
     "kind": "course",
-    "title": "Data Observability and Data Quality Testing Certification Series",
-    "provider": "DataKitchen",
-    "url": "https://datakitchen.io/data-observability-and-data-quality-testing-certification-series/",
-    "description": "Free four-part on-demand webinar series with homework on DataKitchen's open-source observability tools: data reliability in production, data testing in development and migration, and maturing toward observability practices, with a certification on completion.",
+    "title": "Add data tests to your DAG",
+    "provider": "docs.getdbt.com (official docs)",
+    "url": "https://docs.getdbt.com/docs/build/data-tests",
+    "description": "dbt's official guide to testing data in a transformation pipeline: singular and generic tests, severity and thresholds, storing failures, and running tests against sources and models.",
     "skillsTaught": [
       {
         "skillId": "data-quality",
@@ -4297,13 +4297,17 @@
       {
         "skillId": "etl-pipelines",
         "level": 1
+      },
+      {
+        "skillId": "sql",
+        "level": 1
       }
     ],
     "difficulty": 3,
-    "durationHours": 8,
-    "format": "video",
+    "durationHours": 4,
+    "format": "text",
     "cost": "free",
-    "qualityPrior": 0.65
+    "qualityPrior": 0.8
   },
   {
     "id": "docker-get-started",
