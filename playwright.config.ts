@@ -15,7 +15,8 @@ loadEnvConfig(process.cwd());
 export default defineConfig({
   testDir: "tests/e2e",
   timeout: 120_000,
-  expect: { timeout: 30_000 },
+  // The first run on a cold checkout also compiles the app's data-heavy routes; 30s was too tight.
+  expect: { timeout: 60_000 },
   retries: process.env.CI ? 1 : 0,
   workers: 1,
   reporter: process.env.CI ? [["list"], ["github"]] : [["list"]],
