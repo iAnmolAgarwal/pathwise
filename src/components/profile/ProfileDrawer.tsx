@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { Preferences, Profile, ProfileOp } from "@/schemas";
 
 const LEVEL_LABEL = ["Not yet", "Basics", "Comfortable", "Strong"];
@@ -48,6 +48,14 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [seen, setSeen] = useState<{ profile: Profile; open: boolean }>({ profile, open });
+  const panel = useRef<HTMLElement>(null);
+  // Closing hides the panel from assistive tech; focus must not stay inside a hidden region,
+  // so whatever was focused in it (usually the Close button) is released first.
+  useEffect(() => {
+    if (open) return;
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && panel.current?.contains(active)) active.blur();
+  }, [open]);
   if (seen.profile !== profile || seen.open !== open) {
     setSeen({ profile, open });
     setLevels({});
@@ -110,6 +118,7 @@ export function ProfileDrawer({ profile, changes, skillName, templateTitle, open
 
   return (
     <aside
+      ref={panel}
       className={`fixed inset-y-3 right-3 z-40 flex w-[min(400px,calc(100vw-24px))] transform flex-col overflow-hidden rounded-panel border border-line bg-[rgb(8_8_10/94%)] text-[13.5px] sm:bg-[rgb(8_8_10/88%)] text-ink-1 shadow-lift backdrop-blur-[22px] transition-transform duration-(--dur-base) ease-enter ${open ? "translate-x-0" : "translate-x-[calc(100%+16px)]"}`}
       role="dialog"
       aria-modal={open}
