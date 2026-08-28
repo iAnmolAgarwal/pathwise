@@ -13,7 +13,7 @@ and unbroken; the machinery comes after it, once the panel already cares about t
   time. Nothing is rounded past what the source says.
 - Every click path below was walked against the code. If a screen does not do something, the
   script does not claim it.
-- Anything that could not be settled from the code is marked **[VERIFY AT RECORDING]**.
+- Everything that could not be settled from the code was walked on production; section 5 has the results.
 
 Word counts are given per shot. Voiceover is written to be read aloud (or fed to TTS) at about
 140 words per minute; the whole script is 449 words over 210 seconds, ≈ 128 wpm, which leaves
@@ -35,14 +35,17 @@ room to breathe and to let two or three shots play silent.
 | **1:06–1:19** (13 s) | On any open item card, click **Why this?** | The explain panel opens under the card. Left: **"Nova says"** — the orb spins on "Reading the evidence…", then the narration streams in. Right: **"The evidence"** — *Closes gap in*, *Comes after*, and the score bars **Coverage · Level fit · Preference fit · Quality · Similarity · Learners' next step · Total**. Hold with both halves in frame. | "Ask why this. Nova's explanation sits beside the evidence it was given: the gap it closes, what it comes after, and the six scores that ranked it." *(27 w)* |
 | **1:19–1:30** (11 s) | On the same card, click **Show in graph** | Pane switches to **Skill Graph**. The **Tracing** strip appears with the item title and the skill chain (`A → B → C`). The graph refits onto the traced skills; the highlighted nodes brighten, the rest dim, and the arrows on the traced path animate. | "Show in graph, and the same reasoning lights up on the map: you know this, so this unlocks that, which the role needs." *(23 w)* |
 | **1:30–1:44** (14 s) | Rail avatar (bottom of the icon rail) → **Learner** → **Priya** | Priya's workspace opens on the **Path** tab and the **path diff banner** animates in and scrolls itself into view: kicker **"Path updated · v‹n› · ‹n› changes"**, then one sentence, then the **Added** / **Removed** columns with a reason per row. Hold on the sentence and the two columns. | "Push back and the plan changes. Priya said one JavaScript course was too hard. The path rebuilt itself, and the banner says what came in, what went out, and why, in one sentence." *(33 w)* |
-| **1:44–1:56** (12 s) | Rail avatar → **Alex** → Path tab → click **Done** on the first open item → **immediately** click the **Nova** tab | The Done chip shows its working orb, the path updates, then the Nova tab shows Nova in her celebrating pose with the bubble: *"That's a milestone, Alex. Nicely done — the path just moved to make room for what's next."* The celebration lasts **2.2 s** — see the note under the table. | "Alex is six weeks in. Mark an item done and Nova notices. Small thing, but it's the difference between a document and a mentor." *(24 w)* |
+| **1:44–1:56** (12 s) | Rail avatar → **Alex** → Path tab → dismiss the path-update banner → click **Done** on the first open item → **wait for the path to visibly update** (the done counter ticks, the pane settles on Path) → **then** click the **Nova** tab | The Done chip shows its working orb, the path updates, then the Nova tab shows Nova in her celebrating pose with the bubble: *"That's a milestone, Alex. Nicely done — the path just moved to make room for what's next."* The celebration lasts **2.2 s** — see the note under the table. | "Alex is six weeks in. Mark an item done and Nova notices. Small thing, but it's the difference between a document and a mentor." *(24 w)* |
 | **1:56–2:07** (11 s) | Click the **Dashboard** tab | Full-width dashboard. Pan slowly across: **Next best action** (kind, hours, phase, title, why), **Progress toward your goal** with its big percent, the **Streak** tile with the flame and the 14-day spark, the **Activity** year heatmap, and **Skills by domain** — the radar with the dashed *Goal* ring and the filled *You* shape. | "The long view: progress toward the goal, a radar of the role against you, a streak, and the next best thing to do." *(23 w)* |
 
 **Note on the celebration shot (1:44).** Nova's celebrating state lives only on the **Nova**
-tab, and completing an item forces the pane to the **Path** tab, so the 2.2-second celebration
-plays off-screen unless the Nova tab is clicked immediately. Rehearse it; expect two or three
-takes. Fallback if it will not land: stay on the Nova tab and let Nova's greeting bubble carry
-the beat instead, and drop the voiceover's second sentence. **[VERIFY AT RECORDING]**
+tab. The feedback round-trip takes three to four seconds (once, fourteen); when its response
+lands, the pane is forced to the **Path** tab and the 2.2-second celebration timer starts in the
+same instant — so a Nova click made *before* the response lands is overridden. Click Done, wait
+for the path to update, then click Nova: measured on production, Nova holds "Milestone reached"
+from about 0.4 s to 2.2 s after the update, which is roughly 1.8 s of usable window. Rehearse
+it; expect two or three takes. Fallback if it will not land: stay on the Nova tab and let Nova's
+greeting bubble carry the beat instead, and drop the voiceover's second sentence.
 
 ---
 
@@ -228,29 +231,42 @@ the middle of the learner story.
 
 ---
 
-## 5. Open items to confirm on the day — **[VERIFY AT RECORDING]**
+## 5. Confirmed on production before recording
 
-1. **Priya's diff banner wording.** The banner is generated by the engine from her seeded
-   `too_hard` on *The Complete JavaScript Course: From Zero to Expert*, so the exact sentence
-   and the version number depend on the seed run. The shape is fixed: either *"Swapped X for Y
-   because you found The Complete JavaScript Course: From Zero to Expert too hard."* or *"Added
-   … and removed … because you found … too hard."*, with added rows reading *"Rebuilds what The
-   Complete JavaScript Course: From Zero to Expert assumed you knew — closes …"* and removed
-   rows *"Made room for remediation first"*. Read the real sentence off the screen before
-   recording the voiceover; the voiceover as written does not quote it.
-2. **Alex may also open with a diff banner.** His last seeded event is a completion, which
-   replans only if it opens a shortcut. If a banner is on his path when it opens, dismiss it
-   before the 1:44 shot so the celebration beat is not competing with it.
-3. **The 2.2-second celebration window** at 1:44 (see the note under Act 1).
-4. **Sam's live turn must produce the intake card.** It does so only when no skill has been
-   stated, which is why the scripted sentence is bare. If a take says anything like "I know
-   some Excel", Nova will build the path straight away and skip the card.
-5. **Repository visibility.** Act 3 shows two GitHub pages. Confirm the repo is reachable from
-   the recording browser session before the take; if it is not, shoot the agreement report from
-   a local checkout instead and keep the Actions run in the browser.
-6. **The exact tier line on the anchor arrow's details** ("Confirmed by both sources") — read it
-   off the pinned card rather than trusting this script, since it follows the edge status the
-   pipeline wrote.
-7. **Contradicted arrows are not reachable from Alex's graph.** His subgraph does not contain
-   any of the six. If a live in-app "under review" card is wanted instead of the report, it has
-   to be shot from Priya's graph, on the *CSS → Web Accessibility* arrow.
+Every item below was walked on https://trypathwise.vercel.app with the seeded cast. Read it once
+before the take; the numbers in section 2 were all on screen unchanged.
+
+1. **Priya's diff banner** reads *"Path updated · v4 · 8 changes"*, Added 5 / Removed 3, and the
+   sentence ends *"because you found it too hard"* without naming the course. The voiceover does
+   not quote it, so nothing changes.
+2. **Alex opens with a diff banner too** (*v11 · 4 changes … because you completed Zero to
+   Mastery: Learn PyTorch for Deep Learning*). Dismiss it before the 1:44 shot.
+3. **The celebration cue** is *click Done, wait for the path update, then click Nova* — see the
+   note under Act 1.
+4. **Sam's bare sentence produces the intake card.** It also makes the **profile drawer slide
+   open** over the right pane the moment his goal is recorded (the drawer opens whenever the
+   profile changes). Either close it before the intake-card shot, or let it be the beat: the
+   engine's view of Sam, filling in live.
+5. **The learner picker lists newest first** — Sam, Priya, Alex after a fresh seed — with avatar,
+   name and arrow only; there are no per-learner state labels.
+6. **"Comes after" is conditional.** The evidence card shows it only when a prerequisite item is
+   also on the path; Alex's first open item (Docker) has none. If that row is wanted on camera,
+   open an item that has one.
+7. **The tier line on the anchor arrow** is *"Confirmed by both sources"*, under *"Verified by 2 of
+   2 sources · 54,067 learners, 95 % in this order · Stack Overflow"*.
+8. **Contradicted arrows are not in Alex's graph.** The live "Under review" card is on Priya's
+   graph: `/learn/<priya>?tab=graph&edge=css>web-accessibility` — *CSS before Web Accessibility*,
+   1,917 learners / 80 % / Stack Overflow, *Contradicted by a source · reviewed: keep authored*,
+   both sources' numbers, and the review note dated 2026-08-19. A strong in-app substitute for the
+   agreement-report page if the browser session cannot reach the repository.
+9. **Framing at 1440 × 900:** the dashboard radar is below the fold and the dashboard scrolls
+   inside its own pane, so the 1:56 pan scrolls the pane, not the page; the pinned anchor-edge
+   card covers the *Python for Data Analysis* node and its Coursera half needs a scroll inside the
+   card, so pan or zoom the graph before letting the card hold; the Skill Graph tab lazy-loads
+   (*"Loading the skill graph"*) on a cold tab, which is why the checklist pre-loads it.
+10. **The Python node card carries one extra line** the shot list does not name — *"18 mined
+    candidate links · not drawn, not used to build paths"* — between the level line and *What
+    learners did next*.
+11. **Reset before the take:** `npm run seed <team-google-account-email> all` from the repository
+    root restores Sam to fresh, re-dates Alex's streak and clears the day's token usage; the three
+    `/learn/<id>` URLs change on every run, so copy them again afterwards.
