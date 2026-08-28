@@ -138,7 +138,7 @@ pathwise/
 ├── CODEOWNERS                   # required reviewer on everything (§18)
 ├── .github/workflows/           # link-check.yml (weekly), drift-check.yml (nightly), both workflow_dispatch
 ├── app/
-│   ├── page.tsx                 # landing: hero, "how it works" strip, trust badge, feature wall, keep-fresh section
+│   ├── page.tsx                 # landing: hero, "how it works" strip, trust badge, feature wall
 │   ├── learn/[learnerId]/       # main app shell: chat + Nova / Path / Skill Graph / Dashboard
 │   └── api/                     # route handlers (see §6)
 ├── src/
@@ -534,11 +534,11 @@ type Evidence = {
   catalogId: string;
   gapSkillsCovered: { skillId: string; reason: Gap["reason"]; graphPath: string[] }[];
   scoreBreakdown: { coverage: number; levelFit: number; preferenceFit: number;
-                    quality: number; similarity: number; total: number };
+                    quality: number; similarity: number; transitionPrior: number; total: number };
   sequencedAfter: { catalogId: string; becauseSkill: string }[];
   provenance: string;    // the real course URL
   learnerEvidence?: {    // post-M5: attached when a covered gap skill sits on an edge with mined data
-    edges: { from: string; to: string; source: EvidenceSource; support: number; reverse: number; confidence: number; caveat: string }[];
+    edges: { from: string; to: string; source: EvidenceSource; support: number; reverse: number; confidence: number; n: number; caveat: string }[];
     branch?: { from: string; toThis: number; nTotal: number; shareShrunk: number; source: EvidenceSource; caveat: string };
   };
 };
@@ -555,10 +555,12 @@ Three renderings, always shown together:
    facts; do not introduce claims not present in the evidence; numbers (n, %) may be
    cited only from `learnerEvidence`. Low effort, ~150 token output, delivered in Nova's
    voice. Its groundedness is **measured**, not asserted (§16.3).
-3. **Provenance (post-M5):** when `learnerEvidence` exists, the card shows one extra line —
-   *"Confirmed by 1,617 learner sequences (94 % took these in this order)"* — with a hover
-   listing the sources, their counts and their caveats. In the graph explorer every edge is
-   styled by tier and its popover shows the same numbers (§9.3).
+3. **Provenance (post-M5):** when `learnerEvidence` exists, the card shows one extra line
+   built from the largest source — for `python → python-data-analysis`, *"Confirmed by
+   51,421 learner sequences (95 % took these in this order)"* — with a hover listing every
+   source, its counts (support, reverse, confidence, n) and its caveat. In the graph
+   explorer the edge card shows the same numbers ("54,067 learners, 95 % in this order ·
+   Stack Overflow") together with the edge's tier (§9.3).
 
 Because all three render side by side, any narrative drift is immediately visible against
 the structural ground truth — this is the line the solution doc leads with for criterion
@@ -668,10 +670,10 @@ regardless of which visual ships**, which is what made the 3D risk cheap:
 
 | Screen | Requirement it demonstrates |
 |---|---|
-| Landing: Nova + "describe your goal" entry; **"how it works" strip (talker / matcher / map); trust badge with the agreement numbers; keep-fresh section** | 1 (conversational interface), 6 (UX), and the pitch itself (§9.4) |
+| Landing: Nova + "describe your goal" entry; **"how it works" strip (talker / matcher / map); trust badge with the agreement numbers** | 1 (conversational interface), 6 (UX), and the pitch itself (§9.4) |
 | Chat with profile side-drawer filling live; in-chat intake card | 2 (profiling engine — ops applied visibly) |
 | Path view: phases, milestones, evidence cards **with the provenance line** | 3, 4 (recommendations + structured roadmap) |
-| Skill graph: gap coloring, click-to-highlight paths; **edge styling by tier (solid = confirmed-both, dashed = confirmed-one / no-data authored, dotted = mined candidate, amber = contradicted-in-review), provenance popover per edge, branch overlay on a selected skill when `minSupportMet` ("not enough learner data on this step" otherwise)** | 5 (explainability, structural + provenance) |
+| Skill graph: gap coloring, click-to-highlight paths; **every arrow drawn alike (the per-tier stroke styling was dropped in the de-clutter pass for legibility); the edge card carries the tier (confirmed-both / confirmed-one / no-data authored / mined candidate / contradicted-in-review) with its provenance numbers; branch overlay on a selected skill when `minSupportMet` ("not enough learner data on this step" otherwise)** | 5 (explainability, structural + provenance) |
 | Feedback → animated path diff | adaptation (task statement: "adapt based on feedback") |
 | Dashboard: radar, timeline, streak, next action | 6 (dashboard) |
 
@@ -689,7 +691,8 @@ multi-source validation"). Contents: hero copy; a three-sentence "how it works" 
 (**the talker** — Nova asks what you want and explains; **the matcher** — arithmetic picks
 courses and their order; **the map** — a hand-built skill map, checked against real
 learners); the **trust badge** rendering the agreement report's headline numbers (§15.7);
-the keep-fresh section (§17). Exit criterion: a stranger reads the landing page for 30
+a keep-fresh section (§17; retired in the later landing-story pass — freshness is documented
+in the README and shown by the Actions themselves). Exit criterion: a stranger reads the landing page for 30
 seconds and can say what it does and why the map can be trusted. Its floor is hero copy +
 trust badge: if the owner invokes the cut order, the block reduces to that floor; it is
 never fully cut, and its floor never moves.
@@ -1243,7 +1246,7 @@ Public wording: "kept fresh by machines, kept true by people" — never "maintai
 ## 19. Sign-in (D-26)
 
 **Rule.** Anyone who opens the app signs in with an existing Google account first. The
-landing page (hero, how-it-works, trust badge, keep-fresh, the sample-path link) is public;
+landing page (hero, how-it-works, trust badge, the sample-path link) is public;
 everything under `/learn/*` is not. After sign-in the flow is exactly what it was: learner
 picker → workspace → chat, path, graph, dashboard. The engine, the evidence layer and the
 deterministic core do not know users exist.
