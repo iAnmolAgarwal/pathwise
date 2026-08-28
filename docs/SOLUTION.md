@@ -798,7 +798,7 @@ trusted:
 | Ring-1 courses / courses carrying ≥ 1 tag | 170 / 99 |
 | Tags total | 255 |
 | Pass-A claims / refuted by pass B | 298 / 49 |
-| Confidence split (high / medium / low) | 112 / 17 / 41 |
+| Confidence split per Ring-1 course (high / medium / low) | 112 / 17 / 41 |
 | Spot-check sample | 34 courses (stratified 20 % of Ring 1) |
 | **Reviewer-vs-model Jaccard** | **0.9149** (gate 0.85) — passed |
 | Reviewer-vs-model exact level | 0.8679 |
