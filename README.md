@@ -5,6 +5,8 @@ embedding engine decides what to learn and in what order; a conversational mento
 the Claude API elicits your goals and explains every recommendation from the engine's own
 evidence.
 
+**Stood #1 in HCLTech AMPLIfied Round 2 (the prototype phase).**
+
 **Live:** https://trypathwise.vercel.app, sign in with any Google account, no setup.
 
 **Solution documentation:** [`docs/Pathwise-Solution-Documentation.pdf`](docs/Pathwise-Solution-Documentation.pdf), the deck submitted with this entry.
