@@ -75,7 +75,7 @@ decision-maker.** Concretely:
 - **The engine** (`src/engine/`) is pure: data in, data out, fully unit-tested (five fixture
   learners with snapshot-pinned paths, a 66-profile property sweep, DAG and diff invariants).
   It reads only the path-driving edges of the skill graph (authored ∪ human-promoted).
-- **The Claude API** (`src/llm/`, model `claude-sonnet-5` via `@anthropic-ai/sdk`) is used for
+- **The Claude API** (`src/llm/`, model `claude-sonnet-5-5` via `@anthropic-ai/sdk`) is used for
   four things and only these: the chat turn (a manual tool-use loop whose tools are engine
   functions and profile operations), extracting profile operations from what the learner
   says (structured output against the shared Zod schema), mapping a free-text goal onto the
