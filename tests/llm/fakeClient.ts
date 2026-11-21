@@ -34,7 +34,7 @@ export function fakeClient(script: Scripted[], parsed: unknown = { ops: [] }) {
               id: `msg_${i}`,
               type: "message",
               role: "assistant",
-              model: "claude-sonnet-5",
+              model: "claude-sonnet-5-5",
               content: next.content,
               stop_reason: next.stop_reason,
               stop_sequence: null,

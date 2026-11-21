@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-/** One model everywhere (§8.1); intro pricing runs through the judging window. */
-export const MODEL = "claude-sonnet-5";
+/** One model everywhere (§8.1). */
+export const MODEL = "claude-sonnet-5-5";
 
 /** Adaptive thinking is the default on this model; effort is the only depth control we set. */
 export const EFFORT = {
